@@ -1,0 +1,23 @@
+{# src/eveg/UserBundle/Resources/views/User/resetting.email.twig #}
+
+{% block subject %}Resetting your password{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+Hello {{ user.username }} !
+
+You can reset your email by accessing {{ confirmationUrl }}
+
+Greetings,
+the Acme team
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{#
+    You can of course render the html directly here.
+    Including a template as done here allows keeping things DRY by using
+    the template inheritance in it
+#}
+{% include 'eveg:UserBundle:resetting_email.html.twig' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{# src/eveg/AppBundle/Resources/views/Default/homepage.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} : utilisation
+{% endblock %}
+
+{% block navbar_path_context %}
+	<li><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li> 
+	<li class="active"><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
+	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
+	<li><a href="#" title="Outils">Outils</a></li>
+	<li><a href="{{ path('eveg_app_contact') }}" title="Contacter les auteurs">Contact</a></li>
+{% endblock %}

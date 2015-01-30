@@ -1,0 +1,7 @@
+parameters:
+#    eveg_app.example.class: eveg\AppBundle\Example
+
+services:
+    eveg_app.catcode:
+        class: eveg\AppBundle\Utils\CatCode\evegCatCode
+    #    arguments: [@service_id, "plain_value", %parameter%]

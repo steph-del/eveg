@@ -1,0 +1,70 @@
+{# src/eveg/UserBundle/Resources/views/Security/login.html.twig #}
+{# overload login.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/formoid-metro-cyan.css') }}" type="text/css" />
+{% endblock %}
+
+{% block title %}
+	{{ parent() }} : connexion
+{% endblock %}
+
+{% block navbar_path_context %}
+	<li class="active"><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li>
+	<li><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
+	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
+	<li><a href="#" title="Outils">Outils</a></li>
+	<li><a href="{{ path('eveg_app_howto') }}" title="Contacter les auteurs">Contact</a></li>
+{% endblock %}
+
+{% block body %}
+
+	{% trans_default_domain 'FOSUserBundle' %}
+	
+	{% block fos_user_content %}
+		{% if error %}
+		    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+		{% endif %}
+		<br /><br />
+		<form class="formoid-metro-cyan" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px" action="{{ path("fos_user_security_check") }}" method="post">
+			
+			<div class="title"><h2>Se connecter</h2></div>
+			
+		    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+			
+			<div class="element-input">
+				<label for="username" class="title">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}<span class="required">*</span></label>
+				<input class="large" type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
+			</div>
+			
+			<div class="element-password">
+				<label for="password" class="title">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}<span class="required">*</span></label>
+				<input class="large" type="password" id="password" name="_password" required="required"/>
+			</div>
+					
+			<div class="element-checkbox">
+				<label class="title"></label>
+				<div class="column column1">
+					<label>
+						<input type="checkbox" id="remember_me" name="_remember_me" value="on"/ >
+						<span>{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</span>
+					</label>
+				</div><span class="clearfix"></span>
+			</div>
+			
+			<div class="submit">
+				<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+			</div>
+		</form>
+
+	{% endblock fos_user_content %}
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('js/formoid-metro-cyan.js') }}"></script>
+{% endblock %}

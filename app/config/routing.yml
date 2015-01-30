@@ -1,0 +1,21 @@
+eveg_user:
+    resource: "@evegUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+eveg_app:
+    resource: "@evegAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# -------------
+# FOSRestBundle
+# -------------
+rest:
+    type: rest
+    resource: "routing_rest.yml"
+    prefix: /api
+
+# -------------
+# FOSUserBundle
+# -------------
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -1,0 +1,49 @@
+{# src/eveg/AppBundle/Resources/views/Default/homepage.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} : végétations de France
+{% endblock %}
+
+{% block navbar_path_context %}
+	<li class="active"><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li>
+	<li><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
+	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
+	<li><a href="#" title="Outils">Outils</a></li>
+	<li><a href="{{ path('eveg_app_howto') }}" title="Contacter les auteurs">Contact</a></li>
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	
+	<div class="row">
+		<div class="header col-md-6 col-md-offset-2">
+			<h1>eVeg <small>végétations de France</small><h1>
+		</div>
+
+		<div class="col-md-6 col-md-offset-2 text-justify">
+			<p>
+				eVeg est une interface web en lien avec baseveg et baseflor (programme CATMINAT, par Philippe Julve). Il vous donne accès à une base de données sur l’ensemble des végétations de France métropolitaine et parle la phytosociologie synusiale intégrée.<br/>
+				Chaque végétation connue y est répertoriée et décrite (écologie, chorologie, synonymie, cortège floristique, références bibliographiques). Les diagnoses originales sont téléchargeables, ainsi que des photos illustrant chaque végétation.<br/>
+				eVeg est également en lien avec eFlore, projet collaboratif de Tela-Botanica, et permet de consulter les fiches espèces associées aux végétations. Le projet eVeg se veut lui-même collaboratif, participez à son développement ! C'est votre première visite ? La page "Comment utiliser eVeg?" peut vous aider.
+			</p>
+
+			<a href="{{ path('eveg_app_homepage') }}"><button type="button" class="btn btn-primary">Accéder à eVeg</button></a>
+
+		</div>
+
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Actuellement sur eVeg">
+				<div class="caption">
+					<h3>Actuellement sur eVeg</h3>
+					<p><span class="badge">XXXX</span> fiches descriptives<br/><span class="badge">YYY</span> documents téléchargeables</p>
+				</div>
+			</div>
+		</div>
+	</div> <!-- ./row -->
+
+{% endblock %}

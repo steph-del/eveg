@@ -1,0 +1,61 @@
+{# src/eveg/AppBundle/Resources/views/Default/contact.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} : contact
+{% endblock %}
+
+{% block navbar_path_context %}
+	<li><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li> 
+	<li><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
+	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
+	<li><a href="#" title="Outils">Outils</a></li>
+	<li class="active"><a href="{{ path('eveg_app_contact') }}" title="Contacter les auteurs">Contact</a></li>
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	
+	<div class="row">
+		<div class="header col-md-10 col-md-offset-2">
+			<h1>eVeg <small>contact</small><h1>
+		</div>
+
+		<div class="col-md-3 col-md-offset-2">
+			<div class="thumbnail">
+				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Actuellement sur eVeg">
+				<div class="caption">
+					<h3>Philippe Julve</h3>
+					<p>Auteur de CATMINAT</p>
+					<p>a@b.com</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Actuellement sur eVeg">
+				<div class="caption">
+					<h3>Stéphane Delplanque</h3>
+					<p>Auteur d'eVeg</p>
+					<p>a@b.com</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Actuellement sur eVeg">
+				<div class="caption">
+					<h3>Florent Beck</h3>
+					<p>Traduction (Allemand, Espagnol)</p>
+					<p>a@b.com</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

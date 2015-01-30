@@ -1,0 +1,6 @@
+#src/eveg/AppBundle/Resources/config/routing_rest.yml
+
+users : 
+  type: rest
+  resource:     "evegAppBundle:SyntaxonTreeRest"
+  name_prefix:  api_

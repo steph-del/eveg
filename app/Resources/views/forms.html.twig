@@ -1,0 +1,44 @@
+{# Twitter Bootstrap forms integration #}
+
+{# see /app/config/config.yml twig section #}
+
+{# http://www.informulate.com/blog/symfony/symfony-form-customization-and-twitter-bootstrap/ #}
+{# http://knpuniversity.com/screencast/symfony2-ep4/form-customizations #}
+{# http://symfony.com/fr/doc/current/cookbook/form/form_customization.html #}
+
+{# inputs #}
+{% block form_widget_simple -%}
+	{%- set type = type|default('text') -%}
+
+		<input type="{{ type }}" class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+	
+{%- endblock form_widget_simple %}
+
+{# row #}
+{% block form_row -%}
+{% spaceless %}
+	<div class="control-group {{ errors|length > 0 ? 'error' : '' }}">
+		<div>
+			{{- form_label(form) -}}
+			<div class="controls">
+				{{- form_errors(form) -}}
+				{{- form_widget(form) -}}
+			<div>
+		</div>
+	</div>
+{% endspaceless %}
+{%- endblock form_row %}
+
+{# errors #}
+{% block form_errors -%}
+	{% if errors|length > 0 -%}
+	<span class="help-inline">
+		<span>
+			{%- for error in errors -%}
+				{{ error.message }}
+			{%- endfor -%}
+		</span>
+	</sapn>
+	{%- endif %}
+{%- endblock form_errors %}
+
