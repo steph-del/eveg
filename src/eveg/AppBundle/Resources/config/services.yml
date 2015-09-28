@@ -2,6 +2,31 @@ parameters:
 #    eveg_app.example.class: eveg\AppBundle\Example
 
 services:
-    eveg_app.catcode:
-        class: eveg\AppBundle\Utils\CatCode\evegCatCode
-    #    arguments: [@service_id, "plain_value", %parameter%]
+    # catCode services
+    # Those 2 services are separated because only the second one (catCodeRepo) uses the repository.
+    # >> We can't set up a function that doesn't use the repository in the catCodeRepo because doctrine factory service
+    #     only expects find, findBy, get... functions.
+    # All services provided by catCodeRepo are 'duplicated' in the catCode service to make things easier.
+    eveg_app.catCode:
+        class:             eveg\AppBundle\Utils\CatCode\evegCatCode
+        arguments:         ['@eveg_app.catCodeRepo']
+
+    eveg_app.catCodeRepo:
+        class:             eveg\AppBundle\Utils\CatCode\evegCatCodeRepo
+        factory_service:   doctrine.orm.default_entity_manager
+        factory_method:    getRepository
+        arguments:         ['evegAppBundle:SyntaxonCore']
+
+    eveg.twig.eveg_extension:
+        class:             eveg\AppBundle\Twig\evegExtension
+        tags:
+            - { name: twig.extension }
+
+    # scRepo service (used within catCode utility class)
+    # Useless !?
+    #eveg_app.scRepo:
+    #    class: eveg\AppBundle\Entity\SyntaxonCoreRepository
+    #    factory_service: doctrine.orm.default_entity_manager
+    #    factory_method: getRepository
+    #    arguments: ['evegAppBundle:SyntaxonCore']
+

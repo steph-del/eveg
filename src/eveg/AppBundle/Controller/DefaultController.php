@@ -4,6 +4,7 @@
 namespace eveg\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use eveg\AppBundle\Entity\SyntaxonCore;
 
 class DefaultController extends Controller
 {
@@ -21,6 +22,73 @@ class DefaultController extends Controller
 	{
 		
 		return $this->render('evegAppBundle:Default:contact.html.twig');
+	}
+
+	public function showOneAction(SyntaxonCore $syntaxon, $id)
+	{
+		
+		$em = $this->getDoctrine()->getManager();
+
+		// is a valid syntaxon ?
+		if(ereg("syn", $syntaxon->getLevel())) {
+			// Checks pro parte syntaxon
+        	$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findBySyntaxon($syntaxon->getSyntaxonName(), $syntaxon->getSyntaxonAuthor());
+
+        	// is a pro parte syntaxon ?
+        	//print_r($syntaxon->getSyntaxon().'<br />');
+        	//print_r(count($entities).'<br />');
+        	//print_r($entities);
+        	if(count($entities) > 1) {
+        		print('syn >1');
+        		$catCodes = array();
+        		foreach ($entities as $key => $entity) {
+        			array_push($catCodes, $entity->getCatminatCode());
+        		}
+        		$multipleSyntaxon = $em->getRepository('evegAppBundle:SyntaxonCore')->findValidSyntaxonByCatminatCode($catCodes);
+        		return $this->render('evegAppBundle:Default:showOne.html.twig', array(
+					'multipleSyntaxon' => $multipleSyntaxon,
+					'redirectionMultipleSyntaxon' => $syntaxon
+				));
+        	} else {
+        		// REDIRECTION
+        		$successfullSyntaxon = $em->getRepository('evegAppBundle:SyntaxonCore')->findValidSyntaxonByCatminatCode($entities[0]->getCatminatCode());
+        		// flashbag
+        		$this->get('session')->getFlashBag()->add(
+		            'info',
+		            'Vous avez été redirigé vers le syntaxon retenu pour votre recherche concernant "'.$syntaxon->getSyntaxon().'"'
+		        );
+
+        		return $this->redirect($this->generateUrl('eveg_show_one', 
+        			array(
+        				'id' => $successfullSyntaxon[0]->getId()
+        				)
+        		));
+        		
+
+        		/*$redirectionSyntaxon = $entities[0];
+        		return $this->render('evegAppBundle:Default:showOne.html.twig', array(
+					'syntaxon' => $successfullSyntaxon[0],
+					'redirectionSyntaxon' => $redirectionSyntaxon
+				));*/
+        	}
+
+		} else {
+
+			// Getting catCode service
+			$catCode = $this->get('eveg_app.catCode');
+
+			$allParents = $catCode->getAllParents($syntaxon->getCatminatCode());
+
+			$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
+
+			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
+			'syntaxon' => $syntaxon,
+			'synonyms' => $synonyms,
+			'allParents' => $allParents
+		));
+		}
+
+		
 	}
 	
 }

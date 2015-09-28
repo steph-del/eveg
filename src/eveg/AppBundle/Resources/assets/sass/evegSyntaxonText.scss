@@ -1,0 +1,80 @@
+$color-HAB-text: #000000;
+$color-CLA-text: #CF1B1B;
+$color-SUBCLA-text: #BA1616;
+$color-ORD-text: #1848CC;
+$color-SUBORD-text: #1642BA;
+$color-ALL-text: #1DCF2C;
+$color-SUBALL-text: #19BF27;
+$color-ASS-text: #ED8A18;
+$color-SUBASS-text: #D67C15;
+
+$indent: 10px;
+
+.HAB-text {
+	color: $color-HAB-text;
+}
+
+.CLA-text {
+	color: $color-CLA-text;
+}
+
+.SUBCLA-text {
+	color: $color-SUBCLA-text;
+}
+
+.SUBCLA-indent {
+	padding-left: $indent;
+}
+
+
+.ORD-text {
+	color: $color-ORD-text;
+}
+
+.ORD-indent {
+	//padding-left: ($indent*2);
+	padding-left: ($indent*2); 
+ 	//text-indent: -($indent*2); 
+}
+
+.SUBORD-text {
+	color: $color-SUBORD-text;
+}
+
+.SUBORD-indent {
+	padding-left: ($indent*3);
+}
+
+
+.ALL-text {
+	color: $color-ALL-text;
+}
+
+.ALL-indent {
+	padding-left: ($indent*4);
+}
+
+
+.SUBALL-text {
+	color: $color-SUBALL-text;
+}
+
+.SUBALL-indent {
+	padding-left: ($indent*5);
+}
+
+.ASS-text {
+	color: $color-ASS-text;
+}
+
+.ASS-indent {
+	padding-left: ($indent*6);
+}
+
+.SUBASS-text {
+	color: $color-SUBASS-text;
+}
+
+.SUBASS-indent {
+	padding-left: ($indent*7);
+}

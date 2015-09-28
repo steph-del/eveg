@@ -3,7 +3,7 @@ eveg_user:
     prefix:   /
 
 eveg_app:
-    resource: "@evegAppBundle/Resources/config/routing.yml"
+    resource: "@evegAppBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 # -------------
@@ -11,7 +11,7 @@ eveg_app:
 # -------------
 rest:
     type: rest
-    resource: "routing_rest.yml"
+    resource: "@evegAppBundle/Resources/config/routing/routing_rest.yml"
     prefix: /api
 
 # -------------
@@ -19,3 +19,9 @@ rest:
 # -------------
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# -------------
+# FOSJsRouting
+# -------------
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -1,0 +1,5 @@
+user_delete:
+    path: /admin/user/delete/{id}
+    defaults: { _controller: evegUserBundle:Default:deleteUser }
+    requirements:
+        id: \d+

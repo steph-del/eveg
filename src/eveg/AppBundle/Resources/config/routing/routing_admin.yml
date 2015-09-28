@@ -1,0 +1,35 @@
+# src/eveg/AppBundle/Resources/config/routing_admin.yml
+
+# Admin routes
+eveg_admin_dashboard:
+    path: /
+    defaults: { _controller: evegAppBundle:Admin:dashboard }
+
+eveg_admin_test:
+    path: /test
+    defaults: { _controller: evegAppBundle:Admin:test }
+
+eveg_admin_users:
+    path: /users
+    defaults: { _controller: evegAppBundle:Admin:users }
+
+eveg_admin_edit_user:
+    path: /user/{id}
+    defaults: { _controller: evegUserBundle:Profile:edit }
+
+eveg_admin_delete_user:
+    path: /user/{id}/delete
+    defaults: { _controller: evegAppBundle:Admin:deleteUser }
+
+#eveg_slug_regenerator:
+#    path: /regenerate-slugs
+#    defaults: { _controller: evegAppBundle:Admin:generateAllSlugs }
+
+# Dev routes
+eveg_admin_catCode:
+    path: /catcode_test
+    defaults: { _controller: evegAppBundle:Admin:devCatCode }
+
+eveg_app_admin_syntaxon:
+    resource: "@evegAppBundle/Resources/config/routing/syntaxoncore.yml"
+    prefix:   /syntaxon

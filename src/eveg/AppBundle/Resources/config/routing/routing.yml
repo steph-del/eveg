@@ -1,0 +1,41 @@
+# src/eveg/AppBundle/Resources/config/routing/routing.yml
+
+# application routes
+eveg_app_homepageEmpty:
+    path: /
+    defaults: { _controller: evegAppBundle:Default:index }
+
+eveg_app_homepage:
+    path:     /accueil
+    defaults: { _controller: evegAppBundle:Default:index }
+
+eveg_app_howto:
+    path: /utiliser
+    defaults: { _controller: evegAppBundle:Default:howto }
+
+eveg_app_contact:
+    path: /contact
+    defaults: { _controller: evegAppBundle:Default:contact }
+
+eveg_show_one:
+    path: /{id}
+    defaults: { _controller: evegAppBundle:Default:showOne }
+    requirements:
+        id: \d+
+
+# API Search
+api_get_syntaxon_search:
+    path: /api/syntaxons/search.{format}
+    defaults: { _controller: evegAppBundle:SyntaxonSearch:simpleSearch, format: json }
+    requirements:
+        format:  json|xml
+        _method: GET
+
+# Admin routes
+eveg_admin :
+  resource: "routing_admin.yml"
+  prefix:  /admin
+
+eveg_app_admin_syntaxon:
+    resource: "@evegAppBundle/Resources/config/routing/syntaxoncore.yml"
+    prefix:   /admin/syntaxon

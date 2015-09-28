@@ -1,0 +1,268 @@
+/*
+ * Colors
+ ********/
+$SearchBoxBorderColor: rgba(0, 0, 0, 0.3);
+$BgColorShowOne: rgb(255, 255, 255);
+$BgColorVH-HAB: grey;
+$BgColorVH-CLA: #FFAAA7;
+$BgColorVH-SUBCLA: #FFAAA7;
+$BgColorVH-ORD: #85BCED;
+$BgColorVH-SUBORD: #85BCED;
+$BgColorVH-ALL: #B5D98C;
+$BgColorVH-SUBALL: #B5D98C;
+$BgColorVH-ASSGR: #B5D98C;
+$BgColorVH-ASS: #FFFAAF;
+$BgColorVH-SUBASS: #FFFAAF;
+
+$colorViewHeaderAuthor: inherit;
+
+/*
+ * Navbar
+ ********/
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+
+// Col-centered
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+/*
+ * Jumbotron
+ ***********/
+.row.jumbotron {
+	height: 200px;
+
+	background: url("/../eveg/web/img/patterns/saxgra_bg.jpg") no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+// input jumbotron
+.searchbox {
+	width: 100%;
+	height: 35px;
+	height: 40px;
+	border-radius: 0;
+	font-size: 1.5em;
+
+}
+
+
+/*
+ * Syntaxon breadcrumb
+ *********************/
+.breadcrumb {
+	margin-bottom: 0;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0;
+	padding-right: 0;
+	height: auto;
+	background-color: transparent;
+}
+
+
+
+.flexBreadcrumb {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+.flexBreadcrumbItem {
+	//flex: 1;
+	//max-width: 250px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.flexBreadcrumbItem:hover {
+	white-space: normal;
+    //word-wrap: break-word; 
+    //max-width: 100%;
+    flex: none;
+}
+
+.breadcrumbSeparator {
+	margin-right: 4px;
+	margin-left: 4px;
+	color: grey;
+}
+
+/*
+ * Footer
+ ********/
+.footer {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	margin-top: 10px;
+}
+.container-footer {
+	padding: 0;
+	min-height: 40px;
+	margin-top: 15px;
+
+	background-color: black;
+	color: grey;
+}
+
+/*
+ * View
+ ******/
+.appShowRow {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	margin-top: 10px;
+}
+
+#showOneResult {
+	background-color: $BgColorShowOne;
+	-moz-box-shadow: 0px 0px 10px 0px #656565;
+	-webkit-box-shadow: 0px 0px 10px 0px #656565;
+	-o-box-shadow: 0px 0px 10px 0px #656565;
+	box-shadow: 0px 0px 10px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=10);
+}
+#showOneResult .row {
+		padding-left: 15px;
+		padding-right: 5px;
+	}
+
+.viewHeader {
+	//padding-left: 15px;
+	//padding-right: 5px;
+	h1 {
+		font-size: 1.5em;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	h2 {
+		font-size: 1em;
+		margin-top: 0px;
+		margin-bottom: 5px;
+	}
+}
+
+@mixin borderViewHeader($color) {
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	border-bottom-color: darken($color, 10%);
+}
+
+.viewHeader-HAB {
+	@extend .viewHeader;
+	background-color: $BgColorVH-HAB;
+	@include borderViewHeader($BgColorVH-HAB);
+}
+.viewHeader-CLA {
+	@extend .viewHeader;
+	background-color: $BgColorVH-CLA;
+	@include borderViewHeader($BgColorVH-CLA);
+}
+.viewHeader-SUBCLA {
+	@extend .viewHeader;
+	background-color: $BgColorVH-SUBCLA;
+	@include borderViewHeader($BgColorVH-SUBCLA);
+}
+.viewHeader-ORD {
+	@extend .viewHeader;
+	background-color: $BgColorVH-ORD;
+	@include borderViewHeader($BgColorVH-ORD);
+}
+.viewHeader-SUBORD {
+	@extend .viewHeader;
+	background-color: $BgColorVH-SUBORD;
+	@include borderViewHeader($BgColorVH-SUBORD);
+}
+.viewHeader-ALL {
+	@extend .viewHeader;
+	background-color: $BgColorVH-ALL;
+	@include borderViewHeader($BgColorVH-ALL);
+}
+.viewHeader-SUBALL {
+	@extend .viewHeader;
+	background-color: $BgColorVH-SUBALL;
+	@include borderViewHeader($BgColorVH-SUBALL);
+}
+.viewHeader-ASSGR {
+	@extend .viewHeader;
+	background-color: $BgColorVH-ASSGR;
+	@include borderViewHeader($BgColorVH-ASSGR);
+}
+.viewHeader-ASS {
+	@extend .viewHeader;
+	background-color: $BgColorVH-ASS;
+	@include borderViewHeader($BgColorVH-ASS);
+}
+.viewHeader-SUBASS {
+	@extend .viewHeader;
+	background-color: $BgColorVH-SUBASS;
+	@include borderViewHeader($BgColorVH-SUBASS);
+}
+
+.viewLeft {
+	padding-left:0;
+	padding-right: 15px;
+}
+.viewRight {
+	padding: 0;
+}
+
+span.viewHeaderAuthor {
+	color: $colorViewHeaderAuthor;
+	font-size: .6em;
+}
+
+/*
+ * Panel
+ *******/
+.panel-heading {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.list-group-item {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+/*
+ * Tooltip
+ *********/
+ .tooltip-inner {
+ 	max-width: 250px;
+
+ 	ul {
+ 		padding-left: 15px;
+ 		text-align: left;
+ 	}
+
+ 	li {
+ 		list-style-type: disc;
+ 	}
+ }
+
+ /*
+  * Synonyms box
+  **************/
+ .synonymsShowAll {
+ 	color: grey;
+ 	font-size: .8em;
+ 	cursor: pointer;
+ 	//visibility: hidden;
+ }
+
+

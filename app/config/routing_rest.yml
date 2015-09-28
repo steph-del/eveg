@@ -1,5 +1,0 @@
-#app/routing_rest.yml
-
-Rest_User : 
-  type : rest
-  resource: "@evegAppBundle/Resources/config/routing_rest.yml"

@@ -1,0 +1,16 @@
+{# src/eveg/UserBundle/Resources/views/Registration/checkEmail.html.twig #}
+{# overload checkEmail.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Créer un compte | {{ parent() }}{% endblock %}
+
+
+{% block body %}
+	{{ parent() }}
+	{% block fos_user_content %}
+	    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+	{% endblock fos_user_content %}
+{% endblock body %}

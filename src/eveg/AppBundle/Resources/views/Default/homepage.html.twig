@@ -2,34 +2,87 @@
 
 {% extends "::layout.html.twig" %}
 
+
 {% block title %}
 	{{ parent() }} : végétations de France
-{% endblock %}
-
-{% block navbar_path_context %}
-	<li class="active"><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li>
-	<li><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
-	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
-	<li><a href="#" title="Outils">Outils</a></li>
-	<li><a href="{{ path('eveg_app_howto') }}" title="Contacter les auteurs">Contact</a></li>
 {% endblock %}
 
 {% block body %}
 
 	{{ parent() }}
 
-	
+	{# Jumbotrom / Searchbox #}
+	<div class="row jumbotron text-center">
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
+			<div class="searchBoxExtend">
+				<div class="right-inner-addon">
+					<i class="searchIcon glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+					<span class="badge-addon badge">X</span>
+						<div class="input-group">
+							<input type="text" class="form-control searchbox" name="term" id ="searchbox" placeholder="Rechercher une végétation">
+							<div class="input-group-addon searchboxOptionsIcon">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="panel panel-default searchboxPanelOptions">
+							<div class="panel-body">
+								<form class="form-inline">
+									<div class="input-group">
+										<label for="exampleInputEmail1">
+											<input class="searchUseSynonymsCB" type="checkbox" value="" checked>
+											Utiliser les synonymes
+										</label>
+
+									</div>
+								</form>
+							</div>
+						</div>
+
+						{#<div class="input-group-btn">
+							<div class="btn-group" role="group">
+                        		<div class="dropdown dropdown-lg">
+                        			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        				<span class="caret"></span>
+                        			</button>
+                        			<div class="dropdown-menu dropdown-menu-right" role="menu">
+                        				<form class="form-horizontal" role="form">
+											<div class="form-group">
+												<label for="filter">Rechercher dans les synonymes</label>
+											</div>
+										</form>
+									</div>
+                        		</div>
+                        	</div>
+						</div> <!-- ./input-group-btn -->
+					</div> <!-- ./adv-search -->#}
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<div class="header col-md-6 col-md-offset-2">
 			<h1>eVeg <small>végétations de France</small><h1>
 		</div>
 
+
 		<div class="col-md-6 col-md-offset-2 text-justify">
+			<div>
+				<div class="HAB-text">HAB</div>
+					<div class="CLA-text">CLA</div>
+						<div class="SUBCLA-text SUBCLA-indent">SUBCLA</div>
+							<div class="ORD-text ORD-indent">ORD</div>
+								<div class="SUBORD-text SUBORD-indent">SUBORD</div>
+									<div class="ALL-text ALL-indent">ALL</div>
+										<div class="SUBALL-text SUBALL-indent">SUBALL</div>
+											<div class="ASS-text ASS-indent">ASS</div>
+												<div class="SUBASS-text SUBASS-indent">SUBASS</div>
+			</div>
 			<p>
 				eVeg est une interface web en lien avec baseveg et baseflor (programme CATMINAT, par Philippe Julve). Il vous donne accès à une base de données sur l’ensemble des végétations de France métropolitaine et parle la phytosociologie synusiale intégrée.<br/>
 				Chaque végétation connue y est répertoriée et décrite (écologie, chorologie, synonymie, cortège floristique, références bibliographiques). Les diagnoses originales sont téléchargeables, ainsi que des photos illustrant chaque végétation.<br/>
 				eVeg est également en lien avec eFlore, projet collaboratif de Tela-Botanica, et permet de consulter les fiches espèces associées aux végétations. Le projet eVeg se veut lui-même collaboratif, participez à son développement ! C'est votre première visite ? La page "Comment utiliser eVeg?" peut vous aider.
 			</p>
+
 
 			<a href="{{ path('eveg_app_homepage') }}"><button type="button" class="btn btn-primary">Accéder à eVeg</button></a>
 
@@ -40,10 +93,103 @@
 				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Actuellement sur eVeg">
 				<div class="caption">
 					<h3>Actuellement sur eVeg</h3>
-					<p><span class="badge">XXXX</span> fiches descriptives<br/><span class="badge">YYY</span> documents téléchargeables</p>
+					<p><span class="badge"></span> fiches descriptives<br/><span class="badge">YYY</span> documents téléchargeables</p>
 				</div>
 			</div>
 		</div>
 	</div> <!-- ./row -->
+
+{% endblock %}
+
+{% block javascript %}
+
+	{{ parent() }}
+	<!-- JQUERY COOKIE -->
+	<script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
+	<script>
+		if(!$.cookie('eveg_search_use_synonyms')) {
+			$.cookie('eveg_search_use_synonyms', true);
+			console.log('Setting up a cookie : eveg_search_use_synonyms (true)');
+		}
+		if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
+			$(".searchUseSynonymsCB").prop("checked", true);
+		} else {
+			$(".searchUseSynonymsCB").prop("checked", false);
+		}
+		function toggleUseSynonymsCookie(){
+			if ($('.searchUseSynonymsCB').is(':checked')) {
+				$.cookie('eveg_search_use_synonyms', true);
+			}
+			if(!$('.searchUseSynonymsCB').is(':checked')) {
+				$.cookie('eveg_search_use_synonyms', false);
+			}
+		}
+		$('.searchUseSynonymsCB').click(function(){
+			toggleUseSynonymsCookie();
+		});
+	</script>
+
+	<!-- AUTOCOMPLETE -->
+	<script src="{{ asset('js/autocomplete.js') }}" type="text/javascript"></script>
+	<script>
+		$('.searchIcon').hide();
+		$('.badge-addon').hide();
+		monkeyPatchAutocomplete();
+		var useSynonyms = false;
+		$('#searchbox').autocomplete({
+			
+			source: function(request, response){
+				if ($('.searchUseSynonymsCB').is(':checked')) {
+					var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': true }, true);
+				} else {
+					var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': false }, true);
+				}
+				$.ajax({url:url,success:function(responsedata){
+			        response(responsedata)
+			    }});
+			},
+			minLength: 3,
+			search: function(event, ui) {
+				$('.badge-addon').hide();
+				$('.searchIcon').show();
+			},
+			response: function(event, ui) {
+				$('.searchIcon').hide();
+				$('.badge-addon').text(ui.content.length);
+				$('.badge-addon').show();
+			},
+			focus: function(event, ui) {
+		        event.preventDefault();
+		    },
+		    change: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+		    close: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+			select : function(event, ui){
+				event.preventDefault();
+				window.location.href = Routing.generate('eveg_show_one', { id: ui.item.id }, true);
+				$('.badge-addon').hide();
+			}
+		});
+	</script>
+
+	<!-- FOCUS -->
+	<script>
+	$(document).ready(function(){
+	    $("#searchbox").focus();
+	});
+	</script>
+
+	<!-- SEARCHBOX PANEL OPTIONS -->
+	<script>
+		$(".searchboxPanelOptions").hide();
+		$(".searchboxOptionsIcon").click(function(){
+			$(".searchboxPanelOptions").slideToggle(200);
+		});
+	</script>
+
+
 
 {% endblock %}

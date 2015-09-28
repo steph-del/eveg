@@ -5,31 +5,38 @@ namespace eveg\AppBundle\Tests\Utils\CatCode;
 
 use eveg\AppBundle\Utils\CatCode\evegCatCode;
 use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
+//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class evegCatCodeTest extends \PHPUnit_Framework_TestCase
+ class evegCatCodeTest extends \PHPUnit_Framework_TestCase 
+//class evegCatCodeTest extends WebTestCase
 {
-	
+	/*
     public function testCheckCodeException1()
     {
-
+    	
 	    $this->setExpectedException('\eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException');
-	    	    
-	    $catCode = new evegCatCode();
 	    
-	    $catminat = '16/1.2.3.4.5.6.7';
-		$result = $catCode->checkCatminat($catminat);
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
 
-    } 
-    
+	    $catCode = new evegCatCode($catCodeRepo);
+
+	    $catminat = '16/1.2.3.4.5.6.7';
+		
+		$result = $catCode->checkCatminatCode($catminat);
+
+    }
+
     public function testCheckCodeException2()
     {
 
 	    $this->setExpectedException('\eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException');
 	    	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    $catminat = '16/1';
-		$result = $catCode->checkCatminat($catminat);
+		$result = $catCode->checkCatminatCode($catminat);
 
     }
     
@@ -38,10 +45,12 @@ class evegCatCodeTest extends \PHPUnit_Framework_TestCase
 
 	    $this->setExpectedException('\eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException');
 	    	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    $catminat = '16/1.2.3.4.5.6/';
-		$result = $catCode->checkCatminat($catminat);
+		$result = $catCode->checkCatminatCode($catminat);
 
     } 
     
@@ -50,17 +59,21 @@ class evegCatCodeTest extends \PHPUnit_Framework_TestCase
 
 	    $this->setExpectedException('\eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException');
 	    	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    $catminat = '16/1.2.3.4.5.6./07';
-		$result = $catCode->checkCatminat($catminat);
+		$result = $catCode->checkCatminatCode($catminat);
 
     } 
-    
+	*/
     public function testGetLevelCode()
     {
 	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    // 1
 	    $catminat1 = '01/1.2.3.4.5.6/01ter';
@@ -97,7 +110,9 @@ class evegCatCodeTest extends \PHPUnit_Framework_TestCase
     public function testGetParentCode()
     {
 	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    // 1
 	    $catminat1 = '01/1.2.3.4.5.6/01ter';
@@ -151,73 +166,41 @@ class evegCatCodeTest extends \PHPUnit_Framework_TestCase
 	    
     }
     
-    public function testGetAllParentsCodes(){
+    public function testGetAllParents(){
 	    
-	    $catCode = new evegCatCode();
+	    $catCodeRepo = $this->getMock('\eveg\AppBundle\Utils\evegCatCodeRepo');
+
+	    $catCode = new evegCatCode($catCodeRepo);
 	    
 	    // 1
 	    $catminat1 = '01/1.0.3/01bis';
-	    $result1 = $catCode->getAllParentsCodes($catminat1);
+	    $result1 = $catCode->getAllParents($catminat1, false, true);
 	    $expected1 = array('01/', '01/1.', '01/1.0.3', '01/1.0.3/01');
 	    $this->assertEmpty(array_diff($expected1, $result1));
 
 	    // 2
 	    $catminat2 = '01/';
-	    $result2 = $catCode->getAllParentsCodes($catminat2);
-	    $this->assertEmpty( $result2);
+	    $result2 = $catCode->getAllParents($catminat2, false, true);
+	    $this->assertEmpty($result2);
 	    
 	    // 3
 	    $catminat3 = '14/6.0.1.0.1/02';
-	    $result3 = $catCode->getAllParentsCodes($catminat3);
+	    $result3 = $catCode->getAllParents($catminat3, false, true);
 	    $expected3 = array('14/', '14/6.', '14/6.0.1', '14/6.0.1.0.1');
 	    $this->assertEmpty(array_diff($expected3, $result3));
 	    
 	    // 4
 	    $catminat4 = '14/6.0.1.0.1/02';
-	    $result4 = $catCode->getAllParentsCodes($catminat4, true);
+	    $result4 = $catCode->getAllParents($catminat4, true, true);
 	    $expected4 = array('14/', '14/6.', '14/6.0.1', '14/6.0.1.0.1', '14/6.0.1.0.1/02');
 	    $this->assertEmpty(array_diff($expected4, $result4));
 	    
 		// 5
 	    $catminat5 = '01/1.2.3.4.5.6/01ter';
-	    $result5 = $catCode->getAllParentsCodes($catminat5);
+	    $result5 = $catCode->getAllParents($catminat5, false, true);
 	    $expected5 = array('01/', '01/1.', '01/1.2', '01/1.2.3', '01/1.2.3.4', '01/1.2.3.4.5', '01/1.2.3.4.5.6', '01/1.2.3.4.5.6/01');
 	    $this->assertEmpty(array_diff($expected5, $result5));
 	    
     }
-    
-    /*
-    public function testGetLevel()
-    {
-    
-		$this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-    	
-    }
-    
-	public function testCleanCode()
-	{
-		
-		$this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-		
-	}
-	
-
-    
-    public function testGetParentCode()
-    {
-
-		$this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-
-    }
-    */
-
-
-
     
 }

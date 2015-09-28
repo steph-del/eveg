@@ -1,0 +1,18 @@
+{# src/eveg/AppBundle/Resources/views/Admin/users.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Modifier {{ user.username }} |
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{# {{ dump(form) }} #}
+	<h1>Modifier l'utilisateur {{ user.username }}</h1>
+	{{ form(form) }}
+{% endblock %}

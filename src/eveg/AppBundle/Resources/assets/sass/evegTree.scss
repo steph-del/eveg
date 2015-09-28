@@ -1,0 +1,31 @@
+ul.fancytree-container {
+	background-color: transparent;
+	border: none;
+}
+
+#divTree {
+	background-color: transparent;
+	padding: 0;
+	//border-right: 3px solid black;
+}
+
+.fancytree-node {
+
+}
+
+.fancytree-title {
+	display: inline;
+}
+
+ul.fancytree-container ul {
+    padding: 0 0 0 6px;
+    margin: 0;
+}
+
+span.fancytree-title {
+    white-space: normal;
+}
+
+.fancytree-treefocus {
+	outline: none;
+}

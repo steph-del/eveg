@@ -1,0 +1,99 @@
+$highlightColor: rgba(255, 205, 26, 0.1);
+$borderColor: rgba(255, 205, 26, 0.3);
+$searchBoxExtendColor: rgba(0, 0, 0, 0.3);
+
+span.highlightSearch {
+	background-color: $highlightColor;
+    border: 1px solid $borderColor;
+    border-radius: 2px;
+}
+
+validSearch {
+	font-weight: bold;
+}
+
+synonymeSearch {
+	
+}
+
+.searchBoxExtend {
+	padding: 10px;
+	background-color: $searchBoxExtendColor;
+}
+
+.searchbox:focus {
+	border-color: none;
+	box-shadow: none;
+	outline: 0 none;
+}
+
+// option icon
+.searchboxOptions {
+    
+}
+
+// Icon inner addon (input bootstrap)
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 30px;    
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 35px;
+    padding: 12px 12px;
+    pointer-events: none;
+    z-index: 10;
+}
+.right-inner-addon span.badge-addon {
+	position: absolute;
+    right: 45px;
+    top: 10px;
+    z-index: 11;
+    //padding: 12px 12px;
+    pointer-events: none;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+// panel options
+.searchboxPanelOptions {
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-align: left;
+}
+.searchboxPanelOptions .panel-body {
+    padding-top: 10px;
+    padding-bottom: 0;
+}

@@ -3,48 +3,46 @@
 
 namespace eveg\AppBundle\Utils\CatCode;
 
+//use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
+use eveg\AppBundle\Entity\SyntaxonCore;
+//use eveg\AppBundle\Entity\SyntaxonCoreRepository;
 
-class evegCatCode{
+class evegCatCode
+{
 	/**
 	* evegCatCode : shaking the catminat code to get its juice !
 	* 	- input $text must be a string variable : a catminat code
 	*	- different functions are provided to verify the consistency of the code, to clean the code, to return the parent code...
 	* 
 	* in the following, we name the different parts of a catminat code as :
-	* 	exemple : 01/1.2.3/04
+	* 	(exemple : 01/1.2.3/04)
 	* 	01    is the habCode
 	* 	1.2.3 is the coreCode (named $aferOneSlash or $betweenSlashes)
 	* 	04    is the assCode
 	* 
 	*/
 
-	
+	private $catCodeRepo;
+
+	public function __construct($CatCodeUseRepository)
+	{
+		$this->catCodeRepo = $CatCodeUseRepository;
+	}
+
 	public function testCatminat($text){
-		
+
 		$firstSlash = $this->findFirstSlash($text);
 		$lastSlash = null;
-		$assCode = null;
+		$assCode = $this->getAssCode($text);
 		$nbSlashes = $this->getNbSlashes($text);
 		$coreCode = $this->getCoreCode($text);
 		$habCode = $this->getHabCode($text);
-		$parentCode = $this->getParentCode($text);
-		
-		
-		if($nbSlashes == 2){
-			
-			$lastSlash = $this->findLastSlash($text);
-			$assCode = $this->getAssCode($text);
-			
-		}
-		
-		$explodedCatminat = $this->explodeCatminat($coreCode);
+		$exploded = $this->explodeCatminat($coreCode);
 		$level = $this->getLevel($text);
 		$cleaned = $this->cleanCode($text);
-		
-		$test = $this->checkCatminat($text);
-		
-		$allParentsCodes = $this->getAllParentsCodes($text, true);
+		$directChild = $this->getDirectChild($text);
 			
 		return array('nbSlashes' => $nbSlashes,
 					 'firstSlash' => $firstSlash,
@@ -52,12 +50,11 @@ class evegCatCode{
 					 'habCode' => $habCode,
 					 'coreCode' => $coreCode,
 					 'assCode' => $assCode,
-					 'exploded' => $explodedCatminat,
+					 'exploded' => $exploded,
 					 'level' => $level,
 					 'cleaned' => $cleaned,
-					 'test' => $test,
-					 'parentCode' => $parentCode,
-					 'parentsCodes' => $allParentsCodes);
+					 'directChild' => $directChild,
+					 );
 		
 	}
 	
@@ -220,6 +217,71 @@ class evegCatCode{
 			throw new \Exception('The getLevel function (evegCatCode class) returned an error. The catminat code seems to be wrong !');
 
 		}
+		
+	}
+
+	public function getNextLevel($catminatCode, $jump = 1)
+	{
+		if($jump == 1) {
+			switch($catminatCode){
+				case 'HAB':
+					return 'CLA';
+					break;
+				case 'CLA':
+					return 'SUBCLA';
+					break;
+				case 'SUBCLA':
+					return 'ORD';
+					break;
+				case 'ORD':
+					return 'SUBORD';
+					break;
+				case 'SUBORD':
+					return 'ALL';
+					break;
+				case 'ALL':
+					return 'SUBALL';
+					break;
+				case 'SUBALL':
+					return 'ASS';
+					break;
+				case 'GRASS':
+				    return 'ASS';
+				    break;
+				case 'ASS':
+					return 'SUBASS';
+					break;
+			}
+		} elseif($jump == 2) {
+			switch($catminatCode){
+				case 'HAB':
+					return 'SUBCLA';
+					break;
+				case 'CLA':
+					return 'ORD';
+					break;
+				case 'SUBCLA':
+					return 'SUBORD';
+					break;
+				case 'ORD':
+					return 'ALL';
+					break;
+				case 'SUBORD':
+					return 'SUBALL';
+					break;
+				case 'ALL':
+					return 'ASS';
+					break;
+				case 'SUBALL':
+					return 'SUBASS';
+					break;
+				case 'ASS':
+					throw new evegCatCodeException("Error in catCode:getNextLevel. Can't provide nextLevel*2 for an ASS.");
+					break;
+			}
+		}
+		
+		throw new evegCatCodeException("Error in catCode:getNextLevel.");
 		
 	}
 	
@@ -465,15 +527,22 @@ class evegCatCode{
 				break;
 		}	
 	}
+
+	public function getDirectParent($catminatCode)
+	{
+
+		return $this->catminatCodeToObject($this->getParentCode($catminatCode));
+
+	}
 	
-	public function getAllParentsCodes($text, $includeInitialCatminatCode = false){
+	public function getAllParents($text, $includeInitialCatminatCode = false, $returnArray = false){
 		
 		/**
 		*
 		* Returns a table with all the parents codes of a single catminat code
 		* options :
 		* 	- $includeInitialCatminatCode (boolean) : true -> include the initial code in the table
-		*
+		*   - $retunrArray (boolean)
 		*/
 		
 		// Initializing variables
@@ -481,7 +550,7 @@ class evegCatCode{
 		$output = array();
 		$currentCatminatCode = $text;
 		$parentCatminatCode = '';
-		
+
 		// Running
 		if($includeInitialCatminatCode == true){
 			array_push($output, $text);
@@ -500,34 +569,98 @@ class evegCatCode{
 		
 		$output = array_reverse($output);
 		
-		return $output;
+		if ($returnArray == false) {
+			return $this->catminatCodeToObject($output);
+		} else {
+			return $output;
+		}
+		
 		
 	}
-	
-	public function checkCatminat($text){
+
+	public function checkCatminatCode($text){
+	// Checks the syntax of a catminat code
 		
-		// Checks the syntax of a catminat code
 		if(preg_match("/^[0-9]{2}\/([0-9]\.)?$/", $text)){
 		
-			return;
+			return true;
 			
 		} elseif(preg_match("/^[0-9]{2}\/[0-9]\.([0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?$/", $text)) {
 		
-			return;
+			return true;
 			
 		} elseif(preg_match("/^[0-9]{2}\/[0-9]\.([0-9])(\.[0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?\/[0-9]{2}(bis|ter|quater|quinquies|sexies|septies|octies|nonies|decies)?$/", $text)) {
 		
-			return;
+			return true;
 			
 		} else {
 		
-			throw new evegCatCodeException('There is an error in the catminat code syntax ('.$text.') - error from the checkCatminat function');
+			return false;
+			//throw new evegCatCodeException('There is an error in the catminat code syntax ('.$text.').');
 			
 		}
 		
 	}
+
+	public function getDirectChild($catminatCode, $returnArray = false)
+	{
+		// Getting the SyntaxonCore repository
+		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
+
+		$child = $this->catCodeRepo->getDirectChild($catminatCode, $returnArray);
+
+		if(!$child){
+			return null;
+		} else {
+			return $child[0];
+		}
+	}
+
+	public function getChildren($catminatCode, $returnArray = false)
+	{
+		// Getting the SyntaxonCore repository
+		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
+
+		$children = $this->catCodeRepo->getChildren($catminatCode, $returnArray);
+
+		if($children == null){
+			return null;
+		} else {
+			return $children;
+		}
+		
+	}
+
+	public function catminatCodeToObject($catminatCode)
+	{
+		/*
+		*
+		* Converts one or more catminatCode(s) to objects
+		* Allows $catminatCode to be an array (multiple codes) or a string (single code)
+		*
+		*/
+
+		// Getting the SyntaxonCore repository
+		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
+
+		if(is_string($catminatCode)){
+
+			$uniqueObject = $this->catCodeRepo->findValidOneByCatminatCode($catminatCode);
+
+			return $uniqueObject;
+
+		} elseif(is_array($catminatCode)) {
+
+			$multipleObjects = $this->catCodeRepo->findValidSyntaxonByCatminatCode($catminatCode);
+
+			return $multipleObjects;
+
+		}
+
+
+	}
 	
 	// todo public function checkParentCode($text){}
 	
-	// todopublic function checkAllParentsCodes($text){}
+	// todo public function checkAllParentsCodes($text){}
 }

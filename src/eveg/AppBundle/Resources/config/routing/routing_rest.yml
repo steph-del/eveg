@@ -1,0 +1,11 @@
+#src/eveg/AppBundle/Resources/config/routing/routing_rest.yml
+
+rest_syntaxon_tree: 
+    type: rest
+    resource:     "evegAppBundle:SyntaxonTreeRest"
+    name_prefix: api_
+
+rest_syntaxon_search:
+    type: rest
+    resource: "evegAppBundle:SyntaxonSearchRest"
+    name_prefix: api_

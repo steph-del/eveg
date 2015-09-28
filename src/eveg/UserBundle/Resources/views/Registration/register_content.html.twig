@@ -1,0 +1,120 @@
+{# src/eveg/UserBundle/Resources/views/Security/register.html.twig #}
+{# overload register.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/formoid-metro-cyan.css') }}" type="text/css" />
+{% endblock %}
+
+{% block title %}
+	{{ parent() }} : inscription
+{% endblock %}
+
+{% block body %}
+
+	{% trans_default_domain 'FOSUserBundle' %}
+
+	{% block fos_user_content %}
+
+		<br /><br />
+		<form class="formoid-metro-cyan" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" role="form">
+
+			<div class="title"><h2>Créer un compte</h2></div>
+ 
+ 				<div class="element-input">
+					{{ form_errors(form.username) }}
+					{{ form_label(form.username, 'security.login.username'|trans({}, 'FOSUserBundle')) }}
+					{{ form_widget(form.username) }}
+				</div>
+
+				<div class="element-email">
+					{{ form_errors(form.email) }}
+					{{ form_label(form.email, 'form.email'|trans({}, 'FOSUsuerBundle')) }}
+					{{ form_widget(form.email) }}
+				</div>
+
+				<div class="element-password">
+					{{ form_errors(form.plainPassword.first) }}
+					{{ form_label(form.plainPassword.first, 'security.login.password'|trans({}, 'FOSUserBundle')) }}
+					{{ form_widget(form.plainPassword.first) }}
+				</div>
+
+				<div class="element-password">
+					{{ form_errors(form.plainPassword.second) }}
+					{{ form_label(form.plainPassword.second, 'form.password_confirmation'|trans({}, 'FOSUserBundle')) }}
+					{{ form_widget(form.plainPassword.second) }}
+				</div>
+
+				{{ form_row(form._token) }}
+
+				{{ form_rest(form) }}
+
+				<div class="submit">
+					<div class="row">
+						<div class="col-md-offset-1 col-md-6 text-left">
+							<a href="{{ path('fos_user_security_login') }}">Se connecter</a>
+						</div>
+						<div class="col-md-5">
+							<input type="submit" style="display: inline;" id="_submit" name="_submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}"/>
+						</div>
+					</div>
+				</div> <!-- ./sumbmit -->
+
+		</form>
+
+		{#
+		<form class="formoid-metro-cyan" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px" action="{{ path("fos_user_security_check") }}" method="post">
+			
+			<div class="title"><h2>Créer un compte</h2></div>
+
+			<div class="element-input">
+				<label for="username" class="title">{{ 'security.login.email'|trans({}, 'FOSUserBundle') }}<span class="required">*</span></label>
+				{{ form_row(???) }}
+				{#<input class="large" type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
+			</div>
+
+
+			{#
+			<div class="element-password">
+				<label for="password" class="title">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}<span class="required">*</span></label>
+				<input class="large" type="password" id="password" name="_password" required="required"/>
+			</div>
+
+			<div class="element-password">
+				<label for="password" class="title">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}<span class="required">*</span></label>
+				<input class="large" type="password" id="password" name="_password" required="required"/>
+			</div>
+			
+			<div class="submit">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-6 text-left">
+						<a href="{{ path('fos_user_security_login') }}">Se connecter</a>
+					</div>
+					<div class="col-md-5">
+						<input type="submit" style="display: inline;" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+					</div>
+				</div>
+			</div>#}
+
+	{% endblock %}
+
+
+	{#
+	<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+
+	    {{ form_widget(form) }}
+	    <div>
+	        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+	    </div>
+
+	</form>
+	#}
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('js/formoid-metro-cyan.js') }}"></script>
+{% endblock %}

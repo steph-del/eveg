@@ -1,0 +1,30 @@
+admin_syntaxon:
+    path:     /
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:index" }
+
+admin_syntaxon_show:
+    path:     /{id}/show
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:show" }
+
+admin_syntaxon_new:
+    path:     /new
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:new" }
+
+admin_syntaxon_create:
+    path:     /create
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:create" }
+    methods:  POST
+
+admin_syntaxon_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:edit" }
+
+admin_syntaxon_update:
+    path:     /{id}/update
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:update" }
+    methods:  [POST, PUT]
+
+admin_syntaxon_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "evegAppBundle:SyntaxonCore:delete" }
+    methods:  [POST, DELETE]

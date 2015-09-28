@@ -69,9 +69,9 @@ class MenuBuilder extends ContainerAware
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
 			->setAttribute('glyphicon', 'glyphicon-home');
 		
-		$menu->addChild('Users', array('route' =>'eveg_app_homepage', 'label' => 'Utilisateurs'));
+		$menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'));
 		
-		$menu->addChild('Baseveg', array('route' => 'eveg_app_howto', 'label' => 'Baseveg'));
+		$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
  
 		$menu->addChild('Translation', array('route' => 'eveg_app_contact', 'label' => 'Traduction'));
 

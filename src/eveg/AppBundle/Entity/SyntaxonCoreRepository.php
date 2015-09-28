@@ -12,13 +12,203 @@ use Doctrine\ORM\EntityRepository;
  */
 class SyntaxonCoreRepository extends EntityRepository
 {
-	public function tree()
+
+	// Returns the tree trunk (Ajax call from FancyTree)
+	public function getBaseTree()
 	{
-		$queryBuilder = $this->createQueryBuilder('s');
-		$query = $queryBuilder->getQuery();
+		$qb = $this->createQueryBuilder('s');
 
-		$results = $query->getResult();
+		// specify the fields to fetch (unselected fields will have a null value)
+		$qb->select('s')
+			->where('s.level = :level')
+			->setParameter('level', 'HAB');
 
-		return $results;
+		$tree = $qb->getQuery()->getResult();
+
+		return $tree;
 	}
+
+	// Returns children nodes of the $id node (Ajax call from FancyTree)
+	public function getNextTreeNode($id, $nextLevel)
+	{
+		
+		// Grabbing syntaxon from $id
+			$qb = $this->createQueryBuilder('s');
+
+			$qb->select('s')
+				->where('s.id = :id')
+				->setParameter('id', $id);
+
+			$syntaxon = $qb->getQuery()->getSingleResult();
+
+			$catminatCode = $syntaxon->getCatminatCode();
+
+		// Grabbing children
+			$qb = $this->createQueryBuilder('s');
+
+			$qb->select('s')
+				->where('s.catminatCode LIKE :catminatCode')
+				->andWhere('s.catminatCode != :catminatCodeSimple')
+				->andWHere('s.level = :nextLevel')
+				->setParameter('catminatCode', $catminatCode.'%')
+				->setParameter('catminatCodeSimple', $catminatCode)
+				->setParameter('nextLevel', $nextLevel)
+				->orderBy('s.catminatCode', 'ASC');
+
+			return $qb->getQuery()->getResult();
+
+	}
+
+	// Returns the children of one catminat code
+	public function getChildren($catminatCode, $returnArray = false)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode LIKE :catminatCode')
+			->andWhere('s.catminatCode != :catminatCodeSimple')
+			->setParameter('catminatCode', $catminatCode.'%')
+			->setParameter('catminatCodeSimple', $catminatCode)
+			->orderBy('s.catminatCode', 'ASC');
+
+		if($returnArray == true) {
+			return $qb->getQuery()->getArrayResult();
+		} else {
+			return $qb->getQuery()->getResult();
+		}
+	}
+
+	// Returns the first child of one catminat code
+	public function getDirectChild($catminatCode, $returnArray = false)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode LIKE :catminatCode')
+			->andWhere('s.catminatCode != :catminatCodeSimple')
+			->setParameter('catminatCode', $catminatCode.'%')
+			->setParameter('catminatCodeSimple', $catminatCode)
+			->orderBy('s.catminatCode', 'ASC')
+			->setMaxResults(1);
+
+		if($returnArray == true) {
+			return $qb->getQuery()->getArrayResult();
+		} else {
+			return $qb->getQuery()->getResult();
+		}
+		
+	}
+
+	// Returns direct children of one catminat code
+	public function getDirectChildren($catminatCode, $nextLevel)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode LIKE :catminatCode')
+			->andWhere('s.catminatCode != :catminatCodeSimple')
+			->andWHere('s.level = :nextLevel')
+			->setParameter('catminatCode', $catminatCode.'%')
+			->setParameter('catminatCodeSimple', $catminatCode)
+			->setParameter('nextLevel', $nextLevel)
+			->orderBy('s.catminatCode', 'ASC');
+
+		return $qb->getQuery()->getResult();
+
+	}
+
+	// Returns all objects from their catminatCodes (listed in $array)
+	public function findAllByCatminatCodes($array)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode = :catminatCode')
+			->setParameter('catminatCode', $array);
+
+		return $qb->getQuery()->getResult();
+
+	}
+
+	// Return data for the search engine
+	public function findForSearchEngine($searchedTerm, $useSynonyms = true)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where(
+		   	$qb->expr()->like(
+		   			$qb->expr()->concat('s.syntaxonName', 's.syntaxonAuthor'),
+		   			':searchedTerm')
+		   	)
+		   ->groupBy('s.syntaxonName')
+		   ->addGroupBy('s.syntaxonAuthor')
+		   ->setParameter('searchedTerm', $searchedTerm);
+//print($qb->getQuery()->getSql());
+
+		if ($useSynonyms == false || $useSynonyms == "false") {
+			$qb->andWhere('s.level NOT LIKE :syn')
+			   ->setParameter('syn', '%syn%');
+		}
+		return $qb->getQuery()->getResult();
+
+		/*
+		$query = $this->_em->createQuery('SELECT s FROM evegAppBundle:SyntaxonCore s WHERE CONCAT(s.syntaxonName, s.syntaxonAuthor) LIKE :searchedTerm GROUP BY s.syntaxonName, s.syntaxonAuthor');
+  		$query->setParameter('searchedTerm', $searchedTerm);
+  		$results = $query->getResult();
+
+  		return $results;
+  		*/
+	}
+
+	public function findBySyntaxon($syntaxonName, $syntaxonAuthor)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.syntaxonName = :syntaxonName')
+			->andWhere('s.syntaxonAuthor = :syntaxonAuthor')
+			->setParameter('syntaxonName', $syntaxonName)
+			->setParameter('syntaxonAuthor', $syntaxonAuthor);
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findValidSyntaxonByCatminatCode($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->add('where', $qb->expr()->in('s.catminatCode', ':array'))
+			->setParameter('array', $catminatCode);
+		$qb->andWhere($qb->expr()->notLike('s.level', $qb->expr()->literal('syn%')));
+		$qb->orderBy('s.catminatCode', 'ASC');
+
+		return $qb->getQuery()->getResult();
+	}
+	
+	public function findValidOneByCatminatCode($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode = :catminatCode')
+			->setParameter('catminatCode', $catminatCode);
+		$qb->andWhere($qb->expr()->notLike('s.level', $qb->expr()->literal('syn%')));
+		$qb->orderBy('s.catminatCode', 'ASC');
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getSynonyms($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode)
+		   ->andWhere("s.level LIKE 'syn%'");
+
+		  return $qb->getQuery()->getResult();
+	}
+
 }
