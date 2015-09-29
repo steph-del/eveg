@@ -1,0 +1,20 @@
+eveg:
+    web_title: végétations de France
+    slogan: végétations de France
+
+    menu:
+        app: App
+        help: Aide
+        contact: Contact
+        user:
+            my_account: Mon compte
+            dashboard: dashboard
+            login: Connexion
+            logout: Déconnexion
+
+    homepage:
+        description: eVeg est une interface web en lien avec baseveg et baseflor (programme CATMINAT, par Philippe Julve)...
+
+    search:
+        placeholder: Rechercher une végétation
+        use_synonyms: Utiliser les synonymes

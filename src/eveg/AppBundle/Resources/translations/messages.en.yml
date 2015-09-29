@@ -1,0 +1,20 @@
+eveg:
+    web_title: French's vegetations
+    slogan: French's vegetations
+
+    menu:
+        app: App
+        help: Help
+        contact: Contact
+        user:
+            my_account: My account
+            dashboard: Dashboard
+            login: Log in
+            logout: Log out
+
+    homepage:
+        description: French's vegetations database interface (integrated synusial phytosociology)
+
+    search:
+        placeholder: Search a vegetation
+        use_synonyms: Use synonyms
