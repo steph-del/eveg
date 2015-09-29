@@ -24,8 +24,8 @@ $('#searchbox').autocomplete({
     },
 	select : function(event, ui){
 		event.preventDefault();
-		//alert( Routing.generate('api_get_syntaxon_node', { id: ui.item.id }, true) );
-		window.location.replace(Routing.generate('eveg_show_one', { id: ui.item.id }, true));
+		//console.log( Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true) );
+		window.location.replace(Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true));
 		$('.badge-addon').hide();
 	}
 });
