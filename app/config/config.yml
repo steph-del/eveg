@@ -139,3 +139,11 @@ fos_js_routing:
     routes_to_expose:
         - "^api_.*"
         - "eveg_show_one"
+
+# BeSimpleI18nRoutingBundle
+be_simple_i18n_routing: ~
+
+# KNPMenuBundle
+knp_menu:
+    twig:
+        template: evegAppBundle:Menu:knp_menu.html.twig

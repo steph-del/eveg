@@ -1,24 +1,34 @@
 # src/eveg/AppBundle/Resources/config/routing/routing.yml
 
 # application routes
-eveg_app_homepageEmpty:
+
+eveg_app:
     path: /
-    defaults: { _controller: evegAppBundle:Default:index }
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: eveg_app_homepage
 
 eveg_app_homepage:
-    path:     /accueil
+    locales:  { fr: "/accueil", en: "/en/homepage" }
     defaults: { _controller: evegAppBundle:Default:index }
 
 eveg_app_howto:
-    path: /utiliser
+    locales:  { fr: "/utiliser", en: "/en/howto" }
     defaults: { _controller: evegAppBundle:Default:howto }
 
 eveg_app_contact:
-    path: /contact
+    locales:  { fr: "/contact", en: "/en/contact" }
     defaults: { _controller: evegAppBundle:Default:contact }
 
+# We use this trick because BeSimpleI18nRoutingBundle seems to be incompatible with FOSJsRoutingBundle (I think it doesn't recognize the "locales" parameter)
+eveg_show_one_redirect:
+    path: /app/redirect/{id}
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: eveg_show_one
+
 eveg_show_one:
-    path: /{id}
+    locales:  { fr: "/app/{id}", en: "/en/app/{id}" }
     defaults: { _controller: evegAppBundle:Default:showOne }
     requirements:
         id: \d+

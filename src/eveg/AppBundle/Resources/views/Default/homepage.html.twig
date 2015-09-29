@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	{{ parent() }} : végétations de France
+	{{ parent() }} : {{ 'eveg.web_title'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -18,50 +18,32 @@
 				<div class="right-inner-addon">
 					<i class="searchIcon glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
 					<span class="badge-addon badge">X</span>
-						<div class="input-group">
-							<input type="text" class="form-control searchbox" name="term" id ="searchbox" placeholder="Rechercher une végétation">
-							<div class="input-group-addon searchboxOptionsIcon">
-								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-							</div>
+					<div class="input-group">
+						<input type="text" class="form-control searchbox" name="term" id ="searchbox" placeholder="{{ 'eveg.search.placeholder'|trans }}">
+						<div class="input-group-addon searchboxOptionsIcon">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 						</div>
-						<div class="panel panel-default searchboxPanelOptions">
-							<div class="panel-body">
-								<form class="form-inline">
-									<div class="input-group">
-										<label for="exampleInputEmail1">
-											<input class="searchUseSynonymsCB" type="checkbox" value="" checked>
-											Utiliser les synonymes
-										</label>
+					</div>
+					<div class="panel panel-default searchboxPanelOptions">
+						<div class="panel-body">
+							<form class="form-inline">
+								<div class="input-group">
+									<label for="exampleInputEmail1">
+										<input class="searchUseSynonymsCB" type="checkbox" value="" checked>
+										{{ 'eveg.search.use_synonyms'|trans }}
+									</label>
 
-									</div>
-								</form>
-							</div>
+								</div>
+							</form>
 						</div>
-
-						{#<div class="input-group-btn">
-							<div class="btn-group" role="group">
-                        		<div class="dropdown dropdown-lg">
-                        			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        				<span class="caret"></span>
-                        			</button>
-                        			<div class="dropdown-menu dropdown-menu-right" role="menu">
-                        				<form class="form-horizontal" role="form">
-											<div class="form-group">
-												<label for="filter">Rechercher dans les synonymes</label>
-											</div>
-										</form>
-									</div>
-                        		</div>
-                        	</div>
-						</div> <!-- ./input-group-btn -->
-					</div> <!-- ./adv-search -->#}
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="header col-md-6 col-md-offset-2">
-			<h1>eVeg <small>végétations de France</small><h1>
+			<h1>eVeg <small>{{ 'eveg.slogan'|trans }}</small><h1>
 		</div>
 
 
@@ -78,9 +60,7 @@
 												<div class="SUBASS-text SUBASS-indent">SUBASS</div>
 			</div>
 			<p>
-				eVeg est une interface web en lien avec baseveg et baseflor (programme CATMINAT, par Philippe Julve). Il vous donne accès à une base de données sur l’ensemble des végétations de France métropolitaine et parle la phytosociologie synusiale intégrée.<br/>
-				Chaque végétation connue y est répertoriée et décrite (écologie, chorologie, synonymie, cortège floristique, références bibliographiques). Les diagnoses originales sont téléchargeables, ainsi que des photos illustrant chaque végétation.<br/>
-				eVeg est également en lien avec eFlore, projet collaboratif de Tela-Botanica, et permet de consulter les fiches espèces associées aux végétations. Le projet eVeg se veut lui-même collaboratif, participez à son développement ! C'est votre première visite ? La page "Comment utiliser eVeg?" peut vous aider.
+				{{ 'eveg.homepage.description'|trans }}
 			</p>
 
 
@@ -169,7 +149,7 @@
 		    },
 			select : function(event, ui){
 				event.preventDefault();
-				window.location.href = Routing.generate('eveg_show_one', { id: ui.item.id }, true);
+				window.location.href = Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true);
 				$('.badge-addon').hide();
 			}
 		});

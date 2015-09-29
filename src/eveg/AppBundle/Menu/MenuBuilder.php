@@ -8,23 +8,23 @@ namespace eveg\AppBundle\Menu;
  
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
-
  
 class MenuBuilder extends ContainerAware
 {
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
  
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
 			->setAttribute('glyphicon', 'glyphicon-home');
 		
-		$menu->addChild('App', array('route' =>'eveg_admin_test', 'label' => 'App'));
+		$menu->addChild('App', array('route' =>'eveg_admin_test', 'label' => 'eveg.menu.app'));
 		
-		$menu->addChild('HowTo', array('route' => 'eveg_app_howto', 'label' => 'Aide'));
+		$menu->addChild('HowTo', array('route' => 'eveg_app_howto', 'label' => 'eveg.menu.help'));
  
-		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'Contact'));
+		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
  
         return $menu;
     }
@@ -44,17 +44,17 @@ class MenuBuilder extends ContainerAware
     		$menu->addChild('User', array('label' => $user->getUserName()))
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
-				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_edit', 'label' => 'Mon compte'));
-	    		$menu['User']->addChild('Dashboard', array('route' => 'eveg_admin_dashboard', 'label' => 'Dashboard'));
-	    		$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'Déconnexion'));
+				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_edit', 'label' => 'eveg.menu.user.my_account'));
+	    		$menu['User']->addChild('Dashboard', array('route' => 'eveg_admin_dashboard', 'label' => 'eveg.menu.user.dashboard'));
+	    		$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'eveg.menu.user.logout'));
     	} elseif($this->container->get('security.context')->isGranted(array('ROLE_USER'))) {
 	    	$menu->addChild('User', array('label' => $user->getUserName()))
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
 				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_edit'));
-				$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'Déconnexion'));
+				$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'eveg.menu.user.logout'));
     	} else {
-	    	$menu->addChild('Anonymous', array('route' => 'fos_user_security_login', 'label' => 'Connexion'));
+	    	$menu->addChild('Anonymous', array('route' => 'fos_user_security_login', 'label' => 'eveg.menu.user.login'));
  
     	}
 		 
