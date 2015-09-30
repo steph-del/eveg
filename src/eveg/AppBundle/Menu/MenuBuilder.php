@@ -61,6 +61,41 @@ class MenuBuilder extends ContainerAware
         return $menu;
     }
 
+    public function languageMenu(FactoryInterface $factory, array $options)
+    {
+    	// Get local
+ 		$locale = $this->container->get('request')->getLocale();
+
+ 		// Get the actual route name
+		//$request = $this->container->get('request');
+		//$routeName = $request->get('_route');
+
+    	$menu = $factory->createItem('root');
+    	//$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right langSelect');
+    	$menu->setChildrenAttribute('class', 'nav navbar-nav');
+    	//$menu->addchild('Language', array('label' => $locale))
+    	//	->setAttribute('dropdown', true);
+    	
+    	$menu->addChild('Language', array('label' => $locale))
+    		->setAttribute('dropdown', true)
+    		->setAttribute('glyphicon', 'glyphicon-flag');
+
+    	if($locale == 'en'){
+    		$menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
+    												   'routeParameters' => array('lang' => 'fr'),
+    												   'label' => 'Français'));
+    		//$menu['langFr']->setAttribute('class', 'langSelectLast');
+
+    	} elseif($locale == 'fr') {
+    		$menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
+    												   'routeParameters' => array('lang' => 'en'),
+    												   'label' => 'English'));
+    		//$menu['langEn']->setAttribute('class', 'langSelectLast');
+    	}
+    	return $menu;
+
+    }
+
     public function dashboardMenu(FactoryInterface $factory, array $options)
     {
     	$menu = $factory->createItem('root');

@@ -33,6 +33,12 @@ eveg_show_one:
     requirements:
         id: \d+
 
+eveg_language:
+    path: /language/{lang}
+    defaults: { _controller: evegAppBundle:Default:setLanguage }
+    requirements:
+        lang: fr|en
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
