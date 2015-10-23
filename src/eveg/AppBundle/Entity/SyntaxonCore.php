@@ -148,6 +148,15 @@ class SyntaxonCore
      */
     private $commonName;
 
+    /**
+    *
+    * French departments repartition
+    * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\syntaxonRepartitionDepFr", cascade={"persist"})
+    * @ORM\JoinColumn(name="repartitionDepFr_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+    *
+    */
+    private $repartitionDepFr;
+
 
 // -------------------
 // Setters & getters
@@ -383,6 +392,24 @@ class SyntaxonCore
     public function getLazy()
     {
         return $this->lazy;
+    }
+
+    /**
+    * Set repartitionDepFr
+    *
+    */
+    public function setRepartitionDepFr(syntaxonRepartitionDepFr $repartition = null)
+    {
+        $this->repartitionDepFr = $repartition;
+    }
+
+    /**
+    * Get repartitionDepFr
+    *
+    */
+    public function getRepartitionDepFr()
+    {
+        return $this->repartitionDepFr;
     }
 
 
