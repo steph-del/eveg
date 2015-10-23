@@ -147,3 +147,7 @@ be_simple_i18n_routing: ~
 knp_menu:
     twig:
         template: evegAppBundle:Menu:knp_menu.html.twig
+
+# VichUploader
+vich_uploader:
+    db_driver: orm
