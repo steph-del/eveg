@@ -46,6 +46,17 @@
 	<!-- Bootstrap container -->
 	<div class="container-fluid">
 		{% block body %}
+			{% for type, flashMessage in app.session.flashbag.all() %}
+			    <div class="alert alert-{{ type }} fade in">
+			        <button class="close" data-dismiss="alert" type="button">×</button>
+			        {% for message in flashMessage %}
+			        	{{ message }}
+			        	{% if not loop.last %}
+			        		<br/>
+			        	{% endif %}
+			        {% endfor %}
+			    </div>
+			{% endfor %}
 		{% endblock %}
 	</div>
 
