@@ -81,31 +81,21 @@ class AdminController extends Controller
 
 	}
 
+	// Dev function. Checks the CATMINAT code and return a set of information about it (parent, children...)
 	public function devCatCodeAction()
 	{
-		// Dev function. Checks the CATMINAT code and return a set of information about it (parent, children...)
 
 		$catCode = $this->get('eveg_app.catCode');
 
 		$request = $this->container->get('request');
-		//$serializer = $this->container->get('jms_serializer');
-
-    		//if($request->isXmlHttpRequest()) {
 
     			$catminatCode = '';
         		$catminatCode = $request->get('catminatCode');
 
         		$response = new JsonResponse();
 
-//print($catminatCode);
-        		// Check CATMINAT Code
-        		//if($catcode->checkCatminat($catminatCode)) {
-
         			// Ok, CATMINAT code is weel formed
         			if($catminatCode != '') {
-
-	        			//$directParent = $catCode->getDirectParent($catminatCode);
-	        			//$allParents = $catCode->getAllParents($catminatCode);
 
         				$wellFormed = $catCode->checkCatminatCode($catminatCode);
 	        			$directChild = $catCode->getDirectChild($catminatCode, true);
