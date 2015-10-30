@@ -151,3 +151,8 @@ knp_menu:
 # VichUploader
 vich_uploader:
     db_driver: orm
+
+# EasyAdminBundle
+easy_admin:
+    entities:
+        - eveg\UserBundle\Entity\User

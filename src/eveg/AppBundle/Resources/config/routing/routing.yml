@@ -50,7 +50,7 @@ api_get_syntaxon_search:
 # Admin routes
 eveg_admin :
   resource: "routing_admin.yml"
-  prefix:  /admin
+  prefix:  /adminOld
 
 eveg_app_admin_syntaxon:
     resource: "@evegAppBundle/Resources/config/routing/syntaxoncore.yml"
