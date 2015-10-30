@@ -154,5 +154,19 @@ vich_uploader:
 
 # EasyAdminBundle
 easy_admin:
+    site_name: 'eVeg Admin'
     entities:
-        - eveg\UserBundle\Entity\User
+        Utilisateur:
+            class: eveg\UserBundle\Entity\User
+            list:
+                fields: ['username', 'email', 'roles', 'lastLogin', 'enabled', 'locked']
+            edit:
+                fields: ['username', 'email', 'roles', 'enabled', 'locked']
+            new:
+                fields: ['username', 'email', 'roles', 'enabled', 'locked']
+        Syntaxon:
+            class: eveg\AppBundle\Entity\SyntaxonCore
+            list:
+                fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor']
+            edit:
+                fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor', 'repartitionDepFr']
