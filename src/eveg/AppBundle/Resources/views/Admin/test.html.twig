@@ -106,7 +106,14 @@
 {% block javascript %}
 	{{ parent() }}
 
-	<!-- CATMINAT CODE TEST -->
+	<script src="{{ asset('js/evegCatcodeCheckBs3.js') }}" type="text/javascript"></script>
+
+	<script>
+
+	checkInputCatminatCode('#CatCode_catminatCode', '#formCatCode');
+
+	/*<!-- CATMINAT CODE TEST -->
+	
 	<script>
 		// Ajax
 		// CatCode testing
@@ -186,7 +193,7 @@
 			$('#formCatCode').attr('class', 'form-group has-feedback');
            	$('#formCatCodeGlyphicon').attr('class', 'glyphicon form-control-feedback');
 		}
-
+	*/
 	</script>
 
 	<!-- FANCY TREE -->
