@@ -6,6 +6,7 @@ namespace eveg\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use eveg\AppBundle\Entity\SyntaxonCore;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends Controller
 {
@@ -25,6 +26,11 @@ class DefaultController extends Controller
 		return $this->render('evegAppBundle:Default:contact.html.twig');
 	}
 
+	/**
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
+	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* 
+	*/
 	public function showOneAction(SyntaxonCore $syntaxon, $id)
 	{
 		
@@ -82,10 +88,15 @@ class DefaultController extends Controller
 
 			$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
 
+			// repartitionDepFr to Json
+			$serializer = $this->container->get('jms_serializer');
+			$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
+
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
 			'synonyms' => $synonyms,
-			'allParents' => $allParents
+			'allParents' => $allParents,
+			'repDepFrJson' => $repDepFrJson
 		));
 		}
 
