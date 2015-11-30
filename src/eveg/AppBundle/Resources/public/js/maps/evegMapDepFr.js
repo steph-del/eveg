@@ -324,5 +324,8 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 		var legendTextError                   = mapDepFrLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(4*legendHeight)+(4*separatorWidth)), "Erreur (error)").attr({"font-size": fontSize, 'text-anchor': 'start'});
 		var legendTextErrorToBeConfirmed      = mapDepFrLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(5*legendHeight)+(5*separatorWidth)), "Erreur à confirmer (error to be confirmed)").attr({"font-size": fontSize, 'text-anchor': 'start'});
 
+		// Scale the legend
+		mapDepFrLegend.setViewBox(0,0,300,160,true);
+		mapDepFrLegend.setSize('100%', '100%');
 }
 
