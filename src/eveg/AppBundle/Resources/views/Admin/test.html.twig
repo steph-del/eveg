@@ -58,6 +58,19 @@
 	</div>
 
 	<div class="row">
+	{{ dump(entity) }}
+	{{ dump(repDepFrJson) }}
+		<div class="col-md-3">
+			<div id="mapDepFr"></div>
+			<div id="mapDepFrHoverLegend">Répartition par département en France métropolitaine</div>
+			<div id="mapDepFrToggleLegend">Légende</div>
+			<div id="mapDepFrLegend"></div>
+		</div>
+		<div class="col-md-3">a</div>
+		<div class="col-md-3">b</div>
+	</div>
+
+	<div class="row">
 		<div class="col-md-4" id="divTree">
 			<div>
 				MENU
@@ -113,93 +126,114 @@
 	checkInputCatminatCode('#CatCode_catminatCode', '#formCatCode');
 
 	/*<!-- CATMINAT CODE TEST -->
-	
-	<script>
-		// Ajax
-		// CatCode testing
-		$(function(){
-			$(".loading").hide();
-			$("#CatCode_catminatCode").keyup(function(){ 
-				$(".loading").show();
-				var catCode = $("#CatCode_catminatCode").val();
-				var catminatCode = "catminatCode=" + catCode;
-				var children = '';
-				if(catCode != '') {
-					$.ajax({
-				        type: "POST",
-				        url: "{{ path('eveg_admin_catCode') }}",
-				        data: catminatCode,
-				        datatype: 'json',
-				        cache: false,
-				        success: function(data) {
-				        	//console.log('run');
-				        	console.log('success');
-				            if(data.wellFormed) {
-					            if(data.directChild != null) {
-					            	$('#directChild').text(data.directChild.catminatCode);
-					            } else {
-					            	setError();
-					            }
-					            
-					            if(data.allChildren != null) {
-					            	$.each(data.allChildren, function(key, value) {
-					           			children += value.catminatCode + '<br/>';
-					           		});
-					           		$('#allChildren').html(children);
-					            } else {
-					            	setError();
-					            }
+		
+		<script>
+			// Ajax
+			// CatCode testing
+			$(function(){
+				$(".loading").hide();
+				$("#CatCode_catminatCode").keyup(function(){ 
+					$(".loading").show();
+					var catCode = $("#CatCode_catminatCode").val();
+					var catminatCode = "catminatCode=" + catCode;
+					var children = '';
+					if(catCode != '') {
+						$.ajax({
+					        type: "POST",
+					        url: "{{ path('eveg_admin_catCode') }}",
+					        data: catminatCode,
+					        datatype: 'json',
+					        cache: false,
+					        success: function(data) {
+					        	//console.log('run');
+					        	console.log('success');
+					            if(data.wellFormed) {
+						            if(data.directChild != null) {
+						            	$('#directChild').text(data.directChild.catminatCode);
+						            } else {
+						            	setError();
+						            }
+						            
+						            if(data.allChildren != null) {
+						            	$.each(data.allChildren, function(key, value) {
+						           			children += value.catminatCode + '<br/>';
+						           		});
+						           		$('#allChildren').html(children);
+						            } else {
+						            	setError();
+						            }
 
-					           	setSuccess();
-					        
-					        } else {
+						           	setSuccess();
+						        
+						        } else {
 
-					        	setError();
+						        	setError();
 
-					        }
+						        }
 
-					        $(".loading").hide();
-				           	
-				        },
-				        error: function(xhr, status, error) {
-							var err = eval("(" + xhr.responseText + ")");
-							console.log(err.Message);
-						}
-					});
-				} else {
-					setDefault();
-				}
-				
-				return false;
-			});    
-		});
+						        $(".loading").hide();
+					           	
+					        },
+					        error: function(xhr, status, error) {
+								var err = eval("(" + xhr.responseText + ")");
+								console.log(err.Message);
+							}
+						});
+					} else {
+						setDefault();
+					}
+					
+					return false;
+				});    
+			});
 
-		function setSuccess() { 
-			$('#formCatCode').attr('class', 'form-group has-success has-feedback');
-           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon glyphicon-ok form-control-feedback');
-		}
+			function setSuccess() { 
+				$('#formCatCode').attr('class', 'form-group has-success has-feedback');
+	           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon glyphicon-ok form-control-feedback');
+			}
 
-		function setError() { 
-			$('#directChild').text('-');
-        	$('#allChildren').text('-');	
-			$('#formCatCode').attr('class', 'form-group has-error has-feedback');
-           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon glyphicon-remove form-control-feedback');
-		}
+			function setError() { 
+				$('#directChild').text('-');
+	        	$('#allChildren').text('-');	
+				$('#formCatCode').attr('class', 'form-group has-error has-feedback');
+	           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon glyphicon-remove form-control-feedback');
+			}
 
-		function setDefault() { 
-			$(".loading").hide();
-			$('#directChild').text('-');
-        	$('#allChildren').text('-');	
-			$('#formCatCode').attr('class', 'form-group has-feedback');
-           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon form-control-feedback');
-		}
-	*/
+			function setDefault() { 
+				$(".loading").hide();
+				$('#directChild').text('-');
+	        	$('#allChildren').text('-');	
+				$('#formCatCode').attr('class', 'form-group has-feedback');
+	           	$('#formCatCodeGlyphicon').attr('class', 'glyphicon form-control-feedback');
+			}
+		*/
 	</script>
+
+	<!-- FRANCE DEPARTMENTS MAP -->
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/maps/*'
+		'js/maps/*' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	<script>
+		var repDepFr = '{{ repDepFrJson | raw }}';
+		createMapDepFr(document.getElementById('mapDepFr'),
+			           document.getElementById('mapDepFrHoverLegend'),
+			           document.getElementById('mapDepFrLegend'),
+			           repDepFr,
+			           0.55);
+		$("#mapDepFrLegend").hide();
+		$("#mapDepFrToggleLegend").click(function(){
+			$("#mapDepFrLegend").toggle();
+		});
+	</script>
+
 
 	<!-- FANCY TREE -->
 	<script src="{{ asset('js/jquery.fancytree-all.js') }}" type="text/javascript"></script>
 	<!-- Initialize the tree when page is loaded -->
-	<script src="{{ asset('js/treeApp.js') }}" type="text/javascript"></script>
+	<!-- <script src="{{ asset('js/treeApp.js') }}" type="text/javascript"></script> -->
 
 	<!-- RESIZABLE -->
 	<script src="{{ asset('js/resizable.js') }}" type="text/javascript"></script>
