@@ -23,7 +23,7 @@ $(function(){
 	    dblclick: function(event, data) {
 	    	var node = data.node;
 
-	    	window.location.href = Routing.generate('eveg_show_one', { id: node.key}, true);
+	    	window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
 	    }
 
 	});
