@@ -2978,7 +2978,7 @@ class syntaxonRepartitionDepFr
     }
 
     /**
-    * Get the liste of all french departments
+    * Get the list of all french departments
     */
     public static function getListDepFr()
     {

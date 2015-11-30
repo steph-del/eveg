@@ -139,6 +139,7 @@ fos_js_routing:
     routes_to_expose:
         - "^api_.*"
         - "eveg_show_one"
+        - "eveg_admin_catCode"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~
@@ -151,3 +152,22 @@ knp_menu:
 # VichUploader
 vich_uploader:
     db_driver: orm
+
+# EasyAdminBundle
+easy_admin:
+    site_name: 'eVeg Admin'
+    entities:
+        Utilisateur:
+            class: eveg\UserBundle\Entity\User
+            list:
+                fields: ['username', 'email', 'roles', 'lastLogin', 'enabled', 'locked']
+            edit:
+                fields: ['username', 'email', 'roles', 'enabled', 'locked']
+            new:
+                fields: ['username', 'email', 'roles', 'enabled', 'locked']
+        Syntaxon:
+            class: eveg\AppBundle\Entity\SyntaxonCore
+            list:
+                fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor']
+            edit:
+                fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor', 'repartitionDepFr']

@@ -33,9 +33,19 @@ class AdminController extends Controller
 		// Get form
 		$catCodeForm = $this->createForm(new CatCodeType());
 
+		// Get test syntaxon
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('evegAppBundle:SyntaxonCore')->findByIdWithAllEntities(12);
+
+		// repartitionDepFr to Json
+		$serializer = $this->container->get('jms_serializer');
+		$repDepFrJson = $serializer->serialize($entity->getRepartitionDepFr(), 'json');
+
 		return $this->render('evegAppBundle:Admin:test.html.twig', array(
 							'catCodeForm' => $catCodeForm->createView(),
-							'apiRoutes' => $apiRoutes
+							'apiRoutes' => $apiRoutes,
+							'entity' => $entity,
+							'repDepFrJson' => $repDepFrJson,
 		));
 
 	}
