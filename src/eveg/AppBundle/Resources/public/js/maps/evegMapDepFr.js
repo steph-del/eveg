@@ -110,7 +110,7 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 			el.scale(scaleValue, scaleValue, 0, 0);
 		});
 		mapDepFr.setViewBox(0,0,280,300,true);
-		mapDepFr.setSize('', '100%');
+		mapDepFr.setSize('100%', '100%');
 
 	// Shape background color
 		var colorBg        = "#FFFFFF";
