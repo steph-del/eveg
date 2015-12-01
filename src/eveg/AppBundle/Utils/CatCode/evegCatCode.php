@@ -316,6 +316,10 @@ class evegCatCode
 			$assCode = $this->getAssCode($catminatCode);
 		//}
 		
+		// Marine vegetation catminat code case
+		$addA6 = 0;
+		if(preg_match("/A6*/", $coreCode)) $addA6 = 1;
+
 		switch($levelAsked){
 			case 'HAB':
 				if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
@@ -336,7 +340,7 @@ class evegCatCode
 				
 				if($catminatLevel == 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 2);
+					$output = $habCode . '/' . substr($coreCode, 0, 2+$addA6);
 					return $output;
 					
 					break;
@@ -351,7 +355,7 @@ class evegCatCode
 
 				if($catminatLevel == 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 3);
+					$output = $habCode . '/' . substr($coreCode, 0, 3+$addA6);
 					return $output;
 					
 					break;
@@ -366,7 +370,7 @@ class evegCatCode
 
 				if($catminatLevel == 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 5);
+					$output = $habCode . '/' . substr($coreCode, 0, 5+$addA6);
 					return $output;
 					
 					break;
@@ -381,7 +385,7 @@ class evegCatCode
 
 				if($catminatLevel == 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 7);
+					$output = $habCode . '/' . substr($coreCode, 0, 7+$addA6);
 					return $output;
 					
 					break;
@@ -396,7 +400,7 @@ class evegCatCode
 
 				if($catminatLevel == 'SUBALL' or 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 9);
+					$output = $habCode . '/' . substr($coreCode, 0, 9+$addA6);
 					return $output;
 					
 					break;
@@ -411,7 +415,7 @@ class evegCatCode
 
 				if($catminatLevel == 'ASS' or 'SUBASS'){
 					
-					$output = $habCode . '/' . substr($coreCode, 0, 11);
+					$output = $habCode . '/' . substr($coreCode, 0, 11+$addA6);
 					return $output;
 					
 					break;
@@ -426,7 +430,7 @@ class evegCatCode
 
 				if($catminatLevel == 'SUBASS'){
 					
-					$output = $habCode . '/' . $coreCode . '/' . substr($assCode, 0, 2);
+					$output = $habCode . '/' . $coreCode . '/' . substr($assCode, 0, 2+$addA6);
 					return $output;
 					
 					break;
@@ -495,7 +499,6 @@ class evegCatCode
 			case 'ALL':
 
 				$parentCode = $this->getLevelCode($text, 'SUBORD');
-				
 				if($this->checkIfLastZero($parentCode)){
 					return $this->getLevelCode($text, 'ORD');
 				} else {
