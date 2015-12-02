@@ -212,14 +212,14 @@
 							<h4 class="modal-title" id="modalDepFilter">Filter eVeg par départements.</h4>
 						</div>
 						<div class="modal-body">
-							<select name="cars" multiple>
-								<option value="_59">(59) Nord</option>
-								<option value="_62">(62) Pas-de-Calais</option>
-							</select>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-						<button type="button" class="btn btn-primary">Valider</button>
+							<form action="{{ path('eveg_depFr_filter') }}" method="POST">	
+								<select id="depFrFilterInput" name="depFrFilterInput" multiple>
+									<option value="_59">(59) Nord</option>
+									<option value="_62">(62) Pas-de-Calais</option>
+								</select>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+								<button type="button submit" class="btn btn-primary" id="validateDepFrFilter">Valider</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -375,7 +375,14 @@
 
 		limitResults(".synonymsShowAll", ".synonymBox", ".panelSynonymsHeader");
 		
-		
+	</script>
+
+	<!-- Department filter -->
+	<script>
+		$("#validateDepFrFilter").click(function() {
+			var filterDepFrValues = $("#depFrFilterInput").val() || [];
+			sessionStorage.filterDepFrValues = filterDepFrValues;
+		});
 	</script>
 
 {% endblock %}
