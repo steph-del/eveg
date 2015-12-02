@@ -64,16 +64,16 @@
 			<div class="col-md-4 colPanelOptions hidden-xs hidden-sm">
 				<div class="panel panel-default panelOptionsShowOne">
 					<div class="panel-body">
-						<div class="icon-first" data-toggle="tooltip" data-placement="bottom" title="Filtrer eVeg par département">
+						<div class="icon-first" data-toggle="modal" data-tooltip="tooltip" data-target="#modalDepFilter" data-placement="bottom" title="Filtrer eVeg par département">
 							<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
 						</div>
-						<div class="icon-middle" data-toggle="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche.">
+						<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche.">
 							<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
 						</div>
-						<div class="icon-middle" data-toggle="tooltip" data-placement="bottom" title="Comparer avec un autre syntaxon.">
+						<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Comparer avec un autre syntaxon.">
 							<span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
 						</div>
-						<div class="icon-last" data-toggle="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf.">
+						<div class="icon-last" data-tooltip="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf.">
 							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 						</div>
 					</div>
@@ -201,6 +201,29 @@
 				</div> <!-- ./row -->
 			</div> <!-- ./col-md-8 -->
 		</div>
+
+		<!-- MODALS -->
+			<!-- Department filter modal view -->
+			<div class="modal fade" id="modalDepFilter" tabindex="-1" role="dialog" aria-labelledby="modalDepFilter">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="modalDepFilter">Filter eVeg par départements.</h4>
+						</div>
+						<div class="modal-body">
+							<select name="cars" multiple>
+								<option value="_59">(59) Nord</option>
+								<option value="_62">(62) Pas-de-Calais</option>
+							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+						<button type="button" class="btn btn-primary">Valider</button>
+						</div>
+					</div>
+				</div>
+			</div>
 	{% endif %}
 
 {% endblock %}
@@ -308,7 +331,14 @@
 	<!-- BOOTSTRAP TOOLTIP -->
 	<script>
 		$(".showTooltip").tooltip({html:true});
-		$('[data-toggle="tooltip"]').tooltip();
+		$('[data-tooltip="tooltip"]').tooltip();
+	</script>
+
+	<!-- BOOTSTRAP MODAL -->
+	<script>
+		$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+		});
 	</script>
 
 	<!-- LIMIT THE NUMBER OF VISIBLE ITEMS -->
