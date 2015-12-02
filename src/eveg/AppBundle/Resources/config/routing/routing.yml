@@ -39,12 +39,6 @@ eveg_language:
     requirements:
         lang: fr|en
 
-eveg_depFr_filter:
-    path: /app/dep-fr-filter
-    defaults: { _controller: evegAppBundle:Default:depFrFilter }
-    requirements:
-        _method: POST
-
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}

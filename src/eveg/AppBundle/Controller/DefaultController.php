@@ -116,9 +116,5 @@ class DefaultController extends Controller
 		return $this->redirect($this->generateUrl($routeName, array('locale' => $lang)));
 		
 	}
-
-	public function depFrFilterAction(Request $request) {
-		print_r($request);
-	}
 	
 }
