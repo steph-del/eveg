@@ -10,6 +10,7 @@ use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\AppBundle\Form\SyntaxonCoreType;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SyntaxonSearchController extends Controller
 {
@@ -22,6 +23,10 @@ class SyntaxonSearchController extends Controller
 
 		$searchedTerm = $request->get('term');
 		$useSynonyms = $request->get('useSynonyms');
+		//$depFrFilter = $request->get('depFrFilter');
+
+		$session = new Session();
+		$depFrFilter = $session->get('depFrFilterArray');
 		
 		if(!$searchedTerm)
 		{
@@ -37,7 +42,8 @@ class SyntaxonSearchController extends Controller
 	    $result = $this->getDoctrine()
 	    			   ->getManager()
 	    			   ->getRepository('evegAppBundle:SyntaxonCore')
-	    			   ->findForSearchEngine($searchedTerm, $useSynonyms);
+	    			   ->findForSearchEngine($searchedTerm, $useSynonyms, $depFrFilter
+	    			   	);
 
 		$serializedResult = $serializer->serialize($result, $format, SerializationContext::create()->setGroups(array('searchEngine')));
 
@@ -46,7 +52,7 @@ class SyntaxonSearchController extends Controller
 		if($format == 'json')
 		{
 			$response->headers->set('Content-Type', 'application/json');
-		} elseif($format = 'xml') {
+		} elseif($format == 'xml') {
 			$response->headers->set('Content-Type', 'application/xml');
 		}
 		
