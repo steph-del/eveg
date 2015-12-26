@@ -3,6 +3,7 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * SyntaxonCoreRepository
@@ -130,8 +131,8 @@ class SyntaxonCoreRepository extends EntityRepository
 
 	}
 
-	// Return data for the search engine
-	public function findForSearchEngine($searchedTerm, $useSynonyms = true)
+	// Returns data for the search engine
+	public function findForSearchEngine($searchedTerm, $useSynonyms = true, $depFrFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -146,19 +147,45 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->setParameter('searchedTerm', $searchedTerm);
 //print($qb->getQuery()->getSql());
 
+		// Synonym filter
 		if ($useSynonyms == false || $useSynonyms == "false") {
 			$qb->andWhere('s.level NOT LIKE :syn')
 			   ->setParameter('syn', '%syn%');
 		}
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+		//return print($depFrFilter);
+		//print($qb->getQuery()->getSql());
 		return $qb->getQuery()->getResult();
 
-		/*
-		$query = $this->_em->createQuery('SELECT s FROM evegAppBundle:SyntaxonCore s WHERE CONCAT(s.syntaxonName, s.syntaxonAuthor) LIKE :searchedTerm GROUP BY s.syntaxonName, s.syntaxonAuthor');
-  		$query->setParameter('searchedTerm', $searchedTerm);
-  		$results = $query->getResult();
+	}
 
-  		return $results;
-  		*/
+	/**
+	 * departmentFrFilter function
+	 * adds a filter in order to select only french departments within selected vegetations are presents (!= zero)
+	 *
+	 * @param QueryBuilder $qb
+	 * @param string $depFrFilter JSON data (ex: '{_59: "_59", _62: "_62")}' will add a filter for 2 departments)
+	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every departments (limit the number of results) ; FALSE : it only has to be present in one department of the filter (default)
+	 */
+	public function departmentFrFilter(QueryBuilder $qb, $depFrFilter, $exclusive)
+	{
+		$orModule = $qb->expr()->orx();
+		$andModule = $qb->expr()->andx();
+		$module = ($exclusive ? $andModule : $orModule);
+		$qb->leftJoin('s.repartitionDepFr', 'repDepFr')
+	   	   ->addSelect('repDepFr');
+
+		foreach ($depFrFilter as $key => $value) {
+			if($value != null) {
+				//$key = "_59";
+				$module->add($qb->expr()->neq('repDepFr.'.$key, ':zero'));
+			}
+		}
+		$qb->andWhere($module)->setParameter('zero', 0);
 	}
 
 	public function findBySyntaxon($syntaxonName, $syntaxonAuthor)
