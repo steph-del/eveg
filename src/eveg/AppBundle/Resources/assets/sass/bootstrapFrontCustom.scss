@@ -282,6 +282,9 @@ span.viewHeaderAuthor {
  		background-color: #FAFAFA;
  		cursor: pointer;
  	}
+ 	&.active {
+ 		border-bottom: 3px solid #00AB0D;
+ 	}
  }
 .panelOptionsShowOne {
 	border-top-style: none;
@@ -293,8 +296,8 @@ span.viewHeaderAuthor {
 	.panel-body {
 		padding-top: 0;
 		padding-bottom: 0;
-		padding-left: 5px;
-		padding-right: 5px;
+		padding-left: 0;
+		padding-right: 0;
 		display: inline-flex;
 		.icon-first {
 			@include iconBase();

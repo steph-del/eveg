@@ -116,6 +116,17 @@
 		$('.badge-addon').hide();
 		monkeyPatchAutocomplete();
 		var useSynonyms = false;
+		var appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+		var depFrFilter;
+		if (appSessionSF2DepFrFilter != '') {
+			depFrFilter = jQuery.parseJSON(appSessionSF2DepFrFilter);
+		} else {
+			depFrFilter = null;
+		}
+		//var depFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+		//console.log(depFrFilter);
+		//console.log('{{ app.session.get("depFrFilter") | raw }}');
+		
 		$('#searchbox').autocomplete({
 			
 			source: function(request, response){
