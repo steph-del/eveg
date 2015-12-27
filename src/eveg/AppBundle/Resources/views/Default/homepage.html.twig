@@ -20,21 +20,9 @@
 					<span class="badge-addon badge">X</span>
 					<div class="input-group">
 						<input type="text" class="form-control searchbox" name="term" id ="searchbox" placeholder="{{ 'eveg.search.placeholder'|trans }}">
-						<div class="input-group-addon searchboxOptionsIcon">
+						<div class="input-group-addon searchboxOptionsIcon" data-container="body" data-toggle="popoverSearchOptions" data-placement="bottom" title="Options">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</div>
-					</div>
-					<div class="panel panel-default searchboxPanelOptions">
-						<div class="panel-body">
-							<form class="form-inline">
-								<div class="input-group">
-									<label for="exampleInputEmail1">
-										<input class="searchUseSynonymsCB" type="checkbox" value="" checked>
-										{{ 'eveg.search.use_synonyms'|trans }}
-									</label>
-
-								</div>
-							</form>
+							<div id="popover-searchOptions-head" class="hide">Options</div>
 						</div>
 					</div>
 				</div>
@@ -84,29 +72,51 @@
 {% block javascript %}
 
 	{{ parent() }}
+
+	<!-- SEARCH OPTIONS POPOVER -->
+	<script>
+		$(function () {
+			$('[data-toggle="popoverSearchOptions"]').popover({
+				html: true,
+				title: function() {
+					return $("#popover-searchOptions-head").html();
+				},
+				content: function() {
+					if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
+						return '<input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="" checked>{{ "eveg.search.use_synonyms"|trans }}';
+					} else {
+						return '<input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="">{{ "eveg.search.use_synonyms"|trans }}';
+					}
+				}
+			});
+		});
+	</script>
+
 	<!-- JQUERY COOKIE -->
 	<script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
+
+	<!-- SEARCH OPTIONS COOKIE -->
 	<script>
+		// Adds cookie if it doesn't exist yet
 		if(!$.cookie('eveg_search_use_synonyms')) {
 			$.cookie('eveg_search_use_synonyms', true);
 			console.log('Setting up a cookie : eveg_search_use_synonyms (true)');
 		}
-		if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
-			$(".searchUseSynonymsCB").prop("checked", true);
-		} else {
-			$(".searchUseSynonymsCB").prop("checked", false);
-		}
+		
+		// Toogle cookie according to checkbox
 		function toggleUseSynonymsCookie(){
-			if ($('.searchUseSynonymsCB').is(':checked')) {
+			if($('.searchUseSynonymsCB').is(':checked')) {
 				$.cookie('eveg_search_use_synonyms', true);
 			}
 			if(!$('.searchUseSynonymsCB').is(':checked')) {
 				$.cookie('eveg_search_use_synonyms', false);
 			}
 		}
-		$('.searchUseSynonymsCB').click(function(){
+
+		// Click
+		function clickUseSynonyms(){
 			toggleUseSynonymsCookie();
-		});
+		}
 	</script>
 
 	<!-- AUTOCOMPLETE -->
@@ -130,7 +140,7 @@
 		$('#searchbox').autocomplete({
 			
 			source: function(request, response){
-				if ($('.searchUseSynonymsCB').is(':checked')) {
+				if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
 					var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': true }, true);
 				} else {
 					var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': false }, true);
@@ -172,15 +182,5 @@
 	    $("#searchbox").focus();
 	});
 	</script>
-
-	<!-- SEARCHBOX PANEL OPTIONS -->
-	<script>
-		$(".searchboxPanelOptions").hide();
-		$(".searchboxOptionsIcon").click(function(){
-			$(".searchboxPanelOptions").slideToggle(200);
-		});
-	</script>
-
-
 
 {% endblock %}
