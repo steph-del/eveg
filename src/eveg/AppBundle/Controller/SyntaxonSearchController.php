@@ -27,6 +27,11 @@ class SyntaxonSearchController extends Controller
 
 		$session = new Session();
 		$depFrFilter = $session->get('depFrFilterArray');
+		$activeDepFrFilter = false;
+		foreach ($depFrFilter as $key => $value) {
+			if($value != null) $activeDepFrFilter = true;
+		}
+		if($activeDepFrFilter == false) $depFrFilter = null;
 		
 		if(!$searchedTerm)
 		{
