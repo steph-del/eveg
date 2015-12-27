@@ -73,9 +73,24 @@
 
 	{{ parent() }}
 
+	<!-- JQUERY COOKIE -->
+	<script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
+
 	<!-- SEARCH OPTIONS POPOVER -->
 	<script>
 		$(function () {
+			var classInputDepFrFilter = "";
+			var textActiveDepFrFilter = "";
+			var attrDisabled = "";
+			// If a department filter is set, show information message
+			if('{{ app.session.get("depFrFilter") }}' != "[]") {
+				if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
+					textActiveDepFrFilter = 'Cette option n\'est pas effective tant qu\'un filtre par département ou par pays est actif';
+				}
+				classInputDepFrFilter = "has-error";
+				attrDisabled = "Disabled";
+			}
+
 			$('[data-toggle="popoverSearchOptions"]').popover({
 				html: true,
 				title: function() {
@@ -83,17 +98,17 @@
 				},
 				content: function() {
 					if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
-						return '<input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="" checked>{{ "eveg.search.use_synonyms"|trans }}';
+						return '<div class='+classInputDepFrFilter+'><div class="checkbox"><label><input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="" checked '+attrDisabled+'>{{ "eveg.search.use_synonyms"|trans }}</label></div></div><p><small>'+textActiveDepFrFilter+'</small></p>';
 					} else {
-						return '<input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="">{{ "eveg.search.use_synonyms"|trans }}';
+						return '<div class='+classInputDepFrFilter+'><div class="checkbox"><label><input class="searchUseSynonymsCB" type="checkbox" onclick="clickUseSynonyms()" value="" '+attrDisabled+'>{{ "eveg.search.use_synonyms"|trans }}</label></div></div><p><small>'+textActiveDepFrFilter+'</small></p>';
 					}
 				}
 			});
+
+			// If a department filter is set, disable the checkbox
+			//$("input.searchUseSynonymsCB").prop("disabled", true);
 		});
 	</script>
-
-	<!-- JQUERY COOKIE -->
-	<script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
 
 	<!-- SEARCH OPTIONS COOKIE -->
 	<script>
