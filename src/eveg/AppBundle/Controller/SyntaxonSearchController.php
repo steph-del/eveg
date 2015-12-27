@@ -33,14 +33,10 @@ class SyntaxonSearchController extends Controller
 		}
 		if($activeDepFrFilter == false) $depFrFilter = null;
 		
-		if(!$searchedTerm)
-		{
-			throw new \Exception('Empty variable \'term\'.');
-		}
-		if(!$useSynonyms)
-		{
-			$useSynonyms = true;
-		}
+		if(!$searchedTerm) throw new \Exception('Empty variable \'term\'.');
+	
+		if(!$useSynonyms) $useSynonyms = true;
+
 		$searchedTerm = $searchedTerm . ' ';
 	    $searchedTerm = str_replace(' ', '%', $searchedTerm);
 
