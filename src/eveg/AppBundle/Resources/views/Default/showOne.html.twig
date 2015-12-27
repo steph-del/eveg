@@ -65,7 +65,12 @@
 				<div class="panel panel-default panelOptionsShowOne">
 					<div class="panel-body">
 						{% set depFrFilterActive = app.session.get("depFrFilter") %}
-						{% if (depFrFilterActive is defined) and ((depFrFilterActive != "[]") or (depFrFilterActive != "") or (depFrFilterActive != null)) %}
+						{% if (depFrFilterActive is defined) and (
+								depFrFilterActive is not empty
+								and (depFrFilterActive != "[]")
+								and (depFrFilterActive != "")
+								and (depFrFilterActive != null)
+						) %}
 							{% set depFrFilterIsActive = 'active' %}
 							{% set depFrFilterTooltipTitle = "Filtrer eVeg par département (actif)" %}
 						{% else %}
