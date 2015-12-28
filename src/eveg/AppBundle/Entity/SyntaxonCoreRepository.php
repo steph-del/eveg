@@ -15,7 +15,7 @@ class SyntaxonCoreRepository extends EntityRepository
 {
 
 	// Returns the tree trunk (Ajax call from FancyTree)
-	public function getBaseTree()
+	public function getBaseTree($depFrFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -24,13 +24,18 @@ class SyntaxonCoreRepository extends EntityRepository
 			->where('s.level = :level')
 			->setParameter('level', 'HAB');
 
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+
 		$tree = $qb->getQuery()->getResult();
 
 		return $tree;
 	}
 
 	// Returns children nodes of the $id node (Ajax call from FancyTree)
-	public function getNextTreeNode($id, $nextLevel)
+	public function getNextTreeNode($id, $nextLevel, $depFrFilter = null, $exclusive = false)
 	{
 		
 		// Grabbing syntaxon from $id
@@ -56,7 +61,12 @@ class SyntaxonCoreRepository extends EntityRepository
 				->setParameter('nextLevel', $nextLevel)
 				->orderBy('s.catminatCode', 'ASC');
 
-			return $qb->getQuery()->getResult();
+		// Department filter
+			if($depFrFilter != null) {
+				$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+			}
+			
+		return $qb->getQuery()->getResult();
 
 	}
 
