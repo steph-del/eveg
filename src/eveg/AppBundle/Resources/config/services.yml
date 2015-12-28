@@ -22,6 +22,9 @@ services:
         tags:
             - { name: twig.extension }
 
+    eveg_app.repFilters:
+        class:              eveg\AppBundle\Utils\RepartitionFilters\evegRepFilters
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:

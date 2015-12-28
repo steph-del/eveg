@@ -23,14 +23,9 @@ class SyntaxonTreeRestController extends FOSRestController
     $view = $this->view();
     $view->setSerializationContext(SerializationContext::create()->setGroups(array('baseTree')));
 
-    // Get the department filter
-    $session = new Session();
-    $depFrFilter = $session->get('depFrFilterArray');
-    $activeDepFrFilter = false;
-    foreach ($depFrFilter as $key => $value) {
-        if($value != null) $activeDepFrFilter = true;
-    }
-    if($activeDepFrFilter == false) $depFrFilter = null;
+    // Grabbing the repartition filters service & the department filter
+    $repFilters = $this->get('eveg_app.repFilters');
+    $depFrFilter = $repFilters->getDepFrFilterSession();
         
     $syntaxonTree = $this->getDoctrine()
     					 ->getManager()
@@ -67,14 +62,9 @@ class SyntaxonTreeRestController extends FOSRestController
         $view = $this->view();
         $view->setSerializationContext(SerializationContext::create()->setGroups(array('nodeTree')));
 
-        // Get the department filter
-        $session = new Session();
-        $depFrFilter = $session->get('depFrFilterArray');
-        $activeDepFrFilter = false;
-        foreach ($depFrFilter as $key => $value) {
-            if($value != null) $activeDepFrFilter = true;
-        }
-        if($activeDepFrFilter == false) $depFrFilter = null;
+        // Grabbing the repartition filters service & the department filter
+        $repFilters = $this->get('eveg_app.repFilters');
+        $depFrFilter = $repFilters->getDepFrFilterSession();
 
         // Grabbing catCode service
         $catCode = $this->get('eveg_app.catCode');

@@ -25,13 +25,9 @@ class SyntaxonSearchController extends Controller
 		$useSynonyms = $request->get('useSynonyms');
 		//$depFrFilter = $request->get('depFrFilter');
 
-		$session = new Session();
-		$depFrFilter = $session->get('depFrFilterArray');
-		$activeDepFrFilter = false;
-		foreach ($depFrFilter as $key => $value) {
-			if($value != null) $activeDepFrFilter = true;
-		}
-		if($activeDepFrFilter == false) $depFrFilter = null;
+		// Grabbing the repartition filters service & the department filter
+	    $repFilters = $this->get('eveg_app.repFilters');
+	    $depFrFilter = $repFilters->getDepFrFilterSession();
 		
 		if(!$searchedTerm) throw new \Exception('Empty variable \'term\'.');
 	
