@@ -15,7 +15,7 @@ class SyntaxonRepartitionEurope
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="string", length=2)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
