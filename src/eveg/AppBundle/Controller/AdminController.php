@@ -359,6 +359,140 @@ class AdminController extends Controller
 		));
 	}
 
+	/**
+	 * Import the European repartition data (csv file from baseveg).
+	 * Only available in dev mode.
+	 *
+	 */
+	public function importRepartitionEuropeAction(Request $request)
+	{
+		// Only available in dev mode because of increasing memory and time limit
+		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
+		}
+
+		$request = $this->getRequest();
+
+		// Creates the form...
+    	$form = $this->createFormBuilder()
+            ->add('importFile', 'file')
+            ->getForm();
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			set_time_limit(1000);
+			ini_set('memory_limit', '1024M');
+
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Recovers the uploaded file
+			$file = $form->get('importFile')->getData();
+			$mimeType = $file->getMimeType();
+			$clientOriginaFilelName = $file->getClientOriginalName();
+
+			// File type verification
+			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
+				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contain '.csv').");
+			}
+
+			// Moves the uploaded file
+			$name = $file->getClientOriginalName();
+			$dir = __DIR__.'/../../../../web/uploads/import/repartition/europe';
+			$file->move($dir, $name);
+
+			// Variables
+			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$importKeys = array_column($import, 'id');				// gets the id values
+			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
+
+			// Retrieves all syntaxonCore entities
+			$em = $this->getDoctrine()->getManager();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+
+			// For each entity, create a new syntaxonRepartitionDepFr object and attaches it
+			// If the entity already have a syntaxonRepartitionDepFr then we just update it
+			foreach ($entities as $key => $entity) {
+
+				if($entity->getRepartitionDepFr()) {
+					$newRepartition = $entity->getRepartitionDepFr();
+				} else {
+					$newRepartition = new syntaxonRepartitionDepFr;
+				}
+
+				$importKey = array_search($entity->getId(), $importKeys);
+				if($importKey !== null) {
+					$newRepartition
+						->setMacronesia($import[$importKey]['macronesia'])
+						->setIberian_peninsula($import[$importKey]['iberian_peninsula'])
+						->setIsland($import[$importKey]['island'])
+						->setScandinavia($import[$importKey]['scandinavia'])
+						->setIreland($import[$importKey]['ireland'])
+						->setUk($import[$importKey]['uk'])
+						->setNetherlands($import[$importKey]['netherlands'])
+						->setBelgium($import[$importKey]['belgium'])
+						->setLuxembourg($import[$importKey]['luxembourg'])
+						->setFrance($import[$importKey]['france'])
+						->setGermany($import[$importKey]['germany'])
+						->setPoland($import[$importKey]['poland'])
+						->setCzech_republic($import[$importKey]['czech_republic'])
+						->setSlovakia($import[$importKey]['slovakia'])
+						->setSwitzerland($import[$importKey]['switzerland'])
+						->setAustria($import[$importKey]['austria'])
+						->setItaly($import[$importKey]['italy'])
+						->setSlovenia_croatia($import[$importKey]['slovenia_croatia'])
+						->setBosnia_montenegro_albania($import[$importKey]['bosnia_montenegro_albania'])
+						->setSerbia_macedonia($import[$importKey]['serbia_macedonia'])
+						->setHungary($import[$importKey]['hungary'])
+						->setRomania_moldova($import[$importKey]['romania_moldova'])
+						->setBulgaria($import[$importKey]['bulgaria'])
+						->setGreece($import[$importKey]['greece'])
+						->setFinland($import[$importKey]['finland'])
+						->setEstonia_latvia_lithuania($import[$importKey]['estonia_latvia_lithuania'])
+						->setBelarus($import[$importKey]['belarus'])
+						->setUkraine($import[$importKey]['ukraine'])
+						->setRussia($import[$importKey]['russia'])
+					;
+
+					$entity->setRepartitionDepFr($newRepartition);
+
+					// Flush and detach entities each $batchSize time
+					if (($i % $batchSize) === 0) {
+				        $em->flush();
+				        for ($i=($cycle*$batchSize)+$i; $i < $i=($cycle*$batchSize)+$i+$batchSize; $i++) { 
+				        	$em->detach($entities[($cycle*$batchSize)+$i]);
+				        }
+				        $cycle = $cycle+1;
+				    }
+					$i = $i+1;
+
+				}
+				
+	        }
+	        // Flush the last entities (the last batch cycle may not be full)
+	        $em->flush();
+		    $em->clear();
+
+		    // Flash and return
+	        $this->get('session')->getFlashBag()->add(
+	            'success',
+	            count($import).' données ont été importées (Europe).'
+	        );
+
+	        return $this->render('evegAppBundle:Admin:importEurope.html.twig', array(
+				'form' => $form->createView()
+			));
+	    }
+
+		return $this->render('evegAppBundle:Admin:importEurope.html.twig', array(
+			'form' => $form->createView()
+		));
+
+	}
+
 
 	/**
 	 * Convert a comma separated file into an associated array.

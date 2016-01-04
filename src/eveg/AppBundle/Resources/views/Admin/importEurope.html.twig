@@ -1,0 +1,39 @@
+{# app/Resources/views/Admin/importEurope.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %} Importer les données de chorologie (Europe) | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Importer les données de répartition (Europe)</h1>
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title">Attention</h3>
+				</div>
+				<div class="panel-body">
+					Cette procédure écrase toutes les données existantes pour l'entité syntaxonEurope.<br />
+					Le format requis en entrée<br />
+					- est un .csv, séparateur point-virgule (;)<br />
+					- est codé en UTF8<br />
+					- les retours à la ligne (Line ending) sont encodés selon le système Unix (LF)
+				</div>
+			</div>
+
+			<form action="{{ path('eveg_admin_import_baseveg_repartitionEurope') }}" method="post" {{ form_enctype(form) }}>
+				
+			    {{ form_widget(form) }}
+			    <input type="submit" />
+			</form>
+
+		</div>
+
+
+	</div>
+
+
+{% endblock %}

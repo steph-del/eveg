@@ -24,7 +24,11 @@ eveg_admin_delete_user:
 eveg_admin_import_baseveg_repartitionDepFr:
     path: /import/dep_fr
     defaults: { _controller: evegAppBundle:Admin:importRepartitionDepFr }
-    
+
+eveg_admin_import_baseveg_repartitionEurope:
+    path: /import/dep_fr
+    defaults: { _controller: evegAppBundle:Admin:importRepartitionEurope }
+
 #eveg_slug_regenerator:
 #    path: /regenerate-slugs
 #    defaults: { _controller: evegAppBundle:Admin:generateAllSlugs }
