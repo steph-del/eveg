@@ -157,6 +157,14 @@ class SyntaxonCore
     */
     private $repartitionDepFr;
 
+    /**
+     *
+     * European coutries repartition
+     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\syntaxonRepartitionEurope", cascade={"persist"})
+     * @ORM\JoinColumn(name="repartitionEurope_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     */
+    private $repartitionEurope;
+
 
 // -------------------
 // Setters & getters
@@ -410,6 +418,24 @@ class SyntaxonCore
     public function getRepartitionDepFr()
     {
         return $this->repartitionDepFr;
+    }
+
+    /**
+    * Set repartitionEurope
+    *
+    */
+    public function setRepartitionEurope(SyntaxonRepartitionEurope $repartition = null)
+    {
+        $this->repartitionEurope = $repartition;
+    }
+
+    /**
+    * Get repartitionEurope
+    *
+    */
+    public function getRepartitionEurope()
+    {
+        return $this->repartitionEurope;
     }
 
 

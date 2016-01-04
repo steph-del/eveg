@@ -22,189 +22,203 @@ class SyntaxonRepartitionEurope
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="macaronesia", type="string", length=2, nullable=true)
      */
     private $macaronesia;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="iberian_peninsula", type="string", length=2, nullable=true)
      */
     private $iberianPeninsula;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="island", type="string", length=2, nullable=true)
      */
     private $island;
 
     /**
-     * @var integer
+     * @var string
+     *
+     *@ORM\Column(name="danmark_norway_sweden", type="string", length=2, nullable=true)
+     */
+    private $danmark_norway_sweden;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ireland", type="string", length=2, nullable=true)
+     */
+    private $ireland;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="uk", type="string", length=2, nullable=true)
      */
     private $uk;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="netherlands", type="string", length=2, nullable=true)
      */
     private $netherlands;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="belgium", type="string", length=2, nullable=true)
      */
     private $belgium;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="luxembourg", type="string", length=2, nullable=true)
      */
     private $luxembourg;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="france", type="string", length=2, nullable=true)
      */
     private $france;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="germany", type="string", length=2, nullable=true)
      */
     private $germany;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="poland", type="string", length=2, nullable=true)
      */
     private $poland;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="czech_republic", type="string", length=2, nullable=true)
      */
     private $czechRepublic;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="slovakia", type="string", length=2, nullable=true)
      */
     private $slovakia;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="switzerland", type="string", length=2, nullable=true)
      */
     private $switzerland;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="austria", type="string", length=2, nullable=true)
      */
     private $austria;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="italy", type="string", length=2, nullable=true)
      */
     private $italy;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="slovenia_croatia", type="string", length=2, nullable=true)
      */
     private $sloveniaCroatia;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="bosnia_montenegro_albania", type="string", length=2, nullable=true)
      */
     private $bosniaMontenegroAlbania;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="serbia_macedonia", type="string", length=2, nullable=true)
      */
     private $serbiaMacedonia;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="hungary", type="string", length=2, nullable=true)
      */
     private $hungary;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="romania_moldova", type="string", length=2, nullable=true)
      */
     private $romaniaMoldova;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="bulgaria", type="string", length=2, nullable=true)
      */
     private $bulgaria;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="greece", type="string", length=2, nullable=true)
      */
     private $greece;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="finland", type="string", length=2, nullable=true)
      */
     private $finland;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="estonia_latvia_lithuania", type="string", length=2, nullable=true)
      */
     private $estoniaLatviaLithuania;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="belarus", type="string", length=2, nullable=true)
      */
     private $belarus;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="ukraine", type="string", length=2, nullable=true)
      */
     private $ukraine;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="russia", type="string", length=2, nullable=true)
      */
@@ -291,6 +305,54 @@ class SyntaxonRepartitionEurope
     public function getIsland()
     {
         return $this->island;
+    }
+
+    /**
+     * Set danmark_norway_sweden
+     *
+     * @param string $danmark_norway_sweden
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setDanmark_norway_sweden($danmark_norway_sweden)
+    {
+        $this->danmark_norway_sweden = $danmark_norway_sweden;
+
+        return $this;
+    }
+
+    /**
+     * Get danmark_norway_sweden
+     *
+     * @return string
+     */
+    public function getDanmark_norway_sweden()
+    {
+        return $this->danmark_norway_sweden;
+    }
+
+    /**
+     * Set ireland
+     *
+     * @param string $ireland
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setIreland($ireland)
+    {
+        $this->ireland = $ireland;
+
+        return $this;
+    }
+
+    /**
+     * Get ireland
+     *
+     * @return string
+     */
+    public function getIreland()
+    {
+        return $this->ireland;
     }
 
     /**

@@ -447,12 +447,14 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
   // Bind data
     //var repDepFr = $.parseJSON(jsonData);
       // Presence
-        var present            = '1';
-        var toBeConfirmed      = '1?';
-        var doubtful           = '2';
-        var disappeared        = '3';
-        var error              = '4';
-        var errorToBeConfirmed = '4?';
+        var present             = '1';
+        var toBeConfirmed       = '1?';
+        var doubtful            = '2';
+        var disappeared         = '3';
+        var error               = '4';
+        var errorToBeConfirmed  = '4?';
+        var absent              = '5';
+        var absentToBeConfirmed = '5?';
       // Colors
         var colorPresent            = "#A7FF64";
         var colorToBeConfirmed      = "#FFFF32";
@@ -460,6 +462,8 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
         var colorDisappeared        = "#808080";
         var colorError              = "#FA2C4E";
         var colorErrorToBeConfirmed = "#9B0610";
+        var absent                  = "#FA2C4E";
+        var absentToBeConfirmed     = "#9B0610";
 
         frShape.attr('fill', colorPresent);
 
