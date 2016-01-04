@@ -26,7 +26,7 @@ eveg_admin_import_baseveg_repartitionDepFr:
     defaults: { _controller: evegAppBundle:Admin:importRepartitionDepFr }
 
 eveg_admin_import_baseveg_repartitionEurope:
-    path: /import/dep_fr
+    path: /import/europe
     defaults: { _controller: evegAppBundle:Admin:importRepartitionEurope }
 
 #eveg_slug_regenerator:
