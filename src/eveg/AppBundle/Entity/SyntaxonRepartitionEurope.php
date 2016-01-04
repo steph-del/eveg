@@ -224,7 +224,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set macronesia
      *
-     * @param integer $macronesia
+     * @param string $macronesia
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -238,7 +238,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get macronesia
      *
-     * @return integer
+     * @return string
      */
     public function getMacronesia()
     {
@@ -248,7 +248,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set iberianPeninsula
      *
-     * @param integer $iberianPeninsula
+     * @param string $iberianPeninsula
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -262,7 +262,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get iberianPeninsula
      *
-     * @return integer
+     * @return string
      */
     public function getIberianPeninsula()
     {
@@ -272,7 +272,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set island
      *
-     * @param integer $island
+     * @param string $island
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -286,7 +286,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get island
      *
-     * @return integer
+     * @return string
      */
     public function getIsland()
     {
@@ -296,7 +296,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set uk
      *
-     * @param integer $uk
+     * @param string $uk
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -310,7 +310,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get uk
      *
-     * @return integer
+     * @return string
      */
     public function getUk()
     {
@@ -320,7 +320,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set netherlands
      *
-     * @param integer $netherlands
+     * @param string $netherlands
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -334,7 +334,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get netherlands
      *
-     * @return integer
+     * @return string
      */
     public function getNetherlands()
     {
@@ -344,7 +344,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set belgium
      *
-     * @param integer $belgium
+     * @param string $belgium
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -358,7 +358,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get belgium
      *
-     * @return integer
+     * @return string
      */
     public function getBelgium()
     {
@@ -368,7 +368,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set luxembourg
      *
-     * @param integer $luxembourg
+     * @param string $luxembourg
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -382,7 +382,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get luxembourg
      *
-     * @return integer
+     * @return string
      */
     public function getLuxembourg()
     {
@@ -392,7 +392,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set france
      *
-     * @param integer $france
+     * @param string $france
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -406,7 +406,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get france
      *
-     * @return integer
+     * @return string
      */
     public function getFrance()
     {
@@ -416,7 +416,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set germany
      *
-     * @param integer $germany
+     * @param string $germany
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -430,7 +430,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get germany
      *
-     * @return integer
+     * @return string
      */
     public function getGermany()
     {
@@ -440,7 +440,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set poland
      *
-     * @param integer $poland
+     * @param string $poland
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -454,7 +454,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get poland
      *
-     * @return integer
+     * @return string
      */
     public function getPoland()
     {
@@ -464,7 +464,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set czechRepublic
      *
-     * @param integer $czechRepublic
+     * @param string $czechRepublic
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -478,7 +478,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get czechRepublic
      *
-     * @return integer
+     * @return string
      */
     public function getCzechRepublic()
     {
@@ -488,7 +488,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set slovakia
      *
-     * @param integer $slovakia
+     * @param string $slovakia
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -502,7 +502,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get slovakia
      *
-     * @return integer
+     * @return string
      */
     public function getSlovakia()
     {
@@ -512,7 +512,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set switzerland
      *
-     * @param integer $switzerland
+     * @param string $switzerland
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -526,7 +526,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get switzerland
      *
-     * @return integer
+     * @return string
      */
     public function getSwitzerland()
     {
@@ -536,7 +536,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set austria
      *
-     * @param integer $austria
+     * @param string $austria
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -550,7 +550,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get austria
      *
-     * @return integer
+     * @return string
      */
     public function getAustria()
     {
@@ -560,7 +560,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set italy
      *
-     * @param integer $italy
+     * @param string $italy
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -574,7 +574,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get italy
      *
-     * @return integer
+     * @return string
      */
     public function getItaly()
     {
@@ -584,7 +584,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set sloveniaCroatia
      *
-     * @param integer $sloveniaCroatia
+     * @param string $sloveniaCroatia
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -598,7 +598,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get sloveniaCroatia
      *
-     * @return integer
+     * @return string
      */
     public function getSloveniaCroatia()
     {
@@ -608,7 +608,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set bosniaMontenegroAlbania
      *
-     * @param integer $bosniaMontenegroAlbania
+     * @param string $bosniaMontenegroAlbania
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -622,7 +622,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get bosniaMontenegroAlbania
      *
-     * @return integer
+     * @return string
      */
     public function getBosniaMontenegroAlbania()
     {
@@ -632,7 +632,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set serbiaMacedonia
      *
-     * @param integer $serbiaMacedonia
+     * @param string $serbiaMacedonia
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -646,7 +646,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get serbiaMacedonia
      *
-     * @return integer
+     * @return string
      */
     public function getSerbiaMacedonia()
     {
@@ -656,7 +656,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set hungary
      *
-     * @param integer $hungary
+     * @param string $hungary
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -670,7 +670,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get hungary
      *
-     * @return integer
+     * @return string
      */
     public function getHungary()
     {
@@ -680,7 +680,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set romaniaMoldova
      *
-     * @param integer $romaniaMoldova
+     * @param string $romaniaMoldova
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -694,7 +694,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get romaniaMoldova
      *
-     * @return integer
+     * @return string
      */
     public function getRomaniaMoldova()
     {
@@ -704,7 +704,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set bulgaria
      *
-     * @param integer $bulgaria
+     * @param string $bulgaria
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -718,7 +718,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get bulgaria
      *
-     * @return integer
+     * @return string
      */
     public function getBulgaria()
     {
@@ -728,7 +728,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set greece
      *
-     * @param integer $greece
+     * @param string $greece
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -742,7 +742,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get greece
      *
-     * @return integer
+     * @return string
      */
     public function getGreece()
     {
@@ -752,7 +752,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set finland
      *
-     * @param integer $finland
+     * @param string $finland
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -766,7 +766,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get finland
      *
-     * @return integer
+     * @return string
      */
     public function getFinland()
     {
@@ -776,7 +776,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set estoniaLatviaLithuania
      *
-     * @param integer $estoniaLatviaLithuania
+     * @param string $estoniaLatviaLithuania
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -790,7 +790,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get estoniaLatviaLithuania
      *
-     * @return integer
+     * @return string
      */
     public function getEstoniaLatviaLithuania()
     {
@@ -800,7 +800,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set belarus
      *
-     * @param integer $belarus
+     * @param string $belarus
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -814,7 +814,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get belarus
      *
-     * @return integer
+     * @return string
      */
     public function getBelarus()
     {
@@ -824,7 +824,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set ukraine
      *
-     * @param integer $ukraine
+     * @param string $ukraine
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -838,7 +838,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get ukraine
      *
-     * @return integer
+     * @return string
      */
     public function getUkraine()
     {
@@ -848,7 +848,7 @@ class SyntaxonRepartitionEurope
     /**
      * Set russia
      *
-     * @param integer $russia
+     * @param string $russia
      *
      * @return SyntaxonRepartitionEurope
      */
@@ -862,7 +862,7 @@ class SyntaxonRepartitionEurope
     /**
      * Get russia
      *
-     * @return integer
+     * @return string
      */
     public function getRussia()
     {
