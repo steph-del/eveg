@@ -210,6 +210,15 @@
 								<div id="mapDepFrLegend"></div>
 							</div>
 						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Europe</div>
+							<div class="panel-body">
+								<div id="mapmapEurope"></div>
+								<div id="mapmapEuropeHoverLegend">...</div>
+								<div id="mapmapEuropeToggleLegend">Légende</div>
+								<div id="mapmapEuropeLegend"></div>
+							</div>
+						</div>
 					</div> <!-- ./viewRight -->
 				</div> <!-- ./row -->
 			</div> <!-- ./col-md-8 -->
@@ -424,7 +433,7 @@
 		{% endif %}
 	</script>
 
-	<!-- French departments map -->
+	<!-- MAPS -->
 	{% javascripts 
 		'@evegAppBundle/Resources/public/js/maps/*'
 		'js/maps/*' %}
@@ -442,6 +451,16 @@
 		$("#mapDepFrToggleLegend").click(function(){
 			$("#mapDepFrLegend").toggle();
 		});
+	</script>
+
+	<!-- UE map-->
+	<script>
+		var repUE = '{}';
+		createMapEurope(document.getElementById('mapEurope'),
+						document.getElementById('mapEuropeHoverLegend'),
+						document.getElementById('mapEuropeLegend'),
+						repUE,
+						0.55);
 	</script>
 	
 	<!-- BOOTSTRAP TOOLTIP -->
