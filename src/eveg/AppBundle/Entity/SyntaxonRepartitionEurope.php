@@ -24,9 +24,9 @@ class SyntaxonRepartitionEurope
     /**
      * @var integer
      *
-     * @ORM\Column(name="macronesia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="macaronesia", type="string", length=2, nullable=true)
      */
-    private $macronesia;
+    private $macaronesia;
 
     /**
      * @var integer
@@ -222,27 +222,27 @@ class SyntaxonRepartitionEurope
     }
 
     /**
-     * Set macronesia
+     * Set macaronesia
      *
-     * @param string $macronesia
+     * @param string $macaronesia
      *
      * @return SyntaxonRepartitionEurope
      */
-    public function setMacronesia($macronesia)
+    public function setMacaronesia($macaronesia)
     {
-        $this->macronesia = $macronesia;
+        $this->macaronesia = $macaronesia;
 
         return $this;
     }
 
     /**
-     * Get macronesia
+     * Get macaronesia
      *
      * @return string
      */
-    public function getMacronesia()
+    public function getMacaronesia()
     {
-        return $this->macronesia;
+        return $this->macaronesia;
     }
 
     /**
