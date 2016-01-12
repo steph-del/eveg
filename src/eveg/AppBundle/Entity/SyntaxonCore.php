@@ -160,7 +160,7 @@ class SyntaxonCore
     /**
      *
      * European coutries repartition
-     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\syntaxonRepartitionEurope", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonRepartitionEurope", cascade={"persist"})
      * @ORM\JoinColumn(name="repartitionEurope_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $repartitionEurope;
