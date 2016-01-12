@@ -25,10 +25,15 @@ class evegRepFilters
 		$session = new Session();
 	    $depFrFilter = $session->get('depFrFilterArray');
 	    $activeDepFrFilter = false;
-	    foreach ($depFrFilter as $key => $value) {
-	        if($value != null) $activeDepFrFilter = true;
-	    }
-	    if($activeDepFrFilter == false) $depFrFilter = null;
+	    if(!empty($depFrFilter)) 
+	    {
+	    	foreach ($depFrFilter as $key => $value) {
+	        	if($value != null) $activeDepFrFilter = true;
+	    	}
+	    	if($activeDepFrFilter == false) $depFrFilter = null;
+	    } else {
+	    	$depFrFilter = null;
+	    }	
 
 	    return $depFrFilter;
 	}
