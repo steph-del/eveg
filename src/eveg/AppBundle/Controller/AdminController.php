@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use eveg\UserBundle\Form\Type\AdminProfileFormType;
 use eveg\AppBundle\Entity\syntaxonRepartitionDepFr;
+use eveg\AppBundle\Entity\syntaxonRepartitionEurope;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -413,14 +414,14 @@ class AdminController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
 
-			// For each entity, create a new syntaxonRepartitionDepFr object and attaches it
-			// If the entity already have a syntaxonRepartitionDepFr then we just update it
+			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
+			// If the entity already have a syntaxonRepartitionEurope then we just update it
 			foreach ($entities as $key => $entity) {
 
-				if($entity->getRepartitionDepFr()) {
-					$newRepartition = $entity->getRepartitionDepFr();
+				if($entity->getRepartitionEurope()) {
+					$newRepartition = $entity->getRepartitionEurope();
 				} else {
-					$newRepartition = new syntaxonRepartitionDepFr;
+					$newRepartition = new SyntaxonRepartitionEurope;
 				}
 
 				$importKey = array_search($entity->getId(), $importKeys);
@@ -457,7 +458,7 @@ class AdminController extends Controller
 						->setRussia($import[$importKey]['russia'])
 					;
 
-					$entity->setRepartitionDepFr($newRepartition);
+					$entity->setRepartitionEurope($newRepartition);
 
 					// Flush and detach entities each $batchSize time
 					if (($i % $batchSize) === 0) {
