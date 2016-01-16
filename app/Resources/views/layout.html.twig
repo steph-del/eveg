@@ -20,6 +20,11 @@
 		<link rel="stylesheet" href="{{ asset_url }}">
 		{% endstylesheets %}
 		
+		{% stylesheets
+			'@evegAppBundle/Resources/public/css/animate.css'%}
+			<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+		
 		
 		<style>body{background-image:url({{ asset('img/patterns/grey.png') }});}</style>
 	{% endblock %}
@@ -74,6 +79,24 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/bootstrap-notify.min.js'%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	<!-- FLASH MESSAGES -->
+	{% for type, flashMessage in app.session.flashbag.all() %}
+		{% for message in flashMessage %}
+			<script>
+				$.notify({
+					// options
+					message: '{{ message }}'
+				},{
+					type: '{{ type }}'
+				});
+			</script>
+		{% endfor %}
+	{% endfor %}
 	
 	<!-- ToolTip activation -->
 	<script> $('a, li').tooltip() </script>
