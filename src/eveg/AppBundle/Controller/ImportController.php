@@ -6,13 +6,194 @@ namespace eveg\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\AppBundle\Entity\syntaxonRepartitionDepFr;
-use eveg\AppBundle\Entity\syntaxonRepartitionEurope;
+use eveg\AppBundle\Entity\SyntaxonRepartitionEurope;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ImportController extends Controller
 {
+	/**
+	 *
+	 * Test and check the SyntaxonCore entity and the imported file before importing the data
+	 */
+	public function checkBeofreImportCoreAction($importedData)
+	{
+		// Retrieves all syntaxonCore entities
+		$em = $this->getDoctrine()->getManager();
+		$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+		// Push entities into array
+		$testUniqueSCEntity = array();
+		foreach($entities as $key => $entity) {
+			$arrayElements[$key] = $entity->getFixedCode();
+			array_push($testUniqueSCEntity, $entity->getFixedCode());
+		}
+
+		// Test if all fixedCode are unique whitin the SyntaxonCoreEntity
+		$countElements = array_count_values($testUniqueSCEntity);
+		$nonUniqueFixedCode = '';
+		foreach ($countElements as $key => $value) {
+			if($value > 1) $nonUniqueFixedCode .= $key.', ';
+		}
+		if(!empty($nonUniqueFixedCode)) {
+			Throw new HttpException(500, 'There is some doubles in the fixedCode within the SyntaxonCore entity. See : '.$nonUniqueFixedCode);
+		}
+
+		// Test if all fixedCode are unique whitin the imported file
+		$importedFixedCode = array_column($importedData, 'fixedCode');
+		$countElements = array_count_values($importedFixedCode);
+		$nonUniqueFixedCode = '';
+		foreach ($countElements as $key => $value) {
+			if($value > 1) $nonUniqueFixedCode .= $key.', ';
+		}
+		if(!empty($nonUniqueFixedCode)) {
+			Throw new HttpException(500, 'There is some doubles in the fixedCode within the imported file. See : '.$nonUniqueFixedCode);
+		}
+
+		return true;
+
+	}
+
+	/**
+	 *
+	 * Import the baseveg core data (csv file from baseveg)
+	 * Only available in dev mode for now
+	 */
+	public function importCoreAction(Request $request)
+	{
+		// Only available in dev mode because of increasing memory and time limit
+		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
+		}
+
+		$request = $this->getRequest();
+
+		// Creates the form...
+    	$form = $this->createFormBuilder()
+            ->add('importFile', 'file')
+            ->getForm();
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			set_time_limit(1000);
+			ini_set('memory_limit', '1024M');
+
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Recovers the uploaded file
+			$file = $form->get('importFile')->getData();
+			$mimeType = $file->getMimeType();
+			$clientOriginaFilelName = $file->getClientOriginalName();
+
+			// File type verification
+			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
+				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contains '.csv').");
+			}
+
+			// Moves the uploaded file
+			$name = $file->getClientOriginalName();
+			$dir = __DIR__.'/../../../../web/uploads/import/core';
+			$file->move($dir, $name);
+
+			// Variables
+			$import = $this->csv_to_array($dir.'/'.$name, ';');		// push the csv data into an array
+			$importKeys = array_column($import, 'id');				// get the id values
+			$importKeys = array_map('intval', $importKeys);			// make sure that $importKeys contains integer data
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Retrieves all syntaxonCore entities
+			$em = $this->getDoctrine()->getManager();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+			// Push entities into array
+			$testUniqueSCEntity = array();
+			foreach($entities as $key => $entity) {
+				$arrayElements[$key] = $entity->getFixedCode();
+				array_push($testUniqueSCEntity, $entity->getFixedCode());
+			}
+
+			// Check data before import
+			$this->checkBeofreImportCoreAction($import);
+
+			// Import / update procedure
+			foreach($import as $key => $importedEntity) {
+				// Does the entity already exists ?
+				$idToRetrive = array_search($importedEntity['fixedCode'], $testUniqueSCEntity);
+				if($idToRetrive !== FALSE) {
+					// update entity
+					$entities[$idToRetrive]
+						->setFixedCode($import[$key]['fixedCode'])
+						->setCatminatCode($import[$key]['catminatCode'])
+						->setLevel($import[$key]['level'])
+						->setSyntaxonName($import[$key]['syntaxonName'])
+						->setSyntaxonAuthor($import[$key]['authorName'])
+						->setCommonName($import[$key]['commonName'])
+						;
+				} else {
+					// create new entity
+					$newSyntaxonCore = new SyntaxonCore;
+					$newSyntaxonCore
+						->setFixedCode($import[$key]['fixedCode'])
+						->setCatminatCode($import[$key]['catminatCode'])
+						->setLevel($import[$key]['level'])
+						->setSyntaxonName($import[$key]['syntaxonName'])
+						->setSyntaxonAuthor($import[$key]['authorName'])
+						->setCommonName($import[$key]['commonName'])
+						->setId($importedEntity['fixedCode'])
+						;
+					$em->persist($newSyntaxonCore);
+
+				}
+				
+			// Flush and detach entities each $batchSize time
+			if (($i % $batchSize) === 0) {
+
+				// Force setId : http://www.ens.ro/2012/07/03/symfony2-doctrine-force-entity-id-on-persist/
+				if(isset($newSyntaxonCore)) {
+					$metadata = $em->getClassMetaData(get_class($newSyntaxonCore));
+					$metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+				}
+
+		        $em->flush();
+		        for ($i=($cycle*$batchSize)+$i; $i < $i=($cycle*$batchSize)+$i+$batchSize; $i++) { 
+		        	$em->detach($entities[($cycle*$batchSize)+$i]);
+		        }
+		        $cycle += 1;
+		    }
+			$i += 1;
+
+			}
+
+			// Flush the last entities (the last batch cycle may not be full)
+			// Force setId : http://www.ens.ro/2012/07/03/symfony2-doctrine-force-entity-id-on-persist/
+			if(isset($newSyntaxonCore)) {
+				$metadata = $em->getClassMetaData(get_class($newSyntaxonCore));
+				$metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+			}
+
+			$em->flush();
+		    $em->clear();
+
+			// Flash
+	        $this->get('session')->getFlashBag()->add(
+	            'success',
+	            count($importKeys).' données ont été mises à jour ou ajoutées.'
+	        );
+
+		}
+
+		return $this->render('evegAppBundle:Admin:importCore.html.twig', array(
+				'form' => $form->createView()
+			));
+
+	}
+
 	/**
 	 * Import the repartition data (csv file from baseveg).
 	 * Only available in dev mode.
