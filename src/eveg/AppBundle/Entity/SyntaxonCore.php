@@ -182,6 +182,17 @@ class SyntaxonCore
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return SyntaxonCore
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * Get idTree
      *
      * @return integer 
