@@ -10,6 +10,10 @@ $color-SUBASS-text: #D67C15;
 
 $indent: 10px;
 
+@mixin display-syntaxon-text(){
+	display: inline-block;
+}
+
 .HAB-text {
 	color: $color-HAB-text;
 }
@@ -24,6 +28,7 @@ $indent: 10px;
 
 .SUBCLA-indent {
 	padding-left: $indent;
+	@include display-syntaxon-text();
 }
 
 
@@ -34,7 +39,8 @@ $indent: 10px;
 .ORD-indent {
 	//padding-left: ($indent*2);
 	padding-left: ($indent*2); 
- 	//text-indent: -($indent*2); 
+ 	@include display-syntaxon-text();
+ 	
 }
 
 .SUBORD-text {
@@ -43,6 +49,7 @@ $indent: 10px;
 
 .SUBORD-indent {
 	padding-left: ($indent*3);
+	@include display-syntaxon-text();
 }
 
 
@@ -52,6 +59,7 @@ $indent: 10px;
 
 .ALL-indent {
 	padding-left: ($indent*4);
+	@include display-syntaxon-text();
 }
 
 
@@ -61,6 +69,7 @@ $indent: 10px;
 
 .SUBALL-indent {
 	padding-left: ($indent*5);
+	@include display-syntaxon-text();
 }
 
 .ASS-text {
@@ -69,6 +78,7 @@ $indent: 10px;
 
 .ASS-indent {
 	padding-left: ($indent*6);
+	@include display-syntaxon-text();
 }
 
 .SUBASS-text {
@@ -77,4 +87,5 @@ $indent: 10px;
 
 .SUBASS-indent {
 	padding-left: ($indent*7);
+	@include display-syntaxon-text();
 }
