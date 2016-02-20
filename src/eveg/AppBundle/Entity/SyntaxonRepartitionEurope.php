@@ -31,9 +31,16 @@ class SyntaxonRepartitionEurope
     /**
      * @var string
      *
-     * @ORM\Column(name="iberian_peninsula", type="string", length=2, nullable=true)
+     * @ORM\Column(name="portugal", type="string", length=2, nullable=true)
      */
-    private $iberianPeninsula;
+    private $portugal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="espana", type="string", length=2, nullable=true)
+     */
+    private $espana;
 
     /**
      * @var string
@@ -45,9 +52,16 @@ class SyntaxonRepartitionEurope
     /**
      * @var string
      *
-     *@ORM\Column(name="danmark_norway_sweden", type="string", length=2, nullable=true)
+     *@ORM\Column(name="norway", type="string", length=2, nullable=true)
      */
-    private $danmark_norway_sweden;
+    private $norway;
+
+    /**
+     * @var string
+     *
+     *@ORM\Column(name="denmark", type="string", length=2, nullable=true)
+     */
+    private $denmark;
 
     /**
      * @var string
@@ -192,6 +206,13 @@ class SyntaxonRepartitionEurope
     /**
      * @var string
      *
+     * @ORM\Column(name="sweden", type="string", length=2, nullable=true)
+     */
+    private $sweden;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="finland", type="string", length=2, nullable=true)
      */
     private $finland;
@@ -260,30 +281,6 @@ class SyntaxonRepartitionEurope
     }
 
     /**
-     * Set iberianPeninsula
-     *
-     * @param string $iberianPeninsula
-     *
-     * @return SyntaxonRepartitionEurope
-     */
-    public function setIberianPeninsula($iberianPeninsula)
-    {
-        $this->iberianPeninsula = $iberianPeninsula;
-
-        return $this;
-    }
-
-    /**
-     * Get iberianPeninsula
-     *
-     * @return string
-     */
-    public function getIberianPeninsula()
-    {
-        return $this->iberianPeninsula;
-    }
-
-    /**
      * Set island
      *
      * @param string $island
@@ -305,30 +302,6 @@ class SyntaxonRepartitionEurope
     public function getIsland()
     {
         return $this->island;
-    }
-
-    /**
-     * Set danmark_norway_sweden
-     *
-     * @param string $danmark_norway_sweden
-     *
-     * @return SyntaxonRepartitionEurope
-     */
-    public function setDanmark_norway_sweden($danmark_norway_sweden)
-    {
-        $this->danmark_norway_sweden = $danmark_norway_sweden;
-
-        return $this;
-    }
-
-    /**
-     * Get danmark_norway_sweden
-     *
-     * @return string
-     */
-    public function getDanmark_norway_sweden()
-    {
-        return $this->danmark_norway_sweden;
     }
 
     /**
@@ -930,5 +903,124 @@ class SyntaxonRepartitionEurope
     {
         return $this->russia;
     }
-}
 
+    /**
+     * Set portugal
+     *
+     * @param string $portugal
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setPortugal($portugal)
+    {
+        $this->portugal = $portugal;
+
+        return $this;
+    }
+
+    /**
+     * Get portugal
+     *
+     * @return string
+     */
+    public function getPortugal()
+    {
+        return $this->portugal;
+    }
+
+    /**
+     * Set espana
+     *
+     * @param string $espana
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setEspana($espana)
+    {
+        $this->espana = $espana;
+
+        return $this;
+    }
+
+    /**
+     * Get espana
+     *
+     * @return string
+     */
+    public function getEspana()
+    {
+        return $this->espana;
+    }
+
+    /**
+     * Set norway
+     *
+     * @param string $norway
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setNorway($norway)
+    {
+        $this->norway = $norway;
+
+        return $this;
+    }
+
+    /**
+     * Get norway
+     *
+     * @return string
+     */
+    public function getNorway()
+    {
+        return $this->norway;
+    }
+
+    /**
+     * Set denmark
+     *
+     * @param string $denmark
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setDenmark($denmark)
+    {
+        $this->denmark = $denmark;
+
+        return $this;
+    }
+
+    /**
+     * Get denmark
+     *
+     * @return string
+     */
+    public function getDenmark()
+    {
+        return $this->denmark;
+    }
+
+    /**
+     * Set sweden
+     *
+     * @param string $sweden
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setSweden($sweden)
+    {
+        $this->sweden = $sweden;
+
+        return $this;
+    }
+
+    /**
+     * Get sweden
+     *
+     * @return string
+     */
+    public function getSweden()
+    {
+        return $this->sweden;
+    }
+}
