@@ -15,3 +15,5 @@
 web/uploads/import/repartition/depfr/bvDepFr_18062015.csv
 
 src/eveg/AppBundle/Resources/views/Admin/test.html.twig
+
+*.php~
