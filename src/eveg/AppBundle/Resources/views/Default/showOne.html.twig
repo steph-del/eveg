@@ -455,7 +455,7 @@
 
 	<!-- UE map-->
 	<script>
-		var repUE = '{}';
+		var repUE = '{{ repUeJson | raw }}';
 		createMapEurope(document.getElementById('mapEurope'),
 						document.getElementById('mapEuropeHoverLegend'),
 						document.getElementById('mapEuropeLegend'),
