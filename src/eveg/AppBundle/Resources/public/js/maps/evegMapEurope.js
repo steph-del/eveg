@@ -416,10 +416,12 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
 
   // Shape background color
     var colorBg          = "#FFFFFF";
-    var colorBgNeighbors = "#E3E3E3";
+    var colorBgNeighbors = "#FFFFFF";
     mapEurope.forEach(function (el) {
       el.attr('fill', colorBg);
     });
+    /*var bgImg = mapEurope.image("../../img/patterns/sea.jpg", 0, 0, 280, 300);
+    bgImg.toBack();*/
 
     // Neighbors
     uaShape.attr('fill', colorBgNeighbors);
@@ -438,15 +440,16 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
     });
 
     // Neighbors
-    uaShape.attr('stroke-width', 0);
-    maShape.attr('stroke-width', 0);
-    tnShape.attr('stroke-width', 0);
-    dzShape.attr('stroke-width', 0);
-    trShape.attr('stroke-width', 0);
+    uaShape.attr('stroke-width', 0.4);
+    maShape.attr('stroke-width', 0.4);
+    tnShape.attr('stroke-width', 0.4);
+    dzShape.attr('stroke-width', 0.4);
+    trShape.attr('stroke-width', 0.4);
 
   // Bind data
     var repEurope = $.parseJSON(jsonData);
       // Presence
+        var notSpecified        = '0';
         var present             = '1';
         var toBeConfirmed       = '1?';
         var doubtful            = '2';
@@ -456,19 +459,23 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
         var absent              = '5';
         var absentToBeConfirmed = '5?';
       // Colors
+        var colorNotSpecified            = "#FFFFFF";
         var colorPresent                 = "#A7FF64";
         var colorToBeConfirmed           = "#FFFF32";
         var colorDoubtful                = "#FDCD00";
         var colorDisappeared             = "#808080";
         var colorError                   = "#FA2C4E";
         var colorErrorToBeConfirmed      = "#9B0610";
-        var colorAbsent                  = "#FA2C4E";
-        var colorAbsentToBeConfirmed     = "#9B0610";
+        var colorAbsent                  = "#CF61FA";
+        var colorAbsentToBeConfirmed     = "#9A28C7";
 
       // Binding
-        var activeColor;
+        var activeColor;console.log(repEurope);
         $.each(repEurope, function(index, value) {
           switch(value) {
+            case notSpecified:
+              activeColor = colorNotSpecified;
+              break;
             case present:
               activeColor = colorPresent;
               break;
@@ -492,7 +499,7 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
               break;
             case absentToBeConfirmed:
               activeColor = colorAbsentToBeConfirmed;
-              break
+              break;
           }
             
           switch(index) {
@@ -614,11 +621,11 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
           this.attr('stroke-width', 1);
 
           // Neighbors
-          uaShape.attr('stroke-width', 0);
-          maShape.attr('stroke-width', 0);
-          tnShape.attr('stroke-width', 0);
-          dzShape.attr('stroke-width', 0);
-          trShape.attr('stroke-width', 0);
+          uaShape.attr('stroke-width', 0.4);
+          maShape.attr('stroke-width', 0.4);
+          tnShape.attr('stroke-width', 0.4);
+          dzShape.attr('stroke-width', 0.4);
+          trShape.attr('stroke-width', 0.4);
 
           // Legend
             if(this === ptShape) $(idLegendHover).html(pt.oName+" ("+pt.frName+")");
@@ -674,11 +681,11 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
           $(idLegendHover).html(oldName);
 
           // Neighbors
-          uaShape.attr('stroke-width', 0);
-          maShape.attr('stroke-width', 0);
-          tnShape.attr('stroke-width', 0);
-          dzShape.attr('stroke-width', 0);
-          trShape.attr('stroke-width', 0);
+          uaShape.attr('stroke-width', 0.4);
+          maShape.attr('stroke-width', 0.4);
+          tnShape.attr('stroke-width', 0.4);
+          dzShape.attr('stroke-width', 0.4);
+          trShape.attr('stroke-width', 0.4);
         };
 
         //$(idLegendHover).html = 
@@ -699,5 +706,38 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
       luShape
     );
     //beneluxGroup.attr('fill', 'red');
+
+  // Legend
+    // Create the paper
+    var mapUeLegend = new Raphael(idLegend, 300, 200);
+    var separatorWidth = 10;
+    var spaceBeforeText = 10;
+
+    // Background color
+    var legendWidth  = 20;
+    var legendHeight = 15;
+    var fontSize     = 14;
+    mapUeLegend.canvas.style.backgroundColor = '#FFF';
+    legendPresent                  = mapUeLegend.rect(10, 10, legendWidth, legendHeight).attr({"fill":colorPresent, "stroke":colorLine, "stroke-width":0.5});
+    legendToBeConfirmed            = mapUeLegend.rect(10, (10+(separatorWidth)+(legendHeight)), legendWidth, legendHeight).attr({"fill":colorToBeConfirmed, "stroke":colorLine, "stroke-width":0.5});
+    legendColorDoubtful            = mapUeLegend.rect(10, (10+(2*separatorWidth)+(2*legendHeight)), legendWidth, legendHeight).attr({"fill":colorDoubtful, "stroke":colorLine, "stroke-width":0.5});
+    legendColorDisappeared         = mapUeLegend.rect(10, (10+(3*separatorWidth)+(3*legendHeight)), legendWidth, legendHeight).attr({"fill":colorDisappeared, "stroke":colorLine, "stroke-width":0.5});
+    legendColorError               = mapUeLegend.rect(10, (10+(4*separatorWidth)+(4*legendHeight)), legendWidth, legendHeight).attr({"fill":colorError, "stroke":colorLine, "stroke-width":0.5});
+    legendColorErrorToBeConfirmed  = mapUeLegend.rect(10, (10+(5*separatorWidth)+(5*legendHeight)), legendWidth, legendHeight).attr({"fill":colorErrorToBeConfirmed, "stroke":colorLine, "stroke-width":0.5});
+    legendColorAbsent              = mapUeLegend.rect(10, (10+(6*separatorWidth)+(6*legendHeight)), legendWidth, legendHeight).attr({"fill":colorAbsent, "stroke":colorLine, "stroke-width":0.5});
+    legendColorAbsentToBeConfirmed = mapUeLegend.rect(10, (10+(7*separatorWidth)+(7*legendHeight)), legendWidth, legendHeight).attr({"fill":colorAbsentToBeConfirmed, "stroke":colorLine, "stroke-width":0.5});
+
+    var legendTextPresent                 = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)), "Présent (present)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextToBeConfirmed           = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+legendHeight+separatorWidth), "Présence à confirmer (to be confirmed)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextDoubtful                = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(2*legendHeight)+(2*separatorWidth)), "Douteux (doubtful)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextDisappeared             = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(3*legendHeight)+(3*separatorWidth)), "Disparu (disappeared)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextError                   = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(4*legendHeight)+(4*separatorWidth)), "Erreur (error)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextErrorToBeConfirmed      = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(5*legendHeight)+(5*separatorWidth)), "Erreur à confirmer (error to be confirmed)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextAbsent                  = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(6*legendHeight)+(6*separatorWidth)), "Absent (absent)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+    var legendTextAbsentToBeConfirmed     = mapUeLegend.text((10+legendWidth+spaceBeforeText), (10+(fontSize/2)+(7*legendHeight)+(7*separatorWidth)), "Absence à confirmer (absence to be confirmed)").attr({"font-size": fontSize, 'text-anchor': 'start'});
+
+    // Scale the legend
+    mapUeLegend.setViewBox(0,0,300,200,true);
+    mapUeLegend.setSize('100%', '100%');
 
 }
