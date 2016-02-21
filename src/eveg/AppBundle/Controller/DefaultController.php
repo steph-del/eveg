@@ -91,12 +91,14 @@ class DefaultController extends Controller
 			// repartitionDepFr to Json
 			$serializer = $this->container->get('jms_serializer');
 			$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
+			$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
 
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
 			'synonyms' => $synonyms,
 			'allParents' => $allParents,
-			'repDepFrJson' => $repDepFrJson
+			'repDepFrJson' => $repDepFrJson,
+			'repUeJson' => $repUeJson
 		));
 		}
 
