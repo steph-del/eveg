@@ -478,8 +478,8 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
         var colorDisappeared             = "#808080";
         var colorError                   = "#FA2C4E";
         var colorErrorToBeConfirmed      = "#9B0610";
-        var colorAbsent                  = "#CF61FA";
-        var colorAbsentToBeConfirmed     = "#9A28C7";
+        var colorAbsent                  = "#D2F8FA";
+        var colorAbsentToBeConfirmed     = "#5EBABF";
 
       // Binding
         var activeColor;
