@@ -113,7 +113,7 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 		mapDepFr.setSize('100%', '100%');
 
 	// Shape background color
-		var colorBg        = "#FFFFFF";
+		var colorBg        = "#FAFAFA";
 		mapDepFr.forEach(function (el) {
 			el.attr('fill', colorBg);
 		});
