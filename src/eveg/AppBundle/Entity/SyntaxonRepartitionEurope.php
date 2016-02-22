@@ -45,9 +45,9 @@ class SyntaxonRepartitionEurope
     /**
      * @var string
      *
-     * @ORM\Column(name="island", type="string", length=2, nullable=true)
+     * @ORM\Column(name="iceland", type="string", length=2, nullable=true)
      */
-    private $island;
+    private $iceland;
 
     /**
      * @var string
@@ -281,27 +281,27 @@ class SyntaxonRepartitionEurope
     }
 
     /**
-     * Set island
+     * Set iceland
      *
-     * @param string $island
+     * @param string $iceland
      *
      * @return SyntaxonRepartitionEurope
      */
-    public function setIsland($island)
+    public function setIceland($iceland)
     {
-        $this->island = $island;
+        $this->iceland = $iceland;
 
         return $this;
     }
 
     /**
-     * Get island
+     * Get iceland
      *
      * @return string
      */
-    public function getIsland()
+    public function getIceland()
     {
-        return $this->island;
+        return $this->iceland;
     }
 
     /**
