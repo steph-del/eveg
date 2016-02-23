@@ -20,10 +20,11 @@ class evegRepFilters
 	 * Returns the $depFrFilter, used in different repository (tree and search)
 	 * @return array
 	 */
-	public function getDepFrFilterSession()
+	public function getDepFrFilterSession($json = false)
 	{
 		$session = new Session();
 	    $depFrFilter = $session->get('depFrFilterArray');
+	    $depFrFilterJson = $session->get('depFrFilter');
 	    $activeDepFrFilter = false;
 	    if(!empty($depFrFilter)) 
 	    {
@@ -35,7 +36,11 @@ class evegRepFilters
 	    	$depFrFilter = null;
 	    }	
 
-	    return $depFrFilter;
+	    if($json === true) {
+	    	return $depFrFilterJson;
+	    } else {
+	    	return $depFrFilter;
+	    }
 	}
 
 	/**
@@ -43,10 +48,11 @@ class evegRepFilters
 	 * Returns the $ueFilter, used in different repository (tree and search)
 	 * @return array
 	 */
-	public function getUeFilterSession()
+	public function getUeFilterSession($json = false)
 	{
 		$session = new Session();
 	    $ueFilter = $session->get('ueFilterArray');
+	    $ueFilterJson = $session->get('ueFilterArray');
 	    $activeUeFilter = false;
 	    if(!empty($ueFilter)) 
 	    {
@@ -58,6 +64,10 @@ class evegRepFilters
 	    	$ueFilter = null;
 	    }	
 
-	    return $ueFilter;
+	    if($json === true) {
+	    	return $ueFilterJson;
+	    } else {
+	    	return $ueFilter;
+	    }
 	}
 }
