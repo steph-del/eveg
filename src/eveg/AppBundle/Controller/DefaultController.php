@@ -119,7 +119,7 @@ class DefaultController extends Controller
 		
 	}
 
-	public function panelOptionsAction($showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
+	public function panelOptionsAction($floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
 	{
 		// Repartition filters
         $repFilters = $this->get('eveg_app.repFilters');
@@ -127,6 +127,7 @@ class DefaultController extends Controller
         $ueFilterJson = $repFilters->getUeFilterSession($json = true);
 
         return $this->render('evegAppBundle:Default:Fragments/panelOptions.html.twig', array(
+        	'floatLeft' => $floatLeft,
         	'repDepFrJson' => $depFrFilterJson,
 			'repUeJson' => $ueFilterJson,
 			'showFilters' => $showFilters,
