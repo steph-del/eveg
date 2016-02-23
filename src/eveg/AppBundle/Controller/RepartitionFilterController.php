@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class RepartitionFilterController extends Controller
 {
-		public function depFrFilterAction(Request $request) {
+		public function repartitionFilterAction(Request $request) {
 
 		$session = new Session();
 		$serializer = $this->get('jms_serializer');
@@ -114,15 +114,53 @@ class RepartitionFilterController extends Controller
 
 		$depFrTableJson = $serializer->serialize($depFrTable, 'json');
 
-		// department filter in the SF2 session bag
+		$ueTable = Array();
+		$ueTable['macaronesia'] 			  = $request->get('macaronesia');
+		$ueTable['portugal']    			  = $request->get('portugal');
+		$ueTable['espana'] 					  = $request->get('espana');
+		$ueTable['iceland'] 				  = $request->get('iceland');
+		$ueTable['norway'] 					  = $request->get('norway');
+		$ueTable['denmark'] 				  = $request->get('denmark');
+		$ueTable['ireland'] 				  = $request->get('ireland');
+		$ueTable['uk'] 						  = $request->get('uk');
+		$ueTable['netherlands'] 			  = $request->get('netherlands');
+		$ueTable['belgium'] 				  = $request->get('belgium');
+		$ueTable['luxembourg'] 				  = $request->get('luxembourg');
+		$ueTable['france'] 					  = $request->get('france');
+		$ueTable['germany'] 				  = $request->get('germany');
+		$ueTable['poland'] 					  = $request->get('poland');
+		$ueTable['czech_republic'] 			  = $request->get('czech_republic');
+		$ueTable['slovakia'] 				  = $request->get('slovakia');
+		$ueTable['switzerland'] 			  = $request->get('switzerland');
+		$ueTable['austria'] 				  = $request->get('austria');
+		$ueTable['italy'] 			 		  = $request->get('italy');
+		$ueTable['slovenia_croatia'] 		  = $request->get('slovenia_croatia');
+		$ueTable['bosnia_montenegro_albania'] = $request->get('bosnia_montenegro_albania');
+		$ueTable['serbia_macedonia'] 		  = $request->get('serbia_macedonia');
+		$ueTable['hungary'] 				  = $request->get('hungary');
+		$ueTable['romania_moldova'] 		  = $request->get('romania_moldova');
+		$ueTable['bulgaria'] 				  = $request->get('bulgaria');
+		$ueTable['greece'] 					  = $request->get('greece');
+		$ueTable['sweden'] 					  = $request->get('sweden');
+		$ueTable['finland'] 				  = $request->get('finland');
+		$ueTable['estonia_latvia_lithuania']  = $request->get('estonia_latvia_lithuania');
+		$ueTable['belarus'] 				  = $request->get('belarus');
+		$ueTable['ukraine'] 				  = $request->get('ukraine');
+		$ueTable['russia'] 					  = $request->get('russia');
+
+		$ueTableJson = $serializer->serialize($ueTable, 'json');
+
+		// filters in the SF2 session bag
 			// for js, a json variable is usefull
 			$session->set('depFrFilter', $depFrTableJson);
+			$session->set('ueFilter', $ueTableJson);
 			// and for php (repository actions), we duplicate it as an array
 			$session->set('depFrFilterArray', $depFrTable);
+			$session->set('ueFilterArray', $ueTable);
 
 		$this->get('session')->getFlashBag()->add(
 		            'info',
-		            'Le filtre par département a été modifié'
+		            'Les filtres de répartition ont été modifiés'
 		        );
 
 		return $this->redirect($this->generateUrl('eveg_app_homepage'));
