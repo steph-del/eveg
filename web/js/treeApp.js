@@ -1,6 +1,23 @@
 $(function(){
 	// Create the tree inside the <div id="tree"> element.
 	$("#divTree").fancytree({
+		extensions: ["persist"],
+		persist: {
+		// Available options with their default:
+		cookieDelimiter: "~",    	// character used to join key strings
+		cookiePrefix: undefined, 	// 'fancytree-<treeId>-' by default
+		cookie: { 					// settings passed to jquery.cookie plugin
+			raw: false,
+			expires: "",
+			path: "",
+			domain: "",
+			secure: false
+		},
+		expandLazy: true, 			// true: recursively expand and load lazy nodes
+		overrideSource: true,  		// true: cookie takes precedence over `source` data attributes.
+		store: "auto",     			// 'cookie': use cookie, 'local': use localStore, 'session': use sessionStore
+		types: "active expanded focus selected"  // which status types to store
+		},
 		source: {
 			url: Routing.generate('api_get_syntaxons_tree')
 		},
