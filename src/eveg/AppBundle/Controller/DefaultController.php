@@ -118,5 +118,24 @@ class DefaultController extends Controller
 		return $this->redirect($this->generateUrl($routeName, array('locale' => $lang)));
 		
 	}
+
+	public function panelOptionsAction($showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
+	{
+		// Repartition filters
+        $repFilters = $this->get('eveg_app.repFilters');
+        $depFrFilterJson = $repFilters->getDepFrFilterSession($json = true);
+        $ueFilterJson = $repFilters->getUeFilterSession($json = true);
+
+        return $this->render('evegAppBundle:Default:Fragments/panelOptions.html.twig', array(
+        	'repDepFrJson' => $depFrFilterJson,
+			'repUeJson' => $ueFilterJson,
+			'showFilters' => $showFilters,
+			'showFeedback' => $showFeedback,
+			'showCompare' => $showCompare,
+			'showPdfExport' => $showPdfExport
+		));
+
+		//return $fragment;
+	}
 	
 }
