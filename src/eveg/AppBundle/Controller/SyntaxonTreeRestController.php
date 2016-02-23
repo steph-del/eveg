@@ -23,14 +23,15 @@ class SyntaxonTreeRestController extends FOSRestController
     $view = $this->view();
     $view->setSerializationContext(SerializationContext::create()->setGroups(array('baseTree')));
 
-    // Grabbing the repartition filters service & the department filter
+    // Grabbing the repartition filters service, the department filter and the UE filter
     $repFilters = $this->get('eveg_app.repFilters');
     $depFrFilter = $repFilters->getDepFrFilterSession();
+    $ueFilter = $repFilters->getUeFilterSession();
         
     $syntaxonTree = $this->getDoctrine()
     					 ->getManager()
     					 ->getRepository('evegAppBundle:SyntaxonCore')
-    					 ->getBaseTree($depFrFilter);
+    					 ->getBaseTree($depFrFilter, $ueFilter);
 
     if(empty($syntaxonTree)){
       throw $this->createNotFoundException();
@@ -62,9 +63,10 @@ class SyntaxonTreeRestController extends FOSRestController
         $view = $this->view();
         $view->setSerializationContext(SerializationContext::create()->setGroups(array('nodeTree')));
 
-        // Grabbing the repartition filters service & the department filter
+        // Grabbing the repartition filters service, the department filter and the UE filter
         $repFilters = $this->get('eveg_app.repFilters');
         $depFrFilter = $repFilters->getDepFrFilterSession();
+        $ueFilter = $repFilters->getUeFilterSession();
 
         // Grabbing catCode service
         $catCode = $this->get('eveg_app.catCode');
@@ -79,14 +81,14 @@ class SyntaxonTreeRestController extends FOSRestController
         $syntaxonTree = $this->getDoctrine()
                          ->getManager()
                          ->getRepository('evegAppBundle:SyntaxonCore')
-                         ->getNextTreeNode($id, $nextLevel, $depFrFilter);
+                         ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
 
         if(empty($syntaxonTree)){
             $nextLevel = $catCode->getNextLevel($syntaxon->getLevel(), 2);
             $syntaxonTree = $this->getDoctrine()
                              ->getManager()
                              ->getRepository('evegAppBundle:SyntaxonCore')
-                             ->getNextTreeNode($id, $nextLevel, $depFrFilter);
+                             ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
         }
 
         if(empty($syntaxonTree)){
