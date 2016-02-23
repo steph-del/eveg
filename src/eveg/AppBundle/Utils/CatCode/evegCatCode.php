@@ -25,10 +25,12 @@ class evegCatCode
 	*/
 
 	private $catCodeRepo;
+	private $repartitionFilters;
 
-	public function __construct($CatCodeUseRepository)
+	public function __construct($CatCodeUseRepository, $repFilters)
 	{
 		$this->catCodeRepo = $CatCodeUseRepository;
+		$this->repartitionFilters = $repFilters;
 	}
 
 	public function testCatminat($text){
@@ -610,7 +612,8 @@ class evegCatCode
 		// Getting the SyntaxonCore repository
 		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
-		$child = $this->catCodeRepo->getDirectChild($catminatCode, $returnArray);
+		$ueFilter = $this->repartitionFilters->getUeFilterSession();
+		$child = $this->catCodeRepo->getDirectChild($catminatCode, $returnArray, $ueFilter);
 
 		if(!$child){
 			return null;
@@ -624,7 +627,8 @@ class evegCatCode
 		// Getting the SyntaxonCore repository
 		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
-		$children = $this->catCodeRepo->getChildren($catminatCode, $returnArray);
+		$ueFilter = $this->repartitionFilters->getUeFilterSession();
+		$children = $this->catCodeRepo->getChildren($catminatCode, $returnArray, $ueFilter);
 
 		if($children == null){
 			return null;
