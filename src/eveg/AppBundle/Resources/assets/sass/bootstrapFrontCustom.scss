@@ -43,6 +43,7 @@ $colorViewHeaderAuthor: inherit;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	margin-bottom: 0;
 }
 // input jumbotron
 .searchbox {
@@ -314,5 +315,6 @@ span.viewHeaderAuthor {
 
 .panelOptionsShowOne.floatLeft {
 	float: left;
+	margin-left: 30px;
 }
 

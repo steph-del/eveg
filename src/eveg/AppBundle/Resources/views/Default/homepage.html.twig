@@ -10,13 +10,7 @@
 {% block body %}
 
 	{{ parent() }}
-	{{ render(controller("evegAppBundle:Default:panelOptions", {
-		'floatLeft': true,
-		'showFilters': true,
-		'showFeedback': true,
-		'showCompare': false,
-		'showPdfExport': false
-	})) }}
+
 	{# Jumbotrom / Searchbox #}
 	<div class="row jumbotron text-center">
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
@@ -35,6 +29,15 @@
 			</div>
 		</div>
 	</div>
+	{# panelOptions#}
+	{{ render(controller("evegAppBundle:Default:panelOptions", {
+		'floatLeft': true,
+		'showFilters': true,
+		'showFeedback': true,
+		'showCompare': false,
+		'showPdfExport': false
+	})) }}
+	
 	<div class="row">
 		<div class="header col-md-6 col-md-offset-2">
 			<h1>eVeg <small>{{ 'eveg.slogan'|trans }}</small><h1>
