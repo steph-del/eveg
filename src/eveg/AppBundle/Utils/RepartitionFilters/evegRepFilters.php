@@ -37,4 +37,27 @@ class evegRepFilters
 
 	    return $depFrFilter;
 	}
+
+	/**
+	 *
+	 * Returns the $ueFilter, used in different repository (tree and search)
+	 * @return array
+	 */
+	public function getUeFilterSession()
+	{
+		$session = new Session();
+	    $ueFilter = $session->get('ueFilterArray');
+	    $activeUeFilter = false;
+	    if(!empty($ueFilter)) 
+	    {
+	    	foreach ($ueFilter as $key => $value) {
+	        	if($value != null) $activeUeFilter = true;
+	    	}
+	    	if($activeUeFilter == false) $ueFilter = null;
+	    } else {
+	    	$ueFilter = null;
+	    }	
+
+	    return $ueFilter;
+	}
 }
