@@ -9,7 +9,7 @@ services:
     # All services provided by catCodeRepo are 'duplicated' in the catCode service to make things easier.
     eveg_app.catCode:
         class:             eveg\AppBundle\Utils\CatCode\evegCatCode
-        arguments:         ['@eveg_app.catCodeRepo']
+        arguments:         ['@eveg_app.catCodeRepo', '@eveg_app.repFilters']
 
     eveg_app.catCodeRepo:
         class:             eveg\AppBundle\Utils\CatCode\evegCatCodeRepo
