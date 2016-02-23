@@ -15,7 +15,7 @@ class SyntaxonCoreRepository extends EntityRepository
 {
 
 	// Returns the tree trunk (Ajax call from FancyTree)
-	public function getBaseTree($depFrFilter = null, $exclusive = false)
+	public function getBaseTree($depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -29,13 +29,18 @@ class SyntaxonCoreRepository extends EntityRepository
 			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 		}
 
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
 		$tree = $qb->getQuery()->getResult();
 
 		return $tree;
 	}
 
 	// Returns children nodes of the $id node (Ajax call from FancyTree)
-	public function getNextTreeNode($id, $nextLevel, $depFrFilter = null, $exclusive = false)
+	public function getNextTreeNode($id, $nextLevel, $depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
 		
 		// Grabbing syntaxon from $id
@@ -65,13 +70,18 @@ class SyntaxonCoreRepository extends EntityRepository
 			if($depFrFilter != null) {
 				$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 			}
+
+		// UE filter
+			if($ueFilter != null) {
+				$this->ueFilter($qb, $ueFilter, $exclusive);
+			}
 			
 		return $qb->getQuery()->getResult();
 
 	}
 
 	// Returns the children of one catminat code
-	public function getChildren($catminatCode, $returnArray = false)
+	public function getChildren($catminatCode, $returnArray = false, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -82,6 +92,11 @@ class SyntaxonCoreRepository extends EntityRepository
 			->setParameter('catminatCodeSimple', $catminatCode)
 			->orderBy('s.catminatCode', 'ASC');
 
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, false);
+		}
+
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
 		} else {
@@ -90,7 +105,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	// Returns the first child of one catminat code
-	public function getDirectChild($catminatCode, $returnArray = false)
+	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -102,6 +117,11 @@ class SyntaxonCoreRepository extends EntityRepository
 			->orderBy('s.catminatCode', 'ASC')
 			->setMaxResults(1);
 
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, false);
+		}
+//print_r($qb->getQuery()->getResult());
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
 		} else {
@@ -111,7 +131,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	// Returns direct children of one catminat code
-	public function getDirectChildren($catminatCode, $nextLevel)
+	public function getDirectChildren($catminatCode, $nextLevel, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -123,6 +143,11 @@ class SyntaxonCoreRepository extends EntityRepository
 			->setParameter('catminatCodeSimple', $catminatCode)
 			->setParameter('nextLevel', $nextLevel)
 			->orderBy('s.catminatCode', 'ASC');
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, false);
+		}
 
 		return $qb->getQuery()->getResult();
 
@@ -142,7 +167,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	// Returns data for the search engine
-	public function findForSearchEngine($searchedTerm, $useSynonyms = true, $depFrFilter = null, $exclusive = false)
+	public function findForSearchEngine($searchedTerm, $useSynonyms = true, $depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -155,7 +180,6 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->groupBy('s.syntaxonName')
 		   ->addGroupBy('s.syntaxonAuthor')
 		   ->setParameter('searchedTerm', $searchedTerm);
-//print($qb->getQuery()->getSql());
 
 		// Synonym filter
 		if ($useSynonyms == false || $useSynonyms == "false") {
@@ -166,6 +190,11 @@ class SyntaxonCoreRepository extends EntityRepository
 		// Department filter
 		if($depFrFilter != null) {
 			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
 		}
 		//return print($depFrFilter);
 		//print($qb->getQuery()->getSql());
@@ -196,6 +225,33 @@ class SyntaxonCoreRepository extends EntityRepository
 			}
 		}
 		$qb->andWhere($module)->setParameter('zero', 0);
+	}
+
+	/**
+	 * ueFilter function
+	 * adds a filter in order to select countries within selected vegetations are presents (!= zero or != 5)
+	 *
+	 * @param QueryBuilder $qb
+	 * @param string $ueFilter JSON data
+	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every country (limit the number of results) ; FALSE : it only has to be present in one country of the filter (default)
+	 */
+	public function ueFilter(QueryBuilder $qb, $ueFilter, $exclusive)
+	{
+		$orModule = $qb->expr()->orx();
+		$andModule = $qb->expr()->andx();
+		$module = ($exclusive ? $andModule : $orModule);
+		$module2 = $andModule;
+		$qb->leftJoin('s.repartitionEurope', 'repUe')
+	   	   ->addSelect('repUe');
+
+		foreach ($ueFilter as $key => $value) {
+			if($value != null) {
+				$module->add($qb->expr()->neq('repUe.'.$key, ':zero'));
+				$module2->add($qb->expr()->neq('repUe.'.$key, ':absent'));
+			}
+		}
+		$qb->andWhere($module)->setParameter('zero', 0);
+		$qb->andWhere($module2)->setParameter('absent', 5);
 	}
 
 	public function findBySyntaxon($syntaxonName, $syntaxonAuthor)
