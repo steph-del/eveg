@@ -39,9 +39,9 @@ eveg_language:
     requirements:
         lang: fr|en
 
-eveg_depFr_filter:
-    path: /app/dep-fr-filter
-    defaults: { _controller : evegAppBundle:RepartitionFilter:depFrFilter }
+eveg_repartition_filter:
+    path: /app/repartition-filter
+    defaults: { _controller : evegAppBundle:RepartitionFilter:repartitionFilter }
     requirements:
         _method: POST
 
