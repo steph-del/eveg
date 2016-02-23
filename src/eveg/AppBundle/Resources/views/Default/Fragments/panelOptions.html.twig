@@ -222,34 +222,3 @@
 		</div> <!-- ./modal-content -->
 	</div> <!-- ./modal-dialog -->
 </div> <!-- ./modal -->
-
-{% block javascript %}
-	
-	<!-- FR DEPARTMENT FILTER -->
-	<script>
-		var appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
-		var depFrFilter;
-		if('{{ app.session.get("depFrFilter") | raw }}' != '') {
-			depFrFilter = jQuery.parseJSON(appSessionSF2DepFrFilter);
-		} else {
-			depFrFilter = null;
-		}
-		for(cb in depFrFilter) {
-			$(".cbFrFilter[name="+cb+"]").prop('checked', true);
-		}
-	</script>
-
-	<!-- UE FILTER -->
-	<script>
-		var appSessionSF2UeFilter = '{{ app.session.get("ueFilter") | raw }}';
-		var ueFilter;
-		if('{{ app.session.get("ueFilter") | raw }}' != '') {
-			ueFilter = jQuery.parseJSON(appSessionSF2UeFilter);
-		} else {
-			ueFilter = null;
-		}
-		for(cb in ueFilter) {
-			$(".cbUeFilter[name="+cb+"]").prop('checked', true);
-		}
-	</script>
-{% endblock %}
