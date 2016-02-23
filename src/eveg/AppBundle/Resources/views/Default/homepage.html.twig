@@ -15,17 +15,7 @@
 	<div class="row jumbotron text-center">
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
 			<div class="searchBoxExtend">
-				<div class="right-inner-addon">
-					<i class="searchIcon glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
-					<span class="badge-addon badge">X</span>
-					<div class="input-group">
-						<input type="text" class="form-control searchbox" name="term" id ="searchbox" placeholder="{{ 'eveg.search.placeholder'|trans }}">
-						<div class="input-group-addon searchboxOptionsIcon" data-container="body" data-toggle="popoverSearchOptions" data-placement="bottom" title="Options">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-							<div id="popover-searchOptions-head" class="hide">Options</div>
-						</div>
-					</div>
-				</div>
+				{% include('evegAppBundle:Default:/Fragments/searchBar.html.twig') %}
 			</div>
 		</div>
 	</div>
@@ -37,7 +27,7 @@
 		'showCompare': false,
 		'showPdfExport': false
 	})) }}
-	
+
 	<div class="row">
 		<div class="header col-md-6 col-md-offset-2">
 			<h1>eVeg <small>{{ 'eveg.slogan'|trans }}</small><h1>
