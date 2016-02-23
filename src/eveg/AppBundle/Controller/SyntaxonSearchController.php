@@ -25,9 +25,10 @@ class SyntaxonSearchController extends Controller
 		$useSynonyms = $request->get('useSynonyms');
 		//$depFrFilter = $request->get('depFrFilter');
 
-		// Grabbing the repartition filters service & the department filter
+		// Grabbing the repartition filters service, the department filter and the UE filter
 	    $repFilters = $this->get('eveg_app.repFilters');
 	    $depFrFilter = $repFilters->getDepFrFilterSession();
+	    $ueFilter = $repFilters->getUeFilterSession();
 		
 		if(!$searchedTerm) throw new \Exception('Empty variable \'term\'.');
 	
@@ -39,7 +40,7 @@ class SyntaxonSearchController extends Controller
 	    $result = $this->getDoctrine()
 	    			   ->getManager()
 	    			   ->getRepository('evegAppBundle:SyntaxonCore')
-	    			   ->findForSearchEngine($searchedTerm, $useSynonyms, $depFrFilter
+	    			   ->findForSearchEngine($searchedTerm, $useSynonyms, $depFrFilter, $ueFilter
 	    			   	);
 
 		$serializedResult = $serializer->serialize($result, $format, SerializationContext::create()->setGroups(array('searchEngine')));
