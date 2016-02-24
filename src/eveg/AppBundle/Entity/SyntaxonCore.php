@@ -22,6 +22,11 @@ use JMS\Serializer\Annotation\Groups;
 class SyntaxonCore
 {
 
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+    }
+
     /**
      * @var boolean
      *
@@ -164,6 +169,8 @@ class SyntaxonCore
      * @ORM\JoinColumn(name="repartitionEurope_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $repartitionEurope;
+
+    protected $photos;
 
 
 // -------------------
@@ -491,6 +498,11 @@ class SyntaxonCore
     public function setSyntaxonNameSearch()
     {
         $this->syntaxonNameSearch = $this->syntaxonName;
+    }
+
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 
 }
