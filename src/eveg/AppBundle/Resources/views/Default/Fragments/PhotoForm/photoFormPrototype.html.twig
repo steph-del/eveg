@@ -1,0 +1,32 @@
+<div class="well wellPhoto">
+	<li class="li_list_style_none">
+		<div class="row">
+			<ul class="zero_padding">
+				<li class="li_list_style_none">
+					<div class="col-md-4">
+				    	{{ form_row(form.imageFile) }}
+				    </div>
+				</li>
+				<li class="li_list_style_none">
+					<div class="col-md-8">
+						<ul>
+			    			<li><div class="form-group">{{ form_row(form.user) }}</div></li>
+			    			<div class="row">
+				    			<fieldset class="form-inline">
+									<li><div class="form-group">{{ form_row(form.date) }}</div></li>
+									<li><div class="form-group">{{ form_row(form.country) }}</div></li>
+								</fieldset>
+							</div>
+							<li><div class="form-group">{{ form_row(form.department) }}</div></li>
+							<li><div class="form-group">{{ form_row(form.city) }}</div></li>
+							<li><div class="form-group">{{ form_row(form.locality) }}</div></li>
+							<li><div class="form-group">{{ form_row(form.title) }}</div></li>
+							<li><div class="form-group">{{ form_row(form.description) }}</div></li>
+							<li><div class="form-group">{{ form_row(form.license) }}</div></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</li>
+</div>
