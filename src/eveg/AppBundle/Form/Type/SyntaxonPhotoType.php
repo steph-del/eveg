@@ -16,7 +16,9 @@ class SyntaxonPhotoType extends AbstractType
             'download_link' => true
         ));
         $builder->add('user');
-        $builder->add('date');
+        $builder->add('date', 'date', array(
+            'widget' => 'single_text'
+        ));
         $builder->add('country');
         $builder->add('department');
         $builder->add('city');
