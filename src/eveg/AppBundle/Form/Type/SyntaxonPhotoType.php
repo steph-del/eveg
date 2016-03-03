@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SyntaxonPhotoType extends AbstractType
 {
@@ -17,7 +18,11 @@ class SyntaxonPhotoType extends AbstractType
             'required'      => true,
             'download_link' => true
         ));
-        $builder->add('author');
+        $builder->add('author', TextType::class, array(
+            'attr' => array(
+                'placeholder' => 'Caroline Farvacques'
+            )
+        ));
         $builder->add('date', DateType::class, array(
             'widget' => 'single_text'
         ));
