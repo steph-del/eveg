@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
