@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Groups;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * SyntaxonCore
@@ -24,7 +24,7 @@ class SyntaxonCore
 
     public function __construct()
     {
-        $this->photos = new ArrayCollection();
+        $this->syntaxonPhotos = new ArrayCollection();
     }
 
     /**
@@ -170,7 +170,10 @@ class SyntaxonCore
      */
     private $repartitionEurope;
 
-    protected $photos;
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="syntaxonCore", cascade={"persist"})
+     */
+    protected $syntaxonPhotos;
 
 
 // -------------------
@@ -454,6 +457,25 @@ class SyntaxonCore
     public function getRepartitionEurope()
     {
         return $this->repartitionEurope;
+    }
+
+    /**
+    * Get syntaxonPhotos
+    *
+    */
+    public function getSyntaxonPhotos()
+    {
+        return $this->syntaxonPhotos;
+    }
+
+    public function addSyntaxonPhoto(SyntaxonPhoto $syntaxonPhoto)
+    {
+        $this->syntaxonPhotos->add($syntaxonPhoto);
+    }
+
+    public function removeSyntaxonPhoto(SyntaxonPhoto $syntaxonPhoto)
+    {
+        $this->syntaxonPhotos->removeElement($syntaxonPhoto);
     }
 
 
