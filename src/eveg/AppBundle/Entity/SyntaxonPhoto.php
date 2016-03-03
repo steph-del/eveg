@@ -11,10 +11,17 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonPhotoRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
  */
 class SyntaxonPhoto
 {
+
+    public function __construct()
+    {
+        $this->setHit(0);
+    }
+
     /**
      * @var integer
      *
@@ -25,9 +32,17 @@ class SyntaxonPhoto
     private $id;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore", inversedBy="syntaxonPhotos")
+     * @ORM\JoinColumn(name="syntaxonCore_id", referencedColumnName="id")
+     */
+    protected $syntaxonCore;
+
+    /**
      * @var \stdClass
      *
-     * @ORM\Column(name="user", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonPhotos")
+     * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;
 
@@ -41,16 +56,16 @@ class SyntaxonPhoto
     private $imageFile;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="imageName", type="string", length=255)
+     * @var string
      */
     private $imageName;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @var \DateTime
      */
     private $updatedAt;
 
@@ -106,9 +121,9 @@ class SyntaxonPhoto
     /**
      * @var string
      *
-     * @ORM\Column(name="licence", type="string", length=255)
+     * @ORM\Column(name="license", type="string", length=255)
      */
-    private $licence;
+    private $license;
 
     /**
      * @var integer
@@ -152,85 +167,7 @@ class SyntaxonPhoto
         return $this->user;
     }
 
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
-     *
-     * @return Product
-     */
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        if ($image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * Set imageName
-     *
-     * @param string $imageName
-     *
-     * @return SyntaxonPhoto
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
-    /**
-     * Get imageName
-     *
-     * @return string
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return SyntaxonPhoto
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
+    
 
     /**
      * Set date
@@ -401,27 +338,27 @@ class SyntaxonPhoto
     }
 
     /**
-     * Set licence
+     * Set license
      *
-     * @param string $licence
+     * @param string $license
      *
      * @return SyntaxonPhoto
      */
-    public function setLicence($licence)
+    public function setLicense($license)
     {
-        $this->licence = $licence;
+        $this->license = $license;
 
         return $this;
     }
 
     /**
-     * Get licence
+     * Get license
      *
      * @return string
      */
-    public function getLicence()
+    public function getLicense()
     {
-        return $this->licence;
+        return $this->license;
     }
 
     /**
@@ -447,5 +384,117 @@ class SyntaxonPhoto
     {
         return $this->hit;
     }
-}
 
+    /**
+     * Increase hit
+     *
+     * @return integer
+     * @ORM\PreUpdate
+     */
+    /*public function increaseHit()
+    {
+        $this->hit++;
+
+        return $this->hit;
+    }*/
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return Product
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return SyntaxonPhoto
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set syntaxonCore
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonCore $syntaxonCore
+     *
+     * @return SyntaxonPhoto
+     */
+    public function setSyntaxonCore(\eveg\AppBundle\Entity\SyntaxonCore $syntaxonCore = null)
+    {
+        $this->syntaxonCore = $syntaxonCore;
+
+        return $this;
+    }
+
+    /**
+     * Get syntaxonCore
+     *
+     * @return \eveg\AppBundle\Entity\SyntaxonCore
+     */
+    public function getSyntaxonCore()
+    {
+        return $this->syntaxonCore;
+    }
+}
