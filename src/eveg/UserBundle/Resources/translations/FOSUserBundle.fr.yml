@@ -1,0 +1,3 @@
+security:
+    login:
+        fullName : 'Prénom et nom'
