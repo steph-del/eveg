@@ -129,7 +129,7 @@ $colorViewHeaderAuthor: inherit;
 	margin-top: 10px;
 }
 
-#showOneResult {
+#cardView {
 	background-color: $BgColorShowOne;
 	-moz-box-shadow: 0px 0px 10px 0px #656565;
 	-webkit-box-shadow: 0px 0px 10px 0px #656565;
@@ -137,14 +137,9 @@ $colorViewHeaderAuthor: inherit;
 	box-shadow: 0px 0px 10px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=10);
 }
-#showOneResult .row {
-		padding-left: 15px;
-		padding-right: 5px;
-	}
+
 
 .viewHeader {
-	//padding-left: 15px;
-	//padding-right: 5px;
 	h1 {
 		font-size: 1.5em;
 		margin-top: 5px;
@@ -318,3 +313,9 @@ span.viewHeaderAuthor {
 	margin-left: 30px;
 }
 
+/*
+ * Button
+ ********/
+button {
+	border-radius: 0!important;
+}
