@@ -158,12 +158,12 @@ vich_uploader:
 
     mappings:
         syntaxon_photo:
-            uri_prefix: %kernel.root_dir%/../web/uploads/images/syntaxons
+            uri_prefix: /eveg/web/uploads/images/syntaxons
             upload_destination: %kernel.root_dir%/../web/uploads/images/syntaxons
-
             inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
 
 # EasyAdminBundle
 easy_admin:
