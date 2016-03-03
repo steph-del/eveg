@@ -47,6 +47,13 @@ class SyntaxonPhoto
     private $user;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $author;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="syntaxon_photo", fileNameProperty="imageName")
@@ -496,5 +503,29 @@ class SyntaxonPhoto
     public function getSyntaxonCore()
     {
         return $this->syntaxonCore;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return SyntaxonPhoto
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
