@@ -105,6 +105,8 @@ fos_user:
                 address: subscribe.eveg@gmail.com
                 sender_name: eveg.fr
             enabled: true
+        form:
+            type: app_user_registration
 
     resetting:
         email:
