@@ -104,6 +104,11 @@
 {% block javascript %}
 	{{ parent() }}
 
+	{% javascripts 
+			'@evegAppBundle/Resources/public/js/moment.min.js'%}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+
 	<script type="text/javascript">
 		var $collectionHolder;
 
