@@ -70,9 +70,9 @@ class SyntaxonPhoto
     private $updatedAt;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -172,7 +172,7 @@ class SyntaxonPhoto
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      *
      * @return SyntaxonPhoto
      */
@@ -186,7 +186,7 @@ class SyntaxonPhoto
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDate()
     {
