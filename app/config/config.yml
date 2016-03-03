@@ -33,6 +33,8 @@ twig:
     form:
         resources:
             - "::forms.html.twig"
+    form_themes:
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -154,10 +156,10 @@ vich_uploader:
 
     mappings:
         syntaxon_photo:
-            uri_prefix: /images/syntaxons
+            uri_prefix: %kernel.root_dir%/../web/uploads/images/syntaxons
             upload_destination: %kernel.root_dir%/../web/uploads/images/syntaxons
 
-            inject_on_load:     false
+            inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
 
