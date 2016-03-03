@@ -125,10 +125,10 @@
 		    $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
 		    // Add the first photoForm
-		    console.log($collectionHolder.find(':input').length);
-		    if($collectionHolder.find(':input').length == {{ syntaxon.syntaxonPhotos|length }}) {
+		    //console.log($collectionHolder.find(':input').length);
+		    //if($collectionHolder.find(':input').length == {{ syntaxon.syntaxonPhotos|length }}) {
 		    	addPhotoForm($collectionHolder, $newLinkLi);
-		    }
+		    //}
 
 		    $addPhotoLink.on('click', function(e) {
 		        // prevent the link from creating a "#" on the URL
