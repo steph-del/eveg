@@ -29,6 +29,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="fullName", type="string")
+     */
+    protected $fullName;
+
+    /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user", cascade={"remove"})
      */
     protected $syntaxonPhotos;
@@ -42,5 +49,63 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set fullName
+     *
+     * @param string $fullName
+     *
+     * @return User
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Get fullName
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Add syntaxonPhoto
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonPhoto $syntaxonPhoto
+     *
+     * @return User
+     */
+    public function addSyntaxonPhoto(\eveg\AppBundle\Entity\SyntaxonPhoto $syntaxonPhoto)
+    {
+        $this->syntaxonPhotos[] = $syntaxonPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Remove syntaxonPhoto
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonPhoto $syntaxonPhoto
+     */
+    public function removeSyntaxonPhoto(\eveg\AppBundle\Entity\SyntaxonPhoto $syntaxonPhoto)
+    {
+        $this->syntaxonPhotos->removeElement($syntaxonPhoto);
+    }
+
+    /**
+     * Get syntaxonPhotos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSyntaxonPhotos()
+    {
+        return $this->syntaxonPhotos;
     }
 }
