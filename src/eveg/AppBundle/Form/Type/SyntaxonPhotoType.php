@@ -6,6 +6,8 @@ namespace eveg\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SyntaxonPhotoType extends AbstractType
 {
@@ -15,8 +17,8 @@ class SyntaxonPhotoType extends AbstractType
             'required'      => true,
             'download_link' => true
         ));
-        $builder->add('user');
-        $builder->add('date', 'date', array(
+        $builder->add('author');
+        $builder->add('date', DateType::class, array(
             'widget' => 'single_text'
         ));
         $builder->add('country');
@@ -25,7 +27,10 @@ class SyntaxonPhotoType extends AbstractType
         $builder->add('locality');
         $builder->add('title');
         $builder->add('description');
-        $builder->add('license');
+        $builder->add('license', ChoiceType::class, array(
+            'choices' => array(
+                'CC-BY-CA' => 'CC-BY-CA')
+        ));
 
     }
 
