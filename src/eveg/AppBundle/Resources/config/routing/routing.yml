@@ -45,6 +45,12 @@ eveg_repartition_filter:
     requirements:
         _method: POST
 
+eveg_add_photo:
+    locales:  { fr: "/app/{id}/ajouter-une-photo", en: "/en/app/{id}/add-a-picture" }
+    defaults: { _controller: evegAppBundle:SyntaxonPhoto:addPhoto }
+    #requirements:
+        #_method: POST GET
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
