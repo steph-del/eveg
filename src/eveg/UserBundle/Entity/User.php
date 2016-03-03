@@ -13,6 +13,12 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+
+    public function __construct()
+    {
+        $this->syntaxonPhotos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * @var integer
      *
@@ -21,6 +27,11 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user", cascade={"remove"})
+     */
+    protected $syntaxonPhotos;
 
 
     /**
