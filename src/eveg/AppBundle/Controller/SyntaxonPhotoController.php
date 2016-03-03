@@ -40,16 +40,15 @@ class SyntaxonPhotoController extends Controller
 			$data = $form->getData();
 
 			$photos = $data->getSyntaxonPhotos();
-			dump($photos);
 			$nbPhotos = count($photos);
 
-			/*
-			$photos = $syntaxon->getSyntaxonPhotos();
+			$currentUser = $this->getUser();
 
 			foreach ($photos as $key => $photo) {
 				$photo->setSyntaxonCore($syntaxon);
+				$photo->setUser($currentUser);
+				$syntaxon->addSyntaxonPhoto($photo);
 			}
-			*/
 
 			$em = $this->getDoctrine()->getManager();
       		$em->persist($syntaxon);
