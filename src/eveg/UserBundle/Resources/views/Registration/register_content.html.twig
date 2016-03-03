@@ -24,6 +24,12 @@
 			<div class="title"><h2>Créer un compte</h2></div>
  
  				<div class="element-input">
+					{{ form_errors(form.fullName) }}
+					{{ form_label(form.fullName, 'security.login.fullName'|trans({}, 'FOSUserBundle')) }}
+					{{ form_widget(form.fullName) }}
+				</div>
+
+ 				<div class="element-input">
 					{{ form_errors(form.username) }}
 					{{ form_label(form.username, 'security.login.username'|trans({}, 'FOSUserBundle')) }}
 					{{ form_widget(form.username) }}
