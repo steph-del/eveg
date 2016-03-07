@@ -158,12 +158,30 @@ vich_uploader:
 
     mappings:
         syntaxon_photo:
-            uri_prefix: /eveg/web/uploads/images/syntaxons
+            uri_prefix: /uploads/images/syntaxons
             upload_destination: %kernel.root_dir%/../web/uploads/images/syntaxons
             inject_on_load:     true
             delete_on_update:   true
             delete_on_remove:   true
             namer:              vich_uploader.namer_uniqid
+
+# LiipImagineBundle
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+        thumb:
+            quality: 90
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [300, 300], mode: inset }
+        resized:
+            filters:
+                auto_rotate: ~
+                relative_resize: { widen: 1000 }
 
 # EasyAdminBundle
 easy_admin:

@@ -29,3 +29,9 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+# -------------
+# LiipImagineBundle
+# -------------
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
