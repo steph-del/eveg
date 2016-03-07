@@ -32,6 +32,7 @@ class SyntaxonCorePhotoType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\SyntaxonCore',
+            'cascade_validation' => true
         ));
     }
 

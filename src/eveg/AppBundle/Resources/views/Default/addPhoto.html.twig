@@ -33,6 +33,12 @@
 				<div class="col-md-{{ wellPhotoSize }}">
 
 					{{ form_start(form) }}
+						{% if not form.vars.valid %}
+							<br /><div class="alert alert-danger" role="alert">
+								{{ form_errors(form) }}
+							</div>
+						{% endif %}
+					
 						<h3>Photos</h3>
 							<ul class="syntaxonPhotos" data-prototype="
 								{% filter escape %}
