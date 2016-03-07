@@ -61,6 +61,10 @@ class SyntaxonPhotoController extends Controller
       		} else {
       			$request->getSession()->getFlashBag()->add('warning', 'Aucune nouvelle photo enregistrée.');
       		}
+
+      		return $this->redirect($this->generateUrl('eveg_show_one', 
+        			array('id' => $id)
+        		));
       		
 		}
 
