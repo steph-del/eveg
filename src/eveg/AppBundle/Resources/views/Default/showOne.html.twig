@@ -171,6 +171,24 @@
 					</div> <!-- ./viewLeft -->
 
 					<div class="col-md-4 viewRight">
+						<!-- photos -->
+						<div class="panel panel-default">
+							<div class="panel-heading">Illustrations{% if syntaxon.syntaxonPhotos is empty %} : aucune{% endif %}</div>
+							{% if syntaxon.syntaxonPhotos is not empty %}
+								<div class="panel-body">
+									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[0], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									{#
+									<img class="syntaxonIllustration" src="{{ 'uploads/images/syntaxons/56db469b40b94.JPG' | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									#}
+									{#
+									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[0], 'imageFile') }} | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									#}
+								</div>
+							{% elseif is_granted('ROLE_USER') %}
+								<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
+							{% endif %}
+						</div>
+						<!-- Fr departments repartition -->
 						<div class="panel panel-default">
 							<div class="panel-heading">France</div>
 							<div class="panel-body">
@@ -180,6 +198,7 @@
 								<div id="mapDepFrLegend"></div>
 							</div>
 						</div>
+						<!-- EU+ coutries repartition -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Europe</div>
 							<div class="panel-body">
