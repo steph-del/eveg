@@ -5,6 +5,7 @@ namespace eveg\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SyntaxonPhoto
@@ -57,6 +58,11 @@ class SyntaxonPhoto
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="syntaxon_photo", fileNameProperty="imageName")
+     *
+     * @Assert\File(
+     *     maxSize = "6M",
+     *     mimeTypes = {"image/jpeg", "image/png"}
+     * )
      * 
      * @var File
      */
