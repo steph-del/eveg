@@ -1,0 +1,73 @@
+{# src/eveg/AppBundle/Resources/views/Default/showPhotos.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/photoForm.scss"
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+	{% if syntaxon is defined %}
+		Photos | {{ syntaxon.syntaxonName }} | {{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row appShowOne">
+
+		<div class="col-md-offset-2 col-md-8" id="cardView">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+
+			<div class="row">
+				<div class="col-md-12">
+					<h3>Photos</h3>
+					{% for photo in syntaxon.syntaxonPhotos %}
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{ syntaxon.syntaxonName }}</h3>
+							</div>
+							<div class="panel-body">
+								<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+							</div>
+							<div class="panel-footer">
+								{% if photo.author is not empty %}
+									<p>{{ photo.author }}</p>
+								{% endif %}
+								{% if photo.date is not empty %}
+									<p>Date : {{ photo.date|date("d/m/Y") }}</p>
+								{% endif %}
+								{% if photo.country is not empty %}
+									{% if photo.department is not empty %}
+										<p>Pays : {{ photo.country }} ({{ photo.department }})</p>
+									{% else %}
+										<p>Pays : {{ photo.country }}</p>
+									{% endif %}
+								{% endif %}
+								{% if photo.city is not empty %}
+									<p>Ville : {{ photo.city }}</p>
+								{% endif %}
+								{% if photo.description is not empty %}
+									<p>@{{ photo.description }}</p>
+								{% endif %}
+							</div>
+						</div>
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+

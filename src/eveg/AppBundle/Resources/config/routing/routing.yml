@@ -33,6 +33,12 @@ eveg_show_one:
     requirements:
         id: \d+
 
+eveg_show_photos:
+    locales:  { fr: "/app/{id}/photos", en: "/en/app/{id}/photos" }
+    defaults: { _controller: evegAppBundle:Default:showPhotos }
+    requirements:
+        id: \d+
+
 eveg_language:
     path: /language/{lang}
     defaults: { _controller: evegAppBundle:Default:setLanguage }

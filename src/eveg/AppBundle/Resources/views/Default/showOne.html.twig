@@ -178,7 +178,9 @@
 								<div class="panel-body">
 									{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
 									{% set randomPhoto = random(nbPhotos-1) %}
-									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									<a href="{{ path('eveg_show_photos', {'id': syntaxon.id}) }}" target="_blank">
+										<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									</a>
 									{#
 									<img class="syntaxonIllustration" src="{{ 'uploads/images/syntaxons/56db469b40b94.JPG' | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
 									#}
