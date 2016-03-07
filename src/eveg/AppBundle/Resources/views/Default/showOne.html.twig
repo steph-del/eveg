@@ -176,7 +176,9 @@
 							<div class="panel-heading">Illustrations{% if syntaxon.syntaxonPhotos is empty %} : aucune{% endif %}</div>
 							{% if syntaxon.syntaxonPhotos is not empty %}
 								<div class="panel-body">
-									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[0], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+									{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
+									{% set randomPhoto = random(nbPhotos-1) %}
+									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
 									{#
 									<img class="syntaxonIllustration" src="{{ 'uploads/images/syntaxons/56db469b40b94.JPG' | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
 									#}
