@@ -39,6 +39,13 @@ eveg_show_photos:
     requirements:
         id: \d+
 
+eveg_edit_photo:
+    locales: { fr:"/app/{id}/photo/{idPhoto}/modifier", en:"/en/app/{id}/photo/{idPhoto}/edit" }
+    defaults: { _controller:evegAppBundle:SyntaxonPhoto:edit }
+    requirements:
+        id: \d+
+        idPhoto: \d+
+
 eveg_language:
     path: /language/{lang}
     defaults: { _controller: evegAppBundle:Default:setLanguage }

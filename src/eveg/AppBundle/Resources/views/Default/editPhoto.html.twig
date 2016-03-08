@@ -1,0 +1,59 @@
+{# src/eveg/AppBundle/Resources/views/Default/editPhoto.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/photoForm.scss"
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+	{% if syntaxon is defined %}
+		Modifier une photo | {{ syntaxon.syntaxonName }} | {{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% set wellPhotoSize = 12 %}
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row appShowOne">
+
+		<div class="col-md-offset-2 col-md-8" id="cardView">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+
+			<div class="row">
+				{# Form #}
+				<div class="col-md-12">
+					<h3>Modifier une photo</h3>
+					<div class="text-center">
+						<img src="{{ vich_uploader_asset(form.vars.value, 'imageFile') | imagine_filter('thumb') }}"></img>
+					</div>
+					<ul><li>
+						{{ form_start(form) }}
+							
+							{{ form_row(form.author) }}
+							{{ form_row(form.date) }}
+							{{ form_row(form.country) }}
+							{{ form_row(form.department) }}
+							{{ form_row(form.city) }}
+							{{ form_row(form.locality) }}
+							{{ form_row(form.title) }}
+							{{ form_row(form.description) }}
+							{{ form_row(form.license) }}
+
+							<input type="submit" id="submit">
+						{{ form_widget(form._token) }}
+						{{ form_end(form, {'render_rest': false}) }}
+					</li></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

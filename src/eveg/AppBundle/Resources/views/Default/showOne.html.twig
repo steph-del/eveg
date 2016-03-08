@@ -188,8 +188,11 @@
 									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[0], 'imageFile') }} | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
 									#}
 								</div>
-							{% elseif is_granted('ROLE_USER') %}
-								<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
+							{% endif %}
+							{% if is_granted('ROLE_USER') %}
+								<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">
+									<div class="text-center">Ajouter une photo</div>
+								</a>
 							{% endif %}
 						</div>
 						<!-- Fr departments repartition -->

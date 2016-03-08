@@ -38,6 +38,13 @@
 							</div>
 							<div class="panel-body">
 								<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+								{% if photo.user == app.user %}
+									<div class="text-right">
+										<a href="{{ path('eveg_edit_photo', {'id': syntaxon.id, 'idPhoto': photo.id}) }}">
+											<span class="glyphicon glyphicon-pencil">Modifier</span>
+										</a>
+									</div>
+								{% endif %}
 							</div>
 							<div class="panel-footer">
 								{% if photo.author is not empty %}

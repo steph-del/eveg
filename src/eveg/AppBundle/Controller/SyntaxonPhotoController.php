@@ -9,6 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use eveg\AppBundle\Form\Type\SyntaxonCorePhotoType;
+use eveg\AppBundle\Entity\SyntaxonPhoto;
+use eveg\AppBundle\Form\Type\SyntaxonPhotoType;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * SyntaxonPhoto controller.
@@ -69,6 +72,47 @@ class SyntaxonPhotoController extends Controller
 		}
 
 		return $this->render('evegAppBundle:Default:addPhoto.html.twig', array(
+			'syntaxon' => $syntaxon,
+			'form' => $form->createView()
+		));
+	}
+
+	/**
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
+	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("photo", class="evegAppBundle:SyntaxonPhoto", options={"id" = "idPhoto"})
+	* 
+	*/
+	public function editAction(SyntaxonCore $syntaxon, $id, SyntaxonPhoto $photo)
+	{
+		
+		// author of the photo == current user ?
+		if($photo->getUser() != $this->getUser()) {
+			Throw new HttpException(401, 'You are not allowed to edit this file.');
+		}
+
+		$request = $this->getRequest();
+
+		// Creates the form...
+    	$form = $this->createForm(new SyntaxonPhotoType(), $photo);
+
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+      		$em->persist($photo);
+      		$em->flush();
+
+      		$request->getSession()->getFlashBag()->add('success', 'Les informations relative à votre photo ont été modifiées.');
+
+      		return $this->redirect($this->generateUrl('eveg_show_one', 
+        			array('id' => $id)
+        		));
+		}
+
+		return $this->render('evegAppBundle:Default:editPhoto.html.twig', array(
 			'syntaxon' => $syntaxon,
 			'form' => $form->createView()
 		));
