@@ -23,28 +23,32 @@ class ImageUploadListener
 
     public function onPostUpload(Event $event)
     {
-    	// get the uploaded file
-        $uploadedFile = $event->getObject();
+    	if($event->getObject() instanceof SyntaxonPhoto)
+    	{
+    		// get the uploaded file
+	        $uploadedFile = $event->getObject();
 
-        // get the path of the uploaded file
-		$path = $this->uploadHelper->asset($uploadedFile, 'imageFile');
+	        // get the path of the uploaded file
+			$path = $this->uploadHelper->asset($uploadedFile, 'imageFile');
 
-		// retrieve the file as a BinaryInterface
-		$image = $this->imagineDataManager->find('thumb', $path);
+			// retrieve the file as a BinaryInterface
+			$image = $this->imagineDataManager->find('thumb', $path);
 
-    	// Resize
-    		// applyFilter returns BinaryInterface
-			$resized = $this->imagineFilterManager->applyFilter($image, 'resized');
+	    	// Resize
+	    		// applyFilter returns BinaryInterface
+				$resized = $this->imagineFilterManager->applyFilter($image, 'resized');
 
-			// store the resized image
-			$this->imagineCacheManager->store($resized, $path, 'resized');
+				// store the resized image
+				$this->imagineCacheManager->store($resized, $path, 'resized');
 
-    	// Thumb generation
-			// applyFilter returns BinaryInterface
-			$thumb = $this->imagineFilterManager->applyFilter($image, 'thumb');
+	    	// Thumb generation
+				// applyFilter returns BinaryInterface
+				$thumb = $this->imagineFilterManager->applyFilter($image, 'thumb');
 
-			// store the thumb
-			$this->imagineCacheManager->store($thumb, $path, 'thumb');
+				// store the thumb
+				$this->imagineCacheManager->store($thumb, $path, 'thumb');
+    	}
+    	
 
 
         
