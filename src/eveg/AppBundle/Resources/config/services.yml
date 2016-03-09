@@ -25,6 +25,12 @@ services:
     eveg_app.repFilters:
         class:              eveg\AppBundle\Utils\RepartitionFilters\evegRepFilters
 
+    eveg_app.form.type.upload:
+        class:              eveg\AppBundle\Form\Type\SyntaxonFileType
+        arguments:          ['@security.authorization_checker']
+        tags:
+            - {name: form.type }
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:
