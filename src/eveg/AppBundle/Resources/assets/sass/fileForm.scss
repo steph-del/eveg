@@ -1,0 +1,30 @@
+ul.fileForm{
+	padding-left: 0;
+}
+
+.well.wellFile li{
+	list-style:none;
+}
+
+li.li_list_style_none{
+	list-style:none;
+}
+
+.syntaxonFiles {
+	padding: 0;
+}
+
+ul {
+	
+	.zero_padding {
+		padding: 0;
+
+		button {
+			margin-bottom: 5px;
+		}
+	}
+	.flex {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}

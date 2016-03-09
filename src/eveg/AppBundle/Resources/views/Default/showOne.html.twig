@@ -5,6 +5,7 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
 	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
 {% endblock %}
 
 {% block title %}
@@ -154,10 +155,31 @@
 
 						{# Resources #}
 						<div class="panel panel-default">
-							<div class="panel-heading">Ressources</div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</div>
+							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty %} : aucune{% endif %}<span class="filesShowAll pull-right">Afficher tout</span></div>
+							{% if syntaxon.syntaxonFiles is not empty %}
+								<ul class="list-group">
+									{% for file in syntaxon.syntaxonFiles %}
+										<li class="list-group-item fileBox">
+											{% if file.type == 'spreadsheet' %}
+												<i class="fa fa-file-excel-o"></i>
+											{% elseif file.type == 'pdf' %}
+												<i class="fa fa-file-pdf-o"></i>
+											{% endif %}
+											<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
+											{% if file.user.id == app.user.id %}
+												<div class="pull-right">
+													<i class="fa fa-pencil-square-o"></i>
+													<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+												</div>
+											{% endif %}
+										</li>
+									{% endfor %}
+								</ul>
+							{% else %}
+								{% if is_granted('ROLE_USER') %}
+									<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+								{% endif %}
+							{% endif %}
 						</div>
 
 						{# Bibliography #}
@@ -410,6 +432,7 @@
 		}
 
 		limitResults(".synonymsShowAll", ".synonymBox", ".panelSynonymsHeader");
+		limitResults(".filesShowAll", ".fileBox", ".panelFilesHeader");
 		
 	</script>
 
