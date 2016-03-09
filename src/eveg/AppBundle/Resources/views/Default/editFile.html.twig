@@ -1,0 +1,49 @@
+{# src/eveg/AppBundle/Resources/views/Default/editFile.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/fileForm.scss"
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+	{% if syntaxon is defined %}
+		Modifier un fichier | {{ syntaxon.syntaxonName }} | {{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row appShowOne">
+
+		<div class="col-md-offset-2 col-md-8" id="cardView">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+
+			<div class="row">
+				{# Form #}
+				<div class="col-md-12">
+					<h3>Modifier le fichier<small> {{ form.vars.value.originalName }}</small></h3>
+					<ul><li>
+						{{ form_start(form) }}
+							
+							{{ form_row(form.title) }}
+							{{ form_row(form.visibility) }}
+							{{ form_row(form.license) }}
+
+							<input type="submit" id="submit">
+						{{ form_widget(form._token) }}
+						{{ form_end(form, {'render_rest': false}) }}
+					</li></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

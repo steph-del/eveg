@@ -1,0 +1,120 @@
+{# src/eveg/AppBundle/Resources/views/Default/addFile.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/fileForm.scss"
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+	{% if syntaxon is defined %}
+		Ajouter un fichier | {{ syntaxon.syntaxonName }} | {{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% set wellFileSize = 12 %}
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row appShowOne">
+
+		<div class="col-md-offset-2 col-md-8" id="cardView">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+
+			<div class="row">
+				{# Form #}
+				<div class="col-md-{{ wellFileSize }}">
+
+					{{ form_start(form) }}
+						{% if not form.vars.valid %}
+							<br /><div class="alert alert-danger" role="alert">
+								{{ form_errors(form) }}
+							</div>
+						{% endif %}
+					
+						<h3>Fichiers</h3>
+							<ul class="syntaxonFiles" data-prototype="
+								{% filter escape %}
+									{{ include('evegAppBundle:Default/Fragments/FileForm:fileFormPrototype.html.twig', { 'form' : form.syntaxonFiles.vars.prototype}) }}
+								{% endfilter %}">
+
+							</ul>
+					
+					{{ form_widget(form._token) }}
+					{{ form_end(form, {'render_rest': false}) }}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script type="text/javascript">
+		var $collectionHolder;
+
+		// setup an "add a file" link
+		var $addFileLink = $('<a href="#" class="add_file_link">Add a file</a>');
+		var $addFileLink =  $('<button type="submit" class="btn btn-success">Add a file</button>');
+		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addFileLink);
+
+		jQuery(document).ready(function() {
+
+		    // Get the ul that holds the collection of SyntaxonFiles
+		    $collectionHolder = $('ul.syntaxonFiles');
+
+		    // add the "add a SyntaxonFile" anchor and li to the syntaxonFiles ul
+		    $collectionHolder.append($newLinkLi);
+
+		    // count the current form inputs we have (e.g. 2), use that as the new
+		    // index when inserting a new item (e.g. 2)
+		    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+		    // Add the first fileForm
+		    //console.log($collectionHolder.find(':input').length);
+		    //if($collectionHolder.find(':input').length == {{ syntaxon.syntaxonFiles|length }}) {
+		    	addFileForm($collectionHolder, $newLinkLi);
+		    //}
+
+		    $addFileLink.on('click', function(e) {
+		        // prevent the link from creating a "#" on the URL
+		        e.preventDefault();
+
+		        // add a new syntaxonFile form (see next code block)
+		        addFileForm($collectionHolder, $newLinkLi);
+		    });
+		});
+
+		function addFileForm($collectionHolder, $newLinkLi) {
+		    // Get the data-prototype explained earlier
+		    var prototype = $collectionHolder.data('prototype');
+
+		    // get the new index
+		    var index = $collectionHolder.data('index');
+
+		    // Replace '__name__' in the prototype's HTML to
+		    // instead be a number based on how many items we have
+		    var newForm = prototype.replace(/__name__/g, index);
+
+		    // increase the index with one for the next item
+		    $collectionHolder.data('index', index + 1);
+
+		    // Display the form in the page in an li, before the "Add a tag" link li
+		    var $newFormLi = $('<li class="li_list_style_none"></li>').append(newForm);
+		    $newLinkLi.before($newFormLi);
+		}
+	</script>
+{% endblock %}
