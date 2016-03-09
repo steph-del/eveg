@@ -39,12 +39,39 @@ eveg_show_photos:
     requirements:
         id: \d+
 
+eveg_add_photo:
+    locales:  { fr: "/app/{id}/ajouter-une-photo", en: "/en/app/{id}/add-a-picture" }
+    defaults: { _controller: evegAppBundle:SyntaxonPhoto:addPhoto }
+    requirements:
+        id: \d+
+        #_method: POST GET
+
 eveg_edit_photo:
     locales: { fr:"/app/{id}/photo/{idPhoto}/modifier", en:"/en/app/{id}/photo/{idPhoto}/edit" }
     defaults: { _controller:evegAppBundle:SyntaxonPhoto:edit }
     requirements:
         id: \d+
         idPhoto: \d+
+
+eveg_add_file:
+    locales: { fr: "/app/{id}/ajouter-un-fichier", en: "/en/app/{id}/add-a-file" }
+    defaults: { _controller: evegAppBundle:SyntaxonFile:addFile }
+    requirements:
+        id: \d+
+
+eveg_edit_file:
+    locales: { fr: "/app/{id}/fichier/{idFile}/modifier", en: "/en/app/{id}/file/{idFile}/edit" }
+    defaults: { _controller: evegAppBundle:SyntaxonFile:editFile }
+    requirements:
+        id: \d+
+        idFile: \d+
+
+eveg_download_file:
+    locales: { fr: "/app/{id}/fichier/{idFile}/telecharger", en: "/en/app/{id}/file/{idFile}/download" }
+    defaults: { _controller: evegAppBundle:SyntaxonFile:downloadFile }
+    requirements:
+        id: \d+
+        idFile: \d+
 
 eveg_language:
     path: /language/{lang}
@@ -57,12 +84,6 @@ eveg_repartition_filter:
     defaults: { _controller : evegAppBundle:RepartitionFilter:repartitionFilter }
     requirements:
         _method: POST
-
-eveg_add_photo:
-    locales:  { fr: "/app/{id}/ajouter-une-photo", en: "/en/app/{id}/add-a-picture" }
-    defaults: { _controller: evegAppBundle:SyntaxonPhoto:addPhoto }
-    #requirements:
-        #_method: POST GET
 
 # API Search
 api_get_syntaxon_search:
