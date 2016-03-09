@@ -164,6 +164,14 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
             namer:              vich_uploader.namer_uniqid
+            
+        syntaxon_file:
+            uri_prefix: /uploads/files/syntaxons
+            upload_destination: %kernel.root_dir%/../web/uploads/files/syntaxons
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_uniqid
 
 # LiipImagineBundle
 liip_imagine:
