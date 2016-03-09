@@ -181,6 +181,11 @@ class SyntaxonCore
      */
     protected $syntaxonFiles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonNote", mappedBy="syntaxonCore", cascade={"persist"})
+     */
+    protected $syntaxonNotes;
+
 
 // -------------------
 // Setters & getters
