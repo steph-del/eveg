@@ -166,11 +166,13 @@
 												<i class="fa fa-file-pdf-o"></i>
 											{% endif %}
 											<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
-											{% if file.user.id == app.user.id %}
-												<div class="pull-right">
-													<i class="fa fa-pencil-square-o"></i>
-													<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
-												</div>
+											{% if app.user %}
+												{% if file.user.id == app.user.id %}
+													<div class="pull-right">
+														<i class="fa fa-pencil-square-o"></i>
+														<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+													</div>
+												{% endif %}
 											{% endif %}
 										</li>
 									{% endfor %}
