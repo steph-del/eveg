@@ -132,8 +132,9 @@ class ImportController extends Controller
 						->setCatminatCode($import[$key]['catminatCode'])
 						->setLevel($import[$key]['level'])
 						->setSyntaxonName($import[$key]['syntaxonName'])
-						->setSyntaxonAuthor($import[$key]['authorName'])
-						->setCommonName($import[$key]['commonName'])
+						->setSyntaxonAuthor($import[$key]['syntaxonAuthor'])
+						->setCommonName($import[$key]['commonNameFr'])
+						->setCommonNameEn($import[$key]['commonNameEn'])
 						;
 				} else {
 					// create new entity
@@ -143,8 +144,9 @@ class ImportController extends Controller
 						->setCatminatCode($import[$key]['catminatCode'])
 						->setLevel($import[$key]['level'])
 						->setSyntaxonName($import[$key]['syntaxonName'])
-						->setSyntaxonAuthor($import[$key]['authorName'])
-						->setCommonName($import[$key]['commonName'])
+						->setSyntaxonAuthor($import[$key]['syntaxonAuthor'])
+						->setCommonName($import[$key]['commonNameFr'])
+						->setCommonNameEn($import[$key]['commonNameEn'])
 						->setId($importedEntity['fixedCode'])
 						;
 					$em->persist($newSyntaxonCore);
