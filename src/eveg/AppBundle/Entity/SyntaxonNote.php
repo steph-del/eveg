@@ -22,13 +22,6 @@ class SyntaxonNote
     private $id;
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore", inversedBy="syntaxonNotes")
-     * @ORM\JoinColumn(name="syntaxonCore_id", referencedColumnName="id")
-     */
-    protected $syntaxonCore;
-
-    /**
      * @var \stdClass
      *
      * @ORM\Column(name="user", type="object")
@@ -42,13 +35,6 @@ class SyntaxonNote
      */
     private $note;
 
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
-
 
     /**
      * Get id
@@ -58,30 +44,6 @@ class SyntaxonNote
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set syntaxonCore
-     *
-     * @param \eveg\AppBundle\Entity\SyntaxonCore $syntaxonCore
-     *
-     * @return SyntaxonNote
-     */
-    public function setSyntaxonCore(\eveg\AppBundle\Entity\SyntaxonCore $syntaxonCore = null)
-    {
-        $this->syntaxonCore = $syntaxonCore;
-
-        return $this;
-    }
-
-    /**
-     * Get syntaxonCore
-     *
-     * @return \eveg\AppBundle\Entity\SyntaxonCore
-     */
-    public function getSyntaxonCore()
-    {
-        return $this->syntaxonCore;
     }
 
     /**
@@ -119,10 +81,6 @@ class SyntaxonNote
     {
         $this->note = $note;
 
-        if ($note) {
-            $this->updatedAt = new \DateTime('now');
-        }
-
         return $this;
     }
 
@@ -134,30 +92,6 @@ class SyntaxonNote
     public function getNote()
     {
         return $this->note;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return SyntaxonNote
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 }
 
