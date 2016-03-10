@@ -1,4 +1,14 @@
 <div class="row viewHeader-{{ syntaxon.level }}">
 	<h1>{{ syntaxon.syntaxonName }} <span class="viewHeaderAuthor">{{ syntaxon.syntaxonAuthor }}</span></h1>
-	<h2>{{syntaxon.commonName}}</h2>
+	<h2>
+		{% if app.request.locale == 'fr' %}
+			{{syntaxon.commonName}}
+		{% else %}
+			{% if syntaxon.commonNameEn is not empty %}
+				{{syntaxon.commonNameEn}}
+			{% else %}
+				{{syntaxon.commonName}} <span class="showTooltip" data-toggle="tooltip" title="English translation not available. Fallback in french."><i class="fa fa-info-circle" ></i></span>
+			{% endif %}
+		{% endif %}
+	</h2>
 </div>
