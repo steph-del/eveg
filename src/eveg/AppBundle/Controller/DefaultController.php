@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use eveg\AppBundle\Form\Type\SyntaxonNoteType;
 
 class DefaultController extends Controller
 {
@@ -31,7 +32,7 @@ class DefaultController extends Controller
 	* 	options= { "repository_method" = "findByIdWithAllEntities" })
 	* 
 	*/
-	public function showOneAction(SyntaxonCore $syntaxon, $id)
+	public function showOneAction(SyntaxonCore $syntaxon, $id, Request $request)
 	{
 		
 		$em = $this->getDoctrine()->getManager();
@@ -93,12 +94,33 @@ class DefaultController extends Controller
 			$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
 			$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
 
+			// Notes
+			$request = $this->getRequest();
+			$loggedUser = $this->getUser();
+			$userNote = $em->getRepository('evegAppBundle:SyntaxonNote')->getUserNote($loggedUser, $syntaxon);
+	    	$formNote = $this->createForm(new SyntaxonNoteType(), $userNote);
+	        $formNote->handleRequest($request);
+	        if($formNote->isValid()) {
+	        	//$data = $formNote->getData();dump($data);
+	        	//$note = $data["note"];
+	        	//$note->setUser($loggedUser);
+	        	$syntaxon->setNote($userNote);
+
+	        	$em = $this->getDoctrine()->getManager();
+	      		$em->persist($syntaxon);
+	      		$em->flush();
+
+	      		$request->getSession()->getFlashBag()->add('success', 'Votre note personnelle a été enregistrée.');
+
+	        }
+
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
 			'synonyms' => $synonyms,
 			'allParents' => $allParents,
 			'repDepFrJson' => $repDepFrJson,
-			'repUeJson' => $repUeJson
+			'repUeJson' => $repUeJson,
+			'formNote' => $formNote->createView()
 		));
 		}
 
