@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * SyntaxonPhoto
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_syntaxon_photo")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonPhotoRepository")
  * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable

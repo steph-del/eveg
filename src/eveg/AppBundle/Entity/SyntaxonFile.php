@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * SyntaxonFile
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_syntaxon_file")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonFileRepository")
  * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
