@@ -32,7 +32,6 @@ class AppKernel extends Kernel
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
