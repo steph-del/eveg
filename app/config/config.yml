@@ -209,12 +209,3 @@ easy_admin:
                 fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor']
             edit:
                 fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor', 'repartitionDepFr']
-
-# IvoryCkEditor
-ivory_ck_editor:
-    default_config: eveg_config
-    configs:
-        eveg_config:
-            toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
-            uiColor: "#000000"
-
