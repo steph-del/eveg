@@ -174,10 +174,21 @@
 											{% endif %}
 										</li>
 									{% endfor %}
+									{% if is_granted('ROLE_USER') %}
+										<li class="list-group-item text-center">
+											<i class="fa fa-upload"></i>
+											<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+										</li>
+									{% endif %}
 								</ul>
 							{% else %}
 								{% if is_granted('ROLE_USER') %}
-									<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+									<ul class="list-group">
+										<li class="list-group-item text-center">
+											<i class="fa fa-upload"></i>
+											<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+										</li>
+									</ul>
 								{% endif %}
 							{% endif %}
 						</div>
@@ -212,9 +223,10 @@
 								</div>
 							{% endif %}
 							{% if is_granted('ROLE_USER') %}
-								<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">
-									<div class="text-center">Ajouter une photo</div>
-								</a>
+								<div class="text-center">
+									<i class="fa fa-camera"></i>
+									<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
+								</div>
 							{% endif %}
 						</div>
 						<!-- Fr departments repartition -->
