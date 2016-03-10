@@ -155,6 +155,13 @@ class SyntaxonCore
     private $commonName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="commonNameEn", type="string", length=255, nullable=true)
+     */
+    private $commonNameEn;
+
+    /**
     *
     * French departments repartition
     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\syntaxonRepartitionDepFr", cascade={"persist"})
@@ -383,6 +390,29 @@ class SyntaxonCore
     public function getCommonName()
     {
         return $this->commonName;
+    }
+
+    /**
+     * Set commonNameEn
+     *
+     * @param string $commonNameEn
+     * @return SyntaxonCore
+     */
+    public function setCommonNameEn($commonNameEn)
+    {
+        $this->commonNameEn = $commonNameEn;
+
+        return $this;
+    }
+
+    /**
+     * Get commonNameEn
+     *
+     * @return string 
+     */
+    public function getCommonNameEn()
+    {
+        return $this->commonNameEn;
     }
 
     /**
