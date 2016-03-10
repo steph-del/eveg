@@ -1,6 +1,6 @@
 eveg:
-    web_title: French's vegetations
-    slogan: French's vegetations
+    web_title: European vegetations database interface | integrated synusial phytosociology
+    slogan: European vegetations database interface
 
     menu:
         app: App
@@ -13,7 +13,7 @@ eveg:
             logout: Log out
 
     homepage:
-        description: French's vegetations database interface (integrated synusial phytosociology)
+        description: European vegetations database interface (integrated synusial phytosociology)
 
     search:
         placeholder: Search a vegetation
