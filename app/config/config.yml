@@ -215,6 +215,6 @@ ivory_ck_editor:
     default_config: eveg_config
     configs:
         eveg_config:
-            toolbar: [ [ 'Bold', 'Italic' ], [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ], ["Source", "-", "Save"], ["Maximize"] ]
-            skin: "minimalist,../evegapp/ckeditor/skins/minimalist/"
+            toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
+            uiColor: "#000000"
 
