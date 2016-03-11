@@ -26,6 +26,7 @@ class SyntaxonCore
     {
         $this->syntaxonPhotos = new ArrayCollection();
         $this->syntaxonFiles = new ArrayCollection();
+        $this->syntaxonBiblios = new ArrayCollection();
     }
 
     /**
@@ -187,6 +188,11 @@ class SyntaxonCore
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="syntaxonCore", cascade={"persist"})
      */
     protected $syntaxonFiles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonBiblio", mappedBy="syntaxonCore", cascade={"persist"})
+     */
+    protected $syntaxonBiblios;
 
 
 // -------------------
@@ -531,6 +537,25 @@ class SyntaxonCore
     public function removeSyntaxonFile(SyntaxonFile $syntaxonFile)
     {
         $this->syntaxonFiles->removeElement($syntaxonFile);
+    }
+
+    /**
+    * Get syntaxonBiblios
+    *
+    */
+    public function getSyntaxonBiblios()
+    {
+        return $this->syntaxonBiblios;
+    }
+
+    public function addSyntaxonBiblio(SyntaxonBiblio $syntaxonBiblio)
+    {
+        $this->syntaxonBiblios->add($syntaxonBiblio);
+    }
+
+    public function removeSyntaxonBiblio(SyntaxonBiblio $syntaxonBiblio)
+    {
+        $this->syntaxonBiblios->removeElement($syntaxonBiblio);
     }
 
 
