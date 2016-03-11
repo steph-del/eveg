@@ -430,19 +430,19 @@
 
 	<!-- LIMIT THE NUMBER OF VISIBLE ITEMS -->
 	<script>
-		function limitResults(label, item, click){
+		function limitResults(limit, label, item, click){
 			// label : node to be shown / hidden
 			// item : node to limit repetition
 			// click : click this element to toggle
 			$(label).hide();
-			var limit = 3;
+			//var limit = 3;
 			var synonymsExpand = false;
 			var nbSynonyms = $(item).size();
 			var strExpand = 'Afficher tout (' + nbSynonyms + ')';
 			var strMini = 'Réduire';
 			$(label).html(strExpand);
 			//console.log($('.synonymsBox').size());
-			if(nbSynonyms >= limit) {
+			if(nbSynonyms > limit) {
 				synonymsExpand = true;
 				$(item).slice(limit).hide();
 				$(label).show();
@@ -460,9 +460,9 @@
 			});	
 		}
 
-		limitResults(".synonymsShowAll", ".synonymBox", ".panelSynonymsHeader");
-		limitResults(".filesShowAll", ".fileBox", ".panelFilesHeader");
-		limitResults(".bibliosShowAll", ".biblioBox", ".panelBibliosHeader");
+		limitResults(3, ".synonymsShowAll", ".synonymBox", ".panelSynonymsHeader");
+		limitResults(3, ".filesShowAll", ".fileBox", ".panelFilesHeader");
+		limitResults(3, ".bibliosShowAll", ".biblioBox", ".panelBibliosHeader");
 		
 	</script>
 
