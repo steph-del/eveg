@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SyntaxonEcology
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_baseveg_ecology")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonEcologyRepository")
  */
 class SyntaxonEcology
