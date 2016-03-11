@@ -122,7 +122,7 @@
 						{# Synonyms #}
 						{% if synonyms is defined %}
 							<div class="panel panel-default">
-								<div class="panel-heading panelSynonymsHeader">Synonymes{% if synonyms is empty %} : aucun synonyme trouvé{% endif %}<span class="synonymsShowAll pull-right">Afficher tout</span></div>
+								<div class="panel-heading panelSynonymsHeader">Synonymes{% if synonyms is empty %} : aucun synonyme trouvé{% endif %}<span class="synonymsShowAll li-restricted pull-right">Afficher tout</span></div>
 								<ul class="list-group">
 									{% for synonym in synonyms %}
 										<li class="list-group-item synonymBox">
@@ -155,7 +155,7 @@
 
 						{# Resources #}
 						<div class="panel panel-default">
-							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty %} : aucune{% endif %}<span class="filesShowAll pull-right">Afficher tout</span></div>
+							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty %} : aucune{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
 							{% if syntaxon.syntaxonFiles is not empty %}
 								<ul class="list-group">
 									{% for file in syntaxon.syntaxonFiles %}
@@ -197,10 +197,25 @@
 
 						{# Bibliography #}
 						<div class="panel panel-default">
-							<div class="panel-heading">Bibliographie</div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</div>
+							<div class="panel-heading panelBibliosHeader">Bibliographie<span class="bibliosShowAll li-restricted pull-right">Afficher tout</span></div>
+							{% if syntaxon.syntaxonBiblios is not empty %}
+								<ul class="list-group">
+									{% for bib in syntaxon.syntaxonBiblios %}
+										<li class="list-group-item biblioBox">
+											{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
+										</li>
+									{% endfor %}
+									{% if synonyms is not empty %}
+										{% for synonym in synonyms %}
+											{% for bib in synonym.syntaxonBiblios %}
+												<li class="list-group-item biblioBox">
+													{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
+												</li>
+											{% endfor %}
+										{% endfor %}
+									{% endif %}
+								</ul>
+							{% endif %}
 						</div>
 
 					</div> <!-- ./viewLeft -->
@@ -447,6 +462,7 @@
 
 		limitResults(".synonymsShowAll", ".synonymBox", ".panelSynonymsHeader");
 		limitResults(".filesShowAll", ".fileBox", ".panelFilesHeader");
+		limitResults(".bibliosShowAll", ".biblioBox", ".panelBibliosHeader");
 		
 	</script>
 
