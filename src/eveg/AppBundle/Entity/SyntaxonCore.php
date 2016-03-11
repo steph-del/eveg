@@ -180,6 +180,14 @@ class SyntaxonCore
     private $repartitionEurope;
 
     /**
+     *
+     * Ecology
+     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonEcology", cascade={"persist"})
+     * @ORM\JoinColumn(name="ecology_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     */
+    private $ecology;
+
+    /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="syntaxonCore", cascade={"persist"})
      */
     protected $syntaxonPhotos;
@@ -499,6 +507,24 @@ class SyntaxonCore
     public function getRepartitionEurope()
     {
         return $this->repartitionEurope;
+    }
+
+    /**
+    * Set ecology
+    *
+    */
+    public function setEcology(SyntaxonEcology $ecology = null)
+    {
+        $this->ecology = $ecology;
+    }
+
+    /**
+    * Get ecology
+    *
+    */
+    public function getEcology()
+    {
+        return $this->ecology;
     }
 
     /**
