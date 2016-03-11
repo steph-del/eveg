@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\AppBundle\Entity\syntaxonRepartitionDepFr;
 use eveg\AppBundle\Entity\SyntaxonRepartitionEurope;
+use eveg\AppBundle\Entity\SyntaxonBiblio;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -530,6 +531,138 @@ class ImportController extends Controller
 			'form' => $form->createView()
 		));
 
+	}
+
+	/**
+	 * Import bibliography (csv file from baseveg).
+	 * Only available in dev mode.
+	 *
+	 */
+	public function importBiblioAction(Request $request)
+	{
+		// Only available in dev mode because of increasing memory and time limit
+		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
+		}
+
+		$request = $this->getRequest();
+
+		// Creates the form...
+    	$form = $this->createFormBuilder()
+            ->add('importFile', 'file')
+            ->getForm();
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			set_time_limit(1000);
+			ini_set('memory_limit', '1024M');
+
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Recovers the uploaded file
+			$file = $form->get('importFile')->getData();
+			$mimeType = $file->getMimeType();
+			$clientOriginaFilelName = $file->getClientOriginalName();
+
+			// File type verification
+			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
+				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contain '.csv').");
+			}
+
+			// Moves the uploaded file
+			$name = $file->getClientOriginalName();
+			$dir = __DIR__.'/../../../../web/uploads/import/biblio';
+			$file->move($dir, $name);
+
+			// Variables
+			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$importKeys = array_column($import, 'id');				// gets the id values
+			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
+			$countImports = 0;
+
+			// Truncate the table
+			$em = $this->getDoctrine()->getManager();
+			$connection = $em->getConnection();
+			$platform   = $connection->getDatabasePlatform();
+			$connection->executeUpdate($platform->getTruncateTableSQL('eveg_syntaxon_biblio', true /* whether to cascade */));
+			$em->clear();
+			
+			// Retrieves all syntaxonCore entities
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+
+			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
+			// If the entity already have a syntaxonRepartitionEurope then we just update it
+			foreach ($entities as $key => $entity) {
+
+				$importKey = array_search($entity->getId(), $importKeys);
+				if($importKey !== null) {
+					$bib1 = new SyntaxonBiblio;
+					$bib2 = new SyntaxonBiblio;
+					$bib3 = new SyntaxonBiblio;
+					$bib4 = new SyntaxonBiblio;
+
+					if($import[$importKey]['bib1'] != null) {
+						$bib1->setReference($import[$importKey]['bib1']);
+						$bib1->setSyntaxonCore($entity);
+						$entity->addSyntaxonBiblio($bib1);
+						$countImports++;
+					}
+					if($import[$importKey]['bib2'] != null) {
+						$bib2->setReference($import[$importKey]['bib2']);
+						$bib2->setSyntaxonCore($entity);
+						$entity->addSyntaxonBiblio($bib2);
+						$countImports++;
+					}
+					if($import[$importKey]['bib3'] != null) {
+						$bib3->setReference($import[$importKey]['bib3']);
+						$bib3->setSyntaxonCore($entity);
+						$entity->addSyntaxonBiblio($bib3);
+						$countImports++;
+					}
+					if($import[$importKey]['bib4'] != null) {
+						$bib4->setReference($import[$importKey]['bib4']);
+						$bib4->setSyntaxonCore($entity);
+						$entity->addSyntaxonBiblio($bib4);
+						$countImports++;
+					}
+
+					// Flush and detach entities each $batchSize time
+					if (($i % $batchSize) === 0) {
+				        $em->flush();
+				        for ($i=($cycle*$batchSize)+$i; $i < $i=($cycle*$batchSize)+$i+$batchSize; $i++) { 
+				        	$em->detach($entities[($cycle*$batchSize)+$i]);
+				        }
+				        $cycle = $cycle+1;
+				    }
+					$i = $i+1;
+
+				}
+
+			}
+
+			// Flush the last entities (the last batch cycle may not be full)
+	        $em->flush();
+		    $em->clear();
+
+			// Flash and return
+	        $this->get('session')->getFlashBag()->add(
+	            'success',
+	            $countImports.' données ont été importées (Biblio).'
+	        );
+
+	        return $this->render('evegAppBundle:Admin:importBiblio.html.twig', array(
+				'form' => $form->createView()
+			));
+
+		}
+
+		return $this->render('evegAppBundle:Admin:importBiblio.html.twig', array(
+			'form' => $form->createView()
+		));
 	}
 
 
