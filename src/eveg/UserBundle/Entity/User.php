@@ -40,6 +40,16 @@ class User extends BaseUser
      */
     protected $syntaxonPhotos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="user", cascade={"remove"})
+     */
+    protected $syntaxonFiles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="user", cascade={"remove"})
+     */
+    protected $syntaxonHttpLinks;
+
 
     /**
      * Get id
