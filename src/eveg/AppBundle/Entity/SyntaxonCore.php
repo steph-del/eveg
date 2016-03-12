@@ -27,6 +27,7 @@ class SyntaxonCore
         $this->syntaxonPhotos = new ArrayCollection();
         $this->syntaxonFiles = new ArrayCollection();
         $this->syntaxonBiblios = new ArrayCollection();
+        $this->syntaxonHttpLinks = new ArrayCollection();
     }
 
     /**
@@ -196,6 +197,11 @@ class SyntaxonCore
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="syntaxonCore", cascade={"persist"})
      */
     protected $syntaxonFiles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="syntaxonCore", cascade={"persist"})
+     */
+    protected $syntaxonHttpLinks;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonBiblio", mappedBy="syntaxonCore", cascade={"persist"})
@@ -563,6 +569,25 @@ class SyntaxonCore
     public function removeSyntaxonFile(SyntaxonFile $syntaxonFile)
     {
         $this->syntaxonFiles->removeElement($syntaxonFile);
+    }
+
+    /**
+    * Get syntaxonHttpLinks
+    *
+    */
+    public function getSyntaxonHttpLinks()
+    {
+        return $this->syntaxonHttpLinks;
+    }
+
+    public function addSyntaxonHttpLink(SyntaxonHttpLink $syntaxonHttpLink)
+    {
+        $this->syntaxonHttpLinks->add($syntaxonHttpLink);
+    }
+
+    public function removeSyntaxonHttpLink(SyntaxonHttpLink $syntaxonHttpLink)
+    {
+        $this->syntaxonHttpLinks->removeElement($syntaxonHttpLink);
     }
 
     /**
