@@ -73,6 +73,26 @@ eveg_download_file:
         id: \d+
         idFile: \d+
 
+eveg_add_http_link:
+    locales: { fr: "/app/{id}/ajouter-un-lien", en: "/en/app/{id}/add-a-link" }
+    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:addHttpLink }
+    requirements:
+        id: \d+
+
+eveg_edit_http_link:
+    locales: { fr: "/app/{id}/lien/{idHttpLink}/modifier", en: "/en/app/{id}/link/{idHttpLink}/edit" }
+    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:editHttpLink }
+    requirements:
+        id: \d+
+        idHttpLink: \d+
+
+eveg_goto_http_link:
+    locales: { fr: "/app/{id}/lien/{idHttpLink}/telecharger", en: "/en/app/{id}/link/{idLink}/download" }
+    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:gotoHttpLink }
+    requirements:
+        id: \d+
+        idHttpLink: \d+
+
 eveg_language:
     path: /language/{lang}
     defaults: { _controller: evegAppBundle:Default:setLanguage }
