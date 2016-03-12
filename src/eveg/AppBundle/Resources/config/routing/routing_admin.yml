@@ -37,6 +37,10 @@ eveg_admin_import_baseveg_biblio:
     path: /import/biblio
     defaults: { _controller: evegAppBundle:Import:importBiblio }
 
+eveg_admin_import_baseveg_ecology:
+    path: /import/ecologie
+    defaults: { _controller: evegAppBundle:Import:importEcology }
+
 #eveg_slug_regenerator:
 #    path: /regenerate-slugs
 #    defaults: { _controller: evegAppBundle:Admin:generateAllSlugs }
