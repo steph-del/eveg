@@ -1,8 +1,8 @@
-ul.fileForm{
+ul.httpLinkForm{
 	padding-left: 0;
 }
 
-.well.wellFile li{
+.well.wellHttpLink li{
 	list-style:none;
 }
 
@@ -10,7 +10,7 @@ li.li_list_style_none{
 	list-style:none;
 }
 
-.syntaxonFiles {
+.syntaxonHttpLinks {
 	padding: 0;
 }
 
@@ -27,10 +27,4 @@ ul {
 		display: flex;
 		flex-direction: column-reverse;
 	}
-}
-
-.addLink{
-	width: 100%;
-	margin-top: 5px;
-	margin-bottom: 5px;
 }

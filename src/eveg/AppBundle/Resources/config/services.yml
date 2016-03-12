@@ -31,6 +31,12 @@ services:
         tags:
             - {name: form.type }
 
+    eveg_app.form.type.addLink:
+        class:              eveg\AppBundle\Form\Type\SyntaxonHttpLinkType
+        arguments:          ['@security.authorization_checker']
+        tags:
+            - {name: form.type }
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:

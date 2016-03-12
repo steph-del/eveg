@@ -5,7 +5,6 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
 	{{ parent() }}
-	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
 {% endblock %}
 
 {% block title %}
@@ -175,8 +174,8 @@
 
 						{# Resources #}
 						<div class="panel panel-default">
-							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty %} : aucune{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
-							{% if syntaxon.syntaxonFiles is not empty %}
+							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty and syntaxon.syntaxonHttpLinks is empty %} : aucune{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
+							{% if syntaxon.syntaxonFiles is not empty or syntaxon.syntaxonHttpLinks is not empty %}
 								<ul class="list-group">
 									{% for file in syntaxon.syntaxonFiles %}
 										<li class="list-group-item fileBox">
@@ -191,6 +190,20 @@
 													<div class="pull-right">
 														<i class="fa fa-pencil-square-o"></i>
 														<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+													</div>
+												{% endif %}
+											{% endif %}
+										</li>
+									{% endfor %}
+									{% for httpLink in syntaxon.syntaxonHttpLinks %}
+										<li class="list-group-item fileBox">
+											<i class="fa fa-external-link"></i>
+											<a href="{{ httpLink.link }}" target="_blank">{{ httpLink.title }}</a>
+											{% if app.user %}
+												{% if httpLink.user.id == app.user.id %}
+													<div class="pull-right">
+														<i class="fa fa-pencil-square-o"></i>
+														<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
 													</div>
 												{% endif %}
 											{% endif %}

@@ -1,11 +1,11 @@
-{# src/eveg/AppBundle/Resources/views/Default/addFile.html.twig #}
+{# src/eveg/AppBundle/Resources/views/Default/ #}
 
 {% extends "::layout.html.twig" %}
 
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter="compass" 
-		"@evegAppBundle/Resources/assets/sass/fileForm.scss"
+		"@evegAppBundle/Resources/assets/sass/httpLinkForm.scss"
 	%}
 		<link rel="stylesheet" href="{{ asset_url }}">
 	{% endstylesheets %}
@@ -13,11 +13,11 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		Ajouter un fichier | {{ syntaxon.syntaxonName }} | {{ parent() }}
+		Ajouter un lien | {{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
 {% endblock %}
 
-{% set wellFileSize = 12 %}
+{% set wellHttpLinkSize = 12 %}
 {% block body %}
 
 	{{ parent() }}
@@ -30,8 +30,7 @@
 
 			<div class="row">
 				{# Form #}
-				<div class="col-md-{{ wellFileSize }}">
-				<a href="{{ path('eveg_add_http_link', {'id': syntaxon.id}) }}"><button class="addLink btn btn-info">I wish to add an external http link instead of a file</button></a>
+				<div class="col-md-{{ wellHttpLinkSize }}">
 
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
@@ -40,10 +39,10 @@
 							</div>
 						{% endif %}
 					
-						<h3>Fichiers</h3>
-							<ul class="syntaxonFiles" data-prototype="
+						<h3>Liens</h3>
+							<ul class="syntaxonHttpLinks" data-prototype="
 								{% filter escape %}
-									{{ include('evegAppBundle:Default/Fragments/FileForm:fileFormPrototype.html.twig', { 'form' : form.syntaxonFiles.vars.prototype}) }}
+									{{ include('evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormPrototype.html.twig', { 'form' : form.syntaxonHttpLinks.vars.prototype}) }}
 								{% endfilter %}">
 
 							</ul>
@@ -67,39 +66,39 @@
 	<script type="text/javascript">
 		var $collectionHolder;
 
-		// setup an "add a file" link
-		var $addFileLink = $('<a href="#" class="add_file_link">Add a file</a>');
-		var $addFileLink =  $('<button type="submit" class="btn btn-success">Add a file</button>');
-		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addFileLink);
+		// setup an "add a link" link
+		var $addHttpLinkLink = $('<a href="#" class="add_http_link_link">Add a link</a>');
+		var $addHttpLinkLink =  $('<button type="submit" class="btn btn-success">Add a link</button>');
+		var $newHttpLinkLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addHttpLinkLink);
 
 		jQuery(document).ready(function() {
 
-		    // Get the ul that holds the collection of SyntaxonFiles
-		    $collectionHolder = $('ul.syntaxonFiles');
+		    // Get the ul that holds the collection of SyntaxonHttpLinks
+		    $collectionHolder = $('ul.syntaxonHttpLinks');
 
-		    // add the "add a SyntaxonFile" anchor and li to the syntaxonFiles ul
-		    $collectionHolder.append($newLinkLi);
+		    // add the "add a SyntaxonHttpLink" anchor and li to the syntaxonHttpLinks ul
+		    $collectionHolder.append($newHttpLinkLinkLi);
 
 		    // count the current form inputs we have (e.g. 2), use that as the new
 		    // index when inserting a new item (e.g. 2)
 		    $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-		    // Add the first fileForm
+		    // Add the first httpLinkForm
 		    //console.log($collectionHolder.find(':input').length);
 		    //if($collectionHolder.find(':input').length == {{ syntaxon.syntaxonFiles|length }}) {
-		    	addFileForm($collectionHolder, $newLinkLi);
+		    	addHttpLinkForm($collectionHolder, $newHttpLinkLinkLi);
 		    //}
 
-		    $addFileLink.on('click', function(e) {
+		    $addHttpLinkLink.on('click', function(e) {
 		        // prevent the link from creating a "#" on the URL
 		        e.preventDefault();
 
-		        // add a new syntaxonFile form (see next code block)
-		        addFileForm($collectionHolder, $newLinkLi);
+		        // add a new syntaxonHttpLink form (see next code block)
+		        addHttpLinkForm($collectionHolder, $newHttpLinkLinkLi);
 		    });
 		});
 
-		function addFileForm($collectionHolder, $newLinkLi) {
+		function addHttpLinkForm($collectionHolder, $newHttpLinkLinkLi) {
 		    // Get the data-prototype explained earlier
 		    var prototype = $collectionHolder.data('prototype');
 
@@ -115,7 +114,7 @@
 
 		    // Display the form in the page in an li, before the "Add a tag" link li
 		    var $newFormLi = $('<li class="li_list_style_none"></li>').append(newForm);
-		    $newLinkLi.before($newFormLi);
+		    $newHttpLinkLinkLi.before($newFormLi);
 		}
 	</script>
 {% endblock %}
