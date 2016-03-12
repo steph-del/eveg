@@ -620,5 +620,35 @@ class SyntaxonEcology
     {
         return $this->manInfluence;
     }
+
+    public function isEmpty()
+    {
+        if(($this->getWorldRepartition() == null)
+            and($this->getFranceRepartition() == null)
+            and($this->getPhysionomy() == null)
+            and($this->getAltitude() == null)
+            and($this->getLatitude() == null)
+            and($this->getOceanity() == null)
+            and($this->getTemperature() == null)
+            and($this->getLight() == null)
+            and($this->getExposureSlope() == null)
+            and($this->getOptimumDevelopment() == null)
+            and($this->getAtmosphericHumidity() == null)
+            and($this->getSoilType() == null)
+            and($this->getSoilHumidity() == null)
+            and($this->getSoilTexture() == null)
+            and($this->getTrophicLevel() == null)
+            and($this->getSoilPh() == null)
+            and($this->getSalinity() == null)
+            and($this->getDynamic() == null)
+            and($this->getManInfluence() == null)
+        )
+
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
