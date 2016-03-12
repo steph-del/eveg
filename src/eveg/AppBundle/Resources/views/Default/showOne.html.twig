@@ -198,7 +198,7 @@
 									{% for httpLink in syntaxon.syntaxonHttpLinks %}
 										<li class="list-group-item fileBox">
 											<i class="fa fa-external-link"></i>
-											<a href="{{ httpLink.link }}" target="_blank">{{ httpLink.title }}</a>
+											<a href="{{ render(controller('evegAppBundle:SyntaxonHttpLink:getLink', { 'id': syntaxon.id, 'idHttpLink': httpLink.id })) }}" target="_blank">{{ httpLink.title }}</a>
 											{% if app.user %}
 												{% if httpLink.user.id == app.user.id %}
 													<div class="pull-right">

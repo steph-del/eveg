@@ -12,6 +12,7 @@ use eveg\AppBundle\Form\Type\SyntaxonCoreHttpLinkType;
 use eveg\AppBundle\Entity\SyntaxonHttpLink;
 use eveg\AppBundle\Form\Type\SyntaxonHttpLinkType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * SyntaxonHttpLink controller.
@@ -125,7 +126,7 @@ class SyntaxonHttpLinkController extends Controller
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
 	* 
 	*/
-	public function gotoHttpLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
+	public function getLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
 	{
 
 		// Hit+1
@@ -135,6 +136,6 @@ class SyntaxonHttpLinkController extends Controller
   		$em->flush();
 
 		// Return
-		// redirect http link in new tab
+		return new Response($httpLink->getLink());
 	}
 }
