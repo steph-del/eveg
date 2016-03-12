@@ -10,6 +10,7 @@ use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\AppBundle\Entity\syntaxonRepartitionDepFr;
 use eveg\AppBundle\Entity\SyntaxonRepartitionEurope;
 use eveg\AppBundle\Entity\SyntaxonBiblio;
+use eveg\AppBundle\Entity\SyntaxonEcology;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -590,7 +591,7 @@ class ImportController extends Controller
 			$platform   = $connection->getDatabasePlatform();
 			$connection->executeUpdate($platform->getTruncateTableSQL('eveg_syntaxon_biblio', true /* whether to cascade */));
 			$em->clear();
-			
+
 			// Retrieves all syntaxonCore entities
 			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
 
@@ -711,5 +712,129 @@ class ImportController extends Controller
 		}
 		return $data;
 		
+	}
+
+	/**
+	 * Import ecological data (csv file from baseveg).
+	 * Only available in dev mode.
+	 *
+	 */
+	public function importEcologyAction(Request $request)
+	{
+		// Only available in dev mode because of increasing memory and time limit
+		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+			Throw new AccessDeniedException("This function ('importEcology') is only available in dev mode.");
+		}
+
+		$request = $this->getRequest();
+
+		// Creates the form...
+    	$form = $this->createFormBuilder()
+            ->add('importFile', 'file')
+            ->getForm();
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			set_time_limit(1000);
+			ini_set('memory_limit', '1024M');
+
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Recovers the uploaded file
+			$file = $form->get('importFile')->getData();
+			$mimeType = $file->getMimeType();
+			$clientOriginaFilelName = $file->getClientOriginalName();
+
+			// File type verification
+			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
+				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contain '.csv').");
+			}
+
+			// Moves the uploaded file
+			$name = $file->getClientOriginalName();
+			$dir = __DIR__.'/../../../../web/uploads/import/ecology';
+			$file->move($dir, $name);
+
+			// Variables
+			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$importKeys = array_column($import, 'id');				// gets the id values
+			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
+
+			// Retrieves all syntaxonCore entities
+			$em = $this->getDoctrine()->getManager();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+
+			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
+			// If the entity already have a syntaxonRepartitionEurope then we just update it
+			foreach ($entities as $key => $entity) {
+
+				if($entity->getEcology()) {
+					$newEcology = $entity->getEcology();
+				} else {
+					$newEcology = new SyntaxonEcology;
+				}
+
+				$importKey = array_search($entity->getId(), $importKeys);
+				if($importKey and $importKey !== null) {
+					$newEcology
+						->setWorldRepartition($import[$importKey]['world_repartition'])
+						->setFranceRepartition($import[$importKey]['france_repartition'])
+						->setPhysionomy($import[$importKey]['physionomy'])
+						->setAltitude($import[$importKey]['altitude'])
+						->setLatitude($import[$importKey]['latitude'])
+						->setOceanity($import[$importKey]['oceanity'])
+						->setTemperature($import[$importKey]['temperature'])
+						->setLight($import[$importKey]['light'])
+						->setExposureSlope($import[$importKey]['exposure_slope'])
+						->setOptimumDevelopment($import[$importKey]['optimum_development'])
+						->setAtmosphericHumidity($import[$importKey]['atmospheric_humidity'])
+						->setSoilType($import[$importKey]['soil_type'])
+						->setSoilHumidity($import[$importKey]['soil_humidity'])
+						->setSoilTexture($import[$importKey]['soil_texture'])
+						->setTrophicLevel($import[$importKey]['trophic_level'])
+						->setSoilPh($import[$importKey]['soil_ph'])
+						->setSalinity($import[$importKey]['salinity'])
+						->setDynamic($import[$importKey]['dynamic'])
+						->setManInfluence($import[$importKey]['man_influence'])
+					;
+
+					$entity->setEcology($newEcology);
+
+					// Flush and detach entities each $batchSize time
+					if (($i % $batchSize) === 0) {
+				        $em->flush();
+				        for ($i=($cycle*$batchSize)+$i; $i < $i=($cycle*$batchSize)+$i+$batchSize; $i++) { 
+				        	$em->detach($entities[($cycle*$batchSize)+$i]);
+				        }
+				        $cycle = $cycle+1;
+				    }
+					$i = $i+1;
+
+				}
+				
+	        }
+	        // Flush the last entities (the last batch cycle may not be full)
+	        $em->flush();
+		    $em->clear();
+
+		    // Flash and return
+	        $this->get('session')->getFlashBag()->add(
+	            'success',
+	            count($import).' données ont été importées (Europe).'
+	        );
+
+	        return $this->render('evegAppBundle:Admin:importEcology.html.twig', array(
+				'form' => $form->createView()
+			));
+	    }
+
+		return $this->render('evegAppBundle:Admin:importEcology.html.twig', array(
+			'form' => $form->createView()
+		));
+
 	}
 }
