@@ -54,7 +54,6 @@ class DefaultController extends Controller
 		} else {
 			$syntaxon = $repo->findByIdPublicData($id);
 		}
-		dump($syntaxon);
 
 		// is a valid syntaxon ?
 		if(ereg("syn", $syntaxon->getLevel())) {
