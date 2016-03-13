@@ -37,7 +37,7 @@ class SyntaxonHttpLink
     /**
      * @var \stdClass
      *
-     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonLinks")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;

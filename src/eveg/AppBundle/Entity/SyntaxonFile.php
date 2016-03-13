@@ -34,7 +34,7 @@ class SyntaxonFile
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore", inversedBy="syntaxonFiles")
+     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore")
      * @ORM\JoinColumn(name="syntaxonCore_id", referencedColumnName="id")
      */
     protected $syntaxonCore;
