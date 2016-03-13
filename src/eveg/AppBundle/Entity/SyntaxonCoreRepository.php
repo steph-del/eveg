@@ -304,6 +304,85 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getResult();
 	}
 
+	/*public function findByIdFilterByUser($id, $user)
+	{
+		$qb = $this->createQueryBuilder('s');
+		$qb->select('s')
+		   ->where('s.id = :id')
+		   ->setParameter('id', $id)
+		   ->leftJoin('s.syntaxonFiles', 'file')
+		   ->andWhere('files.user.id = :userId')
+		   ->addSelect('file')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link')
+		   ->andWhere('links.user.id = :userId')
+		   ->addSelect('link')
+		   ->leftJoin('s.syntaxonPhotos', 'photo')
+		   ->andWhere('photos.user.id = :userId')
+		   ->addSelect('photo')
+		   ->setParameter('userID', $user->getId());
+
+		  return $qb->getQuery()->getOneOrNullResult();
+	}*/
+
+	public function findByIdPublicData($id)
+	{
+		$qb = $this->createQueryBuilder('s');
+		$qb->select('s')
+		   ->where('s.id = :id')
+		   ->setParameter('id', $id)
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public')
+		   ->setParameter('public', 'public')
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		  return $qb->getQuery()->getOneOrNullResult();
+	}
+
+	public function findByIdPublicPrivateCircleData($id, $user)
+	{
+		$qb = $this->createQueryBuilder('s');dump($user);
+		$qb->select('s')
+		   ->where('s.id = :id')
+		   ->setParameter('id', $id)
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR photo.visibility = :circle OR (photo.visibility = :private AND photo.user = :user)')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR file.visibility = :circle OR (file.visibility = :private AND file.user = :user)')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
+		   ->setParameter('public', 'public')
+		   ->setParameter('circle', 'group')
+		   ->setParameter('private', 'private')
+		   ->setParameter('user', $user)
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		  return $qb->getQuery()->getOneOrNullResult();
+	}
+
+	public function findByIdPublicPrivateData($id, $user)
+	{
+		$qb = $this->createQueryBuilder('s');dump($user);
+		$qb->select('s')
+		   ->where('s.id = :id')
+		   ->setParameter('id', $id)
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR (photo.visibility = :private AND photo.user = :user)')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR (file.visibility = :private AND file.user = :user)')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
+		   ->setParameter('public', 'public')
+		   ->setParameter('private', 'private')
+		   ->setParameter('user', $user)
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		  return $qb->getQuery()->getOneOrNullResult();
+	}
+
 	public function findByIdWithAllEntities($id)
 	{
 		$qb = $this->createQueryBuilder('s');
