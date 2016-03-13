@@ -37,6 +37,12 @@ services:
         tags:
             - {name: form.type }
 
+    eveg_app.form.type.photo:
+        class:              eveg\AppBundle\Form\Type\SyntaxonPhotoType
+        arguments:          ['@security.authorization_checker']
+        tags:
+            - {name: form.type }
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:

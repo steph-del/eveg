@@ -86,9 +86,9 @@ eveg_edit_http_link:
         id: \d+
         idHttpLink: \d+
 
-eveg_goto_http_link:
-    locales: { fr: "/app/{id}/lien/{idHttpLink}/telecharger", en: "/en/app/{id}/link/{idLink}/download" }
-    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:gotoHttpLink }
+eveg_get_http_link:
+    locales: { fr: "/app/{id}/lien/{idHttpLink}", en: "/en/app/{id}/link/{idHttpLink}" }
+    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:getHttpLink }
     requirements:
         id: \d+
         idHttpLink: \d+

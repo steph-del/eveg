@@ -178,36 +178,107 @@
 							{% if syntaxon.syntaxonFiles is not empty or syntaxon.syntaxonHttpLinks is not empty %}
 								<ul class="list-group">
 									{% for file in syntaxon.syntaxonFiles %}
-										<li class="list-group-item fileBox">
-											{% if file.type == 'spreadsheet' %}
-												<i class="fa fa-file-excel-o"></i>
-											{% elseif file.type == 'pdf' %}
-												<i class="fa fa-file-pdf-o"></i>
-											{% endif %}
-											<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
+										{% if file.visibility == 'public' %}
+											<li class="list-group-item fileBox">
+												{% if file.type == 'spreadsheet' %}
+													<i class="fa fa-file-excel-o"></i>
+												{% elseif file.type == 'pdf' %}
+													<i class="fa fa-file-pdf-o"></i>
+												{% endif %}
+												<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
+												{% if app.user %}
+													{% if file.user.id == app.user.id %}
+														<div class="pull-right">
+															<i class="fa fa-pencil-square-o"></i>
+															<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+														</div>
+													{% endif %}
+												{% endif %}
+											</li>
+										{% elseif file.visibility == 'private' %}
 											{% if app.user %}
 												{% if file.user.id == app.user.id %}
-													<div class="pull-right">
-														<i class="fa fa-pencil-square-o"></i>
-														<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
-													</div>
+													<li class="list-group-item fileBox">
+														{% if file.type == 'spreadsheet' %}
+															<i class="fa fa-file-excel-o"></i>
+														{% elseif file.type == 'pdf' %}
+															<i class="fa fa-file-pdf-o"></i>
+														{% endif %}
+														<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
+														<div class="pull-right">
+															<i class="fa fa-pencil-square-o"></i>
+															<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+														</div>
+													</li>
 												{% endif %}
 											{% endif %}
-										</li>
+										{% elseif file.visibility == 'group' %}
+											{% if is_granted('ROLE_CIRCLE') %}
+												<li class="list-group-item fileBox">
+													{% if file.type == 'spreadsheet' %}
+														<i class="fa fa-file-excel-o"></i>
+													{% elseif file.type == 'pdf' %}
+														<i class="fa fa-file-pdf-o"></i>
+													{% endif %}
+													<i class="fa fa-circle-thin"></i>
+													<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
+													{% if app.user %}
+														{% if file.user.id == app.user.id %}
+															<div class="pull-right">
+																<i class="fa fa-pencil-square-o"></i>
+																<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+															</div>
+														{% endif %}
+													{% endif %}
+												</li>
+											{% endif %}
+										{% endif %}
 									{% endfor %}
 									{% for httpLink in syntaxon.syntaxonHttpLinks %}
-										<li class="list-group-item fileBox">
-											<i class="fa fa-external-link"></i>
-											<a href="{{ render(controller('evegAppBundle:SyntaxonHttpLink:getLink', { 'id': syntaxon.id, 'idHttpLink': httpLink.id })) }}" target="_blank">{{ httpLink.title }}</a>
+										{% if httpLink.visibility == 'public' %}
+											<li class="list-group-item fileBox">
+												<i class="fa fa-external-link"></i>
+												<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
+												{% if app.user %}
+													{% if httpLink.user.id == app.user.id %}
+														<div class="pull-right">
+															<i class="fa fa-pencil-square-o"></i>
+															<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+														</div>
+													{% endif %}
+												{% endif %}
+											</li>
+										{% elseif httpLink.visibility == 'private' %}
 											{% if app.user %}
 												{% if httpLink.user.id == app.user.id %}
-													<div class="pull-right">
-														<i class="fa fa-pencil-square-o"></i>
-														<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
-													</div>
+													<li class="list-group-item fileBox">
+														<i class="fa fa-external-link"></i>
+														<i class="fa fa-user"></i>
+														<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
+														<div class="pull-right">
+															<i class="fa fa-pencil-square-o"></i>
+															<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+														</div>
+													</li>
 												{% endif %}
 											{% endif %}
-										</li>
+										{% elseif httpLink.visibility == 'group' %}
+											{% if is_granted('ROLE_CIRCLE') %}
+												<li class="list-group-item fileBox">
+													<i class="fa fa-external-link"></i>
+													<i class="fa fa-circle-thin"></i>
+													<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
+													{% if app.user %}
+														{% if httpLink.user.id == app.user.id %}
+															<div class="pull-right">
+																<i class="fa fa-pencil-square-o"></i>
+																<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+															</div>
+														{% endif %}
+													{% endif %}
+												</li>
+											{% endif %}
+										{% endif %}
 									{% endfor %}
 									{% if is_granted('ROLE_USER') %}
 										<li class="list-group-item text-center">

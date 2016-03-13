@@ -12,7 +12,7 @@ use eveg\AppBundle\Form\Type\SyntaxonCoreHttpLinkType;
 use eveg\AppBundle\Entity\SyntaxonHttpLink;
 use eveg\AppBundle\Form\Type\SyntaxonHttpLinkType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpFoundation\Response;
 
 /**
  * SyntaxonHttpLink controller.
@@ -47,6 +47,9 @@ class SyntaxonHttpLinkController extends Controller
 			$currentUser = $this->getUser();
 
 			foreach ($httpLinks as $key => $httpLink) {
+				if(!preg_match('/^http:\/\//', $httpLink->getLink())) {
+					$httpLink->setLink('http://'.$httpLink->getLink());
+				}
 				$httpLink->setSyntaxonCore($syntaxon);
 				$httpLink->setUser($currentUser);
 				$httpLink->setUpdatedAt(new \DateTime('now'));
@@ -102,6 +105,9 @@ class SyntaxonHttpLinkController extends Controller
 
         // Job routine
 		if($form->isValid()) {
+			if(!preg_match('/^http:\/\//', $httpLink->getLink())) {
+				$httpLink->setLink('http://'.$httpLink->getLink());
+			}
 			$httpLink->setUpdatedAt(new \DateTime('now'));
 			$em = $this->getDoctrine()->getManager();
       		$em->persist($httpLink);
@@ -126,9 +132,22 @@ class SyntaxonHttpLinkController extends Controller
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
 	* 
 	*/
-	public function getLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
+	public function getHttpLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
 	{
 
+		$visibility = $httpLink->getVisibility();
+		if($visibility == 'private') {
+			if($this->get('security.context')->isGranted('ROLE_USER')) {
+				if($httpLink->getUser()->getId() != $this->get('security.context')->getToken()->getUser()->getId()) {
+					Throw new HttpException(401, 'You are not allowed to access to this link.');
+				}
+			} else {
+				Throw new HttpException(401, 'You are not allowed to access to this link.');
+			}
+		}
+		if($visibility == 'group' and (!$this->get('security.context')->isGranted('ROLE_CIRCLE'))) {
+			Throw new HttpException(401, 'You are not allowed to access to this link.');
+		}
 		// Hit+1
 		$httpLink->setHit($httpLink->getHit()+1);
 		$em = $this->getDoctrine()->getManager();
@@ -136,6 +155,6 @@ class SyntaxonHttpLinkController extends Controller
   		$em->flush();
 
 		// Return
-		return new Response($httpLink->getLink());
+		return $this->redirect($httpLink->getLink());
 	}
 }

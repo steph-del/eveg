@@ -42,10 +42,22 @@ class SyntaxonPhoto
     /**
      * @var \stdClass
      *
+     * @ORM\Column(name="user", type="object")
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonPhotos")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @Assert\Choice(
+     *     choices = { "public", "private", "group" },
+     *     message = "Please select a valid visibility value."
+     * )
+     * @ORM\Column(name="visibility", type="string", length=255)
+     */
+    private $visibility;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -180,7 +192,29 @@ class SyntaxonPhoto
         return $this->user;
     }
 
-    
+    /**
+     * Set visibility
+     *
+     * @param string $visibility
+     *
+     * @return SyntaxonPhoto
+     */
+    public function setVisibility($visibility)
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    /**
+     * Get visibility
+     *
+     * @return string
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
+    }
 
     /**
      * Set date

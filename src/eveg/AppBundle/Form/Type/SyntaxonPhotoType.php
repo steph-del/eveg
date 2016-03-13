@@ -12,8 +12,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SyntaxonPhotoType extends AbstractType
 {
+
+    private $securityContext;
+
+    public function __construct($securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $grantedCircle = $this->securityContext->isGranted('ROLE_CIRCLE');
+        
         $builder->add('imageFile', 'vich_image', array(
             'required'      => true,
             'download_link' => true
@@ -32,6 +43,20 @@ class SyntaxonPhotoType extends AbstractType
         $builder->add('locality');
         $builder->add('title');
         $builder->add('description');
+        if($grantedCircle) {
+            $builder->add('visibility', ChoiceType::class, array(
+            'choices' => array(
+                'public' => 'Public',
+                'private' => 'Privé',
+                'group' => 'Cercle')
+            ));
+        } else {
+            $builder->add('visibility', ChoiceType::class, array(
+            'choices' => array(
+                'public' => 'Public',
+                'private' => 'Privé')
+            ));
+        }
         $builder->add('license', ChoiceType::class, array(
             'choices' => array(
                 'CC-BY-CA' => 'CC-BY-CA')

@@ -17,6 +17,8 @@ class User extends BaseUser
     public function __construct()
     {
         $this->syntaxonPhotos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->syntaxonFiles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->syntaxonHttpLinks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -34,22 +36,6 @@ class User extends BaseUser
      * @ORM\Column(name="fullName", type="string")
      */
     protected $fullName;
-
-    /**
-     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user", cascade={"remove"})
-     */
-    protected $syntaxonPhotos;
-
-    /**
-     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="user", cascade={"remove"})
-     */
-    protected $syntaxonFiles;
-
-    /**
-     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="user", cascade={"remove"})
-     */
-    protected $syntaxonHttpLinks;
-
 
     /**
      * Get id
@@ -117,5 +103,73 @@ class User extends BaseUser
     public function getSyntaxonPhotos()
     {
         return $this->syntaxonPhotos;
+    }
+
+    /**
+     * Add syntaxonFile
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonFile $syntaxonFile
+     *
+     * @return User
+     */
+    public function addSyntaxonFile(\eveg\AppBundle\Entity\SyntaxonFile $syntaxonFile)
+    {
+        $this->syntaxonFiles[] = $syntaxonFile;
+
+        return $this;
+    }
+
+    /**
+     * Remove syntaxonFile
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonFile $syntaxonFile
+     */
+    public function removeSyntaxonFile(\eveg\AppBundle\Entity\SyntaxonFile $syntaxonFile)
+    {
+        $this->syntaxonFiles->removeElement($syntaxonFile);
+    }
+
+    /**
+     * Get syntaxonFiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSyntaxonFiles()
+    {
+        return $this->syntaxonFiles;
+    }
+
+    /**
+     * Add syntaxonHttpLink
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink
+     *
+     * @return User
+     */
+    public function addSyntaxonHttpLink(\eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink)
+    {
+        $this->syntaxonHttpLinks[] = $syntaxonHttpLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove syntaxonHttpLink
+     *
+     * @param \eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink
+     */
+    public function removeSyntaxonHttpLink(\eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink)
+    {
+        $this->syntaxonHttpLinks->removeElement($syntaxonHttpLink);
+    }
+
+    /**
+     * Get syntaxonHttpLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSyntaxonHttpLinks()
+    {
+        return $this->syntaxonHttpLinks;
     }
 }
