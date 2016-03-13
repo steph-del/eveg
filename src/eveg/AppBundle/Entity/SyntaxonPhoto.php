@@ -42,7 +42,6 @@ class SyntaxonPhoto
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="user", type="object")
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonPhotos")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
@@ -567,5 +566,14 @@ class SyntaxonPhoto
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function isPublic()
+    {
+        if ($this->getVisibility() == 'public') {
+            return true;
+        } else { 
+            return false;
+        }
     }
 }

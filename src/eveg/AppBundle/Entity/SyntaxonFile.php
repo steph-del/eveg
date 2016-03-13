@@ -42,7 +42,6 @@ class SyntaxonFile
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="user", type="object")
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonFiles")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
