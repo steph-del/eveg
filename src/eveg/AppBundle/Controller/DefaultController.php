@@ -30,30 +30,12 @@ class DefaultController extends Controller
 	public function showOneAction($id)
 	{
 		
-		$securityContext = $this->container->get('security.authorization_checker');
-		$currentUser = $this->get('security.context')->getToken()->getUser();
 		$em = $this->getDoctrine()->getManager();
-		$repo = $this->getDoctrine()->getManager()->getRepository('evegAppBundle:SyntaxonCore');
-		
-		// Retrieve syntaxon according to user's rights
-		// 		User is authenticated anonymously (= not logged in)
-		// 		only retrieves the syntaxon with public data
 
-		// User is logged in
-		if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-		{
-			// User belongs to circle group
-			if($securityContext->isGranted('ROLE_CIRCLE'))
-			{
-				$syntaxon = $repo->findByIdPublicPrivateCircleData($id, $currentUser);
-			// User do not belongs to circle group but it can own private data
-			} else {
-				$syntaxon = $repo->findByIdPublicPrivateData($id, $currentUser);
-			}
-		// User is not logged in
-		} else {
-			$syntaxon = $repo->findByIdPublicData($id);
-		}
+
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$syntaxon = $findGoodRepo->getSyntaxon($id);
 
 		// is a valid syntaxon ?
 		if(ereg("syn", $syntaxon->getLevel())) {

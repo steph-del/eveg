@@ -43,6 +43,17 @@ services:
         tags:
             - {name: form.type }
 
+    score_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\AppBundle\Entity\SyntaxonCore
+
+    eveg_app.get_syntaxon_according_user:
+        class:              eveg\AppBundle\Utils\Repository\getSyntaxonAccordingUserRights
+        arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:
