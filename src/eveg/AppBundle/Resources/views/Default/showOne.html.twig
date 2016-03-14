@@ -48,17 +48,6 @@
 
 	{% if syntaxon is defined %}
 
-		{# Flashbags #}
-		{#{% for type, messages in app.session.flashBag.all %}
-		    {% for message in messages %}
-		        {%if type == 'error'%} {% set type = 'danger' %} {%endif%}
-		        <div class="alert alert-{{ type }} alert-dismissible">
-		        	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		            {{ message|raw }}
-		        </div>
-		    {% endfor %}
-		{% endfor %}#}
-
 		{# PanelOptions & SearchBar #}
 		<div class="row">
 			<div class="col-md-4 colPanelOptions hidden-xs hidden-sm">
@@ -120,236 +109,27 @@
 
 						{# Synonyms #}
 						{% if synonyms is defined %}
-							<div class="panel panel-default">
-								<div class="panel-heading panelSynonymsHeader">Synonymes{% if synonyms is empty %} : aucun synonyme trouvé{% endif %}<span class="synonymsShowAll li-restricted pull-right">Afficher tout</span></div>
-								<ul class="list-group">
-									{% for synonym in synonyms %}
-										<li class="list-group-item synonymBox">
-											{{ synonymType(synonym.level)|raw }}
-											<a href="{{ path('eveg_show_one', {'id': synonym.id}) }}">
-												{{ synonym.syntaxon }}
-											</a>
-										</li>
-									{% endfor %}
-								</ul>
-							</div> <!-- ./ panel -->
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' %}
 						{% endif %}
-						<p>
 
 						{# Ecological specifications #}
-						<div class="panel panel-default">
-							<div class="panel-heading panelEcologyHeader">Caractéristiques écologiques{% if syntaxon.ecology.isEmpty %} : non renseignées{% endif %}<span class="ecologyShowAll li-restricted pull-right">Afficher tout</span></div>
-							{% if not syntaxon.ecology.isEmpty %}
-								<ul class="list-group">
-									<li class="list-group-item ecologyBox">Chorologie mondiale : <span class="pull-right">{{ syntaxon.ecology.worldRepartition }}</span></li>
-									<li class="list-group-item ecologyBox">Répartition connue en France : <span class="pull-right">{{ syntaxon.ecology.franceRepartition }}</span></li>
-									<li class="list-group-item ecologyBox">Physionomie : <span class="pull-right">{{ syntaxon.ecology.physionomy }}</span></li>
-									<li class="list-group-item ecologyBox">Etages altitudinaux (altitude) : <span class="pull-right">{{ syntaxon.ecology.altitude }}</span></li>
-									<li class="list-group-item ecologyBox">Latitude : <span class="pull-right">{{ syntaxon.ecology.latitude }}</span></li>
-									<li class="list-group-item ecologyBox">Océanité : <span class="pull-right">{{ syntaxon.ecology.oceanity }}</span></li>
-									<li class="list-group-item ecologyBox">Température : <span class="pull-right">{{ syntaxon.ecology.temperature }}</span></li>
-									<li class="list-group-item ecologyBox">Lumière : <span class="pull-right">{{ syntaxon.ecology.light }}</span></li>
-									<li class="list-group-item ecologyBox">Exposition, pente : <span class="pull-right">{{ syntaxon.ecology.exposureSlope }}</span></li>
-									<li class="list-group-item ecologyBox">Optimum de développement : <span class="pull-right">{{ syntaxon.ecology.optimumDevelopment }}</span></li>
-									<li class="list-group-item ecologyBox">Humidité atmosphérique : <span class="pull-right">{{ syntaxon.ecology.atmosphericHumidity }}</span></li>
-									<li class="list-group-item ecologyBox">Types de sol et d'humus : <span class="pull-right">{{ syntaxon.ecology.soilType }}</span></li>
-									<li class="list-group-item ecologyBox">Humidité édaphique : <span class="pull-right">{{ syntaxon.ecology.soilHumidity }}</span></li>
-									<li class="list-group-item ecologyBox">Texture du sol : <span class="pull-right">{{ syntaxon.ecology.soilTexture }}</span></li>
-									<li class="list-group-item ecologyBox">Niveau trophique : <span class="pull-right">{{ syntaxon.ecology.trophicLevel }}</span></li>
-									<li class="list-group-item ecologyBox">pH du sol : <span class="pull-right">{{ syntaxon.ecology.soilPh }}</span></li>
-									<li class="list-group-item ecologyBox">Salinité : <span class="pull-right">{{ syntaxon.ecology.salinity }}</span></li>
-									<li class="list-group-item ecologyBox">Dynamique : <span class="pull-right">{{ syntaxon.ecology.dynamic }}</span></li>
-									<li class="list-group-item ecologyBox">Influences anthropozoogènes : <span class="pull-right">{{ syntaxon.ecology.manInfluence }}</span></li>
-								</ul>
-							{% endif %}
-						</div>
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' %}
 
 						{# Floristic cortege #}
-						<div class="panel panel-default">
-							<div class="panel-heading">Cortège floristique</div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</div>
-						</div>
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' %}
 
 						{# Resources #}
-						<div class="panel panel-default">
-							<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty and syntaxon.syntaxonHttpLinks is empty %} : aucune{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
-							{% if syntaxon.syntaxonFiles is not empty or syntaxon.syntaxonHttpLinks is not empty %}
-								<ul class="list-group">
-									{% for file in syntaxon.syntaxonFiles %}
-										{% if file.visibility == 'public' %}
-											<li class="list-group-item fileBox">
-												{% if file.type == 'spreadsheet' %}
-													<i class="fa fa-file-excel-o"></i>
-												{% elseif file.type == 'pdf' %}
-													<i class="fa fa-file-pdf-o"></i>
-												{% endif %}
-												<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
-												{% if app.user %}
-													{% if file.user.id == app.user.id %}
-														<div class="pull-right">
-															<i class="fa fa-pencil-square-o"></i>
-															<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
-														</div>
-													{% endif %}
-												{% endif %}
-											</li>
-										{% elseif file.visibility == 'private' %}
-											{% if app.user %}
-												{% if file.user.id == app.user.id %}
-													<li class="list-group-item fileBox">
-														{% if file.type == 'spreadsheet' %}
-															<i class="fa fa-file-excel-o"></i>
-														{% elseif file.type == 'pdf' %}
-															<i class="fa fa-file-pdf-o"></i>
-														{% endif %}
-														<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
-														<div class="pull-right">
-															<i class="fa fa-pencil-square-o"></i>
-															<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
-														</div>
-													</li>
-												{% endif %}
-											{% endif %}
-										{% elseif file.visibility == 'group' %}
-											{% if is_granted('ROLE_CIRCLE') %}
-												<li class="list-group-item fileBox">
-													{% if file.type == 'spreadsheet' %}
-														<i class="fa fa-file-excel-o"></i>
-													{% elseif file.type == 'pdf' %}
-														<i class="fa fa-file-pdf-o"></i>
-													{% endif %}
-													<i class="fa fa-circle-thin"></i>
-													<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
-													{% if app.user %}
-														{% if file.user.id == app.user.id %}
-															<div class="pull-right">
-																<i class="fa fa-pencil-square-o"></i>
-																<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
-															</div>
-														{% endif %}
-													{% endif %}
-												</li>
-											{% endif %}
-										{% endif %}
-									{% endfor %}
-									{% for httpLink in syntaxon.syntaxonHttpLinks %}
-										{% if httpLink.visibility == 'public' %}
-											<li class="list-group-item fileBox">
-												<i class="fa fa-external-link"></i>
-												<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
-												{% if app.user %}
-													{% if httpLink.user.id == app.user.id %}
-														<div class="pull-right">
-															<i class="fa fa-pencil-square-o"></i>
-															<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
-														</div>
-													{% endif %}
-												{% endif %}
-											</li>
-										{% elseif httpLink.visibility == 'private' %}
-											{% if app.user %}
-												{% if httpLink.user.id == app.user.id %}
-													<li class="list-group-item fileBox">
-														<i class="fa fa-external-link"></i>
-														<i class="fa fa-user"></i>
-														<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
-														<div class="pull-right">
-															<i class="fa fa-pencil-square-o"></i>
-															<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
-														</div>
-													</li>
-												{% endif %}
-											{% endif %}
-										{% elseif httpLink.visibility == 'group' %}
-											{% if is_granted('ROLE_CIRCLE') %}
-												<li class="list-group-item fileBox">
-													<i class="fa fa-external-link"></i>
-													<i class="fa fa-circle-thin"></i>
-													<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
-													{% if app.user %}
-														{% if httpLink.user.id == app.user.id %}
-															<div class="pull-right">
-																<i class="fa fa-pencil-square-o"></i>
-																<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
-															</div>
-														{% endif %}
-													{% endif %}
-												</li>
-											{% endif %}
-										{% endif %}
-									{% endfor %}
-									{% if is_granted('ROLE_USER') %}
-										<li class="list-group-item text-center">
-											<i class="fa fa-upload"></i>
-											<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
-										</li>
-									{% endif %}
-								</ul>
-							{% else %}
-								{% if is_granted('ROLE_USER') %}
-									<ul class="list-group">
-										<li class="list-group-item text-center">
-											<i class="fa fa-upload"></i>
-											<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
-										</li>
-									</ul>
-								{% endif %}
-							{% endif %}
-						</div>
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:resourcesPanel.html.twig' %}
 
 						{# Bibliography #}
-						<div class="panel panel-default">
-							<div class="panel-heading panelBibliosHeader">Bibliographie<span class="bibliosShowAll li-restricted pull-right">Afficher tout</span></div>
-							{% if syntaxon.syntaxonBiblios is not empty %}
-								<ul class="list-group">
-									{% for bib in syntaxon.syntaxonBiblios %}
-										<li class="list-group-item biblioBox">
-											{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
-										</li>
-									{% endfor %}
-									{% if synonyms is not empty %}
-										{% for synonym in synonyms %}
-											{% for bib in synonym.syntaxonBiblios %}
-												<li class="list-group-item biblioBox">
-													{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
-												</li>
-											{% endfor %}
-										{% endfor %}
-									{% endif %}
-								</ul>
-							{% endif %}
-						</div>
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:bibliographyPanel.html.twig' %}
 
 					</div> <!-- ./viewLeft -->
 
 					<div class="col-md-4 viewRight">
 						<!-- photos -->
-						<div class="panel panel-default">
-							<div class="panel-heading">Illustrations{% if syntaxon.syntaxonPhotos is empty %} : aucune{% endif %}</div>
-							{% if syntaxon.syntaxonPhotos is not empty %}
-								<div class="panel-body">
-									{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
-									{% set randomPhoto = random(nbPhotos-1) %}
-									<a href="{{ path('eveg_show_photos', {'id': syntaxon.id}) }}" target="_blank">
-										<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
-									</a>
-									{#
-									<img class="syntaxonIllustration" src="{{ 'uploads/images/syntaxons/56db469b40b94.JPG' | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
-									#}
-									{#
-									<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[0], 'imageFile') }} | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
-									#}
-								</div>
-							{% endif %}
-							{% if is_granted('ROLE_USER') %}
-								<div class="text-center">
-									<i class="fa fa-camera"></i>
-									<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
-								</div>
-							{% endif %}
-						</div>
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' %}
+
 						<!-- Fr departments repartition -->
 						<div class="panel panel-default">
 							<div class="panel-heading">France</div>

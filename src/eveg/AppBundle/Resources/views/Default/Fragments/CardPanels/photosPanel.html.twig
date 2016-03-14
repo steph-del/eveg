@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Illustrations{% if syntaxon.syntaxonPhotos is empty %} : aucune{% endif %}</div>
+	{% if syntaxon.syntaxonPhotos is not empty %}
+		<div class="panel-body">
+			{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
+			{% set randomPhoto = random(nbPhotos-1) %}
+			<a href="{{ path('eveg_show_photos', {'id': syntaxon.id}) }}" target="_blank">
+				<img class="syntaxonIllustration" src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">
+			</a>
+		</div>
+	{% endif %}
+	{% if is_granted('ROLE_USER') %}
+		<div class="text-center">
+			<i class="fa fa-camera"></i>
+			<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
+		</div>
+	{% endif %}
+</div>

@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading panelBibliosHeader">Bibliographie<span class="bibliosShowAll li-restricted pull-right">Afficher tout</span></div>
+	{% if syntaxon.syntaxonBiblios is not empty %}
+		<ul class="list-group">
+			{% for bib in syntaxon.syntaxonBiblios %}
+				<li class="list-group-item biblioBox">
+					{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
+				</li>
+			{% endfor %}
+			{% if synonyms is not empty %}
+				{% for synonym in synonyms %}
+					{% for bib in synonym.syntaxonBiblios %}
+						<li class="list-group-item biblioBox">
+							{% if bib.reference != "?" %}{{ bib.reference }}{% endif %}
+						</li>
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+		</ul>
+	{% endif %}
+</div>
