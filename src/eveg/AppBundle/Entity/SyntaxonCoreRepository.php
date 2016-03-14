@@ -363,17 +363,4 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findByIdWithAllEntities($id)
-	{
-		$qb = $this->createQueryBuilder('s');
-
-		$qb->select('s')
-		   ->where('s.id = :id')
-		   ->setParameter('id', $id)
-		   ->leftJoin('s.repartitionDepFr', 'repDepFr')
-		   ->addSelect('repDepFr');
-
-		  return $qb->getQuery()->getOneOrNullResult();
-	}
-
 }
