@@ -20,8 +20,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class SyntaxonPhotoController extends Controller
 {
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* 
 	*/
 	public function addPhotoAction(SyntaxonCore $syntaxon, $id, Request $request)
@@ -78,8 +77,7 @@ class SyntaxonPhotoController extends Controller
 	}
 
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("photo", class="evegAppBundle:SyntaxonPhoto", options={"id" = "idPhoto"})
 	* 
 	*/
@@ -118,13 +116,12 @@ class SyntaxonPhotoController extends Controller
 		));
 	}
 
-	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
-	* 
-	*/
-	public function showPhotosAction(SyntaxonCore $syntaxon, $id)
+	public function showPhotosAction($id)
 	{
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$syntaxon = $findGoodRepo->getSyntaxon($id);
+
 		return $this->render('evegAppBundle:Default:showPhotos.html.twig', array(
 			'syntaxon' => $syntaxon
 		));

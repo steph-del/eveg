@@ -20,8 +20,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class SyntaxonFileController extends Controller
 {
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* 
 	*/
 	public function addFileAction(SyntaxonCore $syntaxon, $id, Request $request)
@@ -89,8 +88,7 @@ class SyntaxonFileController extends Controller
 	}
 
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("file", class="evegAppBundle:SyntaxonFile", options={"id" = "idFile"})
 	* 
 	*/
@@ -130,13 +128,15 @@ class SyntaxonFileController extends Controller
 	}
 
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
 	* @ParamConverter("file", class="evegAppBundle:SyntaxonFile", options={"id" = "idFile"})
 	* 
 	*/
-	public function downloadFileAction(SyntaxonCore $syntaxon, $id, SyntaxonFile $file)
+	public function downloadFileAction($id, SyntaxonFile $file)
 	{
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$syntaxon = $findGoodRepo->getSyntaxon($id);
+
 		// Grabing download helper
 		$downloadHandler = $this->get('vich_uploader.download_handler');
 

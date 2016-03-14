@@ -21,8 +21,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class SyntaxonHttpLinkController extends Controller
 {
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* 
 	*/
 	public function addHttpLinkAction(SyntaxonCore $syntaxon, $id, Request $request)
@@ -82,8 +81,7 @@ class SyntaxonHttpLinkController extends Controller
 	}
 
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
 	* 
 	*/
@@ -127,13 +125,14 @@ class SyntaxonHttpLinkController extends Controller
 	}
 
 	/**
-	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
-	* 	options= { "repository_method" = "findByIdWithAllEntities" })
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
 	* 
 	*/
-	public function getHttpLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
+	public function getHttpLinkAction($id, SyntaxonHttpLink $httpLink)
 	{
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$syntaxon = $findGoodRepo->getSyntaxon($id);
 
 		$visibility = $httpLink->getVisibility();
 		if($visibility == 'private') {
