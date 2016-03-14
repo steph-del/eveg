@@ -35,7 +35,7 @@ eveg_show_one:
 
 eveg_show_photos:
     locales:  { fr: "/app/{id}/photos", en: "/en/app/{id}/photos" }
-    defaults: { _controller: evegAppBundle:Default:showPhotos }
+    defaults: { _controller: evegAppBundle:SyntaxonPhoto:showPhotos }
     requirements:
         id: \d+
 

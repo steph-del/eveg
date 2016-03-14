@@ -117,4 +117,16 @@ class SyntaxonPhotoController extends Controller
 			'form' => $form->createView()
 		));
 	}
+
+	/**
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore",
+	* 	options= { "repository_method" = "findByIdWithAllEntities" })
+	* 
+	*/
+	public function showPhotosAction(SyntaxonCore $syntaxon, $id)
+	{
+		return $this->render('evegAppBundle:Default:showPhotos.html.twig', array(
+			'syntaxon' => $syntaxon
+		));
+	}
 }
