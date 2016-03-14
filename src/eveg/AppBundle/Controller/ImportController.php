@@ -11,6 +11,7 @@ use eveg\AppBundle\Entity\syntaxonRepartitionDepFr;
 use eveg\AppBundle\Entity\SyntaxonRepartitionEurope;
 use eveg\AppBundle\Entity\SyntaxonBiblio;
 use eveg\AppBundle\Entity\SyntaxonEcology;
+use eveg\AppBundle\Entity\Baseflor;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -836,5 +837,157 @@ class ImportController extends Controller
 			'form' => $form->createView()
 		));
 
+	}
+
+	/**
+	 * Import baseflor data (csv baseflor).
+	 * Only available in dev mode.
+	 *
+	 */
+	public function importBaseflorAction(Request $request)
+	{
+		// Creates the form...
+    	$form = $this->createFormBuilder()
+            ->add('importFile', 'file')
+            ->getForm();
+        // ... and then hydrates it
+        $form->handleRequest($request);
+
+        // Job routine
+		if($form->isValid()) {
+			set_time_limit(1000);
+			ini_set('memory_limit', '1024M');
+
+			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
+			$i         = 0;     // just an incremental
+			$cycle     = 0;     // counts the number of batch cycles
+
+			// Recovers the uploaded file
+			$file = $form->get('importFile')->getData();
+			$mimeType = $file->getMimeType();
+			$clientOriginaFilelName = $file->getClientOriginalName();
+
+			// File type verification
+			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
+				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contain '.csv').");
+			}
+
+			// Moves the uploaded file
+			$name = $file->getClientOriginalName();
+			$dir = __DIR__.'/../../../../web/uploads/import/biblio';
+			$file->move($dir, $name);
+
+			// Variables
+			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$countImports = 0;
+
+			// Truncate the table
+			$em = $this->getDoctrine()->getManager();
+			$connection = $em->getConnection();
+			$platform   = $connection->getDatabasePlatform();
+			$connection->executeUpdate($platform->getTruncateTableSQL('eveg_baseflor', true /* whether to cascade */));
+			$em->clear();
+
+			// Adding
+			foreach ($import as $key => $importedRow) {
+				$sp = new Baseflor;
+				$sp
+					->setTaxonomicRang($importedRow['taxonomic_rang'])
+					->setCatminatCode($importedRow['catminat_code'])
+					->setBdnffTaxinId($importedRow['bdnff_taxin_id'])
+					->setBdnffNomenId($importedRow['bdnff_nomen_id'])
+					->setScientificName($importedRow['scientific_name'])
+					->setRepartition($importedRow['repartition'])
+					->setInflorescence($importedRow['inflorescence'])
+					->setSexuality($importedRow['sexuality'])
+					->setPollination($importedRow['pollination'])
+					->setFruit($importedRow['fruit'])
+					->setDissemination($importedRow['dissemination'])
+					->setFlowerColor($importedRow['flower_color'])
+					->setMacula($importedRow['macula'])
+					->setFlowering($importedRow['flowering'])
+					->setWoodType($importedRow['wood_type'])
+					->setMaxVegetativeHeight($importedRow['max_vegetative_height'])
+					->setBiologicalType($importedRow['biological_type'])
+					->setPlantFormation($importedRow['plant_formation'])
+					->setEcologicalCharacterization($importedRow['ecological_characterization'])
+					->setPhytoCharacteristicIndication($importedRow['phytosociological_characteristic_indication'])
+					->setTransgressiveCharacteristicIndication($importedRow['transgressive_characteristic_indication'])
+					->setDifferentialIndication1($importedRow['differential_indication_1'])
+					->setDifferentialIndication2($importedRow['differential_indication_2'])
+					->setDifferentialIndication3($importedRow['differential_indication_3'])
+					->setPjLight($importedRow['pj_light'])
+					->setPjTemperature($importedRow['pj_temperature'])
+					->setPjContinentality($importedRow['pj_continentality'])
+					->setPjAtmosphericHumidity($importedRow['pj_atmospheric_humidity'])
+					->setPjSoilHumidity($importedRow['pj_soil_humidity'])
+					->setPjSoilPh($importedRow['pj_soil_ph'])
+					->setPjTrophicLevel($importedRow['pj_trophic_level'])
+					->setPjSalinity($importedRow['pj_salinity'])
+					->setPjTexture($importedRow['pj_texture'])
+					->setPjOrganicMaterial($importedRow['pj_organic_material'])
+					->setElLight($importedRow['el_light'])
+					->setElTemperature($importedRow['el_temperature'])
+					->setElContinentality($importedRow['el_continentality'])
+					->setElHumidity($importedRow['el_humidity'])
+					->setElPh($importedRow['el_ph'])
+					->setElNutrients($importedRow['el_nutrients'])
+					->setElSalinity($importedRow['el_salinity'])
+					->setKindgom($importedRow['kingdom'])
+					->setBranch($importedRow['branch'])
+					->setSubBranch($importedRow['sub_branch'])
+					->setClass($importedRow['class'])
+					->setSubClass($importedRow['sub_class'])
+					->setIntermediateClade1($importedRow['intermediate_clade_1'])
+					->setIntermediateClade2($importedRow['intermediate_clade_2'])
+					->setIntermediateClade3($importedRow['intermediate_clade_3'])
+					->setSuperOrder($importedRow['super_order'])
+					->setIntermediateClade4($importedRow['intermediate_clade_4'])
+					->setOrder($importedRow['order'])
+					->setSubOrder($importedRow['sub_order'])
+					->setFamily($importedRow['family'])
+					->setSubFamily($importedRow['sub_family'])
+					->setTribe($importedRow['tribe'])
+					->setSubTribe($importedRow['sub_tribe'])
+					->setSection($importedRow['section'])
+					->setSubSection($importedRow['sub_section'])
+					->setSerie($importedRow['serie'])
+					->setPhytobaseId($importedRow['phytobase_id'])
+					->setPhytobaseName($importedRow['phytobase_name'])
+				;
+				$em->persist($sp);
+				$countImports++;
+
+				// Flush and detach entities each $batchSize time
+				if (($i % $batchSize) === 0) {
+			        $em->flush();
+			        for ($i=($cycle*$batchSize)+$i; $i < $i=($cycle*$batchSize)+$i+$batchSize; $i++) { 
+			        	$em->detach($entities[($cycle*$batchSize)+$i]);
+			        }
+			        $cycle = $cycle+1;
+			    }
+				$i = $i+1;
+
+			}
+
+			// Flush the last entities (the last batch cycle may not be full)
+	        $em->flush();
+		    $em->clear();
+
+			// Flash and return
+	        $this->get('session')->getFlashBag()->add(
+	            'success',
+	            $countImports.' données ont été importées (baseflor).'
+	        );
+
+	        return $this->render('evegAppBundle:Admin:importBaseflor.html.twig', array(
+				'form' => $form->createView()
+			));
+
+		}
+
+		return $this->render('evegAppBundle:Admin:importBaseflor.html.twig', array(
+			'form' => $form->createView()
+		));
 	}
 }
