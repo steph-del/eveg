@@ -31,43 +31,127 @@
 				<div class="col-md-12">
 					<h3>Photos</h3>
 					{% for photo in syntaxon.syntaxonPhotos %}
-
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">{{ syntaxon.syntaxonName }}</h3>
-							</div>
-							<div class="panel-body">
-								<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+						{% if photo.visibility == 'private' %}
+							{% if is_granted('ROLE_USER') %}
 								{% if photo.user == app.user %}
-									<div class="text-right">
-										<a href="{{ path('eveg_edit_photo', {'id': syntaxon.id, 'idPhoto': photo.id}) }}">
-											<span class="glyphicon glyphicon-pencil">Modifier</span>
-										</a>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title">{{ syntaxon.syntaxonName }}</h3>
+										</div>
+										<div class="panel-body">
+											<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+											<div class="text-left">
+												<i class="fa fa-user"></i>
+											</div>
+											<div class="text-right">
+												<i class="fa fa-pencil-square-o"></i>
+												<a href="{{ path('eveg_edit_photo', {'id': syntaxon.id, 'idPhoto': photo.id}) }}">Modifier</a>
+											</div>
+										</div>
+										<div class="panel-footer">
+											{% if photo.author is not empty %}
+												<p>{{ photo.author }}</p>
+											{% endif %}
+											{% if photo.date is not empty %}
+												<p>Date : {{ photo.date|date("d/m/Y") }}</p>
+											{% endif %}
+											{% if photo.country is not empty %}
+												{% if photo.department is not empty %}
+													<p>Pays : {{ photo.country }} ({{ photo.department }})</p>
+												{% else %}
+													<p>Pays : {{ photo.country }}</p>
+												{% endif %}
+											{% endif %}
+											{% if photo.city is not empty %}
+												<p>Ville : {{ photo.city }}</p>
+											{% endif %}
+											{% if photo.description is not empty %}
+												<p>@{{ photo.description }}</p>
+											{% endif %}
+										</div>
+									</div> <!--panel-default -->
+								{% endif %}
+							{% endif %}
+						{% endif %}
+						{% if photo.visibility == 'group' %}
+							{% if is_granted('ROLE_CIRCLE') %}
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">{{ syntaxon.syntaxonName }}</h3>
 									</div>
-								{% endif %}
-							</div>
-							<div class="panel-footer">
-								{% if photo.author is not empty %}
-									<p>{{ photo.author }}</p>
-								{% endif %}
-								{% if photo.date is not empty %}
-									<p>Date : {{ photo.date|date("d/m/Y") }}</p>
-								{% endif %}
-								{% if photo.country is not empty %}
-									{% if photo.department is not empty %}
-										<p>Pays : {{ photo.country }} ({{ photo.department }})</p>
-									{% else %}
-										<p>Pays : {{ photo.country }}</p>
+									<div class="panel-body">
+										<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+										{% if photo.user == app.user %}
+											<div class="text-left">
+												<i class="fa fa-circle-thin"></i>
+											</div>
+											<div class="text-right">
+												<i class="fa fa-pencil-square-o"></i>
+												<a href="{{ path('eveg_edit_photo', {'id': syntaxon.id, 'idPhoto': photo.id}) }}">Modifier</a>
+											</div>
+										{% endif %}
+									</div>
+									<div class="panel-footer">
+										{% if photo.author is not empty %}
+											<p>{{ photo.author }}</p>
+										{% endif %}
+										{% if photo.date is not empty %}
+											<p>Date : {{ photo.date|date("d/m/Y") }}</p>
+										{% endif %}
+										{% if photo.country is not empty %}
+											{% if photo.department is not empty %}
+												<p>Pays : {{ photo.country }} ({{ photo.department }})</p>
+											{% else %}
+												<p>Pays : {{ photo.country }}</p>
+											{% endif %}
+										{% endif %}
+										{% if photo.city is not empty %}
+											<p>Ville : {{ photo.city }}</p>
+										{% endif %}
+										{% if photo.description is not empty %}
+											<p>@{{ photo.description }}</p>
+										{% endif %}
+									</div>
+								</div> <!--panel-default -->
+							{% endif %}
+						{% endif %}
+						{% if photo.visibility == 'public' %}
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">{{ syntaxon.syntaxonName }}</h3>
+								</div>
+								<div class="panel-body">
+									<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+									{% if photo.user == app.user %}
+										<div class="text-right">
+											<i class="fa fa-pencil-square-o"></i>
+											<a href="{{ path('eveg_edit_photo', {'id': syntaxon.id, 'idPhoto': photo.id}) }}">Modifier</a>
+										</div>
 									{% endif %}
-								{% endif %}
-								{% if photo.city is not empty %}
-									<p>Ville : {{ photo.city }}</p>
-								{% endif %}
-								{% if photo.description is not empty %}
-									<p>@{{ photo.description }}</p>
-								{% endif %}
-							</div>
-						</div>
+								</div>
+								<div class="panel-footer">
+									{% if photo.author is not empty %}
+										<p>{{ photo.author }}</p>
+									{% endif %}
+									{% if photo.date is not empty %}
+										<p>Date : {{ photo.date|date("d/m/Y") }}</p>
+									{% endif %}
+									{% if photo.country is not empty %}
+										{% if photo.department is not empty %}
+											<p>Pays : {{ photo.country }} ({{ photo.department }})</p>
+										{% else %}
+											<p>Pays : {{ photo.country }}</p>
+										{% endif %}
+									{% endif %}
+									{% if photo.city is not empty %}
+										<p>Ville : {{ photo.city }}</p>
+									{% endif %}
+									{% if photo.description is not empty %}
+										<p>@{{ photo.description }}</p>
+									{% endif %}
+								</div>
+							</div> <!--panel-default -->
+						{% endif %}
 
 					{% endfor %}
 				</div>
