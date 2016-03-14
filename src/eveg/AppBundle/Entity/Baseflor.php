@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Baseflor
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_baseflor")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\BaseflorRepository")
  */
 class Baseflor
@@ -451,9 +451,9 @@ class Baseflor
     /**
      * @var string
      *
-     * @ORM\Column(name="phtobaseName", type="string", length=512)
+     * @ORM\Column(name="phytobaseName", type="string", length=512)
      */
-    private $phtobaseName;
+    private $phytobaseName;
 
 
     /**
@@ -1931,27 +1931,27 @@ class Baseflor
     }
 
     /**
-     * Set phtobaseName
+     * Set phytobaseName
      *
-     * @param string $phtobaseName
+     * @param string $phytobaseName
      *
      * @return Baseflor
      */
-    public function setPhtobaseName($phtobaseName)
+    public function setPhytobaseName($phytobaseName)
     {
-        $this->phtobaseName = $phtobaseName;
+        $this->phytobaseName = $phytobaseName;
 
         return $this;
     }
 
     /**
-     * Get phtobaseName
+     * Get phytobaseName
      *
      * @return string
      */
-    public function getPhtobaseName()
+    public function getPhytobaseName()
     {
-        return $this->phtobaseName;
+        return $this->phytobaseName;
     }
 }
 
