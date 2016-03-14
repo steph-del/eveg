@@ -1,6 +1,12 @@
 <div class="panel panel-default">
-	<div class="panel-heading">Cortège floristique</div>
-	<div class="panel-body">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</div>
+	<div class="panel-heading panelSpeciesHeader">Cortège floristique{% if species is defined and species is empty %} : non renseigné{% endif %}<span class="speciesShowAll li-restricted pull-right">Afficher tout</span></div>
+	{% if species is defined and species is not empty %}
+		<ul class="list-group">
+			{% for sp in species %}
+				<li class="list-group-item speciesBox">
+					<a href="http://www.tela-botanica.org/bdtfx-nn-{{ sp.bdnffNomenId }}-synthese" target="_blank">{{ sp.scientificName }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 </div>
