@@ -304,26 +304,6 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getResult();
 	}
 
-	/*public function findByIdFilterByUser($id, $user)
-	{
-		$qb = $this->createQueryBuilder('s');
-		$qb->select('s')
-		   ->where('s.id = :id')
-		   ->setParameter('id', $id)
-		   ->leftJoin('s.syntaxonFiles', 'file')
-		   ->andWhere('files.user.id = :userId')
-		   ->addSelect('file')
-		   ->leftJoin('s.syntaxonHttpLinks', 'link')
-		   ->andWhere('links.user.id = :userId')
-		   ->addSelect('link')
-		   ->leftJoin('s.syntaxonPhotos', 'photo')
-		   ->andWhere('photos.user.id = :userId')
-		   ->addSelect('photo')
-		   ->setParameter('userID', $user->getId());
-
-		  return $qb->getQuery()->getOneOrNullResult();
-	}*/
-
 	public function findByIdPublicData($id)
 	{
 		$qb = $this->createQueryBuilder('s');
