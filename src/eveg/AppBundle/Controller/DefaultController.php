@@ -94,12 +94,20 @@ class DefaultController extends Controller
 			$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
 			$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
 
+			// baseflor
+			$species = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findByCatminatCode($syntaxon->getCatminatCode());
+        	$ecologicalValuesAvg = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findEcologicalAverageByCatminatCode($syntaxon->getCatminatCode());
+
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
 			'synonyms' => $synonyms,
 			'allParents' => $allParents,
 			'repDepFrJson' => $repDepFrJson,
-			'repUeJson' => $repUeJson
+			'repUeJson' => $repUeJson,
+			'species' => $species,
+			'ecologicalValuesAvg' => $ecologicalValuesAvg
 		));
 		}
 
