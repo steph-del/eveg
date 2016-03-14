@@ -344,7 +344,7 @@ class SyntaxonCoreRepository extends EntityRepository
 
 	public function findByIdPublicPrivateCircleData($id, $user)
 	{
-		$qb = $this->createQueryBuilder('s');dump($user);
+		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
 		   ->where('s.id = :id')
 		   ->setParameter('id', $id)
@@ -365,7 +365,7 @@ class SyntaxonCoreRepository extends EntityRepository
 
 	public function findByIdPublicPrivateData($id, $user)
 	{
-		$qb = $this->createQueryBuilder('s');dump($user);
+		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
 		   ->where('s.id = :id')
 		   ->setParameter('id', $id)
