@@ -87,14 +87,14 @@ class SyntaxonPhotoController extends Controller
 	{
 		
 		// author of the photo == current user ?
-		if($photo->getUser() != $this->getUser()) {
+		if($photo->getUser() !== $this->getUser()) {
 			Throw new HttpException(401, 'You are not allowed to edit this file.');
 		}
 
 		$request = $this->getRequest();
 
 		// Creates the form...
-    	$form = $this->createForm(new SyntaxonPhotoType(), $photo);
+    	$form = $this->createForm(new SyntaxonPhotoType($this->get('security.authorization_checker')), $photo);
 
         // ... and then hydrates it
         $form->handleRequest($request);

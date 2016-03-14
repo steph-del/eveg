@@ -91,7 +91,7 @@ class SyntaxonHttpLinkController extends Controller
 	{
 		
 		// author of the httpLink == current user ?
-		if($httpLink->getUser()->getId() !== $this->getUser()->getId()) {
+		if($httpLink->getUser() !== $this->getUser()) {
 			Throw new HttpException(401, 'You are not allowed to edit this link.');
 		}
 
@@ -138,7 +138,7 @@ class SyntaxonHttpLinkController extends Controller
 		$visibility = $httpLink->getVisibility();
 		if($visibility == 'private') {
 			if($this->get('security.context')->isGranted('ROLE_USER')) {
-				if($httpLink->getUser()->getId() != $this->get('security.context')->getToken()->getUser()->getId()) {
+				if($httpLink->getUser() != $this->get('security.context')->getToken()->getUser()) {
 					Throw new HttpException(401, 'You are not allowed to access to this link.');
 				}
 			} else {

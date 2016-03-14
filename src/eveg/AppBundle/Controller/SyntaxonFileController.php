@@ -98,7 +98,7 @@ class SyntaxonFileController extends Controller
 	{
 		
 		// author of the file == current user ?
-		if($file->getUser()->getId() !== $this->getUser()->getId()) {
+		if($file->getUser() !== $this->getUser()) {
 			Throw new HttpException(401, 'You are not allowed to edit this file.');
 		}
 
