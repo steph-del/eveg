@@ -18,3 +18,132 @@ eveg:
     search:
         placeholder: Rechercher une végétation
         use_synonyms: Utiliser les synonymes
+
+    app:
+        show_one:
+            panels:
+                ecological_valences:
+                    pjLightAvg:
+                        label:      Lumière
+                        label_min:  Lum.
+                        1:          hypersciaphiles
+                        2:          persciaphiles
+                        3:          sciaphiles
+                        4:          hémisciaphiles
+                        5:          hélioclines à sciaclines
+                        6:          hémihéliophiles
+                        7:          héliophiles
+                        8:          perhéliophiles
+                        9:          hyperhéliophiles
+                    pjTemperatureAvg:
+                        label:      Température
+                        label_min:  Temp.
+                        1:          alpines à nivales, altiméditerranéennes
+                        2:          subalpines, oroméditerranéennes
+                        3:          montagnardes
+                        4:          collinéennes, planitiaires psychrophiles (psychro-atlantiques, psychrocentro-européennes)
+                        5:          planitiaires à montagnardes
+                        6:          planitiaires thermophiles (thermo-atlantiques, thermocentro-européennes) et sub- à supraméditerranéennes
+                        7:          euryméditerranéennes, méditerranéo-atlantiques
+                        8:          mésoméditerranéennes
+                        9:          thermoméditerranéennes à subdésertiques (inframéditerranéennes)
+                    pjContinentalityAvg:
+                        label:      Continentalité
+                        label_min:  Cont.
+                        1:          marines à maritimes
+                        2:          hyperocéaniques
+                        3:          océaniques
+                        4:          subocéaniques
+                        5:          intermédiaires
+                        6:          précontinentales
+                        7:          subcontinentales
+                        8:          continentales
+                        9:          hypercontinentales
+                    pjAtmosphericHumidityAvg:
+                        label:      Humidité atmosphérique
+                        label_min:  Hum. atm.
+                        1:          aéroxérophiles
+                        2:          intermédiaires
+                        3:          aéromésoxérophiles
+                        4:          intermédiaires
+                        5:          aéromésohydriques
+                        6:          intermédiaires
+                        7:          aéromésohygrophiles
+                        8:          intermédiaires
+                        9:          aérohydrophiles
+                    pjSoilHumidityAvg:
+                        label:      Humidité édaphique
+                        label_min:  Hum. eda.
+                        1:          hyperxérophiles (sclérophiles, ligneuses microphylles, réviviscentes)
+                        2:          perxérophiles (caulocrassulescentes subaphylles, coussinets)
+                        3:          xérophiles (velues, aiguillonnées, cuticule épaisse)
+                        4:          mésoxérophiles
+                        5:          mésohydriques
+                        6:          mésohygroclines, mésohygrophiles
+                        7:          hygrophiles (durée d'inondation en semaines)
+                        8:          hydrophiles (durée d'inondation en mois)
+                        9:          amphibies saisonnières (hélophytes exondés une partie minoritaire de l’année)
+                        10:         amphibies permanentes (hélophytes semi-émergés à base toujours noyée)
+                        11:         aquatiques superficielles (0-50cm)
+                        12:         aquatiques profondes (1-3m)
+                    pjSoilPhAvg:
+                        label:      Réaction du sol (pH)
+                        label_min:  pH
+                        1:          hyperacidophiles(3,0<pH<4,0)
+                        2:          peracidophiles (4,0<pH<4,5)
+                        3:          acidophiles (4,5<pH<5,0)
+                        4:          acidoclines (5,0<pH<5,5)
+                        5:          neutroclines (5,5<pH<6,5)
+                        6:          basoclines (6,5<pH<7,0)
+                        7:          basophiles (7,0<pH<7,5)
+                        8:          perbasophiles (7,5<pH<8,0)
+                        9:          hyperbasophiles (8,0<pH<9,0)
+                    pjTrophicLevelAvg:
+                        label:      Nutriments du sol (surtout anions azotés et phosphatés, puis également cations potassiques)
+                        label_min:  Nutr. sol
+                        1:          hyperoligotrophiles
+                        2:          peroligotrophiles
+                        3:          oligotrophiles
+                        4:          méso-oligotrophiles
+                        5:          mésotrophiles
+                        6:          méso-eutrophiles
+                        7:          eutrophiles
+                        8:          pereutrophiles
+                        9:          hypereutrophiles
+                    pjSalinityAvg:
+                        label:      Salinité (surtout Chlorures, également sodium)
+                        label_min:  Sal.
+                        0:          ne supportant pas le sel
+                        1:          hyperoligohalines, [0-1‰ Cl-]
+                        2:          peroligohalines, [1-3‰ Cl-]
+                        3:          oligohalines, [3-5‰ Cl-]
+                        4:          méso-oligohalines, [5-7‰ Cl-]
+                        5:          mésohalines, [7-9‰ Cl-]
+                        6:          méso-euhalines, [9-12‰ Cl-]
+                        7:          euhalines, [12-16‰ Cl-]
+                        8:          pereuhalines, [16-23‰ Cl-]
+                        9:          hypereuhalines, [>23‰ Cl-]
+                    pjTextureAvg:
+                        label:      Texture du sol
+                        label_min:  Text. sol
+                        1:          argile
+                        2:          intermédiaire
+                        3:          limon
+                        4:          sable fin
+                        5:          sable grossier
+                        6:          graviers
+                        7:          galets
+                        8:          blocs, fentes des parois
+                        9:          dalle
+                    pjOrganicMaterialAvg:
+                        label:      Matière organique du sol et type d'humus
+                        label_min:  Mat. org.
+                        1:          lithosol, peyrosol, régosol
+                        2:          mull carbonaté
+                        3:          mull actif
+                        4:          mull acide
+                        5:          moder
+                        6:          mor, hydromor, xéromor
+                        7:          ranker, tangel
+                        8:          anmoor, gyttja
+                        9:          tourbe
