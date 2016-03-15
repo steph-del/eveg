@@ -207,7 +207,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * adds a filter in order to select only french departments within selected vegetations are presents (!= zero)
 	 *
 	 * @param QueryBuilder $qb
-	 * @param string $depFrFilter JSON data (ex: '{_59: "_59", _62: "_62")}' will add a filter for 2 departments)
+	 * @param string $depFrFilter Array data (ex: '[_59: "_59", _62: "_62"]' will add a filter for 2 departments)
 	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every departments (limit the number of results) ; FALSE : it only has to be present in one department of the filter (default)
 	 */
 	public function departmentFrFilter(QueryBuilder $qb, $depFrFilter, $exclusive)
@@ -232,7 +232,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * adds a filter in order to select countries within selected vegetations are presents (!= zero or != 5)
 	 *
 	 * @param QueryBuilder $qb
-	 * @param string $ueFilter JSON data
+	 * @param string $ueFilter Array data
 	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every country (limit the number of results) ; FALSE : it only has to be present in one country of the filter (default)
 	 */
 	public function ueFilter(QueryBuilder $qb, $ueFilter, $exclusive)
