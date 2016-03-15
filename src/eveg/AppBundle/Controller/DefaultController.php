@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -40,6 +41,12 @@ class DefaultController extends Controller
 		// Retrieve syntaxon according to user's rights
 		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
 		$syntaxon = $findGoodRepo->getSyntaxon($id, $depFrFilter, $ueFilter);
+
+		// Do we found a syntaxon ? (possible null because of the repartition filters or the $id doesn't exists)
+		if($syntaxon == null){
+			// Not found exception
+			Throw new HttpException(404, "Sorry, we can't find the syntaxon you're looking for ! Please check your repartition filters. If this problem persists, contact us.");
+		}
 
 		// is a valid syntaxon ?
 		if(ereg("syn", $syntaxon->getLevel())) {
