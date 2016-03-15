@@ -292,7 +292,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function getSynonyms($catminatCode)
+	/*public function getSynonyms($catminatCode)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -302,6 +302,72 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->andWhere("s.level LIKE 'syn%'");
 
 		  return $qb->getQuery()->getResult();
+	}*/
+
+	public function findSynonymsByCatminatCodePublicData($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode)
+		   ->andWhere("s.level LIKE 'syn%'")
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public')
+		   ->setParameter('public', 'public')
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findSynonymsByCatminatCodePublicPrivateData($catminatCode, $user)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode)
+		   ->andWhere("s.level LIKE 'syn%'")
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR (photo.visibility = :private AND photo.user = :user)')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR (file.visibility = :private AND file.user = :user)')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
+		   ->setParameter('public', 'public')
+		   ->setParameter('private', 'private')
+		   ->setParameter('user', $user)
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findSynonymsByCatminatCodePublicPrivateCircleData($catminatCode, $user)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode)
+		   ->andWhere("s.level LIKE 'syn%'")
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR photo.visibility = :circle OR (photo.visibility = :private AND photo.user = :user)')
+		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR file.visibility = :circle OR (file.visibility = :private AND file.user = :user)')
+		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
+		   ->setParameter('public', 'public')
+		   ->setParameter('circle', 'group')
+		   ->setParameter('private', 'private')
+		   ->setParameter('user', $user)
+		   ->addSelect('photo')
+		   ->addSelect('file')
+		   ->addSelect('link')
+		   ;
+
+		
+		return $qb->getQuery()->getResult();
 	}
 
 	public function findByIdPublicData($id)
