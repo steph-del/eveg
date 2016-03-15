@@ -292,7 +292,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findSynonymsByCatminatCodePublicData($catminatCode)
+	public function findSynonymsByCatminatCodePublicData($catminatCode, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -312,7 +312,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findSynonymsByCatminatCodePublicPrivateData($catminatCode, $user)
+	public function findSynonymsByCatminatCodePublicPrivateData($catminatCode, $user, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -334,7 +334,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findSynonymsByCatminatCodePublicPrivateCircleData($catminatCode, $user)
+	public function findSynonymsByCatminatCodePublicPrivateCircleData($catminatCode, $user, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -358,7 +358,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findByIdPublicData($id)
+	public function findByIdPublicData($id, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
@@ -376,7 +376,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findByIdPublicPrivateCircleData($id, $user)
+	public function findByIdPublicPrivateCircleData($id, $user, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
@@ -397,7 +397,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findByIdPublicPrivateData($id, $user)
+	public function findByIdPublicPrivateData($id, $user, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')

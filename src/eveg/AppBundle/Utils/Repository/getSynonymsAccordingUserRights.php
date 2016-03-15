@@ -27,7 +27,7 @@ class getSynonymsAccordingUserRights
 	 * @param integer $catminatCode SyntaxonCore catminat code
  	 * @return RepositoryMethod
  	 */
-	public function getSynonyms($catminatCode)
+	public function getSynonyms($catminatCode, $depFrFilter, $ueFilter)
 	{
 		// Retrieve synonyms according to user's rights
 		// 		if user is authenticated anonymously (= not logged in)
@@ -42,14 +42,14 @@ class getSynonymsAccordingUserRights
 			// User belongs to circle group
 			if($this->securityAuthorisation->isGranted('ROLE_CIRCLE'))
 			{
-				$synonyms = $repo->findSynonymsByCatminatCodePublicPrivateCircleData($catminatCode, $currentUser);
+				$synonyms = $repo->findSynonymsByCatminatCodePublicPrivateCircleData($catminatCode, $currentUser, $depFrFilter, $ueFilter);
 			// User do not belongs to circle group but it can own private data
 			} else {
-				$synonyms = $repo->findSynonymsByCatminatCodePublicPrivateData($id, $currentUser);
+				$synonyms = $repo->findSynonymsByCatminatCodePublicPrivateData($catminatCode, $currentUser, $depFrFilter, $ueFilter);
 			}
 		// User is not logged in
 		} else {
-			$synonyms = $repo->findSynonymsByCatminatCodePublicData($id);
+			$synonyms = $repo->findSynonymsByCatminatCodePublicData($catminatCode, $depFrFilter, $ueFilter);
 		}
 
 		return $synonyms;

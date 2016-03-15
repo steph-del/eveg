@@ -32,10 +32,14 @@ class DefaultController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
 
+		// Get repartition filters
+		$repFilters = $this->get('eveg_app.repFilters');
+    	$depFrFilter = $repFilters->getDepFrFilterSession($json = false);
+    	$ueFilter = $repFilters->getUeFilterSession($json = false);
 
 		// Retrieve syntaxon according to user's rights
 		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
-		$syntaxon = $findGoodRepo->getSyntaxon($id);
+		$syntaxon = $findGoodRepo->getSyntaxon($id, $depFrFilter, $ueFilter);
 
 		// is a valid syntaxon ?
 		if(ereg("syn", $syntaxon->getLevel())) {
@@ -89,7 +93,7 @@ class DefaultController extends Controller
 
 			// Retrieve synonyms according to user's rights
 			$findGoodRepoSynonyms = $this->get('eveg_app.get_synonyms_according_user');
-			$synonyms = $findGoodRepoSynonyms->getSynonyms($syntaxon->getCatminatCode());
+			$synonyms = $findGoodRepoSynonyms->getSynonyms($syntaxon->getCatminatCode(), $depFrFilter, $ueFilter);
 			//$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
 
 			// repartitionDepFr to Json
