@@ -1,0 +1,147 @@
+{% set ecologicalValuesKeys = ecologicalValuesAvg[0]|keys %}
+<div class="panel panel-default">
+	<div class="panel-heading">Valences écologiques</div>
+	<div class="panel-body">
+
+		{# Light #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[0]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[0]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjLightAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[0]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjLightAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[0]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Temperature #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[1]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[1]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjTemperatureAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[1]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjTemperatureAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[1]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Continentality #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[2]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[2]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjContinentalityAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[2]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjContinentalityAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[2]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Atmospheric humidity #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[3]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[3]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjAtmosphericHumidityAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[3]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjAtmosphericHumidityAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[3]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Soil humidity #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[4]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[4]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 12) %}
+				{% if ecologicalValuesAvg[0].pjSoilHumidityAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[4]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjSoilHumidityAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[4]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Soil pH #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[5]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[5]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjSoilPhAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[5]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjSoilPhAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[5]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Trophic level #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[6]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[6]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjTrophicLevelAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[6]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjTrophicLevelAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[6]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Salinity #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[7]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[7]~'.label_min')|trans }}
+			</div>
+			{% for i in range(0, 9) %}
+				{% if ecologicalValuesAvg[0].pjSalinityAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[7]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjSalinityAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[7]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Texture #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[8]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[8]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjTextureAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[8]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjTextureAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[8]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{# Organic material #}
+		<div class="row flexEcologicalValences">
+			<div class="flexEcologicalValencesLabel" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[9]~'.label')|trans }}">
+				{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[9]~'.label_min')|trans }}
+			</div>
+			{% for i in range(1, 9) %}
+				{% if ecologicalValuesAvg[0].pjOrganicMaterialAvg|round(0) == i %}
+					<div class="flexEcologicalValenceItemHighlight" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[9]~'.'~(i))|trans }}">{{ ecologicalValuesAvg[0].pjOrganicMaterialAvg|round(0) }}</div>
+				{% else %}
+					<div class="flexEcologicalValenceItem" data-tooltip="tooltip" title="{{ ('eveg.app.show_one.panels.ecological_valences.'~ecologicalValuesKeys[9]~'.'~(i))|trans }}"></div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
