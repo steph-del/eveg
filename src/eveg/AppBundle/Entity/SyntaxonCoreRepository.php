@@ -292,18 +292,6 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	/*public function getSynonyms($catminatCode)
-	{
-		$qb = $this->createQueryBuilder('s');
-
-		$qb->select('s')
-		   ->where('s.catminatCode = :catminatCode')
-		   ->setParameter('catminatCode', $catminatCode)
-		   ->andWhere("s.level LIKE 'syn%'");
-
-		  return $qb->getQuery()->getResult();
-	}*/
-
 	public function findSynonymsByCatminatCodePublicData($catminatCode)
 	{
 		$qb = $this->createQueryBuilder('s');
