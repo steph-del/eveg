@@ -87,7 +87,10 @@ class DefaultController extends Controller
 
 			$allParents = $catCode->getAllParents($syntaxon->getCatminatCode());
 
-			$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
+			// Retrieve synonyms according to user's rights
+			$findGoodRepoSynonyms = $this->get('eveg_app.get_synonyms_according_user');
+			$synonyms = $findGoodRepoSynonyms->getSynonyms($syntaxon->getCatminatCode());
+			//$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
 
 			// repartitionDepFr to Json
 			$serializer = $this->container->get('jms_serializer');
