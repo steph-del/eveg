@@ -59,6 +59,7 @@ class SyntaxonFileController extends Controller
 						$file->setType('pdf');
 						break;
 				}
+				$file->setUploadedAt(new \DateTime('now'));
 
 				$syntaxon->addSyntaxonFile($file);
 			}
