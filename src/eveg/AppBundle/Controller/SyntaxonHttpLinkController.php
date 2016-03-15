@@ -52,6 +52,7 @@ class SyntaxonHttpLinkController extends Controller
 				$httpLink->setSyntaxonCore($syntaxon);
 				$httpLink->setUser($currentUser);
 				$httpLink->setUpdatedAt(new \DateTime('now'));
+				$httpLink->setUploadedAt(new \DateTime('now'));
 
 				$syntaxon->addSyntaxonHttpLink($httpLink);
 			}

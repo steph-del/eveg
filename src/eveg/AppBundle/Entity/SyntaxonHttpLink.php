@@ -71,6 +71,13 @@ class SyntaxonHttpLink
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $uploadedAt;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="hit", type="integer")
@@ -206,6 +213,30 @@ class SyntaxonHttpLink
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set uploadedAt
+     *
+     * @param \DateTime $uploadedAt
+     *
+     * @return SyntaxonFile
+     */
+    public function setUploadedAt($uploadedAt)
+    {
+        $this->uploadedAt = $uploadedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get uploadedAt
+     *
+     * @return \DateTime
+     */
+    public function getUploadedAt()
+    {
+        return $this->uploadedAt;
     }
 
     /**
