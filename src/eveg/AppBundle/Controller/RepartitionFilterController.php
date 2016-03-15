@@ -163,7 +163,31 @@ class RepartitionFilterController extends Controller
 		            'Les filtres de répartition ont été modifiés'
 		        );
 
-		return $this->redirect($this->generateUrl('eveg_app_homepage'));
+		// Try to refresh the page
+		$idReferer = $session->get('idReferer');dump($session->get('idReferer'));
+
+		// If user doesn't come from /app/xxxx page, $idReferer is null
+		if(!$idReferer) {
+			return $this->redirect($this->generateUrl('eveg_app_homepage'));
+		}
+
+		// Get repartition filters
+		$repFilters = $this->get('eveg_app.repFilters');
+    	$depFrFilter = $repFilters->getDepFrFilterSession($json = false);
+    	$ueFilter = $repFilters->getUeFilterSession($json = false);
+
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$freshSyntaxon = $findGoodRepo->getSyntaxon($idReferer, $depFrFilter, $ueFilter);
+		if($freshSyntaxon != null) {
+			return $this->redirect($this->generateUrl('eveg_show_one', array('id' => $idReferer)));
+		} else {
+			$this->get('session')->getFlashBag()->add(
+		            'info',
+		            "La page que vous consultiez n'est plus accessible suite à l'application des filtres de répartition."
+		        );
+			return $this->redirect($this->generateUrl('eveg_app_homepage'));
+		}
 
 	}
 }

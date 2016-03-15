@@ -8,11 +8,14 @@ use Symfony\Component\HttpFoundation\Request;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
 	public function indexAction()
 	{
+		$session = new Session();
+		$session->set('idReferer', null);
 		return $this->render('evegAppBundle:Default:homepage.html.twig');
 	}
 
@@ -113,6 +116,10 @@ class DefaultController extends Controller
         					->findByCatminatCode($syntaxon->getCatminatCode());
         	$ecologicalValuesAvg = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
         					->findEcologicalAverageByCatminatCode($syntaxon->getCatminatCode());
+
+        	// Set idReferer inside session (makes it easier to find the $id when applying a repartition filter)
+			$session = new Session();
+			$session->set('idReferer', $syntaxon->getId());dump($session->get('idReferer'));
 
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
