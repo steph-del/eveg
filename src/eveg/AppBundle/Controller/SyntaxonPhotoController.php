@@ -49,6 +49,8 @@ class SyntaxonPhotoController extends Controller
 			foreach ($photos as $key => $photo) {
 				$photo->setSyntaxonCore($syntaxon);
 				$photo->setUser($currentUser);
+				$photo->setUploadedAt(new \DateTime('now'));
+				
 				$syntaxon->addSyntaxonPhoto($photo);
 			}
 
