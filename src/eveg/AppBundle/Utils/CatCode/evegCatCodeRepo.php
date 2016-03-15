@@ -20,19 +20,19 @@ class evegCatCodeRepo
 	}
 
 
-	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null)
+	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
 	{
 
-		$child = $scRepo->getDirectChild($catminatCode, $returnArray, $ueFilter);
+		$child = $scRepo->getDirectChild($catminatCode, $returnArray, $ueFilter, $depFrFilter);
 
 		return $child[0];
 
 	}
 
-	public function getChildren($catminatCode, $returnArray = false, $ueFilter = null)
+	public function getChildren($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
 	{
 
-		$children = $scRepo->getChildren($catminatCode, $returnArray, $ueFilter);
+		$children = $scRepo->getChildren($catminatCode, $returnArray, $ueFilter, $depFrFilter);
 
 		return $children;
 		

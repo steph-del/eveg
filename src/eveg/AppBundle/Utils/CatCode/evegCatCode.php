@@ -613,7 +613,8 @@ class evegCatCode
 		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
 		$ueFilter = $this->repartitionFilters->getUeFilterSession();
-		$child = $this->catCodeRepo->getDirectChild($catminatCode, $returnArray, $ueFilter);
+		$depFrFilter = $this->repartitionFilters->getDepFrFilterSession();
+		$child = $this->catCodeRepo->getDirectChild($catminatCode, $returnArray, $ueFilter, $depFrFilter);
 
 		if(!$child){
 			return null;
@@ -628,7 +629,8 @@ class evegCatCode
 		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
 		$ueFilter = $this->repartitionFilters->getUeFilterSession();
-		$children = $this->catCodeRepo->getChildren($catminatCode, $returnArray, $ueFilter);
+		$depFrFilter = $this->repartitionFilters->getDepFrFilterSession();
+		$children = $this->catCodeRepo->getChildren($catminatCode, $returnArray, $ueFilter, $depFrFilter);
 
 		if($children == null){
 			return null;

@@ -67,21 +67,21 @@ class SyntaxonCoreRepository extends EntityRepository
 				->orderBy('s.catminatCode', 'ASC');
 
 		// Department filter
-			if($depFrFilter != null) {
-				$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
-			}
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
 
 		// UE filter
-			if($ueFilter != null) {
-				$this->ueFilter($qb, $ueFilter, $exclusive);
-			}
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
 			
 		return $qb->getQuery()->getResult();
 
 	}
 
 	// Returns the children of one catminat code
-	public function getChildren($catminatCode, $returnArray = false, $ueFilter = null)
+	public function getChildren($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -96,6 +96,10 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($ueFilter != null) {
 			$this->ueFilter($qb, $ueFilter, false);
 		}
+		// Department filter
+		/*if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}*/
 
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
@@ -105,7 +109,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	// Returns the first child of one catminat code
-	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null)
+	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -121,7 +125,11 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($ueFilter != null) {
 			$this->ueFilter($qb, $ueFilter, false);
 		}
-//print_r($qb->getQuery()->getResult());
+		// Department filter
+		/*if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}*/
+
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
 		} else {
@@ -210,7 +218,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $depFrFilter Array data (ex: '[_59: "_59", _62: "_62"]' will add a filter for 2 departments)
 	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every departments (limit the number of results) ; FALSE : it only has to be present in one department of the filter (default)
 	 */
-	public function departmentFrFilter(QueryBuilder $qb, $depFrFilter, $exclusive)
+	public function departmentFrFilter(QueryBuilder $qb, $depFrFilter, $exclusive = false)
 	{
 		$orModule = $qb->expr()->orx();
 		$andModule = $qb->expr()->andx();
@@ -358,20 +366,33 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findByIdPublicData($id, $depFrFilter = null, $ueFilter = null)
+	public function findByIdPublicData($id, $depFrFilter = null, $ueFilter = null, $exclusive = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
 		   ->where('s.id = :id')
 		   ->setParameter('id', $id)
+		   ->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->leftJoin('s.repartitionEurope', 'europe')
 		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
 		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public')
 		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public')
 		   ->setParameter('public', 'public')
+		   ->addSelect('depFr')
+		   ->addSelect('europe')
 		   ->addSelect('photo')
 		   ->addSelect('file')
 		   ->addSelect('link')
 		   ;
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
 
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
@@ -382,6 +403,8 @@ class SyntaxonCoreRepository extends EntityRepository
 		$qb->select('s')
 		   ->where('s.id = :id')
 		   ->setParameter('id', $id)
+		   ->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->leftJoin('s.repartitionEurope', 'europe')
 		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR photo.visibility = :circle OR (photo.visibility = :private AND photo.user = :user)')
 		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR file.visibility = :circle OR (file.visibility = :private AND file.user = :user)')
 		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
@@ -389,6 +412,8 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->setParameter('circle', 'group')
 		   ->setParameter('private', 'private')
 		   ->setParameter('user', $user)
+		   ->addSelect('depFr')
+		   ->addSelect('europe')
 		   ->addSelect('photo')
 		   ->addSelect('file')
 		   ->addSelect('link')
@@ -403,12 +428,16 @@ class SyntaxonCoreRepository extends EntityRepository
 		$qb->select('s')
 		   ->where('s.id = :id')
 		   ->setParameter('id', $id)
+		   ->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->leftJoin('s.repartitionEurope', 'europe')
 		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public OR (photo.visibility = :private AND photo.user = :user)')
 		   ->leftJoin('s.syntaxonFiles', 'file', 'WITH', 'file.visibility = :public OR (file.visibility = :private AND file.user = :user)')
 		   ->leftJoin('s.syntaxonHttpLinks', 'link', 'WITH', 'link.visibility = :public OR link.visibility = :circle OR (link.visibility = :private AND link.user = :user)')
 		   ->setParameter('public', 'public')
 		   ->setParameter('private', 'private')
 		   ->setParameter('user', $user)
+		   ->addSelect('depFr')
+		   ->addSelect('europe')
 		   ->addSelect('photo')
 		   ->addSelect('file')
 		   ->addSelect('link')

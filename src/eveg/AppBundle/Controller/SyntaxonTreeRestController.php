@@ -92,9 +92,11 @@ class SyntaxonTreeRestController extends FOSRestController
         }
 
         if(empty($syntaxonTree)){
-          throw $this->createNotFoundException();
+          //throw $this->createNotFoundException();
+            $syntaxon->setFolder(false);
+            $syntaxon->setLazy(false);
         }
-
+        
         foreach ($syntaxonTree as $key => $syntaxon) {
 
             if ($catCode->getDirectChild($syntaxon->getCatminatCode()) == null) {
