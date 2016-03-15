@@ -54,6 +54,10 @@ services:
         class:              eveg\AppBundle\Utils\Repository\getSyntaxonAccordingUserRights
         arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
 
+    eveg_app.get_synonyms_according_user:
+        class:              eveg\AppBundle\Utils\Repository\getSynonymsAccordingUserRights
+        arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
+
     # scRepo service (used within catCode utility class)
     # Useless !?
     #eveg_app.scRepo:
