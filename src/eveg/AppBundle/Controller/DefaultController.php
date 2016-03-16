@@ -16,7 +16,15 @@ class DefaultController extends Controller
 	{
 		$session = new Session();
 		$session->set('idReferer', null);
-		return $this->render('evegAppBundle:Default:homepage.html.twig');
+
+		$wanted = $this->get('evep_app.wanted');
+		$pdfsAlone = $wanted->getList($limit = 5);
+		$nbPdfsAlone = $wanted->howMany();
+
+		return $this->render('evegAppBundle:Default:homepage.html.twig', array(
+			'wanted' => $pdfsAlone,
+			'nbTotalWanted' => $nbPdfsAlone
+		));
 	}
 
 	public function howtoAction()

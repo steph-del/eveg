@@ -32,28 +32,8 @@
 		<div class="header col-md-6 col-md-offset-2">
 			<h1>eVeg <small>{{ 'eveg.slogan'|trans }}</small><h1>
 		</div>
-
-
-		<div class="col-md-6 col-md-offset-2 text-justify">
-			<div>
-				<div class="HAB-text">HAB</div>
-					<div class="CLA-text">CLA</div>
-						<div class="SUBCLA-text SUBCLA-indent">SUBCLA</div>
-							<div class="ORD-text ORD-indent">ORD</div>
-								<div class="SUBORD-text SUBORD-indent">SUBORD</div>
-									<div class="ALL-text ALL-indent">ALL</div>
-										<div class="SUBALL-text SUBALL-indent">SUBALL</div>
-											<div class="ASS-text ASS-indent">ASS</div>
-												<div class="SUBASS-text SUBASS-indent">SUBASS</div>
-			</div>
-			<p>
-				{{ 'eveg.homepage.description'|trans }}
-			</p>
-
-
-			<a href="{{ path('eveg_app_homepage') }}"><button type="button" class="btn btn-primary">Accéder à eVeg</button></a>
-
-		</div>
+	</div>
+	<div class="row">
 
 		<div class="col-md-3">
 			<div class="thumbnail">
@@ -61,6 +41,25 @@
 				<div class="caption">
 					<h3>Actuellement sur eVeg</h3>
 					<p><span class="badge"></span> fiches descriptives<br/><span class="badge">YYY</span> documents téléchargeables</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{asset('img/thumbs/thumb1.png')}}" alt="Participez">
+				<div class="caption">
+					<h3>Participez</h3>
+					{% if wanted is defined and wanted is not empty %}
+						<p>
+							<span class="badge">{{ nbTotalWanted }}</span> documents n'attendent que vous pour être compilés !
+						</p>
+						<ul class="list-group">
+							{% for docWanted in wanted %}
+								<li class="list-group-item">{{ docWanted.syntaxonCore.syntaxonName }}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 		</div>
