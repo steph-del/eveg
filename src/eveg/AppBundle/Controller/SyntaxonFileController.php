@@ -104,7 +104,7 @@ class SyntaxonFileController extends Controller
 		$request = $this->getRequest();
 
 		// Creates the form...
-    	$form = $this->createForm(new SyntaxonFileType($this->get('security.authorization_checker')), $file);
+    	$form = $this->createForm(new SyntaxonFileType($this->get('security.authorization_checker'), $this->get('eveg_app.possible_diagnosis'), $this->get('request_stack')), $file);
 
         // ... and then hydrates it
         $form->handleRequest($request);

@@ -97,7 +97,7 @@ class SyntaxonHttpLinkController extends Controller
 		$request = $this->getRequest();
 
 		// Creates the form...
-    	$form = $this->createForm(new SyntaxonHttpLinkType($this->get('security.authorization_checker')), $httpLink);
+    	$form = $this->createForm(new SyntaxonHttpLinkType($this->get('security.authorization_checker'), $this->get('eveg_app.possible_diagnosis'), $this->get('request_stack')), $httpLink);
 
         // ... and then hydrates it
         $form->handleRequest($request);
