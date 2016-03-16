@@ -42,13 +42,30 @@ services:
         arguments:          ['@security.authorization_checker']
         tags:
             - {name: form.type }
-
+    
+    ############
+    # Repository
+    ############
     score_repository:
         class:              Doctrine\ORM\EntityRepository
         factory_service:    doctrine.orm.default_entity_manager
         factory_method:     getRepository
         arguments:
             - eveg\AppBundle\Entity\SyntaxonCore
+
+    sfile_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\AppBundle\Entity\SyntaxonFile
+
+    shttplink_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\AppBundle\Entity\SyntaxonHttpLink
 
     eveg_app.get_syntaxon_according_user:
         class:              eveg\AppBundle\Utils\Repository\getSyntaxonAccordingUserRights
@@ -62,11 +79,8 @@ services:
         class:             eveg\AppBundle\Utils\Repository\possibleDiagnosis
         arguments:         ['@score_repository']
 
-    # scRepo service (used within catCode utility class)
-    # Useless !?
-    #eveg_app.scRepo:
-    #    class: eveg\AppBundle\Entity\SyntaxonCoreRepository
-    #    factory_service: doctrine.orm.default_entity_manager
-    #    factory_method: getRepository
-    #    arguments: ['evegAppBundle:SyntaxonCore']
+    evep_app.wanted:
+        class:              eveg\AppBundle\Utils\Wanted\wantedForCompilation
+        arguments:          ['@sfile_repository']
+
 
