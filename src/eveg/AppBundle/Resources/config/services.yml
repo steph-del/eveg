@@ -33,7 +33,7 @@ services:
 
     eveg_app.form.type.addLink:
         class:              eveg\AppBundle\Form\Type\SyntaxonHttpLinkType
-        arguments:          ['@security.authorization_checker']
+        arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis', '@request_stack']
         tags:
             - {name: form.type }
 
