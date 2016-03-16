@@ -300,6 +300,19 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findSynonymsByCatminatCode($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode)
+		   ->andWhere("s.level LIKE 'syn%'")
+		   ;
+
+		return $qb->getQuery()->getResult();
+	}
+
 	public function findSynonymsByCatminatCodePublicData($catminatCode, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
@@ -364,6 +377,17 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		
 		return $qb->getQuery()->getResult();
+	}
+
+	public function findById($id)
+	{
+		$qb = $this->createQueryBuilder('s');
+		$qb->select('s')
+		   ->where('s.id = :id')
+		   ->setParameter('id', $id)
+		   ;
+
+		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
 	public function findByIdPublicData($id, $depFrFilter = null, $ueFilter = null, $exclusive = null)

@@ -27,7 +27,7 @@ services:
 
     eveg_app.form.type.upload:
         class:              eveg\AppBundle\Form\Type\SyntaxonFileType
-        arguments:          ['@security.authorization_checker']
+        arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis']
         tags:
             - {name: form.type }
 
@@ -57,6 +57,10 @@ services:
     eveg_app.get_synonyms_according_user:
         class:              eveg\AppBundle\Utils\Repository\getSynonymsAccordingUserRights
         arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
+
+    eveg_app.possible_diagnosis:
+        class:             eveg\AppBundle\Utils\Repository\possibleDiagnosis
+        arguments:         ['@score_repository']
 
     # scRepo service (used within catCode utility class)
     # Useless !?

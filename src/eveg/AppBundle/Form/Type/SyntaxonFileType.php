@@ -9,21 +9,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use eveg\AppBundle\Entity\SyntaxonCore;
 
 class SyntaxonFileType extends AbstractType
 {
 
     private $securityContext;
+    private $possibleDiagnosisService;
+    //private $syntaxonId;
 
-    public function __construct($securityContext)
+    public function __construct($securityContext, $possibleDiagn)
     {
         $this->securityContext = $securityContext;
+        $this->possibleDiagnosisService = $possibleDiagn;
+        //$this->syntaxonId = $id;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $grantedCircle = $this->securityContext->isGranted('ROLE_CIRCLE');
+        $possibleDiagnosis = $this->possibleDiagnosisService->getPossibleDiagnosis(5188);
 
         $builder->add('fileFile', 'vich_file', array(
             'required'      => true,
@@ -33,6 +39,19 @@ class SyntaxonFileType extends AbstractType
             'attr' => array(
                 'placeholder' => 'Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"')
             ));
+        $builder->add('diagnosisOf', ChoiceType::class, array(
+            'choices' => $possibleDiagnosis,
+            'choices_as_values' => true,
+            'choice_label' => function ($value, $key, $index) {
+                if($value == null) {
+                    return '-';
+                }
+                return $value;
+                // or if you want to translate some key
+                //return 'form.choice.'.$key;
+            }
+        ));
+
         if($grantedCircle) {
             $builder->add('visibility', ChoiceType::class, array(
             'choices' => array(
