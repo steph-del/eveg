@@ -68,10 +68,10 @@ class SyntaxonFileType extends AbstractType
             ));
         }
         
-        $builder->add('license', ChoiceType::class, array(
+        /*$builder->add('license', ChoiceType::class, array(
             'choices' => array(
                 'CC-BY-CA' => 'CC-BY-CA')
-        ));
+        ));*/
 
     }
 
