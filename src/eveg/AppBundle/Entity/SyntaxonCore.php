@@ -30,6 +30,11 @@ class SyntaxonCore
         $this->syntaxonHttpLinks = new ArrayCollection();
     }
 
+    public function __tostring()
+    {
+        return (string) $this->syntaxon;
+    }
+
     /**
      * @var boolean
      *
