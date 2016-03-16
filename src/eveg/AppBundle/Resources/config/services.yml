@@ -27,7 +27,7 @@ services:
 
     eveg_app.form.type.upload:
         class:              eveg\AppBundle\Form\Type\SyntaxonFileType
-        arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis']
+        arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis', '@request_stack']
         tags:
             - {name: form.type }
 

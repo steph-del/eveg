@@ -16,20 +16,21 @@ class SyntaxonFileType extends AbstractType
 
     private $securityContext;
     private $possibleDiagnosisService;
-    //private $syntaxonId;
+    private $requestStack;
 
-    public function __construct($securityContext, $possibleDiagn)
+    public function __construct($securityContext, $possibleDiagn, $requestStack)
     {
         $this->securityContext = $securityContext;
         $this->possibleDiagnosisService = $possibleDiagn;
-        //$this->syntaxonId = $id;
+        $this->requestStack = $requestStack;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $grantedCircle = $this->securityContext->isGranted('ROLE_CIRCLE');
-        $possibleDiagnosis = $this->possibleDiagnosisService->getPossibleDiagnosis(5188);
+        $currentId = $this->requestStack->getCurrentRequest()->get('id');
+        $possibleDiagnosis = $this->possibleDiagnosisService->getPossibleDiagnosis($currentId);
 
         $builder->add('fileFile', 'vich_file', array(
             'required'      => true,
