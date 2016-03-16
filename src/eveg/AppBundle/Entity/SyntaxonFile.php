@@ -40,6 +40,12 @@ class SyntaxonFile
     protected $syntaxonCore;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore", cascade={"persist"})
+     */
+    private $diagnosisOf;
+
+    /**
      * @var \stdClass
      *
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
@@ -410,6 +416,24 @@ class SyntaxonFile
     public function getSyntaxonCore()
     {
         return $this->syntaxonCore;
+    }
+
+    /**
+     * Set diagnosisOf
+     *
+     */
+    public function setDiagnosisOf($diagnosis = null)
+    {
+        $this->diagnosisOf = $diagnosis;
+    }
+
+    /**
+     * Get diagnosisOf
+     *
+     */
+    public function getDiagnosisOf()
+    {
+        return $this->diagnosisOf;
     }
 
     /**
