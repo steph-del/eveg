@@ -10,4 +10,70 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getPublicSpreadsheets($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+			->where('f.type = :spreadsheet')
+			->andWhere('f.visibility = :public')
+			->leftJoin('f.syntaxonCore', 'syntaxonCore')
+			->setParameter('spreadsheet', 'spreadsheet')
+			->setParameter('public', 'public')
+			->addSelect('syntaxonCore')
+			;
+
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getPublicPdfs($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+			->where('f.type = :pdf')
+			->andWhere('f.visibility = :public')
+			->leftJoin('f.syntaxonCore', 'syntaxonCore')
+			->setParameter('pdf', 'pdf')
+			->setParameter('public', 'public')
+			->addSelect('syntaxonCore')
+			;
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getPublicSpreadsheetsWithoutSCoreRelation()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+			->where('f.type = :spreadsheet')
+			->andWhere('f.visibility = :public')
+			->setParameter('spreadsheet', 'spreadsheet')
+			->setParameter('public', 'public')
+			;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getPublicPdfsWithoutSCoreRelation()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+			->where('f.type = :pdf')
+			->andWhere('f.visibility = :public')
+			->setParameter('pdf', 'pdf')
+			->setParameter('public', 'public')
+			;
+
+		return $qb->getQuery()->getResult();
+	}
 }
