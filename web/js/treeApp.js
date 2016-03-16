@@ -77,7 +77,7 @@ function testExpandNode(){
 	  if(status === "ok") {
 	    tree.activateKey("12");
 	  }
-	  console.debug("node [" + node + "]: " + status)
+	  //console.debug("node [" + node + "]: " + status)
 	});
 }
 
