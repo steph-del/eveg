@@ -23,6 +23,7 @@ $(function(){
 		},
 		lazyLoad: function(event, data) {
 	    	var node = data.node;
+
 	    	// Issue an ajax request to load child nodes
 	    	data.result = {
 	        	url: Routing.generate('api_get_syntaxon_node', { id: node.key}, true)
@@ -41,7 +42,15 @@ $(function(){
 	    	var node = data.node;
 
 	    	window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
-	    }
+	    },
+	    icon: function(event, data) {
+	    	level = data.node.data.level;
+			if( data.node.isFolder() ) { 
+				return "../../img/icons/eveg-folder-"+level+".png";	
+			} else {
+				return "../../img/icons/eveg-file-"+level+".png";	
+			}
+		}
 
 	});
 });
@@ -49,7 +58,7 @@ $(function(){
 function getActiveNodeKey(){
 	var tree = $("#divTree").fancytree("getTree");
 	activeNodeKey = tree.getActiveNode().key;
-	alert(activeNodeKey);
+	//alert(activeNodeKey);
 }
 
 function testExpandActiveNode(){

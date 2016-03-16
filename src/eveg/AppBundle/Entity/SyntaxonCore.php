@@ -94,7 +94,7 @@ class SyntaxonCore
      * @ORM\Column(name="level", type="string", length=255)
      *
      * @Expose
-     * @Groups({"searchEngine"})
+     * @Groups({"searchEngine", "baseTree", "nodeTree"})
      * @SerializedName("level")
      */
     private $level;
