@@ -23,6 +23,10 @@ class MenuBuilder extends ContainerAware
 		$menu->addChild('App', array('route' =>'eveg_admin_test', 'label' => 'eveg.menu.app'));
 		
 		$menu->addChild('HowTo', array('route' => 'eveg_app_howto', 'label' => 'eveg.menu.help'));
+
+        $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
+
+        $menu->addChild('Participate', array('route' => 'eveg_app_participate', 'label' => 'eveg.menu.participate'));
  
 		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
  

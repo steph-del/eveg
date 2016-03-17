@@ -6,6 +6,8 @@ eveg:
         app: App
         help: Help
         contact: Contact
+        activity: Activities
+        participate: Participate
         user:
             my_account: My account
             dashboard: Dashboard
