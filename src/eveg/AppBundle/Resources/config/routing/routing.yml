@@ -113,6 +113,14 @@ eveg_repartition_filter:
     requirements:
         _method: POST
 
+eveg_download_pdf:
+    locales: { fr: "/app/{id}/telecharger", en: "/en/app/{id}/download" }
+    defaults: { _controller : evegAppBundle:Default:downloadPdf }
+
+eveg_show_simple_view:
+    locales: { fr: "/app/{id}/version-imprimable", en: "/en/app/{id}/printable-view" }
+    defaults: { _controller : evegAppBundle:Default:simpleView }
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
