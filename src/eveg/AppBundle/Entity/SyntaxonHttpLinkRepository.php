@@ -10,4 +10,23 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonHttpLinkRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getPublicHttpLinksOrderByDatetime($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('h');
+
+		$qb->select('h')
+			->andWhere('h.visibility = :public')
+			->orderBy('h.uploadedAt', 'DESC')
+			->leftJoin('h.user', 'user')
+			->leftJoin('h.syntaxonCore', 'score')
+			->setParameter('public', 'public')
+			->addSelect('user')
+			->addSelect('score')
+			;
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }

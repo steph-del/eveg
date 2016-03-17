@@ -10,4 +10,23 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonPhotoRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getPublicPhotosOrderByDatetime($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p')
+			->andWhere('p.visibility = :public')
+			->orderBy('p.uploadedAt', 'DESC')
+			->leftJoin('p.user', 'user')
+			->leftJoin('p.syntaxonCore', 'score')
+			->setParameter('public', 'public')
+			->addSelect('user')
+			->addSelect('score')
+			;
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }

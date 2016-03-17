@@ -76,4 +76,24 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getPublicDocumentsOrderByDatetime($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+			->where('f.visibility = :public')
+			->orderBy('f.uploadedAt', 'DESC')
+			->leftJoin('f.user', 'user')
+			->leftJoin('f.syntaxonCore', 'score')
+			->setParameter('public', 'public')
+			->addSelect('user')
+			->addSelect('score')
+			;
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
