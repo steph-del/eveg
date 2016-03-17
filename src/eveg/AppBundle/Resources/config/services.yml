@@ -67,6 +67,13 @@ services:
         arguments:
             - eveg\AppBundle\Entity\SyntaxonHttpLink
 
+    sphoto_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\AppBundle\Entity\SyntaxonPhoto
+
     eveg_app.get_syntaxon_according_user:
         class:              eveg\AppBundle\Utils\Repository\getSyntaxonAccordingUserRights
         arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
@@ -80,7 +87,10 @@ services:
         arguments:         ['@score_repository']
 
     evep_app.wanted:
-        class:              eveg\AppBundle\Utils\Wanted\wantedForCompilation
+        class:              eveg\AppBundle\Utils\Services\wantedForCompilation
         arguments:          ['@sfile_repository']
 
+    eveg_app.whatsup:
+        class:              eveg\AppBundle\Utils\Services\whatsUp
+        arguments:          ['@sfile_repository', '@shttplink_repository', '@sphoto_repository']
 
