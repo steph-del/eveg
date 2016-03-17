@@ -1,7 +1,7 @@
 <?php
-// src/eveg/appBundle/Utils/Wanted/wantedForCompilation.php
+// src/eveg/appBundle/Utils/Services/wantedForCompilation.php
 
-namespace eveg\AppBundle\Utils\Wanted;
+namespace eveg\AppBundle\Utils\Services;
 
 /**
  * Utility to recover pdf files to be compiled
