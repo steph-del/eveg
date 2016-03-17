@@ -12,6 +12,10 @@ eveg_app_homepage:
     locales:  { fr: "/accueil", en: "/en/homepage" }
     defaults: { _controller: evegAppBundle:Default:index }
 
+eveg_app_activity:
+    locales:  { fr: "/activités", en: "/en/activities" }
+    defaults: { _controller: evegAppBundle:Default:activity }
+
 eveg_app_howto:
     locales:  { fr: "/utiliser", en: "/en/howto" }
     defaults: { _controller: evegAppBundle:Default:howto }

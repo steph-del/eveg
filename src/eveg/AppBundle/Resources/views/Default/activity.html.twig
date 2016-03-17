@@ -1,0 +1,61 @@
+{# src/eveg/AppBundle/Resources/views/Default/activity.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	Activités | {{ parent() }} : {{ 'eveg.web_title'|trans }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row">
+		<div class="col-md-8">
+			<h2>Dernières activités</h2>
+			{% if newDocuments is defined and newDocuments is not empty %}
+				<ul class="list-group">
+					{% for document in newDocuments %}
+						<li class="list-group-item">
+							{% if document.type == 'spreadsheet' %}
+								<i class="fa fa-file-excel-o"></i>
+							{% elseif document.type == 'pdf' %}
+								<i class="fa fa-file-pdf-o"></i>
+							{% elseif document.type == 'photo' %}
+								<i class="fa fa-camera"></i>
+							{% elseif document.type == 'httplink' %}
+								<i class="fa fa-external-link"></i>
+							{% endif %}
+							le {{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
+							{% if document.type == 'spreadsheet' %}
+								une feuille de calcul
+							{% elseif document.type == 'pdf' %}
+								un document pdf
+							{% elseif document.type == 'photo' %}
+								une photo
+							{% elseif document.type == 'httplink' %}
+								un lien
+							{% endif %}
+							pour : {{ document.syntaxon }}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<div class="col-md-4">
+			<h2>Participez !</h2>
+			{% if wanted is defined and wanted is not empty %}
+				<p>
+					<span class="badge">{{ nbTotalWanted }}</span> documents n'attendent que vous pour être compilés !
+				</p>
+				<ul class="list-group">
+					{% for docWanted in wanted %}
+						<li class="list-group-item">{{ docWanted.syntaxonCore.syntaxonName }}</li>
+					{% endfor %}
+					<li class="list-group-item text-center"><a href="#">Comment participer ?</a></li>
+				</ul>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

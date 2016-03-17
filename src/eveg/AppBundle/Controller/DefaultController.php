@@ -31,6 +31,23 @@ class DefaultController extends Controller
 		));
 	}
 
+	public function activityAction()
+	{
+
+		$wanted = $this->get('evep_app.wanted');
+		$pdfsAlone = $wanted->getList($limit = null);
+		$nbPdfsAlone = $wanted->howMany();
+
+		$whatsUp = $this->get('eveg_app.whatsup');
+		$newDocuments = $whatsUp->tellMeWhatsNew($limitResults = 50);
+
+		return $this->render('evegAppBundle:Default:activity.html.twig', array(
+			'wanted' => $pdfsAlone,
+			'nbTotalWanted' => $nbPdfsAlone,
+			'newDocuments' => $newDocuments
+		));
+	}
+
 	public function howtoAction()
 	{
 		return $this->render('evegAppBundle:Default:howto.html.twig');
