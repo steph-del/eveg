@@ -9,6 +9,7 @@ use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -70,6 +71,71 @@ class DefaultController extends Controller
 	{
 		
 		return $this->render('evegAppBundle:Default:contact.html.twig');
+	}
+
+	public function downloadPdfAction($id)
+	{
+		
+		$pageUrl = $this->generateUrl('eveg_show_simple_view', array('id' => $id), true); // use absolute path!
+
+		return new Response(
+		    $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+		    200,
+		    array(
+		        'Content-Type'          => 'application/pdf',
+		        'Content-Disposition'   => 'attachment; filename="file.pdf"'
+		    )
+		);
+
+	}
+
+	public function simpleViewAction($id)
+	{
+		// Get repartition filters
+		$repFilters = $this->get('eveg_app.repFilters');
+    	$depFrFilter = $repFilters->getDepFrFilterSession($json = false);
+    	$ueFilter = $repFilters->getUeFilterSession($json = false);
+
+    	// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$syntaxon = $findGoodRepo->getSyntaxon($id, $depFrFilter, $ueFilter);
+
+		// Do we found a syntaxon ? (possible null because of the repartition filters or the $id doesn't exists)
+		if($syntaxon == null){
+			// Not found exception
+			Throw new HttpException(404, "Sorry, we can't find the syntaxon you're looking for ! Please check your repartition filters. If this problem persists, contact us.");
+		}
+
+		// Getting catCode service
+		$catCode = $this->get('eveg_app.catCode');
+		$allParents = $catCode->getAllParents($syntaxon->getCatminatCode());
+
+		// Retrieve synonyms according to user's rights
+		$findGoodRepoSynonyms = $this->get('eveg_app.get_synonyms_according_user');
+		$synonyms = $findGoodRepoSynonyms->getSynonyms($syntaxon->getCatminatCode(), $depFrFilter, $ueFilter);
+
+		// repartitionDepFr to Json
+		$serializer = $this->container->get('jms_serializer');
+		$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
+		$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
+
+		// baseflor
+		$species = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+    					->findByCatminatCode($syntaxon->getCatminatCode());
+    	$ecologicalValuesAvg = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+    					->findEcologicalAverageByCatminatCode($syntaxon->getCatminatCode());
+
+    	return $this->render('evegAppBundle:Default:exportPdf.html.twig', array(
+			'id' => $id,
+			'syntaxon' => $syntaxon,
+			'synonyms' => $synonyms,
+			'allParents' => $allParents,
+			'repDepFrJson' => $repDepFrJson,
+			'repUeJson' => $repUeJson,
+			'species' => $species,
+			'ecologicalValuesAvg' => $ecologicalValuesAvg
+		));
+
 	}
 
 
@@ -191,7 +257,7 @@ class DefaultController extends Controller
 		
 	}
 
-	public function panelOptionsAction($floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
+	public function panelOptionsAction($syntaxonId = null, $floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
 	{
 		// Repartition filters
         $repFilters = $this->get('eveg_app.repFilters');
@@ -199,6 +265,7 @@ class DefaultController extends Controller
         $ueFilterJson = $repFilters->getUeFilterSession($json = true);
 
         return $this->render('evegAppBundle:Default:Fragments/panelOptions.html.twig', array(
+        	'syntaxonId' => $syntaxonId,
         	'floatLeft' => $floatLeft,
         	'repDepFrJson' => $depFrFilterJson,
 			'repUeJson' => $ueFilterJson,
