@@ -58,7 +58,7 @@
 							{% for docWanted in wanted %}
 								<li class="list-group-item">{{ docWanted.syntaxonCore.syntaxonName }}</li>
 							{% endfor %}
-							<li class="list-group-item text-center"><a href="#">Comment participer ?</a></li>
+							<li class="list-group-item text-center"><a href="{{ path('eveg_app_participate') }}">Comment participer ?</a></li>
 						</ul>
 					{% endif %}
 				</div>

@@ -48,6 +48,19 @@ class DefaultController extends Controller
 		));
 	}
 
+	public function participateAction()
+	{
+
+		$wanted = $this->get('evep_app.wanted');
+		$pdfsAlone = $wanted->getList($limit = null);
+		$nbPdfsAlone = $wanted->howMany();
+
+		return $this->render('evegAppBundle:Default:participate.html.twig', array(
+			'wanted' => $pdfsAlone,
+			'nbTotalWanted' => $nbPdfsAlone
+		));
+	}
+
 	public function howtoAction()
 	{
 		return $this->render('evegAppBundle:Default:howto.html.twig');
