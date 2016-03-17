@@ -209,3 +209,10 @@ easy_admin:
                 fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor']
             edit:
                 fields: ['id', 'catminatCode', 'level', 'syntaxonName', 'syntaxonAuthor', 'repartitionDepFr']
+
+# KnpSnappy
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf
+        options:    []
