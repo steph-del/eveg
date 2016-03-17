@@ -31,6 +31,20 @@ $colorViewHeaderAuthor: inherit;
     margin: 0 auto;
 }
 
+/*
+ * Links
+ *******/
+ a.no-style{
+ 	color: black;
+
+ 	:hover{
+ 		color:black;
+ 	}
+
+ 	:visited{
+ 		color: black;
+ 	}
+ }
 
 /*
  * Jumbotron
