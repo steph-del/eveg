@@ -63,6 +63,42 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-md-6">
+			<div class="thumbnail">
+				<div class="caption">
+					<h3>Derniers ajouts</h3>
+					{% if newDocuments is defined and newDocuments is not empty %}
+						<ul class="list-group">
+							{% for document in newDocuments %}
+								<li class="list-group-item">
+									{% if document.type == 'spreadsheet' %}
+										<i class="fa fa-file-excel-o"></i>
+									{% elseif document.type == 'pdf' %}
+										<i class="fa fa-file-pdf-o"></i>
+									{% elseif document.type == 'photo' %}
+										<i class="fa fa-camera"></i>
+									{% elseif document.type == 'httplink' %}
+										<i class="fa fa-external-link"></i>
+									{% endif %}
+									le {{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
+									{% if document.type == 'spreadsheet' %}
+										une feuille de calcul
+									{% elseif document.type == 'pdf' %}
+										un document pdf
+									{% elseif document.type == 'photo' %}
+										une photo
+									{% elseif document.type == 'httplink' %}
+										un lien
+									{% endif %}
+									pour : {{ document.syntaxon }}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
 	</div> <!-- ./row -->
 
 {% endblock %}
