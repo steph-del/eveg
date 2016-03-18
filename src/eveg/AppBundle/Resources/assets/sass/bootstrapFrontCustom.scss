@@ -16,6 +16,13 @@ $BgColorVH-SUBASS: #FFFAAF;
 
 $colorViewHeaderAuthor: inherit;
 
+$defaultShadowColor: rgba(101, 101, 101, 0.5);
+$highlightRow: rgba(49, 112, 143, 0.08);
+$thumbBlueColor: #5FA2DC;
+$thumbGreenColor: #90BF5A;
+$thumbRedColor: #F18D89;
+$thumbYellowColor: #FDF7A2;
+
 /*
  * Navbar
  ********/
@@ -50,7 +57,7 @@ $colorViewHeaderAuthor: inherit;
  * Jumbotron
  ***********/
 .row.jumbotron {
-	height: 200px;
+	height: 150px;
 
 	background: url("/../eveg/web/img/patterns/saxgra_bg.jpg") no-repeat center center;
 	-webkit-background-size: cover;
@@ -68,6 +75,58 @@ $colorViewHeaderAuthor: inherit;
 	font-size: 1.5em;
 
 }
+
+/*
+ * Thumbnail
+ ***********/
+ .thumbnail{
+ 	box-shadow: 0px 0px 4px 0px $defaultShadowColor;
+ 	border-radius : 0;
+ 	border: none;
+
+ 	border-top: solid 3px #FFFFFF;
+
+ 	&.thumb-blue{
+ 		border-top-color: $thumbBlueColor;
+ 	}
+ 	&.thumb-red{
+ 		border-top-color: $thumbRedColor;
+ 	}
+ 	&.thumb-green{
+ 		border-top-color: $thumbGreenColor; 
+ 	}
+ 	&.thumb-yellow{
+ 		border-top-color: $thumbYellowColor; 
+ 	}
+
+ 	.caption{
+ 		padding: 0;
+ 		h3{
+ 			margin-top: 0;
+ 			text-align: center;
+ 		}
+ 		ul{
+ 			li{
+ 				border: none;
+ 				.ellipsis{
+ 					overflow: hidden;
+					-o-text-overflow: ellipsis;
+					text-overflow: ellipsis;
+ 				}
+ 			}
+ 			.list-group-item:first-child{
+ 				border-radius: 0;
+ 			}
+ 			.list-highlight{
+ 				background-color: $highlightRow;
+ 			}
+ 		}
+ 	}
+ }
+
+ .col-no-padding{
+ 	padding:0;
+ }
 
 /*
  * Syntaxon breadcrumb
