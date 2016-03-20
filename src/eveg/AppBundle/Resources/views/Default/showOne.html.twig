@@ -137,6 +137,7 @@
 								<div id="mapDepFr"></div>
 								<div id="mapDepFrHoverLegend"></div>
 								<div id="mapDepFrToggleLegend">Légende</div>
+								<div class="pull-right"><a id="download-mapdepfr-image" href="" class="no-style" data-tooltip="tooltip" title="Télécharger la carte" data-placement="left" download><i class="fa fa-download"></i></a></div>
 								<div id="mapDepFrLegend"></div>
 							</div>
 						</div>
@@ -147,6 +148,7 @@
 								<div id="mapEurope"></div>
 								<div id="mapEuropeHoverLegend"></div>
 								<div id="mapEuropeToggleLegend">Légende</div>
+								<div class="pull-right"><a id="download-mapeurope-image" href="" class="no-style" data-tooltip="tooltip" title="Télécharger la carte" data-placement="left" download><i class="fa fa-download"></i></a></div>
 								<div id="mapEuropeLegend"></div>
 							</div>
 						</div>
@@ -354,5 +356,68 @@
 		limitResults(10, ".speciesShowAll", ".speciesBox", ".panelSpeciesHeader");
 		
 	</script>
+
+	<!-- Images cache maps -->
+	<canvas id="canvasMapDepFr" style="display:none;"></canvas>
+	<canvas id="canvasMapEu" style="display:none;"></canvas>
+	<script>
+		function createCacheMapPng(domIdMap, canvasIdMap, imgCacheMultiplicator, mapType) {
+
+			svgMap = $(domIdMap).html();
+			canvg(document.getElementById(canvasIdMap), svgMap);
+			
+			imgMapDepFr = Canvas2Image.convertToPNG(document.getElementById(canvasIdMap), (280*imgCacheMultiplicator), (300*imgCacheMultiplicator));
+
+			$.ajax({
+				url: Routing.generate('eveg_save_repartition_map', {mapType}, true),
+				data: {
+					'file': imgMapDepFr.src,
+					'id': "{{ syntaxon.id }}",
+					'name': "{{ syntaxon.syntaxonName }}"
+				},
+				error : function(){
+					console.log('An error has occurred while saving the map cached image.');
+				},
+				success: function(data) {
+					console.log(mapType+' cache image for id '+data+' was generated.');
+				},
+				type: 'POST'
+			});
+		}
+
+		// check if files already exists
+		// if not, create it
+		$.ajax({
+			url: Routing.generate('eveg_image_cache_map_exists', true),
+			data: {
+				'id': {{ syntaxon.id }},
+				'mapType': 'fr'
+			},
+			error: function(){
+				createCacheMapPng('#mapDepFr', 'canvasMapDepFr', 1.5, 'fr');
+				$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/{{ syntaxon.id }}-fr.png');
+			},
+			success: function(){
+				$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/{{ syntaxon.id }}-fr.png');
+			},
+			type: 'POST'
+		});
+		$.ajax({
+			url: Routing.generate('eveg_image_cache_map_exists', true),
+			data: {
+				'id': {{ syntaxon.id }},
+				'mapType': 'eu'
+			},
+			error: function(){
+				createCacheMapPng('#mapEurope', 'canvasMapEu', 1.5, 'eu');
+				$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/{{ syntaxon.id }}-eu.png');
+			},
+			success: function(){
+				$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/{{ syntaxon.id }}-eu.png');
+			},
+			type: 'POST'
+		});
+	</script>
+	
 
 {% endblock %}
