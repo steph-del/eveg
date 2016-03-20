@@ -121,6 +121,18 @@ eveg_show_simple_view:
     locales: { fr: "/app/{id}/version-imprimable", en: "/en/app/{id}/printable-view" }
     defaults: { _controller : evegAppBundle:Default:simpleView }
 
+eveg_save_repartition_map:
+    path: /app/repartition/save/{mapType}
+    defaults: { _controller: evegAppBundle:RepartitionImageCache:saveRepartitionMap }
+    requirements:
+        _method: POST
+
+eveg_image_cache_map_exists:
+    path: /app/repartition/image/exists
+    defaults: { _controller: evegAppBundle:RepartitionImageCache:imageExists }
+    requirements:
+        _method: POST
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
