@@ -45,9 +45,9 @@
 
 		{# PDF EXPORT #}
 		{% if (showPdfExport == true) and (syntaxonId is defined) and (syntaxonId is not empty) %}
-			<div class="icon-last" data-tooltip="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf.">
-				<a class="no-style" href="{{ path('eveg_download_pdf', {'id' : syntaxonId}) }}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
-			</div>
+			<a class="no-style" href="{{ path('eveg_download_pdf', {'id' : syntaxonId}) }}">
+				<div class="icon-last" data-tooltip="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf."><span class="glyphicon glyphicon-file" aria-hidden="true" rel="nofollow"></span></div>
+			</a>
 		{% endif %}
 	</div>
 </div>

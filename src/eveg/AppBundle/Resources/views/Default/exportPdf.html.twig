@@ -63,10 +63,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">France métropolitaine</div>
 					<div class="panel-body">
-						<div id="mapDepFr"></div>
-						<div id="mapDepFrHoverLegend"></div>
-						<div id="mapDepFrToggleLegend"></div>
-						<div id="mapDepFrLegend"></div>
+						<img src="../../../img/cache/maps/fr/{{ syntaxon.id }}-fr.png" style="width:100%;"></img>
 					</div>
 				</div>
 			</div>
@@ -75,10 +72,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Europe</div>
 					<div class="panel-body">
-						<div id="mapEurope"></div>
-						<div id="mapEuropeHoverLegend"></div>
-						<div id="mapEuropeToggleLegend"></div>
-						<div id="mapEuropeLegend"></div>
+						<img src="../../../img/cache/maps/eu/{{ syntaxon.id }}-eu.png" style="width:100%;"></img>
 					</div>
 				</div>
 			</div>
@@ -100,7 +94,7 @@
 	{% endjavascripts %}-->
 
 	{# France departments map #}
-	{% javascripts 
+	{#{% javascripts 
 		'@evegAppBundle/Resources/public/js/maps/*'
 		'js/maps/*' %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
@@ -117,10 +111,10 @@
 		$("#mapDepFrToggleLegend").click(function(){
 			$("#mapDepFrLegend").toggle();
 		});
-	</script>
+	</script>#}
 
 	{# EU coutries map #}
-	<script>
+	{#<script>
 		var repUE = '{{ repUeJson | raw }}';
 		createMapEurope(document.getElementById('mapEurope'),
 						document.getElementById('mapEuropeHoverLegend'),
@@ -131,7 +125,7 @@
 		$("#mapEuropeToggleLegend").click(function(){
 			$("#mapEuropeLegend").toggle();
 		});
-	</script>
+	</script>#}
 
 	<script>
 		$('.synonymsShowAll').hide();
