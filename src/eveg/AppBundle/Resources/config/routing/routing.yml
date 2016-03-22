@@ -133,6 +133,13 @@ eveg_image_cache_map_exists:
     requirements:
         _method: POST
 
+# Feedbacks
+eveg_feedback:
+    path: /feedback
+    defaults: { _controller: evegAppBundle:Feedback:feedback }
+    requirements:
+        _method: POST
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
