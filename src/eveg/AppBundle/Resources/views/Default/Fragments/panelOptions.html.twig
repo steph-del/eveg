@@ -1,56 +1,61 @@
-<div class="panel panel-default panelOptionsShowOne {% if floatLeft is defined and floatLeft == true %}floatLeft{% endif %}">
-	<div class="panel-body">
+<!--<div class="panel panel-default panelOptionsShowOne {% if floatLeft is defined and floatLeft == true %}floatLeft{% endif %}">
+	<div class="panel-body">-->
 		{# REPARTITION FILTER #}
-		{% if showFilters == true %}
-			{% set depFrFilterActive = app.session.get("depFrFilter") %}
-			{% set ueFilterActive = app.session.get("ueFilter") %}
-			{% if (depFrFilterActive is defined) and (
-					depFrFilterActive is not empty
-					and (depFrFilterActive != "[]")
-					and (depFrFilterActive != "")
-					and (depFrFilterActive != null)
-			) %}
-				{% set depFrFilterIsActive = 'active' %}
-				{% set filterTooltipTitle = "Filtrer eVeg (actif)" %}
-			{% elseif (ueFilterActive is defined) and (
-					ueFilterActive is not empty
-					and (ueFilterActive != "[]")
-					and (ueFilterActive != "")
-					and (ueFilterActive != null)
-			) %}
-				{% set ueFilterIsActive = 'active' %}
-				{% set filterTooltipTitle = "Filtrer eVeg (actif)" %}
-			{% else %}
-				{% set depFrFilterIsActive = '' %}
-				{% set filterTooltipTitle = "Filtrer eVeg" %}
-			{% endif %}
-			<div class="icon-first {% if depFrFilterIsActive is defined %}{{ depFrFilterIsActive }}{% endif %} {% if ueFilterIsActive is defined %}{{ ueFilterIsActive }}{% endif %}" data-toggle="modal" data-tooltip="tooltip" data-placement="bottom" data-target="#modalDepFilter" title="{{ filterTooltipTitle }}">
-				<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-			</div>
+<div class="options_panel">
+	{% if showFilters == true %}
+		{% set depFrFilterActive = app.session.get("depFrFilter") %}
+		{% set ueFilterActive = app.session.get("ueFilter") %}
+		{% if (depFrFilterActive is defined) and (
+				depFrFilterActive is not empty
+				and (depFrFilterActive != "[]")
+				and (depFrFilterActive != "")
+				and (depFrFilterActive != null)
+		) %}
+			{% set depFrFilterIsActive = 'active' %}
+			{% set filterTooltipTitle = "Filtrer eVeg (actif)" %}
+		{% elseif (ueFilterActive is defined) and (
+				ueFilterActive is not empty
+				and (ueFilterActive != "[]")
+				and (ueFilterActive != "")
+				and (ueFilterActive != null)
+		) %}
+			{% set ueFilterIsActive = 'active' %}
+			{% set filterTooltipTitle = "Filtrer eVeg (actif)" %}
+		{% else %}
+			{% set depFrFilterIsActive = '' %}
+			{% set filterTooltipTitle = "Filtrer eVeg" %}
 		{% endif %}
+		{% if syntaxonLevel is not empty %} {% set level = syntaxonLevel %} {% else %} {% set level = 'NONE' %} {% endif %}
+		<div class="options_panel_icon {{ level }} {% if depFrFilterIsActive is defined %}{{ depFrFilterIsActive }}{% endif %} {% if ueFilterIsActive is defined %}{{ ueFilterIsActive }}{% endif %}" data-toggle="modal" data-tooltip="tooltip" data-placement="bottom" data-target="#modalDepFilter" title="{{ filterTooltipTitle }}">
+			<i class="fa fa-filter"></i>
+		</div>
+	{% endif %}
 
-		{# FEEDBACK #}
-		{% if showFeedback == true %}
-			<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche." data-toggle="modal" data-target="#modalFeedbackSyntaxon">
-				<i class="fa fa-comment"></i>
-			</div>
-		{% endif %}
+	{# FEEDBACK #}
+	{% if showFeedback == true %}
+		<div class="options_panel_icon {{ level }}" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche." data-toggle="modal" data-target="#modalFeedbackSyntaxon">
+			<i class="fa fa-comment"></i>
+		</div>
+	{% endif %}
 
-		{# COMPARE #}
-		{% if showCompare == true %}
-			<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Comparer avec un autre syntaxon.">
-				<span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-			</div>
-		{% endif %}
+	{# COMPARE #}
+	{% if showCompare == true %}
+		<div class="options_panel_icon {{ level }}" data-tooltip="tooltip" data-placement="bottom" title="Comparer avec un autre syntaxon.">
+			<i class="fa fa-files-o"></i>
+		</div>
+	{% endif %}
 
-		{# PDF EXPORT #}
-		{% if (showPdfExport == true) and (syntaxonId is defined) and (syntaxonId is not empty) %}
-			<a class="no-style" href="{{ path('eveg_download_pdf', {'id' : syntaxonId}) }}">
-				<div class="icon-last" data-tooltip="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf."><span class="glyphicon glyphicon-file" aria-hidden="true" rel="nofollow"></span></div>
-			</a>
-		{% endif %}
-	</div>
+	{# PDF EXPORT #}
+	{% if (showPdfExport == true) and (syntaxonId is defined) and (syntaxonId is not empty) %}
+		<a class="options_panel_icon {{ level }} no-style" href="{{ path('eveg_download_pdf', {'id' : syntaxonId}) }}" rel="nofollow">
+			<div class="icon-last" data-tooltip="tooltip" data-placement="bottom" title="Télécharger la fiche en Pdf.">
+				<i class="fa fa-file-pdf-o"></i>
+			</div>
+		</a>
+	{% endif %}
 </div>
+<!--	</div>
+</div>-->
 
 <!-- MODALS -->
 <!-- Department filter modal view -->

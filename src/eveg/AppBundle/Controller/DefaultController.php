@@ -259,7 +259,7 @@ class DefaultController extends Controller
 		
 	}
 
-	public function panelOptionsAction($syntaxonId = null, $syntaxonName = null, $about, $floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
+	public function panelOptionsAction($syntaxonId = null, $syntaxonName = null, $syntaxonLevel = null, $about, $floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
 	{
 		// Repartition filters
         $repFilters = $this->get('eveg_app.repFilters');
@@ -274,6 +274,7 @@ class DefaultController extends Controller
 
         return $this->render('evegAppBundle:Default:Fragments/panelOptions.html.twig', array(
         	'syntaxonId' => $syntaxonId,
+        	'syntaxonLevel' => $syntaxonLevel,
         	'formFeedbackSyntaxon' => $formFeedbackSyntaxon,
         	'floatLeft' => $floatLeft,
         	'repDepFrJson' => $depFrFilterJson,

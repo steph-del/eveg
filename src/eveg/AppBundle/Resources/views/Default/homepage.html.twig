@@ -18,16 +18,16 @@
 				{% include('evegAppBundle:Default:/Fragments/searchBar.html.twig') %}
 			</div>
 		</div>
+		{# panelOptions#}
+		{{ render(controller("evegAppBundle:Default:panelOptions", {
+			'about': 'general',
+			'floatLeft': true,
+			'showFilters': true,
+			'showFeedback': true,
+			'showCompare': false,
+			'showPdfExport': false
+		})) }}
 	</div>
-	{# panelOptions#}
-	{{ render(controller("evegAppBundle:Default:panelOptions", {
-		'about': 'general',
-		'floatLeft': true,
-		'showFilters': true,
-		'showFeedback': true,
-		'showCompare': false,
-		'showPdfExport': false
-	})) }}
 
 	<div class="row">
 		<div class="header col-md-6 col-md-offset-2">

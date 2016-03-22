@@ -6,6 +6,8 @@
 .navbar {
 	border-radius: 0;
 	margin-bottom: 0;
+	background-color: transparent;
+	border: none;
 }
 
 
@@ -19,14 +21,14 @@
  * Links
  *******/
  a.no-style{
- 	color: black;
+ 	color: inherit;
 
  	:hover{
- 		color:black;
+ 		color:inherit;
  	}
 
  	:visited{
- 		color: black;
+ 		color: inherit;
  	}
  }
 
@@ -177,15 +179,19 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
-	margin-top: 10px;
+	margin-top: 0px;
+}
+
+#treeView {
+	padding-left: 0;
 }
 
 #cardView {
 	background-color: $BgColorShowOne;
-	-moz-box-shadow: 0px 0px 10px 0px #656565;
-	-webkit-box-shadow: 0px 0px 10px 0px #656565;
-	-o-box-shadow: 0px 0px 10px 0px #656565;
-	box-shadow: 0px 0px 10px 0px #656565;
+	-moz-box-shadow: 0px 0px 5px 0px #656565;
+	-webkit-box-shadow: 0px 0px 5px 0px #656565;
+	-o-box-shadow: 0px 0px 5px 0px #656565;
+	box-shadow: 0px 0px 5px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=10);
 }
 
@@ -322,7 +328,7 @@ span.viewHeaderAuthor {
  	display: flex;
  	justify-content: center;
  }
- @mixin iconBase() {
+ /*@mixin iconBase() {
  	font-size: 1.2em;
  	text-align: center;
  	padding-top: 5px;
@@ -359,6 +365,75 @@ span.viewHeaderAuthor {
 			@include iconBase();
 			border: none;
 		}
+	}
+}*/
+.cardHeader {
+	display: flex;
+}
+.cardHeaderTitle {
+	flex: 100;
+}
+.cardHeaderOptions {
+	margin: auto;
+}
+.options_panel {
+	display: flex;
+}
+
+.options_panel_icon {
+	margin: auto;
+	margin-left: 6px;
+	margin-right: 6px;
+	padding: 3px;
+	padding-left: 4px;
+	padding-right: 4px;
+	font-size: 1.4em;
+	text-align: center;
+	cursor: pointer;
+
+	&.NONE {
+		color: #FFFFFF;
+		text-shadow: 0px 0px 5px rgb(255, 255, 255);
+		font-size: 1.8em;
+		&:hover {
+			text-shadow: 0px 0px 15px rgb(255, 255, 255);
+		}
+	}
+
+	&.HAB {
+		color: darken($BgColorVH-HAB, 20%);
+		&:hover {
+			color: darken($BgColorVH-HAB, 30%);
+		}
+	}
+	&.CLA, &.SUBCLA {
+		color: darken($BgColorVH-CLA, 20%);
+		&:hover {
+			color: darken($BgColorVH-CLA, 30%);
+		}
+	}
+	&.ORD, &.SUBORD {
+		color: darken($BgColorVH-ORD, 20%);
+		&:hover {
+			color: darken($BgColorVH-ORD, 30%);
+		}
+	}
+	&.ALL, &.SUBALL {
+		color: darken($BgColorVH-ALL, 20%);
+		&:hover {
+			color: darken($BgColorVH-ALL, 30%);
+		}
+	}
+	&.ASS, &.SUBASS {
+		color: darken($BgColorVH-ASS, 40%);
+		&:hover {
+			color: darken($BgColorVH-ASS, 50%);
+		}
+	}
+
+	&.active {
+		font-size: 2em;
+		text-shadow: 0px 0px 15px rgb(255, 255, 255);
 	}
 }
 
