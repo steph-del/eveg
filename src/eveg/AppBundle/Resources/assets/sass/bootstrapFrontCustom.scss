@@ -1,27 +1,4 @@
-/*
- * Colors
- ********/
-$SearchBoxBorderColor: rgba(0, 0, 0, 0.3);
-$BgColorShowOne: rgb(255, 255, 255);
-$BgColorVH-HAB: grey;
-$BgColorVH-CLA: #FFAAA7;
-$BgColorVH-SUBCLA: #FFAAA7;
-$BgColorVH-ORD: #85BCED;
-$BgColorVH-SUBORD: #85BCED;
-$BgColorVH-ALL: #B5D98C;
-$BgColorVH-SUBALL: #B5D98C;
-$BgColorVH-ASSGR: #B5D98C;
-$BgColorVH-ASS: #FFFAAF;
-$BgColorVH-SUBASS: #FFFAAF;
-
-$colorViewHeaderAuthor: inherit;
-
-$defaultShadowColor: rgba(101, 101, 101, 0.5);
-$highlightRow: rgba(49, 112, 143, 0.08);
-$thumbBlueColor: #5FA2DC;
-$thumbGreenColor: #90BF5A;
-$thumbRedColor: #F18D89;
-$thumbYellowColor: #FDF7A2;
+@import 'eveg-colors';
 
 /*
  * Navbar
