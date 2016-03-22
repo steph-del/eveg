@@ -1,0 +1,35 @@
+feedback($('#ajaxFormSyntaxonFeedback'),
+		 $('#feedback-spin'), 
+		 $('#feedback-submit'),
+		 $('#feedback-submit-text'),
+		 $('#feedbackSyntaxon_email'),
+		 $('#feedbackSyntaxon_about'),
+		 $('#feedbackSyntaxon_syntaxon'),
+		 $('#feedbackSyntaxon_type'),
+		 $('#feedbackSyntaxon_message'),
+		 $('#ajaxFeedbackResponse')
+		 );
+
+feedback($('#ajaxFormMapDepFrFeedback'),
+		 $('#feedback-mapdepfr-spin'), 
+		 $('#feedback-mapdepfr-submit'),
+		 $('#feedback-mapdepfr-submit-text'),
+		 $('#feedbackMapDepFr_email'),
+		 $('#feedbackMapDepFr_about'),
+		 $('#feedbackMapDepFr_syntaxon'),
+		 $('#feedbackMapDepFr_type'),
+		 $('#feedbackMapDepFr_message'),
+		 $('#ajaxFeedbackMapDepFrResponse')
+		 );
+
+feedback($('#ajaxFormMapEuropeFeedback'),
+		 $('#feedback-mapeurope-spin'), 
+		 $('#feedback-mapeurope-submit'),
+		 $('#feedback-mapeurope-submit-text'),
+		 $('#feedbackMapEurope_email'),
+		 $('#feedbackMapEurope_about'),
+		 $('#feedbackMapEurope_syntaxon'),
+		 $('#feedbackMapEurope_type'),
+		 $('#feedbackMapEurope_message'),
+		 $('#ajaxFeedbackMapEuropeResponse')
+		 );

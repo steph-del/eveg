@@ -145,6 +145,7 @@ fos_js_routing:
         - "eveg_admin_catCode"
         - "eveg_save_repartition_map"
         - "eveg_image_cache_map_exists"
+        - "eveg_feedback"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~
