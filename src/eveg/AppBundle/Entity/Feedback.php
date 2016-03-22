@@ -26,7 +26,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="about", type="string", length=255)
-     * @Assert\Choice(choices = {"other", "syntaxon", "depFrRepartition", "europeRepartition"})
+     * @Assert\Choice(choices = {"general", "syntaxon", "mapDepFr", "mapEurope"})
      */
     private $about;
 
@@ -34,14 +34,14 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\Choice(choices = {"data", "interface"})
+     * @Assert\Choice(choices = {"data", "interface", "other"})
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="syntaxon", type="string", length=512)
+     * @ORM\Column(name="syntaxon", type="string", length=512, nullable=true)
      */
     private $syntaxon;
 
@@ -59,6 +59,13 @@ class Feedback
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @var string
@@ -196,6 +203,30 @@ class Feedback
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Feedback
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**
