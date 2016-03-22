@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
+use eveg\AppBundle\Entity\Feedback;
+use eveg\AppBundle\Form\Type\FeedbackSyntaxonType;
 
 class DefaultController extends Controller
 {
@@ -257,15 +259,22 @@ class DefaultController extends Controller
 		
 	}
 
-	public function panelOptionsAction($syntaxonId = null, $floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
+	public function panelOptionsAction($syntaxonId = null, $syntaxonName = null, $about, $floatLeft = false, $showFilters = true, $showFeedback = true, $showCompare = false, $showPdfExport = false)
 	{
 		// Repartition filters
         $repFilters = $this->get('eveg_app.repFilters');
         $depFrFilterJson = $repFilters->getDepFrFilterSession($json = true);
         $ueFilterJson = $repFilters->getUeFilterSession($json = true);
 
+        // Feedback
+    	$formFeedbackSyntaxon = $this->forward('evegAppBundle:Feedback:feedback', array(
+    		'syntaxonName' => $syntaxonName,
+    		'about'		   => $about
+    	))->getContent();
+
         return $this->render('evegAppBundle:Default:Fragments/panelOptions.html.twig', array(
         	'syntaxonId' => $syntaxonId,
+        	'formFeedbackSyntaxon' => $formFeedbackSyntaxon,
         	'floatLeft' => $floatLeft,
         	'repDepFrJson' => $depFrFilterJson,
 			'repUeJson' => $ueFilterJson,
