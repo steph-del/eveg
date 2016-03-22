@@ -31,8 +31,8 @@
 
 		{# FEEDBACK #}
 		{% if showFeedback == true %}
-			<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche.">
-				<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+			<div class="icon-middle" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche." data-toggle="modal" data-target="#modalFeedbackSyntaxon">
+				<i class="fa fa-comment"></i>
 			</div>
 		{% endif %}
 
@@ -222,3 +222,29 @@
 		</div> <!-- ./modal-content -->
 	</div> <!-- ./modal-dialog -->
 </div> <!-- ./modal -->
+
+<!-- Feedback syntaxon modal-->
+<div class="modal fade" id="modalFeedbackSyntaxon" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackSyntaxon">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center" id="modalDepFilter">Feedback</h4>
+			</div>
+			<form id="ajaxFormSyntaxonFeedback" {#action="{{ path('eveg_feedback_syntaxon') }}" method="POST"#}>
+				<div class="modal-body">
+					<div class="row">
+						<div id="ajaxFeedbackResponse"></div>
+						<div>Texte explicatif</div>
+						{{ formFeedbackSyntaxon|raw }}
+					</div> <!-- ./row -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+						<button id="feedback-submit" type="button submit" class="btn btn-primary"><i id="feedback-spin" class="fa fa-circle-o-notch fa-spin"></i><span id="feedback-submit-text">Envoyer</span></button>
+					</div> 
+				</div> <!-- ./modal-body -->
+			</form>
+		</div> <!-- ./modal-content -->
+	</div> <!-- ./modal-dialog -->
+</div> <!-- ./modal -->
+

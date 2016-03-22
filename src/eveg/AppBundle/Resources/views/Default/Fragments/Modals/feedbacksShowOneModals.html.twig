@@ -1,0 +1,49 @@
+<!-- Feedback map depFr modal-->
+<div class="modal fade" id="modalFeedbackMapDepFr" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackMapDepFr">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center">Feedback</h4>
+			</div>
+			<form id="ajaxFormMapDepFrFeedback">
+				<div class="modal-body">
+					<div class="row">
+						<div id="ajaxFeedbackMapDepFrResponse"></div>
+						<div>Texte explicatif</div>
+						{{ render(controller('evegAppBundle:Feedback:feedback', { 'about': 'mapDepFr', 'syntaxonName': syntaxon.syntaxon })) }}
+					</div> <!-- ./row -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+						<button id="feedback-mapdepfr-submit" type="button submit" class="btn btn-primary"><i id="feedback-mapdepfr-spin" class="fa fa-circle-o-notch fa-spin"></i><span id="feedback-mapdepfr-submit-text">Envoyer</span></button>
+					</div> 
+				</div> <!-- ./modal-body -->
+			</form>
+		</div> <!-- ./modal-content -->
+	</div> <!-- ./modal-dialog -->
+</div> <!-- ./modal -->
+
+<!-- Feedback map europe modal-->
+<div class="modal fade" id="modalFeedbackMapEurope" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackMapEurope">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center">Feedback</h4>
+			</div>
+			<form id="ajaxFormMapEuropeFeedback">
+				<div class="modal-body">
+					<div class="row">
+						<div id="ajaxFeedbackMapEuropeResponse"></div>
+						<div>Texte explicatif</div>
+						{{ render(controller('evegAppBundle:Feedback:feedback', { 'about': 'mapEurope', 'syntaxonName': syntaxon.syntaxon })) }}
+					</div> <!-- ./row -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+						<button id="feedback-mapeurope-submit" type="button submit" class="btn btn-primary"><i id="feedback-mapeurope-spin" class="fa fa-circle-o-notch fa-spin"></i><span id="feedback-mapeurope-submit-text">Envoyer</span></button>
+					</div> 
+				</div> <!-- ./modal-body -->
+			</form>
+		</div> <!-- ./modal-content -->
+	</div> <!-- ./modal-dialog -->
+				</div> <!-- ./modal -->

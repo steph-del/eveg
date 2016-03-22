@@ -21,6 +21,7 @@
 	</div>
 	{# panelOptions#}
 	{{ render(controller("evegAppBundle:Default:panelOptions", {
+		'about': 'general',
 		'floatLeft': true,
 		'showFilters': true,
 		'showFeedback': true,
@@ -302,5 +303,13 @@
 	    $("#searchbox").focus();
 	});
 	</script>
+
+	<!-- Feedbacks -->
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/feedback/feedback.js'
+		'@evegAppBundle/Resources/public/js/feedback/feedbackDoHomepage.js'
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 {% endblock %}

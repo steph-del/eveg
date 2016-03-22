@@ -53,6 +53,8 @@
 			<div class="col-md-4 colPanelOptions hidden-xs hidden-sm">
 				{{ render(controller("evegAppBundle:Default:panelOptions", {
 					'syntaxonId': syntaxon.id,
+					'syntaxonName': syntaxon.syntaxon,
+					'about': 'syntaxon',
 					'showFilters': true,
 					'showFeedback': true,
 					'showCompare': true,
@@ -137,6 +139,7 @@
 								<div id="mapDepFr"></div>
 								<div id="mapDepFrHoverLegend"></div>
 								<div id="mapDepFrToggleLegend">Légende</div>
+								<div class="pull-right"><a href="#" class="no-style"><i class="fa fa-comment" data-toggle="modal" data-target="#modalFeedbackMapDepFr" data-tooltip="tooltip" title="Faire un commentaire" data-placement="left"></i></a></div>
 								<div class="pull-right"><a id="download-mapdepfr-image" href="" class="no-style" data-tooltip="tooltip" title="Télécharger la carte" data-placement="left" download><i class="fa fa-download"></i></a></div>
 								<div id="mapDepFrLegend"></div>
 							</div>
@@ -148,6 +151,7 @@
 								<div id="mapEurope"></div>
 								<div id="mapEuropeHoverLegend"></div>
 								<div id="mapEuropeToggleLegend">Légende</div>
+								<div class="pull-right"><a href="#" class="no-style"><i class="fa fa-comment" data-toggle="modal" data-target="#modalFeedbackMapEurope" data-tooltip="tooltip" title="Faire un commentaire" data-placement="left"></i></a></div>
 								<div class="pull-right"><a id="download-mapeurope-image" href="" class="no-style" data-tooltip="tooltip" title="Télécharger la carte" data-placement="left" download><i class="fa fa-download"></i></a></div>
 								<div id="mapEuropeLegend"></div>
 							</div>
@@ -157,6 +161,9 @@
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' %}
 					</div> <!-- ./viewRight -->
 				</div> <!-- ./row -->
+
+				{# Feedback maps #}
+				{% include 'evegAppBundle:Default/Fragments/Modals:feedbacksShowOneModals.html.twig' %}
 			</div> <!-- ./col-md-8 -->
 		</div>
 
@@ -419,5 +426,16 @@
 		});
 	</script>
 	
+	<!-- Feedbacks -->
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/feedback/feedback.js'
+		'@evegAppBundle/Resources/public/js/feedback/feedbackDoShowOnePage.js'
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+	
+		
+	</script>
 
 {% endblock %}

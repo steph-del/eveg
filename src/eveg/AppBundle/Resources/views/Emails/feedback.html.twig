@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
+		</style>
+	</head>
+
+	<body>
+		<h1>eVeg feedback</h1><br />
+		<b>Message de : </b>{{ feedback.user }} ({{ feedback.email }})<br />
+		<b>Concernant : </b>
+			{% if feedback.about == 'syntaxon' %}un syntaxon{% endif %}
+			{% if feedback.about == 'mapDepFr' %}chorologie départementale{% endif %}
+			{% if feedback.about == 'mapEurope' %}chorologie européenne{% endif %}
+			{% if feedback.about == 'general' %}le site web{% endif %}
+			<br />
+		{% if feedback.syntaxon is defined and feedback.syntaxon is not empty %}
+			<b>Syntaxon : </b>{{ feedback.syntaxon }}<br />
+		{% endif %}
+		<b>Message : </b>{{ feedback.message }}<br />
+	</body>
+</html>
