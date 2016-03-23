@@ -140,6 +140,27 @@ eveg_feedback:
     requirements:
         _method: POST
 
+# Compare
+eveg_compare_nb_items:
+    path: /app/compare/nb-items
+    defaults: { _controller: evegAppBundle:Compare:getNbItems }
+
+eveg_compare_get_items:
+    path: /app/compare/get-items
+    defaults: { _controller: evegAppBundle:Compare:getItems }
+
+eveg_compare_add_item:
+    path: /app/compare/add/{id}/{value}
+    defaults: { _controller: evegAppBundle:Compare:addItem }
+
+eveg_compare_remove_item:
+    path: /app/compare/remove/{id}
+    defaults: { _controller: evegAppBundle:Compare:removeItem }
+
+eveg_compare_empty:
+    path: /app/compare/empty
+    defaults: { _controller: evegAppBundle:Compare:empty }
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}
