@@ -167,9 +167,6 @@ class DefaultController extends Controller
         	$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findBySyntaxon($syntaxon->getSyntaxonName(), $syntaxon->getSyntaxonAuthor());
 
         	// is a pro parte syntaxon ?
-        	//print_r($syntaxon->getSyntaxon().'<br />');
-        	//print_r(count($entities).'<br />');
-        	//print_r($entities);
         	if(count($entities) > 1) {
         		print('syn >1');
         		$catCodes = array();
@@ -195,13 +192,6 @@ class DefaultController extends Controller
         				'id' => $successfullSyntaxon[0]->getId()
         				)
         		));
-        		
-
-        		/*$redirectionSyntaxon = $entities[0];
-        		return $this->render('evegAppBundle:Default:showOne.html.twig', array(
-					'syntaxon' => $successfullSyntaxon[0],
-					'redirectionSyntaxon' => $redirectionSyntaxon
-				));*/
         	}
 
 		} else {
@@ -214,7 +204,6 @@ class DefaultController extends Controller
 			// Retrieve synonyms according to user's rights
 			$findGoodRepoSynonyms = $this->get('eveg_app.get_synonyms_according_user');
 			$synonyms = $findGoodRepoSynonyms->getSynonyms($syntaxon->getCatminatCode(), $depFrFilter, $ueFilter);
-			//$synonyms = $em->getRepository('evegAppBundle:SyntaxonCore')->getSynonyms($syntaxon->getCatminatCode());
 
 			// repartitionDepFr to Json
 			$serializer = $this->container->get('jms_serializer');
