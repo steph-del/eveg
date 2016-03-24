@@ -495,3 +495,20 @@ img.syntaxonIllustration{
  	border-right: 1px solid #EBEDED;
  	background-color: transparent;
  }
+
+/*
+ * Comparator
+ ************/
+ .compareItem{
+ 	font-size: 1.2em;
+ 	margin-bottom: 3px;
+
+ 	i.removeCompareItem{
+ 		color: red;
+ 		margin-right: 5px;
+ 		cursor: pointer;
+ 	}
+ }
+ .compareSpinner {
+ 	font-size: 2em;
+ }

@@ -40,10 +40,10 @@
 
 	{# COMPARE #}
 	{% if showCompare == true %}
-		<div class="options_panel_icon {{ level }}" data-tooltip="tooltip" data-placement="bottom" title="Comparer avec un autre syntaxon.">
+		<div id="compareOption" class="options_panel_icon {{ level }}" data-tooltip="tooltip" title="Comparer deux syntaxons." data-placement="left" data-toggle="modal" data-target="#modalCompare">
 			<i class="fa fa-files-o"></i>
 		</div>
-	{% endif %}
+	{% endif %} 
 
 	{# PDF EXPORT #}
 	{% if (showPdfExport == true) and (syntaxonId is defined) and (syntaxonId is not empty) %}
@@ -252,6 +252,24 @@
 						</div> 
 					</div> <!-- ./modal-body -->
 				</form>
+			</div> <!-- ./modal-content -->
+		</div> <!-- ./modal-dialog -->
+	</div> <!-- ./modal -->
+{% endif %}
+
+<!-- Compare syntaxon modal-->
+{% if showCompare == true %}
+	<div class="modal fade" id="modalCompare" tabindex="-1" role="dialog" aria-labelledby="modalCompare">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-center" id="modalDepFilter">Comparer deux syntaxons</h4>
+				</div>
+				<div id = "comparator" class="modal-body">
+					<div id="comparatorItems"></div>
+					<div id="comparatorButtons"></div>
+				</div>
 			</div> <!-- ./modal-content -->
 		</div> <!-- ./modal-dialog -->
 	</div> <!-- ./modal -->
