@@ -150,16 +150,24 @@ eveg_compare_get_items:
     defaults: { _controller: evegAppBundle:Compare:getItems }
 
 eveg_compare_add_item:
-    path: /app/compare/add/{id}/{value}
+    path: /app/compare/add
     defaults: { _controller: evegAppBundle:Compare:addItem }
 
 eveg_compare_remove_item:
-    path: /app/compare/remove/{id}
+    path: /app/compare/remove
     defaults: { _controller: evegAppBundle:Compare:removeItem }
 
 eveg_compare_empty:
     path: /app/compare/empty
     defaults: { _controller: evegAppBundle:Compare:empty }
+
+eveg_compare_get_idreferer:
+    path: /app/compare/get-id-referer
+    defaults: { _controller: evegAppBundle:Compare:getIdReferer }
+
+eveg_compare:
+    path: /app/compare
+    defaults: { _controller: evegAppBundle:Compare:compare }
 
 # API Search
 api_get_syntaxon_search:
