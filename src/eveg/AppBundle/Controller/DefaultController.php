@@ -219,6 +219,7 @@ class DefaultController extends Controller
         	// Set idReferer inside session (makes it easier to find the $id when applying a repartition filter)
 			$session = new Session();
 			$session->set('idReferer', $syntaxon->getId());
+			$session->set('syntaxonNameReferer', $syntaxon->getSyntaxonName());
 
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
