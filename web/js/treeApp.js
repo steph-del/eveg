@@ -1,3 +1,5 @@
+$(".loadTreeIcon").hide();
+
 $(function(){
 	// Create the tree inside the <div id="tree"> element.
 	$("#divTree").fancytree({

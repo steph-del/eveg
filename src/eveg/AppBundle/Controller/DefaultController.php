@@ -168,7 +168,6 @@ class DefaultController extends Controller
 
         	// is a pro parte syntaxon ?
         	if(count($entities) > 1) {
-        		print('syn >1');
         		$catCodes = array();
         		foreach ($entities as $key => $entity) {
         			array_push($catCodes, $entity->getCatminatCode());

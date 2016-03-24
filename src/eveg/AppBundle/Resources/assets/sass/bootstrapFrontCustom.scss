@@ -512,3 +512,18 @@ img.syntaxonIllustration{
  .compareSpinner {
  	font-size: 2em;
  }
+
+/*
+ * Compare view
+ ************/
+#compareCardLeft {
+	background-color: #FFFFFF;
+	border-right-style: dashed;
+	border-right-width: 3px;
+	border-right-color: #999;
+}
+
+#compareCardRight {
+	background-color: #FFFFFF;
+}
+

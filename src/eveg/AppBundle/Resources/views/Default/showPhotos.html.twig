@@ -25,7 +25,7 @@
 
 		<div class="col-md-offset-2 col-md-8" id="cardView">
 			{# Card header #}
-			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' with { 'syntaxon': syntaxon, 'showOptionsPanel': false } only %}
 
 			<div class="row">
 				<div class="col-md-12">

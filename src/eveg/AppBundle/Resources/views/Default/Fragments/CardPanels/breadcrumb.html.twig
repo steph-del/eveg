@@ -1,0 +1,18 @@
+<div class="row flexBreadcrumb hidden-xs hidden-sm">
+	{% for syntaxon in allParents %}
+		{% if syntaxon.level != 'HAB' %}
+			<div class="flexBreadcrumbItem"><a href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}" class="{{ syntaxon.level }}-text">{{ syntaxon.syntaxon }}</a></div>
+
+			{% if not loop.last %}
+				<span class="breadcrumbSeparator">/</span>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+</div>
+<div class="row hidden-lg hidden-md">
+	{% for syntaxon in allParents %}
+		{% if syntaxon.level != 'HAB' %}
+				<a href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}" class="{{ syntaxon.level }}-text {{ syntaxon.level }}-indent">{{ syntaxon.syntaxon }}</a><br />
+		{% endif %}
+	{% endfor %}
+</div>

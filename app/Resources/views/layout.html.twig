@@ -104,7 +104,11 @@
 		{% endfor %}
 		
 		<!-- TOOLTIP ACTIVATION -->
-		<script> $('a, li').tooltip() </script>
+		<script>
+			$('a, li').tooltip();
+			$(".showTooltip").tooltip({html:true});
+			$('[data-tooltip="tooltip"]').tooltip();
+		</script>
 		
 	{% endblock %}
 </body>

@@ -23,7 +23,7 @@
 	<!-- Body container -->
 	<div class="container-fluid">
 		{# Card header #}
-		{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' %}
+		{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' with { 'syntaxon': syntaxon, 'showOptionsPanel': true } only %}
 
 		{# Breadcrumb for xm & xs views#}
 		{% if syntaxon.level != 'HAB' and syntaxon.level != 'CLA' %}
