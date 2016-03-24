@@ -2,9 +2,240 @@
 
 {% extends "::layout.html.twig" %}
 
+{% block title %}
+	{% if syntaxon is defined %}
+		{{ syntaxon.syntaxonName }} | {{ parent() }}
+	{% endif %}
+	{% if multipleSyntaxon is defined %}
+		Plusieurs résultats | {{ parent() }}
+	{% endif %}
+{% endblock %}
+
 {% block body %}
-	{{dump(syntaxon1)}}
-	{{dump(syntaxon2)}}
-	{{dump(synonyms1)}}
-	{{dump(synonyms2)}}
+	{{ parent() }}
+
+	{# App #}
+	<div class="row">
+		{# First syntaxon #}
+		<div class="col-md-6" id="compareCardLeft">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' with { 'syntaxon': syntaxon1, 'showOptionsPanel': false } only %}
+
+			{# Breadcrumb #}
+			{% include 'evegAppBundle:Default/Fragments/cardPanels:breadcrumb.html.twig' with { 'syntaxon': syntaxon1, 'allParents': allParents1 } only %}
+
+			{# Data #}
+			<div class="row">
+				<div class="col-md-8 viewLeft">
+
+					{# Synonyms #}
+					{% if synonyms1 is defined %}
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms1 } only %}
+					{% endif %}
+
+					{# Ecological specifications #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon1 } only %}
+
+					{# Floristic cortege #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species1 } only %}
+
+					{# Resources #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:resourcesPanel.html.twig' with { 'syntaxon': syntaxon1 } only %}
+
+					{# Bibliography #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:bibliographyPanel.html.twig' with { 'syntaxon': syntaxon1, 'synonyms': synonyms1 } only %}
+
+				</div> <!-- ./viewLeft -->
+
+				<div class="col-md-4 viewRight">
+					<!-- photos -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon1 } only %}
+
+					<!-- Fr departments repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': false, 'uniqueId': 1 } only %}
+
+					<!-- EU+ coutries repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': false, 'uniqueId': 1 } only %}
+
+					<!-- Ecological valences -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg1 } only %}
+				</div> <!-- ./viewRight -->
+			</div> <!-- ./row -->
+		</div>
+
+
+
+
+
+		{# Second syntaxon #}
+		<div class="col-md-6" id="compareCardRight">
+			{# Card header #}
+			{% include 'evegAppBundle:Default/Fragments:cardHeader.html.twig' with { 'syntaxon': syntaxon2, 'showOptionsPanel': false } only %}
+
+			{# Breadcrumb #}
+			{% include 'evegAppBundle:Default/Fragments/cardPanels:breadcrumb.html.twig' with { 'syntaxon': syntaxon2, 'allParents': allParents2 } only %}
+
+			{# Data #}
+			<div class="row">
+				<div class="col-md-8 viewLeft">
+
+					{# Synonyms #}
+					{% if synonyms2 is defined %}
+						{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms2 } only %}
+					{% endif %}
+
+					{# Ecological specifications #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon2 } only %}
+
+					{# Floristic cortege #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species2 } only %}
+
+					{# Resources #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:resourcesPanel.html.twig' with { 'syntaxon': syntaxon2 } only %}
+
+					{# Bibliography #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:bibliographyPanel.html.twig' with { 'syntaxon': syntaxon2, 'synonyms': synonyms2 } only %}
+
+				</div> <!-- ./viewLeft -->
+
+				<div class="col-md-4 viewRight">
+					<!-- photos -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon2 } only %}
+
+					<!-- Fr departments repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': false, 'uniqueId': 2 } only %}
+
+					<!-- EU+ coutries repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': false, 'uniqueId': 2 } only %}
+
+					<!-- Ecological valences -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg2 } only %}
+				</div> <!-- ./viewRight -->
+			</div> <!-- ./row -->
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/maps/*'
+		'js/maps/*'
+		'@evegAppBundle/Resources/public/js/limitVisibleItems.js'
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	<script>
+		var repDepFr = '{{ repDepFrJson1 | raw }}';
+		createMapDepFr(document.getElementById('mapDepFr-1'),
+			           document.getElementById('mapDepFrHoverLegend-1'),
+			           document.getElementById('mapDepFrLegend-1'),
+			           repDepFr,
+			           0.55);
+		$("#mapDepFrLegend-1").hide();
+		$("#mapDepFrToggleLegend-1").click(function(){
+			$("#mapDepFrLegend-1").toggle();
+		});
+	</script>
+	<!-- UE map -->
+	<script>
+		var repUE = '{{ repUeJson1 | raw }}';
+		createMapEurope(document.getElementById('mapEurope-1'),
+						document.getElementById('mapEuropeHoverLegend-1'),
+						document.getElementById('mapEuropeLegend-1'),
+						repUE,
+						0.55);
+		$("#mapEuropeLegend-1").hide();
+		$("#mapEuropeToggleLegend-1").click(function(){
+			$("#mapEuropeLegend-1").toggle();
+		});
+	</script>
+
+	<!-- Limit visible items -->
+	<script>
+		limitResults(
+			3,
+			$("#compareCardLeft").find(".synonymsShowAll"),
+			$("#compareCardLeft").find(".synonymBox"),
+			$("#compareCardLeft").find(".panelSynonymsHeader"));
+		limitResults(
+			3,
+			$("#compareCardLeft").find(".filesShowAll"),
+			$("c#ompareCardLeft").find(".fileBox"),
+			$("#compareCardLeft").find(".panelFilesHeader"));
+		limitResults(
+			3,
+			$("#compareCardLeft").find(".bibliosShowAll"),
+			$("#compareCardLeft").find(".biblioBox"),
+			$("#compareCardLeft").find(".panelBibliosHeader"));
+		limitResults(
+			5,
+			$("#compareCardLeft").find(".ecologyShowAll"),
+			$("#compareCardLeft").find(".ecologyBox"),
+			$("#compareCardLeft").find(".panelEcologyHeader"));
+		limitResults(
+			10,
+			$("#compareCardLeft").find(".speciesShowAll"),
+			$("#compareCardLeft").find(".speciesBox"),
+			$("#compareCardLeft").find(".panelSpeciesHeader"));
+
+		//
+		
+		limitResults(
+			3,
+			$("#compareCardRight").find(".synonymsShowAll"),
+			$("#compareCardRight").find(".synonymBox"),
+			$("#compareCardRight").find(".panelSynonymsHeader"));
+		limitResults(
+			3,
+			$("#compareCardRight").find(".filesShowAll"),
+			$("c#ompareCardRight").find(".fileBox"),
+			$("#compareCardRight").find(".panelFilesHeader"));
+		limitResults(
+			3,
+			$("#compareCardRight").find(".bibliosShowAll"),
+			$("#compareCardRight").find(".biblioBox"),
+			$("#compareCardRight").find(".panelBibliosHeader"));
+		limitResults(
+			5,
+			$("#compareCardRight").find(".ecologyShowAll"),
+			$("#compareCardRight").find(".ecologyBox"),
+			$("#compareCardRight").find(".panelEcologyHeader"));
+		limitResults(
+			10,
+			$("#compareCardRight").find(".speciesShowAll"),
+			$("#compareCardRight").find(".speciesBox"),
+			$("#compareCardRight").find(".panelSpeciesHeader"));
+	</script>
+
+	<!-- depFr map -->
+	<script>
+		var repDepFr = '{{ repDepFrJson2 | raw }}';
+		createMapDepFr(document.getElementById('mapDepFr-2'),
+			           document.getElementById('mapDepFrHoverLegend-2'),
+			           document.getElementById('mapDepFrLegend-2'),
+			           repDepFr,
+			           0.55);
+		$("#mapDepFrLegend-2").hide();
+		$("#mapDepFrToggleLegend-2").click(function(){
+			$("#mapDepFrLegend-2").toggle();
+		});
+	</script>
+	<!-- UE map -->
+	<script>
+		var repUE = '{{ repUeJson2 | raw }}';
+		createMapEurope(document.getElementById('mapEurope-2'),
+						document.getElementById('mapEuropeHoverLegend-2'),
+						document.getElementById('mapEuropeLegend-2'),
+						repUE,
+						0.55);
+		$("#mapEuropeLegend-2").hide();
+		$("#mapEuropeToggleLegend-2").click(function(){
+			$("#mapEuropeLegend-2").toggle();
+		});
+	</script>
+
 {% endblock %}

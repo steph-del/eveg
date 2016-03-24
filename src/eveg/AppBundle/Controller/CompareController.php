@@ -142,11 +142,43 @@ class CompareController extends Controller
 			$synonyms1 = $findGoodRepoSynonyms->getSynonyms($syntaxon1->getCatminatCode(), $depFrFilter = null, $ueFilter = null);
 			$synonyms2 = $findGoodRepoSynonyms->getSynonyms($syntaxon2->getCatminatCode(), $depFrFilter = null, $ueFilter = null);
 
+			// All parents
+			$catCode = $this->get('eveg_app.catCode');
+			$allParents1 = $catCode->getAllParents($syntaxon1->getCatminatCode());
+			$allParents2 = $catCode->getAllParents($syntaxon2->getCatminatCode());
+
+			// baseflor
+			$species1 = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findByCatminatCode($syntaxon1->getCatminatCode());
+        	$species2 = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findByCatminatCode($syntaxon2->getCatminatCode());
+        	$ecologicalValuesAvg1 = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findEcologicalAverageByCatminatCode($syntaxon1->getCatminatCode());
+        	$ecologicalValuesAvg2 = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
+        					->findEcologicalAverageByCatminatCode($syntaxon2->getCatminatCode());
+
+        	// repartition data
+			$serializer = $this->container->get('jms_serializer');
+			$repDepFrJson1 = $serializer->serialize($syntaxon1->getRepartitionDepFr(), 'json');
+			$repDepFrJson2 = $serializer->serialize($syntaxon2->getRepartitionDepFr(), 'json');
+			$repUeJson1 = $serializer->serialize($syntaxon1->getRepartitionEurope(), 'json');
+			$repUeJson2 = $serializer->serialize($syntaxon2->getRepartitionEurope(), 'json');
+
 			return $this->render('evegAppBundle:Default:compare.html.twig', array(
-				'syntaxon1' => $syntaxon1,
-				'syntaxon2' => $syntaxon2,
-				'synonyms1' => $synonyms1,
-				'synonyms2' => $synonyms2
+				'syntaxon1' 		   => $syntaxon1,
+				'syntaxon2' 		   => $syntaxon2,
+				'synonyms1' 		   => $synonyms1,
+				'synonyms2' 		   => $synonyms2,
+				'allParents1' 		   => $allParents1,
+				'allParents2' 		   => $allParents2,
+				'species1'			   => $species1,
+				'species2'			   => $species2,
+				'ecologicalValuesAvg1' => $ecologicalValuesAvg1,
+				'ecologicalValuesAvg2' => $ecologicalValuesAvg2,
+				'repDepFrJson1'		   => $repDepFrJson1,
+				'repDepFrJson2'		   => $repDepFrJson2,
+				'repUeJson1'		   => $repUeJson1,
+				'repUeJson2'		   => $repUeJson2
 			));
 		} else {
 			Throw new HttpException(500, "Can't compare ".$nbItems." item(s).");
