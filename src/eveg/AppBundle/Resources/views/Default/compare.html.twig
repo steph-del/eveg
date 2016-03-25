@@ -149,6 +149,33 @@
 		});
 	</script>
 
+	<!-- depFr map -->
+	<script>
+		var repDepFr = '{{ repDepFrJson2 | raw }}';
+		createMapDepFr(document.getElementById('mapDepFr-2'),
+			           document.getElementById('mapDepFrHoverLegend-2'),
+			           document.getElementById('mapDepFrLegend-2'),
+			           repDepFr,
+			           0.55);
+		$("#mapDepFrLegend-2").hide();
+		$("#mapDepFrToggleLegend-2").click(function(){
+			$("#mapDepFrLegend-2").toggle();
+		});
+	</script>
+	<!-- UE map -->
+	<script>
+		var repUE = '{{ repUeJson2 | raw }}';
+		createMapEurope(document.getElementById('mapEurope-2'),
+						document.getElementById('mapEuropeHoverLegend-2'),
+						document.getElementById('mapEuropeLegend-2'),
+						repUE,
+						0.55);
+		$("#mapEuropeLegend-2").hide();
+		$("#mapEuropeToggleLegend-2").click(function(){
+			$("#mapEuropeLegend-2").toggle();
+		});
+	</script>
+
 	<!-- Limit visible items -->
 	<script>
 		limitResults(
@@ -204,33 +231,6 @@
 			$("#compareCardRight").find(".speciesShowAll"),
 			$("#compareCardRight").find(".speciesBox"),
 			$("#compareCardRight").find(".panelSpeciesHeader"));
-	</script>
-
-	<!-- depFr map -->
-	<script>
-		var repDepFr = '{{ repDepFrJson2 | raw }}';
-		createMapDepFr(document.getElementById('mapDepFr-2'),
-			           document.getElementById('mapDepFrHoverLegend-2'),
-			           document.getElementById('mapDepFrLegend-2'),
-			           repDepFr,
-			           0.55);
-		$("#mapDepFrLegend-2").hide();
-		$("#mapDepFrToggleLegend-2").click(function(){
-			$("#mapDepFrLegend-2").toggle();
-		});
-	</script>
-	<!-- UE map -->
-	<script>
-		var repUE = '{{ repUeJson2 | raw }}';
-		createMapEurope(document.getElementById('mapEurope-2'),
-						document.getElementById('mapEuropeHoverLegend-2'),
-						document.getElementById('mapEuropeLegend-2'),
-						repUE,
-						0.55);
-		$("#mapEuropeLegend-2").hide();
-		$("#mapEuropeToggleLegend-2").click(function(){
-			$("#mapEuropeLegend-2").toggle();
-		});
 	</script>
 
 	<!-- highlight different ecology items -->
