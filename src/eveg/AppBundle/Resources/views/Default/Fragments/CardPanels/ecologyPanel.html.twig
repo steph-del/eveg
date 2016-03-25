@@ -1,26 +1,26 @@
-<div class="panel panel-default">
+<div class="panel panel-default ecology-panel">
 	<div class="panel-heading panelEcologyHeader">Caractéristiques écologiques{% if syntaxon.ecology.isEmpty %} : non renseignées{% endif %}<span class="ecologyShowAll li-restricted pull-right">Afficher tout</span></div>
 	{% if not syntaxon.ecology.isEmpty %}
 		<ul class="list-group">
-			<li class="list-group-item ecologyBox">Chorologie mondiale : <span class="pull-right">{{ syntaxon.ecology.worldRepartition }}</span></li>
-			<li class="list-group-item ecologyBox">Répartition connue en France : <span class="pull-right">{{ syntaxon.ecology.franceRepartition }}</span></li>
-			<li class="list-group-item ecologyBox">Physionomie : <span class="pull-right">{{ syntaxon.ecology.physionomy }}</span></li>
-			<li class="list-group-item ecologyBox">Etages altitudinaux (altitude) : <span class="pull-right">{{ syntaxon.ecology.altitude }}</span></li>
-			<li class="list-group-item ecologyBox">Latitude : <span class="pull-right">{{ syntaxon.ecology.latitude }}</span></li>
-			<li class="list-group-item ecologyBox">Océanité : <span class="pull-right">{{ syntaxon.ecology.oceanity }}</span></li>
-			<li class="list-group-item ecologyBox">Température : <span class="pull-right">{{ syntaxon.ecology.temperature }}</span></li>
-			<li class="list-group-item ecologyBox">Lumière : <span class="pull-right">{{ syntaxon.ecology.light }}</span></li>
-			<li class="list-group-item ecologyBox">Exposition, pente : <span class="pull-right">{{ syntaxon.ecology.exposureSlope }}</span></li>
-			<li class="list-group-item ecologyBox">Optimum de développement : <span class="pull-right">{{ syntaxon.ecology.optimumDevelopment }}</span></li>
-			<li class="list-group-item ecologyBox">Humidité atmosphérique : <span class="pull-right">{{ syntaxon.ecology.atmosphericHumidity }}</span></li>
-			<li class="list-group-item ecologyBox">Types de sol et d'humus : <span class="pull-right">{{ syntaxon.ecology.soilType }}</span></li>
-			<li class="list-group-item ecologyBox">Humidité édaphique : <span class="pull-right">{{ syntaxon.ecology.soilHumidity }}</span></li>
-			<li class="list-group-item ecologyBox">Texture du sol : <span class="pull-right">{{ syntaxon.ecology.soilTexture }}</span></li>
-			<li class="list-group-item ecologyBox">Niveau trophique : <span class="pull-right">{{ syntaxon.ecology.trophicLevel }}</span></li>
-			<li class="list-group-item ecologyBox">pH du sol : <span class="pull-right">{{ syntaxon.ecology.soilPh }}</span></li>
-			<li class="list-group-item ecologyBox">Salinité : <span class="pull-right">{{ syntaxon.ecology.salinity }}</span></li>
-			<li class="list-group-item ecologyBox">Dynamique : <span class="pull-right">{{ syntaxon.ecology.dynamic }}</span></li>
-			<li class="list-group-item ecologyBox">Influences anthropozoogènes : <span class="pull-right">{{ syntaxon.ecology.manInfluence }}</span></li>
+			<li class="list-group-item ecologyBox">Chorologie mondiale : <span class="pull-right ecology-1">{{ syntaxon.ecology.worldRepartition }}</span></li>
+			<li class="list-group-item ecologyBox">Répartition connue en France : <span class="pull-right ecology-2">{{ syntaxon.ecology.franceRepartition }}</span></li>
+			<li class="list-group-item ecologyBox">Physionomie : <span class="pull-right ecology-3" >{{ syntaxon.ecology.physionomy }}</span></li>
+			<li class="list-group-item ecologyBox">Etages altitudinaux (altitude) : <span class="pull-right ecology-4">{{ syntaxon.ecology.altitude }}</span></li>
+			<li class="list-group-item ecologyBox">Latitude : <span class="pull-right ecology-5">{{ syntaxon.ecology.latitude }}</span></li>
+			<li class="list-group-item ecologyBox">Océanité : <span class="pull-right ecology-6">{{ syntaxon.ecology.oceanity }}</span></li>
+			<li class="list-group-item ecologyBox">Température : <span class="pull-right ecology-7">{{ syntaxon.ecology.temperature }}</span></li>
+			<li class="list-group-item ecologyBox">Lumière : <span class="pull-right ecology-8">{{ syntaxon.ecology.light }}</span></li>
+			<li class="list-group-item ecologyBox">Exposition, pente : <span class="pull-right ecology-9">{{ syntaxon.ecology.exposureSlope }}</span></li>
+			<li class="list-group-item ecologyBox">Optimum de développement : <span class="pull-right ecology-10">{{ syntaxon.ecology.optimumDevelopment }}</span></li>
+			<li class="list-group-item ecologyBox">Humidité atmosphérique : <span class="pull-right ecology-11">{{ syntaxon.ecology.atmosphericHumidity }}</span></li>
+			<li class="list-group-item ecologyBox">Types de sol et d'humus : <span class="pull-right ecology-12">{{ syntaxon.ecology.soilType }}</span></li>
+			<li class="list-group-item ecologyBox">Humidité édaphique : <span class="pull-right ecology-13">{{ syntaxon.ecology.soilHumidity }}</span></li>
+			<li class="list-group-item ecologyBox">Texture du sol : <span class="pull-right ecology-14">{{ syntaxon.ecology.soilTexture }}</span></li>
+			<li class="list-group-item ecologyBox">Niveau trophique : <span class="pull-right ecology-15">{{ syntaxon.ecology.trophicLevel }}</span></li>
+			<li class="list-group-item ecologyBox">pH du sol : <span class="pull-right ecology-16">{{ syntaxon.ecology.soilPh }}</span></li>
+			<li class="list-group-item ecologyBox">Salinité : <span class="pull-right ecology-17">{{ syntaxon.ecology.salinity }}</span></li>
+			<li class="list-group-item ecologyBox">Dynamique : <span class="pull-right ecology-18">{{ syntaxon.ecology.dynamic }}</span></li>
+			<li class="list-group-item ecologyBox">Influences anthropozoogènes : <span class="pull-right ecology-19">{{ syntaxon.ecology.manInfluence }}</span></li>
 		</ul>
 	{% endif %}
 </div>

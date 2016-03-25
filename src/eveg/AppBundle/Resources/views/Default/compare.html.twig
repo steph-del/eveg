@@ -3,12 +3,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-	{% if syntaxon is defined %}
-		{{ syntaxon.syntaxonName }} | {{ parent() }}
-	{% endif %}
-	{% if multipleSyntaxon is defined %}
-		Plusieurs résultats | {{ parent() }}
-	{% endif %}
+	Comparer deux syntaxons | {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -28,13 +23,13 @@
 			<div class="row">
 				<div class="col-md-8 viewLeft">
 
+					{# Ecological specifications #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon1 } only %}
+
 					{# Synonyms #}
 					{% if synonyms1 is defined %}
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms1 } only %}
 					{% endif %}
-
-					{# Ecological specifications #}
-					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon1 } only %}
 
 					{# Floristic cortege #}
 					{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species1 } only %}
@@ -79,13 +74,13 @@
 			<div class="row">
 				<div class="col-md-8 viewLeft">
 
+					{# Ecological specifications #}
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon2 } only %}
+
 					{# Synonyms #}
 					{% if synonyms2 is defined %}
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms2 } only %}
 					{% endif %}
-
-					{# Ecological specifications #}
-					{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon2 } only %}
 
 					{# Floristic cortege #}
 					{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species2 } only %}
@@ -172,7 +167,7 @@
 			$("#compareCardLeft").find(".biblioBox"),
 			$("#compareCardLeft").find(".panelBibliosHeader"));
 		limitResults(
-			5,
+			100,
 			$("#compareCardLeft").find(".ecologyShowAll"),
 			$("#compareCardLeft").find(".ecologyBox"),
 			$("#compareCardLeft").find(".panelEcologyHeader"));
@@ -183,7 +178,7 @@
 			$("#compareCardLeft").find(".panelSpeciesHeader"));
 
 		//
-		
+
 		limitResults(
 			3,
 			$("#compareCardRight").find(".synonymsShowAll"),
@@ -200,7 +195,7 @@
 			$("#compareCardRight").find(".biblioBox"),
 			$("#compareCardRight").find(".panelBibliosHeader"));
 		limitResults(
-			5,
+			100,
 			$("#compareCardRight").find(".ecologyShowAll"),
 			$("#compareCardRight").find(".ecologyBox"),
 			$("#compareCardRight").find(".panelEcologyHeader"));
@@ -236,6 +231,24 @@
 		$("#mapEuropeToggleLegend-2").click(function(){
 			$("#mapEuropeLegend-2").toggle();
 		});
+	</script>
+
+	<!-- highlight different ecology items -->
+	<script>
+		var nbEcologicalItems1 = $("#compareCardLeft").find(".ecology-panel").find("li").length;
+		var nbEcologicalItems2 = $("#compareCardLeft").find(".ecology-panel").find("li").length;
+
+		if (nbEcologicalItems1 == nbEcologicalItems2) {
+			for (var i = 1; i <= nbEcologicalItems1; i++) {
+				$eco1 = $("#compareCardLeft").find(".ecology-"+i);
+				$eco2 = $("#compareCardRight").find(".ecology-"+i);
+				if($eco1.html() != $eco2.html())
+				{
+					$eco1.css('background-color', 'rgb(255, 247, 147)');
+					$eco2.css('background-color', 'rgb(255, 247, 147)');
+				}
+			};
+		};
 	</script>
 
 {% endblock %}
