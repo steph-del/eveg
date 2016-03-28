@@ -1,12 +1,12 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="panel-synonyms">
 	<div class="panel-heading panelSynonymsHeader">Synonymes{% if synonyms is empty %} : aucun synonyme trouvé{% endif %}<span class="synonymsShowAll li-restricted pull-right">Afficher tout</span></div>
 	<ul class="list-group">
 		{% for synonym in synonyms %}
 			<li class="list-group-item synonymBox">
 				{{ synonymType(synonym.level)|raw }}
-				<a href="{{ path('eveg_show_one', {'id': synonym.id}) }}">
+				{#<a href="{{ path('eveg_show_one', {'id': synonym.id}) }}">#}
 					{{ synonym.syntaxon }}
-				</a>
+				{#</a>#}
 			</li>
 		{% endfor %}
 	</ul>

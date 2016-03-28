@@ -1,11 +1,11 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="panel-mapDepFr">
 	<div class="panel-heading">France</div>
 	<div class="panel-body">
 		<div id="mapDepFr{% if uniqueId is defined and uniqueId is not empty %}-{{ uniqueId }}{% endif %}"></div>
 		<div id="mapDepFrHoverLegend{% if uniqueId is defined and uniqueId is not empty %}-{{ uniqueId }}{% endif %}"></div>
 		<div id="mapDepFrToggleLegend{% if uniqueId is defined and uniqueId is not empty %}-{{ uniqueId }}{% endif %}">Légende</div>
 		{% if showOptions == true %}
-			<div class="pull-right"><a href="#" class="no-style"><i class="fa fa-comment" data-toggle="modal" data-target="#modalFeedbackMapDepFr" data-tooltip="tooltip" title="Faire un commentaire" data-placement="left"></i></a></div>
+			<div class="pull-right"><a href="#" class="no-style"><i id="panel-mapFr-iconComment" class="fa fa-comment" data-toggle="modal" data-target="#modalFeedbackMapDepFr" data-tooltip="tooltip" title="Faire un commentaire" data-placement="left"></i></a></div>
 			<div class="pull-right"><a id="download-mapdepfr-image" href="" class="no-style" data-tooltip="tooltip" title="Télécharger la carte" data-placement="left" download><i class="fa fa-download"></i></a></div>
 		{% endif %}
 		<div id="mapDepFrLegend{% if uniqueId is defined and uniqueId is not empty %}-{{ uniqueId }}{% endif %}"></div>

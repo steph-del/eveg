@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-tour.min.css') }}" type="text/css" />
 	{{ parent() }}
 {% endblock %}
 
@@ -93,11 +94,13 @@
 						<!-- photos -->
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon } only %}
 
-						<!-- Fr departments repartition -->
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': true } only %}
+						<div id="panels-map">
+							<!-- Fr departments repartition -->
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': true } only %}
 
-						<!-- EU+ coutries repartition -->
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': true } only %}
+							<!-- EU+ coutries repartition -->
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': true } only %}
+						</div>
 
 						<!-- Ecological valences -->
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
@@ -159,6 +162,7 @@
 		'@evegAppBundle/Resources/public/js/feedback/feedback.js'
 		'@evegAppBundle/Resources/public/js/feedback/feedbackDoShowOnePage.js'
 		'@evegAppBundle/Resources/public/js/compare.js'
+		'js/bootstrap-tour.min.js'
 		%}
 		<script>
 			// Repartition filters var
@@ -206,6 +210,147 @@
 		$("#mapEuropeToggleLegend").click(function(){
 			$("#mapEuropeLegend").toggle();
 		});
+	</script>
+
+	<!-- Bootstrap tour-->
+	<script>
+		var tour = new Tour({
+			steps: [
+				{
+					orphan: true,
+					title: "Bienvenue",
+					content: "Faisons un tour des fonctionnalités du site !",
+					backdrop: true
+				},
+				{
+					element: "#divTree",
+					title: "Arbre de navigation",
+					content: "Cette arboresence vous permet de naviguer dans la classification des végétations. Pour ouvrir un répertoire, cliquez dessus. Pour afficher la fiche correspondante, faites un double clic.",
+					backdrop: true,
+					placement: 'right'
+				},
+				{
+					element: "#cardView",
+					title: "Fiche",
+					content: "C'est ici que vous trouverez toutes les informations à propos de  la végétation.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: ".cardHeader",
+					title: "Titre",
+					content: "Le nom latin de la végétation et sa dénomiation écologique, c'est un bon début...",
+					backdrop: true,
+					placement: 'bottom'
+				},
+				{
+					element: ".flexBreadcrumb",
+					title: "Classification",
+					content: "Les végétations des niveaux supérieurs sont ici. Vous ne serez jamais perdus !",
+					backdrop: true,
+					placement: 'left',
+					animation: false
+				},
+				{
+					element: ".flexBreadcrumb",
+					title: "Couleurs",
+					content: "Au fait, nous avons un code couleur (celui de baseveg) pour chaque niveau dans la classification. Rouge pour la classe, bleu pour l'ordre, vert pour l'alliance et jaune pour l'association.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: "#panel-synonyms",
+					title: "Synonymes",
+					content: "Vous pouvez passez la souris au dessus du type de synonyme, en début de ligne, pour avoir plus de détails.",
+					backdrop: true,
+					placement: 'left'
+				},
+				/*{
+					element: "#panel-ecology",
+					title: "Caractéristiques écologiques",
+					content: "...",
+					backdrop: true,
+					placement: 'left'
+				},*/
+				{
+					element: "#panel-floristic",
+					title: "Cortège floristique",
+					content: "Le cortège floristique est extrait de baseflor.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: "#panel-resources",
+					title: "Ressources",
+					content: "Les ressources sont ajoutés par les contributeurs. Il s'agit de tableaux diagnostiques ou de documents PDF. Si vous avez créé un compte utilisateur, vous pouvez également ajouter des documents.",
+					backdrop: true,
+					placement: 'left'
+				},
+				/*{
+					element: "#panel-bibliography",
+					title: "Bibliographie",
+					content: "Les synonymes sont pris en compte dans la bibliographie.",
+					backdrop: true,
+					placement: 'left'
+				},*/
+				{
+					element: "#panel-photo",
+					title: "Illustrations",
+					content: "Comme les resources, les photos sont ajoutées par les contributeurs.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: "#panels-map",
+					title: "Cartes de répartition",
+					content: "En un coup d'oeil, la répartition de la végétation en France métropolitaine et en Europe. Vous pouvez afficher la légende sous chaque carte.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: "#panel-ecoValences",
+					title: "Valences écologiques",
+					content: "Les valences écologiques sont calculées automatiquement à partir du cortège floristique (... donc depuis baseflor si vous avez bien suivi).",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					orphan: true,
+					title: "Encore quelques détails...",
+					content: "Nous avons presque terminé notre visite mais j'aimerais vous montrer encore quelques détails...",
+					backdrop: true
+				},
+				{
+					element: "#panel-mapFr-iconComment",
+					title: "Il manque votre département ?",
+					content: "Vous avez déjà vu cette végétation dans votre département et elle n'apparait pas ici ? N'hésitez pas à nous envoyer une remarque ! (Ca fonctionne également pour les pays).",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: ".options_panel",
+					title: "Options",
+					content: "Ces icônes sont petites mais permettent beaucoup de choses : filtrer entièrement les données du site, signaler un problème, comparer deux végétations ou encore télécharger la fiche en version PDF... Prenez le temps d'y revenir plus tard.",
+					backdrop: true,
+					placement: 'left'
+				},
+				{
+					element: ".ecologyShowAll",
+					title: "Afficher tout",
+					content: "Nous avons essayé de concevoir une interface dense mais lisible. Plusieurs champs, trop longs pour être affichés par défaut, sont réduits. N'oubliez pas de cliquer ici pour ne rien manquer.",
+					backdrop: true,
+					placement: 'left'
+				}
+				
+			],
+			storage: false
+		});
+
+		// Initialize the tour
+		tour.init();
+
+		// Start the tour
+		tour.start(true);
 	</script>
 
 {% endblock %}
