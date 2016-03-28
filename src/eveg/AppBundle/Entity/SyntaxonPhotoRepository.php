@@ -29,4 +29,16 @@ class SyntaxonPhotoRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getNbPublic()
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('COUNT(p)')
+		   ->where('p.visibility = :public')
+		   ->setParameter('public', 'public')
+		   ;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }

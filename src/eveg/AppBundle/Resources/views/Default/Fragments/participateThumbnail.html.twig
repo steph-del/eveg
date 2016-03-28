@@ -1,0 +1,28 @@
+<div class="thumbnail thumb-purple">
+	<div class="caption">
+		<h2>{{ 'eveg.homepage.participate.title'|trans }}</h2>
+		<h3 class="participateTitle">{{ 'eveg.homepage.participate.currently.title'|trans }}</h3>
+		<div class="infosNbItemsParticipate">
+			<div class="partiticpateItem">
+				<div class="partiticpateItemNb">{{ nbCards }}</div>
+				<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbCards'|trans|nl2br }}</div>
+			</div>
+			<div class="partiticpateItem">
+				<div class="partiticpateItemNb">{{ nbDocs }}</div>
+				<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbDocuments'|trans|nl2br }}</div>
+			</div>
+			{% if (wanted is defined) and (wanted is not empty) and (wanted|length >= 2) %}
+				<div class="partiticpateItem">
+					<div class="partiticpateItemNb">{{ nbTotalWanted }}</div>
+					<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbWaiting'|trans|nl2br }}</div>
+				</div>
+			{% endif %}
+		</div>
+		<p>{{ 'eveg.homepage.participate.addDocuments'|trans }}</p>
+		<p class="text-center">
+			<button type="button" class="btn btn-default">
+				<a class="no-style" href="{{ path('eveg_app_participate') }}">{{ 'eveg.homepage.participate.how'|trans }}</a>
+			</button>
+		</p>
+	</div>
+</div> <!-- thumbnail-->

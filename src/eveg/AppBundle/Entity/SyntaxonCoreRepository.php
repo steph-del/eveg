@@ -470,4 +470,14 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
+	public function getAllNotSynonyms()
+	{
+		$qb = $this->createQueryBuilder('s');
+		return $qb->select('COUNT(s)')
+				  ->where('s.level NOT LIKE :synonym')
+				  ->setParameter('synonym', '%syn%')
+		   		  ->getQuery()
+		   		  ->getSingleScalarResult();
+	}
+
 }

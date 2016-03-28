@@ -1,6 +1,8 @@
 eveg:
     web_title: European vegetations database interface | integrated synusial phytosociology
-    slogan: European vegetations database interface
+    slogan: |
+        a database uppon
+        european vegetations
 
     menu:
         app: App

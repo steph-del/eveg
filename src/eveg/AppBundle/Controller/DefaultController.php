@@ -27,10 +27,16 @@ class DefaultController extends Controller
 		$whatsUp = $this->get('eveg_app.whatsup');
 		$newDocuments = $whatsUp->tellMeWhatsNew($limitResults = 6);
 
+		$nbEvegItems = $this->get('eveg_app.nbItems');
+		$nbCards = $nbEvegItems->getNbCards();
+		$nbDocs = $nbEvegItems->getNbPublicDocuments();
+
 		return $this->render('evegAppBundle:Default:homepage.html.twig', array(
 			'wanted' => $pdfsAlone,
 			'nbTotalWanted' => $nbPdfsAlone,
-			'newDocuments' => $newDocuments
+			'newDocuments' => $newDocuments,
+			'nbCards' => $nbCards,
+			'nbDocs' => $nbDocs
 		));
 	}
 
@@ -275,6 +281,16 @@ class DefaultController extends Controller
 		));
 
 		//return $fragment;
+	}
+
+	public function panelParticipateAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$count = $em->getRepository('evegAppBundle:SyntaxonCore')->getTotalCount();
+
+		return $this->render('evegAppBundle:Default:Fragments/participateThumbnail.html.twig', array(
+			'' => $count
+		));
 	}
 	
 }

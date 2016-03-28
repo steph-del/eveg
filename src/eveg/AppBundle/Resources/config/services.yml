@@ -94,3 +94,6 @@ services:
         class:              eveg\AppBundle\Utils\Services\whatsUp
         arguments:          ['@sfile_repository', '@shttplink_repository', '@sphoto_repository']
 
+    eveg_app.nbItems:
+        class:              eveg\AppBundle\Utils\Services\nbEvegItems
+        arguments:          ['@score_repository', '@sfile_repository', '@shttplink_repository', '@sphoto_repository']

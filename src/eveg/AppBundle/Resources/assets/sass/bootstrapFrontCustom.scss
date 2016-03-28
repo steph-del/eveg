@@ -6,8 +6,8 @@
 .navbar {
 	border-radius: 0;
 	margin-bottom: 0;
-	background-color: transparent;
-	border: none;
+	background-color: #FBFBFB;
+	border-bottom: 3px solid #E7E7E7;
 }
 
 
@@ -22,16 +22,53 @@
  *******/
  a.no-style{
  	color: inherit;
+ 	text-decoration: none;
 
  	:hover{
  		color:inherit;
+ 		text-decoration: none;
  	}
 
  	:visited{
  		color: inherit;
+ 		text-decoration: none;
  	}
  }
 
+/*
+ * eveg title
+ ************/
+ .row {
+ 	&.header {
+ 		display: flex;
+ 		margin-bottom: 15px;
+ 	}
+ }
+ .eveg-title{
+ 	display: flex;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	font-size: 4em;
+
+ 	h1 {
+ 		font-size: inherit;
+ 		display: flex;
+ 		small {
+ 			font-size: 50%;
+ 			margin: auto;
+ 			margin-left: 5px;
+ 			padding-left: 5px;
+ 			border-left: 2px solid #777;
+ 		}
+ 	}
+ }
+
+ /*
+  * eveg diagram
+  **************/
+  .eveg-diagram-img {
+  	width: 100%;
+  }
 /*
  * Jumbotron
  ***********/
@@ -43,7 +80,8 @@
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	margin-bottom: 0;
+	margin-bottom: 20px;
+	box-shadow: 0px 1px 5px 0px rgb(101, 101, 101);
 }
 // input jumbotron
 .searchbox {
@@ -62,6 +100,9 @@
  	box-shadow: 0px 0px 4px 0px $defaultShadowColor;
  	border-radius : 0;
  	border: none;
+ 	padding-left: 15px;
+ 	padding-right: 15px;
+ 	text-align: justify;
 
  	border-top: solid 3px #FFFFFF;
 
@@ -77,14 +118,32 @@
  	&.thumb-yellow{
  		border-top-color: $thumbYellowColor; 
  	}
+ 	&.thumb-orange{
+ 		border-top-color: $thumbOrangeColor;
+ 	}
+ 	&.thumb-purple{
+ 		border-top-color: $thumbPurpleColor;
+ 	}
 
  	.caption{
  		padding: 0;
- 		h3{
+ 		h2{
+ 			font-size: 24px;
  			margin-top: 0;
  			text-align: center;
  		}
+ 		h3{
+ 			font-size: 20px;
+ 			margin-top: 10px;
+ 			margin-bottom: 0;
+
+ 			&.participateTitle {
+ 				text-align: center;
+ 				color: $thumbPurpleColor;
+ 			}
+ 		}
  		ul{
+ 			margin-bottom: 10px;
  			li{
  				border: none;
  				.ellipsis{
@@ -97,10 +156,24 @@
  				border-radius: 0;
  			}
  			.list-highlight{
- 				background-color: $highlightRow;
+ 				background-color: $highlightRowPurple;
  			}
  		}
  	}
+ 	.infosNbItemsParticipate {
+ 		display: flex;
+ 		margin-bottom: 15px;
+ 		.partiticpateItem {
+ 			text-align: center;
+ 			margin: auto;
+ 			.partiticpateItemNb {
+ 				font-size: 2.5em;
+ 				font-weight: bold;
+ 				color: $thumbPurpleColor;
+ 			}
+ 		}
+ 	}
+
  }
 
  .col-no-padding{

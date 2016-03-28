@@ -1,0 +1,42 @@
+<div class="thumbnail thumb-purple">
+	<div class="caption">
+		<h2>{{ 'eveg.homepage.lastUploads.title'|trans }}</h2>
+		{% if newDocuments is defined and newDocuments is not empty %}
+			<ul class="list-group">
+				{% for document in newDocuments %}
+					{% if loop.index is not divisibleby(2) %}
+						<li class="list-group-item ellipsis list-highlight">
+					{% else %}
+						<li class="list-group-item ellipsis">
+					{% endif %}
+						{% if document.type == 'spreadsheet' %}
+							<i class="fa fa-file-excel-o"></i>
+						{% elseif document.type == 'pdf' %}
+							<i class="fa fa-file-pdf-o"></i>
+						{% elseif document.type == 'photo' %}
+							<i class="fa fa-camera"></i>
+						{% elseif document.type == 'httplink' %}
+							<i class="fa fa-external-link"></i>
+						{% endif %}
+						le {{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
+						{% if document.type == 'spreadsheet' %}
+							{{ 'eveg.file.type.spreadsheet'|trans }}
+						{% elseif document.type == 'pdf' %}
+							{{ 'eveg.file.type.pdf'|trans }}
+						{% elseif document.type == 'photo' %}
+							{{ 'eveg.file.type.photo'|trans }}
+						{% elseif document.type == 'httplink' %}
+							{{ 'eveg.file.type.link'|trans }}
+						{% endif %}
+						{{ 'eveg.dictionary.for'|trans }} : {{ document.syntaxon }}
+					</li>
+				{% endfor %}
+			</ul>
+			<p class="text-center">
+				<button type="button" class="btn btn-default">
+					<a class="no-style" href = "{{ path('eveg_app_activity') }}">Voir toutes les activités du site</a>
+				</button>
+			</p>
+		{% endif %}
+	</div>
+</div> <!-- thumbnail -->

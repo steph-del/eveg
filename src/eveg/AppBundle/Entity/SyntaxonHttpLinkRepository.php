@@ -29,4 +29,16 @@ class SyntaxonHttpLinkRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getNbPublic()
+	{
+		$qb = $this->createQueryBuilder('h');
+
+		$qb->select('COUNT(h)')
+		   ->where('h.visibility = :public')
+		   ->setParameter('public', 'public')
+		   ;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }

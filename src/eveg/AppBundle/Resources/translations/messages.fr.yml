@@ -1,6 +1,11 @@
 eveg:
     web_title: végétations d'Europe | phytosociologie synusiale intégrée
-    slogan: végétations d'Europe
+    slogan: |
+        une base de données pour
+        les végétations d'Europe
+
+    dictionary:
+        for: pour
 
     menu:
         app: App
@@ -10,12 +15,41 @@ eveg:
         participate: Participer
         user:
             my_account: Mon compte
-            dashboard: dashboard
+            dashboard: Tableau de bord
             login: Connexion
             logout: Déconnexion
 
     homepage:
-        description: eVeg est une interface web en lien avec baseveg et baseflor (programme CATMINAT, par Philippe Julve)...
+        presentation:
+            title: Présentation
+            1: "eVeg est une interface de consultation des données de baseveg et de baseflor (programme CATMINAT, par Philippe Julve)."
+            2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine et d'Europe, établie selon les principes de la phytosociologie synusiale intégrée."
+            3: "Chaque végétation connue fait l'objet d'une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques."
+            4: Organisation générale du projet :
+        participate:
+            title: Participer
+            currently:
+                title: Actuellement sur eVeg
+                nbCards: |
+                    fiches
+                    descriptives
+                nbDocuments: |
+                    documents
+                    à télécharger
+                nbWaiting: |
+                    documents n'attendent
+                    que vous pour être compilés !
+            addDocuments: "Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d'illustration et en soumettant des données chorologiques."
+            how: En savoir plus
+        lastUploads:
+            title: Derniers ajouts des contributeurs
+    file:
+        type:
+            spreadsheet: un tableau
+            pdf: un document PDF
+            link: un lien
+            photo: une photo
+
 
     search:
         placeholder: Rechercher une végétation

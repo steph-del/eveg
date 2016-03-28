@@ -96,4 +96,16 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getNbPublic()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('COUNT(f)')
+		   ->where('f.visibility = :public')
+		   ->setParameter('public', 'public')
+		   ;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }

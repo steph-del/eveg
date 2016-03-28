@@ -11,6 +11,13 @@
 
 	{{ parent() }}
 
+	{# Header (title) #}
+	<div class="row header">
+		<div class="eveg-title">
+			<h1>eVeg <small>{{ 'eveg.slogan'|trans|nl2br }}</small><h1>
+		</div>
+	</div>
+
 	{# Jumbotrom / Searchbox #}
 	<div class="row jumbotron text-center">
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
@@ -29,119 +36,39 @@
 		})) }}
 	</div>
 
+	{# Page #}
 	<div class="row">
-		<div class="header col-md-6 col-md-offset-2">
-			<h1>eVeg <small>{{ 'eveg.slogan'|trans }}</small><h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="thumbnail thumb-green">
+		<div class="col-md-7">
+			<div class="thumbnail thumb-orange">
 				<div class="caption">
-					<h3>Présentation</h3>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
+					<h2>{{ 'eveg.homepage.presentation.title'|trans }}</h2>
+					<p>{{ 'eveg.homepage.presentation.1'|trans }}</p>
+					<p>{{ 'eveg.homepage.presentation.2'|trans }}</p>
+					<p>{{ 'eveg.homepage.presentation.3'|trans }}</p>
+					<p>{{ 'eveg.homepage.presentation.4'|trans }}</p>
+					<div class="row">
+						<div class="col-md-offset-2 col-md-8 col-xs-12">
+							<p class="text-center"><img class="eveg-diagram-img" src="{{  asset('img/patterns/schema_eveg.jpg') }}" alt="eveg diagram"></img></p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-6 col-no-padding">
-					<div class="col-md-12 col-no-padding">
-						<div class="thumbnail thumb-blue">
-							<div class="caption">
-								<h3>Actuellement sur eVeg</h3>
-								<p><span class="badge"></span> fiches descriptives<br/><span class="badge">YYY</span> documents téléchargeables</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-no-padding">
-						<div class="thumbnail">
-							<div class="caption">
-								<p>baseveg : 16 mars 2016</p>
-								<p>baseflor: date</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="thumbnail thumb-blue">
-						<div class="caption">
-							<h3>Participez</h3>
-							{% if wanted is defined and wanted is not empty %}
-								<p>
-									<span class="badge">{{ nbTotalWanted }}</span> documents n'attendent que vous pour être compilés !
-								</p>
-								<ul class="list-group">
-									{% for docWanted in wanted %}
-										{% if loop.index is not divisibleby(2) %}
-											<li class="list-group-item list-highlight">
-										{% else %}
-											<li class="list-group-item">
-										{% endif %}
-											{{ docWanted.syntaxonCore.syntaxonName }}
-										</li>
-									{% endfor %}
-									<li class="list-group-item text-center"><a href="{{ path('eveg_app_participate') }}">Comment participer ?</a></li>
-								</ul>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="col-md-5">
+			{# Participate #}
 			<div class="row">
 				<div class="col-md-12">
-					<div class="thumbnail thumb-red">
-						<div class="caption">
-							<h3>Derniers ajouts</h3>
-							{% if newDocuments is defined and newDocuments is not empty %}
-								<ul class="list-group">
-									{% for document in newDocuments %}
-										{% if loop.index is not divisibleby(2) %}
-											<li class="list-group-item ellipsis list-highlight">
-										{% else %}
-											<li class="list-group-item ellipsis">
-										{% endif %}
-											{% if document.type == 'spreadsheet' %}
-												<i class="fa fa-file-excel-o"></i>
-											{% elseif document.type == 'pdf' %}
-												<i class="fa fa-file-pdf-o"></i>
-											{% elseif document.type == 'photo' %}
-												<i class="fa fa-camera"></i>
-											{% elseif document.type == 'httplink' %}
-												<i class="fa fa-external-link"></i>
-											{% endif %}
-											le {{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
-											{% if document.type == 'spreadsheet' %}
-												une feuille de calcul
-											{% elseif document.type == 'pdf' %}
-												un document pdf
-											{% elseif document.type == 'photo' %}
-												une photo
-											{% elseif document.type == 'httplink' %}
-												un lien
-											{% endif %}
-											pour : {{ document.syntaxon }}
-										</li>
-									{% endfor %}
-									<li class="list-group-item text-center">
-										<a href = "{{ path('eveg_app_activity') }}">Voir toutes les activités du site</a>
-									</li>
-								</ul>
-							{% endif %}
-						</div>
-					</div>
+					{% include 'evegAppBundle:Default/Fragments:participateThumbnail.html.twig' with { 'nbCards': nbCards, 'nbDocs': nbDocs, 'wanted': wanted, 'nbTotalWanted': nbTotalWanted } only %}
+				</div>
+			</div> <!-- ./row -->
+			{# Last uploads from contributors #}
+			<div class="row">
+				<div class="col-md-12">
+					{% include 'evegAppBundle:Default/Fragments:lastUploadsThumbnail.html.twig' with { 'newDocuments': newDocuments } only %}
 				</div>
 			</div>
 		</div>
-
-		
 	</div> <!-- ./row -->
 
 {% endblock %}
