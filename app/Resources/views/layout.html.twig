@@ -20,6 +20,7 @@
 		{# evegSearchEngine.scss should be moved to subViews (homepage / app) #}
 		<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
 		<link rel="stylesheet" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" type="text/css"/>
+		<link rel="stylesheet" href="{{ asset('css/flag-icon.min.css') }}" type="text/css"/>
 		<link rel="stylesheet" href="{{ asset_url }}">
 		{% endstylesheets %}
 		
@@ -51,8 +52,8 @@
 			{# Collect the nav links, forms, and other content for toggling #}
 			<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:mainMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
-				{{ knp_menu_render('evegAppBundle:MenuBuilder:languageMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+				{{ knp_menu_render('evegAppBundle:MenuBuilder:languageMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
 			</div>
 		</div> <!-- ./container-fluid -->
 	</div> <!-- /.navbar -->

@@ -1,0 +1,20 @@
+eveg:
+    web_title: Europa Vegetation | integrierte synusial pflanzengesellschaften
+    slogan: |
+        eine Datenbank für
+        Europa Vegetationen
+
+    dictionary:
+        for: für
+
+    menu:
+        app: App
+        help: Hilfe
+        contact: Kontakt
+        activity: Aktivitäten
+        participate: Teilnehmen
+        user:
+            my_account: Mein konto
+            dashboard: Armaturenbrett
+            login: Einloggen
+            logout: Austragen

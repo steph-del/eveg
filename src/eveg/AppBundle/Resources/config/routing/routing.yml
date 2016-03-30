@@ -9,23 +9,23 @@ eveg_app:
         route: eveg_app_homepage
 
 eveg_app_homepage:
-    locales:  { fr: "/accueil", en: "/en/homepage" }
+    locales:  { fr: "/accueil", en: "/en/homepage", de: "/de/startseite", es: "/es/inicio", it: "/it/accoglienza" }
     defaults: { _controller: evegAppBundle:Default:index }
 
 eveg_app_activity:
-    locales:  { fr: "/activites", en: "/en/activities" }
+    locales:  { fr: "/activites", en: "/en/activities", de: "/de/aktivitaten", es: "/es/actividades", it: "/it/attivita" }
     defaults: { _controller: evegAppBundle:Default:activity }
 
 eveg_app_participate:
-    locales:  { fr: "/comment-participer", en: "/en/how-to-participate" }
+    locales:  { fr: "/comment-participer", en: "/en/how-to-participate", de: "/de/teilnehmen", es: "/es/participar", it: "/it/partecipare" }
     defaults: { _controller: evegAppBundle:Default:participate }
 
 eveg_app_howto:
-    locales:  { fr: "/utiliser", en: "/en/howto" }
+    locales:  { fr: "/utiliser", en: "/en/howto", de: "/de/verwendung", es: "/es/uso", it: "/it/uso" }
     defaults: { _controller: evegAppBundle:Default:howto }
 
 eveg_app_contact:
-    locales:  { fr: "/contact", en: "/en/contact" }
+    locales:  { fr: "/contact", en: "/en/contact", de: "/de/kontakt", es: "/es/contacto", it: "/it/contatto" }
     defaults: { _controller: evegAppBundle:Default:contact }
 
 # We use this trick because BeSimpleI18nRoutingBundle seems to be incompatible with FOSJsRoutingBundle (I think it doesn't recognize the "locales" parameter)
@@ -36,7 +36,7 @@ eveg_show_one_redirect:
         route: eveg_show_one
 
 eveg_show_one:
-    locales:  { fr: "/app/{id}", en: "/en/app/{id}" }
+    locales:  { fr: "/app/{id}", en: "/en/app/{id}", de: "/de/app/{id}", es: "/es/app/{id}", it: "/it/app/{id}" }
     defaults: { _controller: evegAppBundle:Default:showOne }
     requirements:
         id: \d+
@@ -105,7 +105,7 @@ eveg_language:
     path: /language/{lang}
     defaults: { _controller: evegAppBundle:Default:setLanguage }
     requirements:
-        lang: fr|en
+        lang: fr|en|es|de|it
 
 eveg_repartition_filter:
     path: /app/repartition-filter

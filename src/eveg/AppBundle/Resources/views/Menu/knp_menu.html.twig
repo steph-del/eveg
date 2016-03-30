@@ -80,6 +80,9 @@
     	{% if item.attribute('glyphicon') is not empty %}
     		<span class="glyphicon {{ item.attribute('glyphicon') }}"</span>
     	{% endif %}
+        {% if item.attribute('flag') is not empty %}
+            <span class="flag-icon flag-icon-{{ item.attribute('flag') }}"></span>
+        {% endif %}
 		{{ block('label') }}
 	</a>
 {% endblock %}
@@ -100,6 +103,12 @@
 		{% endif %}
 	</span>
 {% endblock %}
+
+{% block flag %}
+    {% if item.extra('flag') is not empty %}
+        <span>{{ item.extra('flag') }}</span>
+    {% endif %}
+{% endblock %}
  
 {% block dropdownElement %}
     {%- set classes = item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [] %}
@@ -109,8 +118,15 @@
     {%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}
     <a href="#"{{ macros.attributes(attributes) }}>
     	{% if item.attribute('glyphicon') is not empty %}
-    		<span class="glyphicon {{ item.attribute('glyphicon') }}"</span>
+    		<span class="glyphicon {{ item.attribute('glyphicon') }}"></span>
     	{% endif %}
+        {% if item.attribute('flag') is not empty %}
+            {% if item.attribute('flag') == 'en' %}
+                <span class="flag-icon flag-icon-gb }}"></span>
+            {% else %}
+                <span class="flag-icon flag-icon-{{ item.attribute('flag') }}"></span>
+            {% endif %}
+        {% endif %}
     	{% if item.attribute('icon') is not empty  %}
     		<i class="{{ item.attribute('icon') }}"></i> 
     	{% endif %}
@@ -119,7 +135,8 @@
     </a>
 {% endblock %}
  
-{% block label %}{{ item.label|trans(
+{% block label %}
+    {{ item.label|trans(
         item.getExtra('translation_params', {}),
         item.getExtra('translation_domain', 'messages')
     ) }}{% endblock %}

@@ -1,0 +1,20 @@
+eveg:
+    web_title: vegetaciones europa | fitosociología synusial integrada
+    slogan: |
+        una base de datos
+        de vegetaciones europa
+
+    dictionary:
+        for: para
+
+    menu:
+        app: App
+        help: Ayudar
+        contact: Contacto
+        activity: Actividades
+        participate: Participar
+        user:
+            my_account: Mi cuenta
+            dashboard: Salpicadero
+            login: Iniciar la sesión
+            logout: Cerrar sesión

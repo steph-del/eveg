@@ -70,32 +70,103 @@ class MenuBuilder extends ContainerAware
     	// Get local
  		$locale = $this->container->get('request')->getLocale();
 
- 		// Get the actual route name
-		//$request = $this->container->get('request');
-		//$routeName = $request->get('_route');
-
     	$menu = $factory->createItem('root');
-    	//$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right langSelect');
-    	$menu->setChildrenAttribute('class', 'nav navbar-nav');
-    	//$menu->addchild('Language', array('label' => $locale))
-    	//	->setAttribute('dropdown', true);
+    	$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
     	
-    	$menu->addChild('Language', array('label' => $locale))
+    	$menu->addChild('Language', array('label' => ''/*$locale*/))
     		->setAttribute('dropdown', true)
-    		->setAttribute('glyphicon', 'glyphicon-flag');
+            ->setAttribute('flag', $locale);
 
     	if($locale == 'en'){
-    		$menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
-    												   'routeParameters' => array('lang' => 'fr'),
-    												   'label' => 'Français'));
-    		//$menu['langFr']->setAttribute('class', 'langSelectLast');
+    		$menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
+    												   'routeParameters' => array('lang' => 'de'),
+    												   'label' => 'Deutsch'))
+                             ->setAttribute('flag', 'de');
+            $menu['Language']->addchild('langEs', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'es'),
+                                                       'label' => 'Español'))
+                             ->setAttribute('flag', 'es');
+            $menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'fr'),
+                                                       'label' => 'Français'))
+                             ->setAttribute('flag', 'fr');
+            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'it'),
+                                                       'label' => 'Italiano'))
+                             ->setAttribute('flag', 'it');
 
     	} elseif($locale == 'fr') {
-    		$menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
-    												   'routeParameters' => array('lang' => 'en'),
-    												   'label' => 'English'));
-    		//$menu['langEn']->setAttribute('class', 'langSelectLast');
-    	}
+    		$menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'de'),
+                                                       'label' => 'Deutsch'))
+                             ->setAttribute('flag', 'de');
+            $menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'en'),
+                                                       'label' => 'English'))
+                             ->setAttribute('flag', 'gb');
+            $menu['Language']->addchild('langEs', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'es'),
+                                                       'label' => 'Español'))
+                             ->setAttribute('flag', 'es');
+            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'it'),
+                                                       'label' => 'Italiano'))
+                             ->setAttribute('flag', 'it');
+
+    	} elseif($locale == 'de') {
+            $menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'en'),
+                                                       'label' => 'English'))
+                             ->setAttribute('flag', 'gb');
+            $menu['Language']->addchild('langEs', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'es'),
+                                                       'label' => 'Español'))
+                             ->setAttribute('flag', 'es');
+            $menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'fr'),
+                                                       'label' => 'Français'))
+                             ->setAttribute('flag', 'fr');
+            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'it'),
+                                                       'label' => 'Italiano'))
+                             ->setAttribute('flag', 'it');
+
+        } elseif($locale == 'es') {
+            $menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'de'),
+                                                       'label' => 'Deutsch'))
+                             ->setAttribute('flag', 'de');
+            $menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'en'),
+                                                       'label' => 'English'))
+                             ->setAttribute('flag', 'gb');
+            $menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'fr'),
+                                                       'label' => 'Français'))
+                             ->setAttribute('flag', 'fr');
+            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'it'),
+                                                       'label' => 'Italiano'))
+                             ->setAttribute('flag', 'it');
+
+        } elseif($locale == 'it') {
+            $menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'de'),
+                                                       'label' => 'Deutsch'))
+                             ->setAttribute('flag', 'de');
+            $menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'en'),
+                                                       'label' => 'English'))
+                             ->setAttribute('flag', 'gb');
+            $menu['Language']->addchild('langEs', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'es'),
+                                                       'label' => 'Español'))
+                             ->setAttribute('flag', 'es');
+            $menu['Language']->addchild('langFr', array('route' => 'eveg_language', 
+                                                       'routeParameters' => array('lang' => 'fr'),
+                                                       'label' => 'Français'))
+                             ->setAttribute('flag', 'fr');
+        }
     	return $menu;
 
     }
