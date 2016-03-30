@@ -169,6 +169,13 @@ eveg_compare:
     path: /app/compare
     defaults: { _controller: evegAppBundle:Compare:compare }
 
+# Sitemap
+eveg_sitemap:
+    path: /sitemap.{_format}
+    defaults: { _controller: evegAppBundle:Sitemap:sitemap }
+    requirements:
+        _format: xml
+
 # API Search
 api_get_syntaxon_search:
     path: /api/syntaxons/search.{format}

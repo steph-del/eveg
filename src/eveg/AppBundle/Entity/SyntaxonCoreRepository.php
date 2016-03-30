@@ -480,4 +480,13 @@ class SyntaxonCoreRepository extends EntityRepository
 		   		  ->getSingleScalarResult();
 	}
 
+	public function findAllForSitemap()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s.id');
+
+		return $qb->getQuery()->getResult();
+	}
+
 }
