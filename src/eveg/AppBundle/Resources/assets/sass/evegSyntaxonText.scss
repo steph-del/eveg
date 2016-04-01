@@ -5,6 +5,7 @@ $color-ORD-text: #1848CC;
 $color-SUBORD-text: #1642BA;
 $color-ALL-text: #1DCF2C;
 $color-SUBALL-text: #19BF27;
+$color-ASSGR-text: #19BF27;
 $color-ASS-text: #ED8A18;
 $color-SUBASS-text: #D67C15;
 
@@ -69,6 +70,15 @@ $indent: 10px;
 
 .SUBALL-indent {
 	padding-left: ($indent*5);
+	@include display-syntaxon-text();
+}
+
+.ASSGR-text {
+	color: $color-ASSGR-text;
+}
+
+.ASSGR-indent {
+	padding-left: ($indent*5.5);
 	@include display-syntaxon-text();
 }
 

@@ -33,8 +33,9 @@ class AdminController extends Controller
 		$catCodeForm = $this->createForm(new CatCodeType());
 
 		// Get test syntaxon
-		$em = $this->getDoctrine()->getManager();
-		$entity = $em->getRepository('evegAppBundle:SyntaxonCore')->findByIdWithAllEntities(12);
+		// Retrieve syntaxon according to user's rights
+		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
+		$entity = $findGoodRepo->getSyntaxon(12, $depFrFilter = null, $ueFilter = null);
 
 		// repartitionDepFr to Json
 		$serializer = $this->container->get('jms_serializer');

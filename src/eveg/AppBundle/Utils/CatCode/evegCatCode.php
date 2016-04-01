@@ -213,9 +213,12 @@ class evegCatCode
 			case 6:
 				return 'SUBALL';
 				break;
+			case 7:
+				return 'ASSGR';
+				break;
 		}
 		
-		if($long>6){
+		if($long>7){
 			throw new \Exception('The getLevel function (evegCatCode class) returned an error. The catminat code seems to be wrong !');
 
 		}
@@ -245,9 +248,9 @@ class evegCatCode
 					return 'SUBALL';
 					break;
 				case 'SUBALL':
-					return 'ASS';
+					return 'ASSGR';
 					break;
-				case 'GRASS':
+				case 'ASSGR':
 				    return 'ASS';
 				    break;
 				case 'ASS':
@@ -272,9 +275,12 @@ class evegCatCode
 					return 'SUBALL';
 					break;
 				case 'ALL':
-					return 'ASS';
+					return 'ASSGR';
 					break;
 				case 'SUBALL':
+					return 'ASS';
+					break;
+				case 'ASSGR':
 					return 'SUBASS';
 					break;
 				case 'ASS':
@@ -311,7 +317,7 @@ class evegCatCode
 		// initializing variables
 		$catminatLevel = $this->getLevel($catminatCode);
 		$habCode = $this->getHabCode($catminatCode);
-		//if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+		//if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS' or 'ASSGR'){
 			$coreCode = $this->getCoreCode($catminatCode);
 		//}
 		//if($catminatLevel == 'ASS' or 'SUBASS'){
@@ -324,7 +330,7 @@ class evegCatCode
 
 		switch($levelAsked){
 			case 'HAB':
-				if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/';
 					return $output;
@@ -340,7 +346,7 @@ class evegCatCode
 			
 			case 'CLA':
 				
-				if($catminatLevel == 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 2+$addA6);
 					return $output;
@@ -355,7 +361,7 @@ class evegCatCode
 			
 			case 'SUBCLA':
 
-				if($catminatLevel == 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 3+$addA6);
 					return $output;
@@ -370,7 +376,7 @@ class evegCatCode
 			
 			case 'ORD':
 
-				if($catminatLevel == 'SUBORD' or 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 5+$addA6);
 					return $output;
@@ -385,7 +391,7 @@ class evegCatCode
 			
 			case 'SUBORD':
 
-				if($catminatLevel == 'ALL' or 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 7+$addA6);
 					return $output;
@@ -400,7 +406,7 @@ class evegCatCode
 			
 			case 'ALL':
 
-				if($catminatLevel == 'SUBALL' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 9+$addA6);
 					return $output;
@@ -415,9 +421,24 @@ class evegCatCode
 			
 			case 'SUBALL':
 
-				if($catminatLevel == 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ASSGR' or 'ASS' or 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 11+$addA6);
+					return $output;
+					
+					break;
+					
+				} else {
+					
+					throw new evegCatCodeException('Can\'t retrieve the ' . $levelAsked . ' level from the ' . $catminatCode . ' code that is a ' . $catminatLevel . ' level');
+					
+				}
+
+			case 'ASSGR':
+
+				if($catminatLevel ==  'ASS' or 'SUBASS'){
+					
+					$output = $habCode . '/' . substr($coreCode, 0, 13+$addA6);
 					return $output;
 					
 					break;
@@ -513,14 +534,27 @@ class evegCatCode
 
 				return $this->getLevelCode($text, 'ALL');
 				break;
-			
-			case 'ASS':
 
+			case 'ASSGR':
 				$parentCode = $this->getLevelCode($text, 'SUBALL');
-				
+
 				if($this->checkIfLastZero($parentCode)){
 					return $this->getLevelCode($text, 'ALL');
 				} else {
+					return $parentCode;
+				}
+				break;
+			
+			case 'ASS':
+				$parentCode = $this->getLevelCode($text, 'ASSGR');
+				$parentCode2 = $this->getLevelCode($text, 'SUBALL');
+
+				if($this->checkIfLastZero($parentCode)){
+					if($this->checkIfLastZero($parentCode2)){
+						return $this->getLevelCode($text, 'ALL');
+					}
+					return $this->getLevelCode($text, 'SUBALL');
+					} else {
 					return $parentCode;
 				}
 				
@@ -590,7 +624,7 @@ class evegCatCode
 		
 			return true;
 			
-		} elseif(preg_match("/^[0-9]{2}\/[0-9]\.([0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?$/", $text)) {
+		} elseif(preg_match("/^[0-9]{2}\/[0-9]\.([0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9])?(\.[0-9]?(\.[0-9]))?$/", $text)) {
 		
 			return true;
 			
