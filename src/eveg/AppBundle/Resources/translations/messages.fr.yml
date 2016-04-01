@@ -43,6 +43,80 @@ eveg:
             how: En savoir plus
         lastUploads:
             title: Derniers ajouts des contributeurs
+
+    help:
+        participate:
+            title: Participer
+            signup : Créer un compte utilisateur (gratuit)
+            login: Se connecter à eVeg
+            text: |
+                Depuis sa création, eVeg est un projet collaboratif.
+                Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
+            add_doc:
+                title: Ajouter un document
+                1: |
+                    De nombreux tableaux sont déjà disponibles en téléchargement sur le site.
+                    Le projet de saisie des diagnoses est issu du groupe TB-Phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
+                    Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
+                2: |
+                    Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
+
+            add_photo:
+                title: Ajouter une photo
+                1: |
+                    Quoi de mieux qu’une bonne photo pour illustrer une végétation ?
+                    Ajouter une photo est aussi simple que d’ajouter un tableau ou un document.
+                    Une "bonne" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).
+                    Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
+                2: |
+                    La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
+                    La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA) et citation obligatoire de l’auteur.
+
+            add_repartition:
+                title: Compléter la chorologie
+                1: |
+                    Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philipe Julve.
+                    Vous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.
+        baseveg_baseflor:
+            title: A propos de baseveg et de baseflor
+            1: |
+                Baseveg et baseflor sont deux bases de données issues du programme CATMINAT (catalogue des milieux naturels) de Philippe Julve.
+                Baseveg présente un système de classification pour les végétations (synsystème) établit selon les principes de la phytosociologie synusiale intégrée. Il couvrait, à l’origine, la France métropolitaine et a ensuite été étendu à l’Europe. Cette base donne également toutes les caractéristiques écologiques que vous pouvez retrouver sur eVeg ainsi que la chorologie pour la France métropolitaine (par département) ainsi que pour l’Europe (par pays).
+                Baseflor concerne les données floristiques et suit le référentiel BDTFX (base de données des trachéophytes de métropole et contrées limitrophes) coordonnée par Benoit Bock dans le cadre du réseau Tela Botanica. En plus de cet index, baseflor intègre de nombreuses données sur le cycle de vie de chaque taxon, leurs affinités phytosociologiques ainsi que les valences écologiques (échelles de Ph. Julve et de H. Ellenberg). Il permet également de faire le lien entre un taxon et une végétation grâce au code CATMINAT.
+        catminat_code:
+            title: A propos du code CATMINAT
+            1: |
+                Le code CATMINAT est présent dans baseveg ainsi que dans baseflor. Il s’agit d’un code taxonomique : un code, unique, correspond à un syntaxon (une végétation) retenu. Ce code est pensé pour délivrer un maximum d’informations de manière condensée.
+            2: Comment lire un code CATMINAT ?
+            hab: Habitat
+            cla: Classe et sous-classe
+            ord: Ordre et sous-ordre
+            all: Alliance et sous-alliance
+            assgr: Groupement d'associations
+            ass: Association
+
+        fund:
+            title: Aspects financiers
+            1: |
+                Le site internet eVeg a été réalisé et est maintenu de manière totalement bénévole. Il ne bénéficie d’aucune subvention. Le coût de l’hébergement est réduit par l’utilisation des serveurs de Tela Botanica. Les autres frais sont supportés par son créateur et par Tela Botanica.
+
+        license:
+            title: Licences
+            db: |
+                Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
+            website: |
+                Le site internet ‘eveg.fr’ est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
+            photos: |
+                Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
+            documents: |
+                Tableaux (feuilles de calcul) : voir charte Tela Botanica. Les documents PDF téléversés sur eVeg bénéficient de la licence originelle.
+
+
+        api:
+            title: API
+            1: a
+
+
     file:
         type:
             spreadsheet: un tableau

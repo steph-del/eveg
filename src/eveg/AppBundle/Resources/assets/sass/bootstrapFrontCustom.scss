@@ -256,6 +256,10 @@
 	margin-top: 0px;
 }
 
+.whiteRow {
+	background-color: #FFFFFF;
+}
+
 #treeView {
 	padding-left: 0;
 }
@@ -609,3 +613,70 @@ img.syntaxonIllustration{
 	background-color: #FFFFFF;
 }
 
+/*
+ * Help page
+ *******************/
+ .jumbotron.help {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
+
+ .affix {
+ 	top: 20px;
+ 	width: 289.5px;
+
+ }
+ body {
+  position: relative;
+}
+
+#help-catminat-ex {
+	font-size: 1.5em;
+}
+
+#nav{
+	li{
+		a{
+			border-radius: 0;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			&:hover {
+				font-weight: bold;
+				background-color: transparent;
+			}
+		}
+
+		&.active{
+			a{
+				color: inherit;
+				background-color: transparent;
+				border-left: 3px solid #428BCA;
+			}
+
+			ul {
+			li {
+				a {
+					border-left: none;
+					color: #428bca;
+				}
+				&.active {
+					a {
+						color: inherit;
+						background-color: transparent;
+						border-left: 3px solid #428BCA;
+					}
+				}
+			}
+		}
+		}
+
+		ul {
+			li {
+				a {
+					border-left: none;
+					padding-left: 30px;
+					color: #428bca;
+				}
+			}
+		}
+	} 
+}
