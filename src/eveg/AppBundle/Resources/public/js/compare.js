@@ -90,6 +90,10 @@ function updateComparator() {
 }
 
 updateComparator();
+
+$("#compareOption").click(function () {
+	updateComparator();
+});
 //$("#comparator").appendTo("#here");
 /*
 $(function () {
