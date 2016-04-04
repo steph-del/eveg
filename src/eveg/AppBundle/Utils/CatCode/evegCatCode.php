@@ -287,6 +287,36 @@ class evegCatCode
 					throw new evegCatCodeException("Error in catCode:getNextLevel. Can't provide nextLevel*2 for an ASS.");
 					break;
 			}
+		} elseif($jump == 3) {
+			switch($catminatCode){
+				case 'HAB':
+					return 'ORD';
+					break;
+				case 'CLA':
+					return 'SUBORD';
+					break;
+				case 'SUBCLA':
+					return 'ALL';
+					break;
+				case 'ORD':
+					return 'SUBALL';
+					break;
+				case 'SUBORD':
+					return 'ASSGR';
+					break;
+				case 'ALL':
+					return 'ASS';
+					break;
+				case 'SUBALL':
+					return 'SUBASS';
+					break;
+				case 'ASSGR':
+					throw new evegCatCodeException("Error in catCode:getNextLevel. Can't provide nextLevel*3 for an ASSGR.");
+					break;
+				case 'ASS':
+					throw new evegCatCodeException("Error in catCode:getNextLevel. Can't provide nextLevel*3 for an ASS.");
+					break;
+			}
 		}
 		
 		throw new evegCatCodeException("Error in catCode:getNextLevel.");

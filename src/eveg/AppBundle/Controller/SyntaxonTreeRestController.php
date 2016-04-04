@@ -92,6 +92,14 @@ class SyntaxonTreeRestController extends FOSRestController
         }
 
         if(empty($syntaxonTree)){
+            $nextLevel = $catCode->getNextLevel($syntaxon->getLevel(), 3);
+            $syntaxonTree = $this->getDoctrine()
+                             ->getManager()
+                             ->getRepository('evegAppBundle:SyntaxonCore')
+                             ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
+        }
+
+        if(empty($syntaxonTree)){
           //throw $this->createNotFoundException();
             $syntaxon->setFolder(false);
             $syntaxon->setLazy(false);
