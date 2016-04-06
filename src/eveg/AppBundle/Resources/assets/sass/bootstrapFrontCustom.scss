@@ -534,6 +534,14 @@ span.viewHeaderAuthor {
 button {
 	border-radius: 0!important;
 }
+.btn {
+	&:focus {
+		outline-style: none !important;
+	}
+	&:active {
+		outline-style: none !important;
+	}
+}
 
 /*
  * Photos
@@ -679,4 +687,57 @@ img.syntaxonIllustration{
 			}
 		}
 	} 
+}
+
+/*
+ * Contact page
+ **************/
+ .jumbotron.contact {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
+
+ .contact-thumbnail {
+ 	display: flex;
+
+ 	.caption {
+ 		width: 100%;
+ 		display: flex;
+ 		align-items: center;
+
+		width: 100%;
+
+		h3 {
+ 			margin-top: auto;
+ 			margin-bottom: auto;
+ 			margin: auto;
+
+ 			i {
+ 				font-size: 2em;
+ 			}
+ 		}
+ 		p {
+ 			margin-top: auto;
+ 			margin-bottom: auto;
+ 			margin: auto;
+ 		}
+
+ 		.contact-thumbnail-name {
+ 			align-self: center;
+ 		}
+ 		.contact-thumbnail-item {
+ 			align-self: baseline;
+
+ 			i {
+ 				align-self: center;
+ 				margin-right: 3px;
+ 			}
+ 		}
+ 		.contact-thumbnail-email {
+ 			align-self: center;
+ 			p {
+ 				text-align: center;
+ 			}
+ 		}
+	}
+
 }
