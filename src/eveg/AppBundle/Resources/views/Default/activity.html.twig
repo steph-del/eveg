@@ -11,9 +11,11 @@
 
 	{{ parent() }}
 
-	<div class="row">
+	<div class="row whiteRow">
+		<div class="jumbotron contact">
+			<h1>Dernière activités</h1>
+		</div>
 		<div class="col-md-8">
-			<h2>Dernières activités</h2>
 			{% if newDocuments is defined and newDocuments is not empty %}
 				<ul class="list-group">
 					{% for document in newDocuments %}
@@ -27,9 +29,9 @@
 							{% elseif document.type == 'httplink' %}
 								<i class="fa fa-external-link"></i>
 							{% endif %}
-							le {{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
+							{{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
 							{% if document.type == 'spreadsheet' %}
-								une feuille de calcul
+								un tableau
 							{% elseif document.type == 'pdf' %}
 								un document pdf
 							{% elseif document.type == 'photo' %}
@@ -37,7 +39,7 @@
 							{% elseif document.type == 'httplink' %}
 								un lien
 							{% endif %}
-							pour : {{ document.syntaxon }}
+							<br />pour : {{ document.syntaxon }}
 						</li>
 					{% endfor %}
 				</ul>
