@@ -42,7 +42,7 @@ class SyntaxonPhoto
     /**
      * @var \stdClass
      *
-     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="syntaxonPhotos")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;

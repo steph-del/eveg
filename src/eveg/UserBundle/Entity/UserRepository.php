@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+	public function findByIdWithDocs($id)
+	{
+		$qb = $this->createQueryBuilder('u');
+
+		$qb->where('u.id = :id')
+		   ->leftJoin('u.syntaxonFiles', 'sFiles')
+		   ->leftJoin('u.syntaxonHttpLinks', 'sHttpLinks')
+		   ->leftJoin('u.syntaxonPhotos', 'sPhotos')
+		   ->setParameter('id', $id)
+		   ->addSelect('sFiles')
+		   ->addSelect('sHttpLinks')
+		   ->addSelect('sPhotos');
+
+		return $qb->getQuery()->getResult();
+	}
 }

@@ -14,13 +14,6 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
 
-    public function __construct()
-    {
-        $this->syntaxonPhotos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->syntaxonFiles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->syntaxonHttpLinks = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * @var integer
      *
@@ -36,6 +29,21 @@ class User extends BaseUser
      * @ORM\Column(name="fullName", type="string")
      */
     protected $fullName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="user")
+     */
+    private $syntaxonFiles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="user")
+     */
+    private $syntaxonHttpLinks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user")
+     */
+    private $syntaxonPhotos;
 
     /**
      * Get id
@@ -82,6 +90,8 @@ class User extends BaseUser
     {
         $this->syntaxonPhotos[] = $syntaxonPhoto;
 
+        $syntaxonPhoto->setUser($this);
+
         return $this;
     }
 
@@ -116,6 +126,8 @@ class User extends BaseUser
     {
         $this->syntaxonFiles[] = $syntaxonFile;
 
+        $syntaxonFile->setUser($this);
+
         return $this;
     }
 
@@ -149,6 +161,8 @@ class User extends BaseUser
     public function addSyntaxonHttpLink(\eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink)
     {
         $this->syntaxonHttpLinks[] = $syntaxonHttpLink;
+
+        $syntaxonHttpLink->setUser($this);
 
         return $this;
     }
