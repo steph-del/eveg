@@ -110,6 +110,8 @@ class SyntaxonHttpLink
      */
     public function setUser($user)
     {
+        $user->addSyntaxonHttpLink($this);
+        
         $this->user = $user;
 
         return $this;

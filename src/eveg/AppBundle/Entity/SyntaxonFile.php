@@ -155,6 +155,8 @@ class SyntaxonFile
      */
     public function setUser($user)
     {
+        $user->addSyntaxonFile($this);
+
         $this->user = $user;
 
         return $this;

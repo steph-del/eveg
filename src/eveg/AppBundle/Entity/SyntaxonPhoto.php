@@ -183,6 +183,7 @@ class SyntaxonPhoto
      */
     public function setUser($user)
     {
+        $user->addSyntaconPhoto($this);
         $this->user = $user;
 
         return $this;

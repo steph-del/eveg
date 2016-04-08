@@ -25,6 +25,6 @@ class UserRepository extends EntityRepository
 		   ->addSelect('sHttpLinks')
 		   ->addSelect('sPhotos');
 
-		return $qb->getQuery()->getResult();
+		return $qb->getQuery()->getOneOrNullResult();
 	}
 }

@@ -14,6 +14,13 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
 
+    public function __construct()
+    {
+        //$this->setNbSyntaxonFiles(0);
+        $this->setNbSyntaxonHttpLinks(0);
+        $this->setNbSyntaxonPhotos(0);
+    }
+
     /**
      * @var integer
      *
@@ -36,14 +43,40 @@ class User extends BaseUser
     private $syntaxonFiles;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbSyntaxonFiles", type="integer")
+     */
+    private $nbSyntaxonFiles;
+
+    /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="user")
      */
     private $syntaxonHttpLinks;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbSyntaxonHttpLinks", type="integer")
+     */
+    private $nbSyntaxonHttpLinks;
+
+    /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user")
      */
     private $syntaxonPhotos;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbSyntaxonPhotos", type="integer")
+     */
+    private $nbSyntaxonPhotos;
+
+    /**
+     * @var integer
+     */
+    private $score;
 
     /**
      * Get id
@@ -90,7 +123,7 @@ class User extends BaseUser
     {
         $this->syntaxonPhotos[] = $syntaxonPhoto;
 
-        $syntaxonPhoto->setUser($this);
+        $this->setNbSyntaxonPhotos($this->getNbSyntaxonPhotos() + 1);
 
         return $this;
     }
@@ -102,6 +135,8 @@ class User extends BaseUser
      */
     public function removeSyntaxonPhoto(\eveg\AppBundle\Entity\SyntaxonPhoto $syntaxonPhoto)
     {
+        $this->setNbSyntaxonPhotos($this->getNbSyntaxonPhotos() - 1);
+
         $this->syntaxonPhotos->removeElement($syntaxonPhoto);
     }
 
@@ -126,7 +161,7 @@ class User extends BaseUser
     {
         $this->syntaxonFiles[] = $syntaxonFile;
 
-        $syntaxonFile->setUser($this);
+        $this->setNbSyntaxonFiles($this->getNbSyntaxonFiles() + 1);
 
         return $this;
     }
@@ -138,6 +173,9 @@ class User extends BaseUser
      */
     public function removeSyntaxonFile(\eveg\AppBundle\Entity\SyntaxonFile $syntaxonFile)
     {
+
+        $this->setNbSyntaxonFiles($this->getNbSyntaxonFiles() - 1);
+
         $this->syntaxonFiles->removeElement($syntaxonFile);
     }
 
@@ -162,7 +200,7 @@ class User extends BaseUser
     {
         $this->syntaxonHttpLinks[] = $syntaxonHttpLink;
 
-        $syntaxonHttpLink->setUser($this);
+        $this->setNbSyntaxonHttpLinks($this->getNbSyntaxonHttpLinks() + 1);
 
         return $this;
     }
@@ -174,6 +212,8 @@ class User extends BaseUser
      */
     public function removeSyntaxonHttpLink(\eveg\AppBundle\Entity\SyntaxonHttpLink $syntaxonHttpLink)
     {
+        $this->setNbSyntaxonHttpLinks($this->getNbSyntaxonHttpLinks() - 1);
+
         $this->syntaxonHttpLinks->removeElement($syntaxonHttpLink);
     }
 
@@ -185,5 +225,99 @@ class User extends BaseUser
     public function getSyntaxonHttpLinks()
     {
         return $this->syntaxonHttpLinks;
+    }
+
+    /**
+     * Set nbSyntaxonFiles
+     *
+     * @param integer $nbSyntaxonFiles
+     *
+     * @return User
+     */
+    public function setNbSyntaxonFiles($nbSyntaxonFiles)
+    {
+        $this->nbSyntaxonFiles = $nbSyntaxonFiles;
+
+        return $this;
+    }
+
+    /**
+     * Get nbSyntaxonFiles
+     *
+     * @return integer
+     */
+    public function getNbSyntaxonFiles()
+    {
+        return $this->nbSyntaxonFiles;
+    }
+
+    /**
+     * Set nbSyntaxonHttpLinks
+     *
+     * @param integer $nbSyntaxonHttpLinks
+     *
+     * @return User
+     */
+    public function setNbSyntaxonHttpLinks($nbSyntaxonHttpLinks)
+    {
+        $this->nbSyntaxonHttpLinks = $nbSyntaxonHttpLinks;
+
+        return $this;
+    }
+
+    /**
+     * Get nbSyntaxonHttpLinks
+     *
+     * @return integer
+     */
+    public function getNbSyntaxonHttpLinks()
+    {
+        return $this->nbSyntaxonHttpLinks;
+    }
+
+    /**
+     * Set nbSyntaxonPhotos
+     *
+     * @param integer $nbSyntaxonPhotos
+     *
+     * @return User
+     */
+    public function setNbSyntaxonPhotos($nbSyntaxonPhotos)
+    {
+        $this->nbSyntaxonPhotos = $nbSyntaxonPhotos;
+
+        return $this;
+    }
+
+    /**
+     * Get nbSyntaxonPhotos
+     *
+     * @return integer
+     */
+    public function getNbSyntaxonPhotos()
+    {
+        return $this->nbSyntaxonPhotos;
+    }
+
+    /**
+     * Set score
+     *
+     * @return User
+     */
+    public function setScore()
+    {
+        //
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer
+     */
+    public function getScore()
+    {
+        $score = $this->getNbSyntaxonFiles() + $this->getNbSyntaxonHttpLinks() + $this->getNbSyntaxonPhotos();
+
+        return $score;
     }
 }
