@@ -383,7 +383,7 @@ class User extends BaseUser
      */
     public function getScore()
     {
-        $score = $this->getNbSyntaxonFiles() + $this->getNbSyntaxonHttpLinks() + $this->getNbSyntaxonPhotos();
+        $score = $this->getNbSyntaxonFiles() + $this->getNbSyntaxonHttpLinks() + $this->getNbSyntaxonPhotos() + $this->getNbFeedbacks();
 
         return $score;
     }
