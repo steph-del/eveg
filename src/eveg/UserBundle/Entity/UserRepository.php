@@ -27,4 +27,20 @@ class UserRepository extends EntityRepository
 
 		return $qb->getQuery()->getOneOrNullResult();
 	}
+
+	public function findAllUsersWithTotalScore($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('u');
+
+		$qb->select('u');
+		$qb->addSelect('SUM(u.nbSyntaxonFiles) + SUM(u.nbSyntaxonHttpLinks) + SUM(u.nbSyntaxonPhotos) + SUM(u.nbFeedbacks) As TotalScore')
+		   ->orderBy('TotalScore', 'DESC')
+		   ->groupBy('u');
+
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
