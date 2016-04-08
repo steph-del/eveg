@@ -14,13 +14,6 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
 
-    public function __construct()
-    {
-        //$this->setNbSyntaxonFiles(0);
-        $this->setNbSyntaxonHttpLinks(0);
-        $this->setNbSyntaxonPhotos(0);
-    }
-
     /**
      * @var integer
      *
@@ -72,6 +65,18 @@ class User extends BaseUser
      * @ORM\Column(name="nbSyntaxonPhotos", type="integer")
      */
     private $nbSyntaxonPhotos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\Feedback", mappedBy="user")
+     */
+    private $feedbacks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbFeedbacks", type="integer")
+     */
+    private $nbFeedbacks;
 
     /**
      * @var integer
@@ -297,6 +302,68 @@ class User extends BaseUser
     public function getNbSyntaxonPhotos()
     {
         return $this->nbSyntaxonPhotos;
+    }
+
+    /**
+     * Add feedback
+     *
+     * @param \eveg\AppBundle\Entity\Feedback $feedback
+     *
+     * @return User
+     */
+    public function addFeedback(\eveg\AppBundle\Entity\Feedback $feedback)
+    {
+        $this->feedbacks[] = $feedback;
+
+        $this->setNbFeedbacks($this->getNbFeedbacks() + 1);
+
+        return $this;
+    }
+
+    /**
+     * Remove feedback
+     *
+     * @param \eveg\AppBundle\Entity\Feedback $feedback
+     */
+    public function removeFeedback(\eveg\AppBundle\Entity\Feedback $feedback)
+    {
+        $this->setNbFeedbacks($this->getNbFeedbacks() - 1);
+
+        $this->feedbacks->removeElement($feedback);
+    }
+
+    /**
+     * Get feedbacks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFeedbacks()
+    {
+        return $this->feedbacks;
+    }
+
+    /**
+     * Set nbFeedbacks
+     *
+     * @param integer $nbFeedbacks
+     *
+     * @return User
+     */
+    public function setNbFeedbacks($nbFeedbacks)
+    {
+        $this->nbFeedbacks = $nbFeedbacks;
+
+        return $this;
+    }
+
+    /**
+     * Get nbFeedbacks
+     *
+     * @return integer
+     */
+    public function getNbFeedbacks()
+    {
+        return $this->nbFeedbacks;
     }
 
     /**

@@ -55,7 +55,7 @@ class Feedback
     /**
      * @var \stdClass
      *
-     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="feedbacks")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      */
     private $user;
@@ -190,6 +190,8 @@ class Feedback
      */
     public function setUser($user)
     {
+        //$user->addFeedback($this);
+
         $this->user = $user;
 
         return $this;

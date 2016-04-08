@@ -22,11 +22,13 @@ class FeedbackController extends Controller
 
         if($request->isXmlHttpRequest()) $about = $request->get('about');
 
+        $currentUser = $this->get('security.context')->getToken()->getUser();
+
         $feedback->setAbout($about)
         		 ->setSyntaxon($syntaxonName)
         	 	 ->setDate(new \DateTime('now'))
-        		 ->setUser($this->get('security.context')->getToken()->getUser())
-        		 ->setEmail($this->get('security.context')->getToken()->getUser()->getEmail())
+        		 ->setUser($currentUser)
+        		 ->setEmail($currentUser->getEmail())
         		 ;
 
 		if($about == 'syntaxon') {
@@ -58,6 +60,8 @@ class FeedbackController extends Controller
 					 ->setMessage($message)
 					 ;
 			if($request->get('syntaxonName')) $feedback->setSyntaxon($syntaxon);
+
+      $currentUser->addFeedback($feedback);
 
 			$em = $this->getDoctrine()->getManager();
       		$em->persist($feedback);
