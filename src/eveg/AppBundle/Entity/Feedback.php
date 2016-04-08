@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Feedback
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_feedback")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\FeedbackRepository")
  */
 class Feedback
