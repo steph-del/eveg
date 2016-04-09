@@ -34,6 +34,7 @@ eveg:
         participate: Participer
         user:
             my_account: Mon compte
+            my_docs: Mes documents
             dashboard: Tableau de bord
             login: Connexion
             logout: Déconnexion
