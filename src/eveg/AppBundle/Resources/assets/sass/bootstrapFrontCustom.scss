@@ -1,6 +1,14 @@
 @import 'eveg-colors';
 
 /*
+ * Hacks
+ *******/
+// http://getbootstrap.com/css/#tables-responsive 
+@-moz-document url-prefix() {
+	fieldset { display: table-cell; }
+}
+
+/*
  * Navbar
  ********/
 .navbar {
@@ -23,16 +31,16 @@
  *******/
  a.no-style{
  	color: inherit;
- 	text-decoration: none;
+ 	text-decoration: none !important;
 
  	:hover{
  		color:inherit;
- 		text-decoration: none;
+ 		text-decoration: none !important;
  	}
 
  	:visited{
  		color: inherit;
- 		text-decoration: none;
+ 		text-decoration: none !important;
  	}
  }
 
@@ -741,3 +749,22 @@ img.syntaxonIllustration{
 	}
 
 }
+
+/*
+ * Files list, edit & delete
+ ***************************/
+ a.deleteFileItem {
+ 	color: red;
+ }
+ a.deleteLinkItem {
+ 	color: red;
+ }
+ a.deletePhotoItem {
+ 	color: red;
+ }
+ a.downloadItem {
+ 	color: #337AB7;
+ }
+ a.editItem {
+ 	color: #337AB7;
+ }

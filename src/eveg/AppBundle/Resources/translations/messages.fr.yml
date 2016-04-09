@@ -6,6 +6,25 @@ eveg:
 
     dictionary:
         for: pour
+        title: titre
+        file: fichier
+        syntaxon: syntaxon
+        visibility: visibilité
+        action: action
+        actions: actions
+        the_file: le fichier
+        the_link: le lien
+        the_photo: la photo
+        will_be_deleted_m: va être définitivement supprimé
+        will_be_deleted_f: va être définitivement supprimée
+
+    errors:
+        no_documents: Vous n'avez aucun document pour cette catégorie
+
+    actions:
+        confirm_delete: Confirmer la suppression
+        abort: Annuler
+        confirm: Confirmer
 
     menu:
         app: App
@@ -116,6 +135,16 @@ eveg:
             title: API
             1: a
 
+    documents:
+        title: Mes documents
+        spreadsheets:
+            title: Tableaux
+        pdfs:
+            title: Documents Pdf
+        http_links:
+            title: Liens
+        photos:
+            title: Photos
 
     file:
         type:
