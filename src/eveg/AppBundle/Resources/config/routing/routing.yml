@@ -61,6 +61,12 @@ eveg_edit_photo:
         id: \d+
         idPhoto: \d+
 
+eveg_delete_photo:
+    path: /app/photo/{idPhoto}/delete
+    defaults: { _controller:evegAppBundle:SyntaxonPhoto:deletePhoto }
+    requirements:
+        idPhoto: \d+
+
 eveg_add_file:
     locales: { fr: "/app/{id}/ajouter-un-fichier", en: "/en/app/{id}/add-a-file" }
     defaults: { _controller: evegAppBundle:SyntaxonFile:addFile }
@@ -81,6 +87,12 @@ eveg_download_file:
         id: \d+
         idFile: \d+
 
+eveg_delete_file:
+    path: /app/file/{idFile}/delete
+    defaults: { _controller: evegAppBundle:SyntaxonFile:deleteFile }
+    requirements:
+        idFile: \d+
+
 eveg_add_http_link:
     locales: { fr: "/app/{id}/ajouter-un-lien", en: "/en/app/{id}/add-a-link" }
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:addHttpLink }
@@ -99,6 +111,12 @@ eveg_get_http_link:
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:getHttpLink }
     requirements:
         id: \d+
+        idHttpLink: \d+
+
+eveg_delete_http_link:
+    path: /app/link/{idHttpLink}/delete
+    defaults: { _controller: evegAppBundle:SyntaxonHttpLink:deleteHttpLink }
+    requirements:
         idHttpLink: \d+
 
 eveg_language:
@@ -192,3 +210,8 @@ eveg_admin :
 eveg_app_admin_syntaxon:
     resource: "@evegAppBundle/Resources/config/routing/syntaxoncore.yml"
     prefix:   /admin/syntaxon
+
+# User routes
+eveg_user:
+    resource: "routing_user.yml"
+    prefix: /user
