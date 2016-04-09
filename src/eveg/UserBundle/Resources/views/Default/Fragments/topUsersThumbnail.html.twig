@@ -2,8 +2,12 @@
 	<div class="caption">
 		<h2><i class="fa fa-star-o"></i>Utilisateurs</h2>
 
-		{% for user in topUsers %}
-			<ul class="list-group">
+		<ul class="list-group">
+			<li class="list-group-item ellipsis">
+				<b><span>Nom</span>
+				<span class="pull-right"><i class="fa fa-star-o"></i></span></b>
+			</li>
+			{% for user in topUsers %}
 				{% if loop.index is not divisibleby(2) %}
 					<li class="list-group-item ellipsis list-highlight-blue">
 				{% else %}
@@ -12,6 +16,7 @@
 						<span class="badge pull-right">{{ user.TotalScore }}</span>
 						<span>{{ user[0].username }}</span>
 					</li>
-		{% endfor %}
+			{% endfor %}
+		</ul>
 	</div>
 </div> <!-- thumbnail-->
