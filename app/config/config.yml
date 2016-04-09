@@ -147,6 +147,7 @@ fos_js_routing:
         - "eveg_image_cache_map_exists"
         - "eveg_feedback"
         - "^eveg_compare_*"
+        - "^eveg_delete_*"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~
