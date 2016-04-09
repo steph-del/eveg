@@ -128,4 +128,37 @@ class SyntaxonPhotoController extends Controller
 			'syntaxon' => $syntaxon
 		));
 	}
+
+	/**
+	* @ParamConverter("photo", class="evegAppBundle:SyntaxonPhoto", options={"id" = "idPhoto"})
+	* 
+	*/
+	public function deletePhotoAction(SyntaxonPhoto $photo)
+	{
+
+		// author of the photo == current user ?
+		if($photo->getUser() !== $this->getUser()) {
+			Throw new HttpException(401, 'You are not allowed to delete this picture.');
+		}
+		// Get entity manager
+		$em = $this->getDoctrine()->getManager();
+
+		// Get file title
+		$photoTitle = $photo->getTitle();
+
+		// Remove file
+		$em->remove($photo);
+		$em->flush();
+
+		// Flash
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'La photo "'.$photoTitle.'" a été supprimée'
+        );
+
+        // Redirect to referer
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->redirect($referer);
+
+	}
 }

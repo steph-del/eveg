@@ -157,4 +157,38 @@ class SyntaxonHttpLinkController extends Controller
 		// Return
 		return $this->redirect($httpLink->getLink());
 	}
+
+
+	/**
+	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
+	* 
+	*/
+	public function deleteHttpLinkAction(SyntaxonHttpLink $httpLink)
+	{
+
+		// author of the httpLink == current user ?
+		if($httpLink->getUser() !== $this->getUser()) {
+			Throw new HttpException(401, 'You are not allowed to delete this link.');
+		}
+		// Get entity manager
+		$em = $this->getDoctrine()->getManager();
+
+		// Get file title
+		$httpLinkTitle = $httpLink->getTitle();
+
+		// Remove file
+		$em->remove($httpLink);
+		$em->flush();
+
+		// Flash
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Le lien "'.$httpLinkTitle.'" a été supprimé'
+        );
+
+        // Redirect to referer
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->redirect($referer);
+
+	}
 }

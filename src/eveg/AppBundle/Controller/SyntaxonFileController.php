@@ -151,4 +151,37 @@ class SyntaxonFileController extends Controller
 		$newFileName = $file->getOriginalName();
 		return $downloadHandler->downloadObject($file, $fileField = 'fileFile', $className = null, $newFileName);
 	}
+
+	/**
+	* @ParamConverter("file", class="evegAppBundle:SyntaxonFile", options={"id" = "idFile"})
+	* 
+	*/
+	public function deleteFileAction(SyntaxonFile $file)
+	{
+		// author of the file == current user ?
+		if($file->getUser() !== $this->getUser()) {
+			Throw new HttpException(401, 'You are not allowed to delete this file.');
+		}
+
+		// Get entity manager
+		$em = $this->getDoctrine()->getManager();
+
+		// Get file title
+		$fileTitle = $file->getTitle();
+
+		// Remove file
+		$em->remove($file);
+		$em->flush();
+
+		// Flash
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Le fichier "'.$fileTitle.'" a été supprimé'
+        );
+
+        // Redirect to referer
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->redirect($referer);
+
+	}
 }
