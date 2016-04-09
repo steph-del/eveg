@@ -136,22 +136,7 @@ class AdminController extends Controller
         	$em->persist($entity);
         	$em->flush();
         	$em->clear();
-        	//$entitie->setSyntaxonSlug(null);
-        	//print(' '.$key);
-        	/*if (($key % $batchSize) === 0) {
-		        $em->flush();
-		        $em->clear(); // Detaches all objects from Doctrine!
-		        print(' '.$key);
-		    }*/
-		    /*if ($key == 100) {
-		    	$em->flush();
-		        $em->clear();
-		        return $this->render('evegAppBundle:Admin:dashboard.html.twig');
-		    }*/
         }
-
-        //$em->flush();
-        //$em->clear();
 
         print('   --ok--   ');
 
