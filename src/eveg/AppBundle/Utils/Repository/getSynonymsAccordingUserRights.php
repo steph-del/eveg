@@ -27,7 +27,7 @@ class getSynonymsAccordingUserRights
 	 * @param integer $catminatCode SyntaxonCore catminat code
  	 * @return RepositoryMethod
  	 */
-	public function getSynonyms($catminatCode, $depFrFilter, $ueFilter)
+	public function getSynonyms($catminatCode, $depFrFilter = null, $ueFilter = null)
 	{
 		// Retrieve synonyms according to user's rights
 		// 		if user is authenticated anonymously (= not logged in)

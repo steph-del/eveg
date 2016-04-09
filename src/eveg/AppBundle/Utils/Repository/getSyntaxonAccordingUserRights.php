@@ -27,7 +27,7 @@ class getSyntaxonAccordingUserRights
 	 * @param integer $id SyntaxonCore id
  	 * @return RepositoryMethod
  	 */
-	public function getSyntaxon($id, $depFrFilter, $ueFilter)
+	public function getSyntaxon($id, $depFrFilter = null, $ueFilter = null)
 	{
 		// Retrieve syntaxon according to user's rights
 		// 		User is authenticated anonymously (= not logged in)
