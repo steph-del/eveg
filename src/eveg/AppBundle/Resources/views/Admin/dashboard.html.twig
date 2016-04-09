@@ -8,5 +8,12 @@
 
 	{{ parent() }}
 
+	<div class="row whiteRow">
+		<h1>Tableau de bord</h1>
+		<div class="col-md-4">
+			{# top users #}
+			{{ render(controller("evegUserBundle:Default:topUsers")) }}
+		</div>
+	</div>
 
 {% endblock %}

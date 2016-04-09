@@ -62,4 +62,14 @@ class DefaultController extends Controller
             'userPhotos' => $currentUserPhotos
         ));
     }
+
+    public function topUsersAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $topUsers = $em->getRepository('evegUserBundle:User')->findAllUsersWithTotalScore(10);
+        dump($topUsers);
+        return $this->render('evegUserBundle:Default/Fragments:topUsersThumbnail.html.twig', array(
+            'topUsers' => $topUsers
+        ));
+    }
 }
