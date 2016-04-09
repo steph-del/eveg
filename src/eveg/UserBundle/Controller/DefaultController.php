@@ -31,4 +31,35 @@ class DefaultController extends Controller
 		return true;
 
     }
+
+    public function listDocumentsAction()
+    {
+        $currentUserId = $this->get('security.context')->getToken()->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $currentUser = $em->getRepository('evegUserBundle:User')->findByIdWithDocs($currentUserId);
+        //$usersScores = $em->getRepository('evegUserBundle:User')->findAllUsersWithTotalScore();
+
+        $currentUserFiles = $currentUser->getSyntaxonFiles();
+        $types = array();
+        foreach ($currentUserFiles as $key => $file) {
+            array_push($types, $file->getType());
+        }
+
+        $uniqueTypes = array_count_values($types);
+        if(!array_key_exists('spreadsheet', $uniqueTypes)) $uniqueTypes['spreadsheet'] = 0;   // avoid empty key
+        if(!array_key_exists('pdf', $uniqueTypes)) $uniqueTypes['pdf'] = 0;                   // avoid empty key
+        
+
+        $currentUserHttpLinks = $currentUser->getSyntaxonHttpLinks();
+        $currentUserPhotos = $currentUser->getSyntaxonPhotos();
+
+        return $this->render('evegUserBundle:Default:docs.html.twig', array(
+            'userFiles' => $currentUserFiles,
+            'nbSpreadsheets' => ($uniqueTypes['spreadsheet']),
+            'nbPdfs' => ($uniqueTypes['pdf']),
+            'userHttpLinks' => ($currentUserHttpLinks),
+            'userPhotos' => $currentUserPhotos
+        ));
+    }
 }

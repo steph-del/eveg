@@ -1,0 +1,6 @@
+# src/eveg/AppBundle/Resources/config/routing_user.yml
+
+# User documents
+user_docs:
+    path: /docs
+    defaults: { _controller: evegUserBundle:Default:listDocuments }
