@@ -108,4 +108,63 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getSingleScalarResult();
 	}
+
+	public function getNbSpreadsheets()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('COUNT(f)')
+		   ->where('f.type = :spreadsheet')
+		   ->setParameter('spreadsheet', 'spreadsheet')
+		   ;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getNbPdfs()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('COUNT(f)')
+		   ->where('f.type = :pdf')
+		   ->setParameter('pdf', 'pdf')
+		   ;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getMostDownloaded($limitResults = null)
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->orderBy('f.hit', 'DESC');
+
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getSumDownloadedSpreadsheets()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('SUM(f.hit)')
+		   ->where('f.type = :spreadsheet')
+		   ->setParameter('spreadsheet', 'spreadsheet');
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getSumDownloadedPdfs()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('SUM(f.hit)')
+		   ->where('f.type = :pdf')
+		   ->setParameter('pdf', 'pdf');
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }

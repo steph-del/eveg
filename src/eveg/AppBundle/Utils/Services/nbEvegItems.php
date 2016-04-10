@@ -81,4 +81,76 @@ class nbEvegItems
 		return $nbPublicDocuments;
 	}
 
+	/**
+	 * Get the number of spreadsheets (public, private or group)
+	 *
+	 */
+	public function getNbSpreadsheets()
+	{
+		return $this->sFileRepo->getNbSpreadsheets();
+	}
+
+	/**
+	 * Get the number of Pdfs (public, private or group)
+	 *
+	 */
+	public function getNbPdfs()
+	{
+		return $this->sFileRepo->getNbPdfs();
+	}
+
+	/**
+	 * Get the number of http links (public, private or group)
+	 *
+	 */
+	public function getNbHttpLinks()
+	{
+		return $this->sHttpLinkRepo->getNb();
+	}
+
+	/**
+	 * Get the number of photos (public, private or group)
+	 *
+	 */
+	public function getNbPhotos()
+	{
+		return $this->sPhotoRepo->getNb();
+	}
+
+	/**
+	 * Get the most downloaded files (public, private or group)
+	 *
+	 */
+	public function getMostDownloadedFiles()
+	{
+		return $this->sFileRepo->getMostDownloaded($limit = 10);
+	}
+
+	/**
+	 * Count of total downloaded spreadsheets
+	 *
+	 */
+	public function getSumDownloadedSpreadsheets()
+	{
+		return $this->sFileRepo->getSumDownloadedSpreadsheets();
+	}
+
+	/**
+	 * Count of total downloaded Pdfs
+	 *
+	 */
+	public function getSumDownloadedPdfs()
+	{
+		return $this->sFileRepo->getSumDownloadedPdfs();
+	}
+
+	/**
+	 * Count of total downloaded http links
+	 *
+	 */
+	public function getSumDownloadedHttpLinks()
+	{
+		return $this->sHttpLinkRepo->getSumDownloaded();
+	}
+
 }

@@ -41,4 +41,13 @@ class SyntaxonPhotoRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getSingleScalarResult();
 	}
+
+	public function getNb()
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('COUNT(p)');
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }

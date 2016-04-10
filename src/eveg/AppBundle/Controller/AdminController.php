@@ -160,6 +160,29 @@ class AdminController extends Controller
 	    return $this->allRoutes;
 	}
 
+	public function getDocumentsInfosAction()
+	{
+		$nbEvegItems 		  = $this->get('eveg_app.nbItems');
+		$nbSpreadsheets 	  = $nbEvegItems->getNbSpreadsheets();
+		$nbPdfs 			  = $nbEvegItems->getNbPdfs();
+		$nbHttpLinks 		  = $nbEvegItems->getNbHttpLinks();
+		$nbPhotos 			  = $nbEvegItems->getNbPhotos();
+		$mostDwnFiles		  = $nbEvegItems->getMostDownloadedFiles();dump($mostDwnFiles);
+		$sumDwnSpreadsheets   = $nbEvegItems->getSumDownloadedSpreadsheets();
+		$sumDwnPdfs			  = $nbEvegItems->getSumDownloadedPdfs();
+		$sumDwnHttpLinks	  = $nbEvegItems->getSumDownloadedHttpLinks();
+
+		return $this->render('evegAppBundle:Admin/Fragments:documentsThumbnail.html.twig', array(
+			'nbSpreadsheets' 	   => $nbSpreadsheets,
+			'nbPdfs' 		 	   => $nbPdfs,
+			'nbHttpLinks' 	 	   => $nbHttpLinks,
+			'nbPhotos'		 	   => $nbPhotos,
+			'mostDwnFiles'	 	   => $mostDwnFiles,
+			'sumDwnSpreadsheets'   => $sumDwnSpreadsheets,
+			'sumDwnPdfs'		   => $sumDwnPdfs,
+			'sumDwnHttpLinks'	   => $sumDwnHttpLinks,
+		));
+	}
 
 
 }

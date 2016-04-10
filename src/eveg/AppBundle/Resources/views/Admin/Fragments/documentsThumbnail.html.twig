@@ -1,0 +1,82 @@
+<div class="thumbnail thumb-blue">
+	<div class="caption">
+		<h2>Documents<small> (synthèse et les 10 plus téléchargés)</small></h2>
+		<div class="row">
+			<div class="col-md-2 col-xs-2 text-right">
+				<div style="font-size:3em;color: white;">.</div>
+				<div>nombre</div>
+				<div><i class="fa fa-download"></i></div>
+			</div>
+			<div class="col-md-2 col-xs-2 text-center">
+				<div style="font-size:3em;"><i class="fa fa-file-excel-o"></i></div>
+				<div><span class="badge">{{ nbSpreadsheets }}</span></div>
+				<div><span class="badge">{{ sumDwnSpreadsheets }}</span></div>
+			</div>
+			<div class="col-md-2 col-xs-2 text-center">
+				<div style="font-size:3em;"><i class="fa fa-file-pdf-o"></i></div>
+				<div><span class="badge">{{ nbPdfs }}</span></div>
+				<div><span class="badge">{{ sumDwnPdfs }}</span></div>
+			</div>
+			<div class="col-md-2 col-xs-2 text-center">
+				<div style="font-size:3em;"><i class="fa fa-external-link"></i></div>
+				<span class="badge">{{ nbHttpLinks }}</span>
+				<div><span class="badge">{{ sumDwnHttpLinks }}</span></div>
+			</div>
+			<div class="col-md-2 col-xs-2 text-center">
+				<div style="font-size:3em;"><i class="fa fa-camera-retro"></i></div>
+				<span class="badge">{{ nbPhotos }}</span>
+			</div>
+			<div class="col-md-2 col-xs-2 text-center">
+				<div style="font-size:3em;">Σ</div>
+				<div><span class="badge">{{ nbSpreadsheets + nbPdfs + nbHttpLinks + nbPhotos }}</span></div>
+				<div><span class="badge">{{ sumDwnSpreadsheets + sumDwnPdfs + sumDwnHttpLinks }}</span></div>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table table-striped table-condensate">
+					<tr class="">
+						<th></th>
+						<th>Fichier</th>
+						<th>Syntaxon</th>
+						<th><i class="fa fa-download"></i></th>
+					</tr>
+					{% for file in mostDwnFiles %}
+						<tr>
+							<td>
+								{% if file.type == "spreadsheet" %}
+									<i class="fa fa-file-excel-o"></i>
+								{% elseif file.type == "pdf" %}
+									<i class="fa fa-file-pdf-o">
+								{% endif %}
+							</td>
+							<td><p><small>{{ file.originalName }}</small></p></td>
+							<td><p><small>{{ file.syntaxonCore.syntaxonName }}</small></p></td>
+							<td><span class="badge">{{ file.hit }}</span></td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+
+{#
+		<ul class="list-group">
+			<li class="list-group-item ellipsis">
+				<b><span>Nom</span>
+				<span class="pull-right"><i class="fa fa-star-o"></i></span></b>
+			</li>
+			{% for user in topUsers %}
+				{% if loop.index is not divisibleby(2) %}
+					<li class="list-group-item ellipsis list-highlight-blue">
+				{% else %}
+					<li class="list-group-item ellipsis">
+				{% endif %}
+						<span class="badge pull-right">{{ user.TotalScore }}</span>
+						<span>{{ user[0].username }}</span>
+					</li>
+			{% endfor %}
+		</ul>
+#}
+	</div>
+</div> <!-- thumbnail-->

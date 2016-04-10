@@ -41,4 +41,22 @@ class SyntaxonHttpLinkRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getSingleScalarResult();
 	}
+
+	public function getNb()
+	{
+		$qb = $this->createQueryBuilder('h');
+
+		$qb->select('COUNT(h)');
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getSumDownloaded()
+	{
+		$qb = $this->createQueryBuilder('h');
+
+		$qb->select('SUM(h.hit)');
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }
