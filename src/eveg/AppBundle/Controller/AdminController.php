@@ -17,7 +17,12 @@ class AdminController extends Controller
 {
 	public function dashboardAction()
 	{
-		return $this->render('evegAppBundle:Admin:dashboard.html.twig');
+		$em = $this->getDoctrine()->getManager();
+        $lastFeedbacks = $em->getRepository('evegAppBundle:Feedback')->getLastFeedbacks();
+
+		return $this->render('evegAppBundle:Admin:dashboard.html.twig', array(
+			'lastFeedbacks' => $lastFeedbacks
+		));
 	}
 
 	public function testAction()

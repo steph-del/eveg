@@ -10,4 +10,16 @@ namespace eveg\AppBundle\Entity;
  */
 class FeedbackRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getLastFeedbacks($limitResults = 10)
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->orderBy('f.date', 'DESC');
+
+		if($limitResults) {
+			$qb->setMaxResults($limitResults);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
