@@ -8,6 +8,7 @@ eveg:
         for: pour
         title: titre
         file: fichier
+        original_file: fichier d'origine
         syntaxon: syntaxon
         visibility: visibilité
         action: action
@@ -17,6 +18,7 @@ eveg:
         the_photo: la photo
         will_be_deleted_m: va être définitivement supprimé
         will_be_deleted_f: va être définitivement supprimée
+        user: utilisateur
 
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie

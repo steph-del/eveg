@@ -1,0 +1,325 @@
+{# app/Resources/views/Admin/docs.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %} Documents | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row whiteRow scrollspy">
+		<div class="jumbotron help">
+			<h1>Documents</h1>
+		</div>
+
+		<div class="col-md-2" id="navbar">
+			<ul id="nav" class="nav nav-pills nav-stacked">
+				<li class="active">
+					<a href="#spreadsheets">
+						{{ 'eveg.documents.spreadsheets.title'|trans }}
+					</a>
+				</li>
+				<li><a href="#pdfs">
+					{{ 'eveg.documents.pdfs.title'|trans }}
+				</a></li>
+				<li><a href="#http-links">
+					{{ 'eveg.documents.http_links.title'|trans }}
+				</a></li>
+				<li><a href="#photos">
+					{{ 'eveg.documents.photos.title'|trans }}
+				</a></li>
+			</ul>
+		</div>
+
+		<div class="col-md-10">
+			<div class="" id="spreadsheets">
+				<h2>{{ 'eveg.documents.spreadsheets.title'|trans }}<small><span class="badge">{{ nbSpreadsheets }}</span></small></h2>
+				{% if nbSpreadsheets > 0 %}
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tr class="info">
+								<th></th>
+								<th>{{ 'eveg.dictionary.user'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.title'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.original_file'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.file'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.syntaxon'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.visibility'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.actions'|trans|capitalize }}</th>
+							</tr>
+							{% for file in usersFiles %}
+								{% if file.type == 'spreadsheet' %}
+									<tr>
+										<td><i class="fa fa-file-excel-o"></i></td>
+										<td>{{ file.user.username }}</td>
+										<td>{{ file.title }}</td>
+										<td>{{ file.originalName }}</td>
+										<td>{{ file.fileName }}</td>
+										<td>{{ file.syntaxonCore.syntaxonName }}</td>
+										<td>
+											{% if file.visibility == 'public' %}
+												<i class="fa fa-users"></i>
+											{% elseif file.visibility == 'private' %}
+												<i class="fa fa-user"></i>
+											{% elseif file.visibility == 'group' %}
+												<i class="fa fa-circle-thin"></i>
+											{% endif %}
+											{{ file.visibility }}
+										</td>
+										<td>
+											<a class="no-style downloadItem" href="{{ path('eveg_download_file', {'id': file.syntaxonCore.id, 'idFile': file.id}) }}">
+												<i class="fa fa-download"></i>
+											</a>
+											<a class="no-style editItem" href="{{ path('eveg_edit_file', { 'id': file.syntaxonCore.id, 'idFile': file.id}) }}">
+												<i class="fa fa-pencil-square-o"></i>
+											</a>
+											<a class="no-style deleteFileItem" idFile="{{ file.id }}" titleFile="{{ file.title }}" href="#">
+												<i class="fa fa-times"></i>
+											</a>
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</table>
+					</div>
+				{% else %}
+					<p class="text-center">{{ 'eveg.errors.no_documents'|trans }}</p>
+				{% endif %}
+			</div>
+
+			<div class="" id="pdfs">
+				<h2>{{ 'eveg.documents.pdfs.title'|trans }}<small><span class="badge">{{ nbPdfs }}</span></small></h2>
+				{% if nbPdfs > 0 %}
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tr class="info">
+								<th></th>
+								<th>{{ 'eveg.dictionary.user'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.title'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.original_file'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.file'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.syntaxon'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.visibility'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.actions'|trans|capitalize }}</th>
+							</tr>
+							{% for file in usersFiles %}
+								{% if file.type == 'pdf' %}
+									<tr>
+										<td><i class="fa fa-file-pdf-o"></i></td>
+										<td>{{ file.user.username }}</td>
+										<td>{{ file.title }}</td>
+										<td>{{ file.originalName }}</td>
+										<td>{{ file.fileName }}</td>
+										<td>{{ file.syntaxonCore.syntaxonName }}</td>
+										<td>
+											{% if file.visibility == 'public' %}
+												<i class="fa fa-users"></i>
+											{% elseif file.visibility == 'private' %}
+												<i class="fa fa-user"></i>
+											{% elseif file.visibility == 'group' %}
+												<i class="fa fa-circle-thin"></i>
+											{% endif %}
+											{{ file.visibility }}
+										</td>
+										<td>
+											<a class="no-style downloadItem" href="{{ path('eveg_download_file', {'id': file.syntaxonCore.id, 'idFile': file.id}) }}">
+												<i class="fa fa-download"></i>
+											</a>
+											<a class="no-style editItem" href="{{ path('eveg_edit_file', { 'id': file.syntaxonCore.id, 'idFile': file.id}) }}">
+												<i class="fa fa-pencil-square-o"></i>
+											</a>
+											<a class="no-stlye deleteFileItem" idFile="{{ file.id }}" titleFile="{{ file.title }}" href="#">
+												<i class="fa fa-times"></i>
+											</a>
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</table>
+					</div>
+				{% else %}
+					<p class="text-center">{{ 'eveg.errors.no_documents'|trans }}</p>
+				{% endif %}
+			</div>
+
+			<div class="" id="http-links">
+				<h2>{{ 'eveg.documents.http_links.title'|trans }}<small><span class="badge">{{ usersHttpLinks|length }}</span></small></h2>
+				{% if usersHttpLinks|length > 0 %}
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tr class="info">
+								<th></th>
+								<th>{{ 'eveg.dictionary.user'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.title'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.syntaxon'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.visibility'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.actions'|trans|capitalize }}</th>
+							</tr>
+							{% for link in usersHttpLinks %}
+								<tr>
+									<td><i class="fa fa-external-link"></i></td>
+									<td>{{ link.user.username }}</td>
+									<td>{{ link.title }}</td>
+									<td>{{ link.syntaxonCore.syntaxonName }}</td>
+									<td>
+										{% if link.visibility == 'public' %}
+											<i class="fa fa-users"></i>
+										{% elseif link.visibility == 'private' %}
+											<i class="fa fa-user"></i>
+										{% elseif link.visibility == 'group' %}
+											<i class="fa fa-circle-thin"></i>
+										{% endif %}
+										{{ link.visibility }}
+									</td>
+									<td>
+										<a class="no-style downloadItem" href="{{ path('eveg_get_http_link', { 'id': link.syntaxonCore.id, 'idHttpLink': link.id }) }}" target="_blank">
+											<i class="fa fa-external-link"></i>
+										</a>
+										<a class="no-style editItem" href="{{ path('eveg_edit_http_link', {'id': link.syntaxonCore.id, 'idHttpLink': link.id}) }}">
+											<i class="fa fa-pencil-square-o"></i>
+										</a>
+										<a class="no-stlye deleteLinkItem" idLink="{{ link.id }}" titleLink="{{ link.title }}" href="#">
+											<i class="fa fa-times"></i>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</table>
+					</div>
+				{% else %}
+					<p class="text-center">{{ 'eveg.errors.no_documents'|trans }}</p>
+				{% endif %}
+			</div>
+
+			<div class="" id="photos">
+				<h2>{{ 'eveg.documents.photos.title'|trans }}<small><span class="badge">{{ usersPhotos|length }}</span></small></h2>
+				{% if usersPhotos|length > 0 %}
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tr class="info">
+								<th></th>
+								<th>{{ 'eveg.dictionary.user'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.title'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.file'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.syntaxon'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.visibility'|trans|capitalize }}</th>
+								<th>{{ 'eveg.dictionary.actions'|trans|capitalize }}</th>
+							</tr>
+							{% for photo in usersPhotos %}
+								<tr>
+									<td>
+										<img src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('thumb') }}", alt="{{ photo.syntaxonCore.syntaxonName }}"></img>
+									</td>
+									<td>{{ photo.user.username }}</td>
+									<td>{{ photo.title }}</td>
+									<td>{{ photo.imageName }}</td>
+									<td>{{ photo.syntaxonCore.syntaxonName }}</td>
+									<td>
+										{% if photo.visibility == 'public' %}
+											<i class="fa fa-users"></i>
+										{% elseif photo.visibility == 'private' %}
+											<i class="fa fa-user"></i>
+										{% elseif photo.visibility == 'group' %}
+											<i class="fa fa-circle-thin"></i>
+										{% endif %}
+										{{ photo.visibility }}
+									</td>
+									<td>
+										<a class="no-style downloadItem" href="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" target="_blank">
+											<i class="fa fa-download"></i>
+										</a>
+										<a class="no-style editItem" href="{{ path('eveg_edit_photo', {'id': photo.syntaxonCore.id, 'idPhoto': photo.id}) }}">
+											<i class="fa fa-pencil-square-o"></i>
+										</a>
+										<a class="no-style deletePhotoItem" idPhoto="{{ photo.id }}" titlePhoto="{{ photo.title }}" href="#">
+											<i class="fa fa-times"></i>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</table>
+					</div>
+				{% else %}
+					<p class="text-center">{{ 'eveg.errors.no_documents'|trans }}</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal delete item -->
+	<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-warning">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{ 'eveg.actions.confirm_delete'|trans }}</h4>
+				</div>
+				<div class="modal-body">
+					<p id="modalDeleteItemBody"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">{{ 'eveg.actions.abort'|trans }}</button>
+					<button type="button" class="btn btn-warning">
+						<a class="no-style" id="modalDeleteItemConfirmationLink" href="#">
+							{{ 'eveg.actions.confirm'|trans }}
+						</a>
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<!-- Affix menu -->
+	<script>
+		$('#nav').affix({
+			offset: {
+				top: $('#nav').offset().top - 20
+			}
+		})
+	</script>
+
+	<!-- Delete file -->
+	<script>
+		$(".deleteFileItem").click(function() {
+			$("#modalDeleteItemBody").html(
+				"{{ 'eveg.dictionary.the_file'|trans|capitalize }}" + ' "'
+				+ $(this).attr('titleFile')
+				+'" '+"{{ 'eveg.dictionary.will_be_deleted_m'|trans }}"
+				);
+			$("#modalDeleteItemConfirmationLink").attr('href', Routing.generate('eveg_delete_file', {idFile: $(this).attr('idFile')}, true));
+			$("#modalDeleteItem").modal({show: true});
+		});
+	</script>
+
+	<!-- delete link-->
+	<script>
+		$(".deleteLinkItem").click(function() {
+			$("#modalDeleteItemBody").html(
+				"{{ 'eveg.dictionary.the_link'|trans|capitalize }}" + ' "'
+				+ $(this).attr('titleLink')
+				+'" '+"{{ 'eveg.dictionary.will_be_deleted_m'|trans }}"
+				);
+			$("#modalDeleteItemConfirmationLink").attr('href', Routing.generate('eveg_delete_http_link', {idHttpLink: $(this).attr('idLink')}, true));
+			$("#modalDeleteItem").modal({show: true});
+		});
+	</script>
+
+	<!-- delete photo-->
+	<script>
+		$(".deletePhotoItem").click(function() {
+			$("#modalDeleteItemBody").html(
+				"{{ 'eveg.dictionary.the_photo'|trans|capitalize }}" + ' "'
+				+ $(this).attr('titlePhoto')
+				+'" '+"{{ 'eveg.dictionary.will_be_deleted_f'|trans }}"
+				);
+			$("#modalDeleteItemConfirmationLink").attr('href', Routing.generate('eveg_delete_photo', {idPhoto: $(this).attr('idPhoto')}, true));
+			$("#modalDeleteItem").modal({show: true});
+		});
+	</script>
+{% endblock %}
