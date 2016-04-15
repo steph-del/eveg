@@ -189,5 +189,31 @@ class AdminController extends Controller
 		));
 	}
 
+	public function listDocumentsAction()
+	{
+        $em = $this->getDoctrine()->getManager();
+        $files = $em->getRepository('evegAppBundle:SyntaxonFile')->findAll();
+        $httpLinks = $em->getRepository('evegAppBundle:SyntaxonHttpLink')->findAll();
+        $photos = $em->getRepository('evegAppBundle:SyntaxonPhoto')->findAll();
+
+        $types = array();
+        foreach ($files as $key => $file) {
+            array_push($types, $file->getType());
+        }
+
+        $uniqueTypes = array_count_values($types);
+        if(!array_key_exists('spreadsheet', $uniqueTypes)) $uniqueTypes['spreadsheet'] = 0;   // avoid empty key
+        if(!array_key_exists('pdf', $uniqueTypes)) $uniqueTypes['pdf'] = 0;                   // avoid empty key
+        
+
+        return $this->render('evegAppBundle:Admin:docs.html.twig', array(
+            'usersFiles' => $files,
+            'nbSpreadsheets' => ($uniqueTypes['spreadsheet']),
+            'nbPdfs' => ($uniqueTypes['pdf']),
+            'usersHttpLinks' => ($httpLinks),
+            'usersPhotos' => $photos
+        ));
+	}
+
 
 }

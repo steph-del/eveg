@@ -9,6 +9,10 @@ eveg_admin_test:
     path: /test
     defaults: { _controller: evegAppBundle:Admin:test }
 
+eveg_admin_docs:
+    path: /docs
+    defaults: { _controller: evegAppBundle:Admin:listDocuments }
+
 eveg_admin_users:
     path: /users
     defaults: { _controller: evegAppBundle:Admin:users }
