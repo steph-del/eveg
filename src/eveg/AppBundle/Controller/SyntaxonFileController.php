@@ -96,8 +96,8 @@ class SyntaxonFileController extends Controller
 	public function editFileAction(SyntaxonCore $syntaxon, $id, SyntaxonFile $file)
 	{
 		
-		// author of the file == current user ?
-		if($file->getUser() !== $this->getUser()) {
+		// author of the file == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($file->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to edit this file.');
 		}
 
@@ -158,8 +158,8 @@ class SyntaxonFileController extends Controller
 	*/
 	public function deleteFileAction(SyntaxonFile $file)
 	{
-		// author of the file == current user ?
-		if($file->getUser() !== $this->getUser()) {
+		// author of the file == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($file->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to delete this file.');
 		}
 

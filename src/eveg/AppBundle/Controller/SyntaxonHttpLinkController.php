@@ -89,8 +89,8 @@ class SyntaxonHttpLinkController extends Controller
 	public function editHttpLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
 	{
 		
-		// author of the httpLink == current user ?
-		if($httpLink->getUser() !== $this->getUser()) {
+		// author of the link == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($httpLink->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to edit this link.');
 		}
 
@@ -166,8 +166,8 @@ class SyntaxonHttpLinkController extends Controller
 	public function deleteHttpLinkAction(SyntaxonHttpLink $httpLink)
 	{
 
-		// author of the httpLink == current user ?
-		if($httpLink->getUser() !== $this->getUser()) {
+		// author of the link == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($httpLink->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to delete this link.');
 		}
 		// Get entity manager

@@ -86,8 +86,8 @@ class SyntaxonPhotoController extends Controller
 	public function editAction(SyntaxonCore $syntaxon, $id, SyntaxonPhoto $photo)
 	{
 		
-		// author of the photo == current user ?
-		if($photo->getUser() !== $this->getUser()) {
+		// author of the photo == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($photo->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to edit this file.');
 		}
 
@@ -136,8 +136,8 @@ class SyntaxonPhotoController extends Controller
 	public function deletePhotoAction(SyntaxonPhoto $photo)
 	{
 
-		// author of the photo == current user ?
-		if($photo->getUser() !== $this->getUser()) {
+		// author of the photo == current user ? OR role = ROLE_SUPER_ADMIN
+		if( ($photo->getUser() !== $this->getUser()) && (!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) ) {
 			Throw new HttpException(401, 'You are not allowed to delete this picture.');
 		}
 		// Get entity manager
