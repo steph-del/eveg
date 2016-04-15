@@ -28,7 +28,7 @@ fos_js_routing:
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /easy-admin
 
 # -------------
 # LiipImagineBundle
