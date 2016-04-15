@@ -202,16 +202,6 @@ api_get_syntaxon_search:
         format:  json|xml
         _method: GET
 
-# Admin routes
-eveg_admin :
-  resource: "routing_admin.yml"
-  prefix:  /admin
-
 eveg_app_admin_syntaxon:
     resource: "@evegAppBundle/Resources/config/routing/syntaxoncore.yml"
     prefix:   /admin/syntaxon
-
-# User routes
-eveg_user:
-    resource: "routing_user.yml"
-    prefix: /user

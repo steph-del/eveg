@@ -2,6 +2,14 @@ eveg_app:
     resource: "@evegAppBundle/Resources/config/routing/routing.yml"
     type: be_simple_i18n
 
+eveg_admin:
+    resource: "@evegAppBundle/Resources/config/routing/routing_admin.yml"
+    prefix: /admin
+
+eveg_user:
+    resource: "@evegAppBundle/Resources/config/routing/routing_user.yml"
+    prefix: /user
+
 # -------------
 # FOSRestBundle
 # -------------
