@@ -11,8 +11,10 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  
 class MenuBuilder extends ContainerAware
 {
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+      $securityContext = $this->container->get('security.context');
 
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
@@ -22,10 +24,10 @@ class MenuBuilder extends ContainerAware
 		
 		$menu->addChild('App', array('route' =>'eveg_admin_test', 'label' => 'eveg.menu.app'));
 
-    $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
+    if($securityContext->isGranted('ROLE_USER')) {
+      $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
+    }
 
-    //$menu->addChild('Participate', array('route' => 'eveg_app_participate', 'label' => 'eveg.menu.participate'));
-    
     $menu->addChild('HowTo', array('route' => 'eveg_app_howto', 'label' => 'eveg.menu.help'));
 
 		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
@@ -35,6 +37,8 @@ class MenuBuilder extends ContainerAware
  
     public function userMenu(FactoryInterface $factory, array $options)
     {
+      $securityContext = $this->container->get('security.context');
+
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
  
@@ -44,7 +48,7 @@ class MenuBuilder extends ContainerAware
 		$user = $this->container->get('security.context')->getToken()->getUser(); // Get username of the current logged in user_error()
 
 		// Check if the visitor has any authenticated roles
-    	if($this->container->get('security.context')->isGranted(array('ROLE_ADMIN'))) {
+    	if($securityContext->isGranted(array('ROLE_ADMIN'))) {
     		$menu->addChild('User', array('label' => $user->getUserName()))
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
@@ -174,19 +178,25 @@ class MenuBuilder extends ContainerAware
 
     public function dashboardMenu(FactoryInterface $factory, array $options)
     {
+      $securityContext = $this->container->get('security.context');
+
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
  
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
 			->setAttribute('glyphicon', 'glyphicon-home');
 		
-		$menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'));
-		
-		$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
- 
-		$menu->addChild('Translation', array('route' => 'eveg_app_contact', 'label' => 'Traduction'));
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+		  $menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'));
+		}
 
-		$menu->addChild('LiveTest', array('route' => 'eveg_admin_test', 'label' => 'Test@dev'));
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('Documents', array('route' =>'eveg_admin_documents', 'label' => 'Documents'));
+    }
+
+		//$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
+		//$menu->addChild('Translation', array('route' => 'eveg_app_contact', 'label' => 'Traduction'));
+		//$menu->addChild('LiveTest', array('route' => 'eveg_admin_test', 'label' => 'Test@dev'));
  
         return $menu;
     }
