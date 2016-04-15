@@ -12,9 +12,13 @@ use eveg\AppBundle\Form\Type\FeedbackMapDepFrType;
 use eveg\AppBundle\Form\Type\FeedbackMapEuropeType;
 use eveg\AppBundle\Form\Type\FeedbackGeneralType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class FeedbackController extends Controller
 {
+  /**
+   * @Security("has_role('ROLE_USER')")
+   */
 	public function feedbackAction(Request $request, $syntaxonName = null, $about = null)
 	{
 		// Feedback

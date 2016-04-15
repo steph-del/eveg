@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Type\SyntaxonCorePhotoType;
 use eveg\AppBundle\Entity\SyntaxonPhoto;
 use eveg\AppBundle\Form\Type\SyntaxonPhotoType;
@@ -21,7 +22,7 @@ class SyntaxonPhotoController extends Controller
 {
 	/**
 	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function addPhotoAction(SyntaxonCore $syntaxon, $id, Request $request)
 	{
@@ -81,7 +82,7 @@ class SyntaxonPhotoController extends Controller
 	/**
 	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("photo", class="evegAppBundle:SyntaxonPhoto", options={"id" = "idPhoto"})
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function editAction(SyntaxonCore $syntaxon, $id, SyntaxonPhoto $photo)
 	{
@@ -131,7 +132,7 @@ class SyntaxonPhotoController extends Controller
 
 	/**
 	* @ParamConverter("photo", class="evegAppBundle:SyntaxonPhoto", options={"id" = "idPhoto"})
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function deletePhotoAction(SyntaxonPhoto $photo)
 	{

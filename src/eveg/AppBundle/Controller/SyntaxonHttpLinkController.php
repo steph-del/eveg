@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Type\SyntaxonCoreHttpLinkType;
 use eveg\AppBundle\Entity\SyntaxonHttpLink;
 use eveg\AppBundle\Form\Type\SyntaxonHttpLinkType;
@@ -22,7 +23,7 @@ class SyntaxonHttpLinkController extends Controller
 {
 	/**
 	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function addHttpLinkAction(SyntaxonCore $syntaxon, $id, Request $request)
 	{
@@ -84,7 +85,7 @@ class SyntaxonHttpLinkController extends Controller
 	/**
 	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function editHttpLinkAction(SyntaxonCore $syntaxon, $id, SyntaxonHttpLink $httpLink)
 	{
@@ -161,7 +162,7 @@ class SyntaxonHttpLinkController extends Controller
 
 	/**
 	* @ParamConverter("httpLink", class="evegAppBundle:SyntaxonHttpLink", options={"id" = "idHttpLink"})
-	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function deleteHttpLinkAction(SyntaxonHttpLink $httpLink)
 	{

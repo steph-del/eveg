@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use eveg\AppBundle\Entity\SyntaxonCore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Type\SyntaxonCoreFileType;
 use eveg\AppBundle\Entity\SyntaxonFile;
 use eveg\AppBundle\Form\Type\SyntaxonFileType;
@@ -91,7 +92,8 @@ class SyntaxonFileController extends Controller
 	/**
 	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
 	* @ParamConverter("file", class="evegAppBundle:SyntaxonFile", options={"id" = "idFile"})
-	* 
+	*
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function editFileAction(SyntaxonCore $syntaxon, $id, SyntaxonFile $file)
 	{
@@ -155,6 +157,7 @@ class SyntaxonFileController extends Controller
 	/**
 	* @ParamConverter("file", class="evegAppBundle:SyntaxonFile", options={"id" = "idFile"})
 	* 
+	* @Security("has_role('ROLE_USER')") 
 	*/
 	public function deleteFileAction(SyntaxonFile $file)
 	{

@@ -5,6 +5,7 @@ namespace eveg\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Dev\CatCodeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AdminController extends Controller
 {
+	/**
+ 	 * @Security("has_role('ROLE_ADMIN')")
+ 	 */
 	public function dashboardAction()
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -25,6 +29,9 @@ class AdminController extends Controller
 		));
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_ADMIN')")
+ 	 */
 	public function testAction()
 	{
 
@@ -55,6 +62,9 @@ class AdminController extends Controller
 
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function usersAction()
 	{
 		// Getting all users
@@ -64,6 +74,9 @@ class AdminController extends Controller
 		return $this->render('evegAppBundle:Admin:users.html.twig', array('users' => $users));
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function editUserAction($id)
 	{
 		$userForm = $this->createForm(new AdminProfileFormType($id));
@@ -73,6 +86,9 @@ class AdminController extends Controller
 		));
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function deleteUserAction($id)
 	{
 		$userManager = $this->get('fos_user.user_manager');
@@ -97,6 +113,9 @@ class AdminController extends Controller
 	}
 
 	// Dev function. Checks the CATMINAT code and return a set of information about it (parent, children...)
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function devCatCodeAction()
 	{
 
@@ -126,6 +145,9 @@ class AdminController extends Controller
 				return $response;
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function generateAllSlugsAction()
 	{
 		set_time_limit(1000);
@@ -165,6 +187,9 @@ class AdminController extends Controller
 	    return $this->allRoutes;
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_ADMIN')")
+ 	 */
 	public function getDocumentsInfosAction()
 	{
 		$nbEvegItems 		  = $this->get('eveg_app.nbItems');
@@ -189,6 +214,9 @@ class AdminController extends Controller
 		));
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
 	public function listDocumentsAction()
 	{
         $em = $this->getDoctrine()->getManager();

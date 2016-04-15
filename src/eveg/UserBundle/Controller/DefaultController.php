@@ -4,6 +4,7 @@ namespace eveg\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\UserBundle\Model\User as BaseUser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
@@ -32,6 +33,9 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * @Security("has_role('ROLE_USER')") 
+     */
     public function listDocumentsAction()
     {
         $currentUserId = $this->get('security.context')->getToken()->getUser()->getId();

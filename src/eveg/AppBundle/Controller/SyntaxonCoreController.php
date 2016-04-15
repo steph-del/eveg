@@ -4,7 +4,7 @@ namespace eveg\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\AppBundle\Form\SyntaxonCoreType;
 
@@ -18,6 +18,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Lists all SyntaxonCore entities.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function indexAction()
     {
@@ -32,6 +33,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Creates a new SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function createAction(Request $request)
     {
@@ -56,8 +58,9 @@ class SyntaxonCoreController extends Controller
     /**
      * Creates a form to create a SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     * 
      * @param SyntaxonCore $entity The entity
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createCreateForm(SyntaxonCore $entity)
@@ -75,6 +78,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Displays a form to create a new SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function newAction()
     {
@@ -112,6 +116,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Displays a form to edit an existing SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function editAction($id)
     {
@@ -136,8 +141,9 @@ class SyntaxonCoreController extends Controller
     /**
     * Creates a form to edit a SyntaxonCore entity.
     *
-    * @param SyntaxonCore $entity The entity
+    * @Security("has_role('ROLE_SUPER_ADMIN')")
     *
+    * @param SyntaxonCore $entity The entity
     * @return \Symfony\Component\Form\Form The form
     */
     private function createEditForm(SyntaxonCore $entity)
@@ -154,6 +160,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Edits an existing SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function updateAction(Request $request, $id)
     {
@@ -184,6 +191,7 @@ class SyntaxonCoreController extends Controller
     /**
      * Deletes a SyntaxonCore entity.
      *
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -208,8 +216,9 @@ class SyntaxonCoreController extends Controller
     /**
      * Creates a form to delete a SyntaxonCore entity by id.
      *
-     * @param mixed $id The entity id
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      *
+     * @param mixed $id The entity id
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm($id)

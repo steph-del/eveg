@@ -14,12 +14,15 @@ use eveg\AppBundle\Entity\SyntaxonEcology;
 use eveg\AppBundle\Entity\Baseflor;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ImportController extends Controller
 {
 	/**
 	 *
 	 * Test and check the SyntaxonCore entity and the imported file before importing the data
+	 * 
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function checkBeofreImportCoreAction($importedData)
 	{
@@ -62,6 +65,8 @@ class ImportController extends Controller
 	 *
 	 * Import the baseveg core data (csv file from baseveg)
 	 * Only available in dev mode for now
+	 *
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importCoreAction(Request $request)
 	{
@@ -202,7 +207,8 @@ class ImportController extends Controller
 	/**
 	 * Import the repartition data (csv file from baseveg).
 	 * Only available in dev mode.
-	 *
+	 * 
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importRepartitionDepFrAction(Request $request)
 	{
@@ -402,6 +408,7 @@ class ImportController extends Controller
 	 * Import the European repartition data (csv file from baseveg).
 	 * Only available in dev mode.
 	 *
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importRepartitionEuropeAction(Request $request)
 	{
@@ -539,6 +546,7 @@ class ImportController extends Controller
 	 * Import bibliography (csv file from baseveg).
 	 * Only available in dev mode.
 	 *
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importBiblioAction(Request $request)
 	{
@@ -719,6 +727,7 @@ class ImportController extends Controller
 	 * Import ecological data (csv file from baseveg).
 	 * Only available in dev mode.
 	 *
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importEcologyAction(Request $request)
 	{
@@ -843,6 +852,7 @@ class ImportController extends Controller
 	 * Import baseflor data (csv baseflor).
 	 * Only available in dev mode.
 	 *
+	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importBaseflorAction(Request $request)
 	{
