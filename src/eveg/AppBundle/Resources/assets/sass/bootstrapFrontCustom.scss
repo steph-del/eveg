@@ -787,3 +787,80 @@ img.syntaxonIllustration{
  		}
  	}
  }
+
+/* 
+ * Login / Signup forms
+ **********************/
+ #form_login {
+ 	margin-top: 30px;
+ 	background-color: #FFF;
+ 	box-shadow: 0px 0px 4px 0px $defaultShadowColor;
+ 	border-radius : 0;
+ 	border: none;
+ 	padding-left: 0;
+ 	padding-right: 0;
+ 	padding-bottom: 5px;
+ 	font-family: 'Verdana';
+ 	//font-weight: normal;
+ 	color: #8A8A8A;
+
+ 	form {
+ 		.login-title {
+ 			background-color: rgba(0,0,0,0.02);
+ 			border-bottom: 1px solid #D0DADA;
+ 			padding-top: 15px;
+ 			padding-bottom: 15px;
+
+ 			h2 {
+ 				margin: 0;
+ 				padding-left: 10px;
+ 				padding-right: 10px;
+ 			}
+ 		}
+ 		.login-submit {
+ 			background-color: rgba(0,0,0,0.02);
+ 			border-top: 1px solid #D0DADA;
+ 			padding-top: 15px;
+ 			padding-bottom: 15px;
+ 		}
+
+ 		label {
+ 			font-weight: normal;
+ 		}
+ 	}
+ }
+ .row-no-margin {
+ 	margin: 0;
+
+ 	&.form-horizontal {
+ 		margin-bottom: 5px;
+ 	}
+ }
+ .row-submit-button {
+ 	margin-top: 20px;
+ }
+
+ #login-error-message {
+ 	margin-top: 20px;
+
+ 	.alert {
+ 		margin-bottom: 0;
+ 	}
+ }
+
+/*
+ * Sign-in
+ *********/
+ #sign-in-check-email {
+ 	margin-top: 30px;
+ }
+ #sign-in-confirmed {
+ 	margin-top: 30px;
+ }
+
+/*
+ * Form
+ ******/
+ .form-control {
+ 	border-radius: 0;
+ }

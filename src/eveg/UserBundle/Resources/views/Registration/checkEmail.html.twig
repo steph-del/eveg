@@ -3,14 +3,25 @@
 
 {% extends "::layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
-{% block title %}Créer un compte | {{ parent() }}{% endblock %}
-
+{% block title %}
+	{{ 'layout.register'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
 
 {% block body %}
-	{{ parent() }}
-	{% block fos_user_content %}
-	    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
-	{% endblock fos_user_content %}
-{% endblock body %}
+
+	{% trans_default_domain 'FOSUserBundle' %}
+
+	<div id="sign-in-check-email" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12">
+		<div class="thumbnail thumb-green">
+			<div class="caption">
+				<h2>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}<span class="pull-right text-success"><i class="fa fa-envelope-o" aria-hidden="true"></i></span></h2>
+			</div>
+
+			{% block fos_user_content %}
+			    <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
+			{% endblock fos_user_content %}
+
+		</div>
+	</div>
+
+{% endblock %}

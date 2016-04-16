@@ -3,12 +3,26 @@
 
 {% extends "::layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}
+	{{ 'layout.register'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
-    {% endif %}
-{% endblock fos_user_content %}
+{% block body %}
+
+	{% trans_default_domain 'FOSUserBundle' %}
+
+	<div id="sign-in-confirmed" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12">
+		<div class="thumbnail thumb-green">
+			<div class="caption">
+				<h2>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}<span class="pull-right text-success"><i class="fa fa-check" aria-hidden="true"></i></span></h2>
+			</div>
+
+			{% block fos_user_content %}
+			    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+			    <p>{{ 'registration.confirmed.what-can-i-do'|trans({}, 'FOSUserBundle') }}</p>
+			{% endblock fos_user_content %}
+
+		</div>
+	</div>
+
+{% endblock %}
