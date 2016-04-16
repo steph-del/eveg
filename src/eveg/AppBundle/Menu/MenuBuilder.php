@@ -60,7 +60,7 @@ class MenuBuilder extends ContainerAware
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
         $menu['User']->addChild('Docs', array('route' => 'user_docs', 'label' => 'eveg.menu.user.my_docs'));
-				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_show'));
+				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_show', 'label' => 'eveg.menu.user.my_account'));
 				$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'eveg.menu.user.logout'));
     	} else {
 	    	$menu->addChild('Anonymous', array('route' => 'fos_user_security_login', 'label' => 'eveg.menu.user.login'));
