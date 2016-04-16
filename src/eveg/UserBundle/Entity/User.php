@@ -40,7 +40,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="nbSyntaxonFiles", type="integer")
      */
-    private $nbSyntaxonFiles;
+    private $nbSyntaxonFiles = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonHttpLink", mappedBy="user")
@@ -52,7 +52,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="nbSyntaxonHttpLinks", type="integer")
      */
-    private $nbSyntaxonHttpLinks;
+    private $nbSyntaxonHttpLinks = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="user")
@@ -64,7 +64,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="nbSyntaxonPhotos", type="integer")
      */
-    private $nbSyntaxonPhotos;
+    private $nbSyntaxonPhotos = 0;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\Feedback", mappedBy="user")
@@ -76,12 +76,12 @@ class User extends BaseUser
      *
      * @ORM\Column(name="nbFeedbacks", type="integer")
      */
-    private $nbFeedbacks;
+    private $nbFeedbacks = 0;
 
     /**
      * @var integer
      */
-    private $score;
+    private $score = 0;
 
     /**
      * Get id
