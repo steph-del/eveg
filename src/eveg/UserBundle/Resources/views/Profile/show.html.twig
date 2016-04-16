@@ -1,0 +1,84 @@
+{# src/eveg/UserBundle/Resources/views/Profile/show.html.twig #}
+{# overload show.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'profile.show.title'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+		<div class="jumbotron jumbotron-account">
+			<h1>{{ 'profile.show.title'|trans({}, 'FOSUserBundle') }}</h1>
+		</div>
+	</div>
+
+	<div class="row whiteRow">
+		<div class="col-md-2"></div>
+		<div class="col-md-4 col-sm-6">
+			<div class="thumbnail thumb-blue">
+				<div class="caption">
+					<h2>{{ 'profile.show.my-informations'|trans({}, 'FOSUserBundle') }}</h2>
+					<p>
+						<i class="fa fa-user" aria-hidden="true"></i>
+						{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}
+					</p>
+	    			<p>
+	    				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+	    				{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}
+	    			</p>
+	    			<p class="text-center">
+	    				<a href="{{ path('fos_user_profile_edit') }}">
+			    			<button class="btn btn-default">
+			    				{{ 'profile.edit.title'|trans({}, 'FOSUserBundle') }}
+			    			</button>
+			    		</a>
+		    		</p>
+		    		<p class="text-center">
+		    			<a href="{{ path('fos_user_change_password') }}">
+			    			<button class="btn btn-default">
+			    				{{ 'resetting.title'|trans({}, 'FOSUserBundle') }}
+			    			</button>
+			    		</a>
+		    		</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-sm-6">
+			<div class="thumbnail thumb-blue">
+				<div class="caption">
+					<h2>{{ 'eveg.documents.title'|trans }}</h2>
+					<div class="row">
+						<div class="col-md-5 col-xs-5 text-center">
+							<div style="font-size:3em;">
+								<i class="fa fa-file-excel-o"></i>+<i class="fa fa-file-pdf-o"></i>
+							</div>
+							<div><span class="badge">{{ user.nbSyntaxonFiles }}</span></div>
+						</div>
+						<div class="col-md-3 col-xs-3 text-center">
+							<div style="font-size:3em;"><i class="fa fa-external-link"></i></div>
+							<span class="badge">{{ user.nbSyntaxonHttpLinks }}</span>
+						</div>
+						<div class="col-md-3 col-xs-3 text-center">
+							<div style="font-size:3em;"><i class="fa fa-camera-retro"></i></div>
+							<span class="badge">{{ user.nbSyntaxonPhotos }}</span>
+						</div>
+					</div>
+					<br />
+					<p class="text-center">
+						<a href="{{ path('user_docs') }}">
+							<button class="btn btn-default">
+			    				{{ 'eveg.documents.access-link'|trans }}
+			    			</button>
+			    		</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+{% endblock %}

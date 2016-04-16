@@ -140,6 +140,7 @@ eveg:
 
     documents:
         title: Mes documents
+        access-link: Accéder à mes documents
         spreadsheets:
             title: Tableaux
         pdfs:

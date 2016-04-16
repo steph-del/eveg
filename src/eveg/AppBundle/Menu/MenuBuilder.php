@@ -52,7 +52,7 @@ class MenuBuilder extends ContainerAware
     		$menu->addChild('User', array('label' => $user->getUserName()))
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
-				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_edit', 'label' => 'eveg.menu.user.my_account'));
+				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_show', 'label' => 'eveg.menu.user.my_account'));
 	    		$menu['User']->addChild('Dashboard', array('route' => 'eveg_admin_dashboard', 'label' => 'eveg.menu.user.dashboard'));
 	    		$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'eveg.menu.user.logout'));
     	} elseif($this->container->get('security.context')->isGranted(array('ROLE_USER'))) {
@@ -60,7 +60,7 @@ class MenuBuilder extends ContainerAware
 				->setAttribute('dropdown', true)
 				->setAttribute('icon', 'fa fa-user');
         $menu['User']->addChild('Docs', array('route' => 'user_docs', 'label' => 'eveg.menu.user.my_docs'));
-				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_edit'));
+				$menu['User']->addChild('Account', array('route' => 'fos_user_profile_show'));
 				$menu['User']->addChild('Logout', array('route' => 'fos_user_security_logout', 'label' => 'eveg.menu.user.logout'));
     	} else {
 	    	$menu->addChild('Anonymous', array('route' => 'fos_user_security_login', 'label' => 'eveg.menu.user.login'));
