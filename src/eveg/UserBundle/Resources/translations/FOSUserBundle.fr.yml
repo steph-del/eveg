@@ -3,4 +3,4 @@ security:
         fullName : 'Prénom et nom'
 registration:
     confirmed:
-        what-can-i-do: "Vous pouvez désormais ajouter du contenu sur eVeg : tableaux, documents, liens, photos. Pour plus de détails, rendez-vous sur la page 'Aide'."
+        what-can-i-do: "Vous pouvez maintenant ajouter du contenu sur eVeg : tableaux, documents, liens, photos. Pour plus de détails, rendez-vous sur la page 'Aide'."
