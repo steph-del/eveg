@@ -5,4 +5,13 @@ registration:
     confirmed:
         what-can-i-do: "Vous pouvez maintenant ajouter du contenu sur eVeg : tableaux, documents, liens, photos. Pour plus de détails, rendez-vous sur la page 'Aide'."
 resetting:
-    lost: "Mot de passe oublié ?"
+    lost: 'Mot de passe oublié ?'
+    title: 'Modifier mon mot de passe'
+profile:
+    show:
+        title: 'Mon compte'
+        my-informations: 'Mes informations'
+    edit:
+        title: 'Modifier mes informations'
+change_password:
+    title: 'Modifier mon mot de passe'
