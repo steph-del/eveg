@@ -1,0 +1,48 @@
+{# src/eveg/UserBundle/Resources/views/Resetting/reset_content.html.twig #}
+{# overload reset_content.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<div id="form_login" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12">
+		{% trans_default_domain 'FOSUserBundle' %}
+
+		{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+			<div class="form-group login-title">
+				<h2>{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}</h2>
+			</div>
+		    {#{{ form_widget(form) }}#}
+		    <div class="row row-no-margin">
+		    	<div class="col-md-12">
+			    	<li class="no-style">
+				    	{{ form_row(form.plainPassword) }}
+			    	</li>
+			    </div>
+		    </div>
+		    <div class="row row-no-margin row-submit-button">
+		    	<div class="col-md-12">
+			        <button type="submit button" class="btn btn-primary pull-right" value="{{ 'resetting.reset.submit'|trans }}">
+			        	{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}
+			        </button>
+		        </div>
+		    </div>
+		{{ form_end(form) }}
+		
+	</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

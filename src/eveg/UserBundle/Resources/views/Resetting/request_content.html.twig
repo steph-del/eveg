@@ -1,0 +1,39 @@
+{# src/eveg/UserBundle/Resources/views/Resetting/request_content.html.twig #}
+{# overload request_content.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'layout.login'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{% trans_default_domain 'FOSUserBundle' %}
+
+	<div id="form_login" class="col-md-offset-4 col-md-5 col-sm-offset-3 col-sm-6 col-xs-12">
+		<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+			<div class="form-group login-title">
+				<h2>{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</h2>
+			</div>
+		    <div class="row row-no-margin form-horizontal">
+		    	<div class="col-sm-5 control-label" style="padding-top: 0px;">
+			        <label for="username">{{ 'resetting.request.username'|trans }}</label>
+			        {% if invalid_username is defined %}
+			            <p class="text-danger">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+			        {% endif %}
+		        </div>
+		        <div class="col-sm-7">
+		       		<input type="text" class="form-control" id="username" name="username" required="required" />
+		   		</div>
+		    </div>
+		    <div class="row row-no-margin row-submit-button">
+		    	<div class="col-md-12">
+		        	<button class="btn btn-primary pull-right" type="submit button" value="{{ 'resetting.request.submit'|trans }}">
+		        		{{ 'resetting.request.submit'|trans() }}
+		        	</button>
+		        </div>
+		    </div>
+		</form>
+	</div>
+
+{% endblock %}

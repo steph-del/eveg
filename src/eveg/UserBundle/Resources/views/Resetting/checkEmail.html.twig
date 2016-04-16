@@ -1,0 +1,27 @@
+{# src/eveg/UserBundle/Resources/views/Resetting/checkEmail.html.twig #}
+{# overload checkEmail.html.twig from FOSUserBundle #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'resetting.email.subject'|trans({}, 'FOSUserBundle') }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{% trans_default_domain 'FOSUserBundle' %}
+
+	<div id="sign-in-check-email" class="col-md-offset-3 col-md-5 col-sm-offset-3 col-sm-6 col-xs-12">
+		<div class="thumbnail thumb-green">
+			<div class="caption">
+				<h2>{{ 'resetting.email.subject'|trans({}, 'FOSUserBundle') }}<span class="pull-right text-success"><i class="fa fa-envelope-o" aria-hidden="true"></i></span></h2>
+			</div>
+
+			{% block fos_user_content %}
+			    <p>{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}</p>
+			{% endblock fos_user_content %}
+
+		</div>
+	</div>
+
+{% endblock %}
