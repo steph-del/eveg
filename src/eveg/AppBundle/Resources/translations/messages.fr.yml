@@ -162,6 +162,52 @@ eveg:
         placeholder: Rechercher une végétation
         use_synonyms: Utiliser les synonymes
 
+    legal_notice:
+        title: Mentions légales
+        website:
+            title: Site web
+            text: |
+                Ce site web a été réalisé par Stéphane Delplanque
+                Adresse : Labarthe, 46140 Bélaye
+                Email: stephanedelplanque@yahoo.fr
+                Direction de la publication: Stéphane Delplanque
+        host:
+            title: Hebergement
+            text: |
+                Ce site est hébergé par l'Association Tela Botanica
+                4 rue de Belfort
+                34000 MONTPELLIER
+                FRANCE
+                Tél. : +33 (0)4 67 52 41 22
+        cookies:
+            title: Les cookies et leur utilisation
+            what_is_it:
+                title: Qu'est-ce qu'un cookie ?
+                text: |
+                    Un cookie est un petit fichier texte qui peut être enregistré sur votre ordinateur par un site que vous visitez.
+                    Ce fichier peut contenir différentes informations, et possède une date d'expiration.
+                    Lorsque vous retournez sur le même site, votre navigateur envoie à celui-ci le cookie associé (s'il y en a un), afin que vous soyez reconnu.
+            use:
+                title: A quoi ça sert ?
+                text: |
+                    Les cookies ont différentes fonctions. Ils peuvent permettre au site qui les a déposés de reconnaître un internaute, d'une visite à une autre, grâce à un identifiant unique.
+                    Certains cookies peuvent aussi être utilisés pour stocker le contenu d'un panier d'achat, d'autres pour enregistrer les paramètres de langue d'un site, d'autres encore pour faire de la publicité ciblée.
+            on_eveg:
+                title: L'utilisation des cookies sur eVeg
+                text: |
+                    eVeg n'utilise pas de cookies pour la publicité, les cookies utilisés sur le site servent uniquement à se souvenir de vos préférences ainsi qu'à établir des statistiques sur le nombre de visiteurs.
+            piwik:
+                title: Piwik
+                text: |
+                    Ce site Web utilise Piwik, un service analytique libre. Piwik utilise des cookies. Les informations générées par le cookie concernent votre utilisation du site Web. Votre adresse IP est anonymisée (2 octets) avant d'être stockée dans une base de données sur les serveurs de Gandi (gandi.net, 63-65 boulevard Massena, 75013 Paris FRANCE). Vos données ne sont jamais transmises à des tiers.
+                    Piwik est le seul logiciel recommandé, à l'heure actuelle, par la Commission nationale de l'informatique et des libertés (CNIL) afin de garantir l'anonymisation de vos données. Nous avons fait le choix de cette solution afin d'éviter que vos données ne soient récupérées et analysées par des tiers, souvent pour des besoins publicitaires.
+        law:
+            title: Loi informatique et libertés
+            text: |
+                En application de la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n° 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l'égard des traitements de données à caractère personnel, et notamment son article 24-II, vous disposez d'un droit de modification et de suppression des données qui vous concernent. Vous pouvez adresser votre demande :
+            mail: par courriel à : cnil@tela-botanica.org
+            post: par courrier traditionnel à : Tela Botanica (Service CNIL), 4 rue de Belfort, 34000 MONTPELLIER.
+    
     app:
         show_one:
             panels:

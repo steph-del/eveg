@@ -65,7 +65,7 @@
 	{% endblock %}
 
 	<!-- Body container -->
-	<div class="container-fluid">
+	<div class="container-fluid" id="body-wrapper">
 		{% block body %}
 		{% endblock %}
 	</div>
@@ -74,7 +74,9 @@
 	<div class="container-fluid container-footer">
 		<div class="footer">
 			{% block footer %}
-				AZE
+				<div class="footer-item">
+					<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
+				</div>
 			{% endblock %}
 		</div>
 	</div>

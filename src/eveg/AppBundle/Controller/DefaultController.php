@@ -85,6 +85,11 @@ class DefaultController extends Controller
 		return $this->render('evegAppBundle:Default:contact.html.twig');
 	}
 
+	public function legalNoticeAction()
+	{
+		return $this->render('evegAppBundle:Default:legalNotice.html.twig');
+	}
+
 	public function downloadPdfAction($id)
 	{
 		

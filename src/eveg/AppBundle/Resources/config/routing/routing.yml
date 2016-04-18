@@ -187,6 +187,10 @@ eveg_compare:
     path: /app/compare
     defaults: { _controller: evegAppBundle:Compare:compare }
 
+eveg_legal_notice:
+    locales: { fr: "/mentions-legales", en: "/en/legal-notice" }
+    defaults: { _controller: evegAppBundle:Default:legalNotice }
+
 # Sitemap
 eveg_sitemap:
     path: /sitemap.{_format}

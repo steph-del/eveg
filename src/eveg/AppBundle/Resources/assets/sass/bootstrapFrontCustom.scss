@@ -18,7 +18,7 @@ html {
 
 body {
 	//min-height: 100%;
-  	margin-bottom: 60px;
+  	margin-bottom: 40px;
 }
 /*
  * Navbar
@@ -122,6 +122,9 @@ body {
 }
 
 .jumbotron-account{
+	background: url("/../eveg/web/img/patterns/saxgra_bg.jpg") no-repeat center center;
+}
+.jumbotron-legal-notice {
 	background: url("/../eveg/web/img/patterns/saxgra_bg.jpg") no-repeat center center;
 }
 
@@ -272,6 +275,7 @@ body {
 	align-items: center;
 	margin-top: 0px;
 	height: 100%;
+	z-index: 2;
 }
 .container-footer {
 	padding: 0;

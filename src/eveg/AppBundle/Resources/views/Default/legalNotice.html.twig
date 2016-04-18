@@ -1,0 +1,137 @@
+{# src/eveg/AppBundle/Resources/views/Default/legalNotice.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'eveg.legal_notice.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row whiteRow scrollspy">
+		<div class="jumbotron jumbotron-legal-notice">
+			<h1>{{ 'eveg.legal_notice.title'|trans }}</h1>
+		</div>
+
+		<div class="col-md-3" id="navbar">
+			<ul id="nav" class="nav nav-pills nav-stacked">
+				<li class="active">
+					<a href="#website">
+						{{ 'eveg.legal_notice.website.title'|trans }}
+					</a>
+				</li>
+				<li><a href="#host">
+					{{ 'eveg.legal_notice.host.title'|trans }}
+					</a>
+				</li>
+				<li>
+					<a href="#cookies">
+						{{ 'eveg.legal_notice.cookies.title'|trans }}
+					</a>
+					<ul class="nav">
+						<li>
+							<a href="#cookies-what-is-it">{{ 'eveg.legal_notice.cookies.what_is_it.title'|trans }}</a>
+						</li>
+						<li>
+							<a href="#cookies-use">{{ 'eveg.legal_notice.cookies.use.title'|trans }}</a>
+						</li>
+						<li>
+							<a href="#cookies-on-eveg">{{ 'eveg.legal_notice.cookies.on_eveg.title'|trans }}</a>
+						</li>
+						<li>
+							<a href="#piwik">{{ 'eveg.legal_notice.cookies.piwik.title'|trans }}</a>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#law">
+					{{ 'eveg.legal_notice.law.title'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-7">
+			<div class="" id="website">
+				<h2>{{ 'eveg.legal_notice.website.title'|trans }}</h2>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.website.text'|trans|nl2br }}
+				</p>
+			</div>
+
+			<div class="" id="website">
+				<h2>{{ 'eveg.legal_notice.host.title'|trans }}</h2>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.host.text'|trans|nl2br }}
+				</p>
+			</div>
+
+			<div id="#cookies">
+				<h2>{{ 'eveg.legal_notice.cookies.title'|trans }}</h2>
+			</div>
+			<div class="" id="cookies-what-is-it">
+				<h3>{{ 'eveg.legal_notice.cookies.what_is_it.title'|trans }}</h3>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.cookies.what_is_it.text'|trans|nl2br }}
+				</p>
+			</div>
+
+			<div class="" id="cookies-use">
+				<h3>{{ 'eveg.legal_notice.cookies.on_eveg.title'|trans }}</h3>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.cookies.on_eveg.text'|trans|nl2br }}
+				</p>
+			</div>
+
+			<div class="" id="cookies-on-eveg">
+				<h3>{{ 'eveg.legal_notice.cookies.piwik.title'|trans }}</h3>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.cookies.piwik.text'|trans|nl2br }}
+				</p>
+			</div>
+
+			<div class="" id="law">
+				<h2>{{ 'eveg.legal_notice.law.title'|trans }}</h2>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.law.text'|trans|nl2br }}
+				</p>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.law.mail'|trans|nl2br }}
+				</p>
+				<p class="text-justify">
+					{{ 'eveg.legal_notice.law.post'|trans|nl2br }}
+				</p>
+			</div>
+
+
+		</div>
+
+		<div class="col-md-2">
+
+		</div>
+
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<!-- Affix menu -->
+	<script>
+		$('#nav').affix({
+			offset: {
+				top: $('#nav').offset().top - 20
+				/*bottom: function () {
+					return (this.bottom = $('.footer').outerHeight(true))
+				}*/
+			}
+		})
+	</script>
+
+	<!-- Scrollspy -->
+	<!--<script>
+		$('.scrollspy').scrollspy({ target: '#nav' })
+	</script>-->
+{% endblock %}
