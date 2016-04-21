@@ -75,7 +75,8 @@
 {% block linkElement %}
 	<a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
 		{% if item.attribute('icon') is not empty  %}
-    		<i class="{{ item.attribute('icon') }}"></i>
+    		{#<i class="{{ item.attribute('icon') }}"></i>#}
+            <i class="fa fa-{{ item.attribute('icon') }}" aria-hidden="true"></i>
     	{% endif %}
     	{% if item.attribute('glyphicon') is not empty %}
     		<span class="glyphicon {{ item.attribute('glyphicon') }}"</span>

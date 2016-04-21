@@ -1,0 +1,168 @@
+<div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="modalDepFilter">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center" id="modalDepFilter">Filter eVeg</h4>
+			</div>
+			<form action="{{ path('eveg_repartition_filter') }}" method="POST">
+				<div name="depFrFilter" class="modal-body">
+					<div class="row">
+						
+						<div class="col-md-4 col-countries">
+							<h4 class="text-center">Par pays</h4>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="germany" value="germany"><span>Allemagne</span></div>
+								<!--<input class="cbUeFilter" type="checkbox" name="andorra" value="andorra">Andorre<br>-->
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="austria" value="austria"><span>Autriche</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="belgium" value="belgium"><span>Belgique</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="belarus" value="belarus"><span>Biélorussie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="bosnia_montenegro_albania" value="bosnia_montenegro_albania"><span>Bosnie-Herzégovine + Monténégro + Albanie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="bulgaria" value="bulgaria"><span>Bulgarie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="denmark" value="denmark"><span>Danemark</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="espana" value="espana"><span>Espagne</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="estonia_latvia_lithuania" value="estonia_latvia_lithuania"><span>Estonie + Lettonie + Lituanie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="finland" value="finland"><span>Finlande</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="france" value="france"><span>France</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="greece" value="greece"><span>Grèce</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="hungary" value="hungary"><span>Hongrie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="ireland" value="ireland"><span>Irlande</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="iceland" value="iceland"><span>Islande</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="italy" value="italy"><span>Italie</span></div>
+								<!--<input class="cbUeFilter" type="checkbox" name="liechtenstein" value="liechtenstein">Liechtenstein<br>-->
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="luxembourg" value="luxembourg"><span>Luxembourg</span></div>
+								<!--<input class="cbUeFilter" type="checkbox" name="monaco" value="monaco">Monaco<br>-->
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="norway" value="norway"><span>Norvège</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="netherlands" value="netherlands"><span>Pays-Bas</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="poland" value="poland"><span>Pologne</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="portugal" value="portugal"><span>Portugal</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="czech_republic" value="czech_republic"><span>République Tchèque</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="romania_moldova" value="romania_moldova"><span>Roumanie + Moldavie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="uk" value="uk"><span>Royaume-Uni</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="russia" value="russia"><span>Russie</span></div>
+
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="serbia_macedonia" value="serbia_macedonia"><span>Serbie + Macédoine</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="slovakia" value="slovakia"><span>Slovaquie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="slovenia_croatia" value="slovenia_croatia"><span>Slovénie + Croatie</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="sweden" value="sweden"><span>Suède</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="switzerland" value="switzerland"><span>Suisse</span></div>
+								<div class="inputUeFilter"><input class="cbUeFilter" type="checkbox" name="ukraine" value="ukraine"><span>Ukraine</span></div>
+						</div> <!-- ./col-md-4 -->
+
+						<div class="col-md-8 col-departments">
+							<h4 class="text-center">Par départements (France)</h4>
+							
+							<div class="row">
+								<div class="col-md-4">
+									<input class="cbFrFilter" type="checkbox" name="_01" value="_01">(01) Ain<br>
+									<input class="cbFrFilter" type="checkbox" name="_02" value="_02">(02) Aisne<br>
+									<input class="cbFrFilter" type="checkbox" name="_03" value="_03">(03) Allier<br>
+									<input class="cbFrFilter" type="checkbox" name="_04" value="_04">(04) Alpes de Haute-Provence<br>
+									<input class="cbFrFilter" type="checkbox" name="_05" value="_05">(05) Hautes-Alpes<br>
+									<input class="cbFrFilter" type="checkbox" name="_06" value="_06">(06) Alpes-Maritimes<br>
+									<input class="cbFrFilter" type="checkbox" name="_07" value="_07">(07) Ardèche<br>
+									<input class="cbFrFilter" type="checkbox" name="_08" value="_08">(08) Ardennes<br>
+									<input class="cbFrFilter" type="checkbox" name="_09" value="_09">(09) Ariège<br>
+									<input class="cbFrFilter" type="checkbox" name="_10" value="_10">(10) Aube<br>
+									<input class="cbFrFilter" type="checkbox" name="_11" value="_11">(11) Aude<br>
+									<input class="cbFrFilter" type="checkbox" name="_12" value="_12">(12) Aveyron<br>
+									<input class="cbFrFilter" type="checkbox" name="_13" value="_13">(13) Bouches du Rhône<br>
+									<input class="cbFrFilter" type="checkbox" name="_14" value="_14">(14) Calvados<br>
+									<input class="cbFrFilter" type="checkbox" name="_15" value="_15">(15) Cantal<br>
+									<input class="cbFrFilter" type="checkbox" name="_16" value="_16">(16) Charente<br>
+									<input class="cbFrFilter" type="checkbox" name="_17" value="_17">(17) Charente Maritime<br>
+									<input class="cbFrFilter" type="checkbox" name="_18" value="_18">(18) Cher<br>
+									<input class="cbFrFilter" type="checkbox" name="_19" value="_19">(19) Corrèze<br>
+									<input class="cbFrFilter" type="checkbox" name="_20" value="_20">(20) Corse du Sud + Haute Corse<br>
+									<input class="cbFrFilter" type="checkbox" name="_21" value="_21">(21) Côte d'Or<br>
+									<input class="cbFrFilter" type="checkbox" name="_22" value="_22">(22) Côtes d'Armor<br>
+									<input class="cbFrFilter" type="checkbox" name="_23" value="_23">(23) Creuse<br>
+									<input class="cbFrFilter" type="checkbox" name="_24" value="_24">(24) Dordogne<br>
+									<input class="cbFrFilter" type="checkbox" name="_25" value="_25">(25) Doubs<br>
+									<input class="cbFrFilter" type="checkbox" name="_26" value="_26">(26) Drôme<br>
+									<input class="cbFrFilter" type="checkbox" name="_27" value="_27">(27) Eure<br>
+									<input class="cbFrFilter" type="checkbox" name="_28" value="_28">(28) Eure-et-Loir<br>
+									<input class="cbFrFilter" type="checkbox" name="_29" value="_29">(29) Finistère<br>
+									<input class="cbFrFilter" type="checkbox" name="_30" value="_30">(30) Gard<br>
+									<input class="cbFrFilter" type="checkbox" name="_31" value="_31">(31) Haute-Garonne<br>
+									<input class="cbFrFilter" type="checkbox" name="_32" value="_32">(32) Gers<br>
+								</div>
+								<div class="col-md-4">
+									<input class="cbFrFilter" type="checkbox" name="_33" value="_33">(33) Gironde<br>
+									<input class="cbFrFilter" type="checkbox" name="_34" value="_34">(34) Hérault<br>
+									<input class="cbFrFilter" type="checkbox" name="_35" value="_35">(35) Ille-et-Vilaine<br>
+									<input class="cbFrFilter" type="checkbox" name="_36" value="_36">(36) Indre<br>
+									<input class="cbFrFilter" type="checkbox" name="_37" value="_37">(37) Indre-et-Loire<br>
+									<input class="cbFrFilter" type="checkbox" name="_38" value="_38">(38) Isère<br>
+									<input class="cbFrFilter" type="checkbox" name="_39" value="_39">(39) Jura<br>
+									<input class="cbFrFilter" type="checkbox" name="_40" value="_40">(40) Landes<br>
+									<input class="cbFrFilter" type="checkbox" name="_41" value="_41">(41) Loir-et-Cher<br>
+									<input class="cbFrFilter" type="checkbox" name="_42" value="_42">(42) Loire<br>
+									<input class="cbFrFilter" type="checkbox" name="_43" value="_43">(43) Haute-Loire<br>
+									<input class="cbFrFilter" type="checkbox" name="_44" value="_44">(44) Loire-Atlantique<br>
+									<input class="cbFrFilter" type="checkbox" name="_45" value="_45">(45) Loiret<br>
+									<input class="cbFrFilter" type="checkbox" name="_46" value="_46">(46) Lot<br>
+									<input class="cbFrFilter" type="checkbox" name="_47" value="_47">(47) Lot-et-Garonne<br>
+									<input class="cbFrFilter" type="checkbox" name="_48" value="_48">(48) Lozère<br>
+									<input class="cbFrFilter" type="checkbox" name="_49" value="_49">(49) Maine-et-Loire<br>
+									<input class="cbFrFilter" type="checkbox" name="_50" value="_50">(50) Manche<br>
+									<input class="cbFrFilter" type="checkbox" name="_51" value="_51">(51) Marne<br>
+									<input class="cbFrFilter" type="checkbox" name="_52" value="_52">(52) Haute-Marne<br>
+									<input class="cbFrFilter" type="checkbox" name="_53" value="_53">(53) Mayenne<br>
+									<input class="cbFrFilter" type="checkbox" name="_54" value="_54">(54) Meurthe-et-Moselle<br>
+									<input class="cbFrFilter" type="checkbox" name="_55" value="_55">(55) Meuse<br>
+									<input class="cbFrFilter" type="checkbox" name="_56" value="_56">(56) Morbihan<br>
+									<input class="cbFrFilter" type="checkbox" name="_57" value="_57">(57) Moselle<br>
+									<input class="cbFrFilter" type="checkbox" name="_58" value="_58">(58) Nièvre<br>
+									<input class="cbFrFilter" type="checkbox" name="_59" value="_59">(59) Nord<br>
+									<input class="cbFrFilter" type="checkbox" name="_60" value="_60">(60) Oise<br>
+									<input class="cbFrFilter" type="checkbox" name="_61" value="_61">(61) Orne<br>
+									<input class="cbFrFilter" type="checkbox" name="_62" value="_62">(62) Pas-de-Calais<br>
+									<input class="cbFrFilter" type="checkbox" name="_63" value="_63">(63) Puy-de-Dôme<br>
+									<input class="cbFrFilter" type="checkbox" name="_64" value="_64">(64) Pyrénées-Atlantiques<br>
+								</div>
+								<div class="col-md-4">
+									<input class="cbFrFilter" type="checkbox" name="_65" value="_65">(65) Hautes-Pyrénées<br>
+									<input class="cbFrFilter" type="checkbox" name="_66" value="_66">(66) Pyrénées-Orientales<br>
+									<input class="cbFrFilter" type="checkbox" name="_67" value="_67">(67) Bas-Rhin<br>
+									<input class="cbFrFilter" type="checkbox" name="_68" value="_68">(68) Haut-Rhin<br>
+									<input class="cbFrFilter" type="checkbox" name="_69" value="_69">(69) Rhône<br>
+									<input class="cbFrFilter" type="checkbox" name="_70" value="_70">(70) Haute-Saône<br>
+									<input class="cbFrFilter" type="checkbox" name="_71" value="_71">(71) Saône-et-Loire<br>
+									<input class="cbFrFilter" type="checkbox" name="_72" value="_72">(72) Sarthe<br>
+									<input class="cbFrFilter" type="checkbox" name="_73" value="_73">(73) Savoie<br>
+									<input class="cbFrFilter" type="checkbox" name="_74" value="_74">(74) Haute-Savoie<br>
+									<input class="cbFrFilter" type="checkbox" name="_75" value="_75">(75) Paris<br>
+									<input class="cbFrFilter" type="checkbox" name="_76" value="_76">(76) Seine-Maritime<br>
+									<input class="cbFrFilter" type="checkbox" name="_77" value="_77">(77) Seine-et-Marne<br>
+									<input class="cbFrFilter" type="checkbox" name="_78" value="_78">(78) Yvelines<br>
+									<input class="cbFrFilter" type="checkbox" name="_79" value="_79">(79) Deux-Sèvres<br>
+									<input class="cbFrFilter" type="checkbox" name="_80" value="_80">(80) Somme<br>
+									<input class="cbFrFilter" type="checkbox" name="_81" value="_81">(81) Tarn<br>
+									<input class="cbFrFilter" type="checkbox" name="_82" value="_82">(82) Tarn-et-Garonne<br>
+									<input class="cbFrFilter" type="checkbox" name="_83" value="_83">(83) Var<br>
+									<input class="cbFrFilter" type="checkbox" name="_84" value="_84">(84) Vaucluse<br>
+									<input class="cbFrFilter" type="checkbox" name="_85" value="_85">(85) Vendée<br>
+									<input class="cbFrFilter" type="checkbox" name="_86" value="_86">(86) Vienne<br>
+									<input class="cbFrFilter" type="checkbox" name="_87" value="_87">(87) Haute-Vienne<br>
+									<input class="cbFrFilter" type="checkbox" name="_88" value="_88">(88) Vosges<br>
+									<input class="cbFrFilter" type="checkbox" name="_89" value="_89">(89) Yonne<br>
+									<input class="cbFrFilter" type="checkbox" name="_90" value="_90">(90) Territoire-de-Belfort<br>
+									<input class="cbFrFilter" type="checkbox" name="_91" value="_91">(91) Essonne<br>
+									<input class="cbFrFilter" type="checkbox" name="_92" value="_92">(92) Hauts-de-Seine<br>
+									<input class="cbFrFilter" type="checkbox" name="_93" value="_93">(93) Seine-St-Denis<br>
+									<input class="cbFrFilter" type="checkbox" name="_94" value="_94">(94) Val-de-Marne<br>
+									<input class="cbFrFilter" type="checkbox" name="_95" value="_95">(95) Val-d'Oise<br>
+								</div>
+							</div> <!-- ./row -->
+						</div> <!-- ./col-md-8 -->
+							
+					</div> <!-- ./row -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button submit" class="btn btn-primary">Valider</button>
+				</div> 
+				</div> <!-- ./modal-body -->
+			</form>
+		</div> <!-- ./modal-content -->
+	</div> <!-- ./modal-dialog -->
+</div> <!-- ./modal -->

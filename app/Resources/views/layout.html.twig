@@ -54,6 +54,7 @@
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:mainMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:languageMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
+				{{ knp_menu_render('evegAppBundle:MenuBuilder:filterMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
 			</div>
 		</div> <!-- ./container-fluid -->
 	</div> <!-- /.navbar -->
@@ -68,6 +69,9 @@
 	<div class="container-fluid" id="body-wrapper">
 		{% block body %}
 		{% endblock %}
+
+		{% include 'evegAppBundle:Default/Fragments/Modals:filter.html.twig' %}
+
 	</div>
 
 	<!-- Footer container -->
@@ -111,6 +115,13 @@
 			$('a, li').tooltip();
 			$(".showTooltip").tooltip({html:true});
 			$('[data-tooltip="tooltip"]').tooltip();
+		</script>
+
+		<!-- Filter -->
+		<script>
+			$('#filter-icon').click(function(e) {
+				e.preventDefault();
+			});
 		</script>
 		
 	{% endblock %}

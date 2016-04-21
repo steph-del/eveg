@@ -20,7 +20,7 @@ class MenuBuilder extends ContainerAware
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
  
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
-			->setAttribute('glyphicon', 'glyphicon-home');
+			->setAttribute('icon', 'home');
 		
 		$menu->addChild('App', array('route' =>'eveg_admin_test', 'label' => 'eveg.menu.app'));
 
@@ -33,6 +33,22 @@ class MenuBuilder extends ContainerAware
 		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
  
         return $menu;
+    }
+
+    public function filterMenu(FactoryInterface $factory, array $options)
+    {
+      $menu = $factory->createItem('root');
+      $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+
+      $menu->addChild('Filter', array('route' => 'eveg_app_homepage', 'label' => 'Filtrer'))
+         ->setAttribute('icon', 'filter')
+         ->setAttribute('id', 'filter-icon')
+         ->setAttribute('class', 'navbar-right')
+         ->setAttribute('data-toggle', 'modal')
+         ->setAttribute('data-target', '#modalFilter')
+         ;
+
+      return $menu;
     }
  
     public function userMenu(FactoryInterface $factory, array $options)
