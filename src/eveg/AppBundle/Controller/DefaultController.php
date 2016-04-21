@@ -301,5 +301,20 @@ class DefaultController extends Controller
 			'' => $count
 		));
 	}
+
+	public function rainbowAction()
+	{
+		$session = new Session();
+		$r = $session->get('rainbow');
+
+		if(!$r or $r == 0 )
+		{
+			$session->set('rainbow', 1);
+		} else {
+			$session->set('rainbow', 0);
+		}
+			
+		return new Response($session->get('rainbow'));
+	}
 	
 }

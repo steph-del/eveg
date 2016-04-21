@@ -191,6 +191,12 @@ eveg_legal_notice:
     locales: { fr: "/mentions-legales", en: "/en/legal-notice" }
     defaults: { _controller: evegAppBundle:Default:legalNotice }
 
+eveg_r:
+    path: /r
+    defaults: { _controller: evegAppBundle:Default:rainbow }
+    requirements:
+        _method: POST|GET
+
 # Sitemap
 eveg_sitemap:
     path: /sitemap.{_format}

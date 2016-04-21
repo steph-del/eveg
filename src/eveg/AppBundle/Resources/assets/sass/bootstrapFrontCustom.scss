@@ -581,6 +581,22 @@ span.viewHeaderAuthor {
 }
 
 /*
+ * :-)
+ *****/
+ .app-r-CLA, .app-r-SUBCLA{
+ 	background-image: url("/../eveg/web/img/patterns/r_CLA.png");
+ }
+ .app-r-ORD, .app-r-SUBORD{
+ 	background-image: url("/../eveg/web/img/patterns/r_ORD.png");
+ }
+ .app-r-ALL, .app-r-SUBALL, .app-r-ASSGR{
+ 	background-image: url("/../eveg/web/img/patterns/r_ALL.png");
+ }
+ .app-r-ASS, .app-r-SUBASS{
+ 	background-image: url("/../eveg/web/img/patterns/r_ASS.png");
+ }
+
+/*
  * Button
  ********/
 button {

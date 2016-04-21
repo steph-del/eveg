@@ -148,6 +148,7 @@ fos_js_routing:
         - "eveg_feedback"
         - "^eveg_compare_*"
         - "^eveg_delete_*"
+        - "^eveg_r"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~

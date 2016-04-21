@@ -50,7 +50,7 @@
 	{% if syntaxon is defined %}
 
 		{# App #}
-		<div class="row appShowRow">
+		<div class="row appShowRow {% if app.session.get('rainbow') is defined and app.session.get('rainbow') == '1' %}app-r-{{ syntaxon.level }}{% endif %}">
 			<div class="col-md-4 hidden-xs hidden-sm" id="treeView">
 				<div id="divTree">
 					
@@ -353,7 +353,7 @@
 		tour.init();
 
 		// Start the tour
-		tour.start(true);
+		//tour.start(true);
 	</script>
 
 {% endblock %}

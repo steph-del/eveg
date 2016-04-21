@@ -101,6 +101,7 @@
 				</p>
 				<p class="text-justify">
 					{{ 'eveg.legal_notice.law.post'|trans|nl2br }}
+					<img id="r" style="opacity: 0.03" src="../img/icons/rainbow_c.jpg" />
 				</p>
 			</div>
 
@@ -130,8 +131,31 @@
 		})
 	</script>
 
-	<!-- Scrollspy -->
-	<!--<script>
-		$('.scrollspy').scrollspy({ target: '#nav' })
-	</script>-->
+	<script>
+		$("#r").click(function() {
+			$.ajax({
+				url: Routing.generate('eveg_r'),
+				success: function(data) {
+					if(data == 1) {
+						$.notify({
+							message: 'Hello rainbow :)'
+						},{
+							type: 'success'
+						});
+					}
+					if(data == 0) {
+						$.notify({
+							message: 'Bye bye rainbow :)'
+						},{
+							type: 'warning'
+						});
+					}
+				},
+				error: function() {
+					console.log('Oh no !!');
+				},
+				type: 'POST'
+			})
+		});
+	</script>
 {% endblock %}
