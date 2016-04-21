@@ -21,5 +21,3 @@ src/eveg/AppBundle/Resources/views/Admin/test.html.twig
 *.php~
 
 *.php~
-
-app/config/parameters.yml.dist
