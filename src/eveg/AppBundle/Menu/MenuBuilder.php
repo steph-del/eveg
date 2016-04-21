@@ -40,7 +40,7 @@ class MenuBuilder extends ContainerAware
       $menu = $factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
-      $menu->addChild('Filter', array('route' => 'eveg_app_homepage', 'label' => 'Filtrer'))
+      $menu->addChild('Filter', array('route' => 'eveg_app_homepage', 'label' => 'eveg.menu.filter'))
          ->setAttribute('icon', 'filter')
          ->setAttribute('id', 'filter-icon')
          ->setAttribute('class', 'navbar-right')

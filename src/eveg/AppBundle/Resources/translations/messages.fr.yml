@@ -33,6 +33,7 @@ eveg:
         help: Aide
         contact: Contact
         activity: Activités
+        filter: Filtrer
         participate: Participer
         user:
             my_account: Mon compte
