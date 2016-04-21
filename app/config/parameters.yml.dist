@@ -13,3 +13,12 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    ruby: ''
+    sass: ''
+    compass: ''
+
+    eveg:
+        feedback:
+            mail_base_admin: "stephanedelplanque@yahoo.fr"
+            mail_website_admin: "eveg.stephane.delplanque@gmail.com"
