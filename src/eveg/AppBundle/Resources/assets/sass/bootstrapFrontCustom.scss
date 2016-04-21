@@ -314,6 +314,7 @@ body {
 
 #treeView {
 	padding-left: 0;
+	padding-right: 5px;
 }
 
 #cardView {
@@ -419,6 +420,8 @@ span.viewHeaderAuthor {
 .panel-heading {
 	padding-top: 5px;
 	padding-bottom: 5px;
+	height: 21px;
+	padding-top: 0;
 }
 .list-group-item {
 	padding-top: 2px;
@@ -929,4 +932,22 @@ img.syntaxonIllustration{
  	i.fa.fa-home {
  		font-size: 1.4em;
  	}
+ }
+
+/*
+ * Icons
+ *******/
+ i {
+ 	&.lightweight {
+ 		color: #AFAFAF;
+ 	}
+ 	&.map-icon {
+ 		padding-left: 5px;
+ 	}
+ 	&.hover {
+ 		&:hover {
+ 			color: #000;
+ 		}
+ 	}
+
  }

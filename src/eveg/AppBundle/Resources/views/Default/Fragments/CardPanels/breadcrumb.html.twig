@@ -1,6 +1,13 @@
 <div class="row flexBreadcrumb hidden-xs hidden-sm">
 	{% for syntaxon in allParents %}
 		{% if syntaxon.level != 'HAB' %}
+			{% if loop.index == 2 %}
+				{% if allParents|length == 2 %}
+					<i class="fa fa-compass lightweight" style="font-size: 1.3em;margin-top:1px;margin-right: 5px;" aria-hidden="true" data-tooltip="tooltip" data-placement="bottom" title="{{ 'eveg.app.show_one.breadcrumb.one_parent'|trans }}"></i>
+				{% elseif allParents|length > 2 %}
+					<i class="fa fa-compass lightweight" style="font-size: 1.3em;margin-top:1px;margin-right: 5px;" aria-hidden="true" data-tooltip="tooltip" data-placement="bottom" title="{{ 'eveg.app.show_one.breadcrumb.more_parents'|trans }}"></i>
+				{% endif %}
+			{% endif %}
 			<div class="flexBreadcrumbItem"><a href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}" class="{{ syntaxon.level }}-text">{{ syntaxon.syntaxon }}</a></div>
 
 			{% if not loop.last %}

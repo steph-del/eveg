@@ -337,3 +337,6 @@ eveg:
                         7:          ranker, tangel
                         8:          anmoor, gyttja
                         9:          tourbe
+            breadcrumb:
+                one_parent: Syntaxon parent
+                more_parents: Syntaxons parents
