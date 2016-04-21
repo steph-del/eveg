@@ -548,9 +548,9 @@ span.viewHeaderAuthor {
 		}
 	}
 	&.CLA, &.SUBCLA {
-		color: darken($BgColorVH-CLA, 20%);
+		color: darken($BgColorVH-CLA, 10%);
 		&:hover {
-			color: darken($BgColorVH-CLA, 30%);
+			color: darken($BgColorVH-CLA, 20%);
 		}
 	}
 	&.ORD, &.SUBORD {
@@ -566,9 +566,9 @@ span.viewHeaderAuthor {
 		}
 	}
 	&.ASS, &.SUBASS {
-		color: darken($BgColorVH-ASS, 40%);
+		color: #FFE400;
 		&:hover {
-			color: darken($BgColorVH-ASS, 50%);
+			color: #F7DD06;
 		}
 	}
 
