@@ -1,11 +1,11 @@
-<div class="thumbnail thumb-purple">
+<div class="thumbnail thumb-blue">
 	<div class="caption">
 		<h2>{{ 'eveg.homepage.lastUploads.title'|trans }}</h2>
 		{% if newDocuments is defined and newDocuments is not empty %}
 			<ul class="list-group">
 				{% for document in newDocuments %}
 					{% if loop.index is not divisibleby(2) %}
-						<li class="list-group-item ellipsis list-highlight">
+						<li class="list-group-item ellipsis list-highlight-blue">
 					{% else %}
 						<li class="list-group-item ellipsis">
 					{% endif %}
