@@ -19,9 +19,17 @@ eveg:
         will_be_deleted_m: va être définitivement supprimé
         will_be_deleted_f: va être définitivement supprimée
         user: utilisateur
+        error: erreur
 
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie
+        error_occured: Oops! Une erreur est survenue
+        server_returns: Le serveur à renvoyé un
+        default_server_error: |
+            Nous sommes désolé, quelque chose semble ne pas fonctionner correctement.
+            Si le problème persiste, merci de nous contacter.
+        return_homepage: Retourner à la page d'accueil du site.
+        404: La page que vous recherchez n'exsite pas.
 
     actions:
         confirm_delete: Confirmer la suppression

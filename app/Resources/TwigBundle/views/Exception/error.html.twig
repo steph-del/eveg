@@ -1,0 +1,33 @@
+{# src/eveg/AppBundle/Resources/views/Default/homepage.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+    {{ 'eveg.dictionary.error'|trans|capitalize }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <br /><br /><br />
+        <div class="col-md-offset-3 col-md-6">
+            <div class="thumbnail thumb-red">
+
+                <h1>{{ 'eveg.errors.error_occured'|trans }}<span class="pull-right icon-bug-red"><i class="fa fa-bug" aria-hidden="true"></i></span></h1>
+
+                <h2>{{ 'eveg.errors.server_returns'|trans }} "{{ status_code }} {{ status_text }}".</h2>
+                <br />
+                <div>
+                    {{ 'eveg.errors.default_server_error'|trans|nl2br }}
+                </div>
+                <br />
+                <div class="text-center">
+                    <a href="{{ path('eveg_app_homepage') }}">{{ 'eveg.errors.return_homepage'|trans }}</a>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
