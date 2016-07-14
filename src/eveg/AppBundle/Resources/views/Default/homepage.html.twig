@@ -185,7 +185,7 @@
 		//console.log(depFrFilter);
 		//console.log('{{ app.session.get("depFrFilter") | raw }}');
 		
-		$('#searchbox').autocomplete({
+		$('.searchbox').autocomplete({
 			
 			source: function(request, response){
 				if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
@@ -227,7 +227,7 @@
 	<!-- FOCUS -->
 	<script>
 	$(document).ready(function(){
-	    $("#searchbox").focus();
+	    $(".searchbox").focus();
 	});
 	</script>
 

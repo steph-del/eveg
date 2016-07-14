@@ -20,6 +20,8 @@ eveg:
         will_be_deleted_f: va être définitivement supprimée
         user: utilisateur
         error: erreur
+        close: fermer
+        validate: valider
 
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie
@@ -168,6 +170,7 @@ eveg:
 
 
     search:
+        title: Rechercher
         placeholder: Rechercher une végétation
         use_synonyms: Utiliser les synonymes
 

@@ -35,6 +35,22 @@ class MenuBuilder extends ContainerAware
         return $menu;
     }
 
+    public function searchMenu(FactoryInterface $factory, array $options)
+    {
+      $menu = $factory->createItem('root');
+      $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+
+      $menu->addChild('Search', array('route' => 'eveg_app_homepage', 'label' => 'eveg.search.title'))
+        ->setAttribute('class', 'navbar-right')
+        ->setAttribute('id', 'search-icon')
+        ->setAttribute('icon', 'search')
+        ->setAttribute('data-toggle', 'modal')
+         ->setAttribute('data-target', '#modalSearch');
+
+      return $menu;
+
+    }
+
     public function filterMenu(FactoryInterface $factory, array $options)
     {
       $menu = $factory->createItem('root');

@@ -9,6 +9,7 @@
 
 	{% block stylesheets %}
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
 		{% stylesheets filter="compass" 
 			"@evegAppBundle/Resources/assets/sass/evegSyntaxonText.scss"
 			"@evegAppBundle/Resources/assets/sass/bootstrapFrontCustom.scss"
@@ -18,7 +19,7 @@
 			"@evegAppBundle/Resources/assets/sass/modalRepartitionFilters.scss"
 		%}
 		{# evegSearchEngine.scss should be moved to subViews (homepage / app) #}
-		<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
+		
 		<link rel="stylesheet" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" type="text/css"/>
 		<link rel="stylesheet" href="{{ asset('css/flag-icon.min.css') }}" type="text/css"/>
 		<link rel="stylesheet" href="{{ asset_url }}">
@@ -52,9 +53,34 @@
 			{# Collect the nav links, forms, and other content for toggling #}
 			<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:mainMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
-				{{ knp_menu_render('evegAppBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
-				{{ knp_menu_render('evegAppBundle:MenuBuilder:languageMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
+
+				{% set routeName = app.request.attributes.get('_route') %}
+				{% if routeName != "eveg_app_homepage" %}
+					{{ knp_menu_render('evegAppBundle:MenuBuilder:searchMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+				{% endif %}
+				
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:filterMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
+				{{ knp_menu_render('evegAppBundle:MenuBuilder:languageMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
+				{{ knp_menu_render('evegAppBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+				
+				
+				
+				{#<form class="navbar-form" role="search">
+					<div class="input-group">
+						<div id="navbar-search-input">
+							<input id="menu-searchbox" type="text" class="form-control" placeholder="{{ 'eveg.search.placeholder'|trans }}">
+						</div>
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-default">
+								<span class="">
+									<i class="fa fa-search" aria-hidden="true"></i>
+									<span class="sr-only">{{ 'eveg.search.placeholder'|trans }}</span>
+								</span>
+							</button>
+						</span>
+					</div>
+				</form>#}
+
 			</div>
 		</div> <!-- ./container-fluid -->
 	</div> <!-- /.navbar -->
@@ -70,7 +96,11 @@
 		{% block body %}
 		{% endblock %}
 
+		<!-- Modals -->
 		{% include 'evegAppBundle:Default/Fragments/Modals:filter.html.twig' %}
+		{% if routeName != "eveg_app_homepage" %}
+			{% include 'evegAppBundle:Default/Fragments/Modals:search.html.twig' %}
+		{% endif %}
 
 	</div>
 
@@ -91,6 +121,7 @@
 		<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+		<script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
 		{% javascripts 
 			'@evegAppBundle/Resources/public/js/bootstrap-notify.min.js'%}
 			<script type="text/javascript" src="{{ asset_url }}"></script>
@@ -123,6 +154,177 @@
 				e.preventDefault();
 			});
 		</script>
+
+		<!-- Search -->
+		<script>
+			$('#search-icon').click(function(e) {
+				e.preventDefault();
+			});
+		</script>
+
+		<!-- SEARCH AUTOCOMPLETE (not on main page) -->
+		{% if routeName != "eveg_app_homepage" %}
+			<script src="{{ asset('js/autocomplete.js') }}" type="text/javascript"></script>
+			<script>
+				$('.searchIcon').hide();
+				$('.badge-addon').hide();
+				monkeyPatchAutocomplete();
+				var useSynonyms = false;
+				var appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+				var depFrFilter;
+				if (appSessionSF2DepFrFilter != '') {
+					depFrFilter = jQuery.parseJSON(appSessionSF2DepFrFilter);
+				} else {
+					depFrFilter = null;
+				}
+				//var depFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+				//console.log(depFrFilter);
+				//console.log('{{ app.session.get("depFrFilter") | raw }}');
+				
+				$('.searchbox').autocomplete({
+					
+					source: function(request, response){
+						if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
+							var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': true }, true);
+						} else {
+							var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': false }, true);
+						}
+						$.ajax({url:url,success:function(responsedata){
+					        response(responsedata)
+					    }});
+					},
+					minLength: 3,
+					search: function(event, ui) {
+						$('.badge-addon').hide();
+						$('.searchIcon').show();
+					},
+					response: function(event, ui) {
+						$('.searchIcon').hide();
+						$('.badge-addon').text(ui.content.length);
+						$('.badge-addon').show();
+					},
+					focus: function(event, ui) {
+				        event.preventDefault();
+				    },
+				    change: function(event, ui) {
+				    	$('.badge-addon').hide();
+				    },
+				    close: function(event, ui) {
+				    	$('.badge-addon').hide();
+				    },
+					select : function(event, ui){
+						event.preventDefault();
+						window.location.href = Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true);
+						$('.badge-addon').hide();
+					}
+				});
+			</script>
+
+			<!-- SEARCHBOX FOCUS ON MODAL SHOWN -->
+			<script>
+				$('#modalSearch').on('shown.bs.modal', function () {
+		    		$('#searchbox').focus();
+				})
+			</script>
+		{% endif %}
+
+
+		{#<script>
+		    $(function () {
+				function closeSearch() {
+		            var $form = $('.navbar-collapse form[role="search"].active')
+		    		$form.find('input').val('');
+					$form.removeClass('active');
+				}
+
+				// Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
+				$(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
+					event.preventDefault();
+					var $form = $(this).closest('form'),
+						$input = $form.find('input');
+					$form.addClass('active');
+					$input.focus();
+				});
+				// ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
+				// if your form is ajax remember to call `closeSearch()` to close the search container
+				$(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
+					event.preventDefault();
+					var $form = $(this).closest('form'),
+						$input = $form.find('input');
+					$('#showSearchTerm').text($input.val());
+		            closeSearch()
+				});
+		    });
+		</script>
+
+		<!-- AUTOCOMPLETE -->
+		<script src="{{ asset('js/autocomplete.js') }}" type="text/javascript"></script>
+		<script>
+			monkeyPatchAutocomplete();
+			//var useSynonyms = false;
+			/*var appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+			var depFrFilter;
+			if (appSessionSF2DepFrFilter != '') {
+				depFrFilter = jQuery.parseJSON(appSessionSF2DepFrFilter);
+			} else {
+				depFrFilter = null;
+			}*/
+			//var depFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+			//console.log(depFrFilter);
+			//console.log('{{ app.session.get("depFrFilter") | raw }}');
+
+			$('#navbar-search-input').append('<i id="searchbarMenuIconSearch"class="searchIcon glyphicon glyphicon-refresh glyphicon-refresh-animate" style="position:absolute;color:#000;z-index:3;"></i>');
+			$('#searchbarMenuIconSearch').hide();
+
+			$('#navbar-search-input').append('<span id="searchbarMenuBadge" class="badge-addon badge" style="position:absolute;z-index:3;">X</span>');
+			$('#searchbarMenuBadge').hide();
+
+			$('#menu-searchbox').autocomplete({
+				
+				source: function(request, response){
+					if($.cookie('eveg_search_use_synonyms') == true || $.cookie('eveg_search_use_synonyms') == "true") {
+						var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': true }, true);
+					} else {
+						var url = Routing.generate('api_get_syntaxon_search', { 'term': request.term, 'useSynonyms': false }, true);
+					}
+					$.ajax({url:url,success:function(responsedata){
+				        response(responsedata)
+				    }});
+				},
+				minLength: 3,
+				search: function(event, ui) {
+
+					var searchbarMenuPosition = $('#menu-searchbox').offset();
+					searchbarMenuIconLeft = searchbarMenuPosition.left + $('#menu-searchbox').width();
+
+					$('#searchbarMenuBadge').hide();
+					$('#searchbarMenuIconSearch').show();
+					$('#searchbarMenuIconSearch').offset({ top: 20, left: searchbarMenuIconLeft });
+				},
+				response: function(event, ui) {
+					$('#searchbarMenuIconSearch').hide();
+
+					$('#searchbarMenuBadge').show();
+					$('#searchbarMenuBadge').text(ui.content.length);
+					$('#searchbarMenuBadge').offset({ top: 20, left: searchbarMenuIconLeft-15 });
+					
+				},
+				focus: function(event, ui) {
+			        event.preventDefault();
+			    },
+			    change: function(event, ui) {
+			    	$('#searchbarMenuBadge').hide();
+			    },
+			    close: function(event, ui) {
+			    	$('#searchbarMenuBadge').hide();
+			    },
+				select : function(event, ui){
+					event.preventDefault();
+					window.location.href = Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true);
+					$('#searchbarMenuBadge').hide();
+				}
+			});
+		</script>#}
 		
 	{% endblock %}
 </body>

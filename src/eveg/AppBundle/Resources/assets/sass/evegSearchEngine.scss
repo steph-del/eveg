@@ -1,6 +1,9 @@
+@import 'eveg-colors';
+
 $highlightColor: rgba(255, 205, 26, 0.1);
 $borderColor: rgba(255, 205, 26, 0.3);
 $searchBoxExtendColor: rgba(0, 0, 0, 0.3);
+$rightInnerAddonPosition: 15px;
 
 span.highlightSearch {
 	background-color: $highlightColor;
@@ -52,16 +55,21 @@ synonymeSearch {
 .right-inner-addon input {
     padding-right: 30px;    
 }
+
+.right-inner-addon .input-group {
+    width: 100%;    
+}
+
 .right-inner-addon i {
     position: absolute;
-    right: 35px;
+    right: $rightInnerAddonPosition;
     padding: 12px 12px;
     pointer-events: none;
     z-index: 10;
 }
 .right-inner-addon span.badge-addon {
 	position: absolute;
-    right: 45px;
+    right: $rightInnerAddonPosition + 10;
     top: 10px;
     z-index: 11;
     //padding: 12px 12px;
@@ -83,6 +91,32 @@ synonymeSearch {
     to { transform: scale(1) rotate(360deg);}
 }
 
+.ui-autocomplete {
+    z-index: 2000;
+    &.ui-widget-content {
+        border: none;
+        border-bottom: 3px solid $evegFocusColor;
+        border-radius: 0 0 7px 7px;
+
+        max-height: 350px;
+        overflow-y: scroll;
+
+    }
+    .ui-menu-item {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-top: 1px solid #EFEDED;
+
+        &.ui-state-focus {
+            margin: 0;
+            border: none;
+            border-top: 1px solid transparent;
+            background-color: $evegFocusColorLight;
+            border-radius: 7px 7px 7px 7px;
+        }
+    }
+}
+
 // panel options
 .searchboxPanelOptions {
     padding: 0;
@@ -97,3 +131,17 @@ synonymeSearch {
     padding-top: 10px;
     padding-bottom: 0;
 }
+
+// Modal style
+#modalSearch {
+    .modal-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    input {
+        border: none;
+        box-shadow: none;
+        outline: 0 none;
+    }
+}
+
