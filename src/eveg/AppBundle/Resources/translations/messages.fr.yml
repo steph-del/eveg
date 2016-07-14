@@ -5,23 +5,30 @@ eveg:
         les végétations d'Europe
 
     dictionary:
-        for: pour
-        title: titre
-        file: fichier
-        original_file: fichier d'origine
-        syntaxon: syntaxon
-        visibility: visibilité
+        a_file: un fichier
+        a_link: un lien
+        a_pdf_document: un document pdf
+        a_photo: une photo
+        a_table: un tableau
         action: action
         actions: actions
+        added: a ajouté
+        close: fermer
+        error: erreur
+        for: pour
+        file: fichier
+        title: titre
+        original_file: fichier d'origine
+        participate: participez
+        syntaxon: syntaxon
         the_file: le fichier
         the_link: le lien
         the_photo: la photo
+        user: utilisateur
+        validate: valider
+        visibility: visibilité
         will_be_deleted_m: va être définitivement supprimé
         will_be_deleted_f: va être définitivement supprimée
-        user: utilisateur
-        error: erreur
-        close: fermer
-        validate: valider
 
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie
@@ -173,6 +180,12 @@ eveg:
         title: Rechercher
         placeholder: Rechercher une végétation
         use_synonyms: Utiliser les synonymes
+
+    activities:
+        title: Activités
+        last_activities: Dernière activités
+        participate:
+            slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Lancez-vous !
 
     legal_notice:
         title: Mentions légales

@@ -2,9 +2,21 @@
 
 {% extends "::layout.html.twig" %}
 
-
+{# {{ 'eveg.activities.title'|trans|nl2br }} #}
 {% block title %}
-	Activités | {{ parent() }} : {{ 'eveg.web_title'|trans }}
+	{{ 'eveg.activities.title'|trans }} | {{ parent() }} : {{ 'eveg.web_title'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+		
+	{{ parent() }}
+	
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/activities.scss"
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+
 {% endblock %}
 
 {% block body %}
@@ -13,51 +25,86 @@
 
 	<div class="row whiteRow">
 		<div class="jumbotron contact">
-			<h1>Dernière activités</h1>
+			<h1>{{ 'eveg.activities.last_activities'|trans }} </h1>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-8 activityPad">
 			{% if newDocuments is defined and newDocuments is not empty %}
-				<ul class="list-group">
-					{% for document in newDocuments %}
-						<li class="list-group-item">
+				{% for document in newDocuments %}
+					{% if not loop.last %}
+					<div class="row activityPadLine">
+					{% else %}
+					<div class="row activityPadLine last">
+					{% endif %}
+						<div class="col-md-2 activityPadItem text-center">
+							<div class="row col-md-12 _2em">
+								<i class="fa fa-user"></i>
+							</div>
+							<div class="row col-md-12">
+								{{ document.user }}
+							</div>
+						</div>
+						<div class="col-md-2 activityPadItem text-center">
+							<div class="row col-md-12 _2em">
+								{% if document.type == 'spreadsheet' %}
+									<i class="fa fa-file-excel-o"></i>
+								{% elseif document.type == 'pdf' %}
+									<i class="fa fa-file-pdf-o"></i>
+								{% elseif document.type == 'photo' %}
+									<i class="fa fa-camera"></i>
+								{% elseif document.type == 'httplink' %}
+									<i class="fa fa-external-link"></i>
+								{% endif %}
+							</div>
+							<div class="row col-md-12">
+								{{ document.datetime|date('d m y') }}
+							</div>
+						</div>
+						<div class="col-md-7 activityPadItem">
+							<b>{{ document.user }}</b> {{ 'eveg.dictionary.added'|trans }} 
 							{% if document.type == 'spreadsheet' %}
-								<i class="fa fa-file-excel-o"></i>
+								{{ 'eveg.dictionary.a_table'|trans }} 
 							{% elseif document.type == 'pdf' %}
-								<i class="fa fa-file-pdf-o"></i>
+								{{ 'eveg.dictionary.a_pdf_document'|trans }} 
 							{% elseif document.type == 'photo' %}
-								<i class="fa fa-camera"></i>
+								{{ 'eveg.dictionary.a_photo'|trans }} 
 							{% elseif document.type == 'httplink' %}
-								<i class="fa fa-external-link"></i>
+								{{ 'eveg.dictionary.a_link'|trans }} 
 							{% endif %}
-							{{ document.datetime|date('d m y') }}, <b>{{ document.user }}</b> a ajouté
-							{% if document.type == 'spreadsheet' %}
-								un tableau
-							{% elseif document.type == 'pdf' %}
-								un document pdf
-							{% elseif document.type == 'photo' %}
-								une photo
-							{% elseif document.type == 'httplink' %}
-								un lien
-							{% endif %}
-							<br />pour : {{ document.syntaxon }}
-						</li>
-					{% endfor %}
-				</ul>
+							<br />{{ 'eveg.dictionary.for'|trans }} : {{ document.syntaxon }}
+						</div>
+						<div class="col-md-1 activityPadItem text-center _2em">
+							<a href="{{ path('eveg_show_one', {'id': document.syntaxon_id}) }}" title="Accéder à la fiche du syntaxon">
+								<i class="fa fa-angle-double-right"></i>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
 			{% endif %}
 		</div>
 		<div class="col-md-4">
-			<h2>Participez !</h2>
-			{% if wanted is defined and wanted is not empty %}
-				<p>
-					<span class="badge">{{ nbTotalWanted }}</span> documents n'attendent que vous pour être compilés !
-				</p>
-				<ul class="list-group">
-					{% for docWanted in wanted %}
-						<li class="list-group-item">{{ docWanted.syntaxonCore.syntaxonName }}</li>
-					{% endfor %}
-					<li class="list-group-item text-center"><a href="{{ path('eveg_app_participate') }}">Comment participer ?</a></li>
-				</ul>
-			{% endif %}
+			<div class="thumbnail thumb-blue">
+				<div class="caption">
+					<h2>{{ 'eveg.dictionary.participate'|trans|capitalize }} !</h2>
+					{% if wanted is defined and wanted is not empty %}
+						<p>
+							<span class="badge">{{ nbTotalWanted }}</span>
+							{{ 'eveg.activities.participate.slogan'|trans }}
+						</p>
+						<ul class="list-group">
+							{% for docWanted in wanted %}
+								<li class="list-group-item">
+									<a href="{{ path('eveg_show_one', {'id': docWanted.syntaxonCore.id}) }}">{{ docWanted.syntaxonCore.syntaxonName }}</a>
+								</li>
+							{% endfor %}
+							<li class="list-group-item text-center">
+								<button type="button" class="btn btn-default">
+									<a class="no-style" href="{{ path('eveg_app_participate') }}">Comment participer ?</a>
+								</button>
+							</li>
+						</ul>
+					{% endif %}
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

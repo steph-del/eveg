@@ -48,7 +48,7 @@ class DefaultController extends Controller
 	{
 
 		$wanted = $this->get('evep_app.wanted');
-		$pdfsAlone = $wanted->getList($limit = null);
+		$pdfsAlone = $wanted->getList($limit = 5);
 		$nbPdfsAlone = $wanted->howMany();
 
 		$whatsUp = $this->get('eveg_app.whatsup');

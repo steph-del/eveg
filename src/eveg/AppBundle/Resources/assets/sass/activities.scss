@@ -1,0 +1,25 @@
+@import 'eveg-colors';
+
+/*
+ * Activity
+ **********/
+ .activityPadLine {
+ 	margin-left: 0;
+
+ 	display: flex;
+ 	flex-direction: row;
+
+ 	border-bottom: 1px solid #DEDEDE;
+
+ 	&:hover {
+ 		background-color: $evegHover;
+ 	}
+
+ 	&.last {
+ 		border-bottom: none;
+ 	}
+
+ 	.activityPadItem {
+ 		margin: auto;
+ 	}
+ }

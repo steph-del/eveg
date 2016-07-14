@@ -44,6 +44,7 @@ class whatsUp
 				$docToAdd['type'] = 	$file->getType();
 				$docToAdd['title'] = 	$file->getTitle();
 				$docToAdd['syntaxon'] = $file->getSyntaxonCore()->getSyntaxonName();
+				$docToAdd['syntaxon_id'] = $file->getSyntaxonCore()->getId();
 
 				array_push($lastDocuments, $docToAdd);
 				unset($docToAdd);
@@ -57,6 +58,7 @@ class whatsUp
 				$docToAdd['type'] = 	'photo';
 				$docToAdd['title'] = 	$photo->getTitle();
 				$docToAdd['syntaxon'] = $photo->getSyntaxonCore()->getSyntaxonName();
+				$docToAdd['syntaxon_id'] = $photo->getSyntaxonCore()->getId();
 
 				array_push($lastDocuments, $docToAdd);
 				unset($docToAdd);
@@ -70,6 +72,7 @@ class whatsUp
 				$docToAdd['type'] = 	'httplink';
 				$docToAdd['title'] = 	$lastHttpLink->getTitle();
 				$docToAdd['syntaxon'] = $lastHttpLink->getSyntaxonCore()->getSyntaxonName();
+				$docToAdd['syntaxon_id'] = $lastHttpLink->getSyntaxonCore()->getId();
 
 				array_push($lastDocuments, $docToAdd);
 				unset($docToAdd);
