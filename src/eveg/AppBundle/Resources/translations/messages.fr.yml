@@ -349,5 +349,5 @@ eveg:
                         8:          anmoor, gyttja
                         9:          tourbe
             breadcrumb:
-                one_parent: Syntaxon parent
-                more_parents: Syntaxons parents
+                one_parent: Syntaxon supérieur
+                more_parents: Syntaxons supérieurs
