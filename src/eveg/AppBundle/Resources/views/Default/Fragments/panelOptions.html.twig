@@ -35,13 +35,17 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title text-center" id="modalDepFilter">Feedback</h4>
+					<h4 class="modal-title text-center" id="modalDepFilter">
+						{{ 'eveg.app.show_one.feedback.syntaxon.title'|trans }}
+					</h4>
 				</div>
 				<form id="ajaxFormSyntaxonFeedback" {#action="{{ path('eveg_feedback_syntaxon') }}" method="POST"#}>
 					<div class="modal-body">
 						<div class="row">
 							<div id="ajaxFeedbackResponse"></div>
-							<div>Texte explicatif</div>
+							<div>
+								{{ 'eveg.app.show_one.feedback.syntaxon.message'|trans }}
+							</div>
 							{{ formFeedbackSyntaxon|raw }}
 						</div> <!-- ./row -->
 						<div class="modal-footer">

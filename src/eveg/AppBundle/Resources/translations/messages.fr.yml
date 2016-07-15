@@ -364,3 +364,12 @@ eveg:
             breadcrumb:
                 one_parent: Syntaxon supérieur
                 more_parents: Syntaxons supérieurs
+
+            feedback:
+                syntaxon:
+                    title: Faire un commentaire
+                    message: Vous avez remarqué un problème sur la page ou une erreur ? Envoyer nous un message pour que nous puissons faire les corrections.
+                    type:
+                        interface: Problème avec l'interface
+                        data: Problème avec les données
+                        other: Autre problème

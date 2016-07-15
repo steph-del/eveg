@@ -20,10 +20,10 @@ class FeedbackSyntaxonType extends AbstractType
 		$builder->add('email', EmailType::class);
 		$builder->add('type', ChoiceType::class, array(
 			'choices' => array(
-				'interface' => 'Bug with the interface',
-				'data' => 'Problem with data',
-				'other' => 'Other'
-			)
+				'interface' => 'eveg.app.show_one.feedback.syntaxon.type.interface',
+				'data' => 'eveg.app.show_one.feedback.syntaxon.type.data',
+				'other' => 'eveg.app.show_one.feedback.syntaxon.type.other'
+			),
 		));
 		$builder->add('syntaxon', 'hidden');
 		$builder->add('message');
@@ -33,7 +33,8 @@ class FeedbackSyntaxonType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\Feedback',
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'choice_translation_domain' => true,
         ));
     }
 
