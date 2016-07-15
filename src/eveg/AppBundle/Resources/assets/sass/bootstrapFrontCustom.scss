@@ -1078,3 +1078,41 @@ img.syntaxonIllustration{
  		}
  	}
  }
+
+/*
+ * Panel photo
+ *************/
+ .panelPhotoFooter {
+ 	text-align: center;
+
+ 	.row {
+ 		display: flex;
+ 		flex-direction: row;
+ 	}
+
+ 	p {
+ 		margin: 0;
+ 	}
+ }
+
+ .panelPhotoBody {
+ 	padding: 0;
+ }
+
+ .panelPhotoItem {
+ 	flex: 1;
+
+ 	border-right: 1px solid #DDDDDD;
+
+ 	&.last {
+ 		border-right: none;
+ 	}
+ }
+
+ .panelPhotoDescription {
+ 	margin-top: 10px;
+ 	margin-left: 15px;
+ 	margin-right: 15px;
+ 	padding-top: 5px;
+ 	border-top: 1px solid #DDDDDD;
+ }

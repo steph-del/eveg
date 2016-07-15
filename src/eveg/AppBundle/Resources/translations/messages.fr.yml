@@ -13,17 +13,29 @@ eveg:
         action: action
         actions: actions
         added: a ajouté
+        author: auteur
+        circle: cercle
         close: fermer
+        country: pays
+        date: date
+        description: description
+        edit: modifier
         error: erreur
         for: pour
         file: fichier
-        title: titre
+        license: licence
+        localisation: localisation
         original_file: fichier d'origine
         participate: participez
+        photo: photo
+        photos: photos
+        private: privé
         syntaxon: syntaxon
         the_file: le fichier
         the_link: le lien
         the_photo: la photo
+        title: titre
+        town: commune
         user: utilisateur
         send: envoyer
         validate: valider
