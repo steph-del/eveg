@@ -16,9 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class FeedbackController extends Controller
 {
-  /**
-   * @Security("has_role('ROLE_USER')")
-   */
+
 	public function feedbackAction(Request $request, $syntaxonName = null, $about = null)
 	{
 		// Feedback
@@ -28,14 +26,23 @@ class FeedbackController extends Controller
 
         $currentUser = $this->get('security.context')->getToken()->getUser();
 
-        $feedback->setAbout($about)
-        		 ->setSyntaxon($syntaxonName)
-        	 	 ->setDate(new \DateTime('now'))
-        		 ->setUser($currentUser)
-        		 ->setEmail($currentUser->getEmail())
-        		 ;
+        if($currentUser !== 'anon.') {
+          $feedback->setAbout($about)
+             ->setSyntaxon($syntaxonName)
+             ->setDate(new \DateTime('now'))
+             ->setUser($currentUser)
+             ->setEmail($currentUser->getEmail())
+             ;
+        } else {
+          $feedback->setAbout($about)
+             ->setSyntaxon($syntaxonName)
+             ->setDate(new \DateTime('now'))
+             ->setUser(null)
+             ->setEmail('')
+             ;
+        }
 
-		if($about == 'syntaxon') {
+		    if($about == 'syntaxon') {
         	$formFeedback = $this->createForm(new FeedbackSyntaxonType(), $feedback);
         } elseif($about == 'mapDepFr') {
         	$formFeedback = $this->createForm(new FeedbackMapDepFrType(), $feedback);
@@ -65,7 +72,7 @@ class FeedbackController extends Controller
 					 ;
 			if($request->get('syntaxonName')) $feedback->setSyntaxon($syntaxon);
 
-      $currentUser->addFeedback($feedback);
+      if($currentUser !== 'anon.') $currentUser->addFeedback($feedback);
 
 			$em = $this->getDoctrine()->getManager();
       		$em->persist($feedback);

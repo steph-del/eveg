@@ -2,7 +2,7 @@
 	{% if syntaxonLevel is not empty %} {% set level = syntaxonLevel %} {% else %} {% set level = 'NONE' %} {% endif %}
 
 	{# FEEDBACK #}
-	{% if showFeedback == true and is_granted('ROLE_USER') %}
+	{% if showFeedback == true %}
 		<div class="options_panel_icon {{ level }}" data-tooltip="tooltip" data-placement="bottom" title="Signaler un problème, une erreur ou faire un commentaire à propos de cette fiche." data-toggle="modal" data-target="#modalFeedbackSyntaxon">
 			<i class="fa fa-comment"></i>
 		</div>
@@ -29,7 +29,7 @@
 
 <!-- MODALS -->
 <!-- Feedback syntaxon modal-->
-{% if showFeedback == true and is_granted('ROLE_USER') %}
+{% if showFeedback == true %}
 	<div class="modal fade" id="modalFeedbackSyntaxon" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackSyntaxon">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">

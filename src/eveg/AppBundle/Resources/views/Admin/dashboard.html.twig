@@ -35,7 +35,11 @@
 									</tr>
 									{% for feedback in lastFeedbacks %}
 										<tr>
-											<td>{{ feedback.user.username }}</td>
+											{% if feedback.user is not null %}
+												<td>{{ feedback.user.username }}</td>
+											{% else %}
+												<td>Anon.</td>
+											{% endif %}
 											<td>{{ feedback.date|date('d-m-y') }}</td>
 											<td><div class="text-center" data-tooltip="tooltip" title="{{ feedback.message }}"><i class="fa fa-ellipsis-h"></i></div></td>
 											<td><div class="text-center" data-tooltip="tooltip" title="{{ feedback.syntaxon }}"><i class="fa fa-ellipsis-h"></i></div></td>

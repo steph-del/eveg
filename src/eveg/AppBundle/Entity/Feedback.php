@@ -56,7 +56,7 @@ class Feedback
      * @var \stdClass
      *
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="feedbacks")
-     * @ORM\JoinColumn(name="user_id", nullable=false)
+     * @ORM\JoinColumn(name="user_id", nullable=true)
      */
     private $user;
 
