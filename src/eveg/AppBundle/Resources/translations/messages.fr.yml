@@ -25,6 +25,7 @@ eveg:
         the_link: le lien
         the_photo: la photo
         user: utilisateur
+        send: envoyer
         validate: valider
         visibility: visibilité
         will_be_deleted_m: va être définitivement supprimé
@@ -366,10 +367,16 @@ eveg:
                 more_parents: Syntaxons supérieurs
 
             feedback:
+                title: Faire un commentaire
                 syntaxon:
-                    title: Faire un commentaire
-                    message: Vous avez remarqué un problème sur la page ou une erreur ? Envoyer nous un message pour que nous puissons faire les corrections.
+                    message: Vous avez remarqué un problème sur la page ou une erreur ? Envoyez nous un message pour que nous puissons faire les corrections.
                     type:
                         interface: Problème avec l'interface
                         data: Problème avec les données
                         other: Autre problème
+                        repartition: Chorologie
+                repartition:
+                    fr:
+                        message: Vous souhaitez partager une donnée concernant la répartition départementale en France métropolitaine de ce syntaxon ? Envoyez nous un message.
+                    ue:
+                        message: Vous souhaitez partager une donnée concernant la répartition européenne de ce syntaxon ? Envoyez nous un message.

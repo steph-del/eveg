@@ -1056,3 +1056,25 @@ img.syntaxonIllustration{
  ._3em {
  	font-size: 3em;
  }
+
+/*
+ * Feedback
+ **********/
+ .feedbackModalPanel {
+ 	.modal-body {
+ 		.feedbackPanelMessage {
+ 			margin-left: 20px;
+ 			margin-right: 20px;
+ 		}
+
+ 		ul {
+ 			padding: 0;
+ 			margin-left: 20px;
+ 			margin-right: 20px;
+
+ 			input, select, textarea {
+ 				width: 100%;
+ 			}
+ 		}
+ 	}
+ }

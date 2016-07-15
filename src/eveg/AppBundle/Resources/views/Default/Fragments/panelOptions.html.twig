@@ -32,11 +32,11 @@
 {% if showFeedback == true %}
 	<div class="modal fade" id="modalFeedbackSyntaxon" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackSyntaxon">
 		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
+			<div class="modal-content feedbackModalPanel">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title text-center" id="modalDepFilter">
-						{{ 'eveg.app.show_one.feedback.syntaxon.title'|trans }}
+						{{ 'eveg.app.show_one.feedback.title'|trans }}
 					</h4>
 				</div>
 				<form id="ajaxFormSyntaxonFeedback" {#action="{{ path('eveg_feedback_syntaxon') }}" method="POST"#}>
@@ -44,7 +44,9 @@
 						<div class="row">
 							<div id="ajaxFeedbackResponse"></div>
 							<div>
-								{{ 'eveg.app.show_one.feedback.syntaxon.message'|trans }}
+								<p class="feedbackPanelMessage">
+									{{ 'eveg.app.show_one.feedback.syntaxon.message'|trans }}
+								</p>
 							</div>
 							{{ formFeedbackSyntaxon|raw }}
 						</div> <!-- ./row -->

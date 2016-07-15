@@ -20,20 +20,24 @@ class FeedbackMapEuropeType extends AbstractType
 		$builder->add('email', EmailType::class);
 		$builder->add('type', ChoiceType::class, array(
 			'choices' => array(
-				'interface' => 'Bug with the interface',
-				'data' => 'Problem with data',
-				'other' => 'Other'
-			)
+				'other' => 'eveg.app.show_one.feedback.syntaxon.type.repartition'
+			),
+			'attr' => array(
+				'class' => 'form-control'
+			),
 		));
 		$builder->add('syntaxon', 'hidden');
-		$builder->add('message');
+		$builder->add('message', 'textarea', array(
+			'attr' => array('rows' => 6, 'class' => 'form-control'),
+		));
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\Feedback',
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'choice_translation_domain' => true,
         ));
     }
 

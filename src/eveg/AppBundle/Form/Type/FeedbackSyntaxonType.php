@@ -24,9 +24,14 @@ class FeedbackSyntaxonType extends AbstractType
 				'data' => 'eveg.app.show_one.feedback.syntaxon.type.data',
 				'other' => 'eveg.app.show_one.feedback.syntaxon.type.other'
 			),
+			'attr' => array(
+				'class' => 'form-control'
+			),
 		));
 		$builder->add('syntaxon', 'hidden');
-		$builder->add('message');
+		$builder->add('message', 'textarea', array(
+			'attr' => array('rows' => 6, 'class' => 'form-control'),
+		));
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
