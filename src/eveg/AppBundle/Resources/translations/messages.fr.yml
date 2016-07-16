@@ -18,6 +18,7 @@ eveg:
         close: fermer
         country: pays
         date: date
+        department: département
         description: description
         edit: modifier
         error: erreur
@@ -25,6 +26,7 @@ eveg:
         file: fichier
         license: licence
         localisation: localisation
+        locality: localité
         original_file: fichier d'origine
         participate: participez
         photo: photo
@@ -392,3 +394,8 @@ eveg:
                         message: Vous souhaitez partager une donnée concernant la répartition départementale en France métropolitaine de ce syntaxon ? Envoyez nous un message.
                     ue:
                         message: Vous souhaitez partager une donnée concernant la répartition européenne de ce syntaxon ? Envoyez nous un message.
+            photos:
+                title: Photos
+                add:
+                    title: Ajouter une photo
+                    another: Ajouter une autre photo

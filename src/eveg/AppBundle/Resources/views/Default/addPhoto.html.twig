@@ -13,7 +13,7 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		Ajouter une photo | {{ syntaxon.syntaxonName }} | {{ parent() }}
+		{{ 'eveg.app.show_one.photos.add.title'|trans }}  | {{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
 {% endblock %}
 
@@ -39,59 +39,11 @@
 							</div>
 						{% endif %}
 					
-						<h3>Photos</h3>
+						<h3>{{ 'eveg.app.show_one.photos.title'|trans }}</h3>
 							<ul class="syntaxonPhotos" data-prototype="
 								{% filter escape %}
 									{{ include('evegAppBundle:Default/Fragments/PhotoForm:photoFormPrototype.html.twig', { 'form' : form.syntaxonPhotos.vars.prototype}) }}
 								{% endfilter %}">
-								
-								{#
-								{% for syntaxonPhoto in form.syntaxonPhotos  %}
-									<div class="well wellPhoto">
-										<li class="li_list_style_none">
-											<div class="row">
-												<ul class="zero_padding">
-													<li class="li_list_style_none">
-														{{ form_row(syntaxonPhoto.imageFile) }}
-														{{ form_row(syntaxonPhoto.title) }}
-													</li>
-												</ul>
-											</div>
-										</li>
-									</div>
-								{% endfor %}
-								#}
-								{#
-								{% for syntaxonPhoto in form.syntaxonPhotos  %}
-									<div class="well wellPhoto">
-										<li class="li_list_style_none">
-											<div class="row">
-												<ul class="zero_padding">
-													<li class="li_list_style_none">
-														<div class="col-md-4">
-															{{ form_row(syntaxonPhoto.imageFile) }}
-														</div>
-													</li>
-													<li>
-														<div class="col-md-8">
-															{{ form_row(syntaxonPhoto.user) }}
-															{{ form_row(syntaxonPhoto.date) }}
-															{{ form_row(syntaxonPhoto.country) }}
-															{{ form_row(syntaxonPhoto.department) }}
-															{{ form_row(syntaxonPhoto.city) }}
-															{{ form_row(syntaxonPhoto.locality) }}
-															{{ form_row(syntaxonPhoto.title) }}
-															{{ form_row(syntaxonPhoto.description) }}
-															{{ form_row(syntaxonPhoto.license) }}
-														</div>
-													<li>
-												<ul>
-											</div>
-										</li>
-									</div>
-								{% endfor %}
-								#}
-
 							</ul>
 					
 					{{ form_widget(form._token) }}
@@ -114,8 +66,7 @@
 		var $collectionHolder;
 
 		// setup an "add a photo" link
-		var $addPhotoLink = $('<a href="#" class="add_photo_link">Add a photo</a>');
-		var $addPhotoLink =  $('<button type="submit" class="btn btn-success">Add a photo</button>');
+		var $addPhotoLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.photos.add.another"|trans }}</button>');
 		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/PhotoForm:photoFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addPhotoLink);
 
 		jQuery(document).ready(function() {
