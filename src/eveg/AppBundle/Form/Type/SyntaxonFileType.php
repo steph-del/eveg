@@ -33,14 +33,17 @@ class SyntaxonFileType extends AbstractType
         $possibleDiagnosis = $this->possibleDiagnosisService->getPossibleDiagnosis($currentId);
 
         $builder->add('fileFile', 'vich_file', array(
+            'label' => 'eveg.dictionary.file',
             'required'      => true,
             'download_link' => true
         ));
         $builder->add('title', 'text', array(
+            'label' => 'eveg.dictionary.title',
             'attr' => array(
-                'placeholder' => 'Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"')
+                'placeholder' => 'eveg.app.show_one.files.add.placeholder')
             ));
         $builder->add('diagnosisOf', ChoiceType::class, array(
+            'label' => 'eveg.dictionary.diagnosis_of',
             'choices' => $possibleDiagnosis,
             'choices_as_values' => true,
             'choice_label' => function ($value, $key, $index) {
@@ -50,15 +53,22 @@ class SyntaxonFileType extends AbstractType
                 return $value;
                 // or if you want to translate some key
                 //return 'form.choice.'.$key;
-            }
+            },
+            'attr' => array(
+                'class' => 'form-control'
+            ),
         ));
 
         if($grantedCircle) {
             $builder->add('visibility', ChoiceType::class, array(
-            'choices' => array(
-                'public' => 'Public',
-                'private' => 'Privé',
-                'group' => 'Cercle')
+                'label' => 'eveg.dictionary.visibility',
+                'choices' => array(
+                    'public' => 'Public',
+                    'private' => 'Privé',
+                    'group' => 'Cercle'),
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
             ));
         } else {
             $builder->add('visibility', ChoiceType::class, array(
@@ -79,6 +89,7 @@ class SyntaxonFileType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\SyntaxonFile',
+            'choice_translation_domain' => true,
         ));
     }
 

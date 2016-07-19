@@ -13,7 +13,7 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		Ajouter un fichier | {{ syntaxon.syntaxonName }} | {{ parent() }}
+		{{ 'eveg.app.show_one.files.add.title'|trans }} | {{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
 {% endblock %}
 
@@ -31,7 +31,7 @@
 			<div class="row">
 				{# Form #}
 				<div class="col-md-{{ wellFileSize }}">
-				<a href="{{ path('eveg_add_http_link', {'id': syntaxon.id}) }}"><button class="addLink btn btn-info">I wish to add an external http link instead of a file</button></a>
+				<a href="{{ path('eveg_add_http_link', {'id': syntaxon.id}) }}"><button class="addLink btn btn-info">{{ 'eveg.app.show_one.files.add.link_instead'|trans }}</button></a>
 
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
@@ -40,7 +40,7 @@
 							</div>
 						{% endif %}
 					
-						<h3>Fichiers</h3>
+						<h3>{{ 'eveg.app.show_one.files.add.title'|trans }}</h3>
 							<ul class="syntaxonFiles" data-prototype="
 								{% filter escape %}
 									{{ include('evegAppBundle:Default/Fragments/FileForm:fileFormPrototype.html.twig', { 'form' : form.syntaxonFiles.vars.prototype}) }}
@@ -68,8 +68,8 @@
 		var $collectionHolder;
 
 		// setup an "add a file" link
-		var $addFileLink = $('<a href="#" class="add_file_link">Add a file</a>');
-		var $addFileLink =  $('<button type="submit" class="btn btn-success">Add a file</button>');
+		var $addFileLink = $('<a href="#" class="add_file_link">{{ "eveg.app.show_one.files.add.another"|trans }}</a>');
+		var $addFileLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.files.add.another"|trans }}</button>');
 		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addFileLink);
 
 		jQuery(document).ready(function() {

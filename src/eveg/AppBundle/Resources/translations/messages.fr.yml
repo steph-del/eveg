@@ -20,6 +20,7 @@ eveg:
         date: date
         department: département
         description: description
+        diagnosis_of: est la diagnose de
         edit: modifier
         error: erreur
         for: pour
@@ -399,3 +400,12 @@ eveg:
                 add:
                     title: Ajouter une photo
                     another: Ajouter une autre photo
+
+            files:
+                title: Fichiers
+                add:
+                    title: Ajouter un fichier
+                    placeholder: Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"
+                    another: Ajouter un autre fichier
+                    link_instead: Je souhaite ajouter un lien plutôt qu'un fichier
+
