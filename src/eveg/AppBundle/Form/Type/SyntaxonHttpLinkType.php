@@ -32,17 +32,20 @@ class SyntaxonHttpLinkType extends AbstractType
         $possibleDiagnosis = $this->possibleDiagnosisService->getPossibleDiagnosis($currentId);
 
         $builder->add('link', 'text', array(
+            'label' => 'eveg.dictionary.link',
             'required'      => true,
             'attr' => array(
                 'placeholder' => "http://"
                 )
         ));
         $builder->add('title', 'text', array(
+            'label' => 'eveg.dictionary.title',
             'attr' => array(
                 'placeholder' => 'Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"')
             ));
 
         $builder->add('diagnosisOf', ChoiceType::class, array(
+            'label' => 'eveg.dictionary.diagnosis_of',
             'choices' => $possibleDiagnosis,
             'choices_as_values' => true,
             'choice_label' => function ($value, $key, $index) {
@@ -52,21 +55,32 @@ class SyntaxonHttpLinkType extends AbstractType
                 return $value;
                 // or if you want to translate some key
                 //return 'form.choice.'.$key;
-            }
+            },
+            'attr' => array(
+                'class' => 'form-control',
+            ),
         ));
         
         if($grantedCircle) {
             $builder->add('visibility', ChoiceType::class, array(
+            'label' => 'eveg.dictionary.visibility',
             'choices' => array(
-                'public' => 'Public',
-                'private' => 'Privé',
-                'group' => 'Cercle')
+                'public' => 'eveg.dictionary.public',
+                'private' => 'eveg.dictionary.private',
+                'group' => 'eveg.dictionary.circle'),
+            'attr' => array(
+                'class' => 'form-control',
+            ),
             ));
         } else {
             $builder->add('visibility', ChoiceType::class, array(
+            'label' => 'eveg.dictionary.visibility',
             'choices' => array(
-                'public' => 'Public',
-                'private' => 'Privé')
+                'public' => 'eveg.dictionary.public',
+                'private' => 'eveg.dictionary.private'),
+            'attr' => array(
+                'class' => 'form-control',
+            ),
             ));
         }
 
@@ -76,6 +90,7 @@ class SyntaxonHttpLinkType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\SyntaxonHttpLink',
+            'choice_translation_domain' => true,
         ));
     }
 

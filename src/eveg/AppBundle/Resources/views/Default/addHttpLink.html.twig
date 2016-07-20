@@ -13,7 +13,7 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		Ajouter un lien | {{ syntaxon.syntaxonName }} | {{ parent() }}
+		{{ 'eveg.app.show_one.http_link.add.title'|trans }} | {{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
 {% endblock %}
 
@@ -39,7 +39,7 @@
 							</div>
 						{% endif %}
 					
-						<h3>Liens</h3>
+						<h3>{{ 'eveg.app.show_one.http_link.add.title'|trans }}</h3>
 							<ul class="syntaxonHttpLinks" data-prototype="
 								{% filter escape %}
 									{{ include('evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormPrototype.html.twig', { 'form' : form.syntaxonHttpLinks.vars.prototype}) }}
@@ -67,8 +67,8 @@
 		var $collectionHolder;
 
 		// setup an "add a link" link
-		var $addHttpLinkLink = $('<a href="#" class="add_http_link_link">Add a link</a>');
-		var $addHttpLinkLink =  $('<button type="submit" class="btn btn-success">Add a link</button>');
+		var $addHttpLinkLink = $('<a href="#" class="add_http_link_link">{{ "eveg.app.show_one.http_link.add.another"|trans }}</a>');
+		var $addHttpLinkLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.http_link.add.another"|trans }}</button>');
 		var $newHttpLinkLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addHttpLinkLink);
 
 		jQuery(document).ready(function() {

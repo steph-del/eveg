@@ -26,12 +26,14 @@ eveg:
         for: pour
         file: fichier
         license: licence
+        link: lien
         localisation: localisation
         locality: localité
         original_file: fichier d'origine
         participate: participez
         photo: photo
         photos: photos
+        public: public
         private: privé
         syntaxon: syntaxon
         the_file: le fichier
@@ -408,4 +410,11 @@ eveg:
                     placeholder: Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"
                     another: Ajouter un autre fichier
                     link_instead: Je souhaite ajouter un lien plutôt qu'un fichier
+
+            http_link:
+                title: Liens
+                add:
+                    title: Ajouter un lien
+                    placeholder: http://www.tela-botanica.org
+                    another: Ajouter un autre lien
 
