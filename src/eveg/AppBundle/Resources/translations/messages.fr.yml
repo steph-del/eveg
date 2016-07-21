@@ -21,10 +21,12 @@ eveg:
         department: département
         description: description
         diagnosis_of: est la diagnose de
+        document: document
         edit: modifier
         error: erreur
         for: pour
         file: fichier
+        hide: masquer
         license: licence
         link: lien
         localisation: localisation
@@ -43,6 +45,7 @@ eveg:
         town: commune
         user: utilisateur
         send: envoyer
+        syntaxon: syntaxon
         validate: valider
         visibility: visibilité
         will_be_deleted_m: va être définitivement supprimé
@@ -102,39 +105,53 @@ eveg:
         lastUploads:
             title: Derniers ajouts des contributeurs
 
+    participate:
+        title: Participer
+        signup : Créer un compte utilisateur (gratuit)
+        login: Se connecter à eVeg
+        text: |
+            Depuis sa création, eVeg est un projet collaboratif.
+            Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
+        add_doc:
+            title: Ajouter un document
+            1: |
+                De nombreux tableaux sont déjà disponibles en téléchargement sur le site.
+                Le projet de saisie des diagnoses est issu du groupe TB-Phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
+            2: Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
+            3: |
+                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
+            screen_label: "Une fois connecté, cliquez sur 'Ajouter un document' dans le panneau 'Ressources' d'une fiche"
+
+        model: Modèle à suivre pour la saisie
+        tools: Outils de saisie
+
+        add_photo:
+            title: Ajouter une photo
+            1: |
+                Quoi de mieux qu’une bonne photo pour illustrer une végétation ?
+                Ajouter une photo est aussi simple que d’ajouter un tableau ou un document.
+                Une "bonne" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).
+                Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
+            2: |
+                La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
+                La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA) et citation obligatoire de l’auteur.
+            screen_label: "Une fois connecté, cliquez sur 'Ajouter une photo' dans le panneau 'Illustrations' d'une fiche"
+
+        add_map_comment:
+            title: Compléter la chorologie
+            1: |
+                Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philipe Julve.
+                Vous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.
+            screen_label: "Une fois connecté, cliquez sur l'icone commentaire sous l'une des deux cartes d'une fiche. Votre commentaire sera envoyé à l'équipe et traité dans la future mise à jour de la base de données."
+
+        help_improve_site:
+            title: Aidez-nous à améliorer le site
+            1: |
+                Chaque fiche dispose d'un bouton permettant de nous envoyer un message en cas de problème.
+                Il pourrait s'agir d'un problème lié à l'interface du site web ou d'un problème concernant les données elles-mêmes. Dans tous les cas, si vous souhaitez faire une remarque, sur le fond ou sur la forme, n'hésitez pas à utiliser ce bouton !
+            screen_label: "Pour nous faire part de vos remarques, cliquez sur l'icone 'commentaire' dans le bandeau de la fiche et laissez-vous guider."
+
     help:
-        participate:
-            title: Participer
-            signup : Créer un compte utilisateur (gratuit)
-            login: Se connecter à eVeg
-            text: |
-                Depuis sa création, eVeg est un projet collaboratif.
-                Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
-            add_doc:
-                title: Ajouter un document
-                1: |
-                    De nombreux tableaux sont déjà disponibles en téléchargement sur le site.
-                    Le projet de saisie des diagnoses est issu du groupe TB-Phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
-                    Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
-                2: |
-                    Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
-
-            add_photo:
-                title: Ajouter une photo
-                1: |
-                    Quoi de mieux qu’une bonne photo pour illustrer une végétation ?
-                    Ajouter une photo est aussi simple que d’ajouter un tableau ou un document.
-                    Une "bonne" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).
-                    Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
-                2: |
-                    La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
-                    La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA) et citation obligatoire de l’auteur.
-
-            add_repartition:
-                title: Compléter la chorologie
-                1: |
-                    Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philipe Julve.
-                    Vous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.
         baseveg_baseflor:
             title: A propos de baseveg et de baseflor
             1: |
@@ -204,6 +221,8 @@ eveg:
         last_activities: Dernière activités
         participate:
             slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Lancez-vous !
+        access_syntaxon: Accéder à la fiche du syntaxon
+        show_all: Afficher tout
 
     legal_notice:
         title: Mentions légales

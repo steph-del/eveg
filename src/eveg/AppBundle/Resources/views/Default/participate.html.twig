@@ -2,16 +2,217 @@
 
 {% extends "::layout.html.twig" %}
 
-
 {% block title %}
-	Comment participer ? | {{ parent() }} : {{ 'eveg.web_title'|trans }}
+	{{ 'eveg.participate.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+		
+	{{ parent() }}
+	
+	{% stylesheets filter="compass" 
+		"@evegAppBundle/Resources/assets/sass/activities.scss"
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+
 {% endblock %}
 
 {% block body %}
 
 	{{ parent() }}
 
-	<div class="row">
-		<h1>Participer à eVeg</h1>
+	<div class="row whiteRow scrollspy">
+		<div class="jumbotron help">
+			<h1>{{ 'eveg.participate.title'|trans }}</h1>
+		</div>
+
+		<div class="col-md-3" id="navbar">
+			<ul id="nav" class="nav nav-pills nav-stacked">	
+				<ul class="nav">
+					<li><a href="#participate-add-doc">
+						{{ 'eveg.participate.add_doc.title'|trans }}
+					</a></li>
+					<li><a href="#participate-add-photo">
+						{{ 'eveg.participate.add_photo.title'|trans }}
+					</a></li>
+					<li><a href="#participate-repartition">
+						{{ 'eveg.participate.add_map_comment.title'|trans }}
+					</a></li>
+					<li><a href="#participate-improve-website">
+						{{ 'eveg.participate.help_improve_site.title'|trans }}
+					</a></li>
+				</ul>
+			</ul>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="" id="participate">
+						<h2>{{ 'eveg.participate.title'|trans }}</h2>
+						<p class="text-justify">
+							{{ 'eveg.participate.text'|trans|nl2br }}
+						</p>
+						<p>
+							<i class="fa fa-arrow-right"></i>
+							<a href="{{ path('fos_user_registration_register') }}">{{ 'eveg.participate.signup'|trans }}</a>
+						</p>
+						<p>
+							<i class="fa fa-arrow-right"></i>
+							<a href="{{ path('fos_user_security_login') }}">{{ 'eveg.participate.login'|trans }}</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="" id="participate-add-doc">
+						<h2>{{ 'eveg.participate.add_doc.title'|trans }}</h2>
+						<p class="text-justify">
+							{{ 'eveg.participate.add_doc.1'|trans|nl2br }}
+						</p>
+						{% if wanted is not empty %}
+							<p>
+								{{ 'eveg.participate.add_doc.2'|trans|nl2br }}
+							</p>
+							<div class="row col-md-12 activityPad">
+								{% for doc in wanted %}
+									<div class="row activityPadLine">
+										<div class = "activityPadItem col-md-11">
+											<b>{{ 'eveg.dictionary.document'|trans|capitalize }} : </b>{{ doc.title }}<br />
+											<b>{{ 'eveg.dictionary.syntaxon'|trans|capitalize }} : </b>{{ doc.syntaxonCore.syntaxonName }}
+										</div>
+										<div class = "activityPadItem _2em col-md-1 text-right">
+											<a href="{{ path('eveg_show_one', {'id': doc.syntaxonCore.id}) }}" title="{{ 'eveg.activities.access_syntaxon'|trans }}">
+												<i class="fa fa-angle-double-right"></i>
+											</a>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+
+						<p class="text-justify">
+							{{ 'eveg.participate.add_doc.3'|trans|nl2br }}
+							{#{{ dump(wanted) }}#}
+						</p>
+						<p>
+							<i class="fa fa-arrow-right"></i>
+							<a href="#">{{ 'eveg.participate.model'|trans }}</a>
+						</p>
+						<p>
+							<i class="fa fa-arrow-right"></i>
+							<a href="#">{{ 'eveg.participate.tools'|trans }}</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 participate-image-right">
+					<a class="no-style" data-toggle="modal" data-target="#modal_add_doc">
+						<img src="{{ asset('img/capture/add_doc_capture_min.jpeg') }}" alt="add a doc"></img>
+					</a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="" id="participate-add-photo">
+						<h2>{{ 'eveg.participate.add_photo.title'|trans }}</h2>
+						<p class="text-justify">
+							{{ 'eveg.participate.add_photo.1'|trans|nl2br }}
+							{{ 'eveg.participate.add_photo.2'|trans|nl2br }}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 participate-image-right">
+					<a class="no-style" data-toggle="modal" data-target="#modal_add_photo">
+						<img src="{{ asset('img/capture/add_photo_capture_min.jpeg') }}" alt="add a photo"></img>
+					</a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="" id="participate-repartition">
+						<h2>{{ 'eveg.participate.add_map_comment.title'|trans }}</h2>
+						<p class="text-justify">
+							{{ 'eveg.participate.add_map_comment.1'|trans|nl2br }}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 participate-image-right">
+					<a class="no-style" data-toggle="modal" data-target="#modal_add_map_comment">
+						<img src="{{ asset('img/capture/add_map_comment_capture_min.jpeg') }}" alt="send a repartition comment"></img>
+					</a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="" id="participate-improve-website">
+						<h2>{{ 'eveg.participate.help_improve_site.title'|trans }}</h2>
+						<p class="text-justify">
+							{{ 'eveg.participate.help_improve_site.1'|trans|nl2br }}
+							{{ 'eveg.participate.help_improve_site.2'|trans|nl2br }}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 participate-image-right">
+					<a class="no-style" data-toggle="modal" data-target="#modal_improve_site">
+						<img src="{{ asset('img/capture/improve_site_capture_min.jpeg') }}" alt="Help us to improve eVeg"></img>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
 	</div>
+
+	<!-- Modals -->
+	{% include 'evegAppBundle:Default/Fragments/Modals:modalImage.html.twig' with { 'id': 'modal_add_doc', 'title': 'eveg.participate.add_doc.title'|trans ,'image': asset('img/capture/add_doc_capture.jpeg'), 'legend': 'eveg.participate.add_doc.screen_label'|trans } only %}
+
+	{% include 'evegAppBundle:Default/Fragments/Modals:modalImage.html.twig' with { 'id': 'modal_add_photo', 'title': 'eveg.participate.add_photo.title'|trans ,'image': asset('img/capture/add_photo_capture.jpeg'), 'legend': 'eveg.participate.add_photo.screen_label'|trans } only %}
+
+	{% include 'evegAppBundle:Default/Fragments/Modals:modalImage.html.twig' with { 'id': 'modal_add_map_comment', 'title': 'eveg.participate.add_map_comment.title'|trans ,'image': asset('img/capture/add_map_comment_capture.jpeg'), 'legend': 'eveg.participate.add_map_comment.screen_label'|trans } only %}
+
+	{% include 'evegAppBundle:Default/Fragments/Modals:modalImage.html.twig' with { 'id': 'modal_improve_site', 'title': 'eveg.participate.help_improve_site.title'|trans ,'image': asset('img/capture/improve_site_capture.jpeg'), 'legend': 'eveg.participate.help_improve_site.screen_label'|trans } only %}
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<!-- Affix menu -->
+	<script>
+		$('#nav').affix({
+			offset: {
+				top: $('#nav').offset().top - 20
+				/*bottom: function () {
+					return (this.bottom = $('.footer').outerHeight(true))
+				}*/
+			}
+		})
+	</script>
+
+	<!-- limit visible items -->
+	<script>
+		limitItems = 5;
+		nbItems = $('.activityPadLine').size();
+
+		divToInsert = '<div class="row activityPadLine" id="showAllPdfAlone"><div class = "activityPadItem col-md-12 text-center"><i class="fa fa-angle-double-down"></i> {{ "eveg.activities.show_all"|trans }} ('+nbItems+') <i class="fa fa-angle-double-down"></i></div></div>';
+
+		if(nbItems > limitItems) {
+			$('.activityPadLine').slice(limitItems).hide();
+			$('.activityPad').append(divToInsert);
+
+			$('#showAllPdfAlone').click(function() {
+				$('.activityPadLine').show();
+				$('#showAllPdfAlone').hide();
+			});
+			
+		}
+	</script>
 {% endblock %}

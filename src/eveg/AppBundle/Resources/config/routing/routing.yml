@@ -17,7 +17,7 @@ eveg_app_activity:
     defaults: { _controller: evegAppBundle:Default:activity }
 
 eveg_app_participate:
-    locales:  { fr: "/comment-participer", en: "/en/how-to-participate", de: "/de/teilnehmen", es: "/es/participar", it: "/it/partecipare" }
+    locales:  { fr: "/participer", en: "/en/participate", de: "/de/teilnehmen", es: "/es/participar", it: "/it/partecipare" }
     defaults: { _controller: evegAppBundle:Default:participate }
 
 eveg_app_howto:

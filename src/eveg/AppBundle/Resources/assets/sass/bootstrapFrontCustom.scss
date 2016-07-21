@@ -1116,3 +1116,60 @@ img.syntaxonIllustration{
  	padding-top: 5px;
  	border-top: 1px solid #DDDDDD;
  }
+
+/*
+ * Participate page
+ ******************/
+ .participate-image-right {
+ 	margin-top: 60px;
+ 	border-left: 1px solid #DDDDDD;
+
+ 	img {
+ 		-webkit-filter: grayscale(100%);
+		-moz-filter: grayscale(100%);
+		-o-filter: grayscale(100%);
+		-ms-filter: grayscale(100%);
+
+		filter: grayscale(100%);
+
+		-webkit-transition: .2s;
+    	transition: .2s;
+
+ 		&:hover {
+ 			-webkit-filter: grayscale(0%);
+			-moz-filter: grayscale(0%);
+			-o-filter: grayscale(0%);
+			-ms-filter: grayscale(0%);
+
+			filter: grayscale(0%);
+ 		}
+ 	}
+ }
+ #showAllPdfAlone {
+ 	border-bottom: none;
+ 	cursor: pointer;
+ 	color: #428BCA;
+
+ 	&:hover {
+ 		background-color: transparent;
+ 		font-weight: bold;
+ 	}
+ }
+
+/*
+ * Modal image
+ *************/
+ .modal-image {
+ 	.modal-body {
+ 		text-align: center;
+
+ 		img {
+ 			max-width: 500px;
+ 			max-height: 800px;
+ 		}
+ 	}
+ 	.modal-footer {
+ 		text-align: left;
+ 		font-style: italic;
+ 	}
+ }
