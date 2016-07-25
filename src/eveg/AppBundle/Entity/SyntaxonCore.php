@@ -213,6 +213,13 @@ class SyntaxonCore
      */
     protected $syntaxonBiblios;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hit", type="integer", options={"default" : 0})
+     */
+    protected $hit;
+
 
 // -------------------
 // Setters & getters
@@ -661,6 +668,27 @@ class SyntaxonCore
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Get hit
+     *
+     * @return integer 
+     */
+    public function getHit()
+    {
+        return $this->hit;
+    }
+
+    /**
+     * Set hit
+     *
+     * @param integer $hit
+     * @return SyntaxonCore
+     */
+    public function setHit($hit)
+    {
+        $this->hit = $hit;
     }
 
 }
