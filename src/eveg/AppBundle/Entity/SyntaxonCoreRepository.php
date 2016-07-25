@@ -528,4 +528,40 @@ class SyntaxonCoreRepository extends EntityRepository
 
 	}
 
+	/**
+	 * getPopularSyntaxons function
+	 * Returns the most popular syntaxons
+	 *
+	 * @param string $level
+	 * @param string $depFrFilter
+	 * @param string $ueFilter
+	 * @param integer $limitItems
+	 */
+	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
+   		   ->setParameter('public', 'public')
+   		   ->addSelect('photo')
+   		   ->orderBy('s.hit', 'DESC')
+		   ;
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
