@@ -489,4 +489,43 @@ class SyntaxonCoreRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	/**
+	 * findByLevel function
+	 * Returns all syntaxons for a given level
+	 *
+	 * @param string $level
+	 * @param string $depFrFilter
+	 * @param string $ueFilter
+	 * @param integer $limitItems
+	 */
+	public function findByLevel($level, $depFrFilter = null, $ueFilter = null, $limitItems = null)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.level = :level')
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
+   		   ->setParameter('level', $level)
+   		   ->setParameter('public', 'public')
+   		   ->addSelect('photo')
+		   ;
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+
+	}
+
 }
