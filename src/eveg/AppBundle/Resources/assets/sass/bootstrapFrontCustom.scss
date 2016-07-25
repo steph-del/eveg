@@ -1056,6 +1056,17 @@ img.syntaxonIllustration{
  	}
  }
 
+ li.activeFilter {
+ 	a {
+ 		background-color: rgba(181, 217, 140, 0.5);
+ 		//color: #000 !important;
+
+ 		&:hover {
+ 			background-color: rgba(181, 217, 140, 0.5) !important;
+ 		}
+  	}
+ }
+
 /*
  * Icons
  *******/

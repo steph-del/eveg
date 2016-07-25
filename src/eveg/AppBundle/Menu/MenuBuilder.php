@@ -8,6 +8,7 @@ namespace eveg\AppBundle\Menu;
  
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Session\Session;
  
 class MenuBuilder extends ContainerAware
 {
@@ -53,6 +54,16 @@ class MenuBuilder extends ContainerAware
 
     public function filterMenu(FactoryInterface $factory, array $options)
     {
+
+      $session     = new Session();
+      $ueFilter    = $session->get('ueFilter');
+      $depFrFilter = $session->get('depFrFilter');
+      $filterFlag  = false;
+
+      if(($ueFilter != '[]') or ($depFrFilter != '[]')) {
+        $filterFlag = true;
+      }
+
       $menu = $factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
@@ -63,6 +74,10 @@ class MenuBuilder extends ContainerAware
          ->setAttribute('data-toggle', 'modal')
          ->setAttribute('data-target', '#modalFilter')
          ;
+      if($filterFlag == true) {
+        $menu['Filter']->setAttribute('class', 'activeFilter');
+
+      }
 
       return $menu;
     }
