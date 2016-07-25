@@ -161,6 +161,15 @@ class SyntaxonCore
      */
     private $commonName;
 
+        /**
+         * @var string
+         *
+         * @Expose
+         * @Groups({"baseTree", "nodeTree"})
+         * @SerializedName("tooltip")
+         */
+        private $commonNameTree;
+
     /**
      * @var string
      *
@@ -376,6 +385,15 @@ class SyntaxonCore
     public function getSyntaxonNameSearch()
     {
         return $this->syntaxonNameSearch;
+    }
+
+    /** Get syntaxonCommonNameTree
+    *
+    * @return string
+    */
+    public function getCommonNameTree()
+    {
+        return $this->commonNameTree;
     }
 
     /**
@@ -663,6 +681,14 @@ class SyntaxonCore
     public function setSyntaxonNameSearch()
     {
         $this->syntaxonNameSearch = $this->syntaxonName;
+    }
+
+    /**
+    * @ORM\PostLoad
+    */
+    public function setCommonNameTree()
+    {
+        $this->commonNameTree = $this->commonName;
     }
 
     public function getPhotos()
