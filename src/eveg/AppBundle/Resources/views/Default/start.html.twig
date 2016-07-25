@@ -1,0 +1,224 @@
+{# src/eveg/AppBundle/Resources/views/Default/start.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
+	{{ parent() }}
+{% endblock %}
+
+{% block title %}
+	{{ 'eveg.app.start.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+
+	{# App #}
+	<div class="row appShowRow {% if app.session.get('rainbow') is defined and app.session.get('rainbow') == '1' %}app-r-{{ syntaxon.level }}{% endif %}">
+		<div class="col-md-4 hidden-xs hidden-sm" id="treeView">
+			<div id="divTree">
+				
+			</div>
+			{#<i class=" glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>#}
+			<div class="loadTreeIcon">
+				<i class="fa fa-circle-o-notch fa-spin"></i>
+			</div>
+		</div>
+
+		{# show data #}
+		<div class="col-md-8" id="cardView">
+
+			{# Data #}
+			<div class="row">
+				<div class="col-md-12">
+
+					<h2 class="text-center">{{ 'eveg.app.start.popular.title'|trans }}</h2>
+					<div class="row">
+						{% for syntaxon in popularSyntaxons %}
+							<div class="col-sm-12 col-md-6">
+								{% if syntaxon.syntaxonPhotos is not empty %}
+									{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
+									{% set randomPhoto = random(nbPhotos-1) %}
+									<div class="thumbnail classSyntaxon", style="
+									background-image: url({{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('resized') }})
+									">
+								{% else %}
+									<div class="thumbnail classSyntaxon">
+								{% endif %}
+
+									<a class="no-style" href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}">
+										<div class="caption">
+											<p>{{ syntaxon.catminatCode }}</p>
+											<h3>{{ syntaxon.syntaxonName }}</h3>
+											<p>{{ syntaxon.commonName|truncate(100, true, '...') }}</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+
+					<h2 class="text-center">{{ 'eveg.app.start.classes.title'|trans }}</h2>
+					<div class="row">
+						{% for syntaxon in habClassLevelSyntaxons %}
+							{% if syntaxon.level == 'HAB' %}
+								</div><div class="row">
+
+								<div class="col-md-12">
+									<h3 class="hab-title">{{ syntaxon.syntaxonName }}</h3>
+								</div>
+							{% else %}
+								<div class="col-sm-12 col-md-6">
+									{% if syntaxon.syntaxonPhotos is not empty %}
+										{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
+										{% set randomPhoto = random(nbPhotos-1) %}
+										{#<img src="{{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('thumb') }}" alt="{{ syntaxon.syntaxonName }}">#}
+										<div class="thumbnail classSyntaxon", style="
+										background-image: url({{ vich_uploader_asset(syntaxon.syntaxonPhotos[randomPhoto], 'imageFile') | imagine_filter('resized') }})
+										">
+									{% else %}
+										<div class="thumbnail classSyntaxon">
+									{% endif %}
+
+										<a class="no-style" href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}">
+											<div class="caption">
+												<p>{{ syntaxon.catminatCode }}</p>
+												<h3>{{ syntaxon.syntaxonName }}</h3>
+												<p><strong>{{ syntaxon.commonName|truncate(100, true, '...') }}</strong></p>
+											</div>
+										</a>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					
+				</div> 
+			</div> <!-- ./row -->
+
+		</div> <!-- ./col-md-8 -->
+	</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script>
+		$('.thumbnail.classSyntaxon').each(function() {
+			$thumbnailHeight = $(this).height();
+			$caption = $(this).find('.caption');
+			$captionHeight = $caption.height();
+
+			dif = $thumbnailHeight - $captionHeight;
+
+			if(dif > 0) {
+				$caption.css("padding-top", dif-5);
+			}
+
+			//console.log($thumbnailHeight+" o "+$captionHeight)
+			//$(this).find('.caption').css('background-color', 'pink');
+			//console.log($(this).find('.caption').css(('background-color: pink;')));
+		});
+	</script>
+
+	<!-- FANCY TREE -->
+	<script src="{{ asset('js/jquery.fancytree.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/jquery.fancytree.persist.js') }}" type="text/javascript"></script>
+	<!-- Initialize the tree when page is loaded -->
+	<script>
+
+		$(".loadTreeIcon").hide();
+
+		$(function(){
+			// Create the tree inside the <div id="tree"> element.
+			$("#divTree").fancytree({
+				//extensions: ["persist"],
+				persist: {
+				// Available options with their default:
+				cookieDelimiter: "~",    	// character used to join key strings
+				cookiePrefix: undefined, 	// 'fancytree-<treeId>-' by default
+				cookie: { 					// settings passed to jquery.cookie plugin
+					raw: false,
+					expires: "",
+					path: "",
+					domain: "",
+					secure: false
+				},
+				expandLazy: true, 			// true: recursively expand and load lazy nodes
+				overrideSource: true,  		// true: cookie takes precedence over `source` data attributes.
+				store: "auto",     			// 'cookie': use cookie, 'local': use localStore, 'session': use sessionStore
+				types: "active expanded focus selected"  // which status types to store : active expanded focus selected
+				},
+				source: {
+					url: Routing.generate('api_get_syntaxons_tree')
+				},
+				lazyLoad: function(event, data) {
+			    	var node = data.node;
+
+			    	// Issue an ajax request to load child nodes
+			    	data.result = {
+			        	url: Routing.generate('api_get_syntaxon_node', { id: node.key}, true)
+			      	}
+			      	//alert(data);
+			      	//alert(Routing.generate('api_get_syntaxon_node', { key: node.key}, true));
+			    },
+			    init: function(event, data) {
+			    	//expandNodes();
+			    },
+			    click: function(event, data) {
+			    	var node = data.node;
+			    	node.toggleExpanded();
+			    },
+			    dblclick: function(event, data) {
+			    	var node = data.node;
+
+			    	window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
+			    },
+			    icon: function(event, data) {
+			    	level = data.node.data.level;
+					if( data.node.isFolder() ) { 
+						return "../img/icons/eveg-folder-"+level+".png";	
+					} else {
+						return "../img/icons/eveg-file-"+level+".png";	
+					}
+				}
+
+			});
+		});
+
+		function getActiveNodeKey(){
+			var tree = $("#divTree").fancytree("getTree");
+			activeNodeKey = tree.getActiveNode().key;
+			//alert(activeNodeKey);
+		}
+
+		function collapseTree(){
+			$("#divTree").fancytree("getRootNode").visit(function(node){
+				node.setExpanded(false);
+				});
+
+		}
+
+	</script>
+
+	{% javascripts 
+		'@evegAppBundle/Resources/public/js/repartitionFilters/depFr.js'		
+		'@evegAppBundle/Resources/public/js/repartitionFilters/europe.js'
+		%}
+		<script>
+			// Repartition filters var
+			appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
+			appSessionSF2UeFilter    = '{{ app.session.get("ueFilter") | raw }}';
+			// Cache map var
+
+			//
+		</script>
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+{% endblock %}

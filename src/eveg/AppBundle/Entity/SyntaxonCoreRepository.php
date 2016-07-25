@@ -508,6 +508,48 @@ class SyntaxonCoreRepository extends EntityRepository
    		   ->setParameter('level', $level)
    		   ->setParameter('public', 'public')
    		   ->addSelect('photo')
+   		   ->orderBy('s.catminatCode', 'ASC')
+		   ;
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+
+	}
+
+	/**
+	 * findHabClassLevels function
+	 * Returns all syntaxons for HAB & CLA levels
+	 *
+	 * @param string $depFrFilter
+	 * @param string $ueFilter
+	 * @param integer $limitItems
+	 */
+	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.level = :hab')
+		   ->orWhere('s.level = :cla')
+		   ->leftJoin('s.syntaxonPhotos', 'photo', 'WITH', 'photo.visibility = :public')
+   		   ->setParameter('hab', 'HAB')
+   		   ->setParameter('cla', 'CLA')
+   		   ->setParameter('public', 'public')
+   		   ->addSelect('photo')
+   		   ->orderBy('s.catminatCode', 'ASC')
 		   ;
 
 		// Department filter

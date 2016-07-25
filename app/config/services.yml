@@ -24,3 +24,8 @@ services:
         arguments: ["@vich_uploader.templating.helper.uploader_helper", "@liip_imagine.data.manager", "@liip_imagine.filter.manager", "@liip_imagine.cache.manager"]
         tags:
             - { name: kernel.event_listener, event: vich_uploader.post_upload, method: onPostUpload }
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }

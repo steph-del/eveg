@@ -296,7 +296,45 @@ body {
  		}
  	}
 
+ 	&.classSyntaxon {
+ 	    background-size: cover;
+ 	    background-position: center;
+ 	    padding: 0px;
+ 	    margin: 0px;
+ 	    border: 0px;
+ 	    margin-bottom: 20px;
+ 	    height: 140px;
+
+ 	    background-image: url("/../eveg/web/img/patterns/empty_veg.png");
+
+ 	    -webkit-transition: 2s;
+    	transition: 2s;
+
+ 	    /*&:hover {
+ 	    	background-position: bottom;
+ 	    }*/
+
+ 	    .caption {
+ 	    	background-color: rgba(255, 255, 255, 0.4);
+ 	    	padding-left: 10px;
+ 	    	padding-right: 10px;
+ 	    	padding-bottom: 5px;
+ 	    	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.6);
+
+ 	    	p {
+ 	    		margin: 0;
+ 	    		text-align: left;
+ 	    	}
+
+ 	    	h3 {
+ 	    		margin: 0;
+ 	    		text-align: left;
+ 	    		font-size: 1.4em;
+ 	    	}
+ 	    }
+ 	}
  }
+
 
  .col-no-padding{
  	padding:0;

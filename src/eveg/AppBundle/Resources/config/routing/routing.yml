@@ -28,6 +28,10 @@ eveg_app_contact:
     locales:  { fr: "/contact", en: "/en/contact", de: "/de/kontakt", es: "/es/contacto", it: "/it/contatto" }
     defaults: { _controller: evegAppBundle:Default:contact }
 
+eveg_app_start:
+    locales: { fr: "/app", en: "/en/app", de: "/de/app", es: "/es/app", it: "/it/app" }
+    defaults: { _controller: evegAppBundle:Default:start }
+
 # We use this trick because BeSimpleI18nRoutingBundle seems to be incompatible with FOSJsRoutingBundle (I think it doesn't recognize the "locales" parameter)
 eveg_show_one_redirect:
     path: /app/redirect/{id}

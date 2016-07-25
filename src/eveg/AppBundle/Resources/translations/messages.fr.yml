@@ -68,6 +68,7 @@ eveg:
 
     menu:
         app: App
+        browse: Parcourir
         help: Aide
         contact: Contact
         activity: Activités
@@ -436,4 +437,10 @@ eveg:
                     title: Ajouter un lien
                     placeholder: http://www.tela-botanica.org
                     another: Ajouter un autre lien
-
+        
+        start:
+            title: Parcourir les végétations
+            popular:
+                title: Les fiches les plus consultées
+            classes:
+                title: Toutes les classes

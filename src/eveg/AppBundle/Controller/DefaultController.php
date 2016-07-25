@@ -155,6 +155,26 @@ class DefaultController extends Controller
 
 	}
 
+	public function startAction()
+	{
+
+		$em = $this->getDoctrine()->getManager();
+
+		// Get repartition filters
+		$repFilters = $this->get('eveg_app.repFilters');
+    	$depFrFilter = $repFilters->getDepFrFilterSession($json = false);
+    	$ueFilter = $repFilters->getUeFilterSession($json = false);
+
+    	$habClassLevelSyntaxons = $em->getRepository('evegAppBundle:SyntaxonCore')->findHabClassLevels($depFrFilter, $ueFilter, $limitItems = null);
+
+    	$popularSyntaxons = $em->getRepository('evegAppBundle:SyntaxonCore')->getPopularSyntaxons($depFrFilter, $ueFilter, $limitItems = 8);
+
+		return $this->render('evegAppBundle:Default:start.html.twig', array(
+			'habClassLevelSyntaxons' => $habClassLevelSyntaxons,
+			'popularSyntaxons' => $popularSyntaxons
+		));
+
+	}
 
 	public function showOneAction($id)
 	{
@@ -234,6 +254,10 @@ class DefaultController extends Controller
 			$session = new Session();
 			$session->set('idReferer', $syntaxon->getId());
 			$session->set('syntaxonNameReferer', $syntaxon->getSyntaxonName());
+
+			// Syntaxon hit + 1
+			$syntaxon->setHit($syntaxon->getHit() + 1);
+			$em->flush();
 
 			return $this->render('evegAppBundle:Default:showOne.html.twig', array(
 			'syntaxon' => $syntaxon,
