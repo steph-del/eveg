@@ -1,5 +1,9 @@
 $(".loadTreeIcon").hide();
-
+if(env == "dev") {
+	var iconPath = "../../img/icons/";
+}else if(env =="prod") {
+	var iconPath = "../../web/img/icons/";
+}
 $(function(){
 	// Create the tree inside the <div id="tree"> element.
 	$("#divTree").fancytree({
@@ -48,9 +52,9 @@ $(function(){
 	    icon: function(event, data) {
 	    	level = data.node.data.level;
 			if( data.node.isFolder() ) { 
-				return "../../img/icons/eveg-folder-"+level+".png";	
+				return iconPath+"eveg-folder-"+level+".png";	
 			} else {
-				return "../../img/icons/eveg-file-"+level+".png";	
+				return iconPath+"eveg-file-"+level+".png";	
 			}
 		}
 

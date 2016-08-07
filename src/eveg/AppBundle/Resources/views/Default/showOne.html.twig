@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ asset('css/bootstrap-tour.min.css') }}" type="text/css" />
+	{#<link rel="stylesheet" href="{{ asset('css/bootstrap-tour.min.css') }}" type="text/css" />#}
 	{{ parent() }}
 {% endblock %}
 
@@ -134,6 +134,7 @@
 	<script src="{{ asset('js/jquery.fancytree.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('js/jquery.fancytree.persist.js') }}" type="text/javascript"></script>
 	<!-- Initialize the tree when page is loaded -->
+	<script>env = "{{ app.environment }}";/* Global environment var*/</script>
 	<script src="{{ asset('js/treeApp.js') }}" type="text/javascript"></script>
 	<script>
 		{% if syntaxon is defined%}
