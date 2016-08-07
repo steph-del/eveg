@@ -5,7 +5,7 @@ function createCacheMapPng(domIdMap, canvasIdMap, imgCacheMultiplicator, mapType
 	imgMapDepFr = Canvas2Image.convertToPNG(document.getElementById(canvasIdMap), (280*imgCacheMultiplicator), (300*imgCacheMultiplicator));
 
 	$.ajax({
-		url: Routing.generate('eveg_save_repartition_map', {mapType}, true),
+		url: Routing.generate('eveg_save_repartition_map', {'mapType':mapType}, true),
 		data: {
 			'file': imgMapDepFr.src,
 			'id': syntaxonId,
@@ -31,10 +31,10 @@ $.ajax({
 	},
 	error: function(){
 		createCacheMapPng('#mapDepFr', 'canvasMapDepFr', 1.5, 'fr');
-		$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/{{ syntaxon.id }}-fr.png');
+		$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/'+syntaxonId+'-fr.png');
 	},
 	success: function(){
-		$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/{{ syntaxon.id }}-fr.png');
+		$('#download-mapdepfr-image').attr('href', '../../img/cache/maps/fr/'+syntaxonId+'-fr.png');
 	},
 	type: 'POST'
 });
@@ -46,10 +46,10 @@ $.ajax({
 	},
 	error: function(){
 		createCacheMapPng('#mapEurope', 'canvasMapEu', 1.5, 'eu');
-		$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/{{ syntaxon.id }}-eu.png');
+		$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/'+syntaxonId+'-eu.png');
 	},
 	success: function(){
-		$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/{{ syntaxon.id }}-eu.png');
+		$('#download-mapeurope-image').attr('href', '../../img/cache/maps/eu/'+syntaxonId+'-eu.png');
 	},
 	type: 'POST'
 });

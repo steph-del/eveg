@@ -3,7 +3,11 @@
 {% extends "::layout.html.twig" %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
+	{% stylesheets filter="cssrewrite,?yui_css" output='css/fancytree.css'
+		"@evegAppBundle/Resources/public/css/fancyTree/skin-win8/ui.fancytree.css"
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
 	{#<link rel="stylesheet" href="{{ asset('css/bootstrap-tour.min.css') }}" type="text/css" />#}
 	{{ parent() }}
 {% endblock %}
@@ -131,11 +135,21 @@
 	{{ parent() }}
 
 	<!-- FANCY TREE -->
-	<script src="{{ asset('js/jquery.fancytree.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('js/jquery.fancytree.persist.js') }}" type="text/javascript"></script>
-	<!-- Initialize the tree when page is loaded -->
 	<script>env = "{{ app.environment }}";/* Global environment var*/</script>
-	<script src="{{ asset('js/treeApp.js') }}" type="text/javascript"></script>
+	{% javascripts filter="?yui_js" output ="js/tree.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.persist.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.table.js"
+		"@evegAppBundle/Resources/public/js/tree/treeApp.js"
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{#<script src="{{ asset('js/jquery.fancytree.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/jquery.fancytree.persist.js') }}" type="text/javascript"></script>#}
+	<!-- Initialize the tree when page is loaded -->
+	
+	{#<script src="{{ asset('js/treeApp.js') }}" type="text/javascript"></script>#}
 	<script>
 		{% if syntaxon is defined%}
 			function expandNodes(){
@@ -156,27 +170,34 @@
 		{% endif %}
 	</script>
 
-	{% javascripts 
+	{# Custom scripts #}
+	{% javascripts filter="?yui_js" output ="js/main.js"
 		'@evegAppBundle/Resources/public/js/repartitionFilters/depFr.js'		
 		'@evegAppBundle/Resources/public/js/repartitionFilters/europe.js'
-		'@evegAppBundle/Resources/public/js/maps/*'
-		'js/maps/*'
 		'@evegAppBundle/Resources/public/js/limitVisibleItems.js'
-		'@evegAppBundle/Resources/public/js/cacheMap/cacheMap.js'
 		'@evegAppBundle/Resources/public/js/feedback/feedback.js'
 		'@evegAppBundle/Resources/public/js/feedback/feedbackDoShowOnePage.js'
 		'@evegAppBundle/Resources/public/js/compare.js'
-		'js/bootstrap-tour.min.js'
 		%}
 		<script>
-			// Repartition filters var
-			appSessionSF2DepFrFilter = '{{ app.session.get("depFrFilter") | raw }}';
-			appSessionSF2UeFilter    = '{{ app.session.get("ueFilter") | raw }}';
 			// Cache map var
 			syntaxonName = "{{ syntaxon.syntaxonName }}";
 			syntaxonId = "{{ syntaxon.id }}";
-			//
 		</script>
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	<!-- MAP SCRIPTS-->
+	<script>syntaxonId = {{ syntaxon.id }}</script>
+	{% javascripts filter="?yui_js" output ="js/maps.js"
+		'@evegAppBundle/Resources/public/js/maps/raphael-2.1.2.min.js'
+		'@evegAppBundle/Resources/public/js/maps/scale.raphael-0.8.js'
+		'@evegAppBundle/Resources/public/js/maps/canvg.min.js'
+		'@evegAppBundle/Resources/public/js/maps/canvas2image.js'
+		'@evegAppBundle/Resources/public/js/maps/cacheMap.js'
+		'@evegAppBundle/Resources/public/js/maps/evegMapDepFr.js'
+		'@evegAppBundle/Resources/public/js/maps/evegMapEurope.js'
+		%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 

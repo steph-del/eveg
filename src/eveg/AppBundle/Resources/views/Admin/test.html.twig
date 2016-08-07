@@ -9,15 +9,11 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
-	{% stylesheets filter="compass" 
-			"@evegAppBundle/Resources/assets/sass/evegTree.scss"
-			"@evegAppBundle/Resources/assets/sass/evegSearchEngine.scss" %}
+	{% stylesheets filter="cssrewrite,?yui_css" output='css/fancytree.css'
+		"@evegAppBundle/Resources/public/css/fancyTree/skin-win8/ui.fancytree.css"
+		%}
 		<link rel="stylesheet" href="{{ asset_url }}">
 	{% endstylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
-	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-	<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -58,8 +54,8 @@
 	</div>
 
 	<div class="row">
-	{{ dump(entity) }}
-	{{ dump(repDepFrJson) }}
+	{#{{ dump(entity) }}
+	{{ dump(repDepFrJson) }}#}
 		<div class="col-md-3">
 			<div id="mapDepFr"></div>
 			<div id="mapDepFrHoverLegend">Répartition par département en France métropolitaine</div>

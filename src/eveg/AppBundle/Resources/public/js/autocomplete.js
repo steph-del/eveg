@@ -1,4 +1,11 @@
 <!-- SEARCH ENGINE -->
+/* jQuery UI Autocomplete Width Set to parent's element width
+http://stackoverflow.com/questions/5643767/jquery-ui-autocomplete-width-not-set-correctly
+*/
+jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+	var ul = this.menu.element;
+	ul.outerWidth(this.element.outerWidth());
+}
 
 /* Highlighting term(s) */
 function monkeyPatchAutocomplete() {	
@@ -49,22 +56,3 @@ function monkeyPatchAutocomplete() {
         }
     };
 }
-
-monkeyPatchAutocomplete();
-$('#searchbox').autocomplete({
-	source: '{{ url("api_get_syntaxon_search") }}',
-	minLength: 1,
-	search: function(event, ui) {
-		
-	},
-	response: function(event, ui) {
-		
-	},
-	focus: function(event, ui) {
-        event.preventDefault();
-    },
-	select : function(event, ui){
-		event.preventDefault();
-		alert( ui.item.id );
-	}
-});

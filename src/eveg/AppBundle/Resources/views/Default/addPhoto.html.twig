@@ -4,11 +4,6 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{% stylesheets filter="compass" 
-		"@evegAppBundle/Resources/assets/sass/photoForm.scss"
-	%}
-		<link rel="stylesheet" href="{{ asset_url }}">
-	{% endstylesheets %}
 {% endblock %}
 
 {% block title %}

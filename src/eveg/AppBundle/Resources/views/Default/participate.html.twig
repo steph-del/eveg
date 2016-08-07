@@ -7,15 +7,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-		
 	{{ parent() }}
-	
-	{% stylesheets filter="compass" 
-		"@evegAppBundle/Resources/assets/sass/activities.scss"
-	%}
-	<link rel="stylesheet" href="{{ asset_url }}">
-	{% endstylesheets %}
-
 {% endblock %}
 
 {% block body %}
