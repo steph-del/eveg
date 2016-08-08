@@ -65,7 +65,7 @@ class MenuBuilder extends ContainerAware
           $filterFlag = true;
         }
       }
-dump($ueFilter);dump($depFrFilter);dump($filterFlag);
+
       $menu = $factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
