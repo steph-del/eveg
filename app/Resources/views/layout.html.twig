@@ -8,9 +8,10 @@
 	<title>{% block title %}eVeg{% endblock %}</title>
 
 	{% block stylesheets %}
-		{% stylesheets output="css/vendors.css"
+		{% stylesheets filter="?yui_css" output="css/vendors.css"
 			"@evegAppBundle/Resources/public/css/bootstrap.css"
 			"@evegAppBundle/Resources/public/css/jquery-ui.min.css"
+			"@evegAppBundle/Resources/public/css/animate.css"
 			%}
 			<link rel="stylesheet" href="{{ asset_url }}">
 		{% endstylesheets %}
