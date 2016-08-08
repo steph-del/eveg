@@ -3,11 +3,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block stylesheets %}
-	{% stylesheets filter="cssrewrite,?yui_css" output='css/fancytree.css'
-		"@evegAppBundle/Resources/public/css/fancyTree/skin-win8/ui.fancytree.css"
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}">
-	{% endstylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}">
 	{#<link rel="stylesheet" href="{{ asset('css/bootstrap-tour.min.css') }}" type="text/css" />#}
 	{{ parent() }}
 {% endblock %}
