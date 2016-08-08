@@ -61,9 +61,11 @@ class MenuBuilder extends ContainerAware
       $filterFlag  = false;
 
       if(($ueFilter != '[]') or ($depFrFilter != '[]')) {
-        $filterFlag = true;
+        if(($ueFilter != null) or ($depFrFilter != null)) {
+          $filterFlag = true;
+        }
       }
-
+dump($ueFilter);dump($depFrFilter);dump($filterFlag);
       $menu = $factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
@@ -75,7 +77,9 @@ class MenuBuilder extends ContainerAware
          ->setAttribute('data-target', '#modalFilter')
          ;
       if($filterFlag == true) {
-        $menu['Filter']->setAttribute('class', 'activeFilter');
+        $menu['Filter']->setAttribute('class', 'activeFilter')
+                       ->setAttribute('iconAppend', 'asterisk')
+                       ;
 
       }
 

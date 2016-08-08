@@ -85,6 +85,10 @@
             <span class="flag-icon flag-icon-{{ item.attribute('flag') }}"></span>
         {% endif %}
 		{{ block('label') }}
+        {% if item.attribute('iconAppend') is not empty  %}
+            {#<i class="{{ item.attribute('icon') }}"></i>#}
+            <i class="fa fa-{{ item.attribute('iconAppend') }} animated flash" aria-hidden="true"></i>
+        {% endif %}
 	</a>
 {% endblock %}
  

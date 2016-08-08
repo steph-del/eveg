@@ -1058,11 +1058,13 @@ img.syntaxonIllustration{
 
  li.activeFilter {
  	a {
- 		background-color: rgba(181, 217, 140, 0.5);
- 		//color: #000 !important;
-
- 		&:hover {
- 			background-color: rgba(181, 217, 140, 0.5) !important;
+ 		i.fa-asterisk {
+ 			visibility: visible;
+ 			position: relative;
+ 			top: -10px;
+ 			left: -5px;
+ 			color: rgba(29, 207, 44, 0.51);
+ 			font-size: 0.8em;
  		}
   	}
  }
