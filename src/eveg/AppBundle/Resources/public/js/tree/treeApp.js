@@ -56,7 +56,8 @@ $(function(){
 			} else {
 				return iconPath+"eveg-file-"+level+".png";	
 			}
-		}
+		},
+		toggleEffect: false
 
 	});
 });
