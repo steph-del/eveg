@@ -109,7 +109,8 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	// Returns the first child of one catminat code
-	public function getDirectChild($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
+	// regardless to syntaxon level
+	public function getFirstDirectChildByCatminatCode($catminatCode, $returnArray = false, $ueFilter = null, $depFrFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -126,9 +127,9 @@ class SyntaxonCoreRepository extends EntityRepository
 			$this->ueFilter($qb, $ueFilter, false);
 		}
 		// Department filter
-		/*if($depFrFilter != null) {
+		if($depFrFilter != null) {
 			$this->departmentFrFilter($qb, $depFrFilter);
-		}*/
+		}
 
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
@@ -138,8 +139,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		
 	}
 
-	// Returns direct children of one catminat code
-	public function getDirectChildren($catminatCode, $nextLevel, $ueFilter = null)
+	public function getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter = null, $ueFilter = null)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -151,6 +151,11 @@ class SyntaxonCoreRepository extends EntityRepository
 			->setParameter('catminatCodeSimple', $catminatCode)
 			->setParameter('nextLevel', $nextLevel)
 			->orderBy('s.catminatCode', 'ASC');
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, false);
+		}
 
 		// UE filter
 		if($ueFilter != null) {
@@ -243,7 +248,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter Array data
 	 * @param bool $exclusive TRUE : to be selected one vegetation have to be present in every country (limit the number of results) ; FALSE : it only has to be present in one country of the filter (default)
 	 */
-	public function ueFilter(QueryBuilder $qb, $ueFilter, $exclusive)
+	public function ueFilter(QueryBuilder $qb, $ueFilter, $exclusive = false)
 	{
 		$orModule = $qb->expr()->orx();
 		$andModule = $qb->expr()->andx();
@@ -410,7 +415,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ;
 		// Department filter
 		if($depFrFilter != null) {
-			$this->departmentFrFilter($qb, $depFrFilter);
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 		}
 
 		// UE filter
@@ -421,7 +426,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findByIdPublicPrivateCircleData($id, $user, $depFrFilter = null, $ueFilter = null)
+	public function findByIdPublicPrivateCircleData($id, $user, $depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
@@ -443,10 +448,20 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->addSelect('link')
 		   ;
 
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findByIdPublicPrivateData($id, $user, $depFrFilter = null, $ueFilter = null)
+	public function findByIdPublicPrivateData($id, $user, $depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 		$qb->select('s')
@@ -466,6 +481,16 @@ class SyntaxonCoreRepository extends EntityRepository
 		   ->addSelect('file')
 		   ->addSelect('link')
 		   ;
+
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
 
 		  return $qb->getQuery()->getOneOrNullResult();
 	}
@@ -513,7 +538,7 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		// Department filter
 		if($depFrFilter != null) {
-			$this->departmentFrFilter($qb, $depFrFilter);
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 		}
 
 		// UE filter
@@ -554,7 +579,7 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		// Department filter
 		if($depFrFilter != null) {
-			$this->departmentFrFilter($qb, $depFrFilter);
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 		}
 
 		// UE filter
@@ -592,7 +617,7 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		// Department filter
 		if($depFrFilter != null) {
-			$this->departmentFrFilter($qb, $depFrFilter);
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
 		}
 
 		// UE filter
@@ -603,6 +628,17 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($limitItems != null) {
 			$qb->setMaxResults($limitItems);
 		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findAllWhithoutRelation()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		;
+		$qb->setMaxResults(500);
 
 		return $qb->getQuery()->getResult();
 	}
