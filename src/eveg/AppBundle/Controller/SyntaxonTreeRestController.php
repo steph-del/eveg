@@ -27,11 +27,12 @@ class SyntaxonTreeRestController extends FOSRestController
     $repFilters = $this->get('eveg_app.repFilters');
     $depFrFilter = $repFilters->getDepFrFilterSession();
     $ueFilter = $repFilters->getUeFilterSession();
+
+    // Grabbing SyntaxonCore repository
+    $em = $this->getDoctrine()->getManager();
+    $scRepo = $em->getRepository('evegAppBundle:SyntaxonCore');
         
-    $syntaxonTree = $this->getDoctrine()
-    					 ->getManager()
-    					 ->getRepository('evegAppBundle:SyntaxonCore')
-    					 ->getBaseTree($depFrFilter, $ueFilter);
+    $syntaxonTree = $scRepo->getBaseTree($depFrFilter, $ueFilter);
 
     if(empty($syntaxonTree)){
       throw $this->createNotFoundException();
@@ -42,14 +43,26 @@ class SyntaxonTreeRestController extends FOSRestController
 
     foreach ($syntaxonTree as $key => $syntaxon) {
 
-        if ($catCode->getDirectChild($syntaxon->getCatminatCode()) == null) {
+        $catminatCode = $syntaxon->getCatminatCode();
+        $level = $catCode->getLevel($catminatCode);
+        $nextLevel = $catCode->getNextLevel($level);
+
+        $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+
+        if ($children == '[]' or $children == null) {
             $syntaxon->setFolder(false);
             $syntaxon->setLazy(false);
         } else {
-            $syntaxon->setFolder(true);
-            $syntaxon->setLazy(true);
+            // test filters
+            $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+            if($children != '[]' or $children != null) {
+                $syntaxon->setFolder(true);
+                $syntaxon->setLazy(true);
+            } else {
+                $syntaxon->setFolder(false);
+                $syntaxon->setLazy(false);
+            }
         }
-
     }
 
     $view->setData($syntaxonTree);
@@ -68,35 +81,33 @@ class SyntaxonTreeRestController extends FOSRestController
         $depFrFilter = $repFilters->getDepFrFilterSession();
         $ueFilter = $repFilters->getUeFilterSession();
 
+        // Grabbing SyntaxonCore repository
+        $em = $this->getDoctrine()->getManager();
+        $scRepo = $em->getRepository('evegAppBundle:SyntaxonCore');
+
         // Grabbing catCode service
         $catCode = $this->get('eveg_app.catCode');
 
-        $syntaxon = $this->getDoctrine()
-                        ->getManager()
-                        ->getRepository('evegAppBundle:SyntaxonCore')
-                        ->findOneById($id);
+        $syntaxon = $scRepo->findOneById($id);
 
-        //
-        $nextLevel = $catCode->getNextLevel($syntaxon->getLevel(), 1);
-        $syntaxonTree = $this->getDoctrine()
-                         ->getManager()
-                         ->getRepository('evegAppBundle:SyntaxonCore')
-                         ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
+        // 1st step
+        $catminatCode = $syntaxon->getCatminatCode();
+        $level = $catCode->getLevel($catminatCode);
+        $nextLevel = $catCode->getNextLevel($level);
 
+        $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+
+        // 2nd step
         if(empty($syntaxonTree)){
-            $nextLevel = $catCode->getNextLevel($syntaxon->getLevel(), 2);
-            $syntaxonTree = $this->getDoctrine()
-                             ->getManager()
-                             ->getRepository('evegAppBundle:SyntaxonCore')
-                             ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
+            $nextLevel2 = $catCode->getNextLevel($nextLevel);
+            $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
         }
 
-        if(empty($syntaxonTree)){
-            $nextLevel = $catCode->getNextLevel($syntaxon->getLevel(), 3);
-            $syntaxonTree = $this->getDoctrine()
-                             ->getManager()
-                             ->getRepository('evegAppBundle:SyntaxonCore')
-                             ->getNextTreeNode($id, $nextLevel, $depFrFilter, $ueFilter);
+        // 3rd step
+        // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
+        if(empty($syntaxonTree) and ($syntaxon->getLevel() == 'ALL')){
+          $nextLevel3 = $catCode->getNextLevel($nextLevel2);
+          $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
         }
 
         if(empty($syntaxonTree)){
@@ -107,14 +118,48 @@ class SyntaxonTreeRestController extends FOSRestController
         
         foreach ($syntaxonTree as $key => $syntaxon) {
 
-            if ($catCode->getDirectChild($syntaxon->getCatminatCode()) == null) {
-                $syntaxon->setFolder(false);
-                $syntaxon->setLazy(false);
-            } else {
-                $syntaxon->setFolder(true);
-                $syntaxon->setLazy(true);
-            }
+            $catminatCode = $syntaxon->getCatminatCode();
+            $level = $syntaxon->getLevel();
+            if($level != 'SUBASS')                                            $nextLevel = $catCode->getNextLevel($level);
+            if($level != 'SUBASS' and $level != 'ASS')                        $nextLevel2 = $catCode->getNextLevel($nextLevel);
+            //if($level != 'SUBASS' and $level != 'ASS' and $level != 'ASSGR')  $nextLevel3 = $catCode->getNextLevel($nextLevel2);
 
+
+            $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+
+            // 1st step
+            if ($children == '[]' or $children == null) {
+              $syntaxon->setFolder(false);
+              $syntaxon->setLazy(false);
+
+              // 2nd step
+              if(isset($nextLevel)) {
+                $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+                if($children2 == '[]' or $children2 == null) {
+                  $syntaxon->setFolder(false);
+                  $syntaxon->setLazy(false);
+
+                  // 3rd step
+                  // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
+                  if(isset($nextLevel2)) {
+                    $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
+                    if($children3 == '[]' or $children3 == null) {
+                      $syntaxon->setFolder(false);
+                      $syntaxon->setLazy(false);
+                    } else {
+                      $syntaxon->setFolder(true);
+                      $syntaxon->setLazy(true);
+                    }
+                  }
+                } else {
+                  $syntaxon->setFolder(true);
+                  $syntaxon->setLazy(true);
+                }
+              }
+            } else {
+              $syntaxon->setFolder(true);
+              $syntaxon->setLazy(true);
+            }
         }
 
     $view->setData($syntaxonTree);
