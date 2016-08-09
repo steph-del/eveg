@@ -153,7 +153,7 @@ class evegCatCode
 		
 	}
 	
-	private function getLevel($text){
+	public function getLevel($text){
 		
 		$text = $this->cleanCode($text);
 		
