@@ -1,0 +1,22 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: eveg_preprod
+    database_user: root
+    database_password: root
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: eveg.stephane.delplanque
+    mailer_password: drmrgEVEG
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+    ruby: /usr/bin/ruby
+    sass: /Library/Ruby/Gems/2.0.0/gems/sass-3.4.18/bin/sass
+    compass: /Library/Ruby/Gems/2.0.0/gems/compass-1.0.3/bin/compass
+
+    eveg:
+        feedback:
+            mail_base_admin: "stephanedelplanque@yahoo.fr"
+            mail_website_admin: "eveg.stephane.delplanque@gmail.com"

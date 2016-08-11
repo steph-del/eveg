@@ -1,0 +1,7 @@
+# app/config/config_preprod.yml
+imports:
+    - { resource: config.yml }
+    - { resource: parameters_preprod.yml }
+
+framework:
+    profiler: { only_exceptions: false }
