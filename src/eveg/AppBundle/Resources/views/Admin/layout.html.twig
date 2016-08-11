@@ -8,20 +8,29 @@
 	<title>{% block title %}eVeg Admin{% endblock %}</title>
 
 	{% block stylesheets %}
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
-		{% stylesheets filter="cssrewrite,compass,?yui_css" output='css/main_admin.css'
+		{% stylesheets filter="?yui_css, cssrewrite" output="css/vendors.css"
+			"@evegAppBundle/Resources/public/css/bootstrap.css"
+			"@evegAppBundle/Resources/public/css/jquery-ui.min.css"
+			"@evegAppBundle/Resources/public/css/animate.css"
+			%}
+			<link rel="stylesheet" href="{{ asset_url }}">
+		{% endstylesheets %}
+
+		{% stylesheets filter="cssrewrite,compass,?yui_css" output='css/main.css'
 			"@evegAppBundle/Resources/assets/sass/evegSyntaxonText.scss"
 			"@evegAppBundle/Resources/assets/sass/bootstrapFrontCustom.scss"
 			"@evegAppBundle/Resources/assets/sass/evegSearchEngine.scss"
 			"@evegAppBundle/Resources/assets/sass/evegTree.scss"
 			"@evegAppBundle/Resources/assets/sass/maps.scss"
 			"@evegAppBundle/Resources/assets/sass/modalRepartitionFilters.scss"
-		%}
-		{# evegSearchEngine.scss should be moved to subViews (homepage / app) #}
-		<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" />
-		<link rel="stylesheet" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" type="text/css"/>
-		<link rel="stylesheet" href="{{ asset('css/flag-icon.min.css') }}" type="text/css"/>
-		<link rel="stylesheet" href="{{ asset_url }}">
+			"@evegAppBundle/Resources/assets/sass/activities.scss"
+			"@evegAppBundle/Resources/assets/sass/fileForm.scss"
+			"@evegAppBundle/Resources/assets/sass/httpLinkForm.scss"
+			"@evegAppBundle/Resources/assets/sass/photoForm.scss"
+			%}
+			<link rel="stylesheet" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" type="text/css"/>
+			<link rel="stylesheet" href="{{ asset('css/flag-icon.min.css') }}" type="text/css"/>
+			<link rel="stylesheet" href="{{ asset_url }}">
 		{% endstylesheets %}
 		
 		<style>body{background-image:url({{ asset('img/patterns/grey.png') }});}</style>
