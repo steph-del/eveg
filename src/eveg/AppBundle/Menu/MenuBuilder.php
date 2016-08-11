@@ -235,7 +235,7 @@ class MenuBuilder extends ContainerAware
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
  
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
-			->setAttribute('glyphicon', 'glyphicon-home');
+			->setAttribute('icon', 'home');
 		
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
 		  $menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'));
