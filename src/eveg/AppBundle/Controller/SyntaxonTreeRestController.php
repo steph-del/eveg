@@ -98,7 +98,7 @@ class SyntaxonTreeRestController extends FOSRestController
         $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
         // 2nd step
-        if(empty($syntaxonTree)){
+        if(empty($syntaxonTree) and ($syntaxon->getLevel() != 'SUBASS' or $syntaxon->getLevel() != 'ASS')){
             $nextLevel2 = $catCode->getNextLevel($nextLevel);
             $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
         }
@@ -122,7 +122,7 @@ class SyntaxonTreeRestController extends FOSRestController
             $level = $syntaxon->getLevel();
             if($level != 'SUBASS')                                            $nextLevel = $catCode->getNextLevel($level);
             if($level != 'SUBASS' and $level != 'ASS')                        $nextLevel2 = $catCode->getNextLevel($nextLevel);
-            //if($level != 'SUBASS' and $level != 'ASS' and $level != 'ASSGR')  $nextLevel3 = $catCode->getNextLevel($nextLevel2);
+            if($level == 'ALL')                                               $nextLevel3 = $catCode->getNextLevel($nextLevel2);
 
 
             $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
@@ -133,16 +133,16 @@ class SyntaxonTreeRestController extends FOSRestController
               $syntaxon->setLazy(false);
 
               // 2nd step
-              if(isset($nextLevel)) {
-                $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+              if(isset($nextLevel2)) {
+                $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
                 if($children2 == '[]' or $children2 == null) {
                   $syntaxon->setFolder(false);
                   $syntaxon->setLazy(false);
 
                   // 3rd step
                   // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
-                  if(isset($nextLevel2)) {
-                    $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
+                  if(isset($nextLevel3)) {
+                    $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
                     if($children3 == '[]' or $children3 == null) {
                       $syntaxon->setFolder(false);
                       $syntaxon->setLazy(false);
