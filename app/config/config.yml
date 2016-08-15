@@ -224,3 +224,26 @@ knp_snappy:
         enabled:    true
         binary:     /usr/local/bin/wkhtmltopdf
         options:    []
+
+# Lexik Maintenance bundle
+lexik_maintenance:
+    authorized:
+        #path: /login                                                         # Optional. Authorized path, accepts regexs                  
+        #host: your-domain.com                                               # Optional. Authorized domain, accepts regexs
+        ips: ['127.0.0.1']                                 # Optional. Authorized ip addresses      ['127.0.0.1', '172.123.10.14'] 
+        #query: { foo: bar }                                                 # Optional. Authorized request query parameter (GET/POST)
+        #cookie: { bar: baz }                                                # Optional. Authorized cookie
+        #route:                                                              # Optional. Authorized route name
+        #attributes:                                                         # Optional. Authorized route attributes
+    driver:
+        #ttl: 3600                                                                  # Optional ttl option, can be not set
+        
+        # File driver
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'                # class for file driver
+        options: {file_path: %kernel.root_dir%/cache/lock}  
+
+
+    #Optional. response code and status of the maintenance page
+    response:
+        code: 503
+        status: "Service Temporarily Unavailable"
