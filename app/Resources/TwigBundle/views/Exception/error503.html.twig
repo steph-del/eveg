@@ -1,0 +1,41 @@
+{# app/Resources/views/error503.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr" style="height:100%;">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>{% block title %}Site en maintenance{% endblock %}</title>
+
+	
+</head>
+
+<body data-spy="scroll" data-target="#navbar" style="height: 100%;background-image: url('img/patterns/bokeh.jpg'); background-size: cover;">
+
+	{% block body %}
+		<div style="display:flex;min-height: 100%;">
+			<div class="" style="display: flex;align-items: center;justify-content: center;min-height: 100%;width: 100%;">
+				<div class="wrapper" style="flex: 2;"></div>
+				<div class="title" style="
+					background-color: rgba(255, 255, 255, 0.5);
+					    padding-top: 20px;
+					    padding-bottom: 20px;
+					    padding-left: 30px;
+					    padding-right: 30px;
+					    margin-bottom: 60px;
+					    border-radius: 5px;
+					    font-size: 1.5em;
+					    text-align: center;
+					    box-shadow: 0px 0px 150px #FFF;
+
+						}
+				">
+					<p>Le site est actuellement en maintenance</p>
+				</div>
+				<div class="wrapper" style="flex: 2;"></div>
+			</div>
+		</div>
+	{% endblock %}
+	
+</body>
+</html>
