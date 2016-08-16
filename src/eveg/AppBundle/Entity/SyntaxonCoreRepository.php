@@ -179,6 +179,20 @@ class SyntaxonCoreRepository extends EntityRepository
 
 	}
 
+	// Returns syntaxon full name from (array)$ids
+	public function findNamesById($idsArray)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s.id, s.syntaxonName, s.syntaxonAuthor');
+		foreach ($idsArray as $key => $id) {
+			$qb->orWhere('s.id = '.(int)$id);
+		}
+			
+
+		return $qb->getQuery()->getResult();
+	}
+
 	// Returns data for the search engine
 	public function findForSearchEngine($searchedTerm, $useSynonyms = true, $depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
