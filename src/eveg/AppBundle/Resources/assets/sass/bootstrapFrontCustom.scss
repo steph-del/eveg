@@ -544,6 +544,12 @@ span.viewHeaderAuthor {
 	padding-bottom: 5px;
 	height: 21px;
 	padding-top: 0;
+
+	&.large {
+		padding-top: 10px !important;
+		padding-bottom: 10px !important;
+		height: auto;
+	}
 }
 .list-group-item {
 	padding-top: 2px;

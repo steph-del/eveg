@@ -1,0 +1,34 @@
+{# src/eveg/AppBundle/Resources/views/Admin/versioning_list.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Versioning |
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="jumbotron versioning">
+			<h1>Gestionnaire de versions - baseveg</h1>
+		</div>
+		<div class="col-md-offset-2 col-md-8">
+			<ul class="list-group">
+				{% if logs is not empty %}
+					{% for log in logs %}
+						<li class="list-group-item">
+							<a class="no-style" href="{{ path('eveg_admin_versioning_id', {'id': log[0]}) }}">[{{ log[0] }}] {{ log[1] }}</a>
+							<span class="badge">{{ log[2] }} log(s)</span>
+						</li>
+					{% endfor %}
+				{% else %}
+					Aucun log n'a été trouvé
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}
