@@ -245,6 +245,11 @@ class MenuBuilder extends ContainerAware
       $menu->addChild('Documents', array('route' =>'eveg_admin_documents', 'label' => 'Documents'));
     }
 
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('Versioning', array('route' =>'eveg_admin_versioning', 'label' => 'Versions'))
+           ->setAttribute('icon', 'fa fa-database');
+    }
+
 		//$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
 		//$menu->addChild('Translation', array('route' => 'eveg_app_contact', 'label' => 'Traduction'));
 		//$menu->addChild('LiveTest', array('route' => 'eveg_admin_test', 'label' => 'Test@dev'));
