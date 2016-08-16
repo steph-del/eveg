@@ -49,6 +49,14 @@ eveg_admin_import_baseflor:
     path: /import/baseflor
     defaults: { _controller: evegAppBundle:Import:importBaseflor }
 
+eveg_admin_versioning:
+    path: /baseveg/versioning/list
+    defaults: { _controller: evegAppBundle:Versioning:list }
+
+eveg_admin_versioning_id:
+    path: /baseveg/versioning/syntaxon/{id}
+    defaults: { _controller: evegAppBundle:Versioning:showOne }
+
 #eveg_slug_regenerator:
 #    path: /regenerate-slugs
 #    defaults: { _controller: evegAppBundle:Admin:generateAllSlugs }
