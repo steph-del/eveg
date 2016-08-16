@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="eveg_baseveg_core")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonCoreRepository")
  * @ORM\HasLifecycleCallbacks
+ * @Gedmo\Loggable(logEntryClass="eveg\AppBundle\Entity\SyntaxonLog")
  *
  * @ExclusionPolicy("all")
  */
@@ -59,6 +60,7 @@ class SyntaxonCore
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO") 
+     * @Gedmo\Versioned
      * @Expose
      * @Groups({"searchEngine"})
      * @SerializedName("id")
@@ -79,6 +81,7 @@ class SyntaxonCore
      * @var integer
      *
      * @ORM\Column(name="fixedCode", type="integer")
+     * @Gedmo\Versioned
      */
     private $fixedCode;
 
@@ -86,6 +89,7 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="catminatCode", type="string", length=255)
+     * @Gedmo\Versioned
      *
      * @Expose
      * @Groups({"baseTree", "nodeTree", "searchEngine"})
@@ -97,6 +101,7 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="level", type="string", length=255)
+     * @Gedmo\Versioned
      *
      * @Expose
      * @Groups({"searchEngine", "baseTree", "nodeTree"})
@@ -108,6 +113,7 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="syntaxonName", type="string", length=255)
+     * @Gedmo\Versioned
      *
      * @Expose
      * @Groups({"searchEngine"})
@@ -139,6 +145,8 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="syntaxonAuthor", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
+     *
      * @Expose
      * @Groups({"searchEngine"})
      * @SerializedName("syntaxonAuthor")
@@ -158,6 +166,7 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="commonName", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
      */
     private $commonName;
 
@@ -174,6 +183,7 @@ class SyntaxonCore
      * @var string
      *
      * @ORM\Column(name="commonNameEn", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
      */
     private $commonNameEn;
 
