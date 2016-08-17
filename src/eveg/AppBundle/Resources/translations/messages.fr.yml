@@ -438,6 +438,12 @@ eveg:
                     placeholder: http://www.tela-botanica.org
                     another: Ajouter un autre lien
         
+        multiple_results:
+            title: Plusieurs résultats
+            explain : Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.
+            your_search: Votre recherche
+            results: Sélectionnez un résultat
+
         start:
             title: Parcourir les végétations
             popular:

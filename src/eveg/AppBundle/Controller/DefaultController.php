@@ -208,9 +208,9 @@ class DefaultController extends Controller
         			array_push($catCodes, $entity->getCatminatCode());
         		}
         		$multipleSyntaxon = $em->getRepository('evegAppBundle:SyntaxonCore')->findValidSyntaxonByCatminatCode($catCodes);
-        		return $this->render('evegAppBundle:Default:showOne.html.twig', array(
+        		return $this->render('evegAppBundle:Default:multipleSyntaxon.html.twig', array(
 					'multipleSyntaxon' => $multipleSyntaxon,
-					'redirectionMultipleSyntaxon' => $syntaxon
+					'searchedSyntaxon' => $syntaxon
 				));
         	} else {
         		// REDIRECTION

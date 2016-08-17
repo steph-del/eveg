@@ -1,0 +1,40 @@
+{# src/eveg/AppBundle/Resources/views/Default/multipleSyntaxon.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block title %}
+	{{ 'eveg.app.multiple_results.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="col-md-offset-2 col-md-8">
+		<h3>{{ 'eveg.app.multiple_results.explain'|trans }}</h3><br />
+		<p class="text-center"><b>{{ 'eveg.app.multiple_results.your_search'|trans }} :</b></p>
+		<div class="panel panel-primary">
+			<div class="panel-heading large">
+				<b>{{ searchedSyntaxon.syntaxonName }}</b> {{ searchedSyntaxon.syntaxonAuthor }}
+			</div>
+		</div>
+
+		<p class="text-center"><b>{{ 'eveg.app.multiple_results.results'|trans }} :</b></p>
+		{% for syntaxon in multipleSyntaxon %}
+			<a class="no-style" href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p>
+							{{ syntaxon.catminatCode }}<br />
+							<b>{{ syntaxon.syntaxonName }}</b> {{ syntaxon.syntaxonAuthor }}<br />
+							{{ syntaxon.commonName }}
+							{% if syntaxon.commonNameEn is defined %}<br />{{ syntaxon.commonNameEn }}{% endif %}
+					</div>
+				</div>
+			</a>
+		{% endfor %}
+
+{% endblock %}

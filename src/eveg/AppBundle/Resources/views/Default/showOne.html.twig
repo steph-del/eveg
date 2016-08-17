@@ -12,40 +12,11 @@
 	{% if syntaxon is defined %}
 		{{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
-	{% if multipleSyntaxon is defined %}
-		Plusieurs résultats | {{ parent() }}
-	{% endif %}
 {% endblock %}
 
 {% block body %}
 
 	{{ parent() }}
-
-
-	{% if redirectionSyntaxon is defined %}
-		<p>Vous avez été redirigé vers le syntaxon retenu pour votre recherche concernant "<span class="{{ redirectionSyntaxon.level }}-text">{{ redirectionSyntaxon.syntaxon }}</span>".</p>
-	{% endif %}
-
-	{% if redirectionMultipleSyntaxon is defined %}
-		<p>Plusieurs syntaxons correpondent à votre recherche concernant "<span class="{{ redirectionMultipleSyntaxon.level }}-text">{{ redirectionMultipleSyntaxon.syntaxon }}</span>".</p>
-	{% endif %}
-
-	{% if redirectionFromSynonym is defined %}
-		<p>Vous avez été redirigé vers le syntaxon retenu pour votre recherche concernant "<span class="{{ redirectionFromSynonym.level }}-text">{{ redirectionFromSynonym.syntaxon }}</span></p>
-	{% endif %}
-
-	{% if syntaxon is defined %}
-		{#{{ dump(syntaxon) }}#}
-		{#{{ dump(synonyms) }}#}
-	{% endif %}
-
-	{% if multipleSyntaxon is defined %}
-		{#{{ dump(multipleSyntaxon) }}#}
-	{% endif %}
-
-	{% if allParents is defined %}
-		{#{{ dump(allParents) }}#}
-	{% endif %}
 
 	{% if syntaxon is defined %}
 
@@ -175,11 +146,13 @@
 		'@evegAppBundle/Resources/public/js/feedback/feedbackDoShowOnePage.js'
 		'@evegAppBundle/Resources/public/js/compare.js'
 		%}
-		<script>
-			// Cache map var
-			syntaxonName = "{{ syntaxon.syntaxonName }}";
-			syntaxonId = "{{ syntaxon.id }}";
-		</script>
+		{% if syntaxon is defined %}
+			<script>
+				// Cache map var
+				syntaxonName = "{{ syntaxon.syntaxonName }}";
+				syntaxonId = "{{ syntaxon.id }}";
+			</script>
+		{% endif %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 
