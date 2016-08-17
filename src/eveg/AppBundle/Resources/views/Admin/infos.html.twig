@@ -1,0 +1,22 @@
+{# src/eveg/AppBundle/Resources/views/Admin/infos.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Infos versions | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="jumbotron infos">
+			<h1>Infos générales</h1>
+		</div>
+		<div class="col-md-offset-2 col-md-8">
+			{{ form(form) }}
+		</div>
+	</div>
+{% endblock %}

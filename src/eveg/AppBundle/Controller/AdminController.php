@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use eveg\UserBundle\Form\Type\AdminProfileFormType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use eveg\AppBundle\Entity\Infos;
 
 class AdminController extends Controller
 {
@@ -243,5 +244,36 @@ class AdminController extends Controller
         ));
 	}
 
+	/**
+ 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
+ 	 */
+	public function infosAction(Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
+		//$infos = new Infos();
+
+		$formBuilder = $this->get('form.factory')->createBuilder('form', $infos);
+		$formBuilder
+	      ->add('evegVersion',     'text')
+	      ->add('basevegVersion',  'text')
+	      ->add('baseflorVersion', 'text')
+	      ->add('lastUpdate',      'datetime')
+	      ->add('save',            'submit')
+	    ;
+	    $form = $formBuilder->getForm();
+
+	    $form->handleRequest($request);
+
+	    if($form->isValid()) {
+			$em->persist($infos);
+			$em->flush();
+	    }
+
+	    return $this->render('evegAppBundle:Admin:infos.html.twig', array(
+	      'form' => $form->createView(),
+	    ));
+
+	}
 
 }
