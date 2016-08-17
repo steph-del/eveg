@@ -393,7 +393,7 @@ body {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display:         flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	margin-top: 0px;
 	height: 100%;
@@ -417,6 +417,9 @@ body {
 .footer-item {
 	width: 150px;
 	text-align: right;
+}
+.footer-infos {
+	
 }
 
 /*

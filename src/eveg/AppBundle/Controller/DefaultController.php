@@ -340,5 +340,14 @@ class DefaultController extends Controller
 			
 		return new Response($session->get('rainbow'));
 	}
+
+	public function footerInfosAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
+
+
+		return new response('baseveg v. '.$infos->getBasevegVersion().'  |  baseflor v. '.$infos->getBaseflorVersion().'  |  eveg v. '.$infos->getEvegVersion().'  |  dernière màj : '.$infos->getLastUpdate()->format('Y-m-d').' ');
+	}
 	
 }

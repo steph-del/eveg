@@ -93,6 +93,9 @@
 	<div class="container-fluid container-footer">
 		<div class="footer">
 			{% block footer %}
+				<div class="footer-infos">
+					{{ render(controller('evegAppBundle:Default:footerInfos')) }}
+				</div>
 				<div class="footer-item">
 					<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
 				</div>
