@@ -234,20 +234,36 @@ class MenuBuilder extends ContainerAware
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
  
-		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
+		$menu->addchild('Home', array('route' => 'eveg_admin_dashboard', 'label' => ''))
 			->setAttribute('icon', 'home');
 		
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
-		  $menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'));
+		  $menu->addChild('Users', array('route' =>'eveg_admin_users', 'label' => 'Utilisateurs'))
+        ->setAttribute('icon', 'user');
 		}
 
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
-      $menu->addChild('Documents', array('route' =>'eveg_admin_documents', 'label' => 'Documents'));
+      $menu->addChild('Documents', array('route' =>'eveg_admin_documents', 'label' => 'Documents'))
+        ->setAttribute('icon', 'files-o');
     }
 
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
       $menu->addChild('Versioning', array('route' =>'eveg_admin_versioning', 'label' => 'Versions'))
+           ->setAttribute('icon', 'fa fa-tag');
+    }
+
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('Infos', array('route' =>'eveg_admin_infos', 'label' => 'Param'))
+           ->setAttribute('icon', 'fa fa-cog');
+    }
+
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('Import', array('label' => 'Import'))
+           ->setAttribute('dropdown', true)
            ->setAttribute('icon', 'fa fa-database');
+      $menu['Import']->addChild('Core', array('route' => 'eveg_admin_import_baseveg_core', 'label' => 'Core'));
+      $menu['Import']->addChild('Fr', array('route' => 'eveg_admin_import_baseveg_repartitionDepFr', 'label' => 'Rep. Fr.'));
+      $menu['Import']->addChild('Eu', array('route' => 'eveg_admin_import_baseveg_repartitionEurope', 'label' => 'Rep. UE'));
     }
 
 		//$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
