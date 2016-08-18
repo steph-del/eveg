@@ -823,13 +823,6 @@ img.syntaxonIllustration{
 	background-color: #FFFFFF;
 }
 
-/*
- * Help page
- *******************/
- .jumbotron.help {
- 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
- }
-
  .affix {
  	top: 20px;
  	width: 289.5px;
@@ -892,6 +885,10 @@ img.syntaxonIllustration{
  * Contact page
  **************/
  .jumbotron.contact {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
+
+ .jumbotron.admin {
  	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
  }
 
