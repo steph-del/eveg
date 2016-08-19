@@ -27,22 +27,76 @@
 				</div>
 			</div>
 
-			<form action="{{ path('eveg_admin_import_baseveg_core') }}" method="post" {{ form_enctype(form) }}>
-				
-			    {{ form_widget(form) }}
-			    <input type="submit" />
-			</form>
+			<div class="well">
+				<ul>
+					<form action="{{ path('eveg_admin_import_baseveg_core') }}" method="post" {{ form_enctype(form) }}>
+						
+					    {{ form_widget(form) }}
+					    <input type="submit" />
+					</form>
+				</ul>
+			</div>
 
-			<p><b>Données à jour          : {{ countIsUpToDate }}</b></p>
-			<p>Log is up to date : </p>
-			{#<p style="color: green;">{{ logIsUpToDate|raw }}</p>#}
-			<p><b>Données à mettre à jour : {{ countToUpdate }}</b></p>
-			<p>Log to update: <p>
-			<p>{{ logToUpdate|raw }}</p>
-			<p><b>Données à créer         : {{ countToCreate }}</b></p>
+			{% if (countIsUpToDate is not empty) or (countToUpdate is not empty) or (countToCreate is not empty) %}
+				<div class="row">
+					<div class="col-md-4">
+						{% if onlyLog == true %}
+							<div class="thumbnail"><div class="caption text-center">
+								<p>Données à jour :</p>
+								<p class="_2em">{{ countIsUpToDate }}</p>
+								<p>
+									{% if fileLogIsUpToDate is not empty %}
+										<a href="../../../uploads/import/logs/{{ fileLogIsUpToDate }}" target="_blank">Afficher le log</a>
+									{% else %}
+										<p>-</p>
+									{% endif %}
+								</p>
+							</div></div>
+						{% else %}
+							
+						{% endif %}
+					</div>
+					<div class="col-md-4">
+						{% if onlyLog == true %}
+							<div class="thumbnail"><div class="caption text-center">
+								<p>Données à mettre à jour :</p>
+								<p class="_2em">{{ countToUpdate }}</p>
+								<p>
+									{% if fileLogToUpdate is not empty %}
+										<a href="../../../uploads/import/logs/{{ fileLogToUpdate }}" target="_blank">Afficher le log</a>
+									{% else %}
+										<p>-</p>
+									{% endif %}
+								</p>
+							</div></div>
+						{% else %}
+							
+						{% endif %}
+
+					</div>
+					<div class="col-md-4">
+						{% if onlyLog == true %}
+							<div class="thumbnail"><div class="caption text-center">
+								<p>Données à créer :</p>
+								<p class="_2em">{{ countToCreate }}</p>
+								<p>
+									{% if fileLogToCreate is not empty %}
+										<a href="../../../uploads/import/logs/{{ fileLogToCreate }}" target="_blank">Afficher le log</a>
+									{% else %}
+										<p>-</p>
+									{% endif %}
+								</p>
+							</div></div>
+						{% else %}
+							
+						{% endif %}
+						
+					</div>
+					
+				</div>
+			{% endif %}
 
 		</div>
-
 
 	</div>
 

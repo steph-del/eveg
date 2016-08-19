@@ -191,14 +191,23 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 
 						$countIsUpToDate++;
 
-						// delete item from csv file and from entity manager
+						// Log : no difference for this entity, nothing to deal with doctrine
+						$logIsUpToDate .= "<table class='table element'>
+											<tr class='header'>
+												<td class='title'>Syntaxon</td>
+												<td>
+													<table class='table'>
+														<tr><td><b>db  :</b> (".$entities[$idToRetrive]->getFixedCode().")(".$entities[$idToRetrive]->getCatminatCode().") ".$entities[$idToRetrive]->getSyntaxonName()." ".$entities[$idToRetrive]->getSyntaxonAuthor()."</td></tr>
+														<tr><td><b>csv  :</b> (".$importedEntity['fixedCode'].") (".$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."</td></tr>
+													</table>
+												</td>
+											</tr>
+										   </table>";
 
-						$logIsUpToDate .= 'csv : ('.$import[$key]['catminatCode'].') '.$import[$key]['syntaxonName'].' '.$import[$key]['syntaxonAuthor'].'<br />';
-						$logIsUpToDate .= 'db :  ('.$entities[$idToRetrive]->getCatminatCode().') '.$entities[$idToRetrive]->getSyntaxonName().' '.$entities[$idToRetrive]->getSyntaxonAuthor().'<br /><br />';
-						
+						// Delete item from csv file and from entity manager
 						unset($import[$key]);
 						$em->detach($entities[$idToRetrive]);
-						// Log : no difference for this entity, nothing to deal with doctrine
+
 					}
 
 				}
@@ -250,54 +259,61 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 					// There is, at less, one difference
 					} else {
 						$countToUpdate++;
-						$logToUpdate .= 'csv : ('.$importedEntity['fixedCode'].') ('.$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."<br />";
-						$logToUpdate .= 'db  : ('.$entities[$idToRetrive]->getFixedCode().')('.$entities[$idToRetrive]->getCatminatCode().") ".$entities[$idToRetrive]->getSyntaxonName()." ".$entities[$idToRetrive]->getSyntaxonAuthor()."<br />";
-						
+						$logToUpdate .= "<table class='table element'>
+											<tr class='header'>
+												<td class='title'>Syntaxon</td>
+												<td>
+													<table class='table'>
+														<tr><td><b>db  :</b> (".$entities[$idToRetrive]->getFixedCode().")(".$entities[$idToRetrive]->getCatminatCode().") ".$entities[$idToRetrive]->getSyntaxonName()." ".$entities[$idToRetrive]->getSyntaxonAuthor()."</td></tr>
+														<tr><td><b>csv  :</b> (".$importedEntity['fixedCode'].") (".$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."</td></tr>
+													</table>
+												</td>
+											</tr>";
 						// update entity
 						if($diffCatminatCode) {
-							$logToUpdate .= '....catminat code : '.'<br />'.
-											'....................csv : '.$importedEntity['catminatCode'].'<br />'.
-											'....................db  : '.$entities[$idToRetrive]->getCatminatCode().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'catminat code',
+													$entities[$idToRetrive]->getCatminatCode(),
+													$importedEntity['catminatCode']);
 							$entities[$idToRetrive]->setCatminatCode($importedEntity['catminatCode']);
 						}
 						if($diffLevel) {
-							$logToUpdate .= '....level : '.'<br />'.
-											'............csv : '.$importedEntity['level'].'<br />'.
-											'............db  : '.$entities[$idToRetrive]->getLevel().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'level',
+													$entities[$idToRetrive]->getLevel(),
+													$importedEntity['level']);
 							$entities[$idToRetrive]->setLevel($importedEntity['level']);
 						}
 						if($diffSyntaxonName) {
-							$logToUpdate .= '....syntaxon name : '.'<br />'.
-											'....................csv : '.$importedEntity['syntaxonName'].'<br />'.
-											'....................db  : '.$entities[$idToRetrive]->getSyntaxonName().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'syntaxon name',
+													$entities[$idToRetrive]->getSyntaxonName(),
+													$importedEntity['syntaxonName']);
 							$entities[$idToRetrive]->setSyntaxonName($importedEntity['syntaxonName']);
 						}
 						if($diffSyntaxonAuthor) {
-							$logToUpdate .= '....syntaxon author : '.'<br />'.
-											'......................csv : '.$importedEntity['syntaxonAuthor'].'<br />'.
-											'......................db  : '.$entities[$idToRetrive]->getSyntaxonAuthor().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'syntaxon author',
+													$entities[$idToRetrive]->getSyntaxonAuthor(),
+													$importedEntity['syntaxonAuthor']);
 							$entities[$idToRetrive]->setSyntaxonAuthor($importedEntity['syntaxonAuthor']);
 						}
 						if($diffCommonName) {
-							$logToUpdate .= '....common name (fr) : '.'<br />'.
-											'.......................csv : '.$importedEntity['commonNameFr'].'<br />'.
-											'.......................db  : '.$entities[$idToRetrive]->getCommonName().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'common name (fr)',
+													$entities[$idToRetrive]->getCommonName(),
+													$importedEntity['commonNameFr']);
 							$entities[$idToRetrive]->setCommonName($import[$key]['commonNameFr']);
 						}
 						if($diffCommonNameEn) {
-							$logToUpdate .= '....common name (en) : '.'<br />'.
-											'........................csv : '.$importedEntity['commonNameEn'].'<br />'.
-											'........................db  : '.$entities[$idToRetrive]->getCommonNameEn().
-											'<br />';
+							$logToUpdate .= $this->getTableFragment(
+													'common name (en)',
+													$entities[$idToRetrive]->getCommonNameEn(),
+													$importedEntity['commonNameEn']);
 							$entities[$idToRetrive]->setCommonNameEn($importedEntity['commonNameEn']);
 						}
 
-						$logToUpdate .= '<br />';
+						$logToUpdate .= '</table>';
 					}
 				// No (have to create a new entity)
 				} else {
@@ -316,6 +332,48 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 						;
 					$em->persist($newSyntaxonCore);
 
+					// Log entity to create
+					$logToCreate .= "<table class='table element'>
+										<tr class='header'>
+											<td class='title'>Syntaxon</td>
+											<td>
+												<table class='table'>
+													<tr><td><b>db  :</b> null</td></tr>
+													<tr><td><b>csv  :</b> (".$importedEntity['fixedCode'].") (".$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."</td></tr>
+												</table>
+											</td>
+										</tr>";
+
+					$logToCreate .= $this->getTableFragment(
+													'id',
+													'null',
+													$importedEntity['id']);
+					$logToCreate .= $this->getTableFragment(
+													'catminat code',
+													'null',
+													$importedEntity['catminatCode']);
+					$logToCreate .= $this->getTableFragment(
+													'level',
+													'null',
+													$importedEntity['level']);
+					$logToCreate .= $this->getTableFragment(
+													'syntaxon name',
+													'null',
+													$importedEntity['syntaxonName']);
+					$logToCreate .= $this->getTableFragment(
+													'syntaxon author',
+													'null',
+													$importedEntity['syntaxonAuthor']);
+					$logToCreate .= $this->getTableFragment(
+													'common name (fr)',
+													'null',
+													$importedEntity['commonNameFr']);
+					$logToCreate .= $this->getTableFragment(
+													'common name (en)',
+													'null',
+													$importedEntity['commonNameEn']);
+
+					$logToCreate .= "</table>";
 				}
 				
 				// Flush and detach entities each $batchSize time
@@ -348,6 +406,12 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 				$metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 			}
 
+			// Update last update param
+		    if(!$onlyLog) {
+		    	$lastUp = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
+		    	$lastUp->setLastUpdate(new \Datetime('now'));
+		    }
+
 			// Flush & clear EM
 			if(!$onlyLog) $em->flush();
 		    $em->clear();
@@ -356,7 +420,7 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 			if(!$onlyLog) {
 				$this->get('session')->getFlashBag()->add(
 		            'success',
-		            count($importKeys).' données ont été mises à jour ou ajoutées.'
+		            $countToUpdate.' données ont été mises à jour et '.$countToCreate.' ont été créées.'
 		        );
 			} else {
 				$this->get('session')->getFlashBag()->add(
@@ -365,18 +429,79 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 		        );
 			}
 	        
+	        // Save logs
+			$dateTime = new \DateTime('now');
+			$day = $dateTime->format('Y-m-d');
+			$hour = $dateTime->format('H-i-s');
 
-		}
+			$path = __DIR__.'/../../../../web/uploads/import/logs/';
+			$fileNameLogToUpdate   = 'bvCore_toUpdate_'.$day.'_'.$hour.'.html';
+			$fileNameLogIsUpToDate = 'bvCore_isUpToDate_'.$day.'_'.$hour.'.html';
+			$fileNameLogToCreate = 'bvCore_toCreate_'.$day.'_'.$hour.'.html';
+
+			if (!file_exists($path)) {
+			    mkdir($path, 0777, true);
+			}
+
+			$outputLogToUpdate = $this->getHtmlBase('Import Core (to update) '.$day.' '.$hour, $logToUpdate, $onlyLog);
+			file_put_contents($path.$fileNameLogToUpdate, $outputLogToUpdate);
+
+			$outputLogIsUpToDate = $this->getHtmlBase('Import Core (is up to date) '.$day.' '.$hour, $logIsUpToDate, $onlyLog);
+			file_put_contents($path.$fileNameLogIsUpToDate, $outputLogIsUpToDate);
+
+			$outputLogToCreate = $this->getHtmlBase('Import Core (to create) '.$day.' '.$hour, $logToCreate, $onlyLog);
+			file_put_contents($path.$fileNameLogToCreate, $outputLogToCreate);
+
+		} // end form is valid
 
 		return $this->render('evegAppBundle:Admin:importCore.html.twig', array(
-				'form' => $form->createView(),
-				'countIsUpToDate' => $countIsUpToDate,
-				'countToUpdate' => $countToUpdate,
-				'countToCreate' => $countToCreate,
-				'logIsUpToDate' => $logIsUpToDate,
-				'logToUpdate' => $logToUpdate,
+				'form' 				=> $form->createView(),
+				'countIsUpToDate' 	=> $countIsUpToDate,
+				'countToUpdate' 	=> $countToUpdate,
+				'countToCreate' 	=> $countToCreate,
+				'onlyLog'			=> $onlyLog,
+				'fileLogToUpdate'   => isset($fileNameLogToUpdate) ? $fileNameLogToUpdate : null,
+				'fileLogIsUpToDate' => isset($fileNameLogIsUpToDate) ? $fileNameLogIsUpToDate : null,
+				'fileLogToCreate'   => isset($fileNameLogToCreate) ? $fileNameLogToCreate : null
 			));
 
+	}
+
+	private function getTableFragment($titleValue, $dbValue, $csvValue)
+	{
+		$output = new Response(
+		"<tr class='row'>
+			<td class='title'>".$titleValue."</td>
+			<td>
+				<table class='table'>
+					<tr><td><b>db : </b>".$dbValue."</td></tr>
+					<tr><td><b>csv :</b> ".$csvValue."</td></tr>
+				</table>
+			</td>
+		</tr>");
+
+		return $output->getContent();
+	}
+
+	private function getHtmlBase($title, $content, $onlyLog)
+	{
+		$sim = '';
+		if($onlyLog) $sim = "<h3>(simulation d'import)</h3>";
+		$output = new Response(
+		'<html lang="fr"><head><meta charset="UTF-8"><title>'.$title.'</title>
+		<style>
+			.element{background-color: #F5F5F5;border: 2px solid #B5B5B5;margin-bottom: 15px;width: 100%}
+			.header{background-color: #E3E3E3;}
+			.title{width: 200px;font-weight: bold;}
+			tr.row{border-bottom: 1px solid #B5B5B5;}
+		</style>
+		</head><body>
+			<h1>'.$title.'</h1>'.$sim.'
+			'.$content.'
+		</body></html>
+		');
+
+		return $output->getContent();
 	}
 
 	/**
