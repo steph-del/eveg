@@ -12,6 +12,7 @@ use eveg\AppBundle\Entity\SyntaxonRepartitionEurope;
 use eveg\AppBundle\Entity\SyntaxonBiblio;
 use eveg\AppBundle\Entity\SyntaxonEcology;
 use eveg\AppBundle\Entity\Baseflor;
+use eveg\AppBundle\Entity\ImportLog;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -115,19 +116,26 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 			$file = $form->get('importFile')->getData();
 			$mimeType = $file->getMimeType();
 			$clientOriginaFilelName = $file->getClientOriginalName();
+			$clientOriginaFilelNameWhitoutExtension = basename($file->getClientOriginalName(), '.csv');
+			$clientOriginalFileExtension = $file->getClientOriginalExtension();
 
 			// File type verification
 			if(($mimeType !== 'text/csv') && (FALSE == preg_match('/\.csv/i', $clientOriginaFilelName))) {
 				Throw new HttpException(400, "The file must be a csv (the file MIME type should be 'text/csv' or the file name should contains '.csv').");
 			}
 
+			// Variables
+			$dateTime = new \DateTime('now');
+			$day = $dateTime->format('Y-m-d');
+			$hour = $dateTime->format('H-i-s');
+
 			// Moves the uploaded file
-			$name = $file->getClientOriginalName();
+			$importFileName = $clientOriginaFilelNameWhitoutExtension.'_'.$day.'_'.$hour.'.'.$clientOriginalFileExtension;
 			$dir = __DIR__.'/../../../../web/uploads/import/core';
-			$file->move($dir, $name);
+			$file->move($dir, $importFileName);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// push the csv data into an array
+			$import = $this->csv_to_array($dir.'/'.$importFileName, ';');		// push the csv data into an array
 			$importKeys = array_column($import, 'id');				// get the id values
 			$importKeys = array_map('intval', $importKeys);			// make sure that $importKeys contains integer data
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
@@ -429,28 +437,72 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 		        );
 			}
 	        
-	        // Save logs
-			$dateTime = new \DateTime('now');
-			$day = $dateTime->format('Y-m-d');
-			$hour = $dateTime->format('H-i-s');
-
+	        // Save logs files
 			$path = __DIR__.'/../../../../web/uploads/import/logs/';
-			$fileNameLogToUpdate   = 'bvCore_toUpdate_'.$day.'_'.$hour.'.html';
-			$fileNameLogIsUpToDate = 'bvCore_isUpToDate_'.$day.'_'.$hour.'.html';
-			$fileNameLogToCreate = 'bvCore_toCreate_'.$day.'_'.$hour.'.html';
+			
+			$countToUpdate > 0   ? $fileNameLogToUpdate   = 'bvCore_toUpdate_'.$day.'_'.$hour.'.html'    : $fileNameLogToUpdate   = null;
+			$countIsUpToDate > 0 ? $fileNameLogIsUpToDate = 'bvCore_isUpToDate_'.$day.'_'.$hour.'.html'  : $fileNameLogIsUpToDate = null;
+			$countToCreate > 0   ? $fileNameLogToCreate   = 'bvCore_toCreate_'.$day.'_'.$hour.'.html'    : $fileNameLogToCreate   = null;
 
 			if (!file_exists($path)) {
 			    mkdir($path, 0777, true);
 			}
 
-			$outputLogToUpdate = $this->getHtmlBase('Import Core (to update) '.$day.' '.$hour, $logToUpdate, $onlyLog);
-			file_put_contents($path.$fileNameLogToUpdate, $outputLogToUpdate);
+			if($countToUpdate > 0) {
+				$outputLogToUpdate = $this->getHtmlBase('Import Core (to update) '.$day.' '.$hour, $logToUpdate, $onlyLog);
+				file_put_contents($path.$fileNameLogToUpdate, $outputLogToUpdate);
+			}
+			
+			if($countIsUpToDate > 0) {
+				$outputLogIsUpToDate = $this->getHtmlBase('Import Core (is up to date) '.$day.' '.$hour, $logIsUpToDate, $onlyLog);
+				file_put_contents($path.$fileNameLogIsUpToDate, $outputLogIsUpToDate);
+			}
 
-			$outputLogIsUpToDate = $this->getHtmlBase('Import Core (is up to date) '.$day.' '.$hour, $logIsUpToDate, $onlyLog);
-			file_put_contents($path.$fileNameLogIsUpToDate, $outputLogIsUpToDate);
+			if($countToCreate > 0) {
+				$outputLogToCreate = $this->getHtmlBase('Import Core (to create) '.$day.' '.$hour, $logToCreate, $onlyLog);
+				file_put_contents($path.$fileNameLogToCreate, $outputLogToCreate);
+			}
 
-			$outputLogToCreate = $this->getHtmlBase('Import Core (to create) '.$day.' '.$hour, $logToCreate, $onlyLog);
-			file_put_contents($path.$fileNameLogToCreate, $outputLogToCreate);
+			// Logs into database
+			$currentUser    = $this->getUser();
+			$log_isUpToDate = new ImportLog;
+			$log_toUpdate   = new ImportLog;
+			$log_toCreate   = new ImportLog;
+
+			$em->persist($log_isUpToDate);
+			$em->persist($log_toUpdate);
+			$em->persist($log_toCreate);
+
+			$log_isUpToDate->setReference('core')
+						   ->setState('up to date')
+						   ->setDate($dateTime)
+						   ->setUser($currentUser->getUserName())
+						   ->setCount($countIsUpToDate)
+						   ->setSimulation($onlyLog)
+						   ->setLogFilename($fileNameLogIsUpToDate)
+						   ->setImportFilename($importFileName)
+						   ->setImportClientOriginalFilename($clientOriginaFilelName);
+			$log_toUpdate->setReference('core')
+						 ->setState('to update')
+						 ->setDate($dateTime)
+						 ->setUser($currentUser->getUserName())
+						 ->setCount($countToUpdate)
+						 ->setSimulation($onlyLog)
+						 ->setLogFilename($fileNameLogToUpdate)
+						 ->setImportFilename($importFileName)
+						 ->setImportClientOriginalFilename($clientOriginaFilelName);
+			$log_toCreate->setReference('core')
+						 ->setState('to create')
+						 ->setDate($dateTime)
+						 ->setUser($currentUser->getUserName())
+						 ->setCount($countToCreate)
+						 ->setSimulation($onlyLog)
+						 ->setLogFilename($fileNameLogToCreate)
+						 ->setImportFilename($importFileName)
+						 ->setImportClientOriginalFilename($clientOriginaFilelName);
+
+			$em->flush();
+		    $em->clear();
 
 		} // end form is valid
 
