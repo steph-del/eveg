@@ -97,9 +97,9 @@ class SyntaxonCoreRepository extends EntityRepository
 			$this->ueFilter($qb, $ueFilter, false);
 		}
 		// Department filter
-		/*if($depFrFilter != null) {
-			$this->departmentFrFilter($qb, $depFrFilter);
-		}*/
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, false);
+		}
 
 		if($returnArray == true) {
 			return $qb->getQuery()->getArrayResult();
