@@ -232,16 +232,14 @@ eveg:
             text: |
                 Ce site web a été réalisé par Stéphane Delplanque
                 Adresse : Labarthe, 46140 Bélaye
-                Email: stephanedelplanque@yahoo.fr
-                Direction de la publication: Stéphane Delplanque
+                Email : stephane@e-veg.net
         host:
             title: Hebergement
             text: |
-                Ce site est hébergé par l'Association Tela Botanica
-                4 rue de Belfort
-                34000 MONTPELLIER
+                Ce site est hébergé par o2switch
+                222-224 Boulevard Gustave Flaubert
+                63000 Clermont-Ferrand
                 FRANCE
-                Tél. : +33 (0)4 67 52 41 22
         cookies:
             title: Les cookies et leur utilisation
             what_is_it:
@@ -262,7 +260,7 @@ eveg:
             piwik:
                 title: Piwik
                 text: |
-                    Ce site Web utilise Piwik, un service analytique libre. Piwik utilise des cookies. Les informations générées par le cookie concernent votre utilisation du site Web. Votre adresse IP est anonymisée (2 octets) avant d'être stockée dans une base de données sur les serveurs de Gandi (gandi.net, 63-65 boulevard Massena, 75013 Paris FRANCE). Vos données ne sont jamais transmises à des tiers.
+                    Ce site Web utilise Piwik, un service analytique libre. Piwik utilise des cookies. Les informations générées par le cookie concernent votre utilisation du site Web. Votre adresse IP est anonymisée (2 octets) avant d'être stockée dans une base de données sur les serveurs d'o2switch (serveurs basés en France, à Clermont-Ferand). Vos données ne sont jamais transmises à des tiers.
                     Piwik est le seul logiciel recommandé, à l'heure actuelle, par la Commission nationale de l'informatique et des libertés (CNIL) afin de garantir l'anonymisation de vos données. Nous avons fait le choix de cette solution afin d'éviter que vos données ne soient récupérées et analysées par des tiers, souvent pour des besoins publicitaires.
         law:
             title: Loi informatique et libertés
