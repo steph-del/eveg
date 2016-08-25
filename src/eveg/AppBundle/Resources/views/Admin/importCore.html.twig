@@ -37,9 +37,9 @@
 				</ul>
 			</div>
 
-			{% if (countIsUpToDate is not empty) or (countToUpdate is not empty) or (countToCreate is not empty) %}
+			{% if (countIsUpToDate is not empty) or (countToUpdate is not empty) or (countToCreate is not empty) or (countToRemove is not empty) %}
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						{% if onlyLog == true %}
 							<div class="thumbnail"><div class="caption text-center">
 								<p>Données à jour :</p>
@@ -56,7 +56,7 @@
 							
 						{% endif %}
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						{% if onlyLog == true %}
 							<div class="thumbnail"><div class="caption text-center">
 								<p>Données à mettre à jour :</p>
@@ -74,7 +74,7 @@
 						{% endif %}
 
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						{% if onlyLog == true %}
 							<div class="thumbnail"><div class="caption text-center">
 								<p>Données à créer :</p>
@@ -82,6 +82,24 @@
 								<p>
 									{% if fileLogToCreate is not empty %}
 										<a href="../../../uploads/import/logs/{{ fileLogToCreate }}" target="_blank">Afficher le log</a>
+									{% else %}
+										<p>-</p>
+									{% endif %}
+								</p>
+							</div></div>
+						{% else %}
+							
+						{% endif %}
+						
+					</div>
+					<div class="col-md-3">
+						{% if onlyLog == true %}
+							<div class="thumbnail"><div class="caption text-center">
+								<p>Données à supprimer :</p>
+								<p class="_2em">{{ countToRemove }}</p>
+								<p>
+									{% if fileLogToRemove is not empty %}
+										<a href="../../../uploads/import/logs/{{ fileLogToRemove }}" target="_blank">Afficher le log</a>
 									{% else %}
 										<p>-</p>
 									{% endif %}
