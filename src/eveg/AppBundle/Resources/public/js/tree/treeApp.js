@@ -37,6 +37,9 @@ $(function(){
 	      	//alert(data);
 	      	//alert(Routing.generate('api_get_syntaxon_node', { key: node.key}, true));
 	    },
+	    createNode: function (event, data) {
+	    	$(".fancytree-title").tooltip({placement:'right', container: 'body'});
+	    },
 	    init: function(event, data) {
 	    	expandNodes();
 	    },
