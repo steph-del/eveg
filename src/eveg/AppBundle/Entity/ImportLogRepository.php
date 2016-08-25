@@ -10,4 +10,32 @@ namespace eveg\AppBundle\Entity;
  */
 class ImportLogRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAll($limitItems = null)
+	{
+		$qb = $this->createQueryBuilder('l');
+
+		$qb->select('l')
+		   ->orderBy('l.date', 'DESC');
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findGroupedByDate($limitItems = null)
+	{
+		$qb = $this->createQueryBuilder('l');
+
+		$qb->select('l')
+		   ->groupBy('l.date')
+		   ->orderBy('l.date', 'DESC');
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
