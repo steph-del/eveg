@@ -74,9 +74,9 @@ class DefaultController extends Controller
 		));
 	}
 
-	public function howtoAction()
+	public function aboutAction()
 	{
-		return $this->render('evegAppBundle:Default:howto.html.twig');
+		return $this->render('evegAppBundle:Default:about.html.twig');
 	}
 
 	public function contactAction()

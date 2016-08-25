@@ -212,6 +212,18 @@ body {
 	background: url("/../eveg/web/img/patterns/saxgra_bg.jpg") no-repeat center center;
 }
 
+ .jumbotron.contact {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
+
+ .jumbotron.admin {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
+
+ .jumbotron.about {
+ 	background-image: url("/../eveg/web/img/patterns/code.jpg");
+ }
+
 /*
  * Thumbnail
  ***********/
@@ -414,6 +426,8 @@ body {
 	padding: 0;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	min-height: 40px;
 	margin-top: 15px;
 
@@ -423,10 +437,10 @@ body {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 30px;
+	min-height: 30px;
 }
 .footer-item {
-	width: 150px;
+	//width: 150px;
 	text-align: right;
 }
 .footer-infos {
@@ -892,17 +906,10 @@ img.syntaxonIllustration{
 	} 
 }
 
+
 /*
  * Contact page
  **************/
- .jumbotron.contact {
- 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
- }
-
- .jumbotron.admin {
- 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
- }
-
  .contact-thumbnail {
  	display: flex;
 

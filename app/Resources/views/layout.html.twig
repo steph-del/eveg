@@ -127,6 +127,8 @@
 					{{ render(controller('evegAppBundle:Default:footerInfos')) }}
 				</div>
 				<div class="footer-item">
+					<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
+					<span> | </span>
 					<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
 				</div>
 			{% endblock %}

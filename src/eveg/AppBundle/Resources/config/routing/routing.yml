@@ -20,9 +20,9 @@ eveg_app_participate:
     locales:  { fr: "/participer", en: "/en/participate", de: "/de/teilnehmen", es: "/es/participar", it: "/it/partecipare" }
     defaults: { _controller: evegAppBundle:Default:participate }
 
-eveg_app_howto:
-    locales:  { fr: "/utiliser", en: "/en/howto", de: "/de/verwendung", es: "/es/uso", it: "/it/uso" }
-    defaults: { _controller: evegAppBundle:Default:howto }
+eveg_app_about:
+    locales:  { fr: "/a-propos-du-projet-eveg", en: "/en/about-eveg-project", de: "/de/um-die-eveg-projekt", es: "/es/sobre-el-proyecto-eveg", it: "/it/sul-progetto-eveg" }
+    defaults: { _controller: evegAppBundle:Default:about }
 
 eveg_app_contact:
     locales:  { fr: "/contact", en: "/en/contact", de: "/de/kontakt", es: "/es/contacto", it: "/it/contatto" }
