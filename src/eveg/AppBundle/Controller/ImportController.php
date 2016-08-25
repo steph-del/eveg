@@ -29,18 +29,17 @@ class ImportController extends Controller
 	{
 		// Retrieves all syntaxonCore entities
 		$em = $this->getDoctrine()->getManager();
-dump('D1 : '.$em->getUnitOfWork()->size());
 		$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
-dump('D2 : '.$em->getUnitOfWork()->size());
+
 		// Push entities into array
-		$dbScEntities = array();
+		$dbKeys = array();
 		foreach($entities as $key => $entity) {
 			$arrayElements[$key] = $entity->getFixedCode();
-			array_push($dbScEntities, $entity->getFixedCode());
+			array_push($dbKeys, $entity->getFixedCode());
 		}
 
 		// Test if all fixedCode are unique whitin the SyntaxonCoreEntity
-		$countElements = array_count_values($dbScEntities);
+		$countElements = array_count_values($dbKeys);
 		$nonUniqueFixedCode = '';
 		foreach ($countElements as $key => $value) {
 			if($value > 1) $nonUniqueFixedCode .= $key.', ';
@@ -99,9 +98,11 @@ dump('D2 : '.$em->getUnitOfWork()->size());
         $logIsUpToDate 	 = (string)"";	  // log for data already up to date
 		$logToUpdate   	 = (string)"";	  // data to update
 		$logToCreate   	 = (string)"";	  // data to create in db
+		$logToRemove   	 = (string)"";	  // data to remove in db
 		$countIsUpToDate = 0;	  		  // counter for data already up to date
 		$countToUpdate 	 = 0;	  		  // -- data to update
 		$countToCreate 	 = 0;	  		  // -- data to create in db
+		$countToRemove 	 = 0;	  		  // -- data to remove in db
 
         // Job routine
 		if($form->isValid()) {
@@ -136,8 +137,8 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 
 			// Variables
 			$import = $this->csv_to_array($dir.'/'.$importFileName, ';');		// push the csv data into an array
-			$importKeys = array_column($import, 'id');				// get the id values
-			$importKeys = array_map('intval', $importKeys);			// make sure that $importKeys contains integer data
+			$importKeys = array_column($import, 'fixedCode');					// get the id values
+			$importKeys = array_map('intval', $importKeys);						// make sure that $importKeys contains integer data
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
 			$cycle     = 0;     // counts the number of batch cycles
@@ -160,17 +161,17 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 			}
 
 			// Push SCore fixed codes (==id) into array
-			$dbScEntities = array();
+			$dbKeys = array();
 			foreach($entities as $key => $entity) {
 				//$arrayElements[$key] = $entity->getFixedCode();
-				array_push($dbScEntities, $entity->getFixedCode());
+				array_push($dbKeys, $entity->getFixedCode());
 			}
 
 			// Parse import data and detach SyntaxonCore entities already up to date
 			foreach($import as $key => $importedEntity) {
-				$idToRetrive = array_search($importedEntity['fixedCode'], $dbScEntities);
+				$idToRetrieve = array_search($importedEntity['fixedCode'], $dbKeys);
 				// Syntaxon already exists in db
-				if($idToRetrive !== FALSE) {
+				if($idToRetrieve !== FALSE) {
 					// Find differences
 					$diffFixedCode 		= false;
 					$diffCatminatCode 	= false;
@@ -179,13 +180,13 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 					$diffSyntaxonAuthor = false;
 					$diffCommonName 	= false;
 					$diffCommonNameEn 	= false;
-					if($entities[$idToRetrive]->getFixedCode() 		!= $importedEntity['fixedCode']) 		$diffFixedCode = true;
-					if($entities[$idToRetrive]->getCatminatCode() 	!= $importedEntity['catminatCode']) 	$diffCatminatCode = true;
-					if($entities[$idToRetrive]->getLevel() 			!= $importedEntity['level']) 			$diffLevel = true;
-					if($entities[$idToRetrive]->getSyntaxonName() 	!= $importedEntity['syntaxonName']) 	$diffSyntaxonName = true;
-					if($entities[$idToRetrive]->getSyntaxonAuthor() != $importedEntity['syntaxonAuthor']) 	$diffSyntaxonAuthor = true;
-					if($entities[$idToRetrive]->getCommonName() 	!= $importedEntity['commonNameFr']) 	$diffCommonName = true;
-					if($entities[$idToRetrive]->getCommonNameEn() 	!= $importedEntity['commonNameEn']) 	$diffCommonNameEn = true;
+					if($entities[$idToRetrieve]->getFixedCode() 		!= $importedEntity['fixedCode']) 		$diffFixedCode = true;
+					if($entities[$idToRetrieve]->getCatminatCode() 	!= $importedEntity['catminatCode']) 	$diffCatminatCode = true;
+					if($entities[$idToRetrieve]->getLevel() 			!= $importedEntity['level']) 			$diffLevel = true;
+					if($entities[$idToRetrieve]->getSyntaxonName() 	!= $importedEntity['syntaxonName']) 	$diffSyntaxonName = true;
+					if($entities[$idToRetrieve]->getSyntaxonAuthor() != $importedEntity['syntaxonAuthor']) 	$diffSyntaxonAuthor = true;
+					if($entities[$idToRetrieve]->getCommonName() 	!= $importedEntity['commonNameFr']) 	$diffCommonName = true;
+					if($entities[$idToRetrieve]->getCommonNameEn() 	!= $importedEntity['commonNameEn']) 	$diffCommonNameEn = true;
 
 					// If there is no difference between csv file and db
 					// then we detach the entity
@@ -205,7 +206,7 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 												<td class='title'>Syntaxon</td>
 												<td>
 													<table class='table'>
-														<tr><td><b>db  :</b> (".$entities[$idToRetrive]->getFixedCode().")(".$entities[$idToRetrive]->getCatminatCode().") ".$entities[$idToRetrive]->getSyntaxonName()." ".$entities[$idToRetrive]->getSyntaxonAuthor()."</td></tr>
+														<tr><td><b>db  :</b> (".$entities[$idToRetrieve]->getFixedCode().")(".$entities[$idToRetrieve]->getCatminatCode().") ".$entities[$idToRetrieve]->getSyntaxonName()." ".$entities[$idToRetrieve]->getSyntaxonAuthor()."</td></tr>
 														<tr><td><b>csv  :</b> (".$importedEntity['fixedCode'].") (".$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."</td></tr>
 													</table>
 												</td>
@@ -214,7 +215,7 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 
 						// Delete item from csv file and from entity manager
 						unset($import[$key]);
-						$em->detach($entities[$idToRetrive]);
+						$em->detach($entities[$idToRetrieve]);
 
 					}
 
@@ -223,9 +224,9 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 			$em->flush();
 
 			// Push entities into array
-			$dbScEntities = array();
+			$dbKeys = array();
 			foreach($entities as $key => $entity) {
-				array_push($dbScEntities, $entity->getFixedCode());
+				array_push($dbKeys, $entity->getFixedCode());
 			}
 
 			// Check data before import
@@ -233,10 +234,10 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 
 			foreach($import as $key => $importedEntity) {
 				// Does the entity already exists (compare both id) ?
-				$idToRetrive = array_search($importedEntity['fixedCode'], $dbScEntities);
+				$idToRetrieve = array_search($importedEntity['fixedCode'], $dbKeys);
 
 				// Yes, it already exists
-				if($idToRetrive !== FALSE) {
+				if($idToRetrieve !== FALSE) {
 					// Find differences
 					$diffFixedCode 		= false;
 					$diffCatminatCode 	= false;
@@ -245,13 +246,13 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 					$diffSyntaxonAuthor = false;
 					$diffCommonName 	= false;
 					$diffCommonNameEn 	= false;
-					if($entities[$idToRetrive]->getFixedCode() 		!= $import[$key]['fixedCode']) 		$diffFixedCode = true;
-					if($entities[$idToRetrive]->getCatminatCode() 	!= $import[$key]['catminatCode']) 	$diffCatminatCode = true;
-					if($entities[$idToRetrive]->getLevel() 			!= $import[$key]['level']) 			$diffLevel = true;
-					if($entities[$idToRetrive]->getSyntaxonName() 	!= $import[$key]['syntaxonName']) 	$diffSyntaxonName = true;
-					if($entities[$idToRetrive]->getSyntaxonAuthor() != $import[$key]['syntaxonAuthor']) $diffSyntaxonAuthor = true;
-					if($entities[$idToRetrive]->getCommonName() 	!= $import[$key]['commonNameFr']) 	$diffCommonName = true;
-					if($entities[$idToRetrive]->getCommonNameEn() 	!= $import[$key]['commonNameEn']) 	$diffCommonNameEn = true;
+					if($entities[$idToRetrieve]->getFixedCode() 		!= $import[$key]['fixedCode']) 		$diffFixedCode = true;
+					if($entities[$idToRetrieve]->getCatminatCode() 	!= $import[$key]['catminatCode']) 	$diffCatminatCode = true;
+					if($entities[$idToRetrieve]->getLevel() 			!= $import[$key]['level']) 			$diffLevel = true;
+					if($entities[$idToRetrieve]->getSyntaxonName() 	!= $import[$key]['syntaxonName']) 	$diffSyntaxonName = true;
+					if($entities[$idToRetrieve]->getSyntaxonAuthor() != $import[$key]['syntaxonAuthor']) $diffSyntaxonAuthor = true;
+					if($entities[$idToRetrieve]->getCommonName() 	!= $import[$key]['commonNameFr']) 	$diffCommonName = true;
+					if($entities[$idToRetrieve]->getCommonNameEn() 	!= $import[$key]['commonNameEn']) 	$diffCommonNameEn = true;
 
 					// There is no difference (redundant)
 					if(!$diffFixedCode
@@ -272,7 +273,7 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 												<td class='title'>Syntaxon</td>
 												<td>
 													<table class='table'>
-														<tr><td><b>db  :</b> (".$entities[$idToRetrive]->getFixedCode().")(".$entities[$idToRetrive]->getCatminatCode().") ".$entities[$idToRetrive]->getSyntaxonName()." ".$entities[$idToRetrive]->getSyntaxonAuthor()."</td></tr>
+														<tr><td><b>db  :</b> (".$entities[$idToRetrieve]->getFixedCode().")(".$entities[$idToRetrieve]->getCatminatCode().") ".$entities[$idToRetrieve]->getSyntaxonName()." ".$entities[$idToRetrieve]->getSyntaxonAuthor()."</td></tr>
 														<tr><td><b>csv  :</b> (".$importedEntity['fixedCode'].") (".$importedEntity['catminatCode'].") ".$importedEntity['syntaxonName']." ".$importedEntity['syntaxonAuthor']."</td></tr>
 													</table>
 												</td>
@@ -281,44 +282,44 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 						if($diffCatminatCode) {
 							$logToUpdate .= $this->getTableFragment(
 													'catminat code',
-													$entities[$idToRetrive]->getCatminatCode(),
+													$entities[$idToRetrieve]->getCatminatCode(),
 													$importedEntity['catminatCode']);
-							$entities[$idToRetrive]->setCatminatCode($importedEntity['catminatCode']);
+							$entities[$idToRetrieve]->setCatminatCode($importedEntity['catminatCode']);
 						}
 						if($diffLevel) {
 							$logToUpdate .= $this->getTableFragment(
 													'level',
-													$entities[$idToRetrive]->getLevel(),
+													$entities[$idToRetrieve]->getLevel(),
 													$importedEntity['level']);
-							$entities[$idToRetrive]->setLevel($importedEntity['level']);
+							$entities[$idToRetrieve]->setLevel($importedEntity['level']);
 						}
 						if($diffSyntaxonName) {
 							$logToUpdate .= $this->getTableFragment(
 													'syntaxon name',
-													$entities[$idToRetrive]->getSyntaxonName(),
+													$entities[$idToRetrieve]->getSyntaxonName(),
 													$importedEntity['syntaxonName']);
-							$entities[$idToRetrive]->setSyntaxonName($importedEntity['syntaxonName']);
+							$entities[$idToRetrieve]->setSyntaxonName($importedEntity['syntaxonName']);
 						}
 						if($diffSyntaxonAuthor) {
 							$logToUpdate .= $this->getTableFragment(
 													'syntaxon author',
-													$entities[$idToRetrive]->getSyntaxonAuthor(),
+													$entities[$idToRetrieve]->getSyntaxonAuthor(),
 													$importedEntity['syntaxonAuthor']);
-							$entities[$idToRetrive]->setSyntaxonAuthor($importedEntity['syntaxonAuthor']);
+							$entities[$idToRetrieve]->setSyntaxonAuthor($importedEntity['syntaxonAuthor']);
 						}
 						if($diffCommonName) {
 							$logToUpdate .= $this->getTableFragment(
 													'common name (fr)',
-													$entities[$idToRetrive]->getCommonName(),
+													$entities[$idToRetrieve]->getCommonName(),
 													$importedEntity['commonNameFr']);
-							$entities[$idToRetrive]->setCommonName($import[$key]['commonNameFr']);
+							$entities[$idToRetrieve]->setCommonName($import[$key]['commonNameFr']);
 						}
 						if($diffCommonNameEn) {
 							$logToUpdate .= $this->getTableFragment(
 													'common name (en)',
-													$entities[$idToRetrive]->getCommonNameEn(),
+													$entities[$idToRetrieve]->getCommonNameEn(),
 													$importedEntity['commonNameEn']);
-							$entities[$idToRetrive]->setCommonNameEn($importedEntity['commonNameEn']);
+							$entities[$idToRetrieve]->setCommonNameEn($importedEntity['commonNameEn']);
 						}
 
 						$logToUpdate .= '</table>';
@@ -407,6 +408,58 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 
 			} // for each imported entity loop
 
+			// Entity to be removed
+			foreach ($dbKeys as $dbKey => $dbId) {
+				$idToRetrieve = array_search($dbId, $importKeys);
+				if($idToRetrieve != FALSE) {
+					// There is an occurence
+					continue;
+				} else {
+					// No occurence : syntaxon id to remove
+					$countToRemove++;
+
+					$logToRemove .= "<table class='table element'>
+							<tr class='header'>
+								<td class='title'>Syntaxon</td>
+								<td>
+									<table class='table'>
+										<tr><td><b>db  :</b> (".$entities[$dbKey]->getFixedCode().") (".$entities[$dbKey]->getCatminatCode().") ".$entities[$dbKey]->getSyntaxonName()." ".$entities[$dbKey]->getSyntaxonAuthor()."</td></tr>
+										<tr><td><b>csv  :</b> null</td></tr>
+									</table>
+								</td>
+							</tr>";
+					$logToRemove .= $this->getTableFragment(
+									'id',
+									$entities[$dbKey]->getFixedCode(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'catminat code',
+									$entities[$dbKey]->getCatminatCode(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'level',
+									$entities[$dbKey]->getLevel(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'syntaxon name',
+									$entities[$dbKey]->getSyntaxonName(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'syntaxon author',
+									$entities[$dbKey]->getSyntaxonAuthor(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'common name (fr)',
+									$entities[$dbKey]->getCommonName(),
+									'null');
+					$logToRemove .= $this->getTableFragment(
+									'common name (en)',
+									$entities[$dbKey]->getCommonNameEn(),
+									'null');
+				}
+			}
+			$logToRemove .= "</table>";
+
 			// Flush the last entities (the last batch cycle may not be full)
 			// Force setId : http://www.ens.ro/2012/07/03/symfony2-doctrine-force-entity-id-on-persist/
 			if(isset($newSyntaxonCore)) {
@@ -443,6 +496,7 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 			$countToUpdate > 0   ? $fileNameLogToUpdate   = 'bvCore_toUpdate_'.$day.'_'.$hour.'.html'    : $fileNameLogToUpdate   = null;
 			$countIsUpToDate > 0 ? $fileNameLogIsUpToDate = 'bvCore_isUpToDate_'.$day.'_'.$hour.'.html'  : $fileNameLogIsUpToDate = null;
 			$countToCreate > 0   ? $fileNameLogToCreate   = 'bvCore_toCreate_'.$day.'_'.$hour.'.html'    : $fileNameLogToCreate   = null;
+			$countToRemove > 0   ? $fileNameLogToRemove  = 'bvCore_toRemove_'.$day.'_'.$hour.'.html'    : $fileNameLogToRemove   = null;
 
 			if (!file_exists($path)) {
 			    mkdir($path, 0777, true);
@@ -463,15 +517,22 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 				file_put_contents($path.$fileNameLogToCreate, $outputLogToCreate);
 			}
 
+			if($countToRemove > 0) {
+				$outputLogToRemove = $this->getHtmlBase('Import Core (to remove) '.$day.' '.$hour, $logToRemove, $onlyLog);
+				file_put_contents($path.$fileNameLogToRemove, $outputLogToRemove);
+			}
+
 			// Logs into database
 			$currentUser    = $this->getUser();
 			$log_isUpToDate = new ImportLog;
 			$log_toUpdate   = new ImportLog;
 			$log_toCreate   = new ImportLog;
+			$log_toRemove   = new ImportLog;
 
 			$em->persist($log_isUpToDate);
 			$em->persist($log_toUpdate);
 			$em->persist($log_toCreate);
+			$em->persist($log_toRemove);
 
 			$log_isUpToDate->setReference('core')
 						   ->setState('up to date')
@@ -500,6 +561,15 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 						 ->setLogFilename($fileNameLogToCreate)
 						 ->setImportFilename($importFileName)
 						 ->setImportClientOriginalFilename($clientOriginaFilelName);
+			$log_toRemove->setReference('core')
+						 ->setState('to remove')
+						 ->setDate($dateTime)
+						 ->setUser($currentUser->getUserName())
+						 ->setCount($countToRemove)
+						 ->setSimulation($onlyLog)
+						 ->setLogFilename($fileNameLogToRemove)
+						 ->setImportFilename($importFileName)
+						 ->setImportClientOriginalFilename($clientOriginaFilelName);
 
 			$em->flush();
 		    $em->clear();
@@ -511,10 +581,12 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 				'countIsUpToDate' 	=> $countIsUpToDate,
 				'countToUpdate' 	=> $countToUpdate,
 				'countToCreate' 	=> $countToCreate,
+				'countToRemove' 	=> $countToRemove,
 				'onlyLog'			=> $onlyLog,
 				'fileLogToUpdate'   => isset($fileNameLogToUpdate) ? $fileNameLogToUpdate : null,
 				'fileLogIsUpToDate' => isset($fileNameLogIsUpToDate) ? $fileNameLogIsUpToDate : null,
-				'fileLogToCreate'   => isset($fileNameLogToCreate) ? $fileNameLogToCreate : null
+				'fileLogToCreate'   => isset($fileNameLogToCreate) ? $fileNameLogToCreate : null,
+				'fileLogToRemove'   => isset($fileNameLogToRemove) ? $fileNameLogToRemove : null
 			));
 
 	}
@@ -1351,5 +1423,19 @@ dump('D2 : '.$em->getUnitOfWork()->size());
 		return $this->render('evegAppBundle:Admin:importBaseflor.html.twig', array(
 			'form' => $form->createView()
 		));
+	}
+
+	public function logsAction()
+	{
+
+		$em = $this->getDoctrine()->getManager();
+
+		$logsGroupedByDate = $em->getRepository('evegAppBundle:ImportLog')->findGroupedByDate();
+		$logs              = $em->getRepository('evegAppBundle:ImportLog')->findAll();
+
+		return $this->render('evegAppBundle:Admin:importLogs.html.twig', array(
+			'logs' 		 => $logs,
+			'logsByDate' => $logsGroupedByDate
+		));		
 	}
 }
