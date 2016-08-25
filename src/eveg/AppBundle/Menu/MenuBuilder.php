@@ -23,7 +23,7 @@ class MenuBuilder extends ContainerAware
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
 			->setAttribute('icon', 'home');
 		
-		$menu->addChild('App', array('route' =>'eveg_app_start', 'label' => 'eveg.menu.browse'));
+		//$menu->addChild('App', array('route' =>'eveg_app_start', 'label' => 'eveg.menu.browse'));
 
     if($securityContext->isGranted('ROLE_USER')) {
       $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
