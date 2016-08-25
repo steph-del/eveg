@@ -233,6 +233,12 @@ class DefaultController extends Controller
 			// Getting catCode service
 			$catCode = $this->get('eveg_app.catCode');
 
+			if($syntaxon->getLevel() == 'HAB') {
+				$classSyntaxons = $em->getRepository('evegAppBundle:SyntaxonCore')->getNextTreeNode($syntaxon->getId(), 'CLA', $depFrFilter, $ueFilter);
+			} else {
+				$classSyntaxons = null;
+			}
+
 			$allParents = $catCode->getAllParents($syntaxon->getCatminatCode());
 
 			// Retrieve synonyms according to user's rights
@@ -266,7 +272,8 @@ class DefaultController extends Controller
 			'repDepFrJson' => $repDepFrJson,
 			'repUeJson' => $repUeJson,
 			'species' => $species,
-			'ecologicalValuesAvg' => $ecologicalValuesAvg
+			'ecologicalValuesAvg' => $ecologicalValuesAvg,
+			'classSyntaxons' => $classSyntaxons
 		));
 		}
 

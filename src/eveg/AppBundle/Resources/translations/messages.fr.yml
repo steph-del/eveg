@@ -437,7 +437,10 @@ eveg:
                     title: Ajouter un lien
                     placeholder: http://www.tela-botanica.org
                     another: Ajouter un autre lien
-        
+            hab:
+                note: Les fiches Habitat n'ont pas de données écologiques associées
+                class: Classes de cet habitat :
+
         multiple_results:
             title: Plusieurs résultats
             explain : Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.

@@ -244,6 +244,17 @@ body {
  		border-top-color: $thumbPurpleColor;
  	}
 
+ 	&.syntaxon-link {
+ 		border-left: solid 3px #FFFFFF;
+ 		border-top: none;
+ 		text-align: left;
+ 		&.CLA {
+ 		border-left-color: $BgColorVH-CLA;
+ 			&:hover { background-color: lighten($BgColorVH-CLA, 15%); }
+ 		}
+ 	}
+ 	
+
  	.caption{
  		padding: 0;
  		h2{

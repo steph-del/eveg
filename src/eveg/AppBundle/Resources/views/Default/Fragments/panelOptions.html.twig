@@ -9,7 +9,7 @@
 	{% endif %}
 
 	{# COMPARE #}
-	{% if showCompare == true %}
+	{% if showCompare == true and syntaxonLevel != 'HAB' %}
 		<div id="compareOption" class="options_panel_icon {{ level }}" data-tooltip="tooltip" title="Comparer deux syntaxons." data-placement="left" data-toggle="modal" data-target="#modalCompare">
 			<i class="fa fa-files-o"></i>
 		</div>

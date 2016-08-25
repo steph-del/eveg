@@ -45,28 +45,46 @@
 				<div class="row">
 					<div class="col-md-8 viewLeft">
 
-						{# Synonyms #}
-						{% if synonyms is defined %}
-							{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms } only %}
+						{# HAB level #}
+						{% if syntaxon.level == 'HAB' and classSyntaxons is defined %}
+							<p class="text-center"><b>{{ 'eveg.app.show_one.hab.note'|trans }}</b></p>
+							<p class="text-center">{{ 'eveg.app.show_one.hab.class'|trans }}</p>
+							{% for class in classSyntaxons %}
+								<a class="no-style" href="{{ path('eveg_show_one', {id: class.id}) }}">
+									<div class="thumbnail syntaxon-link CLA">
+										<div class="caption">
+											<p><b>{{ class.syntaxonName }}</b> {{ class.syntaxonAuthor }}</p>
+											<i>{{ class.commonName }}</i>
+										</div>
+									</div>
+								</a>
+							{% endfor %}
+						{% else %}
+							{# Synonyms #}
+							{% if synonyms is defined %}
+								{% include 'evegAppBundle:Default/Fragments/CardPanels:synonymsPanel.html.twig' with { 'synonyms': synonyms } only %}
+							{% endif %}
+
+							{# Ecological specifications #}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon } only %}
+
+							{# Floristic cortege #}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species } only %}
+
+							{# Resources #}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:resourcesPanel.html.twig' with { 'syntaxon': syntaxon } only %}
+
+							{# Bibliography #}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:bibliographyPanel.html.twig' with { 'syntaxon': syntaxon, 'synonyms': synonyms } only %}
 						{% endif %}
-
-						{# Ecological specifications #}
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologyPanel.html.twig' with { 'syntaxon': syntaxon } only %}
-
-						{# Floristic cortege #}
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:floristicPanel.html.twig' with { 'species': species } only %}
-
-						{# Resources #}
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:resourcesPanel.html.twig' with { 'syntaxon': syntaxon } only %}
-
-						{# Bibliography #}
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:bibliographyPanel.html.twig' with { 'syntaxon': syntaxon, 'synonyms': synonyms } only %}
 
 					</div> <!-- ./viewLeft -->
 
 					<div class="col-md-4 viewRight">
 						<!-- photos -->
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon } only %}
+						{% if syntaxon.level != 'HAB' %}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon } only %}
+						{% endif %}
 
 						<div id="panels-map">
 							<!-- Fr departments repartition -->
@@ -77,7 +95,9 @@
 						</div>
 
 						<!-- Ecological valences -->
-						{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
+						{% if syntaxon.level != 'HAB' %}
+							{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
+						{% endif %}
 
 						<!-- Catminat code -->
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:catminatCodePanel.html.twig' with { 'catminatCode': syntaxon.catminatCode } only %}
