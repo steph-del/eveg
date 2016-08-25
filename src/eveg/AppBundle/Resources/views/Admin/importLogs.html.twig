@@ -1,0 +1,76 @@
+{# src/eveg/AppBundle/Resources/views/Admin/importLogs.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Logs d'imports {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="jumbotron admin">
+			<h1>Logs des imports - baseveg</h1>
+		</div>
+		<div class="col-md-12">
+			{% if logsByDate is not empty and logs is not empty %}
+				{% for logDate in logsByDate %}
+					<h2 class="text-center">Import du {{ logDate.date|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm:ss') }}</h2>
+					<table class="table table-condensed">
+						<tr class="info">
+							<th class="text-center">Référence</th>
+							<th class="text-center">Etat</th>
+							<th class="text-center">User</th>
+							<th class="text-center">Nombre d'entités</th>
+							<th class="text-center">Simulation ?</th>
+							<th class="text-center">Fichier de log</th>
+							<th class="text-center">Fichier importé (serveur)</th>
+							<th class="text-center">Fichier importé (à l'upload)</th>
+						</tr>
+					{% for log in logs %}
+						{% if log.date == logDate.date %}
+							<tr>
+								<td>
+									{{ log.reference }}
+								</td>
+								<td>
+									{{ log.state }}
+								</td>
+								<td>
+									{{ log.user }}
+								</td>
+								<td>
+									<div class="text-center">{{ log.count }}</div>
+								</td>
+								<td>
+									<div class="text-center">
+										{% if log.simulation == true %}
+											<i class="fa fa-toggle-on text-info" aria-hidden="true" title="Simulation"></i>
+										{% else %}
+											<i class="fa fa-toggle-off text-success" aria-hidden="true" title="Import réel"></i>
+										{% endif %}
+								</td>
+								<td>
+									<a class="no-style" href="../../../uploads/import/logs/{{ log.logFilename }}" target="_blank">{{ log.logFilename }}</a>
+								</td>
+								<td>
+									<a class="no-style" href="../../../uploads/import/{{ log.reference }}/{{ log.importFilename }}">{{ log.importFilename }}</a>
+								</td>
+								<td>
+									{{ log.importClientOriginalFilename }}
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					</table>
+				{% endfor %}
+			{% else %}
+				Aucun log n'a été trouvé
+			{% endif %}
+
+		</div>
+	</div>
+{% endblock %}

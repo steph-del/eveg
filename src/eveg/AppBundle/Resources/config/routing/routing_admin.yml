@@ -49,6 +49,10 @@ eveg_admin_import_baseflor:
     path: /import/baseflor
     defaults: { _controller: evegAppBundle:Import:importBaseflor }
 
+eveg_admin_import_logs:
+    path: /import/logs
+    defaults: { _controller: evegAppBundle:Import:logs }
+
 eveg_admin_versioning:
     path: /baseveg/versioning/list
     defaults: { _controller: evegAppBundle:Versioning:list }

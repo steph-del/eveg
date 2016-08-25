@@ -267,6 +267,10 @@ class MenuBuilder extends ContainerAware
       $menu['Import']->addChild('Ecology', array('route' => 'eveg_admin_import_baseveg_ecology', 'label' => 'Ecologie'));
       $menu['Import']->addChild('Biblio', array('route' => 'eveg_admin_import_baseveg_biblio', 'label' => 'Biblio'));
       $menu['Import']->addChild('Baseflor', array('route' => 'eveg_admin_import_baseflor', 'label' => 'Baseflor'));
+      $menu['Import']->addChild('Separator1')
+                     ->setAttribute('role', 'separator')
+                     ->setAttribute('class', 'divider');
+      $menu['Import']->addChild('Logs', array('route' => 'eveg_admin_import_logs', 'label' => 'Logs'));
     }
 
 		//$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
