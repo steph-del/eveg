@@ -51,6 +51,40 @@ eveg:
         will_be_deleted_m: va être définitivement supprimé
         will_be_deleted_f: va être définitivement supprimée
 
+    country:
+        austria: Autriche
+        belarus: Biélorussie
+        belgium: Belgique
+        bosnia_montenegro_albania: Bosnia and Herzegovina + Montenegro + Albania
+        bulgaria: Bulgarie
+        czech_republic: République Tchèque
+        denmark: Danemark
+        estonia_latvia_lithuania: Estonie + Lettonie + Lituanie
+        finland: Finlande
+        france: France
+        germany: Allemagne
+        greece: Grèce
+        hungary: Hongrie
+        ireland: Irlande
+        iceland: Islande
+        italy: Italie
+        luxembourg: Luxembourg
+        norway: Norvège
+        netherlands: Pays-bas
+        poland: Pologne
+        portugual: Portugual
+        romania_moldova: Roumanie + Moldavie
+        uk: Royaume-Uni
+        russia: Russie
+        serbia_macedonia: Serbie + Macédoine
+        slovakia: Slovaquie
+        slovenia_croatia: Slovénie + Croatie
+        spain: Espagne
+        sweden: Suède
+        swiss: Suisse
+        ukraine: Ukraine
+
+
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie
         error_occured: Oops! Une erreur est survenue
@@ -411,6 +445,15 @@ eveg:
                         7:          ranker, tangel
                         8:          anmoor, gyttja
                         9:          tourbe
+            
+            filters: 
+                title: Filtrer eVeg
+                dep: Par département (France mértopolitaine)
+                country: Par pays
+                explain: |
+                          Vous pouvez filtrer eVeg (les fiches, le moteur de recherche et l'arborescence) par département (France) ou par Pays.
+                          Si aucun pays / département n'est selectionné, les filtres ne sont pas actifs.
+
             breadcrumb:
                 one_parent: Syntaxon supérieur
                 more_parents: Syntaxons supérieurs
