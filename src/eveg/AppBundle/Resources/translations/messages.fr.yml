@@ -118,8 +118,8 @@ eveg:
     homepage:
         presentation:
             title: Présentation
-            1: "eVeg est une interface de consultation des données de baseveg et de baseflor (programme CATMINAT, par Philippe Julve)."
-            2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine et d'Europe, établie selon les principes de la phytosociologie synusiale intégrée."
+            1: "eVeg est une interface de consultation des données de baseveg (programme CATMINAT, par Philippe Julve)."
+            2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine avec une extension à l'Europe (voir Holartique et Eurasiatique pour certaines unités), établie selon les principes de la phytosociologie synusiale intégrée."
             3: "Chaque végétation connue fait l'objet d'une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques."
             4: Organisation générale du projet :
         participate:
