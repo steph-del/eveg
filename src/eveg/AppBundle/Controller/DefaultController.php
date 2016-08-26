@@ -52,7 +52,7 @@ class DefaultController extends Controller
 		$nbPdfsAlone = $wanted->howMany();
 
 		$whatsUp = $this->get('eveg_app.whatsup');
-		$newDocuments = $whatsUp->tellMeWhatsNew($limitResults = 50);
+		$newDocuments = $whatsUp->tellMeWhatsNew($limitResults = 15);
 
 		return $this->render('evegAppBundle:Default:activity.html.twig', array(
 			'wanted' => $pdfsAlone,
