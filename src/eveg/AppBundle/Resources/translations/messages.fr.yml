@@ -118,14 +118,14 @@ eveg:
     homepage:
         presentation:
             title: Présentation
-            1: "e-veg est une interface de consultation des données de baseveg et de baseflor (programme CATMINAT, par Philippe Julve)."
+            1: "eVeg est une interface de consultation des données de baseveg et de baseflor (programme CATMINAT, par Philippe Julve)."
             2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine et d'Europe, établie selon les principes de la phytosociologie synusiale intégrée."
             3: "Chaque végétation connue fait l'objet d'une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques."
             4: Organisation générale du projet :
         participate:
             title: Participer
             currently:
-                title: Actuellement sur e-veg
+                title: Actuellement sur eVeg
                 nbCards: |
                     fiches
                     descriptives
@@ -143,18 +143,18 @@ eveg:
     participate:
         title: Participer
         signup : Créer un compte utilisateur (gratuit)
-        login: Se connecter à e-veg
+        login: Se connecter à eVeg
         text: |
-            Depuis sa création, e-veg est un projet collaboratif.
-            Pour participer, il vous faut avant tout créer un compte et vous connecter à e-veg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
+            Depuis sa création, eVeg est un projet collaboratif.
+            Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
         add_doc:
             title: Ajouter un document
             1: |
                 De nombreux tableaux sont déjà disponibles en téléchargement sur le site.
-                Le projet de saisie des diagnoses est issu du groupe TB-Phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur e-veg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
+                Le projet de saisie des diagnoses est issu du groupe TB-phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
             2: Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
             3: |
-                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’e-veg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
+                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
             screen_label: "Une fois connecté, cliquez sur 'Ajouter un document' dans le panneau 'Ressources' d'une fiche"
 
         model: Modèle à suivre pour la saisie
@@ -168,7 +168,7 @@ eveg:
                 Une "bonne" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).
                 Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
             2: |
-                La politique en matière de droit d’auteur pour les photographies sur e-veg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
+                La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
                 La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA) et citation obligatoire de l’auteur.
             screen_label: "Une fois connecté, cliquez sur 'Ajouter une photo' dans le panneau 'Illustrations' d'une fiche"
 
@@ -187,26 +187,26 @@ eveg:
             screen_label: "Pour nous faire part de vos remarques, cliquez sur l'icone 'commentaire' dans le bandeau de la fiche et laissez-vous guider."
 
     about:
-        footer_title: A propos d'e-veg
-        title: A propos du projet e-veg
+        footer_title: A propos d'eVeg
+        title: A propos du projet eVeg
         presentation: 
-            1: L'application e-veg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.
+            1: L'application eVeg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.
             2: L'aplication a été réalisée et est maintenue de manière totalement bénévole. Le projet ne bénéficie d’aucune subvention.
-            3: Les orientations de développement sont faites par les auteurs principaux en concertation avec l'équipe de Tela botanica.
+            3: Les orientations de développement sont faites par les auteurs principaux en concertation avec l'équipe de Tela Botanica.
         authors: 
             title: Auteurs
             1: Les bases de données sont issues du programme CATMINAT de Philippe Julve
             2: Le développement informatique (site web) est réalisé par Stéphane Delplanque
             3: Les traductions (Espagnol, Allemand, Italien) sont réalisées par Florent Beck
             4: De nombreuses ressources sont issues du groupe de discussion TB-phyto
-            5: Ce projet est réalisé dans le cadre du réseau Tela botanica
+            5: Ce projet est réalisé dans le cadre du réseau Tela Botanica
 
         baseveg_baseflor:
             title: A propos de baseveg et de baseflor
             1: |
                 Baseveg et baseflor sont deux bases de données issues du programme CATMINAT (catalogue des milieux naturels) de Philippe Julve.
-                Baseveg présente un système de classification pour les végétations (synsystème) établit selon les principes de la phytosociologie synusiale intégrée. Il couvrait, à l’origine, la France métropolitaine et a ensuite été étendu à l’Europe. Cette base donne également une série de caractéristiques écologiques que vous pouvez retrouver sur e-veg ainsi que la chorologie pour la France métropolitaine (par département) ainsi que pour l’Europe (par pays).
-                Baseflor concerne les données floristiques et suit le référentiel BDTFX (base de données des trachéophytes de métropole et contrées limitrophes) coordonné par Benoit Bock dans le cadre du réseau Tela botanica. En plus de cet index, baseflor intègre de nombreuses données sur le cycle de vie de chaque taxon, leurs affinités phytosociologiques ainsi que les valences écologiques (échelles de Ph. Julve et de H. Ellenberg). Il permet également de faire le lien entre un taxon et une végétation grâce au code CATMINAT.
+                Baseveg présente un système de classification pour les végétations (synsystème) établit selon les principes de la phytosociologie synusiale intégrée. Il couvrait, à l’origine, la France métropolitaine et a ensuite été étendu à l’Europe. Cette base donne également une série de caractéristiques écologiques que vous pouvez retrouver sur eVeg ainsi que la chorologie pour la France métropolitaine (par département) ainsi que pour l’Europe (par pays).
+                Baseflor concerne les données floristiques et suit le référentiel BDTFX (base de données des trachéophytes de métropole et contrées limitrophes) coordonné par Benoit Bock dans le cadre du réseau Tela Botanica. En plus de cet index, baseflor intègre de nombreuses données sur le cycle de vie de chaque taxon, leurs affinités phytosociologiques ainsi que les valences écologiques (échelles de Ph. Julve et de H. Ellenberg). Il permet également de faire le lien entre un taxon et une végétation grâce au code CATMINAT.
         catminat_code:
             title: A propos du code CATMINAT
             1: |
@@ -224,11 +224,11 @@ eveg:
             db: |
                 Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
             website: |
-                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
+                Le site internet 'eVeg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
             photos: |
-                Les photographies téléversées sur e-veg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
+                Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
             documents: |
-                Les documents PDF téléversés sur e-veg bénéficient de leurs licences originelles.
+                Les documents PDF téléversés sur eVeg bénéficient de leurs licences originelles.
 
     contact:
         title: Contact
@@ -236,7 +236,7 @@ eveg:
                    CATMINAT (bases de données)
                    Pour les questions conercernant baseveg ou baseflor
         website: |
-                   Application e-veg
+                   Application eVeg
                    Pour les questions concernant les données et les fonctionnalités du site
         show_email: Afficher l'adresse email
 
@@ -280,7 +280,7 @@ eveg:
             text: |
                 Auteur : Stéphane Delplanque
                 Adresse : Labarthe, 46140 Bélaye
-                Email : stephane@e-veg.net
+                Email : stephane@eVeg.net
         host:
             title: Hebergement
             text: |
@@ -302,9 +302,9 @@ eveg:
                     Les cookies ont différentes fonctions. Ils peuvent permettre au site qui les a déposés de reconnaître un internaute, d'une visite à une autre, grâce à un identifiant unique.
                     Certains cookies peuvent aussi être utilisés pour stocker le contenu d'un panier d'achat, d'autres pour enregistrer les paramètres de langue d'un site, d'autres encore pour faire de la publicité ciblée.
             on_eveg:
-                title: L'utilisation des cookies sur e-veg
+                title: L'utilisation des cookies sur eVeg
                 text: |
-                    e-veg n'utilise pas de cookies pour la publicité, les cookies utilisés sur le site servent uniquement à se souvenir de vos préférences ainsi qu'à établir des statistiques sur le nombre de visiteurs.
+                    eVeg n'utilise pas de cookies pour la publicité, les cookies utilisés sur le site servent uniquement à se souvenir de vos préférences ainsi qu'à établir des statistiques sur le nombre de visiteurs.
             piwik:
                 title: Piwik
                 text: |
