@@ -26,9 +26,9 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="fullName", type="string")
+     * @ORM\Column(name="fullName", type="string", nullable=true)
      */
-    protected $fullName = null;
+    protected $fullName;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonFile", mappedBy="user")
