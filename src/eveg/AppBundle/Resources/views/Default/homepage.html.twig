@@ -7,6 +7,10 @@
 	{{ parent() }} : {{ 'eveg.web_title'|trans }}
 {% endblock %}
 
+{% block meta%}
+	<meta name="description" content="{{ 'eveg.meta.homepage'|trans }}" />
+{% endblock %}
+
 {% block body %}
 
 	{{ parent() }}

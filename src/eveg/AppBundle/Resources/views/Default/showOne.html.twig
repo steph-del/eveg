@@ -8,6 +8,12 @@
 	{{ parent() }}
 {% endblock %}
 
+{% block meta %}
+	{% if syntaxon is defined %}
+		<meta name="description" content="{{ syntaxon.syntaxonName }} {{ syntaxon.syntaxonAuthor }} : {{ 'eveg.meta.syntaxon'|trans }}" />
+	{% endif %}
+{% endblock %}
+
 {% block title %}
 	{% if syntaxon is defined %}
 		{{ syntaxon.syntaxonName }} | {{ parent() }}

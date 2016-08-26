@@ -508,3 +508,7 @@ eveg:
                 title: Les fiches les plus consultées
             classes:
                 title: Toutes les classes
+
+    meta:
+        homepage: Une base de données pour les végétations de France métropolitaine et d'Europe. Phytosociologie synusiale intégrée.
+        syntaxon: écologie, répartition en France et en Europe, bibliographie...
