@@ -66,16 +66,15 @@ class ImportController extends Controller
 	/**
 	 *
 	 * Import the baseveg core data (csv file from baseveg)
-	 * Only available in dev mode for now
 	 *
 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importCoreAction(Request $request)
 	{
 		// Only available in dev mode because of increasing memory and time limit
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}
+		}*/
 
 		$request = $this->getRequest();
 
@@ -106,8 +105,8 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
+			//set_time_limit(1000);
+			//ini_set('memory_limit', '1024M');
 
 			$batchSize 	   	 = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         	   	 = 0;     // just an incremental
@@ -630,16 +629,15 @@ class ImportController extends Controller
 
 	/**
 	 * Import the repartition data (csv file from baseveg).
-	 * Only available in dev mode.
 	 * 
 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importRepartitionDepFrAction(Request $request)
 	{
 		// Only available in dev mode because of increasing memory and time limit
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}
+		}*/
 
 		$request = $this->getRequest();
 
@@ -652,8 +650,8 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
+			//set_time_limit(1000);
+			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -830,16 +828,15 @@ class ImportController extends Controller
 
 	/**
 	 * Import the European repartition data (csv file from baseveg).
-	 * Only available in dev mode.
 	 *
 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importRepartitionEuropeAction(Request $request)
 	{
 		// Only available in dev mode because of increasing memory and time limit
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}
+		}*/
 
 		$request = $this->getRequest();
 
@@ -852,8 +849,8 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
+			//set_time_limit(1000);
+			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -968,16 +965,15 @@ class ImportController extends Controller
 
 	/**
 	 * Import bibliography (csv file from baseveg).
-	 * Only available in dev mode.
 	 *
 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importBiblioAction(Request $request)
 	{
 		// Only available in dev mode because of increasing memory and time limit
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}
+		}*/
 
 		$request = $this->getRequest();
 
@@ -990,8 +986,8 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
+			//set_time_limit(1000);
+			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -1103,7 +1099,6 @@ class ImportController extends Controller
 	/**
 	 * Convert a comma separated file into an associated array.
 	 * The first row should contain the array keys.
-	 * Only available in dev mode (memory limit set up to 1024Mo).
 	 * 
 	 * Example:
 	 * 
@@ -1117,16 +1112,16 @@ class ImportController extends Controller
 	 */
 	public function csv_to_array($filename='', $delimiter=',')
 	{
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('csv_to_array') is only available in dev mode.");
-		}
+		}*/
 
 		if(!file_exists($filename) || !is_readable($filename))
 		{
 			throw new HttpException(404, $filename.' not found');
 		}
 
-		ini_set('memory_limit', '1024M');
+		//ini_set('memory_limit', '1024M');
 		//$count = 0;
 		$header = NULL;
 		$data = array();
@@ -1149,16 +1144,15 @@ class ImportController extends Controller
 
 	/**
 	 * Import ecological data (csv file from baseveg).
-	 * Only available in dev mode.
 	 *
 	 * @Security("has_role('ROLE_SUPER_ADMIN')")
 	 */
 	public function importEcologyAction(Request $request)
 	{
 		// Only available in dev mode because of increasing memory and time limit
-		if($this->container->get('kernel')->getEnvironment() != 'dev') {
+		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importEcology') is only available in dev mode.");
-		}
+		}*/
 
 		$request = $this->getRequest();
 
@@ -1171,8 +1165,8 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
+			//set_time_limit(1000);
+			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
