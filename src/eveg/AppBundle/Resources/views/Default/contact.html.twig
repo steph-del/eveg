@@ -3,15 +3,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-	{{ parent() }} : contact
-{% endblock %}
-
-{% block navbar_path_context %}
-	<li><a href="{{ path('eveg_app_homepage') }}" title="Accueil"><span class="glyphicon glyphicon-home"></span></a></li> 
-	<li><a href="{{ path('eveg_app_howto') }}" title="Comment utiliser eVeg ?">Utiliser</a></li>
-	<li><a href="#" title="Participer à eVeg ?">Participer</a></li>
-	<li><a href="#" title="Outils">Outils</a></li>
-	<li class="active"><a href="{{ path('eveg_app_contact') }}" title="Contacter les auteurs">Contact</a></li>
+	{{ 'eveg.contact.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -20,12 +12,12 @@
 
 	<div class="row whiteRow">
 		<div class="jumbotron contact">
-			<h1>Contact</h1>
+			<h1>{{ 'eveg.contact.title'|trans }}</h1>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<div class="row">
 				<div class="thumbnail contact-thumbnail">
 					<div class="caption">
@@ -35,15 +27,12 @@
 						<div class="contact-thumbnail-item col-md-4">
 							<p>
 								<i class="fa fa-arrow-right"></i>
-								CATMINAT (bases de données)
-							</p>
-							<p>
-								Pour les questions concernant les données du site.
+								{{ 'eveg.contact.catminat'|trans|nl2br }}
 							</p>
 						</div>
 						<div class="contact-thumbnail-email col-md-4">
 							<p id="pjContainer" class="text-center">
-								<button id="pj" type="button" class="btn btn-default">Afficher l'adresse email</button>
+								<button id="pj" type="button" class="btn btn-default">{{ 'eveg.contact.show_email'|trans }}</button>
 							</p>
 						</div>
 					</div>
@@ -56,20 +45,17 @@
 						<div class="contact-thumbnail-item col-md-4">
 							<p>
 								<i class="fa fa-arrow-right"></i>
-								Application eVeg
-							</p>
-							<p>
-								Pour les questions concernant les fonctionnalités du site.
+								{{ 'eveg.contact.website'|trans|nl2br }}
 							</p>
 						</div>
 						<div class="contact-thumbnail-email col-md-4">
 							<p id="sdContainer" class="text-center">
-								<button id="sd" type="button" class="btn btn-default">Afficher l'adresse email</button>
+								<button id="sd" type="button" class="btn btn-default">{{ 'eveg.contact.show_email'|trans }}</button>
 							</p>
 						</div>
 					</div>
 				</div>
-				<div class="thumbnail contact-thumbnail">
+				{#<div class="thumbnail contact-thumbnail">
 					<div class="caption">
 						<div class="text-center col-md-4">
 							<h3><i class="fa fa-comment-o"></i></h3>
@@ -81,7 +67,7 @@
 
 						</div>
 					</div>
-				</div>
+				</div>#}
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -99,7 +85,7 @@
 		});
 		$("#sd").click(function(e) {
 			e.preventDefault();
-			$("#sdContainer").html(showEM('stephane.delplanque', 'yahoo', 'fr'));
+			$("#sdContainer").html(showEM('stephane', 'e-veg', 'net'));
 		});
 
 		function showEM(a, b, c) {

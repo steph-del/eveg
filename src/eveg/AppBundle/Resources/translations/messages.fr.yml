@@ -196,6 +196,16 @@ eveg:
             documents: |
                 Les documents PDF téléversés sur e-veg bénéficient de leurs licences originelles.
 
+    contact:
+        title: Contact
+        catminat: |
+                   CATMINAT (bases de données)
+                   Pour les questions conercernant baseveg ou baseflor
+        website: |
+                   Application e-veg
+                   Pour les questions concernant les données et les fonctionnalités du site
+        show_email: Afficher l'adresse email
+
     documents:
         title: Mes documents
         access-link: Accéder à mes documents
