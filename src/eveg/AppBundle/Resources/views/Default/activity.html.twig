@@ -85,8 +85,9 @@
 						<ul class="list-group">
 							{% for docWanted in wanted %}
 								<li class="list-group-item">
-									<a href="{{ path('eveg_show_one', {'id': docWanted.syntaxonCore.id}) }}">{{ docWanted.syntaxonCore.syntaxonName }}</a>
-								</li>
+									<a href="{{ path('eveg_download_file', {'id': docWanted.syntaxonCore.id, 'idFile': docWanted.id}) }}">{{ docWanted.title }}</a><br />
+									({{ 'eveg.dictionary.diagnosis_of'|trans }} : <i>{{ docWanted.syntaxonCore.syntaxonName }}</i>)
+								</li><br />
 							{% endfor %}
 							<li class="list-group-item text-center">
 								<button type="button" class="btn btn-default">
