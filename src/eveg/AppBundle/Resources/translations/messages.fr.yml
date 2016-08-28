@@ -47,6 +47,8 @@ eveg:
         send: envoyer
         syntaxon: syntaxon
         validate: valider
+        version: version
+        versions: versions
         visibility: visibilité
         will_be_deleted_m: va être définitivement supprimé
         will_be_deleted_f: va être définitivement supprimée
