@@ -198,7 +198,7 @@ class AdminController extends Controller
 		$nbPdfs 			  = $nbEvegItems->getNbPdfs();
 		$nbHttpLinks 		  = $nbEvegItems->getNbHttpLinks();
 		$nbPhotos 			  = $nbEvegItems->getNbPhotos();
-		$mostDwnFiles		  = $nbEvegItems->getMostDownloadedFiles();dump($mostDwnFiles);
+		$mostDwnFiles		  = $nbEvegItems->getMostDownloadedFiles();
 		$sumDwnSpreadsheets   = $nbEvegItems->getSumDownloadedSpreadsheets();
 		$sumDwnPdfs			  = $nbEvegItems->getSumDownloadedPdfs();
 		$sumDwnHttpLinks	  = $nbEvegItems->getSumDownloadedHttpLinks();

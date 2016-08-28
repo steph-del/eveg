@@ -164,7 +164,7 @@ class RepartitionFilterController extends Controller
 		        );
 
 		// Try to refresh the page
-		$idReferer = $session->get('idReferer');dump($session->get('idReferer'));
+		$idReferer = $session->get('idReferer');
 
 		// If user doesn't come from /app/xxxx page, $idReferer is null
 		if(!$idReferer) {
