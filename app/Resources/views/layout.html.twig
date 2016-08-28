@@ -4,6 +4,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>{% block title %}eVeg{% endblock %}</title>
 	{% block meta %}{% endblock %}
@@ -121,20 +122,33 @@
 	</div>
 
 	<!-- Footer container -->
-	<div class="container-fluid container-footer">
-		<div class="footer">
-			{% block footer %}
-				<div class="footer-infos">
-					{{ render(controller('evegAppBundle:Default:footerInfos')) }}
-				</div>
+	{% block footer %}
+		<div class="container-fluid container-footer hidden-xs">
+			<div class="footer">
+				<div class="footer-item"></div>
 				<div class="footer-item">
+					<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.version'|trans|capitalize }}</a>
+					<span> | </span>
 					<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
 					<span> | </span>
 					<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
 				</div>
-			{% endblock %}
+			</div>
 		</div>
-	</div>
+
+		<div class="container-fluid container-footer-mobile hidden-sm hidden-md hidden-lg">
+			
+				<div class="row">
+					<div class="footer-item-mobile">
+						<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.version'|trans|capitalize }}</a>
+					|
+						<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
+					|
+						<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
+					</div>
+				</div>
+		</div>
+	{% endblock %}
 
 	{% block javascript %}
 		{% javascripts filter="?yui_js" output="js/vendors.js"

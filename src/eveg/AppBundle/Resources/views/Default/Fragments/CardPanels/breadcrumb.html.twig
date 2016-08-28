@@ -16,7 +16,12 @@
 		{% endif %}
 	{% endfor %}
 </div>
-<div class="row hidden-lg hidden-md">
+<div class="row col-md-12 hidden-lg hidden-md">
+	{% if allParents|length == 2 %}
+		<div>{{ 'eveg.app.show_one.breadcrumb.one_parent'|trans }} :</div>
+	{% elseif allParents|length > 2 %}
+		<div>{{ 'eveg.app.show_one.breadcrumb.more_parents'|trans }} :</div>
+	{% endif %}
 	{% for syntaxon in allParents %}
 		{% if syntaxon.level != 'HAB' %}
 				<a href="{{ path('eveg_show_one', {'id': syntaxon.id}) }}" class="{{ syntaxon.level }}-text {{ syntaxon.level }}-indent">{{ syntaxon.syntaxon }}</a><br />

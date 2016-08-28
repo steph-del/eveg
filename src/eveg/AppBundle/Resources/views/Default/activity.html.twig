@@ -27,7 +27,7 @@
 					{% else %}
 					<div class="row activityPadLine last">
 					{% endif %}
-						<div class="col-md-2 activityPadItem text-center">
+						<div class="col-md-2 activityPadItem text-center hidden-xs">
 							<div class="row col-md-12 _2em">
 								<i class="fa fa-user"></i>
 							</div>
@@ -35,7 +35,7 @@
 								{{ document.user }}
 							</div>
 						</div>
-						<div class="col-md-2 activityPadItem text-center">
+						<div class="col-md-2 activityPadItem text-center hidden-xs">
 							<div class="row col-md-12 _2em">
 								{% if document.type == 'spreadsheet' %}
 									<i class="fa fa-file-excel-o"></i>
@@ -51,7 +51,8 @@
 								{{ document.datetime|date('d m y') }}
 							</div>
 						</div>
-						<div class="col-md-7 activityPadItem">
+						<div class="col-md-7 col-sm-10 activityPadItem data">
+							<div class="hidden-sm hidden-md hidden-lg"><b>{{ document.datetime|date('d m y') }}</b></div>
 							<b>{{ document.user }}</b> {{ 'eveg.dictionary.added'|trans }} 
 							{% if document.type == 'spreadsheet' %}
 								{{ 'eveg.dictionary.a_table'|trans }} 
@@ -64,7 +65,7 @@
 							{% endif %}
 							<br />{{ 'eveg.dictionary.for'|trans }} : {{ document.syntaxon }}
 						</div>
-						<div class="col-md-1 activityPadItem text-center _2em">
+						<div class="col-md-1 col-sm-2 activityPadItem text-center _2em">
 							<a href="{{ path('eveg_show_one', {'id': document.syntaxon_id}) }}" title="{{ 'eveg.activities.access_syntaxon'|trans }}">
 								<i class="fa fa-angle-double-right"></i>
 							</a>

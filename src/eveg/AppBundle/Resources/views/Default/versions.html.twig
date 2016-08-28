@@ -1,0 +1,35 @@
+{# src/eveg/AppBundle/Resources/views/Default/participate.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{{ 'eveg.dictionary.versions'|trans|capitalize }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row whiteRow">
+		<div class="jumbotron versions">
+			<h1>{{ 'eveg.dictionary.versions'|trans|capitalize }}</h1>
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			{% for item in footer %}
+				<div class="thumbnail contact-thumbnail">
+					<div class="caption">
+						{{ item }}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+	</div>
+
+{% endblock %}
+

@@ -17,13 +17,16 @@
 
 	{# Header (title) #}
 	<div class="row header">
-		<div class="eveg-title">
-			<h1>eVeg <small>{{ 'eveg.slogan'|trans|nl2br }}</small><h1>
+		<div class="eveg-title hidden-xs">
+			<h1>eVeg<small>{{ 'eveg.slogan'|trans|nl2br }}</small></h1>
+		</div>
+		<div class="eveg-title-mobile visible-xs-* hidden-sm hidden-md hidden-lg">
+			<h1>eVeg<small>{{ 'eveg.slogan'|trans|nl2br }}</small></h1>
 		</div>
 	</div>
 
 	{# Jumbotrom / Searchbox #}
-	<div class="row jumbotron text-center">
+	<div class="row jumbotron homepage text-center">
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
 			<div class="searchBoxExtend">
 				{% include('evegAppBundle:Default:/Fragments/searchBar.html.twig') %}
@@ -49,10 +52,12 @@
 					<p>{{ 'eveg.homepage.presentation.1'|trans }}</p>
 					<p>{{ 'eveg.homepage.presentation.2'|trans }}</p>
 					<p>{{ 'eveg.homepage.presentation.3'|trans }}</p>
-					<p>{{ 'eveg.homepage.presentation.4'|trans }}</p>
-					<div class="row">
-						<div class="col-md-offset-2 col-md-8 col-xs-12">
-							<p class="text-center"><img class="eveg-diagram-img" src="{{  asset('img/patterns/schema_eveg.png') }}" alt="eveg diagram"></img></p>
+					<div class="hidden-xs">
+						<p>{{ 'eveg.homepage.presentation.4'|trans }}</p>
+						<div class="row">
+							<div class="col-md-offset-2 col-md-8 col-xs-12">
+								<p class="text-center"><img class="eveg-diagram-img" src="{{  asset('img/patterns/schema_eveg.png') }}" alt="eveg diagram"></img></p>
+							</div>
 						</div>
 					</div>
 				</div>
