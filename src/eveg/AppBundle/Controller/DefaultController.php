@@ -352,9 +352,31 @@ class DefaultController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
+		$output = array('baseveg v. ' 	  . $infos->getBasevegVersion(),
+					    'basflor v. ' 	  . $infos->getBaseflorVersion(),
+					    'eveg v. '    	  . $infos->getEvegVersion(),
+					    'dernière màj : ' . $infos->getLastUpdate()->format('Y-m-d')
+					    );
 
+		return $this->render('evegAppBundle:Default:Fragments/footerVersions.html.twig', array(
+			'footer' => $output
+		));
+		//return new response('baseveg v. '.$infos->getBasevegVersion().'  |  baseflor v. '.$infos->getBaseflorVersion().'  |  eveg v. '.$infos->getEvegVersion().'  |  dernière màj : '.$infos->getLastUpdate()->format('Y-m-d').' ');
+	}
 
-		return new response('baseveg v. '.$infos->getBasevegVersion().'  |  baseflor v. '.$infos->getBaseflorVersion().'  |  eveg v. '.$infos->getEvegVersion().'  |  dernière màj : '.$infos->getLastUpdate()->format('Y-m-d').' ');
+	public function versionsAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
+		$output = array('baseveg v. ' 	  . $infos->getBasevegVersion(),
+					    'basflor v. ' 	  . $infos->getBaseflorVersion(),
+					    'eveg v. '    	  . $infos->getEvegVersion(),
+					    'dernière màj : ' . $infos->getLastUpdate()->format('Y-m-d')
+					    );
+
+		return $this->render('evegAppBundle:Default:versions.html.twig', array(
+			'footer' => $output
+		));
 	}
 	
 }

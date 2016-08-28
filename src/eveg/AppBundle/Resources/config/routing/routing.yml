@@ -28,6 +28,10 @@ eveg_app_contact:
     locales:  { fr: "/contact", en: "/en/contact", de: "/de/kontakt", es: "/es/contacto", it: "/it/contatto" }
     defaults: { _controller: evegAppBundle:Default:contact }
 
+eveg_app_version:
+    locales:  { fr: "/version", en: "/en/version", de: "/de/version", es: "/es/versión", it: "/it/versione" }
+    defaults: { _controller: evegAppBundle:Default:versions }
+
 eveg_app_start:
     locales: { fr: "/app", en: "/en/app", de: "/de/app", es: "/es/app", it: "/it/app" }
     defaults: { _controller: evegAppBundle:Default:start }
