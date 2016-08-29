@@ -177,7 +177,7 @@ eveg:
         add_map_comment:
             title: Compléter la chorologie
             1: |
-                Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philipe Julve.
+                Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philippe Julve.
                 Vous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.
             screen_label: "Une fois connecté, cliquez sur l'icone commentaire sous l'une des deux cartes d'une fiche. Votre commentaire sera envoyé à l'équipe et traité dans la future mise à jour de la base de données."
 
