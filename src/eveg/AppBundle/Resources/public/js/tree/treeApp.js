@@ -2,7 +2,7 @@ $(".loadTreeIcon").hide();
 if(env == "dev") {
 	var iconPath = "../../img/icons/";
 }else if(env =="prod") {
-	var iconPath = "../../web/img/icons/";
+	var iconPath = "../../img/icons/";
 }
 $(function(){
 	// Create the tree inside the <div id="tree"> element.

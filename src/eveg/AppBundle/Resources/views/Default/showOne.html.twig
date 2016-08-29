@@ -49,7 +49,7 @@
 
 				{# Data #}
 				<div class="row">
-					<div class="col-md-8 viewLeft">
+					<div class="col-md-8 col-xs-12 viewLeft">
 
 						{# HAB level #}
 						{% if syntaxon.level == 'HAB' and classSyntaxons is defined %}
@@ -86,27 +86,40 @@
 
 					</div> <!-- ./viewLeft -->
 
-					<div class="col-md-4 viewRight">
-						<!-- photos -->
-						{% if syntaxon.level != 'HAB' %}
-							{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon } only %}
-						{% endif %}
+					<div class="col-md-4 col-xs-12 viewRight">
+						<div class="row">
+							<div class="col-md-12 col-sm-6">
+								<!-- photos -->
+								{% if syntaxon.level != 'HAB' %}
+									{% include 'evegAppBundle:Default/Fragments/CardPanels:photosPanel.html.twig' with { 'syntaxon': syntaxon } only %}
+								{% endif %}
+							</div>
+						
 
-						<div id="panels-map">
-							<!-- Fr departments repartition -->
-							{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': true } only %}
+							{#<div id="panels-map">#}
+							<div class="col-md-12 col-sm-6">
+								<!-- Fr departments repartition -->
+								{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': true } only %}
+							</div>
 
-							<!-- EU+ coutries repartition -->
-							{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': true } only %}
+							<div class="col-md-12 col-sm-6">
+								<!-- EU+ coutries repartition -->
+								{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': true } only %}
+							</div>
+							{#</div>#}
+
+							<!-- Ecological valences -->
+							<div class="col-md-12 col-sm-6">
+								{% if syntaxon.level != 'HAB' %}
+									{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
+								{% endif %}
+							</div>
+
 						</div>
-
-						<!-- Ecological valences -->
-						{% if syntaxon.level != 'HAB' %}
-							{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
-						{% endif %}
 
 						<!-- Catminat code -->
 						{% include 'evegAppBundle:Default/Fragments/CardPanels:catminatCodePanel.html.twig' with { 'catminatCode': syntaxon.catminatCode } only %}
+
 					</div> <!-- ./viewRight -->
 				</div> <!-- ./row -->
 

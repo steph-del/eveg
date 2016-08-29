@@ -36,7 +36,6 @@
 		<link rel="stylesheet" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" type="text/css"/>
 		<link rel="stylesheet" href="{{ asset('css/flag-icon.min.css') }}" type="text/css"/>
 		
-		<style>body{background-image:url({{ asset('img/patterns/grey.png') }});}</style>
 	{% endblock %}
 	<!-- Piwik -->
 	<script type="text/javascript">
@@ -82,6 +81,12 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
+				{% set routeName = app.request.attributes.get('_route') %}
+				{% if routeName != "eveg_app_homepage" %}
+					<button type="button" class="navbar-toggle addon" data-toggle="modal" data-target="#modalSearch">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				{% endif %}
 				<a class="navbar-brand" href="{{ path('eveg_app_homepage') }}">eVeg</a>
 			</div>
 	
@@ -89,9 +94,10 @@
 			<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:mainMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
 
-				{% set routeName = app.request.attributes.get('_route') %}
 				{% if routeName != "eveg_app_homepage" %}
-					{{ knp_menu_render('evegAppBundle:MenuBuilder:searchMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+					<div class="hidden-xs">
+						{{ knp_menu_render('evegAppBundle:MenuBuilder:searchMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+					</div>
 				{% endif %}
 				
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:filterMenu', {'template': 'evegAppBundle:Menu:knp_menu.html.twig' }) }}
@@ -127,7 +133,7 @@
 			<div class="footer">
 				<div class="footer-item"></div>
 				<div class="footer-item">
-					<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.version'|trans|capitalize }}</a>
+					<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.versions'|trans|capitalize }}</a>
 					<span> | </span>
 					<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
 					<span> | </span>
