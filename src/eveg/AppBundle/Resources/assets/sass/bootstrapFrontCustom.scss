@@ -635,6 +635,14 @@ span.viewHeaderAuthor {
 		height: auto;
 	}
 }
+@media (max-width: 768px) {
+	.panel-heading {
+		height: inherit;
+		padding: auto;
+		padding-top: 2px;
+	}
+}
+
 .list-group-item {
 	padding-top: 2px;
 	padding-bottom: 2px;
