@@ -973,6 +973,8 @@ img.syntaxonIllustration{
  		width: 100%;
  		display: flex;
  		align-items: center;
+ 		padding-top: 5px;
+ 		padding-bottom: 5px;
 
 		width: 100%;
 
@@ -1008,8 +1010,24 @@ img.syntaxonIllustration{
  				text-align: center;
  			}
  		}
+
+ 		.content {
+ 			margin-top: 10px;
+ 			margin-bottom: 10px;
+ 		}
 	}
 
+}
+@media (max-width: 768px) {
+	.contact-thumbnail {
+		.caption {
+			flex-direction: column;
+
+			.contact-thumbnail-item {
+			align-self: center;
+			}
+		}
+	}
 }
 
 /*
