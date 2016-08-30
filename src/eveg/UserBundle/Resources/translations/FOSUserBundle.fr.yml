@@ -3,7 +3,7 @@ security:
         fullName : 'Prénom et nom'
 registration:
     confirmed:
-        what-can-i-do: "Vous pouvez maintenant ajouter du contenu sur eVeg : tableaux, documents, liens, photos. Pour plus de détails, rendez-vous sur la page 'Aide'."
+        what-can-i-do: "Vous pouvez ajouter du contenu sur eVeg : tableaux, documents pdf, liens, photos..."
 resetting:
     lost: 'Mot de passe oublié ?'
     title: 'Modifier mon mot de passe'
