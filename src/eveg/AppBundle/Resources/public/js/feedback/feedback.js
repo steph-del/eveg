@@ -3,8 +3,8 @@ function feedback(ajaxFormFeedback, feedbackSpinDivId, feedbackSubmitDivId, feed
 		feedbackSubmitText = feedbackSubmitTextDivId.html();
 		feedbackSubmitWaitingText = 'Envoi en cours';
 
-		ajaxSuccessReturnDiv = '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Nous vous remerçions....... Votre feedback a bien été pris en compte et envoyé.</div>';
-		ajaxErrorReturnDiv = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Nous ne parvenons pas à envoyer votre message, merci de nous contacter directement par mail (voir la page Contact).</div>';
+		ajaxSuccessReturnDiv = '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+messageFeedbackSuccess+'</div>';
+		ajaxErrorReturnDiv = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+messageFeedbackError+'</div>';
 
 		ajaxFormFeedback.on('submit', function(event) {
 			event.preventDefault();
