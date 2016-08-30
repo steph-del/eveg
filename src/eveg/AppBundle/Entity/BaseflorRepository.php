@@ -17,7 +17,9 @@ class BaseflorRepository extends \Doctrine\ORM\EntityRepository
 		// specify the fields to fetch (unselected fields will have a null value)
 		$qb->select("b.bdnffTaxinId, b.bdnffNomenId, b.catminatCode, b.scientificName")
 			->where('b.catminatCode = :catminatCode')
+			->andWhere('b.repartition not like :introduced')
 			->setParameter('catminatCode', $catminatCode)
+			->setParameter('introduced', '%introduit%')
 			->orderBy('b.scientificName', 'ASC');
 			;
 
