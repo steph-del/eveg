@@ -112,8 +112,8 @@ fos_user:
     registration:
         confirmation:
             from_email:
-                address: subscribe.eveg@gmail.com
-                sender_name: eveg.fr
+                address: admin@e-veg.net
+                sender_name: e-veg.net
             enabled: true
         form:
             type: app_user_registration
@@ -121,12 +121,12 @@ fos_user:
     resetting:
         email:
             from_email: 
-                address: unsubscribe.eveg@gmail.com
-                sender_name: eveg.fr
+                address: admin@e-veg.net
+                sender_name: e-veg.net
 
     from_email:
-        address: eveg@eveg.fr
-        sender_name: eveg.fr
+        address: admin@e-veg.net
+        sender_name: e-veg.net
 
 # FOS Rest configuration
 fos_rest:
