@@ -269,7 +269,7 @@ eveg:
 
     activities:
         title: Activités
-        last_activities: Dernière activités
+        last_activities: Dernières activités
         participate:
             slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Téléchargez l'un des documents suivants et compilez-le !
         access_syntaxon: Accéder à la fiche du syntaxon
