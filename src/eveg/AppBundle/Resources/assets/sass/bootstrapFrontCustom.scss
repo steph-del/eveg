@@ -1273,6 +1273,19 @@ img.syntaxonIllustration{
  	padding-top: 5px;
  	border-top: 1px solid #DDDDDD;
  }
+@media (max-width: 768px) {
+	 .panelPhotoContent {
+	 	//display: flex;
+	 	//flex-direction: row;
+	 }
+	.panelPhotoFooter {
+ 		text-align: center;
+
+ 		.row {
+ 			display: block;
+ 		}
+ 	}
+}
 
 /*
  * Participate page
