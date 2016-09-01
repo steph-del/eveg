@@ -22,6 +22,8 @@ src/eveg/AppBundle/Resources/views/Admin/test.html.twig
 
 *.php~
 
+*.DS_Store
+
 web/css/fancytree.css
 
 web/css/main_pdfExport.css
