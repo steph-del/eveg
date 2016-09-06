@@ -50,7 +50,11 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ path('eveg_app_homepage') }}">eVeg</a>
+				{% if app.environment != 'preprod' %}
+					<a class="navbar-brand" href="{{ path('eveg_app_homepage') }}">{{ 'eveg.title'|trans }}</a>
+				{% else %}
+					<a class="navbar-brand" href="{{ path('eveg_app_homepage') }}" style="color: red !important;">{{ 'eveg.title'|trans }} Pre-prod</a>
+				{% endif %}
 			</div>
 	
 			{# Collect the nav links, forms, and other content for toggling #}
