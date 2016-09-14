@@ -50,20 +50,20 @@ eveg_show_one:
         id: \d+
 
 eveg_show_photos:
-    locales:  { fr: "/app/{id}/photos", en: "/en/app/{id}/photos" }
+    locales:  { fr: "/app/{id}/photos", en: "/en/app/{id}/photos", de:"/de/app/{id}/bilder", es:"/es/app/{id}/fotos", it:"/it/app/{id}/foto" }
     defaults: { _controller: evegAppBundle:SyntaxonPhoto:showPhotos }
     requirements:
         id: \d+
 
 eveg_add_photo:
-    locales:  { fr: "/app/{id}/ajouter-une-photo", en: "/en/app/{id}/add-a-picture" }
+    locales:  { fr: "/app/{id}/ajouter-une-photo", en: "/en/app/{id}/add-a-picture", de:"/de/app/{id}/fugen-sie-fein-foto", es:"/es/app/{id}/anadir-una-foto", it:"/it/app/{id}/aggiungere-una-foto" }
     defaults: { _controller: evegAppBundle:SyntaxonPhoto:addPhoto }
     requirements:
         id: \d+
         #_method: POST GET
 
 eveg_edit_photo:
-    locales: { fr:"/app/{id}/photo/{idPhoto}/modifier", en:"/en/app/{id}/photo/{idPhoto}/edit" }
+    locales: { fr:"/app/{id}/photo/{idPhoto}/modifier", en:"/en/app/{id}/photo/{idPhoto}/edit", de:"/de/app/{id}/bilder/{idPhoto}/bearbeiten", es:"/es/app/{id}/fotos/{idPhoto}/editar", it:"/it/app/{id}/foto/{idPhoto}/modifica" }
     defaults: { _controller:evegAppBundle:SyntaxonPhoto:edit }
     requirements:
         id: \d+
@@ -76,20 +76,20 @@ eveg_delete_photo:
         idPhoto: \d+
 
 eveg_add_file:
-    locales: { fr: "/app/{id}/ajouter-un-fichier", en: "/en/app/{id}/add-a-file" }
+    locales: { fr: "/app/{id}/ajouter-un-fichier", en: "/en/app/{id}/add-a-file", de:"/de/app/{id}/eine-datei", es:"/es/app/{id}/anadir-un-archivo", it:"/it/app/{id}/aggiungere-un-file" }
     defaults: { _controller: evegAppBundle:SyntaxonFile:addFile }
     requirements:
         id: \d+
 
 eveg_edit_file:
-    locales: { fr: "/app/{id}/fichier/{idFile}/modifier", en: "/en/app/{id}/file/{idFile}/edit" }
+    locales: { fr: "/app/{id}/fichier/{idFile}/modifier", en: "/en/app/{id}/file/{idFile}/edit", de:"/de/app/{id}/datei/{idFile}/bearbeiten", es:"/es/app/{id}/expediente/{idFile}/editar", it:"/it/app/{id}/file/{idFile}/modifica" }
     defaults: { _controller: evegAppBundle:SyntaxonFile:editFile }
     requirements:
         id: \d+
         idFile: \d+
 
 eveg_download_file:
-    locales: { fr: "/app/{id}/fichier/{idFile}/telecharger", en: "/en/app/{id}/file/{idFile}/download" }
+    locales: { fr: "/app/{id}/fichier/{idFile}/telecharger", en: "/en/app/{id}/file/{idFile}/download", de:"/de/app/{id}/datei/{idFile}/download", es:"/es/app/{id}/expediente/{idFile}/download", it:"/it/app/{id}/file/{idFile}/download" }
     defaults: { _controller: evegAppBundle:SyntaxonFile:downloadFile }
     requirements:
         id: \d+
@@ -102,20 +102,20 @@ eveg_delete_file:
         idFile: \d+
 
 eveg_add_http_link:
-    locales: { fr: "/app/{id}/ajouter-un-lien", en: "/en/app/{id}/add-a-link" }
+    locales: { fr: "/app/{id}/ajouter-un-lien", en: "/en/app/{id}/add-a-link", de:"/de/app/{id}/einen-link", es:"/es/app/{id}/anadir-un-enlace", it:"/it/app/{id}/aggiungere-un-link" }
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:addHttpLink }
     requirements:
         id: \d+
 
 eveg_edit_http_link:
-    locales: { fr: "/app/{id}/lien/{idHttpLink}/modifier", en: "/en/app/{id}/link/{idHttpLink}/edit" }
+    locales: { fr: "/app/{id}/lien/{idHttpLink}/modifier", en: "/en/app/{id}/link/{idHttpLink}/edit", de:"/de/app/{id}/link/{idHttpLink}/bearbeiten", es:"/es/app/{id}/link/{idHttpLink}/editar", it:"/it/app/{id}/link/{idHttpLink}/modifica" }
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:editHttpLink }
     requirements:
         id: \d+
         idHttpLink: \d+
 
 eveg_get_http_link:
-    locales: { fr: "/app/{id}/lien/{idHttpLink}", en: "/en/app/{id}/link/{idHttpLink}" }
+    locales: { fr: "/app/{id}/lien/{idHttpLink}", en: "/en/app/{id}/link/{idHttpLink}", de:"/de/app/{id}/link/{idHttpLink}", es:"/es/app/{id}/link/{idHttpLink}", it:"/it/app/{id}/link/{idHttpLink}" }
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:getHttpLink }
     requirements:
         id: \d+
@@ -140,11 +140,11 @@ eveg_repartition_filter:
         _method: POST
 
 eveg_download_pdf:
-    locales: { fr: "/app/{id}/telecharger", en: "/en/app/{id}/download" }
+    locales: { fr: "/app/{id}/telecharger", en: "/en/app/{id}/download", de:"/de/app/{id}/download", es:"/es/app/{id}/descargar", it:"/it/app/{id}/scaricare" }
     defaults: { _controller : evegAppBundle:Default:downloadPdf }
 
 eveg_show_simple_view:
-    locales: { fr: "/app/{id}/version-imprimable", en: "/en/app/{id}/printable-view" }
+    locales: { fr: "/app/{id}/version-imprimable", en: "/en/app/{id}/printable-view", de:"/de/app/{id}/druckversion", es:"/es/app/{id}/version-para-imprimir", it:"/it/app/{id}/versione-stampabile" }
     defaults: { _controller : evegAppBundle:Default:simpleView }
 
 eveg_save_repartition_map:
@@ -196,7 +196,7 @@ eveg_compare:
     defaults: { _controller: evegAppBundle:Compare:compare }
 
 eveg_legal_notice:
-    locales: { fr: "/mentions-legales", en: "/en/legal-notice" }
+    locales: { fr: "/mentions-legales", en: "/en/legal-notice", de:"/de/impressum", es:"/es/aviso-legal", it:"/it/avviso-legale" }
     defaults: { _controller: evegAppBundle:Default:legalNotice }
 
 eveg_r:
