@@ -227,7 +227,7 @@ eveg:
             db: |
                 Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
             website: |
-                Le site internet 'eVeg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
+                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
             photos: |
                 Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
             documents: |
@@ -283,7 +283,7 @@ eveg:
             text: |
                 Auteur : Stéphane Delplanque
                 Adresse : Labarthe, 46140 Bélaye
-                Email : stephane@eVeg.net
+                Email : stephane@e-veg.net
         host:
             title: Hebergement
             text: |
@@ -317,8 +317,8 @@ eveg:
             title: Loi informatique et libertés
             text: |
                 En application de la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n° 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l'égard des traitements de données à caractère personnel, et notamment son article 24-II, vous disposez d'un droit de modification et de suppression des données qui vous concernent. Vous pouvez adresser votre demande :
-            mail: par courriel à : cnil@tela-botanica.org
-            post: par courrier traditionnel à : Tela Botanica (Service CNIL), 4 rue de Belfort, 34000 MONTPELLIER.
+            mail: par courriel à : contact@e-veg.net
+            post: par courrier traditionnel à : XXX
     
     app:
         show_one:
@@ -454,7 +454,7 @@ eveg:
                 dep: Par département (France mértopolitaine)
                 country: Par pays
                 explain: |
-                          Vous pouvez filtrer eVeg (les fiches, le moteur de recherche et l'arborescence) par département (France) ou par Pays.
+                          Vous pouvez filtrer eVeg (les fiches, le moteur de recherche et l'arborescence) par département (France métropolitaine) ou par Pays.
                           Si aucun pays / département n'est selectionné, les filtres ne sont pas actifs.
 
             breadcrumb:
