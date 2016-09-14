@@ -276,6 +276,7 @@ eveg:
             slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Téléchargez l'un des documents suivants et compilez-le !
         access_syntaxon: Accéder à la fiche du syntaxon
         show_all: Afficher tout
+        all_activities: Voir toutes les activités du site
 
     legal_notice:
         title: Mentions légales
