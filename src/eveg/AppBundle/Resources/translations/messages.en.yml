@@ -7,58 +7,58 @@ eveg:
         ... & the world
 
     dictionary:
-        a_file: un fichier
-        a_link: un lien
-        a_pdf_document: un document pdf
-        a_photo: une photo
-        a_table: un tableau
+        a_file: a file
+        a_link: a link
+        a_pdf_document: a pdf document
+        a_photo: a picture
+        a_table: a table
         action: action
         actions: actions
-        added: a ajouté
-        author: auteur
-        circle: cercle
-        close: fermer
-        country: pays
+        added: added
+        author: author
+        circle: circle
+        close: close
+        country: country
         date: date
-        department: département
+        department: department
         description: description
-        diagnosis_of: est la diagnose de
+        diagnosis_of: is the diagnosis of
         document: document
-        edit: modifier
-        error: erreur
-        for: pour
-        file: fichier
-        hide: masquer
-        license: licence
-        link: lien
-        localisation: localisation
-        locality: localité
-        original_file: fichier d'origine
-        participate: participez
-        photo: photo
-        photos: photos
+        edit: edit
+        error: error
+        for: for
+        file: file
+        hide: hide
+        license: license
+        link: link
+        localisation: geographical location
+        locality: locality
+        original_file: original file
+        participate: participate
+        photo: picture
+        photos: pictures
         public: public
-        private: privé
+        private: private
         syntaxon: syntaxon
-        the_file: le fichier
-        the_link: le lien
-        the_photo: la photo
-        title: titre
-        town: commune
-        user: utilisateur
-        send: envoyer
+        the_file: the file
+        the_link: the link
+        the_photo: the picture
+        title: title
+        town: town
+        user: user
+        send: send
         syntaxon: syntaxon
-        validate: valider
+        validate: validate
         version: version
         versions: versions
-        visibility: visibilité
-        will_be_deleted_m: va être définitivement supprimé
-        will_be_deleted_f: va être définitivement supprimée
+        visibility: visibility
+        will_be_deleted_m: will be permanently deleted
+        will_be_deleted_f: will be permanently deleted
 
     country:
-        austria: Autriche
-        belarus: Biélorussie
-        belgium: Belgique
+        austria: Austria
+        belarus: Belarus
+        belgium: Belgium
         bosnia_montenegro_albania: Bosnia and Herzegovina + Montenegro + Albania
         bulgaria: Bulgarie
         czech_republic: République Tchèque
@@ -91,7 +91,7 @@ eveg:
 
     errors:
         no_documents: Vous n'avez aucun document pour cette catégorie
-        error_occured: Oops! Une erreur est survenue
+        error_occured: Oops! An error occured
         server_returns: Le serveur à renvoyé un
         default_server_error: |
             Nous sommes désolé, quelque chose semble ne pas fonctionner correctement.
@@ -121,33 +121,33 @@ eveg:
 
     homepage:
         presentation:
-            title: Présentation
-            1: "eVeg est une interface de consultation des données de baseveg (programme CATMINAT, par Philippe Julve)."
-            2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine avec une extension à l'Europe (voir Holartique et Eurasiatique pour certaines unités), établie selon les principes de la phytosociologie synusiale intégrée."
-            3: "Chaque végétation connue fait l'objet d'une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques."
-            4: Organisation générale du projet :
+            title: Presentation
+            1: "eVeg is a consultating interface uppon baseveg data (CATMINAT program, by Philippe Julve)."
+            2: "It gives you access to a database of all vegetations in France with an extension in Europe (Holartique and Eurasian for some units), established according to the principles of integrated synusial phytosociology."
+            3: "Each known vegetation is presented as a descriptive web page (ecology, geographical distribution, synonyms, characteristic species, bibliography) in association with pictures and diagnostic tables."
+            4: General project organization :
         participate:
-            title: Participer
+            title: Participate
             currently:
-                title: Actuellement sur eVeg
+                title: Now on eVeg
                 nbCards: |
-                    fiches
-                    descriptives
+                    vegetations
+                    described
                 nbDocuments: |
                     documents
-                    à télécharger
+                    to download
                 nbWaiting: |
-                    documents n'attendent
-                    que vous pour être compilés !
-            addDocuments: "Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d'illustration et en soumettant des données chorologiques."
-            how: En savoir plus
+                    documents are just waiting
+                    for you to be compiled !
+            addDocuments: "You can participate to the project by adding diagnosis (tables ou Pdf documents), pictures and by submitting geographical distribution data."
+            how: More
         lastUploads:
-            title: Derniers ajouts des contributeurs
+            title: Last additions from contributors
 
     participate:
-        title: Participer
-        signup : Créer un compte utilisateur (gratuit)
-        login: Se connecter à eVeg
+        title: Participate
+        signup : Create an account (free)
+        login: Log in
         text: |
             Depuis sa création, eVeg est un projet collaboratif.
             Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
@@ -191,7 +191,7 @@ eveg:
             screen_label: "Pour nous faire part de vos remarques, cliquez sur l'icone 'commentaire' dans le bandeau de la fiche et laissez-vous guider."
 
     about:
-        footer_title: A propos d'eVeg
+        footer_title: About eVeg
         title: A propos du projet eVeg
         presentation: 
             1: L'application eVeg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.
@@ -237,12 +237,12 @@ eveg:
     contact:
         title: Contact
         catminat: |
-                   CATMINAT (bases de données)
-                   Pour les questions conercernant baseveg ou baseflor
+                   CATMINAT (databases)
+                   For any question regarding baseveg or baseflor
         website: |
-                   Application eVeg
-                   Pour les questions concernant les données et les fonctionnalités du site
-        show_email: Afficher l'adresse email
+                   eVeg application
+                   For any question regarding data and website functionalities
+        show_email: Show e-mail address
 
     documents:
         title: Mes documents
@@ -265,9 +265,9 @@ eveg:
 
 
     search:
-        title: Rechercher
-        placeholder: Rechercher une végétation
-        use_synonyms: Utiliser les synonymes
+        title: Search
+        placeholder: Search a vegetation
+        use_synonyms: Use synonyms
 
     activities:
         title: Activités
@@ -276,11 +276,12 @@ eveg:
             slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Téléchargez l'un des documents suivants et compilez-le !
         access_syntaxon: Accéder à la fiche du syntaxon
         show_all: Afficher tout
+        all_activities: Show all activities
 
     legal_notice:
-        title: Mentions légales
+        title: Legal notice
         website:
-            title: Site web
+            title: Web site
             text: |
                 Auteur : Stéphane Delplanque
                 Adresse : Labarthe, 46140 Bélaye
@@ -517,5 +518,5 @@ eveg:
                 title: Toutes les classes
 
     meta:
-        homepage: Une base de données pour les végétations de France métropolitaine et d'Europe. Phytosociologie synusiale intégrée.
-        syntaxon: écologie, répartition en France et en Europe, bibliographie...
+        homepage: A database uppon french and european vegetations. Integrated synusial phytosociology.
+        syntaxon: ecology, geographical localization in France and Europe, bibliography...
