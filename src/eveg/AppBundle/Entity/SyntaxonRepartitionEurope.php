@@ -24,224 +24,231 @@ class SyntaxonRepartitionEurope
     /**
      * @var string
      *
-     * @ORM\Column(name="macaronesia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="macaronesia", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $macaronesia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="portugal", type="string", length=2, nullable=true)
+     * @ORM\Column(name="portugal", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $portugal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="espana", type="string", length=2, nullable=true)
+     * @ORM\Column(name="espana", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $espana;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="iceland", type="string", length=2, nullable=true)
+     * @ORM\Column(name="iceland", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $iceland;
 
     /**
      * @var string
      *
-     *@ORM\Column(name="norway", type="string", length=2, nullable=true)
+     *@ORM\Column(name="norway", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $norway;
 
     /**
      * @var string
      *
-     *@ORM\Column(name="denmark", type="string", length=2, nullable=true)
+     *@ORM\Column(name="denmark", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $denmark;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ireland", type="string", length=2, nullable=true)
+     * @ORM\Column(name="ireland", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $ireland;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="uk", type="string", length=2, nullable=true)
+     * @ORM\Column(name="uk", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $uk;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="netherlands", type="string", length=2, nullable=true)
+     * @ORM\Column(name="netherlands", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $netherlands;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="belgium", type="string", length=2, nullable=true)
+     * @ORM\Column(name="belgium", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $belgium;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="luxembourg", type="string", length=2, nullable=true)
+     * @ORM\Column(name="luxembourg", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $luxembourg;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="france", type="string", length=2, nullable=true)
+     * @ORM\Column(name="france", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $france;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="germany", type="string", length=2, nullable=true)
+     * @ORM\Column(name="germany", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $germany;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="poland", type="string", length=2, nullable=true)
+     * @ORM\Column(name="poland", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $poland;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="czech_republic", type="string", length=2, nullable=true)
+     * @ORM\Column(name="czech_republic", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $czechRepublic;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slovakia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="slovakia", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $slovakia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="switzerland", type="string", length=2, nullable=true)
+     * @ORM\Column(name="switzerland", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $switzerland;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="austria", type="string", length=2, nullable=true)
+     * @ORM\Column(name="austria", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $austria;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="italy", type="string", length=2, nullable=true)
+     * @ORM\Column(name="italy", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $italy;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slovenia_croatia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="slovenia_croatia", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $sloveniaCroatia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bosnia_montenegro_albania", type="string", length=2, nullable=true)
+     * @ORM\Column(name="bosnia_montenegro", type="string", length=2, nullable=true, options={"default" : 0})
      */
-    private $bosniaMontenegroAlbania;
+    private $bosniaMontenegro;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="serbia_macedonia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="albania", type="string", length=2, nullable=true, options={"default" : 0})
+     */
+    private $albania;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serbia_macedonia", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $serbiaMacedonia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="hungary", type="string", length=2, nullable=true)
+     * @ORM\Column(name="hungary", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $hungary;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="romania_moldova", type="string", length=2, nullable=true)
+     * @ORM\Column(name="romania_moldova", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $romaniaMoldova;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bulgaria", type="string", length=2, nullable=true)
+     * @ORM\Column(name="bulgaria", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $bulgaria;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="greece", type="string", length=2, nullable=true)
+     * @ORM\Column(name="greece", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $greece;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sweden", type="string", length=2, nullable=true)
+     * @ORM\Column(name="sweden", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $sweden;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="finland", type="string", length=2, nullable=true)
+     * @ORM\Column(name="finland", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $finland;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="estonia_latvia_lithuania", type="string", length=2, nullable=true)
+     * @ORM\Column(name="estonia_latvia_lithuania", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $estoniaLatviaLithuania;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="belarus", type="string", length=2, nullable=true)
+     * @ORM\Column(name="belarus", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $belarus;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ukraine", type="string", length=2, nullable=true)
+     * @ORM\Column(name="ukraine", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $ukraine;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="russia", type="string", length=2, nullable=true)
+     * @ORM\Column(name="russia", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $russia;
 
@@ -638,6 +645,30 @@ class SyntaxonRepartitionEurope
     public function getSloveniaCroatia()
     {
         return $this->sloveniaCroatia;
+    }
+
+    /**
+     * Set albania
+     *
+     * @param string $albania
+     *
+     * @return SyntaxonRepartitionEurope
+     */
+    public function setAlbania($albania)
+    {
+        $this->albania = $albania;
+
+        return $this;
+    }
+
+    /**
+     * Get albania
+     *
+     * @return string
+     */
+    public function getAlbania()
+    {
+        return $this->albania;
     }
 
     /**

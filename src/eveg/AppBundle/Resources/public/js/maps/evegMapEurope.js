@@ -577,9 +577,11 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
               siShape.attr('fill', activeColor);
               hrShape.attr('fill', activeColor);
               break;
-            case 'bosnia_montenegro_albania':
+            case 'bosnia_montenegro':
               baShape.attr('fill', activeColor);
               meShape.attr('fill', activeColor);
+              break;
+            case 'albania':
               alShape.attr('fill', activeColor);
               break;
             case 'serbia_macedonia':

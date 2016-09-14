@@ -24,665 +24,665 @@ class syntaxonRepartitionDepFr
     /**
      * @var string
      *
-     * @ORM\Column(name="_01", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_01", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_01;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_02", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_02", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_02;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_03", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_03", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_03;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_04", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_04", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_04;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_05", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_05", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_05;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_06", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_06", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_06;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_07", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_07", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_07;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_08", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_08", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_08;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_09", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_09", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_09;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_10", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_10", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_10;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_11", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_11", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_11;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_12", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_12", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_12;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_13", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_13", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_13;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_14", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_14", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_14;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_15", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_15", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_15;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_16", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_16", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_16;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_17", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_17", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_17;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_18", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_18", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_18;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_19", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_19", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_19;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_20", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_20", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_20;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_21", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_21", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_21;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_22", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_22", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_22;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_23", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_23", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_23;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_24", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_24", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_24;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_25", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_25", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_25;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_26", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_26", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_26;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_27", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_27", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_27;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_28", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_28", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_28;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_29", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_29", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_29;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_30", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_30", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_30;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_31", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_31", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_31;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_32", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_32", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_32;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_33", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_33", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_33;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_34", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_34", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_34;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_35", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_35", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_35;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_36", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_36", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_36;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_37", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_37", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_37;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_38", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_38", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_38;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_39", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_39", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_39;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_40", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_40", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_40;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_41", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_41", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_41;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_42", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_42", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_42;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_43", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_43", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_43;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_44", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_44", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_44;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_45", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_45", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_45;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_46", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_46", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_46;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_47", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_47", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_47;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_48", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_48", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_48;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_49", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_49", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_49;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_50", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_50", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_50;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_51", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_51", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_51;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_52", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_52", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_52;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_53", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_53", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_53;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_54", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_54", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_54;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_55", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_55", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_55;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_56", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_56", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_56;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_57", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_57", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_57;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_58", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_58", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_58;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_59", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_59", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_59;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_60", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_60", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_60;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_61", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_61", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_61;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_62", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_62", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_62;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_63", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_63", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_63;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_64", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_64", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_64;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_65", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_65", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_65;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_66", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_66", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_66;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_67", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_67", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_67;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_68", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_68", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_68;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_69", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_69", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_69;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_70", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_70", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_70;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_71", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_71", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_71;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_72", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_72", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_72;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_73", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_73", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_73;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_74", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_74", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_74;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_75", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_75", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_75;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_76", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_76", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_76;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_77", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_77", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_77;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_78", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_78", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_78;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_79", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_79", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_79;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_80", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_80", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_80;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_81", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_81", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_81;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_82", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_82", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_82;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_83", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_83", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_83;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_84", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_84", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_84;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_85", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_85", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_85;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_86", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_86", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_86;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_87", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_87", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_87;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_88", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_88", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_88;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_89", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_89", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_89;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_90", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_90", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_90;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_91", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_91", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_91;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_92", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_92", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_92;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_93", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_93", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_93;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_94", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_94", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_94;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="_95", type="string", length=2, nullable=true)
+     * @ORM\Column(name="_95", type="string", length=2, nullable=true, options={"default" : 0})
      */
     private $_95;
 

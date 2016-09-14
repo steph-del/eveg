@@ -235,7 +235,7 @@ class SyntaxonCore
     /**
      * @var integer
      *
-     * @ORM\Column(name="hit", type="integer", options={"default" : 0})
+     * @ORM\Column(name="hit", type="integer", nullable=true, options={"default" : 0})
      */
     protected $hit;
 
