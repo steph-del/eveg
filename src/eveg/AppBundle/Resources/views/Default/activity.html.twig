@@ -72,13 +72,15 @@
 						</div>
 					</div>
 				{% endfor %}
+			{% else %}
+				{{ 'eveg.activities.no_activities' }}
 			{% endif %}
 		</div>
 		<div class="col-md-4">
-			<div class="thumbnail thumb-blue">
-				<div class="caption">
-					<h2>{{ 'eveg.dictionary.participate'|trans|capitalize }} !</h2>
-					{% if wanted is defined and wanted is not empty %}
+			{% if wanted is defined and wanted is not empty %}
+				<div class="thumbnail thumb-blue">
+					<div class="caption">
+						<h2>{{ 'eveg.dictionary.participate'|trans|capitalize }} !</h2>
 						<p>
 							<span class="badge">{{ nbTotalWanted }}</span>
 							{{ 'eveg.activities.participate.slogan'|trans }}
@@ -96,9 +98,9 @@
 								</button>
 							</li>
 						</ul>
-					{% endif %}
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

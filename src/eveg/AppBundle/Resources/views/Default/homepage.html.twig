@@ -72,11 +72,13 @@
 				</div>
 			</div> <!-- ./row -->
 			{# Last uploads from contributors #}
-			<div class="row">
-				<div class="col-md-12">
-					{% include 'evegAppBundle:Default/Fragments:lastUploadsThumbnail.html.twig' with { 'newDocuments': newDocuments } only %}
+			{% if newDocuments is defined and newDocuments is not empty %}
+				<div class="row">
+					<div class="col-md-12">
+						{% include 'evegAppBundle:Default/Fragments:lastUploadsThumbnail.html.twig' with { 'newDocuments': newDocuments } only %}
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div> <!-- ./row -->
 

@@ -277,6 +277,7 @@ eveg:
         access_syntaxon: Accéder à la fiche du syntaxon
         show_all: Afficher tout
         all_activities: Voir toutes les activités du site
+        no_activities: Aucune activité récente
 
     legal_notice:
         title: Mentions légales

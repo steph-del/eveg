@@ -19,7 +19,7 @@ eveg:
         circle: cercle
         close: fermer
         country: pays
-        date: date
+        date: dateno_activities: Aucune activité récente
         department: département
         description: description
         diagnosis_of: est la diagnose de
@@ -277,6 +277,7 @@ eveg:
         access_syntaxon: Accéder à la fiche du syntaxon
         show_all: Afficher tout
         all_activities: Voir toutes les activités du site
+        no_activities: Aucune activité récente
 
     legal_notice:
         title: Mentions légales
