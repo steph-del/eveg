@@ -123,7 +123,7 @@ eveg:
         presentation:
             title: Presentation
             1: "eVeg is a consultating interface uppon baseveg data (CATMINAT program, by Philippe Julve)."
-            2: "It gives you access to a database of all vegetations in France with an extension in Europe (Holartique and Eurasian for some units), established according to the principles of integrated synusial phytosociology."
+            2: "It gives you access to a database of all vegetations in France with an extension in Europe (holarctic and eurasian for some units), established according to the principles of integrated synusial phytosociology."
             3: "Each known vegetation is presented as a descriptive web page (ecology, geographical distribution, synonyms, characteristic species, bibliography) in association with pictures and diagnostic tables."
             4: General project organization :
         participate:
