@@ -103,14 +103,14 @@ class SyntaxonPhoto
     /**
      * @var \Date
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
@@ -124,7 +124,7 @@ class SyntaxonPhoto
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 

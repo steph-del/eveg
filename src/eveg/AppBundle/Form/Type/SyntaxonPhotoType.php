@@ -39,28 +39,35 @@ class SyntaxonPhotoType extends AbstractType
         ));
         $builder->add('date', DateType::class, array(
             'widget' => 'single_text',
-            'label' => 'eveg.dictionary.date'
+            'label' => 'eveg.dictionary.date',
+            'required'      => true
         ));
         $builder->add('country', TextType::class, array(
-            'label' => 'eveg.dictionary.country'
+            'label' => 'eveg.dictionary.country',
+            'required'      => false
             ));
         $builder->add('department', TextType::class, array(
-            'label' => 'eveg.dictionary.department'
+            'label' => 'eveg.dictionary.department',
+            'required'      => false
             ));
         $builder->add('city', TextType::class, array(
-            'label' => 'eveg.dictionary.town'
+            'label' => 'eveg.dictionary.town',
+            'required'      => false
             ));
         $builder->add('locality', TextType::class, array(
-            'label' => 'eveg.dictionary.locality'
+            'label' => 'eveg.dictionary.locality',
+            'required'      => false
             ));
         $builder->add('title', TextType::class, array(
-            'label' => 'eveg.dictionary.title'
+            'label' => 'eveg.dictionary.title',
+            'required'      => false
             ));
         $builder->add('description', TextareaType::class, array(
             'label' => 'eveg.dictionary.description',
             'attr' => array(
                 'rows' => 4, 'class' => 'form-control'
             ),
+            'required'      => false
         ));
         if($grantedCircle) {
             $builder->add('visibility', ChoiceType::class, array(
