@@ -86,7 +86,7 @@ class SyntaxonFile
      * @Assert\File(
      *     maxSize = "10M",
      *     mimeTypes = {"application/pdf", "application/vnd.oasis.opendocument.spreadsheet", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "text/csv"},
-     *     mimeTypesMessage = "Please upload a valid .ods, .xls, .xlsx or .pdf file."
+     *     mimeTypesMessage = "Please upload a valid .ods, .xls, .xlsx, .csv or .pdf file."
      * )
      * 
      * @var File

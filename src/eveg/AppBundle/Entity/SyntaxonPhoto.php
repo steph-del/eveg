@@ -72,7 +72,7 @@ class SyntaxonPhoto
      *
      * @Assert\File(
      *     maxSize = "6M",
-     *     mimeTypes = {"image/jpeg", "image/png"}
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"}
      * )
      * 
      * @var File
