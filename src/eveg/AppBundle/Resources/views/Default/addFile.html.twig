@@ -30,9 +30,14 @@
 
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
-							<br /><div class="alert alert-danger" role="alert">
-								{{ form_errors(form) }}
-							</div>
+							<br />
+							{% for s in form.syntaxonFiles %}
+								{% for error in s.fileFile.vars.errors %}
+									<div class="alert alert-danger" role="alert">
+										{{ error.message }}
+									</div>
+								{% endfor %}
+							{% endfor %}
 						{% endif %}
 					
 						<h3>{{ 'eveg.app.show_one.files.add.title'|trans }}</h3>

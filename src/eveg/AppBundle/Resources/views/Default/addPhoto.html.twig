@@ -29,9 +29,14 @@
 
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
-							<br /><div class="alert alert-danger" role="alert">
-								{{ form_errors(form) }}
-							</div>
+							<br />
+							{% for s in form.syntaxonPhotos %}
+								{% for error in s.imageFile.vars.errors %}
+									<div class="alert alert-danger" role="alert">
+										{{ error.message }}
+									</div>
+								{% endfor %}
+							{% endfor %}
 						{% endif %}
 					
 						<h3>{{ 'eveg.app.show_one.photos.title'|trans }}</h3>
