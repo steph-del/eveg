@@ -261,6 +261,8 @@ eveg:
             pdf: un document PDF
             link: un lien
             photo: une photo
+        save: Enregistrer
+        save_and_add_file: Enregistrer et ajouter une autre fichier
 
 
     search:
