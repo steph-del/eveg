@@ -3,7 +3,7 @@
 $highlightColor: rgba(255, 205, 26, 0.1);
 $borderColor: rgba(255, 205, 26, 0.3);
 $searchBoxExtendColor: rgba(0, 0, 0, 0.3);
-$rightInnerAddonPosition: 15px;
+$rightInnerAddonPosition: 40px;
 
 span.highlightSearch {
 	background-color: $highlightColor;
@@ -89,6 +89,43 @@ synonymeSearch {
 @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
+}
+
+// searchbox
+#searchbox {
+    border-right: none;
+}
+
+// Help icon
+.searchBoxExtend {
+    #searchHelperIcon {
+        border-color: transparent;
+        border-radius: inherit;
+        background-color: #FFFFFF;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        i {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            padding: 0;
+            font-size: 18px;
+        }
+    }
+}
+.modal-content {
+    #searchHelperIcon {
+        border-color: transparent;
+        border-radius: inherit;
+        background-color: #FFF;
+        box-shadow: none;
+        i {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            padding: 0;
+            font-size: 18px;
+        }
+    }
 }
 
 .ui-autocomplete {

@@ -243,6 +243,16 @@
 	});
 	</script>
 
+	<!-- search bar style -->
+	<script>
+		$('.searchbox').focus(function() {
+			$('#searchHelperIcon').css('border-color', '#66AFE9');
+		});
+		$('.searchbox').blur(function() {
+			$('#searchHelperIcon').css('border-color', '#CCC');
+		});
+	</script>
+
 	<!-- Feedbacks -->
 	{% javascripts filter="?yui_js" output="js/feedbacks.js"
 		'@evegAppBundle/Resources/public/js/feedback/feedback.js'

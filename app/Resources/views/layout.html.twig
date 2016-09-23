@@ -299,5 +299,11 @@
 		{% endif %}
 
 	{% endblock %}
+
+	{% javascripts filter="?yui_js" output="js/addons.js"
+		"@evegAppBundle/Resources/public/js/addons.js"
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 </body>
 </html>
