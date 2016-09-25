@@ -2,8 +2,13 @@ ul.fileForm{
 	padding-left: 0;
 }
 
-.well.wellFile li{
-	list-style:none;
+.well.wellFile {
+	border-radius: none;
+	border: none;
+	background-color: transparent;
+		li{
+			list-style:none;
+		}
 }
 
 li.li_list_style_none{
@@ -33,4 +38,18 @@ ul {
 	width: 100%;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+.saveButtons {
+	margin: 5px;
+	display: flex;
+	flex-direction: row;
+	button {
+		flex: auto;
+		margin: 5px;
+	}
+}
+@media (max-width: 768px) {
+	.saveButtons {
+		flex-direction: column;
+	}
 }

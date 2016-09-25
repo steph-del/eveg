@@ -46,6 +46,10 @@
 								{% endfilter %}">
 							</ul>
 					
+					<div class="saveButtons">
+						{{ form_widget(form.save) }}
+						{{ form_widget(form.saveAndAdd) }}
+					</div>
 					{{ form_widget(form._token) }}
 					{{ form_end(form, {'render_rest': false}) }}
 				</div>
@@ -67,7 +71,7 @@
 
 		// setup an "add a photo" link
 		var $addPhotoLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.photos.add.another"|trans }}</button>');
-		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/PhotoForm:photoFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addPhotoLink);
+		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/PhotoForm:photoFormSubmit.html.twig", { "form" : form}) }}</ul>');//.append($addPhotoLink);
 
 		jQuery(document).ready(function() {
 

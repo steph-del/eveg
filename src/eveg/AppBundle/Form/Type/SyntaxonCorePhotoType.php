@@ -23,7 +23,14 @@ class SyntaxonCorePhotoType extends AbstractType
         $builder->add('save', 'submit', array(
             'attr' => array(
                 'class' => 'btn btn-primary'
-            )
+            ),
+            'label' => 'eveg.file.save'
+        ));
+        $builder->add('saveAndAdd', 'submit', array(
+            'attr' => array(
+                'class' => 'btn btn-primary'
+            ),
+            'label' => 'eveg.file.save_and_add_file'
         ));
 
 	}
@@ -32,7 +39,8 @@ class SyntaxonCorePhotoType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'eveg\AppBundle\Entity\SyntaxonCore',
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'choice_translation_domain' => true,
         ));
     }
 

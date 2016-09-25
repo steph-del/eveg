@@ -42,6 +42,10 @@
 
 							</ul>
 					
+					<div class="saveButtons">
+						{{ form_widget(form.save) }}
+						{{ form_widget(form.saveAndAdd) }}
+					</div>
 					{{ form_widget(form._token) }}
 					{{ form_end(form, {'render_rest': false}) }}
 				</div>
@@ -64,7 +68,7 @@
 		// setup an "add a link" link
 		var $addHttpLinkLink = $('<a href="#" class="add_http_link_link">{{ "eveg.app.show_one.http_link.add.another"|trans }}</a>');
 		var $addHttpLinkLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.http_link.add.another"|trans }}</button>');
-		var $newHttpLinkLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addHttpLinkLink);
+		var $newHttpLinkLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/HttpLinkForm:httpLinkFormSubmit.html.twig", { "form" : form}) }}</ul>');//.append($addHttpLinkLink);
 
 		jQuery(document).ready(function() {
 

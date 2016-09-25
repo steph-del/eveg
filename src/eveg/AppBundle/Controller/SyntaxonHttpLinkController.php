@@ -70,9 +70,16 @@ class SyntaxonHttpLinkController extends Controller
       			$request->getSession()->getFlashBag()->add('warning', 'Aucun nouveau lien enregistré.');
       		}
 
-      		return $this->redirect($this->generateUrl('eveg_show_one', 
+      		// If SaveAndAdd
+      		if ($form->get('saveAndAdd')->isClicked()) {
+      			return $this->redirect($this->generateUrl('eveg_add_http_link', 
         			array('id' => $id)
         		));
+      		} else {
+      			return $this->redirect($this->generateUrl('eveg_show_one', 
+        			array('id' => $id)
+        		));
+      		}
       		
 		}
 

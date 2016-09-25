@@ -47,7 +47,10 @@
 								{% endfilter %}">
 
 							</ul>
-					
+					<div class="saveButtons">
+						{{ form_widget(form.save) }}
+						{{ form_widget(form.saveAndAdd) }}
+					</div>
 					{{ form_widget(form._token) }}
 					{{ form_end(form, {'render_rest': false}) }}
 				</div>
@@ -70,7 +73,7 @@
 		// setup an "add a file" link
 		var $addFileLink = $('<a href="#" class="add_file_link">{{ "eveg.app.show_one.files.add.another"|trans }}</a>');
 		var $addFileLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.files.add.another"|trans }}</button>');
-		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>').append($addFileLink);
+		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>');//.append($addFileLink);
 
 		jQuery(document).ready(function() {
 
