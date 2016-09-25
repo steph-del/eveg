@@ -32,11 +32,13 @@
 					</li>
 				{% endfor %}
 			</ul>
-			<p class="text-center">
-				<button type="button" class="btn btn-default">
-					<a class="no-style" href = "{{ path('eveg_app_activity') }}">{{ 'eveg.activities.all_activities'|trans }}</a>
-				</button>
-			</p>
+			{% if is_granted('ROLE_USER') %}
+				<p class="text-center">
+					<button type="button" class="btn btn-default">
+						<a class="no-style" href = "{{ path('eveg_app_activity') }}">{{ 'eveg.activities.all_activities'|trans }}</a>
+					</button>
+				</p>
+			{% endif %}
 		{% endif %}
 	</div>
 </div> <!-- thumbnail -->
