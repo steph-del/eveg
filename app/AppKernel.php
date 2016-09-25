@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new BeSimple\I18nRoutingBundle\BeSimpleI18nRoutingBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
