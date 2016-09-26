@@ -18,5 +18,5 @@ parameters:
 
     eveg:
         feedback:
-            mail_base_admin: "stephanedelplanque@yahoo.fr"
-            mail_website_admin: "eveg.stephane.delplanque@gmail.com"
+            mail_base_admin: stephane@e-veg.net
+            mail_website_admin: stephane@e-veg.net

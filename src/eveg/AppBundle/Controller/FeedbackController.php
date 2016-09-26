@@ -108,9 +108,24 @@ class FeedbackController extends Controller
 		            ),
 		            'text/html'
 		        )
-		    ;
+		      ;
+          $messageToUser = \Swift_Message::newInstance();
+          $messageToUser = $message;
+          $messageToUser
+            ->setSubject('Votre message a bien été envoye')
+            ->setTo($feedback->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'evegAppBundle:Emails:feedbackUser.html.twig',
+                    array('feedback' => $feedback)
+                ),
+                'text/html'
+            )
+          ;
+
 		    if($type == 'data') $message->setCc($cc);
 		    $this->get('mailer')->send($message);
+        $this->get('mailer')->send($messageToUser);
 
       		// return for ajax
       		return new JsonResponse(array('data' => 'Feedback sent'));

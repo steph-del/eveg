@@ -8,6 +8,9 @@
 
 	<body>
 		<h1><img src="http://www.e-veg.net/img/logo-min.png" alt="eVeg"/></h1><br />
+		<p>
+			{{ 'eveg.app.show_one.feedback.user.thanks'|trans }}
+		</p>
 		<b>Message de : </b>{{ feedback.user }} ({{ feedback.email }})<br />
 		<b>Concernant : </b>
 			{% if feedback.about == 'syntaxon' %}un syntaxon{% endif %}
@@ -19,5 +22,6 @@
 			<b>Syntaxon : </b>{{ feedback.syntaxon }}<br />
 		{% endif %}
 		<b>Message : </b>{{ feedback.message }}<br />
+		<p>{{ 'eveg.app.show_one.feedback.user.salutation'|trans|nl2br }}</p>
 	</body>
 </html>

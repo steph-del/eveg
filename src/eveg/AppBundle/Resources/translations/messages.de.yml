@@ -482,6 +482,11 @@ eveg:
                         message: Vous souhaitez partager une donnée concernant la répartition européenne de ce syntaxon ? Envoyez nous un message.
                 success: Votre message a bien été pris en compte et envoyé. Nous vous remercions pour votre participation et vous répondrons par mail.
                 error: Nous ne parvenons pas à envoyer votre message, merci de nous contacter directement par mail (voir la page Contact).
+                user:
+                    thanks: Votre message a bien été envoyé. Nous vous remerçions pour votre participation et vous répondrons dès que nous aurons traité votre demande.
+                    salutation: |
+                                Cordialement,
+                                l'équipe eVeg.
             
             photos:
                 title: Photos
