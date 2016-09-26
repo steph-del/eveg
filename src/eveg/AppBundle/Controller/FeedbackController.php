@@ -109,10 +109,11 @@ class FeedbackController extends Controller
 		            'text/html'
 		        )
 		      ;
+          
           $messageToUser = \Swift_Message::newInstance();
-          $messageToUser = $message;
           $messageToUser
-            ->setSubject('Votre message a bien été envoye')
+            ->setSubject('eVeg : votre message a bien été envoyé')
+            ->setFrom($from)
             ->setTo($feedback->getEmail())
             ->setBody(
                 $this->renderView(
