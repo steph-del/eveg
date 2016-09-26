@@ -84,7 +84,7 @@ class FeedbackController extends Controller
       		} elseif($about == 'mapDepFr') {
       			$subject = 'eVeg feedback : chorologie française';
       		} elseif($about = 'mapEurope') {
-      			$subject = 'eveg feedboak : chorologie européenne';
+      			$subject = 'eveg feedback : chorologie européenne';
       		} elseif($about == 'general') {
       			$subject = 'eveg feedback';
       		}
@@ -95,7 +95,7 @@ class FeedbackController extends Controller
       		} else {
       			$to = $this->container->getParameter('eveg')['feedback']['mail_website_admin'];
       		}
-      		$from = $feedback->getEmail();
+      		$from = 'admin@e-veg.net';
 
       		$message = \Swift_Message::newInstance()
 		        ->setSubject($subject)
