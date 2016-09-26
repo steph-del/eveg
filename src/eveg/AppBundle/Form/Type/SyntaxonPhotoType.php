@@ -94,7 +94,7 @@ class SyntaxonPhotoType extends AbstractType
         }
         $builder->add('license', ChoiceType::class, array(
             'choices' => array(
-                'CC-BY-CA' => 'CC-BY-CA'),
+                'CC-BY-SA' => 'CC-BY-SA'),
             'label' => 'eveg.dictionary.license',
             'attr' => array(
                 'class' => 'form-control'
