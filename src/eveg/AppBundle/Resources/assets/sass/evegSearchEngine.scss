@@ -75,6 +75,14 @@ synonymeSearch {
     //padding: 12px 12px;
     pointer-events: none;
 }
+@media (max-width: 768px) {
+    .right-inner-addon i {
+        right: 10px;
+    }
+    .right-inner-addon span.badge-addon {
+        right: 10px;
+    }
+}
 
 .glyphicon-refresh-animate {
     -animation: spin .7s infinite linear;
