@@ -99,7 +99,7 @@ class FeedbackController extends Controller
 
       		$message = \Swift_Message::newInstance()
 		        ->setSubject($subject)
-		        ->setFrom($from)
+		        ->setFrom($feedback->getEmail())
 		        ->setTo($to)
 		        ->setBody(
 		            $this->renderView(
