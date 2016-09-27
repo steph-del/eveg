@@ -13,7 +13,9 @@
 			    			<li><div class="form-group">{{ form_row(form.author, {'value' : app.user.fullName } ) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.date) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.country) }}</div></li>
-							<li><div class="form-group">{{ form_row(form.department) }}</div></li>
+							{% if form.department is defined %}
+								<li><div class="form-group">{{ form_row(form.department) }}</div></li>
+							{% endif %}
 							<li><div class="form-group">{{ form_row(form.city) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.locality) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.title) }}</div></li>

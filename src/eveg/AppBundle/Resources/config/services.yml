@@ -39,7 +39,7 @@ services:
 
     eveg_app.form.type.photo:
         class:              eveg\AppBundle\Form\Type\SyntaxonPhotoType
-        arguments:          ['@security.authorization_checker']
+        arguments:          ['@security.authorization_checker', '@session']
         tags:
             - {name: form.type }
     

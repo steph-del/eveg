@@ -15,17 +15,21 @@ class SyntaxonPhotoType extends AbstractType
 {
 
     private $securityContext;
+    private $session;
+    private $locale;
 
-    public function __construct($securityContext)
+    public function __construct($securityContext, $session)
     {
         $this->securityContext = $securityContext;
+        $this->session = $session;
+        $this->locale = $session->get('_locale');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $grantedCircle = $this->securityContext->isGranted('ROLE_CIRCLE');
-        
+
         $builder->add('imageFile', 'vich_image', array(
             'required'      => true,
             'download_link' => true,
@@ -33,7 +37,7 @@ class SyntaxonPhotoType extends AbstractType
         ));
         $builder->add('author', TextType::class, array(
             'attr' => array(
-                'placeholder' => 'Louise Michel'
+                'placeholder' => ''
             ),
             'label' => 'eveg.dictionary.author'
         ));
@@ -46,10 +50,12 @@ class SyntaxonPhotoType extends AbstractType
             'label' => 'eveg.dictionary.country',
             'required'      => false
             ));
-        $builder->add('department', TextType::class, array(
-            'label' => 'eveg.dictionary.department',
-            'required'      => false
-            ));
+        if($this->locale !== 'en') {
+            $builder->add('department', TextType::class, array(
+                'label' => 'eveg.dictionary.department',
+                'required'      => false
+                ));
+        }
         $builder->add('city', TextType::class, array(
             'label' => 'eveg.dictionary.town',
             'required'      => false
@@ -68,7 +74,8 @@ class SyntaxonPhotoType extends AbstractType
                 'rows' => 4, 'class' => 'form-control'
             ),
             'required'      => false
-        ));
+            ));
+        
         if($grantedCircle) {
             $builder->add('visibility', ChoiceType::class, array(
                 'choices' => array(
