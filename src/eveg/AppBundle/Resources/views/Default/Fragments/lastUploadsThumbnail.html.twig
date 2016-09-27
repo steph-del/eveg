@@ -34,9 +34,11 @@
 			</ul>
 			{% if is_granted('ROLE_USER') %}
 				<p class="text-center">
-					<button type="button" class="btn btn-default">
-						<a class="no-style" href = "{{ path('eveg_app_activity') }}">{{ 'eveg.activities.all_activities'|trans }}</a>
-					</button>
+					<a class="no-style" href = "{{ path('eveg_app_activity') }}">
+						<button type="button" class="btn btn-default">
+						{{ 'eveg.activities.all_activities'|trans }}
+						</button>
+					</a>
 				</p>
 			{% endif %}
 		{% endif %}
