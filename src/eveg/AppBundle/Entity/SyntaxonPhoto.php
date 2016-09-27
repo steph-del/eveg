@@ -71,7 +71,7 @@ class SyntaxonPhoto
      * @Vich\UploadableField(mapping="syntaxon_photo", fileNameProperty="imageName")
      *
      * @Assert\File(
-     *     maxSize = "6M",
+     *     maxSize = "8M",
      *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"}
      * )
      * 
