@@ -157,7 +157,7 @@ eveg:
                 Le projet de saisie des diagnoses est issu du groupe TB-phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
             2: Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
             3: |
-                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif), tout document téléversé dans son intégralité (thèse, bulletin, etc.) sera supprimé.
+                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif). Les documents complets n'ont pas leur place dans les fiches végétation (thèse, bulletin, etc.), il est préférable de les mettre en ligne sur le projet TB-Phytosocio, dans la %link_start%section bibliographie%link_end%.
             screen_label: "Une fois connecté, cliquez sur 'Ajouter un document' dans le panneau 'Ressources' d'une fiche"
 
         model: Modèle à suivre pour la saisie
@@ -172,7 +172,7 @@ eveg:
                 Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
             2: |
                 La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence Creative Commons CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
-                La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA) et citation obligatoire de l’auteur.
+                La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : citation obligatoire de l’auteur et partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA).
             screen_label: "Une fois connecté, cliquez sur 'Ajouter une photo' dans le panneau 'Illustrations' d'une fiche"
 
         add_map_comment:
