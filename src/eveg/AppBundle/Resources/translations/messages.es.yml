@@ -261,6 +261,7 @@ eveg:
             pdf: un document PDF
             link: un lien
             photo: une photo
+        is_diagnosis: Si votre document concerne une diagnose, merci de préciser la végétation associée
         save: Enregistrer
         save_and_add_file: Enregistrer et ajouter une autre fichier
 

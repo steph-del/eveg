@@ -43,7 +43,7 @@ class SyntaxonFileType extends AbstractType
                 'placeholder' => 'eveg.app.show_one.files.add.placeholder')
             ));
         $builder->add('diagnosisOf', ChoiceType::class, array(
-            'label' => 'eveg.dictionary.diagnosis_of',
+            'label' => 'eveg.file.is_diagnosis',
             'choices' => $possibleDiagnosis,
             'choices_as_values' => true,
             'choice_label' => function ($value, $key, $index) {
@@ -72,9 +72,13 @@ class SyntaxonFileType extends AbstractType
             ));
         } else {
             $builder->add('visibility', ChoiceType::class, array(
+            'label' => 'eveg.dictionary.visibility',
             'choices' => array(
                 'public' => 'Public',
-                'private' => 'Privé')
+                'private' => 'Privé'),
+            'attr' => array(
+                    'class' => 'form-control'
+                ),
             ));
         }
         
