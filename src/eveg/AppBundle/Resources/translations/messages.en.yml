@@ -227,7 +227,7 @@ eveg:
             db: |
                 Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
             website: |
-                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
+                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse %link%.
             photos: |
                 Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
             documents: |

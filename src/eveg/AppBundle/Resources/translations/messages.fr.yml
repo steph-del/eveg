@@ -194,7 +194,7 @@ eveg:
         title: A propos du projet eVeg
         presentation: 
             1: L'application eVeg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.
-            2: L'aplication a été réalisée et est maintenue de manière totalement bénévole. Le projet ne bénéficie d’aucune subvention.
+            2: L'application a été réalisée et est maintenue de manière totalement bénévole. Le projet ne bénéficie d’aucune subvention.
             3: Les orientations de développement sont faites par les auteurs principaux en concertation avec l'équipe de Tela Botanica.
         authors: 
             title: Auteurs
@@ -227,7 +227,7 @@ eveg:
             db: |
                 Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
             website: |
-                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de sous code source est disponible en ligne à l’adresse https://github.com/steph-del/eveg.
+                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de son code source est disponible en ligne à l’adresse %link%.
             photos: |
                 Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
             documents: |
