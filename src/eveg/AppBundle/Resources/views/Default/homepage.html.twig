@@ -7,6 +7,11 @@
 	{{ parent() }} | {{ 'eveg.slogan'|trans }} | {{ 'eveg.web_title'|trans }}
 {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/fancytree/skin-win8/ui.fancytree.min.css') }}" type="text/css" />
+	{{ parent() }}
+{% endblock %}
+
 {% block meta%}
 	<meta name="description" content="{{ 'eveg.meta.homepage'|trans }}" />
 {% endblock %}
@@ -45,40 +50,54 @@
 
 	{# Page #}
 	<div class="row">
-		<div class="col-md-7">
-			<div class="thumbnail thumb-orange">
-				<div class="caption">
-					<h2>{{ 'eveg.homepage.presentation.title'|trans }}</h2>
-					<p>{{ 'eveg.homepage.presentation.1'|trans }}</p>
-					<p>{{ 'eveg.homepage.presentation.2'|trans }}</p>
-					<p>{{ 'eveg.homepage.presentation.3'|trans }}</p>
-					<div class="hidden-xs">
-						<p>{{ 'eveg.homepage.presentation.4'|trans }}</p>
-						<div class="row">
-							<div class="col-md-offset-2 col-md-8 col-xs-12">
-								<p class="text-center"><img class="eveg-diagram-img" src="{{  asset('img/patterns/schema_eveg.png') }}" alt="eveg diagram"></img></p>
-							</div>
-						</div>
-					</div>
+		<div class="col-md-4" style="padding-right: 0px;">
+			<div class="hidden-xs hidden-sm" id="treeView">
+				<p>{{ 'eveg.homepage.start'|trans }}</p>
+				<div id="divTree">
+					
+				</div>
+				{#<i class=" glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>#}
+				<div class="loadTreeIcon">
+					<i class="fa fa-circle-o-notch fa-spin"></i>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-5">
-			{# Participate #}
-			<div class="row">
+		<div class="col-md-8">
+			{# Presentation #}
+			<div class="row hidden-sm">
 				<div class="col-md-12">
-					{% include 'evegAppBundle:Default/Fragments:participateThumbnail.html.twig' with { 'nbCards': nbCards, 'nbDocs': nbDocs, 'wanted': wanted, 'nbTotalWanted': nbTotalWanted } only %}
-				</div>
-			</div> <!-- ./row -->
-			{# Last uploads from contributors #}
-			{% if newDocuments is defined and newDocuments is not empty %}
-				<div class="row">
-					<div class="col-md-12">
-						{% include 'evegAppBundle:Default/Fragments:lastUploadsThumbnail.html.twig' with { 'newDocuments': newDocuments } only %}
+					<div class="thumbnail thumb-orange">
+						<div class="caption">
+							<h2>{{ 'eveg.homepage.presentation.title'|trans }}</h2>
+							<p>{{ 'eveg.homepage.presentation.1'|trans }}</p>
+							<p>{{ 'eveg.homepage.presentation.2'|trans }}</p>
+							<p>{{ 'eveg.homepage.presentation.3'|trans }}</p>
+							{#<div class="hidden-xs">
+								<p>{{ 'eveg.homepage.presentation.4'|trans }}</p>
+								<div class="row">
+									<div class="col-md-offset-2 col-md-8 col-xs-12">
+										<p class="text-center"><img class="eveg-diagram-img" src="{{  asset('img/patterns/schema_eveg.png') }}" alt="eveg diagram"></img></p>
+									</div>
+								</div>
+							</div>#}
+						</div>
 					</div>
 				</div>
-			{% endif %}
+			</div>
+			{# Participate #}
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					{% include 'evegAppBundle:Default/Fragments:participateThumbnail.html.twig' with { 'nbCards': nbCards, 'nbDocs': nbDocs, 'wanted': wanted, 'nbTotalWanted': nbTotalWanted } only %}
+				</div>
+				{#</div> <!-- ./row -->#}
+				{# Last uploads from contributors #}
+				{% if newDocuments is defined and newDocuments is not empty %}
+					<div class="col-md-6 col-sm-12">
+						{% include 'evegAppBundle:Default/Fragments:lastUploadsThumbnail.html.twig' with { 'newDocuments': newDocuments } only %}
+					</div>
+				{% endif %}
+			</div>
 		</div>
 	</div> <!-- ./row -->
 
@@ -87,6 +106,17 @@
 {% block javascript %}
 
 	{{ parent() }}
+
+	<!-- FANCY TREE -->
+	<script>env = "{{ app.environment }}";/* Global environment var*/</script>
+	{% javascripts filter="?yui_js" output ="js/tree.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.persist.js"
+		"@evegAppBundle/Resources/public/js/tree/jquery.fancytree.table.js"
+		"@evegAppBundle/Resources/public/js/tree/treeApp.js"
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	<!-- REPARTITION FILTERS -->
 	<!-- FR DEPARTMENT FILTER -->

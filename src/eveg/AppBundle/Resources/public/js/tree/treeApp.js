@@ -1,6 +1,6 @@
 $(".loadTreeIcon").hide();
 if(env == "dev") {
-	var iconPath = "../../img/icons/";
+	var iconPath = "../img/icons/";
 }else if(env =="prod") {
 	var iconPath = "../../img/icons/";
 }

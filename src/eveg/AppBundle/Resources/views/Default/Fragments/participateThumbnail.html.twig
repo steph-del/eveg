@@ -11,12 +11,12 @@
 				<div class="partiticpateItemNb">{{ nbDocs }}</div>
 				<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbDocuments'|trans|nl2br }}</div>
 			</div>
-			{% if (wanted is defined) and (wanted is not empty) and (wanted|length >= 2) %}
+			{#{% if (wanted is defined) and (wanted is not empty) and (wanted|length >= 2) %}
 				<div class="partiticpateItem hidden-xs">
 					<div class="partiticpateItemNb">{{ nbTotalWanted }}</div>
 					<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbWaiting'|trans|nl2br }}</div>
 				</div>
-			{% endif %}
+			{% endif %}#}
 		</div>
 		<p>{{ 'eveg.homepage.participate.addDocuments'|trans }}</p>
 		<p class="text-center">

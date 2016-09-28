@@ -142,6 +142,7 @@ eveg:
             how: More
         lastUploads:
             title: Last additions from contributors
+        start: Pour commencer à utiliser eVeg, utilisez le moteur de recherche ci-dessus ou naviguez dans l'arbre des végétations.
 
     participate:
         title: Participate
