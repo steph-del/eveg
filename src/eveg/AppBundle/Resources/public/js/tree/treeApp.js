@@ -45,12 +45,15 @@ $(function(){
 	    },
 	    click: function(event, data) {
 	    	var node = data.node;
-	    	node.toggleExpanded();
+	    	//node.toggleExpanded();
+	    	tt = $.ui.fancytree.getEventTargetType(event.originalEvent);
+	    	if(tt != 'expander') {
+	    		window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
+	    	}
 	    },
 	    dblclick: function(event, data) {
-	    	var node = data.node;
-
-	    	window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
+	    	//var node = data.node;
+	    	//window.location.href = Routing.generate('eveg_show_one_redirect', { id: node.key}, true);
 	    },
 	    icon: function(event, data) {
 	    	level = data.node.data.level;
