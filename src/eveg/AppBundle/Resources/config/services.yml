@@ -74,6 +74,13 @@ services:
         arguments:
             - eveg\AppBundle\Entity\SyntaxonPhoto
 
+    user_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\UserBundle\Entity\User
+
     eveg_app.get_syntaxon_according_user:
         class:              eveg\AppBundle\Utils\Repository\getSyntaxonAccordingUserRights
         arguments:          ['@score_repository', '@security.authorization_checker', '@security.token_storage']
@@ -97,6 +104,10 @@ services:
     eveg_app.nbItems:
         class:              eveg\AppBundle\Utils\Services\nbEvegItems
         arguments:          ['@score_repository', '@sfile_repository', '@shttplink_repository', '@sphoto_repository']
+
+    eveg.user.newsletter:
+        class:              eveg\UserBundle\Controller\NewsletterUsersController
+        arguments:          ['@user_repository']
 
     sitemap:
         class:              eveg\AppBundle\Utils\Services\sitemap

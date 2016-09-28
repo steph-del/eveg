@@ -10,7 +10,7 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonPhotoRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getPublicPhotosOrderByDatetime($limitResults = null)
+	public function getPublicPhotosOrderByDatetime($limitResults = null, $since = null)
 	{
 		$qb = $this->createQueryBuilder('p');
 
@@ -25,6 +25,10 @@ class SyntaxonPhotoRepository extends \Doctrine\ORM\EntityRepository
 			;
 		if($limitResults) {
 			$qb->setMaxResults($limitResults);
+		}
+		if($since) {
+			$qb->andWhere('p.uploadedAt > :since')
+			   ->setParameter('since', $since);
 		}
 
 		return $qb->getQuery()->getResult();

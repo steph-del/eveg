@@ -27,13 +27,13 @@ class whatsUp
 	 *
 	 *
 	 */
-	public function tellMeWhatsNew($limitResults = null)
+	public function tellMeWhatsNew($limitResults = null, $since = null)
 	{
 
 		$limitRepoResults = 5;
-		$lastFiles = $this->sFileRepo->getPublicDocumentsOrderByDatetime($limitRepoResults);
-		$lastHttpLinks = $this->sHttpLinkRepo->getPublicHttpLinksOrderByDatetime($limitRepoResults);
-		$lastPhotos = $this->sPhotoRepo->getPublicPhotosOrderByDatetime($limitRepoResults);
+		$lastFiles = $this->sFileRepo->getPublicDocumentsOrderByDatetime($limitRepoResults, $since);
+		$lastHttpLinks = $this->sHttpLinkRepo->getPublicHttpLinksOrderByDatetime($limitRepoResults, $since);
+		$lastPhotos = $this->sPhotoRepo->getPublicPhotosOrderByDatetime($limitRepoResults, $since);
 		$lastDocuments = array();
 		$i = 0;
 

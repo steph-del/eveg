@@ -77,7 +77,7 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function getPublicDocumentsOrderByDatetime($limitResults = null)
+	public function getPublicDocumentsOrderByDatetime($limitResults = null, $since = null)
 	{
 		$qb = $this->createQueryBuilder('f');
 
@@ -92,6 +92,10 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 			;
 		if($limitResults) {
 			$qb->setMaxResults($limitResults);
+		}
+		if($since) {
+			$qb->andWhere('f.uploadedAt > :since')
+			   ->setParameter('since', $since);
 		}
 
 		return $qb->getQuery()->getResult();

@@ -43,4 +43,13 @@ class UserRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findUsersEmailsForNewsletter()
+	{
+		$qb = $this->createQueryBuilder('u');
+
+		$qb->select('u.email');
+
+		return $qb->getQuery()->getResult();
+	}
 }

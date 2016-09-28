@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h1 {font-size: 20px;margin-top: 15px;}
+			tr.highlight td {background-color: #F1F1F1;}
+			.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto; border: none;}
+			.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:none;border-width:0px;overflow:hidden;word-break:normal;}
+			.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:none;border-width:0px;overflow:hidden;word-break:normal;}
+			.tg .tg-7imu{font-weight:bold;font-size:22px;background-color:#FFF;color:#000;text-align:center;vertical-align:top}
+			.tg .tg-3we0{background-color:#FFF;vertical-align:top}
+			@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
+			tbody {border-color: #FFF; border-style: none; border-width: 0px;}
+		</style>
+	</head>
+
+	<body>
+		<div class="tg-wrap">
+			<table class="tg" style="undefined;table-layout: fixed; width: 767px;">
+				<colgroup>
+					<col style="width: 102px">
+					<col style="width: 665px">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th class="tg-7imu">
+							<img src="http://www.e-veg.net/img/logo-min.png" alt="eVeg" style="width: 130px;"/>
+						</th>
+						<th style="width:auto;">
+							<h1>| Derniers fichiers mis en ligne</h1>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			<hr />
+			<table class="tg" style="undefined;table-layout: fixed; width: 767px;">
+				<tbody>
+					<colgroup>
+						<col style="width: 727px;">
+						<col style="width: 40px !important;">
+					</colgroup>
+
+					{% if since == 'day' %} {% set when = 'hier' %} {% endif %}
+					{% if since == 'week' %} {% set when = 'la semaine dernière' %} {% endif %}
+					{% if since == 'month' %} {% set when = 'le mois dernier' %} {% endif %}
+					<tr><td>
+						<p>
+							Bonjour, <br /><br />Depuis {{ when }}, {{ news|length }} nouveaux fichiers ont été ajoutés sur eVeg :
+						</p>
+					</td></tr>
+					{% for n in news %}
+
+						{% if loop.index is not divisibleby(2) %}
+						<tr>
+						{% else %}
+						<tr style="background-color: #E8F4FF;">
+						{% endif %}
+
+						{% if n.type == 'pdf' %} {% set docType = "un document pdf"%} {% endif %}
+						{% if n.type == 'spreadsheet' %} {% set docType = "un tableau"%} {% endif %}
+						{% if n.type == 'photo' %} {% set docType = "une photo"%} {% endif %}
+						{% if n.type == 'httplin' %} {% set docType = "un lien externe"%} {% endif %}
+							<td class="">
+								le {{ n.datetime|localizeddate('medium', 'medium', format='dd MMM yyyy')}},
+								<b>{{ n.user }}</b> à ajouté {{ docType }}<br />
+								pour : {{ n.syntaxon }}<br />
+								{% if n.title is not empty %}
+									(<i>{{ n.title }}</i>)
+								{% endif %}
+							</td>
+							{% if loop.index is not divisibleby(2) %}
+							<td class="go" style="background-color: #F7F7F7;">
+							{% else %}
+							<td class="go" style="background-color: #E1EFFB;">
+							{% endif %}
+
+								<a href="{{ path('eveg_show_one_redirect', {'id': n.syntaxon_id}) }}" style="color: #000; text-decoration: none;font-size: 34px;text-align: center;" title="Accéder à la fiche"> > </a>
+							</td>
+						</tr>
+					{% endfor %}
+					<br /><br />
+					<tr>
+						<td class="tg-3we0">L'équipe eVeg.</td>
+						<td class="tg-3we0"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

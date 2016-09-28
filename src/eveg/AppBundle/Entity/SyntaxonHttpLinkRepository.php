@@ -10,7 +10,7 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonHttpLinkRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getPublicHttpLinksOrderByDatetime($limitResults = null)
+	public function getPublicHttpLinksOrderByDatetime($limitResults = null, $since = null)
 	{
 		$qb = $this->createQueryBuilder('h');
 
@@ -25,6 +25,10 @@ class SyntaxonHttpLinkRepository extends \Doctrine\ORM\EntityRepository
 			;
 		if($limitResults) {
 			$qb->setMaxResults($limitResults);
+		}
+		if($since) {
+			$qb->andWhere('h.uploadedAt > :since')
+			   ->setParameter('since', $since);
 		}
 
 		return $qb->getQuery()->getResult();
