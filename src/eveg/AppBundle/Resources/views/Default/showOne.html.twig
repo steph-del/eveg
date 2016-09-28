@@ -109,11 +109,13 @@
 							{#</div>#}
 
 							<!-- Ecological valences -->
-							<div class="col-md-12 col-sm-6">
-								{% if syntaxon.level != 'HAB' %}
-									{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
-								{% endif %}
-							</div>
+							{% if ecologicalValuesAvg is not empty and species is not empty %}
+								<div class="col-md-12 col-sm-6">
+									{% if syntaxon.level != 'HAB' %}
+										{% include 'evegAppBundle:Default/Fragments/CardPanels:ecologicalValencesPanel.html.twig' with { 'ecologicalValuesAvg': ecologicalValuesAvg } only %}
+									{% endif %}
+								</div>
+							{% endif %}
 
 						</div>
 
