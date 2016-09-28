@@ -7,7 +7,7 @@
 			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 			<div id="popover-searchOptions-head" class="hide">Options</div>
 		</div>#}
-		<span id="searchHelperIcon" class="input-group-addon hidden-xs" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" title="" data-content="{{ 'eveg.search.help'|trans }}">
+		<span id="searchHelperIcon" class="input-group-addon hidden-xs" data-container="body" data-toggle="popover" data-placement="bottom" data-trigger="hover" title="" data-content="{{ 'eveg.search.help'|trans({'%code_start%' : '<kbd>', '%code_end%' : '</kbd>', '%bold_start%' : '<b>', '%bold_end%' : '</b>', '%separator%' : '<hr />', '%citation_start%' : '<i>', '%citation_end%' : '</i>', '%space%' : '&nbsp;'})|nl2br }}">
 			<i class="fa fa-info-circle" aria-hidden="true"></i>
 		</span>
 	</div>

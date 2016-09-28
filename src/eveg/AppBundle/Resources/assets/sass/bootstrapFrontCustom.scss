@@ -1356,3 +1356,20 @@ img.syntaxonIllustration{
  		font-style: italic;
  	}
  }
+
+/*
+ * Separators
+ *************/
+ hr {
+ 	margin-top: 5px;
+ 	margin-bottom: 5px;
+ 	padding: 0;	
+ }
+
+/*
+ * Typography
+ ************/
+ kbd {
+ 	background-color: #BFBFBF;
+ 	color: #000;
+ }

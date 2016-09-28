@@ -270,7 +270,11 @@ eveg:
         title: Rechercher
         placeholder: Rechercher une végétation
         use_synonyms: Utiliser les synonymes
-        help: Vous pouvez ne saisir que le début du terme recherché. Utilisez l'espace pour remplacer n'importe quel terme ou caractère(s). Exemple : 'Aceri camp carpin' renvoi 'Aceri campestris - Carpinetum betuli Julve 1994'.
+        help: |
+            Utilisez %bold_start%l'espace%bold_end% pour remplacer n'importe quel terme ou caractère(s).
+            %separator%Exemple : %code_start%Aceri camp carpin%code_end% renvoi %citation_start%Aceri campestris - Carpinetum betuli Julve 1994%citation_end%.
+            %separator%Essayez une recherche sur %code_start%%space%arrhenatheretum%code_end% (avec un espace en premier caractère) pour rechercher les associations comportant ce terme.
+            %separator%Essayer également une recherche sur %code_start%%space% de Foucault%code_end% (avec un espace en premier caractère) pour rechercher les syntaxons décrits par l'auteur.
 
     activities:
         title: Activités
