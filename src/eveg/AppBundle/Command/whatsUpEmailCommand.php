@@ -74,7 +74,8 @@ class whatsUpEmailCommand extends ContainerAwareCommand
 		$news = $wu->tellMeWhatsNew($limitItems = null, $since = $dateTimeRequested);
 
 		$io->writeln(count($news).' nouveaux documents ajoutés à eVeg depuis '.$sinceFr.'.');
-		$io->writeln(count($emailsList).' mails à envoyer.');
+		if($input->getArgument('for') == 'users') $io->writeln(count($emailsList).' mails à envoyer.');
+		if($input->getArgument('for') == 'admin') $io->writeln('Envoyer le mail à Admin.');
 
 		$message = \Swift_Message::newInstance()
 			->setSubject('eVeg | Derniers ajouts')
