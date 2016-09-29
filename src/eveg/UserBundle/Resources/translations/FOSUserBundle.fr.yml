@@ -1,6 +1,7 @@
 security:
     login:
         fullName : 'Prénom et nom'
+        newsletter : 'Je souhaite recevoir les actualités eVeg'
 registration:
     confirmed:
         what-can-i-do: "Vous pouvez ajouter du contenu sur eVeg : tableaux, documents pdf, liens, photos..."

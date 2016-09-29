@@ -37,6 +37,7 @@
 					<th>Nom</th>
 					<th>Score</th>
 					<th>Mail</th>
+					<th>Newsletter</th>
 					<th>Depuis le</th>
 					<th>Dernière conn.</th>
 					<th>Rôles</th>
@@ -55,6 +56,10 @@
  						<td>{{ user.username }}</td>
  						<td>{{ user.score }}</td>
  						<td>{{ user.email }}</td>
+ 						<td>{% if user.newsletter == true %}
+ 								<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+ 							{% endif %}
+ 						</td>
  						<td>A ajouter à l'entité</td>
  						<td>{% if user.lastLogin is not null %} {{ user.lastLogin.date }} {% endif %}</td>
  						<td>

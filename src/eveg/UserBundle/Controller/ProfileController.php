@@ -116,6 +116,7 @@ class ProfileController extends Controller
         $formFactory = $this->get('fos_user.profile.form.factory');
 
         $form = $formFactory->createForm();
+        $form->add('newsletter');
         $form->add('enabled');
         $form->add('roles', 'choice', array(
 	        'choices' => $this->getExistingRoles(),

@@ -19,7 +19,7 @@ eveg_admin_users:
 
 eveg_admin_edit_user:
     path: /user/{id}
-    defaults: { _controller: evegUserBundle:Profile:edit }
+    defaults: { _controller: evegUserBundle:Profile:editAdmin }
 
 eveg_admin_delete_user:
     path: /user/{id}/delete

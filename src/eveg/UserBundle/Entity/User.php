@@ -84,6 +84,13 @@ class User extends BaseUser
     private $score = 0;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="newsletter", type="boolean")
+     */
+    private $newsletter = true;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -386,5 +393,27 @@ class User extends BaseUser
         $score = $this->getNbSyntaxonFiles() + $this->getNbSyntaxonHttpLinks() + $this->getNbSyntaxonPhotos() + $this->getNbFeedbacks();
 
         return $score;
+    }
+
+    /**
+     * Set newsletter
+     *
+     * @return User
+     */
+    public function setNewsletter($newsletter)
+    {
+        $this->newsletter = $newsletter;
+
+        return $this;
+    }
+
+    /**
+     * Get newsletter
+     *
+     * @return integer
+     */
+    public function getNewsletter()
+    {
+        return $this->newsletter;
     }
 }
