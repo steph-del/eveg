@@ -64,6 +64,7 @@ class ProfileController extends Controller
 
         $form = $formFactory->createForm();
         $form->setData($user);
+        $form->add('newsletter');
 
         $form->handleRequest($request);
 

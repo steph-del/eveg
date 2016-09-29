@@ -50,6 +50,13 @@
 			    				{{ form_widget(form.current_password) }}
 			    			</div>
 			    		</div>
+			    		<div class="row row-no-margin form-horizontal">
+							{{ form_errors(form.newsletter) }}
+							<div class="col-sm-12 text-right">
+								{{ form_label(form.newsletter, 'security.login.newsletter'|trans({}, 'FOSUserBundle')) }}
+								{{ form_widget(form.newsletter) }}
+							</div>
+						</div>
 			    	</li>
 			    </div>
 		    </div>
