@@ -92,7 +92,7 @@ class whatsUpEmailCommand extends ContainerAwareCommand
 		;
 
 		if($input->getArgument('for') == 'users') {
-			$message->setTo($emailsList);
+			$message->setBcc($emailsList);
 		} elseif($input->getArgument('for') == 'admin') {
 			$message->setTo($this->getContainer()->getParameter('eveg')['feedback']['mail_website_admin']);
 		} else {
