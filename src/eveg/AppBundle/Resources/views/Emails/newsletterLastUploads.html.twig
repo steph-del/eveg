@@ -27,7 +27,7 @@
 							<img src="http://www.e-veg.net/img/logo-min.png" alt="eVeg" style="width: 130px;"/>
 						</th>
 						<th style="width:auto;">
-							<h1>| Derniers fichiers mis en ligne</h1>
+							<h1>| {{ 'eveg.newsletter.last_up.title'|trans }}</h1>
 						</th>
 					</tr>
 				</tbody>
@@ -40,12 +40,13 @@
 						<col style="width: 40px !important;">
 					</colgroup>
 
-					{% if since == 'day' %} {% set when = 'hier' %} {% endif %}
-					{% if since == 'week' %} {% set when = 'la semaine dernière' %} {% endif %}
-					{% if since == 'month' %} {% set when = 'le mois dernier' %} {% endif %}
+					{% if since == 'day' %} {% set when = 'eveg.newsletter.last_up.date.day'|trans %} {% endif %}
+					{% if since == 'week' %} {% set when = 'eveg.newsletter.last_up.date.week'|trans %} {% endif %}
+					{% if since == 'month' %} {% set when = 'eveg.newsletter.last_up.date.month'|trans %} {% endif %}
 					<tr><td>
 						<p>
-							Bonjour, <br /><br />Depuis {{ when }}, {{ news|length }} nouveaux fichiers ont été ajoutés sur eVeg :
+							{#Bonjour, <br /><br />Depuis {{ when }}, {{ news|length }} nouveaux fichiers ont été ajoutés sur eVeg :#}
+							{{ 'eveg.newsletter.last_up.hello'|trans({'%when%': when, '%how-many%': news|length})|nl2br }}
 						</p>
 					</td></tr>
 					{% for n in news %}
@@ -56,14 +57,14 @@
 						<tr style="background-color: #E8F4FF;">
 						{% endif %}
 
-						{% if n.type == 'pdf' %} {% set docType = "un document pdf"%} {% endif %}
-						{% if n.type == 'spreadsheet' %} {% set docType = "un tableau"%} {% endif %}
-						{% if n.type == 'photo' %} {% set docType = "une photo"%} {% endif %}
-						{% if n.type == 'httplin' %} {% set docType = "un lien externe"%} {% endif %}
+						{% if n.type == 'pdf' %} {% set docType = 'eveg.file.type.pdf'|trans %} {% endif %}
+						{% if n.type == 'spreadsheet' %} {% set docType = 'eveg.file.type.spreadsheet'|trans %} {% endif %}
+						{% if n.type == 'photo' %} {% set docType = 'eveg.file.type.photo'|trans %} {% endif %}
+						{% if n.type == 'httplink' %} {% set docType = 'eveg.file.type.link'|trans %} {% endif %}
 							<td class="">
 								le {{ n.datetime|localizeddate('medium', 'medium', format='dd MMM yyyy')}},
-								<b>{{ n.user }}</b> à ajouté {{ docType }}<br />
-								pour : {{ n.syntaxon }}<br />
+								<b>{{ n.user }}</b> {{ 'eveg.dictionary.added'|trans }} {{ docType }}<br />
+								{{ 'eveg.dictionary.for'|trans }} : {{ n.syntaxon }}<br />
 								{% if n.title is not empty %}
 									(<i>{{ n.title }}</i>)
 								{% endif %}
@@ -74,13 +75,13 @@
 							<td class="go" style="background-color: #E1EFFB;">
 							{% endif %}
 
-								<a href="http://www.e-veg.net/app/{{ n.syntaxon_id }}" style="color: #000; text-decoration: none;font-size: 34px;text-align: center;" title="Accéder à la fiche"> > </a>
+								<a href="http://www.e-veg.net/app/{{ n.syntaxon_id }}" style="color: #000; text-decoration: none;font-size: 34px;text-align: center;" title="{{ 'eveg.newsletter.last_up.go'|trans }}"> > </a>
 							</td>
 						</tr>
 					{% endfor %}
 					<br /><br />
 					<tr>
-						<td class="tg-3we0">L'équipe eVeg.</td>
+						<td class="tg-3we0">{{ 'eveg.newsletter.last_up.bye'|trans }}</td>
 						<td class="tg-3we0"></td>
 					</tr>
 				</tbody>

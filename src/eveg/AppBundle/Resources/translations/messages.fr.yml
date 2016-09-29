@@ -259,7 +259,7 @@ eveg:
     file:
         type:
             spreadsheet: un tableau
-            pdf: un document PDF
+            pdf: un document Pdf
             link: un lien
             photo: une photo
         is_diagnosis: Si votre document concerne une diagnose, merci de préciser la végétation associée
@@ -534,3 +534,17 @@ eveg:
     meta:
         homepage: Une base de données pour les végétations de France métropolitaine et d'Europe. Phytosociologie synusiale intégrée.
         syntaxon: écologie, répartition en France et en Europe, bibliographie...
+
+    newsletter:
+        last_up:
+            title: Derniers fichiers mis en ligne
+            date:
+                day: hier
+                week: la semaine dernière
+                month: le mois dernier
+            hello: |
+                Bonjour,
+
+                Depuis %when%, %how-many% nouveaux fichiers ont été ajoutés sur eVeg :
+            go: Accéder à la fiche
+            bye: L'équipe eVeg.
