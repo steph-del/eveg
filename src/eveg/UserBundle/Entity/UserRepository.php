@@ -48,7 +48,9 @@ class UserRepository extends EntityRepository
 	{
 		$qb = $this->createQueryBuilder('u');
 
-		$qb->select('u.email');
+		$qb->select('u.email')
+		   ->where('u.newsletter = true')
+		;
 
 		return $qb->getQuery()->getResult();
 	}
