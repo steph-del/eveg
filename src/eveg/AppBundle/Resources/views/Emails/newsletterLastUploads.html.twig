@@ -74,7 +74,7 @@
 							<td class="go" style="background-color: #E1EFFB;">
 							{% endif %}
 
-								<a href="{{ path('eveg_show_one_redirect', {'id': n.syntaxon_id}) }}" style="color: #000; text-decoration: none;font-size: 34px;text-align: center;" title="Accéder à la fiche"> > </a>
+								<a href="{{ url('eveg_show_one_redirect', {'id': n.syntaxon_id}) }}" style="color: #000; text-decoration: none;font-size: 34px;text-align: center;" title="Accéder à la fiche"> > </a>
 							</td>
 						</tr>
 					{% endfor %}
