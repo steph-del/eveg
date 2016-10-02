@@ -33,7 +33,7 @@
 								{% if photo.user == app.user %}
 									<div class="panel panel-default">
 										<div class="panel-body panelPhotoBody">
-											<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+											<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="{{ syntaxon.syntaxonName }}">
 										</div>
 										<div class="panel-footer panelPhotoFooter">
 											<div class="row panelPhotoContent">
@@ -131,7 +131,7 @@
 							{% if is_granted('ROLE_CIRCLE') %}
 								<div class="panel panel-default">
 									<div class="panel-body panelPhotoBody">
-										<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+										<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="{{ syntaxon.syntaxonName }}">
 									</div>
 									<div class="panel-footer panelPhotoFooter">
 										<div class="row">
@@ -227,7 +227,7 @@
 						{% if photo.visibility == 'public' %}
 							<div class="panel panel-default">
 								<div class="panel-body panelPhotoBody">
-									<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="syntaxon.syntaxonName">
+									<img style="width: 100%;" src="{{ vich_uploader_asset(photo, 'imageFile') | imagine_filter('resized') }}" alt="{{ syntaxon.syntaxonName }}">
 								</div>
 								<div class="panel-footer panelPhotoFooter">
 									<div class="row">
