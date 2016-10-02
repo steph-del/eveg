@@ -17,7 +17,7 @@ use eveg\AppBundle\Entity\Infos;
 
 class AdminController extends Controller
 {
-	/**
+	/*
  	 * @Security("has_role('ROLE_ADMIN')")
  	 */
 	public function dashboardAction()

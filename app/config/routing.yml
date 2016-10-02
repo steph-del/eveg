@@ -43,3 +43,10 @@ fos_js_routing:
 # -------------
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# -------------
+# LexikTranslationBundle
+# -------------
+lexik_translation_edition:
+    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
+    prefix:   /admin/translations

@@ -256,6 +256,11 @@ class MenuBuilder extends ContainerAware
       $menu->addChild('Infos', array('route' =>'eveg_admin_infos', 'label' => 'Param'))
            ->setAttribute('icon', 'fa fa-cog');
     }
+    
+    if($securityContext->isGranted(array('ROLE_TRANSLATOR'))) {
+      $menu->addChild('Traductions', array('route' => 'lexik_translation_overview', 'label' => 'Traductions'))
+           ->setAttribute('icon', 'fa fa-language');
+    }
 
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
       $menu->addChild('Import', array('label' => 'Import'))

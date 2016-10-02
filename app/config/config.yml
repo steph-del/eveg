@@ -255,3 +255,15 @@ lexik_maintenance:
     response:
         code: 503
         status: "Service Temporarily Unavailable"
+
+# Lexik translation Bundle
+lexik_translation:
+    storage:
+        type: orm                  # orm | mongodb | propel
+        object_manager: default
+    fallback_locale: [fr]         # (required) default locale(s) to use
+    managed_locales: [fr, en, de, es, it] # (required) locales that the bundle have to manage
+    grid_input_type: textarea       # text|textarea
+    grid_toggle_similar: false
+    base_layout: "evegAppBundle:Translations:layout.html.twig"
+

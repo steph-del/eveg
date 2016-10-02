@@ -4,8 +4,9 @@ security:
 
     role_hierarchy:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       ROLE_USER, ROLE_TRANSLATOR
         ROLE_SYNONYMER:   ROLE_SYNONYMER
+        ROLE_TRANSLATOR:   ROLE_TRANSLATOR, ROLE_ADMIN
         ROLE_CIRCLE:      ROLE_USER
 
     providers:
@@ -27,6 +28,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/admin/users, role: ROLE_SUPER_ADMIN }
         - { path: ^/admin/docs, role: ROLE_SUPER_ADMIN }
+        - { path: ^/translations, role: ROLE_TRANSLATOR }
