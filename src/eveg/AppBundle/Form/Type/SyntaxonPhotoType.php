@@ -43,7 +43,7 @@ class SyntaxonPhotoType extends AbstractType
         ));
         $builder->add('date', DateType::class, array(
             'widget' => 'single_text',
-            'format' => 'dd-MM-yyyy',
+            'format' => 'yy-MM-dd',
             'label' => 'eveg.dictionary.date',
             'required'      => true,
             'attr' => array(
