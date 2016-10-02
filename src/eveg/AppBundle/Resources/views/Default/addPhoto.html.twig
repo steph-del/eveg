@@ -119,4 +119,14 @@
 		    $newLinkLi.before($newFormLi);
 		}
 	</script>
+
+	<script>
+		$( function() {
+		    $( "#syntaxonCorePhoto_syntaxonPhotos_0_date" ).datepicker({
+		    	dateFormat: "yy-mm-dd",
+		    	buttonText: "Choose",
+		    	//buttonImageOnly: true,
+		    });
+		  } );
+	</script>
 {% endblock %}
