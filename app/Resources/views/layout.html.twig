@@ -27,9 +27,9 @@
 	{% block meta %}{% endblock %}
 
 	{% block stylesheets %}
-		{% stylesheets filter="?yui_css" output="css/vendors.css"
+		{% stylesheets filter="cssrewrite, ?yui_css" output="css/vendors.css"
 			"@evegAppBundle/Resources/public/css/bootstrap.css"
-			"@evegAppBundle/Resources/public/css/jquery-ui.min.css"
+			"./css/jquery-ui.min.css"
 			"@evegAppBundle/Resources/public/css/animate.css"
 			%}
 			<link rel="stylesheet" href="{{ asset_url }}">
