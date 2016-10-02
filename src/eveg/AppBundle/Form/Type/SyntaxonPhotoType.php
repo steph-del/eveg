@@ -48,7 +48,8 @@ class SyntaxonPhotoType extends AbstractType
             'required'      => true,
             'attr' => array(
                 'id' => 'datepicker',
-                'placeholder' => 'jj/mm/aaaa',
+                'placeholder' => 'aaaa-mm-jj',
+                'pattern' => '\d{4}-d{2}-d{2}',
             ),
         ));
         $builder->add('country', TextType::class, array(
