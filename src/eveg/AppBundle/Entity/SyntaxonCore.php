@@ -165,7 +165,7 @@ class SyntaxonCore
     /**
      * @var string
      *
-     * @ORM\Column(name="commonName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="commonName", type="string", length=512, nullable=true)
      * @Gedmo\Versioned
      */
     private $commonName;
@@ -182,7 +182,7 @@ class SyntaxonCore
     /**
      * @var string
      *
-     * @ORM\Column(name="commonNameEn", type="string", length=255, nullable=true)
+     * @ORM\Column(name="commonNameEn", type="string", length=512, nullable=true)
      * @Gedmo\Versioned
      */
     private $commonNameEn;
@@ -366,6 +366,19 @@ class SyntaxonCore
     public function getSyntaxonName()
     {
         return $this->syntaxonName;
+    }
+
+    /**
+     * Set syntaxonNameTreeForce
+     *
+     * @param string $syntaxonNameTreeForce
+     * @return SyntaxonCore
+     */
+    public function setSyntaxonNameTreeForce($syntaxonNameTree)
+    {
+        $this->syntaxonNameTree = $syntaxonNameTree;
+
+        return $this;
     }
 
     /**
