@@ -34,6 +34,14 @@ class SyntaxonTreeRestController extends FOSRestController
         
     $syntaxonTree = $scRepo->getBaseTree($depFrFilter, $ueFilter);
 
+    // Translate root tree elements
+    $this->get('session')->set('_locale', 'fr_FR');
+    $translator = $this->get('translator');
+    foreach ($syntaxonTree as $key => $s) {
+      $transKey = 'eveg.tree.'.strval($key+1);
+      $s->setSyntaxonNameTreeForce($translator->trans($transKey));         // Set translation
+    }
+
     if(empty($syntaxonTree)){
       throw $this->createNotFoundException();
     }
