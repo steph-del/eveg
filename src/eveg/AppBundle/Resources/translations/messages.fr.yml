@@ -548,3 +548,26 @@ eveg:
                 Depuis %when%, %how-many% nouveaux fichiers ont été ajoutés sur eVeg :
             go: Accéder à la fiche
             bye: L'équipe eVeg.
+
+    tree:
+        1: 01: Eaux marines
+        2: 02: Littoral maritime
+        3: 03: Végétations aquatiques dulçaquicoles
+        4: 04: Végétations basses amphibies
+        5: 05: Roselières, cariçaies, mégaphorbiaies
+        6: 06: Tourbières
+        7: 07: Parois, murs et aérophytes
+        8: 08: Dalles, sables et éboulis
+        9: 09: Pelouses, steppes & savanes
+        10: 10: Ourlets et sous-bois
+        11: 11: Pelouses arctico-alpines
+        12: 12: Prairies
+        13: 13: Cultures, friches & clairières forestières eutrophiles
+        14: 14: Landes, cistaies & garrigues
+        15: 15: Buissons et haies arbustives
+        16: 16: Arbres pionniers des zonobiomes tempérés
+        17: 17: Arbres climaciques du zonobiome tempéré froid
+        18: 18: Arbres climaciques du zonobiome tempéré modal
+        19: 19: Arbres climaciques des zonobiomes tempérés chauds
+        20: 20: Arbres climaciques des zonobiomes tropicaux
+        21: 21: Epiphytes de la canopée
