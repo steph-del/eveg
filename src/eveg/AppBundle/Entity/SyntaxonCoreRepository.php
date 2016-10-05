@@ -656,4 +656,37 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	/**
+	 * findAllIds function
+	 * Returns all syntaxonCore ids
+	 *
+	 */
+	public function findEmptyDepFrIds()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s.id')
+		   ->leftJoin('s.repartitionDepFr', 'repDepFr')
+		   ->where('repDepFr = :null')
+		   ->setParameter('null', 'NULL')
+           ->orderBy('s.id', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
+
+	}
+
+	public function findMultipleById($idsArray)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s');
+
+		foreach ($idsArray as $key => $id) {
+			$qb->orWhere('s.id = '.(int)$id);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }

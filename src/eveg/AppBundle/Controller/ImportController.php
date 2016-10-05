@@ -679,7 +679,7 @@ class ImportController extends Controller
 
 			// Retrieves all syntaxonCore entities
 			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findMultipleById($importKeys);
 
 			// For each entity, create a new syntaxonRepartitionDepFr object and attaches it
 			// If the entity already have a syntaxonRepartitionDepFr then we just update it
@@ -878,7 +878,7 @@ class ImportController extends Controller
 
 			// Retrieves all syntaxonCore entities
 			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findMultipleById($importKeys);
 
 			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
 			// If the entity already have a syntaxonRepartitionEurope then we just update it
@@ -1023,7 +1023,7 @@ class ImportController extends Controller
 			$em->clear();
 
 			// Retrieves all syntaxonCore entities
-			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findMultipleById($importKeys);
 
 			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
 			// If the entity already have a syntaxonRepartitionEurope then we just update it
@@ -1195,7 +1195,7 @@ class ImportController extends Controller
 
 			// Retrieves all syntaxonCore entities
 			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findAll();
+			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findMultipleById($importKeys);
 
 			// For each entity, create a new syntaxonRepartitionEurope object and attaches it
 			// If the entity already have a syntaxonRepartitionEurope then we just update it
