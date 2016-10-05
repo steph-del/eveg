@@ -896,7 +896,7 @@ class ImportController extends Controller
 						->setMacaronesia($import[$importKey]['macaronesia'])
 						->setPortugal($import[$importKey]['portugal'])
 						->setEspana($import[$importKey]['espana'])
-						->setIsland($import[$importKey]['island'])
+						->setIceland($import[$importKey]['island'])
 						->setNorway($import[$importKey]['norway'])
 						->setDenmark($import[$importKey]['denmark'])
 						->setIreland($import[$importKey]['ireland'])

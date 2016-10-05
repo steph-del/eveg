@@ -672,27 +672,27 @@ class SyntaxonRepartitionEurope
     }
 
     /**
-     * Set bosniaMontenegroAlbania
+     * Set bosniaMontenegro
      *
-     * @param string $bosniaMontenegroAlbania
+     * @param string $bosniaMontenegro
      *
      * @return SyntaxonRepartitionEurope
      */
-    public function setBosniaMontenegroAlbania($bosniaMontenegroAlbania)
+    public function setBosniaMontenegro($bosniaMontenegro)
     {
-        $this->bosniaMontenegroAlbania = $bosniaMontenegroAlbania;
+        $this->bosniaMontenegro = $bosniaMontenegro;
 
         return $this;
     }
 
     /**
-     * Get bosniaMontenegroAlbania
+     * Get bosniaMontenegro
      *
      * @return string
      */
-    public function getBosniaMontenegroAlbania()
+    public function getBosniaMontenegro()
     {
-        return $this->bosniaMontenegroAlbania;
+        return $this->bosniaMontenegro;
     }
 
     /**
