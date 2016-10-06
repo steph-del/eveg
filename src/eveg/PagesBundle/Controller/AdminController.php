@@ -76,6 +76,9 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Security("has_role('ROLE_PAGE_WRITER')")
+     */
     public function editPageAction($id, Request $request)
     {
 
@@ -107,6 +110,9 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Security("has_role('ROLE_PAGE_WRITER')")
+     */
     public function deletePageAction($id, Request $request)
     {
 
@@ -122,5 +128,31 @@ class AdminController extends Controller
 
   		return new RedirectResponse($this->generateUrl('eveg_pages_admin_index'));
 
+    }
+
+    /**
+     * @Security("has_role('ROLE_PAGE_WRITER')")
+     */
+    public function previewPageFrAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $page = $em->getRepository('evegPagesBundle:Page')->findById($id)[0];
+
+        return $this->render('evegPagesBundle:Default:showPageFr.html.twig', array(
+            'page' => $page
+        ));
+    }
+
+    /**
+     * @Security("has_role('ROLE_PAGE_WRITER')")
+     */
+    public function previewPageEnAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $page = $em->getRepository('evegPagesBundle:Page')->findById($id)[0];
+
+        return $this->render('evegPagesBundle:Default:showPageEn.html.twig', array(
+            'page' => $page
+        ));
     }
 }

@@ -47,6 +47,24 @@
 			{{ form_label(form.published)}}
 			{{ form_widget(form.published)}}
 		</div>
+		<br /><br />
+		<div class="text-center">
+			<div class="form-group">
+				{{ form_label(form.save)}}
+				{{ form_widget(form.save)}}
+				<a href="{{ path('eveg_pages_admin_preview_fr', {'id': page.id}) }}" target="_blank">
+					<div class="btn btn-default form-control">
+						Prévisualiser (fr)
+					</div>
+				</a>
+				<a href="{{ path('eveg_pages_admin_preview_en', {'id': page.id}) }}" target="_blank">
+					<div class="btn btn-default form-control">
+						Prévisualiser (en)
+					</div>
+				</a>
+			</div>
+		</div>
+		
 
 		{{ form_rest(form) }}
 

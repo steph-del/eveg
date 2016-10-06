@@ -17,3 +17,15 @@ eveg_pages_admin_delete:
     defaults: { _controller: evegPagesBundle:Admin:deletePage }
     requirements:
         id: \d+
+
+eveg_pages_admin_preview_fr:
+    path: /{id}/preview-fr
+    defaults: { _controller: evegPagesBundle:Admin:previewPageFr }
+    requirements:
+        id: \d+
+
+eveg_pages_admin_preview_en:
+    path: /{id}/preview-en
+    defaults: { _controller: evegPagesBundle:Admin:previewPageEn }
+    requirements:
+        id: \d+
