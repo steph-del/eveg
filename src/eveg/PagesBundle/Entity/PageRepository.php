@@ -14,7 +14,6 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 	{
 		$qb = $this->createQueryBuilder('p');
 
-		// specify the fields to fetch (unselected fields will have a null value)
 		$qb->select('p')
 		   ->where('p.titleSlugFr = :slug')
 		   ->andWhere('p.published = :true')
@@ -22,7 +21,21 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 		   ->setParameter('true', true)
 		;
 
-		return $qb->getQuery()->getSingleResult();
+		return $qb->getQuery()->getOneOrNullResult();
+	}
+
+	public function findByTitleSlugEn($slug)
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p')
+		   ->where('p.titleSlugEn = :slug')
+		   ->andWhere('p.published = :true')
+		   ->setParameter('slug', $slug)
+		   ->setParameter('true', true)
+		;
+
+		return $qb->getQuery()->getOneOrNullResult();
 	}
 
 	public function findForMenu()
@@ -32,6 +45,18 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 		$qb->select('p')
 		   ->where('p.published = :true')
 		   ->setParameter('true', true)
+		   ->orderBy('p.listOrder', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findAll()
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p')
+		   ->orderBy('p.listOrder', 'ASC')
 		;
 
 		return $qb->getQuery()->getResult();

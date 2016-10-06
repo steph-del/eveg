@@ -4,6 +4,7 @@ namespace eveg\PagesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use eveg\PagesBundle\Entity\Page;
 
 class DefaultController extends Controller
@@ -12,10 +13,30 @@ class DefaultController extends Controller
     public function goAction($slug, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
+    	$locale = $request->getLocale();
 
-    	$page = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugFr($slug);
+    	$pageFr = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugFr($slug);
+    	$pageEn = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugEn($slug);
 
-        return $this->render('evegPagesBundle:Default:showPageFr.html.twig', array('page' => $page));
+    	if($locale == 'fr' || $locale == 'fr_FR') {
+    		$page = $pageFr;
+    	} else {
+    		if(!empty($pageEn->getTitleEn() and !empty($pageEn->getContentEn()))) {
+    			$page = $pageEn;
+    		} else {
+    			$page = $pageFr;
+    		}
+    	}
+
+    	if($page === $pageFr) {
+    		return $this->render('evegPagesBundle:Default:showPageFr.html.twig', array('page' => $page));
+    	} elseif($page === $pageEn) {
+    		return $this->render('evegPagesBundle:Default:showPageEn.html.twig', array('page' => $page));
+    	} else {
+    		Throw new NotFoundHttpException();
+    	}
+
+        
     }
 
     public function knpMenuAction(Request $request)
