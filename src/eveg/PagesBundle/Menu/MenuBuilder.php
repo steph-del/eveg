@@ -37,28 +37,34 @@ class MenuBuilder extends ContainerAware
     	$publishedPages = $this->pagesRepo->findForMenu();
     	$locale = $this->requestStack->getCurrentRequest()->getLocale();
 
-    	$menu = $this->factory->createItem('root');
-    	$menu->setChildrenAttribute('class', 'nav navbar-nav');
+        if(!empty($publishedPages)) {
+            $menu = $this->factory->createItem('root');
+            $menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-    	$menu->addChild('Pages', array('label' => 'Ressources'))
-    		 ->setAttribute('dropdown', true)
-    	;
+            $menu->addChild('Pages', array('label' => 'Ressources'))
+                 ->setAttribute('dropdown', true)
+            ;
 
-    	foreach ($publishedPages as $keyPage => $page) {
-		
-			if($locale == 'fr' || $locale == 'fr_fr') {
-				$menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
-			} else {
-				if(!empty($page->getTitleEn())) {
-					$menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugEn()), 'label' => $page->getTitleEn()));
-				} else {
-					$menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
-				}
-			}
+            foreach ($publishedPages as $keyPage => $page) {
+            
+                if($locale == 'fr' || $locale == 'fr_fr') {
+                    $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
+                } else {
+                    if(!empty($page->getTitleEn())) {
+                        $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugEn()), 'label' => $page->getTitleEn()));
+                    } else {
+                        $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
+                    }
+                }
 
-		}
+            }
 
+            return $menu;
+        }
+
+        $menu = $this->factory->createItem('root');
         return $menu;
+    	
     }
 
     public function createAdminPagesMenu(array $options)
