@@ -1,0 +1,75 @@
+{# src/eveg/PagesBundle/Resources/views/Admin/index.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Pages |
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="cssrewrite,compass, ?yui_css" output="css/pages.css"
+		"@evegPagesBundle/Resources/public/css/pages.scss"
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+
+		<div class="jumbotron admin">
+			<h1>Pages</h1>
+		</div>
+
+		<div class="col-md-3">
+			{{ render(controller('evegPagesBundle:Admin:menuPage')) }}
+		</div>
+
+		<div class="col-md-9">
+			{% block pageContent %}
+
+				{% if pages is defined and pages is not empty %}
+					<ul class="list-group">
+						{% for page in pages %}
+							<li class="list-group-item">
+								{{ page.titleFr }}
+								<span class="pull-right">
+									{% if page.published == true %}
+										publiée
+									{% else %}
+										non publiée
+									{% endif %}
+									|
+									<a class="delete-action text-danger" href="{{ path('eveg_pages_admin_delete', {'id': page.id}) }}"><i class="fa fa-times" aria-hidden="true"></i>Supprimer</a>
+									|
+									<a class="no-style" href="{{ path('eveg_pages_admin_edit', {'id': page.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</a>
+								</span>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p>Aucune page à afficher</p>
+				{% endif %}
+
+			{% endblock %}
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script>
+		$('a.delete-action').click(function(e) {
+			e.preventDefault();
+			if(window.confirm('Valider la suppression ?')) {
+				window.location.assign($(this).attr('href'));
+			} else {
+				//
+			}
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+<div class="thumbnail no-border">
+	<div class="list-title">
+		<a class="no-style" href="{{ path('eveg_pages_admin_index') }}">Toutes les pages</a>
+	</div>
+	{% if pages is defined and pages is not empty %}
+		{% for page in pages %}
+			{% if not loop.last %}
+			<div class="list-item">
+			{% else %}
+			<div class="list-item  last">
+			{% endif %}
+				<a class="no-style" href="{{ path('eveg_pages_admin_edit', {'id': page.id}) }}">{{ page.menuTitleFr }}</a>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<div class="list-title">
+		<a class="no-style" href="{{ path('eveg_pages_admin_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une page</a>
+	</div>
+</div>

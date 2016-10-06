@@ -1,0 +1,61 @@
+{# src/eveg/PagesBundle/Resources/views/Admin/editPage.html.twig #}
+
+{% extends "evegPagesBundle:Admin:index.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block pageContent %}
+	<h2>Editer la page "{{ page.titleFr }}"{% if page.titleEn is defined and page.titleEn is not empty%} / "{{ page.titleEn }}"{% endif %}</h2>
+
+	<form class="form-inline form-page" action="{{ path('eveg_pages_admin_edit', {'id': page.id}) }}" method="post">
+		<div class="form-group">
+			{{ form_label(form.titleFr)}}
+			{{ form_widget(form.titleFr)}}
+			{{ form_label(form.titleEn)}}
+			{{ form_widget(form.titleEn)}}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.menuTitleFr)}}
+			{{ form_widget(form.menuTitleFr)}}
+			{{ form_label(form.menuTitleEn)}}
+			{{ form_widget(form.menuTitleEn)}}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.listOrder)}}
+			{{ form_widget(form.listOrder)}}
+		</div>
+
+		<hr />
+
+		<div class="">
+			{{ form_label(form.contentFr)}}
+			{{ form_widget(form.contentFr)}}
+		</div>
+		<br /><br />
+		<div class="">
+			{{ form_label(form.contentEn)}}
+			{{ form_widget(form.contentEn)}}
+		</div>
+
+		<hr />
+		<br />
+		<div class="form-group">
+			{{ form_label(form.published)}}
+			{{ form_widget(form.published)}}
+		</div>
+
+		{{ form_rest(form) }}
+
+	</form>
+
+	{{ tinymce_init() }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+{% endblock %}

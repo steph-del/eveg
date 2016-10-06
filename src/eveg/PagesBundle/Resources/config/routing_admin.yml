@@ -1,0 +1,19 @@
+eveg_pages_admin_index:
+    path:     /
+    defaults: { _controller: evegPagesBundle:Admin:index }
+
+eveg_pages_admin_add:
+    path:     /add
+    defaults: { _controller: evegPagesBundle:Admin:addPage }
+
+eveg_pages_admin_edit:
+    path: /{id}/edit
+    defaults: { _controller: evegPagesBundle:Admin:editPage }
+    requirements:
+        id: \d+
+
+eveg_pages_admin_delete:
+    path: /{id}/delete
+    defaults: { _controller: evegPagesBundle:Admin:deletePage }
+    requirements:
+        id: \d+

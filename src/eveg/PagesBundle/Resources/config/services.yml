@@ -1,0 +1,14 @@
+services:
+    pages.menu_builder:
+        class: eveg\PagesBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@pages_repository", "@request_stack", "@security.context"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createPagesMenu, alias: pages } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createAdminPagesMenu, alias: adminPages }
+
+    pages_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory_service:    doctrine.orm.default_entity_manager
+        factory_method:     getRepository
+        arguments:
+            - eveg\PagesBundle\Entity\Page

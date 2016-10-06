@@ -34,6 +34,8 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
             new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
+            new eveg\PagesBundle\evegPagesBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

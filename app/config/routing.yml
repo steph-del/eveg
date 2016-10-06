@@ -1,3 +1,11 @@
+eveg_pages:
+    resource: "@evegPagesBundle/Resources/config/routing.yml"
+    prefix:   /ressources
+
+eveg_pages_admin:
+    resource: "@evegPagesBundle/Resources/config/routing_admin.yml"
+    prefix:   /admin/pages
+
 eveg_app:
     resource: "@evegAppBundle/Resources/config/routing/routing.yml"
     type: be_simple_i18n

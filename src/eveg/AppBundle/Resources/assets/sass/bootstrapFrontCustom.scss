@@ -291,6 +291,11 @@ body {
 
  	border-top: solid 3px #FFFFFF;
 
+ 	&.no-border {
+ 		padding: 0;
+ 		border-top: 0;
+ 	}
+
  	&.thumb-blue{
  		border-top-color: $thumbBlueColor;
  	}
@@ -409,6 +414,27 @@ body {
  	    		font-size: 1.4em;
  	    	}
  	    }
+ 	}
+
+ 	.list-title {
+ 		padding-top: 5px;
+ 		padding-bottom: 5px;
+ 		padding-left: 10px;
+ 		padding-right: 10px;
+ 		background-color: $thumbnail-title-bgColor;
+ 		font-weight: bold;
+ 	}
+
+ 	.list-item {
+ 		padding-top: 5px;
+ 		padding-bottom: 5px;
+ 		padding-left: 40px;
+ 		padding-right: 10px;
+ 		border-bottom: 1px solid $thumbnail-title-bgColor;
+
+ 		&.last {
+ 			border-bottom: none;
+ 		}
  	}
  }
 

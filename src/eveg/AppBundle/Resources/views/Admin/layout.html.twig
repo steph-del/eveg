@@ -61,6 +61,7 @@
 			{# Collect the nav links, forms, and other content for toggling #}
 			<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:dashboardMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
+				{{ knp_menu_render('adminPages', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
 				{{ knp_menu_render('evegAppBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'evegAppBundle:Menu:knp_menu.html.twig'}) }}
 			</div>
 		</div> <!-- ./container-fluid -->

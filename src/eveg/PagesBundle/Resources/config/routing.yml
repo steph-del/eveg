@@ -1,0 +1,3 @@
+eveg_pages_go:
+    path:     /{slug}
+    defaults: { _controller: evegPagesBundle:Default:go }
