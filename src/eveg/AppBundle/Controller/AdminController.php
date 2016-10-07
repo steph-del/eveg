@@ -145,7 +145,7 @@ class AdminController extends Controller
 	 * @param $prefix
 	 * @return array
 	 */
-	public function getAllRoutes($prefix = null) {
+	public function getAllRoutesAction($prefix = null) {
 	    if(is_string($prefix)) $pattern = '/^'.$prefix.'/'; // starts by $prefix
 	        else $pattern = '/.*/';
 	    $this->allRoutes = array();
