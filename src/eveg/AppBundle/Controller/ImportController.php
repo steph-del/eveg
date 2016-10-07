@@ -34,7 +34,6 @@ class ImportController extends Controller
 		// Push entities into array
 		$dbKeys = array();
 		foreach($entities as $key => $entity) {
-			$arrayElements[$key] = $entity->getFixedCode();
 			array_push($dbKeys, $entity->getFixedCode());
 		}
 
