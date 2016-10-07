@@ -3,11 +3,9 @@
 
 namespace eveg\AppBundle\Utils\CatCode;
 
-//use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
 use eveg\AppBundle\Entity\SyntaxonCore;
-//use eveg\AppBundle\Entity\SyntaxonCoreRepository;
 
 class evegCatCode
 {
@@ -665,7 +663,6 @@ class evegCatCode
 		} else {
 		
 			return false;
-			//throw new evegCatCodeException('There is an error in the catminat code syntax ('.$text.').');
 			
 		}
 		
@@ -673,8 +670,6 @@ class evegCatCode
 
 	public function getDirectChild($catminatCode, $returnArray = false)
 	{
-		// Getting the SyntaxonCore repository
-		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
 		$ueFilter = $this->repartitionFilters->getUeFilterSession();
 		$depFrFilter = $this->repartitionFilters->getDepFrFilterSession();
@@ -689,8 +684,6 @@ class evegCatCode
 
 	public function getChildren($catminatCode, $returnArray = false)
 	{
-		// Getting the SyntaxonCore repository
-		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
 
 		$ueFilter = $this->repartitionFilters->getUeFilterSession();
 		$depFrFilter = $this->repartitionFilters->getDepFrFilterSession();
@@ -713,9 +706,6 @@ class evegCatCode
 		*
 		*/
 
-		// Getting the SyntaxonCore repository
-		//$scRepo = $this->em->getRepository('evegAppBundle:SyntaxonCore');
-
 		if(is_string($catminatCode)){
 
 			$uniqueObject = $this->catCodeRepo->findValidOneByCatminatCode($catminatCode);
@@ -733,7 +723,4 @@ class evegCatCode
 
 	}
 	
-	// todo public function checkParentCode($text){}
-	
-	// todo public function checkAllParentsCodes($text){}
 }
