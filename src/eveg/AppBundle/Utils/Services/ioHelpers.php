@@ -4,6 +4,7 @@
 namespace eveg\AppBundle\Utils\Services;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * io utilities (read csv, output html...)
