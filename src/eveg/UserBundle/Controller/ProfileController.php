@@ -120,7 +120,7 @@ class ProfileController extends Controller
         $form->add('newsletter');
         $form->add('enabled');
         $form->add('roles', 'choice', array(
-	        'choices' => $this->getExistingRoles(),
+	        'choices' => $this->getExistingRolesAction(),
 	        //'data' => $group->getRoles(),
 	        'label' => 'Roles',
 	        'expanded' => true,
@@ -159,7 +159,7 @@ class ProfileController extends Controller
         ));
     }
 
-    public function getExistingRoles()
+    public function getExistingRolesAction()
 {
     $roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
     $roles = array_keys($roleHierarchy);
