@@ -99,7 +99,10 @@ class AdminController extends Controller
 
       		$request->getSession()->getFlashBag()->add('success', 'La page '.$page->getTitleFr().' a été modifiée.');
 
-      		return new RedirectResponse($this->generateUrl('eveg_pages_admin_index'));
+      		return $this->render('evegPagesBundle:Admin:editPage.html.twig', array(
+                'form' => $form->createView(),
+                'page' => $page,
+            ));
 
         }
 
