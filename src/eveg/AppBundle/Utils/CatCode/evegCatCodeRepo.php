@@ -3,11 +3,9 @@
 
 namespace eveg\AppBundle\Utils\CatCode;
 
-//use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
 use eveg\AppBundle\Entity\SyntaxonCore;
-//use eveg\AppBundle\Entity\SyntaxonCoreRepository;
 
 class evegCatCodeRepo
 {

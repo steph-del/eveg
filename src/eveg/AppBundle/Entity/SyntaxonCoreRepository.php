@@ -223,8 +223,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($ueFilter != null) {
 			$this->ueFilter($qb, $ueFilter, $exclusive);
 		}
-		//return print($depFrFilter);
-		//print($qb->getQuery()->getSql());
+
 		return $qb->getQuery()->getResult();
 
 	}
@@ -247,7 +246,6 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		foreach ($depFrFilter as $key => $value) {
 			if($value != null) {
-				//$key = "_59";
 				$module->add($qb->expr()->neq('repDepFr.'.$key, ':zero'));
 			}
 		}

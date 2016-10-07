@@ -3,10 +3,6 @@
 
 namespace eveg\AppBundle\Utils\RepartitionFilters;
 
-//use Symfony\Component\DependencyInjection\ContainerInterface as Container;
-//use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use eveg\AppBundle\Entity\SyntaxonCore;
-//use eveg\AppBundle\Entity\SyntaxonCoreRepository;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**

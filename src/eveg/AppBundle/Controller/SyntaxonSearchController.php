@@ -23,7 +23,6 @@ class SyntaxonSearchController extends Controller
 
 		$searchedTerm = $request->get('term');
 		$useSynonyms = $request->get('useSynonyms');
-		//$depFrFilter = $request->get('depFrFilter');
 
 		// Grabbing the repartition filters service, the department filter and the UE filter
 	    $repFilters = $this->get('eveg_app.repFilters');

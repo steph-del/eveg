@@ -52,9 +52,7 @@ class SyntaxonHttpLinkType extends AbstractType
                 if($value == null) {
                     return '-';
                 }
-                return $value;
-                // or if you want to translate some key
-                //return 'form.choice.'.$key;
+                return $value;                  // or if you want to translate some key return 'form.choice.'.$key;
             },
             'attr' => array(
                 'class' => 'form-control',

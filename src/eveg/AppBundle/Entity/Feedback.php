@@ -190,7 +190,6 @@ class Feedback
      */
     public function setUser($user)
     {
-        //$user->addFeedback($this);
 
         $this->user = $user;
 

@@ -27,8 +27,6 @@ class SyntaxonPhotoController extends Controller
 	public function addPhotoAction(SyntaxonCore $syntaxon, $id, Request $request)
 	{
 		
-		//$syntaxonCore = new SyntaxonCore();
-		
 		$request = $this->getRequest();
 
 		// Creates the form...

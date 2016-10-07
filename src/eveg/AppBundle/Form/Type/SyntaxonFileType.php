@@ -50,9 +50,7 @@ class SyntaxonFileType extends AbstractType
                 if($value == null) {
                     return '-';
                 }
-                return $value;
-                // or if you want to translate some key
-                //return 'form.choice.'.$key;
+                return $value;                  // or if you want to translate some key return 'form.choice.'.$key;
             },
             'attr' => array(
                 'class' => 'form-control'
@@ -81,11 +79,6 @@ class SyntaxonFileType extends AbstractType
                 ),
             ));
         }
-        
-        /*$builder->add('license', ChoiceType::class, array(
-            'choices' => array(
-                'CC-BY-CA' => 'CC-BY-CA')
-        ));*/
 
     }
 

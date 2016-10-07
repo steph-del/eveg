@@ -16,18 +16,8 @@ class DefaultController extends Controller
 
     public function deleteUserAction(BaseUser $user, $id)
     {
-    	//print($user);
-
-    	// FOSUserBundle user manager
-    	
+    	// FOSUserBundle user manager	
     	$userManager = $this->get('fos_user.user_manager');
-		/*try{
-			$userManager->deleteUser($user);
-			print('Utilisateur supprimé');
-		} catch(Exception $e) {
-			print('Exception reçue : ' .  $e->getMessage() . "\n");
-		}
-		*/
 
 		return true;
 
