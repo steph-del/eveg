@@ -5,6 +5,7 @@
 /app/bootstrap*
 /app/cache/*
 /app/config/parameters.yml
+/app/config/parameters_preprod.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
