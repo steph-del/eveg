@@ -1,18 +1,9 @@
-security:
-    login:
-        fullName : 'Prénom et nom'
-        newsletter : 'Je souhaite recevoir les actualités eVeg'
-registration:
-    confirmed:
-        what-can-i-do: "Vous pouvez ajouter du contenu sur eVeg : tableaux, documents pdf, liens, photos..."
-resetting:
-    lost: 'Mot de passe oublié ?'
-    title: 'Modifier mon mot de passe'
-profile:
-    show:
-        title: 'Mon compte'
-        my-informations: 'Mes informations'
-    edit:
-        title: 'Modifier mes informations'
-change_password:
-    title: 'Modifier mon mot de passe'
+security.login.fullName: 'Prénom et nom'
+security.login.newsletter: 'Je souhaite recevoir les actualités eVeg'
+registration.confirmed.what-can-i-do: 'Vous pouvez ajouter du contenu sur eVeg : tableaux, documents PDF, liens, photos, ...'
+resetting.lost: 'Mot de passe oublié ?'
+resetting.title: 'Modifier mon mot de passe'
+profile.show.title: 'Mon compte'
+profile.show.my-informations: 'Mes informations'
+profile.edit.title: 'Modifier mes informations'
+change_password.title: 'Modifier mon mot de passe'

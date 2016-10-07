@@ -1,6 +1,44 @@
-eveg:
-    title: eVeg
-    web_title: European vegetations database interface | integrated synusial phytosociology
-    slogan: |
-        a database uppon
-        european vegetations
+eveg.title: eVeg
+eveg.web_title: 'European vegetations database interface | integrated synusial phytosociology'
+eveg.slogan: "a database uppon\neuropean vegetations"
+eveg.dictionary.a_file: 'a file'
+eveg.dictionary.a_link: 'a link'
+eveg.dictionary.a_pdf_document: 'a PDF document'
+eveg.dictionary.a_photo: 'a picture'
+eveg.dictionary.a_table: 'a table'
+eveg.dictionary.action: action
+eveg.dictionary.actions: actions
+eveg.dictionary.added: added
+eveg.dictionary.author: author
+eveg.dictionary.circle: circle
+eveg.dictionary.close: close
+eveg.dictionary.country: land
+eveg.dictionary.date: date
+eveg.dictionary.department: region
+eveg.dictionary.description: description
+eveg.dictionary.diagnosis_of: 'is the diagnosis of'
+eveg.dictionary.document: document
+eveg.dictionary.edit: edit
+eveg.dictionary.error: error
+eveg.dictionary.for: for
+eveg.dictionary.file: file
+eveg.dictionary.hide: hide
+eveg.dictionary.license: license
+eveg.dictionary.link: link
+eveg.dictionary.original_file: 'original file'
+eveg.dictionary.locality: locality
+eveg.dictionary.localisation: localisation
+eveg.dictionary.participate: participate
+eveg.dictionary.photo: photo
+eveg.dictionary.photos: photos
+eveg.dictionary.public: public
+eveg.dictionary.private: private
+eveg.dictionary.syntaxon: syntaxon
+eveg.dictionary.the_file: 'the file'
+eveg.dictionary.the_link: 'the link'
+eveg.dictionary.the_photo: 'the photo'
+eveg.dictionary.title: title
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.8: 'boulder, cracks within walls'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.7: cobbles
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.6: pebbles
+eveg.country.bosnia_montenegro_albania: 'Bosnia and Herzegovina + Montenegro + Albania'

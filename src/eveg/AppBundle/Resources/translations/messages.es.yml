@@ -1,6 +1,254 @@
-eveg:
-    title: eVeg
-    web_title: fitosociologia synusial integrada
-    slogan: |
-        una base de datos para
-        la vegetación de Europa
+eveg.title: eVeg
+eveg.web_title: 'Vegetaciones de Europa | fitosociologia sinusial integrada'
+eveg.slogan: 'una base de datos para las vegetaciones de Europa'
+eveg.dictionary.a_file: 'un archivo'
+eveg.dictionary.a_link: 'un enlace'
+eveg.dictionary.a_pdf_document: 'un documento PDF'
+eveg.dictionary.a_photo: 'una foto'
+eveg.dictionary.a_table: 'una tabla'
+eveg.dictionary.action: acción
+eveg.dictionary.actions: acciones
+eveg.dictionary.added: 'ha añadido'
+eveg.dictionary.author: autor
+eveg.dictionary.circle: circulo
+eveg.dictionary.close: cerrar
+eveg.dictionary.country: país
+eveg.dictionary.date: fecha
+eveg.dictionary.department: provincia
+eveg.dictionary.description: descripción
+eveg.dictionary.diagnosis_of: 'es la diagnosa de'
+eveg.dictionary.document: documento
+eveg.dictionary.edit: modificar
+eveg.dictionary.error: error
+eveg.dictionary.for: para
+eveg.dictionary.file: archivo
+eveg.dictionary.hide: esconder
+eveg.dictionary.license: licencia
+eveg.dictionary.link: enlace
+eveg.dictionary.original_file: 'archivo original'
+eveg.dictionary.locality: localidad
+eveg.dictionary.localisation: localización
+eveg.dictionary.participate: participar
+eveg.dictionary.photo: foto
+eveg.dictionary.photos: fotos
+eveg.dictionary.public: publico
+eveg.dictionary.private: privado
+eveg.dictionary.syntaxon: sintaxon
+eveg.dictionary.the_file: 'el archivo'
+eveg.dictionary.the_link: 'el enlace'
+eveg.dictionary.the_photo: 'la foto'
+eveg.dictionary.title: titulo
+eveg.meta.syntaxon: 'ecología, repartición en Francia y Europa, bibliografía'
+eveg.newsletter.last_up.title: 'Ultimos archivos en línea'
+eveg.newsletter.last_up.date.day: ayer
+eveg.newsletter.last_up.date.week: 'la semana pasada'
+eveg.newsletter.last_up.date.month: 'el mes pasado'
+eveg.newsletter.last_up.hello: "Hola,\n\nDesde %when%, %how-many% nuevos archivos han sido añadidos en eVeg :"
+eveg.newsletter.last_up.go: 'Acceder a la página'
+eveg.newsletter.last_up.bye: 'El equipo de eVeg.'
+eveg.app.multiple_results.explain: 'Su busqueda concerna un sinonimo complejo o pro parte y se han encontrado varios resultados (sintaxones validos).'
+eveg.app.multiple_results.your_search: 'Su busqueda'
+eveg.app.multiple_results.results: 'Selecciona un resultado'
+eveg.app.start.title: 'Revisar las vegetaciones'
+eveg.app.multiple_results.title: 'Varios resultados'
+eveg.app.show_one.hab.class: 'Clases de este habitat :'
+eveg.app.show_one.hab.note: 'Esta ficha no tiene datos ecologicos asociados.'
+eveg.app.show_one.http_link.add.another: 'Añadir otro enlace'
+eveg.app.show_one.http_link.add.placeholder: 'http://www.tela-botanica.org'
+eveg.app.show_one.http_link.title: Enlaces
+eveg.app.show_one.http_link.add.title: 'Añadir un enlace'
+eveg.app.show_one.files.add.link_instead: 'Quiero añadir un enlace en vez de un archivo'
+eveg.app.show_one.files.add.another: 'Añadir otro archivo'
+eveg.app.show_one.files.add.placeholder: 'Quedese conciso y explícito. p. ej. : "Br.-Bl. 1936 : diagnosis"'
+eveg.app.show_one.files.title: Archivos
+eveg.app.show_one.files.add.title: 'Añadir un archivo'
+eveg.app.show_one.photos.add.another: 'Añadir otra foto'
+eveg.app.show_one.photos.add.title: 'Añadir una foto'
+eveg.app.show_one.photos.title: Fotos
+eveg.app.show_one.feedback.user.salutation: "Un saludo,\nel equipo de eVeg"
+eveg.app.show_one.feedback.user.thanks: 'Su mensaje a sido enviado. Le agradecemos su participación y le contestaremos cuando su petición habra sido valorada.'
+eveg.app.show_one.filters.title: 'Filtrar eVeg'
+eveg.app.show_one.filters.dep: 'Por departamento (Francia)'
+eveg.app.show_one.filters.country: 'Por país'
+eveg.app.show_one.filters.explain: 'Puede filtrar eVeg por departamento frances o por país. El filtro afecta las fichas, el buscador y la arborescencia. Si no se selecciona nada, los filtros no son activos.'
+eveg.app.show_one.breadcrumb.one_parent: 'Sintaxon superior'
+eveg.app.show_one.breadcrumb.more_parents: 'Sintaxones superiores'
+eveg.app.show_one.feedback.title: 'Dejar un comentario'
+eveg.app.show_one.feedback.syntaxon.message: 'Ha encontrado un problema o un error en esta página ? Por favor diganoslo para que podamos aportar la corección necesaria.'
+eveg.app.show_one.feedback.syntaxon.type.interface: 'Problema con la interfaz'
+eveg.app.show_one.feedback.syntaxon.type.data: 'Problema con los datos'
+eveg.app.show_one.feedback.syntaxon.type.other: 'Otro problema'
+eveg.app.show_one.feedback.syntaxon.type.repartition: chorología
+eveg.app.show_one.feedback.repartition.fr.message: 'Desea compartir informaciones sobre la repartición francesa de este sintaxon ? Envianos un mensaje.'
+eveg.app.show_one.feedback.repartition.ue.message: 'Desea compartir informaciones sobre la repartición europea de este sintaxon ? Envianos un mensaje.'
+eveg.app.show_one.feedback.success: 'Su mensaje ha sido enviado.  Le agradecemos su participación y le contestaremos por mail.'
+eveg.app.show_one.feedback.error: 'Su mensaje no ha podido ser enviado. Puede contactar directamente con nosotros por email (vea la página de Contacto)'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.label_min: 'Text. suelo'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.1: arcilla
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.2: intermediario
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.3: limo
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.4: 'arena fina'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.5: 'arena gruesa'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.6: gravilla
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.7: guijarros
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.8: 'rocas, hendiduras de las paredes'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.9: losa
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.label: 'Materia orgánica del suelo y tipo de humus'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.label_min: 'Mat. org.'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.9: turba
+eveg.dictionary.town: muncipio
+eveg.dictionary.user: usuario
+eveg.dictionary.send: enviar
+eveg.dictionary.validate: validar
+eveg.dictionary.version: versión
+eveg.dictionary.versions: versiones
+eveg.dictionary.visibility: visibilidad
+eveg.dictionary.will_be_deleted_m: 'sera eliminado definitivamente'
+eveg.dictionary.will_be_deleted_f: 'sera eliminada definitivamente'
+eveg.country.austria: Austria
+eveg.country.belarus: Bielorussia
+eveg.country.belgium: Belgica
+eveg.country.bulgaria: Bulgaria
+eveg.country.czech_republic: Chequia
+eveg.country.denmark: Dinamarca
+eveg.country.estonia_latvia_lithuania: 'Estonia + Lettonia + Lituania'
+eveg.country.finland: Finlandia
+eveg.country.france: Francia
+eveg.country.germany: Alemania
+eveg.country.greece: Grecia
+eveg.country.hungary: Hungría
+eveg.country.ireland: Irlanda
+eveg.country.iceland: Islandia
+eveg.country.italy: Italia
+eveg.country.luxembourg: Luxemburgo
+eveg.country.norway: Noruega
+eveg.country.netherlands: 'Países Bajos'
+eveg.country.poland: Polonia
+eveg.country.portugual: Portugal
+eveg.country.romania_moldova: 'Rumanía + Moldavia'
+eveg.country.uk: 'Reino Unido'
+eveg.country.russia: Russia
+eveg.country.serbia_macedonia: 'Serbia + Macedonia'
+eveg.country.slovakia: Eslovaquia
+eveg.country.slovenia_croatia: 'Eslovenia + Croacia'
+eveg.country.spain: España
+eveg.country.sweden: Suecia
+eveg.country.swiss: Suiza
+eveg.country.ukraine: Ucrania
+eveg.errors.no_documents: 'No hay ningun documento en esta cátegoria'
+eveg.errors.server_returns: 'El servidor ha transmitido un'
+eveg.errors.default_server_error: 'Lo sentimos, parece que algo no funciona bien. Si el problema persiste, contacta con nosotros.'
+eveg.errors.return_homepage: 'Volver al inicio de la web.'
+eveg.errors.404: 'La página que busca no existe.'
+eveg.actions.confirm_delete: 'Confirma la eliminación'
+eveg.actions.abort: Cancelar
+eveg.actions.confirm: Confirmar
+eveg.menu.app: App
+eveg.menu.browse: Buscar
+eveg.menu.help: Ayuda
+eveg.menu.contact: Contacto
+eveg.menu.activity: Actividades
+eveg.menu.filter: Filtrar
+eveg.menu.participate: Participar
+eveg.menu.user.my_account: 'Mi cuenta'
+eveg.menu.user.my_docs: 'Mis documentos'
+eveg.menu.user.dashboard: Tablero
+eveg.menu.user.login: Conexión
+eveg.country.bosnia_montenegro_albania: 'Bosnia y Herzegovina + Montenegro + Albania'
+eveg.menu.user.logout: Salir
+eveg.homepage.presentation.title: Presentación
+eveg.homepage.presentation.1: 'eVeg es un interfaz de consultación de los datos contenidos en la "baseveg", la cual es una de las bases de datos del programa CATMINAT de Philippe Julve.'
+eveg.homepage.presentation.2: 'Da acceso a la base de datos conteniendo el conjunto de las unidades de vegetación de Francia metropolitana con extensión a Europa (e incluso al Holártico y la Eurasia para algunas unidades). Está establecida siguiendo los principios de la fitosociología sinusial integrada.'
+eveg.homepage.presentation.3: 'Cada vegetación conocida tiene una ficha describiendola (ecología, corología, sinonimos, composición floristica, bibliografía) así como imagenes ilustrativas y tabelas diagnosticas.'
+eveg.homepage.presentation.4: 'Organisación general del proyecto :'
+eveg.homepage.participate.title: Participar
+eveg.homepage.participate.currently.title: 'Ahora en eVeg'
+eveg.homepage.participate.currently.nbCards: 'Fichas descriptivas'
+eveg.homepage.participate.currently.nbDocuments: 'Documentos para descargar'
+eveg.homepage.participate.currently.nbWaiting: 'documentos esperan su ayuda par ser compilados !'
+eveg.homepage.participate.addDocuments: 'Puede participar en el proyecto añadiendo diagnosis (tabelas o documentos PDF), fotos ilustrativas y compartiendo informaciones de repartición.'
+eveg.homepage.participate.how: 'Para saber mas sobre el proyecto'
+eveg.homepage.lastUploads.title: 'Ultimos documentos añadidos por los contribuidores'
+eveg.homepage.start: 'Para empezar, puede utilizar el buscador arriba o navegar en el arbol de las vegetaciones.'
+eveg.participate.title: Participar
+eveg.participate.signup: 'Crear una cuenta utilisador (gratuito)'
+eveg.participate.login: 'Connectarse en eVeg'
+eveg.participate.text: 'Desde su creación, eVeg es un proyecto colaborativo. Para participar, solo hace falta crear una cuenta y conectarse. Las opciones para añadir tabelas, documentos y fotos se enseñan solo si está conectado.'
+eveg.participate.add_doc.title: 'Añadir un documento'
+eveg.participate.add_doc.1: 'Numerosas tabelas ya estan disponibles para descargarlas. El proyecto se coordona dentro del grupo "Phytosociologie" en la web de Tela Botanica. Es sencillo : puede descargar el modelo disponible abajo y recopiar dentro una tabela desde una fuente bibliografica (por ejemplo uno de los documentos PDF disponibles en eVeg u otra web). Para ayudarle tiene erramientas de informatización disponibles aquí abajo.'
+eveg.participate.add_doc.2: 'Si duda por donde empezar, aquí tenemos una lista de los documentos esperando ser compilados :'
+eveg.participate.add_doc.3: 'Puede enviar documentos PDF sobre cada ficha de vegetación de manera muy sencilla. Por favor, solo envie extractos de documentos (p. ej. : la tabela de diagnosis acompañada de su texto explicativo). Los documentos enteros (thesis, boletines, etc.) no tienen sitio en eVeg, pero puede ponerlos a disposición de los demas en la carpeta %link_start%Bibliografía%link_end% del proyecto "Phytosociologie en Tela Botanica.'
+eveg.participate.add_doc.screen_label: 'Cuando este conectad@, clica sobre "Añadir un documento" en el apartado "Recursos" en cada ficha.'
+eveg.participate.model: 'Modelo para la informatización'
+eveg.participate.tools: 'Herramientas de informatización'
+eveg.participate.add_photo.title: 'Añadir una foto'
+eveg.participate.add_photo.1: "Nada mejor que una foto para ilustrar una vegetación !\nAñadir una foto es tan sencillo como añadir una tabela o un documento.\nUna \"buena\" foto de vegetación ha de tomar en cuenta los siguientes criterios : visibilidad de las especies caractéristicas, fisionomía de la vegetación y calidad de la imagén (nitidad).\nEs frecuentemente dificil destacar a la vez la composición florística y la fisionomía. Por eso se pueden subir tantas fotos como sean deseables."
+eveg.participate.add_photo.2: "La politica de eVeg en torno a los derechos de autor para las fotos es muy sencilla : todo lo que esta subido en esta web lo es bajo la licencia %link_start%Creative Commons%link_end% CC-BY-SA. Hacemos la elección de abrir la web y su contenido lo mas possible para promover la cultura libre.\nLa licencia CC-BY-SA significa que las fotos pueden ser utilizadas por tercios bajo las siguientes condiciones : citación obligatoria del autor y compartición bajo las mismas condiciones (el marco en cual las fotos sera utilizadas hara de aplicar también la licencia CC-BY-SA)."
+eveg.participate.add_photo.screen_label: 'Una vez conectad@, haga clic sobre "Añadir una foto" en el marco "Ilustraciones" de una ficha.'
+eveg.participate.add_map_comment.title: 'Complementar la corología.'
+eveg.participate.add_map_comment.1: "Los datos corologicos utilizados para crear los mapas de repartición provienen de baseveg. Aquella base es un proyecto personal e indenpendiente gestionado por Philippe Julve.\nPuede, usando para ello los iconos dedicados, enviar directamente un comentario al autor para que sus datos sean integrados a la proxima version de baseveg. Consequentamente, sus observaciones no seran visibles inmediatemente en la web, sino despues de la proxima puesta al dia."
+eveg.participate.add_map_comment.screen_label: 'Una vez conectad@, haga clic sobre el icono de comentario que se encuentra debajo de una de los dos mapas de cada ficha. Su comentario sera enviado al equipo de eVeg e integrado en la próxima version de la base de datos.'
+eveg.participate.help_improve_site.title: 'Ayudanos a mejorar esta web'
+eveg.about.footer_title: 'Acerca de eVeg'
+eveg.about.title: 'Acerca del proyecto eVeg'
+eveg.about.presentation.1: 'La aplicación eVeg es una interfaz de consultación de los datos de baseveg, aumentados de funcionalidades para un desarollo colaborativo de la web.'
+eveg.about.presentation.2: 'Esta pagina web ha sida creada y sigue desarollada enteramente por voluntarios. El proyecto no beneficia de ninguna subvención.'
+eveg.about.presentation.3: 'Las orientaciones de desarollo son decididas por los autores principales en concertación con el equipo de Tela Botanica.'
+eveg.about.authors.title: Autores
+eveg.about.authors.1: 'Las bases de datos provienen del programa CATMINAT de Philippe Julve'
+eveg.about.authors.2: 'el desarollo informático (sitio web) ha sido realisado por Stéphane Delplanque'
+eveg.about.authors.3: 'las traducciones (Español, Aleman, Italiano) son realisadas por Florent Beck'
+eveg.about.authors.4: 'muchos recursos provienen del grupo de conversación TB-phyto (proyecto "Phytosociologie" de Tela Botanica)'
+eveg.about.authors.5: 'este proyecto se realiza dentro del marco de la red Tela Botanica'
+eveg.about.baseveg_baseflor.title: 'Acerca de baseveg y baseflor'
+eveg.about.baseveg_baseflor.1: "baseveg y baseflor son dos bases de datos del programa CATMINAT (Catologo de los Entornos Naturales) de Philippe Julve.\nbaseveg presenta un sistema de clasificación de las vegetaciones (sinsistema) establecido siguiendo los principios de la fitosociología sinusial integrada. Recobria, en su inicio, las vegetaciones de Francia metropolitana, y luego fue extendido a Europa. Esta base de datos da también una serie de características ecológicas que puede encontrar en eVeg así como la corología para Francia metropolitana (por los departamentos) y para Europa (por país).\nbaseflor trata los datos floristicos y sigue el refenrencial BDTFX (base de datos de los tracheofitos de Francia metropolitana y regiones limítrofes) cual es coordenada por Benoit Bock en el marco de la red Tela Botanica. Ademas de este índice florístico, baseflor comprende numerosas informaciones sobre la biología de los taxones, sus afinidades fitosociológicas así como los valores indicativos de Ph. Julve y aquellos de H. Ellenberg. El código CATMINAT permite establecer un enlace entre taxon y vegetación."
+eveg.about.catminat_code.title: 'Sobre el código CATMINAT'
+eveg.about.catminat_code.1: 'El código CATMINAT está presente en baseveg como en baseflor. Este código está pensado para dar una información maximal de manera condensada.'
+eveg.about.catminat_code.2: 'Como se lee un código CATMINAT ?'
+eveg.about.catminat_code.hab: Habitat
+eveg.about.catminat_code.cla: 'Clase y sub-clase'
+eveg.about.catminat_code.ord: 'Orden y sub-orden'
+eveg.about.catminat_code.all: 'Alianza y sub-alianza'
+eveg.about.catminat_code.assgr: 'Agrupamento de asociaciones'
+eveg.about.catminat_code.ass: Asociación
+eveg.about.license.title: Licencias
+eveg.about.license.db: 'Las bases de datos ''baseveg'' y ''baseflor'' de Philippe Julve estan bajo licencia Open Database.'
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.label: Luz
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.label_min: Luz
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.label: Temperatura
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.label_min: Temp.
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.label: Continentalidad
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.label_min: Cont.
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.label: 'Humedad atmosférica'
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.label_min: 'Hum. atm.'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.label: 'Humedad edáfica'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.label_min: 'Hum. edá.'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.label: 'Reacción del suelo (pH)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.label_min: pH
+eveg.about.license.photos: 'Las fotos enviadas a eVeg siguen siendo la propiedad de su autor·a y se distribuyen bajo licencia Creative Commons CC-BY-SA.'
+eveg.about.license.documents: 'Los documentos PDF enviados a eVeg quedan bajo su licencia original.'
+eveg.contact.title: Contacto
+eveg.contact.catminat: "CATMINAT (bases de datos)\nPara preguntas al rededor de baseveg o baseflor"
+eveg.contact.website: "Interfaz web eVeg\nPara preguntas al rededor de los datos y las funcionalidades de la web"
+eveg.contact.show_email: 'Enseñar la dirección de correo electrónico'
+eveg.documents.title: 'Mis documentos'
+eveg.documents.access-link: 'Accedar a mis documentos'
+eveg.documents.spreadsheets.title: Tabelas
+eveg.documents.pdfs.title: 'Documentos PDF'
+eveg.documents.http_links.title: Enlaces
+eveg.documents.photos.title: Fotos
+eveg.file.type.spreadsheet: 'una tabela'
+eveg.file.type.pdf: 'un documento PDF'
+eveg.file.type.link: 'un enlace'
+eveg.file.type.photo: 'una foto'
+eveg.file.save: Guardar
+eveg.file.save_and_add_file: 'Guardar y añadir otro archivo'
+eveg.file.is_diagnosis: 'Si su documento trate de una diagnosis, gracias por indicar la vegetación enlazada'
+eveg.search.title: Buscar
+eveg.search.placeholder: 'Buscar una vegetación'
+eveg.search.use_synonyms: 'Utilizar sinonimos'
+eveg.errors.error_occured: 'Oops! Un error ha ocurido'
+eveg.activities.title: Actividades
+eveg.activities.last_activities: 'Ultimas actividades'
+eveg.activities.show_all: 'Mostrar todo'
+eveg.app.start.popular.title: 'Fichas mas populares'

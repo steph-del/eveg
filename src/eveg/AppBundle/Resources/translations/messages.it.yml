@@ -1,6 +1,40 @@
-eveg:
-    title: eVeg
-    web_title: Europa vegetazione | fitosociologia synusial integrato
-    slogan: |
-        un database per
-        vegetazioni Europa
+eveg.title: eVeg
+eveg.web_title: 'Vegetazione dell''Europa | fitosociologia synusial integrata'
+eveg.slogan: "un database per\nvegetazioni Europa"
+eveg.dictionary.a_file: 'un file'
+eveg.dictionary.a_link: 'un link'
+eveg.dictionary.a_pdf_document: 'un documento PDF'
+eveg.dictionary.a_photo: 'una foto'
+eveg.dictionary.a_table: 'una tabella'
+eveg.dictionary.action: azione
+eveg.dictionary.actions: azione
+eveg.dictionary.added: 'ha aggiunto'
+eveg.dictionary.author: autore
+eveg.dictionary.circle: cerchio
+eveg.dictionary.close: chiudere
+eveg.dictionary.country: paese
+eveg.dictionary.date: data
+eveg.dictionary.department: provincia
+eveg.dictionary.description: descrizione
+eveg.dictionary.diagnosis_of: 'e la descrizione originale de'
+eveg.dictionary.document: documento
+eveg.dictionary.edit: modificare
+eveg.dictionary.error: errore
+eveg.dictionary.for: per
+eveg.dictionary.file: file
+eveg.dictionary.hide: nascondere
+eveg.dictionary.license: licenza
+eveg.dictionary.link: link
+eveg.dictionary.locality: località
+eveg.dictionary.localisation: localizzazione
+eveg.dictionary.original_file: 'file originale'
+eveg.dictionary.participate: partecipare
+eveg.dictionary.photo: foto
+eveg.dictionary.photos: foto
+eveg.dictionary.public: pubblico
+eveg.dictionary.private: privato
+eveg.dictionary.syntaxon: syntaxon
+eveg.dictionary.the_file: 'il file'
+eveg.dictionary.the_link: 'il link'
+eveg.dictionary.the_photo: 'la foto'
+eveg.dictionary.title: titolo

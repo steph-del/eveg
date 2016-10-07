@@ -1,573 +1,392 @@
-eveg:
-    title: eVeg
-    web_title: phytosociologie synusiale intégrée
-    slogan: |
-        une base de données pour
-        les végétations d'Europe
-
-    dictionary:
-        a_file: un fichier
-        a_link: un lien
-        a_pdf_document: un document pdf
-        a_photo: une photo
-        a_table: un tableau
-        action: action
-        actions: actions
-        added: a ajouté
-        author: auteur
-        circle: cercle
-        close: fermer
-        country: pays
-        date: date
-        department: département
-        description: description
-        diagnosis_of: est la diagnose de
-        document: document
-        edit: modifier
-        error: erreur
-        for: pour
-        file: fichier
-        hide: masquer
-        license: licence
-        link: lien
-        localisation: localisation
-        locality: localité
-        original_file: fichier d'origine
-        participate: participez
-        photo: photo
-        photos: photos
-        public: public
-        private: privé
-        syntaxon: syntaxon
-        the_file: le fichier
-        the_link: le lien
-        the_photo: la photo
-        title: titre
-        town: commune
-        user: utilisateur
-        send: envoyer
-        syntaxon: syntaxon
-        validate: valider
-        version: version
-        versions: versions
-        visibility: visibilité
-        will_be_deleted_m: va être définitivement supprimé
-        will_be_deleted_f: va être définitivement supprimée
-
-    country:
-        austria: Autriche
-        belarus: Biélorussie
-        belgium: Belgique
-        bosnia_montenegro_albania: Bosnia and Herzegovina + Montenegro + Albania
-        bulgaria: Bulgarie
-        czech_republic: République Tchèque
-        denmark: Danemark
-        estonia_latvia_lithuania: Estonie + Lettonie + Lituanie
-        finland: Finlande
-        france: France
-        germany: Allemagne
-        greece: Grèce
-        hungary: Hongrie
-        ireland: Irlande
-        iceland: Islande
-        italy: Italie
-        luxembourg: Luxembourg
-        norway: Norvège
-        netherlands: Pays-bas
-        poland: Pologne
-        portugual: Portugual
-        romania_moldova: Roumanie + Moldavie
-        uk: Royaume-Uni
-        russia: Russie
-        serbia_macedonia: Serbie + Macédoine
-        slovakia: Slovaquie
-        slovenia_croatia: Slovénie + Croatie
-        spain: Espagne
-        sweden: Suède
-        swiss: Suisse
-        ukraine: Ukraine
-
-
-    errors:
-        no_documents: Vous n'avez aucun document pour cette catégorie
-        error_occured: Oops! Une erreur est survenue
-        server_returns: Le serveur à renvoyé un
-        default_server_error: |
-            Nous sommes désolé, quelque chose semble ne pas fonctionner correctement.
-            Si le problème persiste, merci de nous contacter.
-        return_homepage: Retourner à la page d'accueil du site.
-        404: La page que vous recherchez n'exsite pas.
-
-    actions:
-        confirm_delete: Confirmer la suppression
-        abort: Annuler
-        confirm: Confirmer
-
-    menu:
-        app: App
-        browse: Parcourir
-        help: Aide
-        contact: Contact
-        activity: Activités
-        filter: Filtrer
-        participate: Participer
-        user:
-            my_account: Mon compte
-            my_docs: Mes documents
-            dashboard: Tableau de bord
-            login: Connexion
-            logout: Déconnexion
-
-    homepage:
-        presentation:
-            title: Présentation
-            1: "eVeg est une interface de consultation des données de baseveg (programme CATMINAT, par Philippe Julve)."
-            2: "Il vous donne accès à une base de données concernant l'ensemble des végétations de France métropolitaine avec une extension à l'Europe (voir holartique et eurasiatique pour certaines unités), établie selon les principes de la phytosociologie synusiale intégrée."
-            3: "Chaque végétation connue fait l'objet d'une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques."
-            4: Organisation générale du projet :
-        participate:
-            title: Participer
-            currently:
-                title: Actuellement sur eVeg
-                nbCards: |
-                    fiches
-                    descriptives
-                nbDocuments: |
-                    documents
-                    à télécharger
-                nbWaiting: |
-                    documents n'attendent
-                    que vous pour être compilés !
-            addDocuments: "Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d'illustration et en soumettant des données chorologiques."
-            how: En savoir plus
-        lastUploads:
-            title: Derniers ajouts des contributeurs
-        start: Pour commencer à utiliser eVeg, utilisez le moteur de recherche ci-dessus ou naviguez dans l'arbre des végétations.
-
-    participate:
-        title: Participer
-        signup : Créer un compte utilisateur (gratuit)
-        login: Se connecter à eVeg
-        text: |
-            Depuis sa création, eVeg est un projet collaboratif.
-            Pour participer, il vous faut avant tout créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté.
-        add_doc:
-            title: Ajouter un document
-            1: |
-                De nombreux tableaux sont déjà disponibles en téléchargement sur le site.
-                Le projet de saisie des diagnoses est issu du groupe TB-phyto de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et "recopiez" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous).
-            2: Si vous ne disposez pas des données bibliographiques, voici une liste des documents en attente d’être compilés :
-            3: |
-                Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif). Les documents complets n'ont pas leur place dans les fiches végétation (thèse, bulletin, etc.), il est préférable de les mettre en ligne sur le projet TB-Phytosocio, dans la %link_start%section bibliographie%link_end%.
-            screen_label: "Une fois connecté, cliquez sur 'Ajouter un document' dans le panneau 'Ressources' d'une fiche"
-
-        model: Modèle à suivre pour la saisie
-        tools: Outils de saisie
-
-        add_photo:
-            title: Ajouter une photo
-            1: |
-                Quoi de mieux qu’une bonne photo pour illustrer une végétation ?
-                Ajouter une photo est aussi simple que d’ajouter un tableau ou un document.
-                Une "bonne" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).
-                Il est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !
-            2: |
-                La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence %link_start%Creative Commons%link_end% CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.
-                La licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : citation obligatoire de l’auteur et partage à l’identique (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA).
-            screen_label: "Une fois connecté, cliquez sur 'Ajouter une photo' dans le panneau 'Illustrations' d'une fiche"
-
-        add_map_comment:
-            title: Compléter la chorologie
-            1: |
-                Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philippe Julve.
-                Vous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.
-            screen_label: "Une fois connecté, cliquez sur l'icone commentaire sous l'une des deux cartes d'une fiche. Votre commentaire sera envoyé à l'équipe et traité dans la future mise à jour de la base de données."
-
-        help_improve_site:
-            title: Aidez-nous à améliorer le site
-            1: |
-                Chaque fiche dispose d'un bouton permettant de nous envoyer un message en cas de problème.
-                Il pourrait s'agir d'un problème lié à l'interface du site web ou d'un problème concernant les données elles-mêmes. Dans tous les cas, si vous souhaitez faire une remarque, sur le fond ou sur la forme, n'hésitez pas à utiliser ce bouton !
-            screen_label: "Pour nous faire part de vos remarques, cliquez sur l'icone 'commentaire' dans le bandeau de la fiche et laissez-vous guider."
-
-    about:
-        footer_title: A propos d'eVeg
-        title: A propos du projet eVeg
-        presentation: 
-            1: L'application eVeg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.
-            2: L'application a été réalisée et est maintenue de manière totalement bénévole. Le projet ne bénéficie d’aucune subvention.
-            3: Les orientations de développement sont faites par les auteurs principaux en concertation avec l'équipe de Tela Botanica.
-        authors: 
-            title: Auteurs
-            1: Les bases de données sont issues du programme CATMINAT de Philippe Julve
-            2: Le développement informatique (site web) est réalisé par Stéphane Delplanque
-            3: Les traductions (Espagnol, Allemand, Italien) sont réalisées par Florent Beck
-            4: De nombreuses ressources sont issues du groupe de discussion TB-phyto
-            5: Ce projet est réalisé dans le cadre du réseau Tela Botanica
-
-        baseveg_baseflor:
-            title: A propos de baseveg et de baseflor
-            1: |
-                Baseveg et baseflor sont deux bases de données issues du programme CATMINAT (catalogue des milieux naturels) de Philippe Julve.
-                Baseveg présente un système de classification pour les végétations (synsystème) établit selon les principes de la phytosociologie synusiale intégrée. Il couvrait, à l’origine, la France métropolitaine et a ensuite été étendu à l’Europe. Cette base donne également une série de caractéristiques écologiques que vous pouvez retrouver sur eVeg ainsi que la chorologie pour la France métropolitaine (par département) ainsi que pour l’Europe (par pays).
-                Baseflor concerne les données floristiques et suit le référentiel BDTFX (base de données des trachéophytes de métropole et contrées limitrophes) coordonné par Benoit Bock dans le cadre du réseau Tela Botanica. En plus de cet index, baseflor intègre de nombreuses données sur le cycle de vie de chaque taxon, leurs affinités phytosociologiques ainsi que les valences écologiques (échelles de Ph. Julve et de H. Ellenberg). Il permet également de faire le lien entre un taxon et une végétation grâce au code CATMINAT.
-        catminat_code:
-            title: A propos du code CATMINAT
-            1: |
-                Le code CATMINAT est présent dans baseveg ainsi que dans baseflor. Ce code est pensé pour délivrer un maximum d’informations de manière condensée.
-            2: Comment lire un code CATMINAT ?
-            hab: Habitat
-            cla: Classe et sous-classe
-            ord: Ordre et sous-ordre
-            all: Alliance et sous-alliance
-            assgr: Groupement d'associations
-            ass: Association
-
-        license:
-            title: Licences
-            db: |
-                Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database License.
-            website: |
-                Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de son code source est disponible en ligne à l’adresse %link%.
-            photos: |
-                Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.
-            documents: |
-                Les documents PDF téléversés sur eVeg bénéficient de leurs licences originelles.
-
-    contact:
-        title: Contact
-        catminat: |
-                   CATMINAT (bases de données)
-                   Pour les questions conercernant baseveg ou baseflor
-        website: |
-                   Application eVeg
-                   Pour les questions concernant les données et les fonctionnalités du site
-        show_email: Afficher l'adresse email
-
-    documents:
-        title: Mes documents
-        access-link: Accéder à mes documents
-        spreadsheets:
-            title: Tableaux
-        pdfs:
-            title: Documents Pdf
-        http_links:
-            title: Liens
-        photos:
-            title: Photos
-
-    file:
-        type:
-            spreadsheet: un tableau
-            pdf: un document Pdf
-            link: un lien
-            photo: une photo
-        is_diagnosis: Si votre document concerne une diagnose, merci de préciser la végétation associée
-        save: Enregistrer
-        save_and_add_file: Enregistrer et ajouter une autre fichier
-
-
-    search:
-        title: Rechercher
-        placeholder: Rechercher une végétation
-        use_synonyms: Utiliser les synonymes
-        help: |
-            Utilisez %bold_start%l'espace%bold_end% pour remplacer n'importe quel terme ou caractère(s).
-            %separator%Exemple : %code_start%Aceri camp carpin%code_end% renvoi %citation_start%Aceri campestris - Carpinetum betuli Julve 1994%citation_end%.
-            %separator%Essayez une recherche sur %code_start%%space%arrhenatheretum%code_end% (avec un espace en premier caractère) pour rechercher les associations comportant ce terme.
-            %separator%Essayer également une recherche sur %code_start%%space% de Foucault%code_end% (avec un espace en premier caractère) pour rechercher les syntaxons décrits par l'auteur.
-
-    activities:
-        title: Activités
-        last_activities: Dernières activités
-        participate:
-            slogan: documents Pdf sont en ligne mais n'ont pas encore été compilés. Téléchargez l'un des documents suivants et compilez-le !
-        access_syntaxon: Accéder à la fiche du syntaxon
-        show_all: Afficher tout
-        all_activities: Voir toutes les activités du site
-        no_activities: Aucune activité récente
-
-    legal_notice:
-        title: Mentions légales
-        website:
-            title: Site web
-            text: |
-                Auteur : Stéphane Delplanque
-                Adresse : Labarthe, 46140 Bélaye
-                Email : stephane@e-veg.net
-        host:
-            title: Hébergement
-            text: |
-                Ce site est hébergé par o2switch
-                222-224 Boulevard Gustave Flaubert
-                63000 Clermont-Ferrand
-                FRANCE
-        cookies:
-            title: Les cookies et leur utilisation
-            what_is_it:
-                title: Qu'est-ce qu'un cookie ?
-                text: |
-                    Un cookie est un petit fichier texte qui peut être enregistré sur votre ordinateur par un site que vous visitez.
-                    Ce fichier peut contenir différentes informations, et possède une date d'expiration.
-                    Lorsque vous retournez sur le même site, votre navigateur envoie à celui-ci le cookie associé (s'il y en a un), afin que vous soyez reconnu.
-            use:
-                title: A quoi ça sert ?
-                text: |
-                    Les cookies ont différentes fonctions. Ils peuvent permettre au site qui les a déposés de reconnaître un internaute, d'une visite à une autre, grâce à un identifiant unique.
-                    Certains cookies peuvent aussi être utilisés pour stocker le contenu d'un panier d'achat, d'autres pour enregistrer les paramètres de langue d'un site, d'autres encore pour faire de la publicité ciblée.
-            on_eveg:
-                title: L'utilisation des cookies sur eVeg
-                text: |
-                    eVeg n'utilise pas de cookies pour la publicité, les cookies utilisés sur le site servent uniquement à se souvenir de vos préférences ainsi qu'à établir des statistiques sur le nombre de visiteurs.
-            piwik:
-                title: Piwik
-                text: |
-                    Ce site Web utilise Piwik, un service analytique libre. Piwik utilise des cookies. Les informations générées par le cookie concernent votre utilisation du site Web. Votre adresse IP est anonymisée (2 octets) avant d'être stockée dans une base de données sur les serveurs d'o2switch (serveurs basés en France, à Clermont-Ferand). Vos données ne sont jamais transmises à des tiers.
-                    Piwik est le seul logiciel recommandé, à l'heure actuelle, par la Commission nationale de l'informatique et des libertés (CNIL) afin de garantir l'anonymisation de vos données. Nous avons fait le choix de cette solution afin d'éviter que vos données ne soient récupérées et analysées par des tiers, souvent pour des besoins publicitaires.
-        law:
-            title: Loi informatique et libertés
-            text: |
-                En application de la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n° 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l'égard des traitements de données à caractère personnel, et notamment son article 24-II, vous disposez d'un droit de modification et de suppression des données qui vous concernent. Vous pouvez adresser votre demande :
-            mail: par courriel à : contact@e-veg.net
-            post: par courrier traditionnel à : XXX
-    
-    app:
-        show_one:
-            panels:
-                ecological_valences:
-                    pjLightAvg:
-                        label:      Lumière
-                        label_min:  Lum.
-                        1:          hypersciaphiles
-                        2:          persciaphiles
-                        3:          sciaphiles
-                        4:          hémisciaphiles
-                        5:          hélioclines à sciaclines
-                        6:          hémihéliophiles
-                        7:          héliophiles
-                        8:          perhéliophiles
-                        9:          hyperhéliophiles
-                    pjTemperatureAvg:
-                        label:      Température
-                        label_min:  Temp.
-                        1:          alpines à nivales, altiméditerranéennes
-                        2:          subalpines, oroméditerranéennes
-                        3:          montagnardes
-                        4:          collinéennes, planitiaires psychrophiles (psychro-atlantiques, psychrocentro-européennes)
-                        5:          planitiaires à montagnardes
-                        6:          planitiaires thermophiles (thermo-atlantiques, thermocentro-européennes) et sub- à supraméditerranéennes
-                        7:          euryméditerranéennes, méditerranéo-atlantiques
-                        8:          mésoméditerranéennes
-                        9:          thermoméditerranéennes à subdésertiques (inframéditerranéennes)
-                    pjContinentalityAvg:
-                        label:      Continentalité
-                        label_min:  Cont.
-                        1:          marines à maritimes
-                        2:          hyperocéaniques
-                        3:          océaniques
-                        4:          subocéaniques
-                        5:          intermédiaires
-                        6:          précontinentales
-                        7:          subcontinentales
-                        8:          continentales
-                        9:          hypercontinentales
-                    pjAtmosphericHumidityAvg:
-                        label:      Humidité atmosphérique
-                        label_min:  Hum. atm.
-                        1:          aéroxérophiles
-                        2:          intermédiaires
-                        3:          aéromésoxérophiles
-                        4:          intermédiaires
-                        5:          aéromésohydriques
-                        6:          intermédiaires
-                        7:          aéromésohygrophiles
-                        8:          intermédiaires
-                        9:          aérohydrophiles
-                    pjSoilHumidityAvg:
-                        label:      Humidité édaphique
-                        label_min:  Hum. eda.
-                        1:          hyperxérophiles (sclérophiles, ligneuses microphylles, réviviscentes)
-                        2:          perxérophiles (caulocrassulescentes subaphylles, coussinets)
-                        3:          xérophiles (velues, aiguillonnées, cuticule épaisse)
-                        4:          mésoxérophiles
-                        5:          mésohydriques
-                        6:          mésohygroclines, mésohygrophiles
-                        7:          hygrophiles (durée d'inondation en semaines)
-                        8:          hydrophiles (durée d'inondation en mois)
-                        9:          amphibies saisonnières (hélophytes exondés une partie minoritaire de l’année)
-                        10:         amphibies permanentes (hélophytes semi-émergés à base toujours noyée)
-                        11:         aquatiques superficielles (0-50cm)
-                        12:         aquatiques profondes (1-3m)
-                    pjSoilPhAvg:
-                        label:      Réaction du sol (pH)
-                        label_min:  pH
-                        1:          hyperacidophiles(3,0<pH<4,0)
-                        2:          peracidophiles (4,0<pH<4,5)
-                        3:          acidophiles (4,5<pH<5,0)
-                        4:          acidoclines (5,0<pH<5,5)
-                        5:          neutroclines (5,5<pH<6,5)
-                        6:          basoclines (6,5<pH<7,0)
-                        7:          basophiles (7,0<pH<7,5)
-                        8:          perbasophiles (7,5<pH<8,0)
-                        9:          hyperbasophiles (8,0<pH<9,0)
-                    pjTrophicLevelAvg:
-                        label:      Nutriments du sol (surtout anions azotés et phosphatés, puis également cations potassiques)
-                        label_min:  Nutr. sol
-                        1:          hyperoligotrophiles
-                        2:          peroligotrophiles
-                        3:          oligotrophiles
-                        4:          méso-oligotrophiles
-                        5:          mésotrophiles
-                        6:          méso-eutrophiles
-                        7:          eutrophiles
-                        8:          pereutrophiles
-                        9:          hypereutrophiles
-                    pjSalinityAvg:
-                        label:      Salinité (surtout Chlorures, également sodium)
-                        label_min:  Sal.
-                        0:          ne supportant pas le sel
-                        1:          hyperoligohalines, [0-1‰ Cl-]
-                        2:          peroligohalines, [1-3‰ Cl-]
-                        3:          oligohalines, [3-5‰ Cl-]
-                        4:          méso-oligohalines, [5-7‰ Cl-]
-                        5:          mésohalines, [7-9‰ Cl-]
-                        6:          méso-euhalines, [9-12‰ Cl-]
-                        7:          euhalines, [12-16‰ Cl-]
-                        8:          pereuhalines, [16-23‰ Cl-]
-                        9:          hypereuhalines, [>23‰ Cl-]
-                    pjTextureAvg:
-                        label:      Texture du sol
-                        label_min:  Text. sol
-                        1:          argile
-                        2:          intermédiaire
-                        3:          limon
-                        4:          sable fin
-                        5:          sable grossier
-                        6:          graviers
-                        7:          galets
-                        8:          blocs, fentes des parois
-                        9:          dalle
-                    pjOrganicMaterialAvg:
-                        label:      Matière organique du sol et type d'humus
-                        label_min:  Mat. org.
-                        1:          lithosol, peyrosol, régosol
-                        2:          mull carbonaté
-                        3:          mull actif
-                        4:          mull acide
-                        5:          moder
-                        6:          mor, hydromor, xéromor
-                        7:          ranker, tangel
-                        8:          anmoor, gyttja
-                        9:          tourbe
-            
-            filters: 
-                title: Filtrer eVeg
-                dep: Par département (France mértopolitaine)
-                country: Par pays
-                explain: |
-                          Vous pouvez filtrer eVeg (les fiches, le moteur de recherche et l'arborescence) par département (France métropolitaine) ou par Pays.
-                          Si aucun pays / département n'est selectionné, les filtres ne sont pas actifs.
-
-            breadcrumb:
-                one_parent: Syntaxon supérieur
-                more_parents: Syntaxons supérieurs
-
-            feedback:
-                title: Faire un commentaire
-                syntaxon:
-                    message: Vous avez remarqué un problème sur la page ou une erreur ? Envoyez nous un message pour que nous puissons faire les corrections.
-                    type:
-                        interface: Problème avec l'interface
-                        data: Problème avec les données
-                        other: Autre problème
-                        repartition: Chorologie
-                repartition:
-                    fr:
-                        message: Vous souhaitez partager une donnée concernant la répartition départementale en France métropolitaine de ce syntaxon ? Envoyez nous un message.
-                    ue:
-                        message: Vous souhaitez partager une donnée concernant la répartition européenne de ce syntaxon ? Envoyez nous un message.
-                success: Votre message a bien été pris en compte et envoyé. Nous vous remercions pour votre participation et vous répondrons par mail.
-                error: Nous ne parvenons pas à envoyer votre message, merci de nous contacter directement par mail (voir la page Contact).
-                user:
-                    thanks: Votre message a bien été envoyé. Nous vous remerçions pour votre participation et vous répondrons dès que nous aurons traité votre demande.
-                    salutation: |
-                                Cordialement,
-                                l'équipe eVeg.
-            
-            photos:
-                title: Photos
-                add:
-                    title: Ajouter une photo
-                    another: Ajouter une autre photo
-
-            files:
-                title: Fichiers
-                add:
-                    title: Ajouter un fichier
-                    placeholder: Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"
-                    another: Ajouter un autre fichier
-                    link_instead: Je souhaite ajouter un lien plutôt qu'un fichier
-
-            http_link:
-                title: Liens
-                add:
-                    title: Ajouter un lien
-                    placeholder: http://www.tela-botanica.org
-                    another: Ajouter un autre lien
-            hab:
-                note: Les fiches Habitat n'ont pas de données écologiques associées
-                class: Classes de cet habitat :
-
-        multiple_results:
-            title: Plusieurs résultats
-            explain : Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.
-            your_search: Votre recherche
-            results: Sélectionnez un résultat
-
-        start:
-            title: Parcourir les végétations
-            popular:
-                title: Les fiches les plus consultées
-            classes:
-                title: Toutes les classes
-
-    meta:
-        homepage: Une base de données pour les végétations de France métropolitaine et d'Europe. Phytosociologie synusiale intégrée.
-        syntaxon: écologie, répartition en France et en Europe, bibliographie...
-
-    newsletter:
-        last_up:
-            title: Derniers fichiers mis en ligne
-            date:
-                day: hier
-                week: la semaine dernière
-                month: le mois dernier
-            hello: |
-                Bonjour,
-
-                Depuis %when%, %how-many% nouveaux fichiers ont été ajoutés sur eVeg :
-            go: Accéder à la fiche
-            bye: L'équipe eVeg.
-
-    tree:
-        1: 01: Eaux marines
-        2: 02: Littoral maritime
-        3: 03: Végétations aquatiques dulçaquicoles
-        4: 04: Végétations basses amphibies
-        5: 05: Roselières, cariçaies, mégaphorbiaies
-        6: 06: Tourbières
-        7: 07: Parois, murs et aérophytes
-        8: 08: Dalles, sables et éboulis
-        9: 09: Pelouses, steppes & savanes
-        10: 10: Ourlets et sous-bois
-        11: 11: Pelouses arctico-alpines
-        12: 12: Prairies
-        13: 13: Cultures, friches & clairières forestières eutrophiles
-        14: 14: Landes, cistaies & garrigues
-        15: 15: Buissons et haies arbustives
-        16: 16: Arbres pionniers des zonobiomes tempérés
-        17: 17: Arbres climaciques du zonobiome tempéré froid
-        18: 18: Arbres climaciques du zonobiome tempéré modal
-        19: 19: Arbres climaciques des zonobiomes tempérés chauds
-        20: 20: Arbres climaciques des zonobiomes tropicaux
-        21: 21: Epiphytes de la canopée
+eveg.title: eVeg
+eveg.web_title: 'Végétations d''Europe | phytosociologie synusiale intégrée'
+eveg.slogan: "une base de données pour\nles végétations d'Europe..."
+eveg.dictionary.a_file: 'un fichier'
+eveg.dictionary.a_link: 'un lien'
+eveg.dictionary.a_pdf_document: 'un document PDF'
+eveg.dictionary.a_photo: 'une photo'
+eveg.dictionary.a_table: 'un tableau'
+eveg.dictionary.action: action
+eveg.dictionary.actions: actions
+eveg.dictionary.added: 'a ajouté'
+eveg.dictionary.author: auteur
+eveg.dictionary.circle: cercle
+eveg.dictionary.close: fermer
+eveg.dictionary.country: pays
+eveg.dictionary.date: date
+eveg.dictionary.department: département
+eveg.dictionary.description: description
+eveg.dictionary.diagnosis_of: 'est la diagnose de'
+eveg.dictionary.document: document
+eveg.dictionary.edit: modifier
+eveg.dictionary.error: erreur
+eveg.dictionary.for: pour
+eveg.dictionary.file: fichier
+eveg.dictionary.hide: masquer
+eveg.dictionary.license: licence
+eveg.dictionary.link: lien
+eveg.dictionary.localisation: localisation
+eveg.dictionary.locality: localité
+eveg.dictionary.original_file: 'fichier d''origine'
+eveg.dictionary.participate: participez
+eveg.dictionary.photo: photo
+eveg.dictionary.photos: photos
+eveg.dictionary.public: public
+eveg.dictionary.private: privé
+eveg.dictionary.syntaxon: syntaxon
+eveg.dictionary.the_file: 'le fichier'
+eveg.dictionary.the_link: 'le lien'
+eveg.dictionary.the_photo: 'la photo'
+eveg.dictionary.title: titre
+eveg.dictionary.town: commune
+eveg.dictionary.user: utilisateur
+eveg.dictionary.send: envoyer
+eveg.dictionary.validate: valider
+eveg.dictionary.version: version
+eveg.dictionary.versions: versions
+eveg.dictionary.visibility: visibilité
+eveg.dictionary.will_be_deleted_m: 'va être définitivement supprimé'
+eveg.dictionary.will_be_deleted_f: 'va être définitivement supprimée'
+eveg.country.austria: Autriche
+eveg.country.belarus: Biélorussie
+eveg.country.belgium: Belgique
+eveg.country.bosnia_montenegro_albania: 'Bosnie-et-Herzégovine + Monténégro + Albanie'
+eveg.country.bulgaria: Bulgarie
+eveg.country.czech_republic: 'République Tchèque'
+eveg.country.denmark: Danemark
+eveg.country.estonia_latvia_lithuania: 'Estonie + Lettonie + Lituanie'
+eveg.country.finland: Finlande
+eveg.country.france: France
+eveg.country.germany: Allemagne
+eveg.country.greece: Grèce
+eveg.country.hungary: Hongrie
+eveg.country.ireland: Irlande
+eveg.country.iceland: Islande
+eveg.country.italy: Italie
+eveg.country.luxembourg: Luxembourg
+eveg.country.norway: Norvège
+eveg.country.netherlands: Pays-bas
+eveg.country.poland: Pologne
+eveg.country.portugual: Portugal
+eveg.country.romania_moldova: 'Roumanie + Moldavie'
+eveg.country.uk: Royaume-Uni
+eveg.country.russia: Russie
+eveg.country.serbia_macedonia: 'Serbie + Macédoine'
+eveg.country.slovakia: Slovaquie
+eveg.country.slovenia_croatia: 'Slovénie + Croatie'
+eveg.country.spain: Espagne
+eveg.country.sweden: Suède
+eveg.country.swiss: Suisse
+eveg.country.ukraine: Ukraine
+eveg.errors.no_documents: 'Vous n''avez aucun document pour cette catégorie'
+eveg.errors.error_occured: 'Oops! Une erreur est survenue'
+eveg.errors.server_returns: 'Le serveur à renvoyé un'
+eveg.errors.default_server_error: "Nous sommes désolé, quelque chose semble ne pas fonctionner correctement.\nSi le problème persiste, merci de nous contacter.\n"
+eveg.errors.return_homepage: 'Retourner à la page d''accueil du site.'
+eveg.errors.404: 'La page que vous recherchez n''existe pas.'
+eveg.actions.confirm_delete: 'Confirmer la suppression'
+eveg.actions.abort: Annuler
+eveg.actions.confirm: Confirmer
+eveg.menu.app: App
+eveg.menu.browse: Parcourir
+eveg.menu.help: Aide
+eveg.menu.contact: Contact
+eveg.menu.activity: Activités
+eveg.menu.filter: Filtrer
+eveg.menu.participate: Participer
+eveg.menu.user.my_account: 'Mon compte'
+eveg.menu.user.my_docs: 'Mes documents'
+eveg.menu.user.dashboard: 'Tableau de bord'
+eveg.menu.user.login: Connexion
+eveg.menu.user.logout: Déconnexion
+eveg.homepage.presentation.title: Présentation
+eveg.homepage.presentation.1: 'eVeg est une interface de consultation des données de baseveg (programme CATMINAT, par Philippe Julve).'
+eveg.homepage.presentation.2: 'Il vous donne accès à une base de données concernant l''ensemble des végétations de France métropolitaine avec une extension à l''Europe (voire holartique et eurasiatique pour certaines unités), établie selon les principes de la phytosociologie synusiale intégrée.'
+eveg.homepage.presentation.3: 'Chaque végétation connue fait l''objet d''une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques.'
+eveg.homepage.presentation.4: 'Organisation générale du projet :'
+eveg.homepage.participate.title: Participer
+eveg.homepage.participate.currently.title: 'Actuellement sur eVeg'
+eveg.homepage.participate.currently.nbCards: "fiches\ndescriptives\n"
+eveg.homepage.participate.currently.nbDocuments: "documents\nà télécharger\n"
+eveg.homepage.participate.currently.nbWaiting: "documents n'attendent\nque vous pour être compilés !"
+eveg.homepage.participate.addDocuments: 'Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d''illustration et en soumettant des données chorologiques.'
+eveg.homepage.participate.how: 'En savoir plus'
+eveg.homepage.lastUploads.title: 'Derniers ajouts des contributeurs'
+eveg.homepage.start: 'Pour commencer à utiliser eVeg, utilisez le moteur de recherche ci-dessus ou naviguez dans l''arbre des végétations.'
+eveg.participate.title: Participer
+eveg.participate.signup: 'Créer un compte utilisateur (gratuit)'
+eveg.participate.login: 'Se connecter à eVeg'
+eveg.participate.text: "Depuis sa création, eVeg est un projet collaboratif.\nPour participer, il suffit de créer un compte et vous connecter à eVeg. Les options d’ajouts de tableaux, de documents et de photos ne s’affichent que si vous êtes connecté."
+eveg.participate.add_doc.title: 'Ajouter un document'
+eveg.participate.add_doc.1: "De nombreux tableaux sont déjà disponibles en téléchargement sur le site.\nLe projet de saisie des diagnoses est issu du groupe \"Phytosociologie\" de Tela Botanica. Le système est simple : à partir d’une source bibliographique ou d’un document PDF disponible sur eVeg,  téléchargez le modèle ci-dessous et \"recopiez\" le tableau descriptif. Pour vous aider dans la saisie, des outils sont à votre disposition (voir le lien ci-dessous)."
+eveg.participate.add_doc.2: 'Si vous ne savez pas par où commencer, voici une liste des documents en attente d’être compilés :'
+eveg.participate.add_doc.3: "Vous pouvez, très simplement, téléverser des documents PDF dans chaque fiche végétation d’eVeg. Veillez à ne déposer que des extraits de documents (le tableau concernant la végétation accompagné du texte explicatif). Les documents complets n'ont pas leur place dans les fiches végétation (thèse, bulletin, etc.), il est préférable de les mettre en ligne sur le projet TB-Phytosocio, dans la %link_start%section bibliographie%link_end%.\n"
+eveg.participate.add_doc.screen_label: 'Une fois connecté, cliquez sur ''Ajouter un document'' dans le panneau ''Ressources'' d''une fiche'
+eveg.participate.model: 'Modèle à suivre pour la saisie'
+eveg.participate.tools: 'Outils de saisie'
+eveg.participate.add_photo.title: 'Ajouter une photo'
+eveg.participate.add_photo.1: "Quoi de mieux qu’une bonne photo pour illustrer une végétation ?\nAjouter une photo est aussi simple que d’ajouter un tableau ou un document.\nUne \"bonne\" photo de végétation doit prendre en compte plusieurs critères : visibilité des espèces caractéristiques, physionomie de la végétation et qualité de l’image (netteté).\nIl est souvent difficile de mettre en avant le cortège floristique et la physionomie de la végétation. Pas de problème, vous pouvez ajouter autant de photos que vous le souhaitez !\n"
+eveg.participate.add_photo.2: "La politique en matière de droit d’auteur pour les photographies sur eVeg est simple : tout ce qui est déposé sur le site bénéficie de la licence %link_start%Creative Commons%link_end% CC-BY-SA. Nous avons fait le choix d’ouvrir au maximum le site et son contenu et d’y promouvoir la culture du libre.\nLa licence CC-BY-SA signifie que vos photos pourront être ré-utilisées par d’autres sous les conditions suivantes : citation obligatoire de l’auteur et partage sous les mêmes conditions (le projet dans lequel les photos sont utilisés doit également être sous licence CC-BY-SA)."
+eveg.participate.add_photo.screen_label: 'Une fois connecté, cliquez sur ''Ajouter une photo'' dans le panneau ''Illustrations'' d''une fiche'
+eveg.participate.add_map_comment.title: 'Compléter la chorologie'
+eveg.participate.add_map_comment.1: "Les données chorologiques utilisées pour créer les cartes de répartitions sont issues de baseveg. Cette base est un projet personnel et indépendant géré par Philippe Julve.\nVous pouvez, grâce aux icônes dédiées, envoyer directement un commentaire à l’auteur afin que vos données soient intégrées dans la future version de baseveg. Par conséquent, vos observations ne seront pas visibles tout de suite sur le site mais uniquement lors de la prochaine mise à jour.\n"
+eveg.participate.add_map_comment.screen_label: 'Une fois connecté, cliquez sur l''icone commentaire sous l''une des deux cartes d''une fiche. Votre commentaire sera envoyé à l''équipe et traité dans la future mise à jour de la base de données.'
+eveg.participate.help_improve_site.title: 'Aidez-nous à améliorer le site'
+eveg.participate.help_improve_site.1: "Chaque fiche dispose d'un bouton permettant de nous envoyer un message en cas de problème.\nIl pourrait s'agir d'un problème lié à l'interface du site web ou d'un problème concernant les données elles-mêmes. Dans tous les cas, si vous souhaitez faire une remarque, sur le fond ou sur la forme, n'hésitez pas à utiliser ce bouton !\n"
+eveg.participate.help_improve_site.screen_label: 'Pour nous faire part de vos remarques, cliquez sur l''icone ''commentaire'' dans le bandeau de la fiche et laissez-vous guider.'
+eveg.about.footer_title: 'A propos d''eVeg'
+eveg.about.title: 'A propos du projet eVeg'
+eveg.about.presentation.1: 'L''application eVeg est une interface de consultation des données de baseveg augmentée de fonctionnalités permettant le développement collaboratif du site web.'
+eveg.about.presentation.2: 'L''application a été réalisée et est maintenue de manière totalement bénévole. Le projet ne bénéficie d’aucune subvention.'
+eveg.about.presentation.3: 'Les orientations de développement sont faites par les auteurs principaux en concertation avec l''équipe de Tela Botanica.'
+eveg.about.authors.title: Auteurs
+eveg.about.authors.1: 'Les bases de données sont issues du programme CATMINAT de Philippe Julve'
+eveg.about.authors.2: 'le développement informatique (site web) est réalisé par Stéphane Delplanque'
+eveg.about.authors.3: 'les traductions (Espagnol, Allemand, Italien) sont réalisées par Florent Beck'
+eveg.about.authors.4: 'de nombreuses ressources sont issues du groupe de discussion TB-phyto'
+eveg.about.authors.5: 'ce projet est réalisé dans le cadre du réseau Tela Botanica'
+eveg.about.baseveg_baseflor.title: 'A propos de baseveg et de baseflor'
+eveg.about.baseveg_baseflor.1: "baseveg et baseflor sont deux bases de données issues du programme CATMINAT (catalogue des milieux naturels) de Philippe Julve.\nbaseveg présente un système de classification pour les végétations (synsystème) établit selon les principes de la phytosociologie synusiale intégrée. Il couvrait, à l’origine, la France métropolitaine et a ensuite été étendu à l’Europe. Cette base donne également une série de caractéristiques écologiques que vous pouvez retrouver sur eVeg ainsi que la chorologie pour la France métropolitaine (par département) ainsi que pour l’Europe (par pays).\nbaseflor concerne les données floristiques et suit le référentiel BDTFX (base de données des trachéophytes de métropole et contrées limitrophes) coordonné par Benoit Bock dans le cadre du réseau Tela Botanica. En plus de cet index, baseflor intègre de nombreuses données sur le cycle de vie de chaque taxon, leurs affinités phytosociologiques ainsi que les valences écologiques (échelles de Ph. Julve et de H. Ellenberg). Il permet également de faire le lien entre un taxon et une végétation grâce au code CATMINAT."
+eveg.about.catminat_code.title: 'A propos du code CATMINAT'
+eveg.about.catminat_code.1: "Le code CATMINAT est présent dans baseveg ainsi que dans baseflor. Ce code est pensé pour délivrer un maximum d’informations de manière condensée.\n"
+eveg.about.catminat_code.2: 'Comment lire un code CATMINAT ?'
+eveg.about.catminat_code.hab: Habitat
+eveg.about.catminat_code.cla: 'Classe et sous-classe'
+eveg.about.catminat_code.ord: 'Ordre et sous-ordre'
+eveg.about.catminat_code.all: 'Alliance et sous-alliance'
+eveg.about.catminat_code.assgr: 'Groupement d''associations'
+eveg.about.catminat_code.ass: Association
+eveg.about.license.title: Licences
+eveg.about.license.db: 'Les bases de données ‘baseveg’ et ‘baseflor’, de Philippe Julve, sont sous licence Open Database.'
+eveg.about.license.website: "Le site internet 'e-veg.net' est sous licence Creative Commons CC-BY-SA. L’intégralité de son code source est disponible en ligne à l’adresse %link%.\n"
+eveg.about.license.photos: "Les photographies téléversées sur eVeg sont la propriété de leurs auteurs et sont proposées sous licence Creative Commons CC-BY-SA.\n"
+eveg.about.license.documents: "Les documents PDF téléversés sur eVeg bénéficient de leurs licences originelles.\n"
+eveg.contact.title: Contact
+eveg.contact.catminat: "CATMINAT (bases de données)\nPour les questions conercernant baseveg ou baseflor\n"
+eveg.contact.website: "Application eVeg\nPour les questions concernant les données et les fonctionnalités du site\n"
+eveg.contact.show_email: 'Afficher l''adresse email'
+eveg.documents.title: 'Mes documents'
+eveg.documents.access-link: 'Accéder à mes documents'
+eveg.documents.spreadsheets.title: Tableaux
+eveg.documents.pdfs.title: 'Documents PDF'
+eveg.documents.http_links.title: Liens
+eveg.documents.photos.title: Photos
+eveg.file.type.spreadsheet: 'un tableau'
+eveg.file.type.pdf: 'un document PDF'
+eveg.file.type.link: 'un lien'
+eveg.file.type.photo: 'une photo'
+eveg.file.is_diagnosis: 'Si votre document concerne une diagnose, merci de préciser la végétation associée'
+eveg.file.save: Enregistrer
+eveg.file.save_and_add_file: 'Enregistrer et ajouter une autre fichier'
+eveg.search.title: Rechercher
+eveg.search.placeholder: 'Rechercher une végétation'
+eveg.search.use_synonyms: 'Utiliser les synonymes'
+eveg.search.help: "Utilisez %bold_start%l'espace%bold_end% pour remplacer n'importe quel terme ou caractère(s).\n%separator%Exemple : %code_start%Aceri camp carpin%code_end% renvoi %citation_start%Aceri campestris - Carpinetum betuli Julve 1994%citation_end%.\n%separator%Essayez une recherche sur %code_start%%space%arrhenatheretum%code_end% (avec un espace en premier caractère) pour rechercher les associations comportant ce terme.\n%separator%Essayer également une recherche sur %code_start%%space% de Foucault%code_end% (avec un espace en premier caractère) pour rechercher les syntaxons décrits par l'auteur.\n"
+eveg.activities.title: Activités
+eveg.activities.last_activities: 'Dernières activités'
+eveg.activities.participate.slogan: 'documents Pdf sont en ligne mais n''ont pas encore été compilés. Téléchargez l''un des documents suivants et compilez-le !'
+eveg.activities.access_syntaxon: 'Accéder à la fiche du syntaxon'
+eveg.activities.show_all: 'Afficher tout'
+eveg.activities.all_activities: 'Voir toutes les activités du site'
+eveg.activities.no_activities: 'Aucune activité récente'
+eveg.legal_notice.title: 'Mentions légales'
+eveg.legal_notice.website.title: 'Site web'
+eveg.legal_notice.website.text: "Auteur : Stéphane Delplanque\nAdresse : Labarthe, 46140 Bélaye\nEmail : stephane@e-veg.net"
+eveg.legal_notice.host.title: Hébergement
+eveg.legal_notice.host.text: "Ce site est hébergé par o2switch\n222-224 Boulevard Gustave Flaubert\n63000 Clermont-Ferrand\nFRANCE"
+eveg.legal_notice.cookies.title: 'Les cookies et leur utilisation'
+eveg.legal_notice.cookies.what_is_it.title: 'Qu''est-ce qu''un cookie ?'
+eveg.legal_notice.cookies.what_is_it.text: "Un cookie est un petit fichier texte qui peut être enregistré sur votre ordinateur par un site que vous visitez.\nCe fichier peut contenir différentes informations, et possède une date d'expiration.\nLorsque vous retournez sur le même site, votre navigateur envoie à celui-ci le cookie associé (s'il y en a un), afin que vous soyez reconnu."
+eveg.legal_notice.cookies.use.title: 'A quoi ça sert ?'
+eveg.legal_notice.cookies.use.text: "Les cookies ont différentes fonctions. Ils peuvent permettre au site qui les a déposés de reconnaître un internaute, d'une visite à une autre, grâce à un identifiant unique.\nCertains cookies peuvent aussi être utilisés pour stocker le contenu d'un panier d'achat, d'autres pour enregistrer les paramètres de langue d'un site, d'autres encore pour faire de la publicité ciblée."
+eveg.legal_notice.cookies.on_eveg.title: 'L''utilisation des cookies sur eVeg'
+eveg.legal_notice.cookies.on_eveg.text: 'eVeg n''utilise pas de cookies pour la publicité, les cookies utilisés sur le site servent uniquement à se souvenir de vos préférences ainsi qu''à établir des statistiques sur le nombre de visiteurs.'
+eveg.legal_notice.cookies.piwik.title: Piwik
+eveg.legal_notice.cookies.piwik.text: "Ce site Web utilise Piwik, un service analytique libre. Piwik utilise des cookies. Les informations générées par le cookie concernent votre utilisation du site Web. Votre adresse IP est anonymisée (2 octets) avant d'être stockée dans une base de données sur les serveurs d'o2switch (serveurs basés en France, à Clermont-Ferand). Vos données ne sont jamais transmises à des tiers.\nPiwik est le seul logiciel recommandé, à l'heure actuelle, par la Commission nationale de l'informatique et des libertés (CNIL) afin de garantir l'anonymisation de vos données. Nous avons fait le choix de cette solution afin d'éviter que vos données ne soient récupérées et analysées par des tiers, souvent pour des besoins publicitaires."
+eveg.legal_notice.law.title: 'Loi informatique et libertés'
+eveg.legal_notice.law.text: "En application de la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n° 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l'égard des traitements de données à caractère personnel, et notamment son article 24-II, vous disposez d'un droit de modification et de suppression des données qui vous concernent. Vous pouvez adresser votre demande :\n"
+eveg.legal_notice.law.mail: 'par courriel à : contact@e-veg.net'
+eveg.legal_notice.law.post: 'par courrier traditionnel à : XXX'
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.label: Lumière
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.label_min: Lum.
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.1: hypersciaphiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.2: persciaphiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.3: sciaphiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.4: hémisciaphiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.5: 'hélioclines à sciaclines'
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.6: hémihéliophiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.7: héliophiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.8: perhéliophiles
+eveg.app.show_one.panels.ecological_valences.pjLightAvg.9: hyperhéliophiles
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.label: Température
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.label_min: Temp.
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.1: 'alpines à nivales, altiméditerranéennes'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.2: 'subalpines, oroméditerranéennes'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.3: montagnardes
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.4: 'collinéennes, planitiaires psychrophiles (psychro-atlantiques, psychrocentro-européennes)'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.5: 'planitiaires à montagnardes'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.6: 'planitiaires thermophiles (thermo-atlantiques, thermocentro-européennes) et sub- à supraméditerranéennes'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.7: 'euryméditerranéennes, méditerranéo-atlantiques'
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.8: mésoméditerranéennes
+eveg.app.show_one.panels.ecological_valences.pjTemperatureAvg.9: 'thermoméditerranéennes à subdésertiques (inframéditerranéennes)'
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.label: Continentalité
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.label_min: Cont.
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.1: 'marines à maritimes'
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.2: hyperocéaniques
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.3: océaniques
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.4: subocéaniques
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.5: intermédiaires
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.6: précontinentales
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.7: subcontinentales
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.8: continentales
+eveg.app.show_one.panels.ecological_valences.pjContinentalityAvg.9: hypercontinentales
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.label: 'Humidité atmosphérique'
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.label_min: 'Hum. atm.'
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.1: aéroxérophiles
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.2: intermédiaires
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.3: aéromésoxérophiles
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.4: intermédiaires
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.5: aéromésohydriques
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.6: intermédiaires
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.7: aéromésohygrophiles
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.8: intermédiaires
+eveg.app.show_one.panels.ecological_valences.pjAtmosphericHumidityAvg.9: aérohydrophiles
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.label: 'Humidité édaphique'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.label_min: 'Hum. eda.'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.1: 'hyperxérophiles (sclérophiles, ligneuses microphylles, réviviscentes)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.2: 'perxérophiles (caulocrassulescentes subaphylles, coussinets)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.3: 'xérophiles (velues, aiguillonnées, cuticule épaisse)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.4: mésoxérophiles
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.5: mésohydriques
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.6: 'mésohygroclines, mésohygrophiles'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.7: 'hygrophiles (durée d''inondation en semaines)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.8: 'hydrophiles (durée d''inondation en mois)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.9: 'amphibies saisonnières (hélophytes exondés une partie minoritaire de l’année)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.10: 'amphibies permanentes (hélophytes semi-émergés à base toujours noyée)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.11: 'aquatiques superficielles (0-50cm)'
+eveg.app.show_one.panels.ecological_valences.pjSoilHumidityAvg.12: 'aquatiques profondes (1-3m)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.label: 'Réaction du sol (pH)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.label_min: pH
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.1: 'hyperacidophiles(3,0<pH<4,0)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.2: 'peracidophiles (4,0<pH<4,5)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.3: 'acidophiles (4,5<pH<5,0)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.4: 'acidoclines (5,0<pH<5,5)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.5: 'neutroclines (5,5<pH<6,5)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.6: 'basoclines (6,5<pH<7,0)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.7: 'basophiles (7,0<pH<7,5)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.8: 'perbasophiles (7,5<pH<8,0)'
+eveg.app.show_one.panels.ecological_valences.pjSoilPhAvg.9: 'hyperbasophiles (8,0<pH<9,0)'
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.label: 'Nutriments du sol (surtout anions azotés et phosphatés, puis également cations potassiques)'
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.label_min: 'Nutr. sol'
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.1: hyperoligotrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.2: peroligotrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.3: oligotrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.4: méso-oligotrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.5: mésotrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.6: méso-eutrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.7: eutrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.8: pereutrophiles
+eveg.app.show_one.panels.ecological_valences.pjTrophicLevelAvg.9: hypereutrophiles
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.label: 'Salinité (surtout Chlorures, également sodium)'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.label_min: Sal.
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.0: 'ne supportant pas le sel'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.1: 'hyperoligohalines, [0-1‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.2: 'peroligohalines, [1-3‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.3: 'oligohalines, [3-5‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.4: 'méso-oligohalines, [5-7‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.5: 'mésohalines, [7-9‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.6: 'méso-euhalines, [9-12‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.7: 'euhalines, [12-16‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.8: 'pereuhalines, [16-23‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjSalinityAvg.9: 'hypereuhalines, [>23‰ Cl-]'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.label: 'Texture du sol'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.label_min: 'Text. sol'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.1: argile
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.2: intermédiaire
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.3: limon
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.4: 'sable fin'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.5: 'sable grossier'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.6: graviers
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.7: galets
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.8: 'blocs, fentes des parois'
+eveg.app.show_one.panels.ecological_valences.pjTextureAvg.9: dalle
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.label: 'Matière organique du sol et type d''humus'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.label_min: 'Mat. org.'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.1: 'lithosol, peyrosol, régosol'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.2: 'mull carbonaté'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.3: 'mull actif'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.4: 'mull acide'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.5: moder
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.6: 'mor, hydromor, xéromor'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.7: 'ranker, tangel'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.8: 'anmoor, gyttja'
+eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.9: tourbe
+eveg.app.show_one.filters.title: 'Filtrer eVeg'
+eveg.app.show_one.filters.dep: 'Par département (France mértopolitaine)'
+eveg.app.show_one.filters.country: 'Par pays'
+eveg.app.show_one.filters.explain: "Vous pouvez filtrer eVeg (les fiches, le moteur de recherche et l'arborescence) par département (France métropolitaine) ou par Pays.\nSi aucun pays / département n'est selectionné, les filtres ne sont pas actifs.\n"
+eveg.app.show_one.breadcrumb.one_parent: 'Syntaxon supérieur'
+eveg.app.show_one.breadcrumb.more_parents: 'Syntaxons supérieurs'
+eveg.app.show_one.feedback.title: 'Faire un commentaire'
+eveg.app.show_one.feedback.syntaxon.message: 'Vous avez remarqué un problème sur la page ou une erreur ? Envoyez nous un message pour que nous puissons faire les corrections.'
+eveg.app.show_one.feedback.syntaxon.type.interface: 'Problème avec l''interface'
+eveg.app.show_one.feedback.syntaxon.type.data: 'Problème avec les données'
+eveg.app.show_one.feedback.syntaxon.type.other: 'Autre problème'
+eveg.app.show_one.feedback.syntaxon.type.repartition: Chorologie
+eveg.app.show_one.feedback.repartition.fr.message: 'Vous souhaitez partager une donnée concernant la répartition départementale en France métropolitaine de ce syntaxon ? Envoyez nous un message.'
+eveg.app.show_one.feedback.repartition.ue.message: 'Vous souhaitez partager une donnée concernant la répartition européenne de ce syntaxon ? Envoyez nous un message.'
+eveg.app.show_one.feedback.success: 'Votre message a bien été pris en compte et envoyé. Nous vous remercions pour votre participation et vous répondrons par mail.'
+eveg.app.show_one.feedback.error: 'Nous ne parvenons pas à envoyer votre message, merci de nous contacter directement par mail (voir la page Contact).'
+eveg.app.show_one.feedback.user.thanks: 'Votre message a bien été envoyé. Nous vous remerçions pour votre participation et vous répondrons dès que nous aurons traité votre demande.'
+eveg.app.show_one.feedback.user.salutation: "Cordialement,\nl'équipe eVeg.\n"
+eveg.app.show_one.photos.title: Photos
+eveg.app.show_one.photos.add.title: 'Ajouter une photo'
+eveg.app.show_one.photos.add.another: 'Ajouter une autre photo'
+eveg.app.show_one.files.title: Fichiers
+eveg.app.show_one.files.add.title: 'Ajouter un fichier'
+eveg.app.show_one.files.add.placeholder: 'Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"'
+eveg.app.show_one.files.add.another: 'Ajouter un autre fichier'
+eveg.app.show_one.files.add.link_instead: 'Je souhaite ajouter un lien plutôt qu''un fichier'
+eveg.app.show_one.http_link.title: Liens
+eveg.app.show_one.http_link.add.title: 'Ajouter un lien'
+eveg.app.show_one.http_link.add.placeholder: 'http://www.tela-botanica.org'
+eveg.app.show_one.http_link.add.another: 'Ajouter un autre lien'
+eveg.app.show_one.hab.note: 'Les fiches Habitat n''ont pas de données écologiques associées'
+eveg.app.show_one.hab.class: 'Classes de cet habitat :'
+eveg.app.multiple_results.title: 'Plusieurs résultats'
+eveg.app.multiple_results.explain: 'Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.'
+eveg.app.multiple_results.your_search: 'Votre recherche'
+eveg.app.multiple_results.results: 'Sélectionnez un résultat'
+eveg.app.start.title: 'Parcourir les végétations'
+eveg.app.start.popular.title: 'Les fiches les plus consultées'
+eveg.app.start.classes.title: 'Toutes les classes'
+eveg.meta.homepage: 'Une base de données pour les végétations de France métropolitaine et d''Europe. Phytosociologie synusiale intégrée.'
+eveg.meta.syntaxon: 'écologie, répartition en France et en Europe, bibliographie...'
+eveg.newsletter.last_up.title: 'Derniers fichiers mis en ligne'
+eveg.newsletter.last_up.date.day: hier
+eveg.newsletter.last_up.date.week: 'la semaine dernière'
+eveg.newsletter.last_up.date.month: 'le mois dernier'
+eveg.newsletter.last_up.hello: "Bonjour,\n\nDepuis %when%, %how-many% nouveaux fichiers ont été ajoutés sur eVeg :\n"
+eveg.newsletter.last_up.go: 'Accéder à la fiche'
+eveg.newsletter.last_up.bye: 'L''équipe eVeg.'
+eveg.tree.1: '01: Eaux marines'
+eveg.tree.2: '02: Littoral maritime'
+eveg.tree.3: '03: Végétations aquatiques dulçaquicoles'
+eveg.tree.4: '04: Végétations basses amphibies'
+eveg.tree.5: '05: Roselières, cariçaies, mégaphorbiaies'
+eveg.tree.6: '06: Tourbières'
+eveg.tree.7: '07: Parois, murs et aérophytes'
+eveg.tree.8: '08: Dalles, sables et éboulis'
+eveg.tree.9: '09: Pelouses, steppes & savanes'
+eveg.tree.10: '10: Ourlets et sous-bois'
+eveg.tree.11: '11: Pelouses arctico-alpines'
+eveg.tree.12: '12: Prairies'
+eveg.tree.13: '13: Cultures, friches & clairières forestières eutrophiles'
+eveg.tree.14: '14: Landes, cistaies & garrigues'
+eveg.tree.15: '15: Buissons et haies arbustives'
+eveg.tree.16: '16: Arbres pionniers des zonobiomes tempérés'
+eveg.tree.17: '17: Arbres climaciques du zonobiome tempéré froid'
+eveg.tree.18: '18: Arbres climaciques du zonobiome tempéré modal'
+eveg.tree.19: '19: Arbres climaciques des zonobiomes tempérés chauds'
+eveg.tree.20: '20: Arbres climaciques des zonobiomes tropicaux'
+eveg.tree.21: '21: Epiphytes de la canopée'
