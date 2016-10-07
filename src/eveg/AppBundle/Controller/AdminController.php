@@ -31,39 +31,6 @@ class AdminController extends Controller
 	}
 
 	/**
- 	 * @Security("has_role('ROLE_ADMIN')")
- 	 */
-	public function testAction()
-	{
-
-		// Getting all API routes
-	    $apiRoutes = $this->getAllRoutes('api_');
-
-	    // Getting catCode service
-		$catCode = $this->get('eveg_app.catCode');
-
-		// Get form
-		$catCodeForm = $this->createForm(new CatCodeType());
-
-		// Get test syntaxon
-		// Retrieve syntaxon according to user's rights
-		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
-		$entity = $findGoodRepo->getSyntaxon(12, $depFrFilter = null, $ueFilter = null);
-
-		// repartitionDepFr to Json
-		$serializer = $this->container->get('jms_serializer');
-		$repDepFrJson = $serializer->serialize($entity->getRepartitionDepFr(), 'json');
-
-		return $this->render('evegAppBundle:Admin:test.html.twig', array(
-							'catCodeForm' => $catCodeForm->createView(),
-							'apiRoutes' => $apiRoutes,
-							'entity' => $entity,
-							'repDepFrJson' => $repDepFrJson,
-		));
-
-	}
-
-	/**
  	 * @Security("has_role('ROLE_SUPER_ADMIN')")
  	 */
 	public function usersAction()

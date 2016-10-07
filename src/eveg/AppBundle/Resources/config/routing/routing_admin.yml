@@ -5,10 +5,6 @@ eveg_admin_dashboard:
     path: /
     defaults: { _controller: evegAppBundle:Admin:dashboard }
 
-eveg_admin_test:
-    path: /test
-    defaults: { _controller: evegAppBundle:Admin:test }
-
 eveg_admin_documents:
     path: /documents
     defaults: { _controller: evegAppBundle:Admin:listDocuments }
