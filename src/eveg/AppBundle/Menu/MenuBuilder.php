@@ -23,7 +23,6 @@ class MenuBuilder extends ContainerAware
 		$menu->addchild('Home', array('route' => 'eveg_app_homepage', 'label' => ''))
 			->setAttribute('icon', 'home');
 		
-		//$menu->addChild('App', array('route' =>'eveg_app_start', 'label' => 'eveg.menu.browse'));
 
     if($securityContext->isGranted('ROLE_USER')) {
       $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
@@ -278,10 +277,6 @@ class MenuBuilder extends ContainerAware
                      ->setAttribute('class', 'divider');
       $menu['Import']->addChild('Logs', array('route' => 'eveg_admin_import_logs', 'label' => 'Logs'));
     }
-
-		//$menu->addChild('Baseveg', array('route' => 'admin_syntaxon', 'label' => 'Baseveg'));
-		//$menu->addChild('Translation', array('route' => 'eveg_app_contact', 'label' => 'Traduction'));
-		//$menu->addChild('LiveTest', array('route' => 'eveg_admin_test', 'label' => 'Test@dev'));
  
         return $menu;
     }
