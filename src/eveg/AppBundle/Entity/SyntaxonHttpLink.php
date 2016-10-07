@@ -3,6 +3,7 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use eveg\UserBundle\Entity\User;
 
 /**
  * SyntaxonHttpLink
@@ -108,7 +109,7 @@ class SyntaxonHttpLink
      *
      * @return SyntaxonHttpLink
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $user->addSyntaxonHttpLink($this);
         
