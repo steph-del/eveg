@@ -118,7 +118,6 @@ class SyntaxonTreeRestController extends FOSRestController
         }
 
         if(empty($syntaxonTree)){
-          //throw $this->createNotFoundException();
             $syntaxon->setFolder(false);
             $syntaxon->setLazy(false);
         }
