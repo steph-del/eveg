@@ -218,7 +218,6 @@ class AdminController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
-		//$infos = new Infos();
 
 		$formBuilder = $this->get('form.factory')->createBuilder('form', $infos);
 		$formBuilder
