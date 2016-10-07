@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use eveg\UserBundle\Entity\User;
 
 /**
  * SyntaxonPhoto
@@ -181,7 +182,7 @@ class SyntaxonPhoto
      *
      * @return SyntaxonPhoto
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $user->addSyntaxonPhoto($this);
         $this->user = $user;
