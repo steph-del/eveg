@@ -5,6 +5,7 @@ namespace eveg\AppBundle\EventListener;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Vich\UploaderBundle\Event\Event;
+use eveg\AppBundle\Entity\SyntaxonPhoto;
 
 class ImageUploadListener
 {
