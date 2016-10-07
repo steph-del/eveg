@@ -13,7 +13,6 @@ use eveg\AppBundle\Form\Type\SyntaxonCoreHttpLinkType;
 use eveg\AppBundle\Entity\SyntaxonHttpLink;
 use eveg\AppBundle\Form\Type\SyntaxonHttpLinkType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-//use Symfony\Component\HttpFoundation\Response;
 
 /**
  * SyntaxonHttpLink controller.
