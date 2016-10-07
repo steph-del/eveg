@@ -360,7 +360,7 @@ class DefaultController extends Controller
 		return $this->render('evegAppBundle:Default:Fragments/footerVersions.html.twig', array(
 			'footer' => $output
 		));
-		//return new response('baseveg v. '.$infos->getBasevegVersion().'  |  baseflor v. '.$infos->getBaseflorVersion().'  |  eveg v. '.$infos->getEvegVersion().'  |  dernière màj : '.$infos->getLastUpdate()->format('Y-m-d').' ');
+		
 	}
 
 	public function versionsAction()
