@@ -97,7 +97,6 @@ class ProfileController extends Controller
      */
     public function editAdminAction(Request $request, $id)
     {
-        //$user = $this->getUser();
         $user = $this->get('fos_user.user_manager')->findUserBy(array('id'=>$id));
         //if (!is_object($user) || !$user instanceof UserInterface) {
         //    throw new AccessDeniedException('This user does not have access to this section.');
