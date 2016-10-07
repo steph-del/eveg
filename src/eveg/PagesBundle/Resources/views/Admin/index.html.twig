@@ -34,7 +34,7 @@
 					<ul class="list-group">
 						{% for page in pages %}
 							<li class="list-group-item">
-								{{ page.titleFr }}
+								[{{ page.listOrder }}] {{ page.titleFr }}
 								<span class="pull-right">
 									{% if page.published == true %}
 										publiée
