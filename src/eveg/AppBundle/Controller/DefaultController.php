@@ -320,7 +320,6 @@ class DefaultController extends Controller
 			'showPdfExport' => $showPdfExport
 		));
 
-		//return $fragment;
 	}
 
 	public function panelParticipateAction()
