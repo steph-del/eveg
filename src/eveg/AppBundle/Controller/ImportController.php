@@ -71,10 +71,6 @@ class ImportController extends Controller
 	 */
 	public function importCoreAction(Request $request)
 	{
-		// Only available in dev mode because of increasing memory and time limit
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}*/
 
 		// retrieves ioHelpers service
 		$ioHelpers = $this->get('eveg_app.io_helpers');
@@ -108,8 +104,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			//set_time_limit(1000);
-			//ini_set('memory_limit', '1024M');
 
 			$batchSize 	   	 = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         	   	 = 0;     // just an incremental
@@ -600,10 +594,6 @@ class ImportController extends Controller
 	 */
 	public function importRepartitionDepFrAction(Request $request)
 	{
-		// Only available in dev mode because of increasing memory and time limit
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}*/
 
 		// retrieves ioHelpers service
 		$ioHelpers = $this->get('eveg_app.io_helpers');
@@ -619,8 +609,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			//set_time_limit(1000);
-			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -802,10 +790,6 @@ class ImportController extends Controller
 	 */
 	public function importRepartitionEuropeAction(Request $request)
 	{
-		// Only available in dev mode because of increasing memory and time limit
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}*/
 
 		// retrieves ioHelpers service
 		$ioHelpers = $this->get('eveg_app.io_helpers');
@@ -821,8 +805,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			//set_time_limit(1000);
-			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -943,10 +925,6 @@ class ImportController extends Controller
 	 */
 	public function importBiblioAction(Request $request)
 	{
-		// Only available in dev mode because of increasing memory and time limit
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
-		}*/
 
 		// retrieves ioHelpers service
 		$ioHelpers = $this->get('eveg_app.io_helpers');
@@ -962,8 +940,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			//set_time_limit(1000);
-			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -1078,10 +1054,6 @@ class ImportController extends Controller
 	 */
 	public function importEcologyAction(Request $request)
 	{
-		// Only available in dev mode because of increasing memory and time limit
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('importEcology') is only available in dev mode.");
-		}*/
 
 		// retrieves ioHelpers service
 		$ioHelpers = $this->get('eveg_app.io_helpers');
@@ -1097,8 +1069,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			//set_time_limit(1000);
-			//ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
@@ -1219,8 +1189,6 @@ class ImportController extends Controller
 
         // Job routine
 		if($form->isValid()) {
-			set_time_limit(1000);
-			ini_set('memory_limit', '1024M');
 
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
 			$i         = 0;     // just an incremental
