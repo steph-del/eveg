@@ -5,9 +5,9 @@
 	{% if pages is defined and pages is not empty %}
 		{% for page in pages %}
 			{% if not loop.last %}
-			<div class="list-item">
+			<div class="list-item text-left">
 			{% else %}
-			<div class="list-item  last">
+			<div class="list-item text-left last">
 			{% endif %}
 				<a class="no-style" href="{{ path('eveg_pages_admin_edit', {'id': page.id}) }}">{{ page.menuTitleFr }}</a>
 			</div>
