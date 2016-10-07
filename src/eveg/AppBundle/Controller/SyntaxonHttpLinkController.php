@@ -138,9 +138,6 @@ class SyntaxonHttpLinkController extends Controller
 	*/
 	public function getHttpLinkAction($id, SyntaxonHttpLink $httpLink)
 	{
-		// Retrieve syntaxon according to user's rights
-		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
-		$syntaxon = $findGoodRepo->getSyntaxon($id);
 
 		$visibility = $httpLink->getVisibility();
 		if($visibility == 'private') {
