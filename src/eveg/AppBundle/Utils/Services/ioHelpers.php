@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class ioHelpers
 {
 
-	private function getTableFragment($titleValue, $dbValue, $csvValue)
+	public function getTableFragment($titleValue, $dbValue, $csvValue)
 	{
 		$output = new Response(
 		"<tr class='row'>
@@ -28,7 +28,7 @@ class ioHelpers
 		return $output->getContent();
 	}
 
-	private function getHtmlBase($title, $content, $onlyLog)
+	public function getHtmlBase($title, $content, $onlyLog)
 	{
 		$sim = '';
 		if($onlyLog) $sim = "<h3>(simulation d'import)</h3>";
