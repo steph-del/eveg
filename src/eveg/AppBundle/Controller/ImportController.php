@@ -14,7 +14,6 @@ use eveg\AppBundle\Entity\SyntaxonEcology;
 use eveg\AppBundle\Entity\Baseflor;
 use eveg\AppBundle\Entity\ImportLog;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ImportController extends Controller

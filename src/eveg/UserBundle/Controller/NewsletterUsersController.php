@@ -4,7 +4,6 @@ namespace eveg\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\HttpFoundation\Response;
 
 class NewsletterUsersController extends Controller
 {

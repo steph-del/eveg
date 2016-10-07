@@ -4,16 +4,11 @@
 namespace eveg\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Dev\CatCodeType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use eveg\UserBundle\Form\Type\AdminProfileFormType;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use eveg\AppBundle\Entity\Infos;
 
 class AdminController extends Controller
 {

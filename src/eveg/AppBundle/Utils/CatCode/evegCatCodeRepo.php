@@ -3,9 +3,7 @@
 
 namespace eveg\AppBundle\Utils\CatCode;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
-use eveg\AppBundle\Entity\SyntaxonCore;
 
 class evegCatCodeRepo
 {

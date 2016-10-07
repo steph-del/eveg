@@ -12,7 +12,6 @@ use eveg\AppBundle\Form\Type\FeedbackMapDepFrType;
 use eveg\AppBundle\Form\Type\FeedbackMapEuropeType;
 use eveg\AppBundle\Form\Type\FeedbackGeneralType;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class FeedbackController extends Controller
 {

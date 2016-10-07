@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\PagesBundle\Form\Type\PageType;
-use eveg\PagesBundle\Entity\Page;
 
 class AdminController extends Controller
 {

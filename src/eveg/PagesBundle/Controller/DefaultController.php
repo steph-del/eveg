@@ -5,7 +5,6 @@ namespace eveg\PagesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use eveg\PagesBundle\Entity\Page;
 
 class DefaultController extends Controller
 {

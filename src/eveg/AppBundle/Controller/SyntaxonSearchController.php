@@ -3,14 +3,9 @@
 
 namespace eveg\AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use eveg\AppBundle\Entity\SyntaxonCore;
-use eveg\AppBundle\Form\SyntaxonCoreType;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class SyntaxonSearchController extends Controller
 {

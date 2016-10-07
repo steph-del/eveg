@@ -4,7 +4,6 @@
 namespace eveg\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use eveg\AppBundle\Entity\SyntaxonCore as SCore;
 
 class VersioningController extends Controller
 {
