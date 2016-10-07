@@ -118,9 +118,6 @@ class AdminController extends Controller
  	 */
 	public function generateAllSlugsAction()
 	{
-		set_time_limit(1000);
-
-		$batchSize = 20;
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -132,8 +129,6 @@ class AdminController extends Controller
         	$em->flush();
         	$em->clear();
         }
-
-        print('   --ok--   ');
 
         return $this->render('evegAppBundle:Admin:dashboard.html.twig');
 

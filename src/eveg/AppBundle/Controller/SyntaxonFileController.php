@@ -142,10 +142,6 @@ class SyntaxonFileController extends Controller
 	*/
 	public function downloadFileAction($id, SyntaxonFile $file)
 	{
-		// Retrieve syntaxon according to user's rights
-		$findGoodRepo = $this->get('eveg_app.get_syntaxon_according_user');
-		$syntaxon = $findGoodRepo->getSyntaxon($id);
-
 		// Grabing download helper
 		$downloadHandler = $this->get('vich_uploader.download_handler');
 

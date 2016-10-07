@@ -613,7 +613,6 @@ class evegCatCode
 		*/
 		
 		// Initializing variables
-		$level = $this->getLevel($text);
 		$output = array();
 		$currentCatminatCode = $text;
 		$parentCatminatCode = '';

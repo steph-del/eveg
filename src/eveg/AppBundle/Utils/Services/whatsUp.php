@@ -35,7 +35,6 @@ class whatsUp
 		$lastHttpLinks = $this->sHttpLinkRepo->getPublicHttpLinksOrderByDatetime($limitRepoResults, $since);
 		$lastPhotos = $this->sPhotoRepo->getPublicPhotosOrderByDatetime($limitRepoResults, $since);
 		$lastDocuments = array();
-		$i = 0;
 
 		if($lastFiles) {
 			foreach ($lastFiles as $key => $file) {
