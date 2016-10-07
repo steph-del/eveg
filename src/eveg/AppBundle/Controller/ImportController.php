@@ -76,6 +76,9 @@ class ImportController extends Controller
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
 		}*/
 
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
+
 		$request = $this->getRequest();
 
 		// Creates the form...
@@ -135,7 +138,7 @@ class ImportController extends Controller
 			$file->move($dir, $importFileName);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$importFileName, ';');		// push the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$importFileName, ';');		// push the csv data into an array
 			$importKeys = array_column($import, 'fixedCode');					// get the id values
 			$importKeys = array_map('intval', $importKeys);						// make sure that $importKeys contains integer data
 			$batchSize = 100;   // $entity will be flushed and detached each $batchSize time (prevent memory overload)
@@ -279,42 +282,42 @@ class ImportController extends Controller
 											</tr>";
 						// update entity
 						if($diffCatminatCode) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'catminat code',
 													$entities[$idToRetrieve]->getCatminatCode(),
 													$importedEntity['catminatCode']);
 							$entities[$idToRetrieve]->setCatminatCode($importedEntity['catminatCode']);
 						}
 						if($diffLevel) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'level',
 													$entities[$idToRetrieve]->getLevel(),
 													$importedEntity['level']);
 							$entities[$idToRetrieve]->setLevel($importedEntity['level']);
 						}
 						if($diffSyntaxonName) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'syntaxon name',
 													$entities[$idToRetrieve]->getSyntaxonName(),
 													$importedEntity['syntaxonName']);
 							$entities[$idToRetrieve]->setSyntaxonName($importedEntity['syntaxonName']);
 						}
 						if($diffSyntaxonAuthor) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'syntaxon author',
 													$entities[$idToRetrieve]->getSyntaxonAuthor(),
 													$importedEntity['syntaxonAuthor']);
 							$entities[$idToRetrieve]->setSyntaxonAuthor($importedEntity['syntaxonAuthor']);
 						}
 						if($diffCommonName) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'common name (fr)',
 													$entities[$idToRetrieve]->getCommonName(),
 													$importedEntity['commonNameFr']);
 							$entities[$idToRetrieve]->setCommonName($import[$key]['commonNameFr']);
 						}
 						if($diffCommonNameEn) {
-							$logToUpdate .= $this->getTableFragment(
+							$logToUpdate .= $ioHelpers->getTableFragment(
 													'common name (en)',
 													$entities[$idToRetrieve]->getCommonNameEn(),
 													$importedEntity['commonNameEn']);
@@ -352,31 +355,31 @@ class ImportController extends Controller
 											</td>
 										</tr>";
 
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'id',
 													'null',
 													$importedEntity['id']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'catminat code',
 													'null',
 													$importedEntity['catminatCode']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'level',
 													'null',
 													$importedEntity['level']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'syntaxon name',
 													'null',
 													$importedEntity['syntaxonName']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'syntaxon author',
 													'null',
 													$importedEntity['syntaxonAuthor']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'common name (fr)',
 													'null',
 													$importedEntity['commonNameFr']);
-					$logToCreate .= $this->getTableFragment(
+					$logToCreate .= $ioHelpers->getTableFragment(
 													'common name (en)',
 													'null',
 													$importedEntity['commonNameEn']);
@@ -427,31 +430,31 @@ class ImportController extends Controller
 									</table>
 								</td>
 							</tr>";
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'id',
 									$entities[$dbKey]->getFixedCode(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'catminat code',
 									$entities[$dbKey]->getCatminatCode(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'level',
 									$entities[$dbKey]->getLevel(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'syntaxon name',
 									$entities[$dbKey]->getSyntaxonName(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'syntaxon author',
 									$entities[$dbKey]->getSyntaxonAuthor(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'common name (fr)',
 									$entities[$dbKey]->getCommonName(),
 									'null');
-					$logToRemove .= $this->getTableFragment(
+					$logToRemove .= $ioHelpers->getTableFragment(
 									'common name (en)',
 									$entities[$dbKey]->getCommonNameEn(),
 									'null');
@@ -502,22 +505,22 @@ class ImportController extends Controller
 			}
 
 			if($countToUpdate > 0) {
-				$outputLogToUpdate = $this->getHtmlBase('Import Core (to update) '.$day.' '.$hour, $logToUpdate, $onlyLog);
+				$outputLogToUpdate = $ioHelpers->getHtmlBase('Import Core (to update) '.$day.' '.$hour, $logToUpdate, $onlyLog);
 				file_put_contents($path.$fileNameLogToUpdate, $outputLogToUpdate);
 			}
 			
 			if($countIsUpToDate > 0) {
-				$outputLogIsUpToDate = $this->getHtmlBase('Import Core (is up to date) '.$day.' '.$hour, $logIsUpToDate, $onlyLog);
+				$outputLogIsUpToDate = $ioHelpers->getHtmlBase('Import Core (is up to date) '.$day.' '.$hour, $logIsUpToDate, $onlyLog);
 				file_put_contents($path.$fileNameLogIsUpToDate, $outputLogIsUpToDate);
 			}
 
 			if($countToCreate > 0) {
-				$outputLogToCreate = $this->getHtmlBase('Import Core (to create) '.$day.' '.$hour, $logToCreate, $onlyLog);
+				$outputLogToCreate = $ioHelpers->getHtmlBase('Import Core (to create) '.$day.' '.$hour, $logToCreate, $onlyLog);
 				file_put_contents($path.$fileNameLogToCreate, $outputLogToCreate);
 			}
 
 			if($countToRemove > 0) {
-				$outputLogToRemove = $this->getHtmlBase('Import Core (to remove) '.$day.' '.$hour, $logToRemove, $onlyLog);
+				$outputLogToRemove = $ioHelpers->getHtmlBase('Import Core (to remove) '.$day.' '.$hour, $logToRemove, $onlyLog);
 				file_put_contents($path.$fileNameLogToRemove, $outputLogToRemove);
 			}
 
@@ -590,43 +593,6 @@ class ImportController extends Controller
 
 	}
 
-	private function getTableFragment($titleValue, $dbValue, $csvValue)
-	{
-		$output = new Response(
-		"<tr class='row'>
-			<td class='title'>".$titleValue."</td>
-			<td>
-				<table class='table'>
-					<tr><td><b>db : </b>".$dbValue."</td></tr>
-					<tr><td><b>csv :</b> ".$csvValue."</td></tr>
-				</table>
-			</td>
-		</tr>");
-
-		return $output->getContent();
-	}
-
-	private function getHtmlBase($title, $content, $onlyLog)
-	{
-		$sim = '';
-		if($onlyLog) $sim = "<h3>(simulation d'import)</h3>";
-		$output = new Response(
-		'<html lang="fr"><head><meta charset="UTF-8"><title>'.$title.'</title>
-		<style>
-			.element{background-color: #F5F5F5;border: 2px solid #B5B5B5;margin-bottom: 15px;width: 100%}
-			.header{background-color: #E3E3E3;}
-			.title{width: 200px;font-weight: bold;}
-			tr.row{border-bottom: 1px solid #B5B5B5;}
-		</style>
-		</head><body>
-			<h1>'.$title.'</h1>'.$sim.'
-			'.$content.'
-		</body></html>
-		');
-
-		return $output->getContent();
-	}
-
 	/**
 	 * Import the repartition data (csv file from baseveg).
 	 * 
@@ -638,6 +604,9 @@ class ImportController extends Controller
 		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
 		}*/
+
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
 
 		$request = $this->getRequest();
 
@@ -673,7 +642,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$importKeys = array_column($import, 'id');				// gets the id values
 			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
 
@@ -838,6 +807,9 @@ class ImportController extends Controller
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
 		}*/
 
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
+
 		$request = $this->getRequest();
 
 		// Creates the form...
@@ -872,7 +844,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $this->ioHelpers($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$importKeys = array_column($import, 'id');				// gets the id values
 			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
 
@@ -976,6 +948,9 @@ class ImportController extends Controller
 			Throw new AccessDeniedException("This function ('importRepartitionDepFr') is only available in dev mode.");
 		}*/
 
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
+
 		$request = $this->getRequest();
 
 		// Creates the form...
@@ -1010,7 +985,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$importKeys = array_column($import, 'id');				// gets the id values
 			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
 			$countImports = 0;
@@ -1096,53 +1071,6 @@ class ImportController extends Controller
 		));
 	}
 
-
-	/**
-	 * Convert a comma separated file into an associated array.
-	 * The first row should contain the array keys.
-	 * 
-	 * Example:
-	 * 
-	 * @param string $filename Path to the CSV file
-	 * @param string $delimiter The separator used in the file
-	 * @return array
-	 * @link http://gist.github.com/385876
-	 * @author Jay Williams <http://myd3.com/>
-	 * @copyright Copyright (c) 2010, Jay Williams
-	 * @license http://www.opensource.org/licenses/mit-license.php MIT License
-	 */
-	public function csv_to_array($filename='', $delimiter=',')
-	{
-		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
-			Throw new AccessDeniedException("This function ('csv_to_array') is only available in dev mode.");
-		}*/
-
-		if(!file_exists($filename) || !is_readable($filename))
-		{
-			throw new HttpException(404, $filename.' not found');
-		}
-
-		//ini_set('memory_limit', '1024M');
-		//$count = 0;
-		$header = NULL;
-		$data = array();
-		if (($handle = fopen($filename, 'r')) !== FALSE)
-		{
-			while (($row = fgetcsv($handle, 10000, $delimiter)) !== FALSE)
-			{
-				if(!$header) {
-					$header = $row;
-				}
-				else {
-					$data[] = array_combine($header, $row);
-				}
-			}
-			fclose($handle);
-		}
-		return $data;
-		
-	}
-
 	/**
 	 * Import ecological data (csv file from baseveg).
 	 *
@@ -1154,6 +1082,9 @@ class ImportController extends Controller
 		/*if($this->container->get('kernel')->getEnvironment() != 'dev') {
 			Throw new AccessDeniedException("This function ('importEcology') is only available in dev mode.");
 		}*/
+
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
 
 		$request = $this->getRequest();
 
@@ -1189,7 +1120,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$importKeys = array_column($import, 'id');				// gets the id values
 			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
 
@@ -1275,6 +1206,10 @@ class ImportController extends Controller
 	 */
 	public function importBaseflorAction(Request $request)
 	{
+
+		// retrieves ioHelpers service
+		$ioHelpers = $this->get('eveg_app.io_helpers');
+
 		// Creates the form...
     	$form = $this->createFormBuilder()
             ->add('importFile', 'file')
@@ -1307,7 +1242,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $this->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$countImports = 0;
 
 			// Truncate the table

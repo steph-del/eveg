@@ -42,6 +42,9 @@ services:
         arguments:          ['@security.authorization_checker', '@session']
         tags:
             - {name: form.type }
+
+    eveg_app.io_helpers:
+        class:              eveg\AppBundle\Utils\Services\ioHelpers
     
     ############
     # Repository
