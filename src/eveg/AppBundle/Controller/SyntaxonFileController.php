@@ -61,6 +61,7 @@ class SyntaxonFileController extends Controller
 						break;
 				}
 				$file->setUploadedAt(new \DateTime('now'));
+				$file->setOriginalSyntaxonName('(id:'.$syntaxon->getId().') '.$syntaxon->getSyntaxon());
 
 				$syntaxon->addSyntaxonFile($file);
 			}

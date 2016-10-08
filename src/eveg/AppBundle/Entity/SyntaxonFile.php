@@ -125,6 +125,14 @@ class SyntaxonFile
     /**
      * @var string
      *
+     * @ORM\Column(name="originalSyntaxonName", type="string", length=512)
+     *
+     */
+    private $originalSyntaxonName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="license", type="string", length=255, nullable=true)
      */
     private $license;
@@ -371,6 +379,30 @@ class SyntaxonFile
     public function getUploadedAt()
     {
         return $this->uploadedAt;
+    }
+
+    /**
+     * Set originalSyntaxonName
+     *
+     * @param \String $originalSyntaxonName
+     *
+     * @return SyntaxonFile
+     */
+    public function setOriginalSyntaxonName($originalSyntaxonName)
+    {
+        $this->originalSyntaxonName = $originalSyntaxonName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalSyntaxonName
+     *
+     * @return \String
+     */
+    public function getOriginalSyntaxonName()
+    {
+        return $this->originalSyntaxonName;
     }
 
     /**

@@ -49,6 +49,7 @@ class SyntaxonPhotoController extends Controller
 				$photo->setSyntaxonCore($syntaxon);
 				$photo->setUser($currentUser);
 				$photo->setUploadedAt(new \DateTime('now'));
+				$photo->setOriginalSyntaxonName('(id:'.$syntaxon->getId().') '.$syntaxon->getSyntaxon());
 				
 				$syntaxon->addSyntaxonPhoto($photo);
 			}

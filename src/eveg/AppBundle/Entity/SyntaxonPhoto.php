@@ -102,6 +102,14 @@ class SyntaxonPhoto
     private $uploadedAt;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="originalSyntaxonName", type="string", length=512)
+     *
+     */
+    private $originalSyntaxonName;
+
+    /**
      * @var \Date
      *
      * @ORM\Column(name="date", type="date", nullable=true)
@@ -551,6 +559,30 @@ class SyntaxonPhoto
     public function getUploadedAt()
     {
         return $this->uploadedAt;
+    }
+
+    /**
+     * Set originalSyntaxonName
+     *
+     * @param \String $originalSyntaxonName
+     *
+     * @return SyntaxonFile
+     */
+    public function setOriginalSyntaxonName($originalSyntaxonName)
+    {
+        $this->originalSyntaxonName = $originalSyntaxonName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalSyntaxonName
+     *
+     * @return \String
+     */
+    public function getOriginalSyntaxonName()
+    {
+        return $this->originalSyntaxonName;
     }
 
     /**
