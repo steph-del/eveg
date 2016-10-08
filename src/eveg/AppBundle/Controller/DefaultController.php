@@ -193,7 +193,7 @@ class DefaultController extends Controller
 		}
 
 		// is a valid syntaxon ?
-		if(ereg("syn", $syntaxon->getLevel())) {
+		if(stripos($syntaxon->getLevel(), "syn") !== FALSE) {
 			// Checks pro parte syntaxon
         	$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findBySyntaxon($syntaxon->getSyntaxonName(), $syntaxon->getSyntaxonAuthor());
 
