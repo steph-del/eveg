@@ -35,7 +35,11 @@
 
 		<div class="col-md-9">
 			<div class="" id="spreadsheets">
-				<h2>{{ 'eveg.documents.spreadsheets.title'|trans }}<small><span class="badge">{{ nbSpreadsheets }}</span></small></h2>
+				<h2 class="text-center">
+					<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+					{{ 'eveg.documents.spreadsheets.title'|trans }}
+					{% if nbSpreadsheets %}<small>({{ nbSpreadsheets }})</small>{% endif %}
+				</h2>
 				{% if nbSpreadsheets > 0 %}
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -86,7 +90,11 @@
 			</div>
 
 			<div class="" id="pdfs">
-				<h2>{{ 'eveg.documents.pdfs.title'|trans }}<small><span class="badge">{{ nbPdfs }}</span></small></h2>
+				<h2 class="text-center">
+					<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					{{ 'eveg.documents.pdfs.title'|trans }}
+					{% if nbPdfs %}<small>({{ nbPdfs }})</small>{% endif %}
+				</h2>
 				{% if nbPdfs > 0 %}
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -137,7 +145,11 @@
 			</div>
 
 			<div class="" id="http-links">
-				<h2>{{ 'eveg.documents.http_links.title'|trans }}<small><span class="badge">{{ userHttpLinks|length }}</span></small></h2>
+				<h2 class="text-center">
+					<i class="fa fa-external-link" aria-hidden="true"></i>
+					{{ 'eveg.documents.http_links.title'|trans }}
+					{% if userHttpLinks|length > 0 %}<small>({{ userHttpLinks|length }})</small>{% endif %}
+				</h2>
 				{% if userHttpLinks|length > 0 %}
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -184,7 +196,11 @@
 			</div>
 
 			<div class="" id="photos">
-				<h2>{{ 'eveg.documents.photos.title'|trans }}<small><span class="badge">{{ userPhotos|length }}</span></small></h2>
+				<h2 class="text-center">
+					<i class="fa fa-camera" aria-hidden="true"></i>
+					{{ 'eveg.documents.photos.title'|trans }}
+					{% if userPhotos|length > 0 %}<small>({{ userPhotos|length }})</small>{% endif %}
+				</h2>
 				{% if userPhotos|length > 0 %}
 					<div class="table-responsive">
 						<table class="table table-striped">
