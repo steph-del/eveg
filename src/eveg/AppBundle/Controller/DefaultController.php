@@ -364,8 +364,8 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$infos = $em->getRepository('evegAppBundle:Infos')->findAll()[0];
 		$output = array('baseveg v. ' 	  . $infos->getBasevegVersion(),
-					    'basflor v. ' 	  . $infos->getBaseflorVersion(),
-					    'eveg v. '    	  . $infos->getEvegVersion(),
+					    'baseflor v. ' 	  . $infos->getBaseflorVersion(),
+					    'eVeg v. '    	  . $infos->getEvegVersion(),
 					    'dernière màj : ' . $infos->getLastUpdate()->format('Y-m-d')
 					    );
 
