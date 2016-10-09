@@ -33,7 +33,7 @@ class SyntaxonTreeRestController extends FOSRestController
     // Translate root tree elements
     $translator = $this->get('translator');
     foreach ($syntaxonTree as $key => $s) {
-      $transKey = 'eveg.tree.'.strval($key+1);
+      $transKey = 'eveg.tree.'.strval($s->getSyntaxonName());
       $s->setSyntaxonNameTreeForce($translator->trans($transKey));         // Set translation
     }
 
