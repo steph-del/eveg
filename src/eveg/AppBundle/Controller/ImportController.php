@@ -823,7 +823,7 @@ class ImportController extends Controller
 			$file->move($dir, $name);
 
 			// Variables
-			$import = $ioHelpers($dir.'/'.$name, ';');		// pushes the csv data into an array
+			$import = $ioHelpers->csv_to_array($dir.'/'.$name, ';');		// pushes the csv data into an array
 			$importKeys = array_column($import, 'id');				// gets the id values
 			$importKeys = array_map('intval', $importKeys);			// makes sure that $importKeys contains integer data
 
