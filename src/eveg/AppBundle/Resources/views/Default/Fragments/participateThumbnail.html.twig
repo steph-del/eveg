@@ -4,11 +4,11 @@
 		<h2 class="participateTitle">{{ 'eveg.homepage.participate.currently.title'|trans }}</h2>
 		<div class="infosNbItemsParticipate">
 			<div class="partiticpateItem">
-				<div class="partiticpateItemNb">{{ nbCards }}</div>
+				<div class="partiticpateItemNb">{{ nbCards|number_format(0, '.', ' ') }}</div>
 				<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbCards'|trans|nl2br }}</div>
 			</div>
 			<div class="partiticpateItem">
-				<div class="partiticpateItemNb">{{ nbDocs }}</div>
+				<div class="partiticpateItemNb">{{ nbDocs|number_format(0, '.', ' ') }}</div>
 				<div class="partiticpateItemLabel">{{ 'eveg.homepage.participate.currently.nbDocuments'|trans|nl2br }}</div>
 			</div>
 			{#{% if (wanted is defined) and (wanted is not empty) and (wanted|length >= 2) %}
