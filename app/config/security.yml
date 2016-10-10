@@ -19,7 +19,7 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
+                csrf_provider: security.csrf.token_manager
             logout:
                 path: fos_user_security_logout
                 target: eveg_app_homepage
