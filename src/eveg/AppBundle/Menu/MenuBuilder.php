@@ -7,11 +7,13 @@
 namespace eveg\AppBundle\Menu;
  
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
  
-class MenuBuilder extends ContainerAware
+class MenuBuilder implements ContainerAwareInterface
 {
+  use ContainerAwareTrait;
 
     public function mainMenu(FactoryInterface $factory, array $options)
     {

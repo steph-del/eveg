@@ -7,11 +7,14 @@
 namespace eveg\PagesBundle\Menu;
  
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
  
-class MenuBuilder extends ContainerAware
+class MenuBuilder implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+    
 	private $factory;
 	private $pagesRepo;
 	private $requestStack;
