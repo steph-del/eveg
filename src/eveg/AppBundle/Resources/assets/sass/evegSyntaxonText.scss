@@ -91,6 +91,15 @@ $indent: 10px;
 	@include display-syntaxon-text();
 }
 
+.GRPT-text {
+	color: $color-ASS-text;
+}
+
+.GRPT-indent {
+	padding-left: ($indent*6);
+	@include display-syntaxon-text();
+}
+
 .SUBASS-text {
 	color: $color-SUBASS-text;
 }

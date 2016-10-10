@@ -1,0 +1,35 @@
+{# src/eveg/AppBundle/Resources/views/Default/synsystem.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block title %}
+	Synsystem | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row">
+		<div class="col-md-12">
+			{% if synsystem is defined %}
+				{% for s in synsystem %}
+					{%if s.level != 'ASS' or s.level != 'SUBASS' or s.level != 'GRPT'%}
+						<p class="{{ s.level }}-text {{ s.level }}-indent" style="display: block !important; margin-bottom: 0;">
+							{{ s.syntaxonName }} {{ s.syntaxonAuthor }}
+						</p>
+					{% else %}
+						<p class="{{ s.level }}-indent" style="display: block !important; margin-bottom: 0;">
+							{{ s.syntaxonName }} {{ s.syntaxonAuthor }}
+						</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

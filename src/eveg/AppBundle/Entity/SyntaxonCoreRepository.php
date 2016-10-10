@@ -687,4 +687,39 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	/**
+	 * getSynsystem function
+	 * Returns all syntaxons to show the whole synsystem
+	 *
+	 * @param string $depFrFilter
+	 * @param string $ueFilter
+	 * @param integer $limitItems
+	 */
+	public function getSynsystem($depFrFilter = null, $ueFilter = null, $limitItems = null)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.level NOT LIKE :syn')
+		   ->setParameter('syn', '%syn%')
+		;
+
+		$exclusive = false;
+		// Department filter
+		if($depFrFilter != null) {
+			$this->departmentFrFilter($qb, $depFrFilter, $exclusive);
+		}
+
+		// UE filter
+		if($ueFilter != null) {
+			$this->ueFilter($qb, $ueFilter, $exclusive);
+		}
+
+		if($limitItems != null) {
+			$qb->setMaxResults($limitItems);
+		}
+
+		return $qb->getQuery()->getResult();
+	}
 }
