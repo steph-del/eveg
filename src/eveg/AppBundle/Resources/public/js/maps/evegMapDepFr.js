@@ -131,19 +131,25 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 		// Variables
 			var repDepFr = $.parseJSON(jsonData);
 			// Presence
-				var present            = '1';
-				var toBeConfirmed      = '1?';
-				var doubtful           = '2';
-				var disappeared        = '3';
-				var error              = '4';
-				var errorToBeConfirmed = '4?';
-			// Colors
-				var colorPresent            = "#A7FF64";
-				var colorToBeConfirmed      = "#FFFF32";
-				var colorDoubtful           = "#FDCD00";
-				var colorDisappeared        = "#808080";
-				var colorError              = "#FA2C4E";
-				var colorErrorToBeConfirmed = "#9B0610";
+	        var notSpecified        = '0';
+	        var present             = '1';
+	        var toBeConfirmed       = '1?';
+	        var doubtful            = '2';
+	        var disappeared         = '3';
+	        var error               = '4';
+	        var errorToBeConfirmed  = '4?';
+	        var absent              = '5';
+	        var absentToBeConfirmed = '5?';
+	      // Colors
+	        var colorNotSpecified            = "#FAFAFA";
+	        var colorPresent                 = "#A7FF64";
+	        var colorToBeConfirmed           = "#FFFF32";
+	        var colorDoubtful                = "#FDCD00";
+	        var colorDisappeared             = "#808080";
+	        var colorError                   = "#FA2C4E";
+	        var colorErrorToBeConfirmed      = "#9B0610";
+	        var colorAbsent                  = "#D2F8FA";
+	        var colorAbsentToBeConfirmed     = "#5EBABF";
 
 		// Binding
 		$.each(repDepFr, function(index, value) {
@@ -155,25 +161,34 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 					var varTemp = eval('dep'+index);
 				}
 				switch(value) {
-					case present:
-						varTemp.attr('fill', colorPresent);
-						break;
-					case toBeConfirmed:
-						varTemp.attr('fill', colorToBeConfirmed);
-						break;
-					case doubtful:
-						varTemp.attr('fill', colorDoubtful);
-						break;
-					case disappeared:
-						varTemp.attr('fill', colorDisappeared);
-						break;
-					case error:
-						varTemp.attr('fill', colorError);
-						break;
-					case errorToBeConfirmed:
-						varTemp.attr('fill', colorErrorToBeConfirmed);
-						break;
-				}
+		            case notSpecified:
+		              activeColor = colorNotSpecified;
+		              break;
+		            case present:
+		              activeColor = colorPresent;
+		              break;
+		            case toBeConfirmed:
+		              activeColor = colorToBeConfirmed;
+		              break;
+		            case doubtful:
+		              activeColor = colorDoubtful;
+		              break;
+		            case disappeared:
+		              activeColor = colorDisappeared;
+		              break;
+		            case error:
+		              activeColor = colorError;
+		              break;
+		            case errorToBeConfirmed:
+		              activeColor = colorErrorToBeConfirmed
+		              break;
+		            case absent:
+		              activeColor = colorAbsent;
+		              break;
+		            case absentToBeConfirmed:
+		              activeColor = colorAbsentToBeConfirmed;
+		              break;
+		          }
 
 				// Corse
 				dep_2b.attr = dep_2a.attr;
