@@ -17,7 +17,7 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-      $securityContext = $this->container->get('security.context');
+      $securityContext = $this->container->get('security.authorization_checker');
 
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
@@ -89,7 +89,7 @@ class MenuBuilder implements ContainerAwareInterface
  
     public function userMenu(FactoryInterface $factory, array $options)
     {
-      $securityContext = $this->container->get('security.context');
+      $securityContext = $this->container->get('security.authorization_checker');
 
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
@@ -97,7 +97,7 @@ class MenuBuilder implements ContainerAwareInterface
     	/*
     	You probably want to show user specific information such as the username here. That's possible! Use any of the below methods to do this.*/
 		
-		$user = $this->container->get('security.context')->getToken()->getUser(); // Get username of the current logged in user_error()
+		$user = $this->container->get('security.token_storage')->getToken()->getUser(); // Get username of the current logged in user_error()
 
 		// Check if the visitor has any authenticated roles
     	if($securityContext->isGranted(array('ROLE_ADMIN'))) {
@@ -231,7 +231,7 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function dashboardMenu(FactoryInterface $factory, array $options)
     {
-      $securityContext = $this->container->get('security.context');
+      $securityContext = $this->container->get('security.authorization_checker');
 
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');

@@ -14,23 +14,23 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class MenuBuilder implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-    
+
 	private $factory;
 	private $pagesRepo;
 	private $requestStack;
-	private $securityContext;
+	private $securityAuthCheck;
 
     /**
      * @param FactoryInterface $factory
      *
      * Add any other dependency you need
      */
-    public function __construct(FactoryInterface $factory, $pagesRepo, RequestStack $requestStack, $securityContext)
+    public function __construct(FactoryInterface $factory, $pagesRepo, RequestStack $requestStack, $securityAuthCheck)
     {
         $this->factory = $factory;
         $this->pagesRepo = $pagesRepo;
         $this->requestStack = $requestStack;
-        $this->securityContext = $securityContext;
+        $this->securityAuthCheck = $securityAuthCheck;
     }
 
     public function createPagesMenu(array $options)
@@ -75,7 +75,7 @@ class MenuBuilder implements ContainerAwareInterface
     	$menu = $this->factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-    	if($this->securityContext->isGranted(array('ROLE_PAGE_WRITER'))) {
+    	if($this->securityAuthCheck->isGranted(array('ROLE_PAGE_WRITER'))) {
 	    	$menu->addChild('Pages', array('route' => 'eveg_pages_admin_index', 'label' => 'Pages'))
 	    		 ->setAttribute('icon', 'fa fa-newspaper-o')
 	    	;

@@ -1,7 +1,7 @@
 services:
     pages.menu_builder:
         class: eveg\PagesBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@pages_repository", "@request_stack", "@security.context"]
+        arguments: ["@knp_menu.factory", "@pages_repository", "@request_stack", "@security.authorization_checker"]
         tags:
             - { name: knp_menu.menu_builder, method: createPagesMenu, alias: pages } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: createAdminPagesMenu, alias: adminPages }
