@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use eveg\UserBundle\Entity\User;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * SyntaxonPhoto
@@ -15,6 +18,8 @@ use eveg\UserBundle\Entity\User;
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonPhotoRepository")
  * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
+ *
+ * @ExclusionPolicy("all")
  */
 class SyntaxonPhoto
 {
@@ -30,6 +35,9 @@ class SyntaxonPhoto
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $id;
 
@@ -63,6 +71,9 @@ class SyntaxonPhoto
      * @ORM\Column(type="string", length=255)
      *
      * @var string
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $author;
 
@@ -84,6 +95,9 @@ class SyntaxonPhoto
      * @ORM\Column(type="string", length=255)
      *
      * @var string
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $imageName;
 
@@ -148,6 +162,9 @@ class SyntaxonPhoto
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $title;
 
@@ -155,6 +172,9 @@ class SyntaxonPhoto
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $description;
 

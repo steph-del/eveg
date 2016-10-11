@@ -3,12 +3,17 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * SyntaxonEcology
  *
  * @ORM\Table(name="eveg_baseveg_ecology")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonEcologyRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class SyntaxonEcology
 {
@@ -25,6 +30,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="worldRepartition", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $worldRepartition;
 
@@ -32,6 +40,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="franceRepartition", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $franceRepartition;
 
@@ -39,6 +50,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="physionomy", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $physionomy;
 
@@ -46,6 +60,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="altitude", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $altitude;
 
@@ -53,6 +70,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="latitude", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $latitude;
 
@@ -60,6 +80,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="oceanity", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $oceanity;
 
@@ -67,6 +90,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="temperature", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $temperature;
 
@@ -74,6 +100,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="light", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $light;
 
@@ -81,6 +110,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="exposureSlope", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $exposureSlope;
 
@@ -88,6 +120,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="optimumDevelopment", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $optimumDevelopment;
 
@@ -95,6 +130,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="atmosphericHumidity", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $atmosphericHumidity;
 
@@ -102,6 +140,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="soilType", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $soilType;
 
@@ -109,6 +150,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="soilHumidity", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $soilHumidity;
 
@@ -116,6 +160,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="soilTexture", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $soilTexture;
 
@@ -123,6 +170,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="trophicLevel", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $trophicLevel;
 
@@ -130,6 +180,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="soilPh", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $soilPh;
 
@@ -137,6 +190,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="salinity", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $salinity;
 
@@ -144,6 +200,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="dynamic", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $dynamic;
 
@@ -151,6 +210,9 @@ class SyntaxonEcology
      * @var string
      *
      * @ORM\Column(name="manInfluence", type="string", length=255)
+     *
+     * @Expose
+     * @Groups({"API"})
      */
     private $manInfluence;
 
