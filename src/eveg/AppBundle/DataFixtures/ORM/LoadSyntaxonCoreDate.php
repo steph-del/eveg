@@ -2,7 +2,7 @@
 
 // src/eveg/AppBundle/DataFixtures/ORM/LoadSyntaxonCoreData.php
 
-namespace Acme\HelloBundle\DataFixtures\ORM;
+namespace eveg\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
