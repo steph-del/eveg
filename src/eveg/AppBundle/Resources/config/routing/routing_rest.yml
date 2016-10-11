@@ -5,7 +5,7 @@ rest_syntaxon_tree:
     resource:     "evegAppBundle:SyntaxonTreeRest"
     name_prefix: api_
 
-rest_syntaxon: 
+rest_syntaxon_tb: 
     type: rest
-    resource:     "evegAppBundle:SyntaxonRest"
+    resource:     "evegAppBundle:SyntaxonTbRest"
     name_prefix: api_
