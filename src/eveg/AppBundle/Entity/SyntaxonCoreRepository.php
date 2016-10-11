@@ -656,10 +656,23 @@ class SyntaxonCoreRepository extends EntityRepository
 	}
 
 	/**
-	 * findAllIds function
+	 * findAllRetainedIds function
 	 * Returns all syntaxonCore ids
 	 *
 	 */
+	public function findAllRetainedIds()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s.id')
+		   ->where('s.level NOT LIKE :syn')
+		   ->setParameter('syn', '%syn%')
+           ->orderBy('s.id', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
 	public function findEmptyDepFrIds()
 	{
 		$qb = $this->createQueryBuilder('s');

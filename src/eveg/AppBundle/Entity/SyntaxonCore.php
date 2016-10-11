@@ -62,7 +62,7 @@ class SyntaxonCore
      * @ORM\GeneratedValue(strategy="AUTO") 
      * @Gedmo\Versioned
      * @Expose
-     * @Groups({"searchEngine"})
+     * @Groups({"searchEngine", "API"})
      * @SerializedName("id")
      */
     private $id;
@@ -92,7 +92,7 @@ class SyntaxonCore
      * @Gedmo\Versioned
      *
      * @Expose
-     * @Groups({"baseTree", "nodeTree", "searchEngine"})
+     * @Groups({"baseTree", "nodeTree", "searchEngine", "API"})
      * @SerializedName("catminatCode")
      */
     private $catminatCode;
@@ -104,7 +104,7 @@ class SyntaxonCore
      * @Gedmo\Versioned
      *
      * @Expose
-     * @Groups({"searchEngine", "baseTree", "nodeTree"})
+     * @Groups({"searchEngine", "baseTree", "nodeTree", "API"})
      * @SerializedName("level")
      */
     private $level;
@@ -116,7 +116,7 @@ class SyntaxonCore
      * @Gedmo\Versioned
      *
      * @Expose
-     * @Groups({"searchEngine"})
+     * @Groups({"searchEngine", "API"})
      * @SerializedName("syntaxonName")
      */
     private $syntaxonName;
@@ -148,7 +148,7 @@ class SyntaxonCore
      * @Gedmo\Versioned
      *
      * @Expose
-     * @Groups({"searchEngine"})
+     * @Groups({"searchEngine", "API"})
      * @SerializedName("syntaxonAuthor")
      */
     private $syntaxonAuthor;
@@ -167,6 +167,10 @@ class SyntaxonCore
      *
      * @ORM\Column(name="commonName", type="string", length=512, nullable=true)
      * @Gedmo\Versioned
+     *
+     * @Expose
+     * @Groups({"API"})
+     * @SerializedName("ecologicalDefinitionFr")
      */
     private $commonName;
 
@@ -184,6 +188,10 @@ class SyntaxonCore
      *
      * @ORM\Column(name="commonNameEn", type="string", length=512, nullable=true)
      * @Gedmo\Versioned
+     *
+     * @Expose
+     * @Groups({"API"})
+     * @SerializedName("ecologicalDefinitionEn")
      */
     private $commonNameEn;
 
@@ -193,6 +201,9 @@ class SyntaxonCore
     * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\syntaxonRepartitionDepFr", cascade={"persist"})
     * @ORM\JoinColumn(name="repartitionDepFr_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
     *
+    * @Expose
+    * @Groups({"API"})
+    * @SerializedName("fr")
     */
     private $repartitionDepFr;
 
@@ -201,6 +212,10 @@ class SyntaxonCore
      * European coutries repartition
      * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonRepartitionEurope", cascade={"persist"})
      * @ORM\JoinColumn(name="repartitionEurope_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     *
+     * @Expose
+     * @Groups({"API"})
+     * @SerializedName("eu")
      */
     private $repartitionEurope;
 
@@ -209,11 +224,19 @@ class SyntaxonCore
      * Ecology
      * @ORM\OneToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonEcology", cascade={"persist"})
      * @ORM\JoinColumn(name="ecology_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     *
+     * @Expose
+     * @Groups({"API"})
+     * @SerializedName("ecology")
      */
     private $ecology;
 
     /**
      * @ORM\OneToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonPhoto", mappedBy="syntaxonCore", cascade={"persist"})
+     *
+     * @Expose
+     * @Groups({"API"})
+     * @SerializedName("photos")
      */
     protected $syntaxonPhotos;
 
