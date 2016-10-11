@@ -3,12 +3,17 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * syntaxonRepartitionDepFr
  *
  * @ORM\Table(name="eveg_baseveg_repartitionDepFr")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\syntaxonRepartitionDepFrRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class syntaxonRepartitionDepFr
 {
@@ -25,6 +30,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_01", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_01;
 
@@ -32,6 +39,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_02", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_02;
 
@@ -39,6 +48,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_03", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_03;
 
@@ -46,6 +57,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_04", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_04;
 
@@ -53,6 +66,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_05", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_05;
 
@@ -60,6 +75,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_06", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_06;
 
@@ -67,6 +84,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_07", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_07;
 
@@ -74,6 +93,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_08", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_08;
 
@@ -81,6 +102,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_09", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_09;
 
@@ -88,6 +111,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_10", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_10;
 
@@ -95,6 +120,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_11", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_11;
 
@@ -102,6 +129,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_12", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_12;
 
@@ -109,6 +138,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_13", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_13;
 
@@ -116,6 +147,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_14", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_14;
 
@@ -123,6 +156,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_15", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_15;
 
@@ -130,6 +165,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_16", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_16;
 
@@ -137,6 +174,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_17", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_17;
 
@@ -144,6 +183,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_18", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_18;
 
@@ -151,6 +192,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_19", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_19;
 
@@ -158,6 +201,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_20", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_20;
 
@@ -165,6 +210,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_21", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_21;
 
@@ -172,6 +219,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_22", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_22;
 
@@ -179,6 +228,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_23", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_23;
 
@@ -186,6 +237,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_24", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_24;
 
@@ -193,6 +246,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_25", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_25;
 
@@ -200,6 +255,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_26", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_26;
 
@@ -207,6 +264,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_27", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_27;
 
@@ -214,6 +273,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_28", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_28;
 
@@ -221,6 +282,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_29", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_29;
 
@@ -228,6 +291,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_30", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_30;
 
@@ -235,6 +300,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_31", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_31;
 
@@ -242,6 +309,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_32", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_32;
 
@@ -249,6 +318,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_33", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_33;
 
@@ -256,6 +327,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_34", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_34;
 
@@ -263,6 +336,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_35", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_35;
 
@@ -270,6 +345,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_36", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_36;
 
@@ -277,6 +354,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_37", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_37;
 
@@ -284,6 +363,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_38", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_38;
 
@@ -291,6 +372,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_39", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_39;
 
@@ -298,6 +381,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_40", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_40;
 
@@ -305,6 +390,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_41", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_41;
 
@@ -312,6 +399,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_42", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_42;
 
@@ -319,6 +408,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_43", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_43;
 
@@ -326,6 +417,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_44", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_44;
 
@@ -333,6 +426,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_45", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_45;
 
@@ -340,6 +435,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_46", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_46;
 
@@ -347,6 +444,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_47", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_47;
 
@@ -354,6 +453,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_48", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_48;
 
@@ -361,6 +462,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_49", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_49;
 
@@ -368,6 +471,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_50", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_50;
 
@@ -375,6 +480,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_51", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_51;
 
@@ -382,6 +489,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_52", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_52;
 
@@ -389,6 +498,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_53", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_53;
 
@@ -396,6 +507,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_54", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_54;
 
@@ -403,6 +516,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_55", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_55;
 
@@ -410,6 +525,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_56", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_56;
 
@@ -417,6 +534,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_57", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_57;
 
@@ -424,6 +543,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_58", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_58;
 
@@ -431,6 +552,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_59", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_59;
 
@@ -438,6 +561,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_60", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_60;
 
@@ -445,6 +570,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_61", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_61;
 
@@ -452,6 +579,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_62", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_62;
 
@@ -459,6 +588,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_63", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_63;
 
@@ -466,6 +597,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_64", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_64;
 
@@ -473,6 +606,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_65", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_65;
 
@@ -480,6 +615,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_66", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_66;
 
@@ -487,6 +624,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_67", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_67;
 
@@ -494,6 +633,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_68", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_68;
 
@@ -501,6 +642,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_69", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_69;
 
@@ -508,6 +651,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_70", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_70;
 
@@ -515,6 +660,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_71", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_71;
 
@@ -522,6 +669,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_72", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_72;
 
@@ -529,6 +678,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_73", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_73;
 
@@ -536,6 +687,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_74", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_74;
 
@@ -543,6 +696,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_75", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_75;
 
@@ -550,6 +705,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_76", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_76;
 
@@ -557,6 +714,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_77", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_77;
 
@@ -564,6 +723,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_78", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_78;
 
@@ -571,6 +732,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_79", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_79;
 
@@ -578,6 +741,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_80", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_80;
 
@@ -585,6 +750,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_81", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_81;
 
@@ -592,6 +759,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_82", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_82;
 
@@ -599,6 +768,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_83", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_83;
 
@@ -606,6 +777,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_84", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_84;
 
@@ -613,6 +786,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_85", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_85;
 
@@ -620,6 +795,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_86", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_86;
 
@@ -627,6 +804,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_87", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_87;
 
@@ -634,6 +813,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_88", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_88;
 
@@ -641,6 +822,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_89", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_89;
 
@@ -648,6 +831,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_90", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_90;
 
@@ -655,6 +840,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_91", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_91;
 
@@ -662,6 +849,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_92", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_92;
 
@@ -669,6 +858,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_93", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_93;
 
@@ -676,6 +867,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_94", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_94;
 
@@ -683,6 +876,8 @@ class syntaxonRepartitionDepFr
      * @var string
      *
      * @ORM\Column(name="_95", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $_95;
 

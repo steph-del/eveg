@@ -3,12 +3,16 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * SyntaxonBiblio
  *
  * @ORM\Table(name="eveg_syntaxon_biblio")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonBiblioRepository")
+ * @ExclusionPolicy("all")
  */
 class SyntaxonBiblio
 {
@@ -32,6 +36,8 @@ class SyntaxonBiblio
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=512)
+     * @Expose
+     * @Groups({"API"})
      */
     private $reference;
 

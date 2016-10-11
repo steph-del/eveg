@@ -3,12 +3,17 @@
 namespace eveg\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * SyntaxonRepartitionEurope
  *
  * @ORM\Table(name="eveg_baseveg_repartitionEurope")
  * @ORM\Entity(repositoryClass="eveg\AppBundle\Entity\SyntaxonRepartitionEuropeRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class SyntaxonRepartitionEurope
 {
@@ -25,6 +30,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="macaronesia", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $macaronesia;
 
@@ -32,6 +39,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="portugal", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $portugal;
 
@@ -39,6 +48,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="espana", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $espana;
 
@@ -46,6 +57,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="iceland", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $iceland;
 
@@ -53,6 +66,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      *@ORM\Column(name="norway", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $norway;
 
@@ -60,6 +75,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      *@ORM\Column(name="denmark", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $denmark;
 
@@ -67,6 +84,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="ireland", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $ireland;
 
@@ -74,6 +93,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="uk", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $uk;
 
@@ -81,6 +102,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="netherlands", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $netherlands;
 
@@ -88,6 +111,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="belgium", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $belgium;
 
@@ -95,6 +120,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="luxembourg", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $luxembourg;
 
@@ -102,6 +129,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="france", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $france;
 
@@ -109,6 +138,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="germany", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $germany;
 
@@ -116,6 +147,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="poland", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $poland;
 
@@ -123,6 +156,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="czech_republic", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $czechRepublic;
 
@@ -130,6 +165,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="slovakia", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $slovakia;
 
@@ -137,6 +174,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="switzerland", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $switzerland;
 
@@ -144,6 +183,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="austria", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $austria;
 
@@ -151,6 +192,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="italy", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $italy;
 
@@ -158,6 +201,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="slovenia_croatia", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $sloveniaCroatia;
 
@@ -165,6 +210,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="bosnia_montenegro", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $bosniaMontenegro;
 
@@ -172,6 +219,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="albania", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $albania;
 
@@ -179,6 +228,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="serbia_macedonia", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $serbiaMacedonia;
 
@@ -186,6 +237,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="hungary", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $hungary;
 
@@ -193,6 +246,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="romania_moldova", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $romaniaMoldova;
 
@@ -200,6 +255,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="bulgaria", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $bulgaria;
 
@@ -207,6 +264,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="greece", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $greece;
 
@@ -214,6 +273,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="sweden", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $sweden;
 
@@ -221,6 +282,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="finland", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $finland;
 
@@ -228,6 +291,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="estonia_latvia_lithuania", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $estoniaLatviaLithuania;
 
@@ -235,6 +300,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="belarus", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $belarus;
 
@@ -242,6 +309,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="ukraine", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $ukraine;
 
@@ -249,6 +318,8 @@ class SyntaxonRepartitionEurope
      * @var string
      *
      * @ORM\Column(name="russia", type="string", length=2, nullable=true, options={"default" : 0})
+     * @Expose
+     * @Groups({"API"})
      */
     private $russia;
 
