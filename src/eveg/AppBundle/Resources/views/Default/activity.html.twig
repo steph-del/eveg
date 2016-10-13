@@ -78,28 +78,30 @@
 		</div>
 		<div class="col-md-4">
 			{% if wanted is defined and wanted is not empty %}
-				<div class="thumbnail thumb-blue">
-					<div class="caption">
-						<h2>{{ 'eveg.dictionary.participate'|trans|capitalize }} !</h2>
-						<p>
-							<span class="badge">{{ nbTotalWanted }}</span>
-							{{ 'eveg.activities.participate.slogan'|trans }}
-						</p>
-						<ul class="list-group">
-							{% for docWanted in wanted %}
-								<li class="list-group-item">
-									<a href="{{ path('eveg_download_file', {'id': docWanted.syntaxonCore.id, 'idFile': docWanted.id}) }}">{{ docWanted.title }}</a><br />
-									({{ 'eveg.dictionary.diagnosis_of'|trans }} : <i>{{ docWanted.syntaxonCore.syntaxonName }}</i>)
-								</li><br />
-							{% endfor %}
-							<li class="list-group-item text-center">
-								<button type="button" class="btn btn-default">
-									<a class="no-style" href="{{ path('eveg_app_participate') }}">Comment participer ?</a>
-								</button>
-							</li>
-						</ul>
+				{% if nbTotalWanted is defined and nbTotalWanted > 1 %}
+					<div class="thumbnail thumb-blue">
+						<div class="caption">
+							<h2>{{ 'eveg.dictionary.participate'|trans|capitalize }} !</h2>
+							<p>
+								<span class="badge">{{ nbTotalWanted }}</span>
+								{{ 'eveg.activities.participate.slogan'|trans }}
+							</p>
+							<ul class="list-group">
+								{% for docWanted in wanted %}
+									<li class="list-group-item">
+										<a href="{{ path('eveg_download_file', {'id': docWanted.syntaxonCore.id, 'idFile': docWanted.id}) }}">{{ docWanted.title }}</a><br />
+										({{ 'eveg.dictionary.diagnosis_of'|trans }} : <i>{{ docWanted.syntaxonCore.syntaxonName }}</i>)
+									</li><br />
+								{% endfor %}
+								<li class="list-group-item text-center">
+									<button type="button" class="btn btn-default">
+										<a class="no-style" href="{{ path('eveg_app_participate') }}">Comment participer ?</a>
+									</button>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
+				{% endif %}
 			{% endif %}
 		</div>
 	</div>
