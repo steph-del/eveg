@@ -162,31 +162,31 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 				}
 				switch(value) {
 		            case notSpecified:
-		              activeColor = colorNotSpecified;
+		              varTemp.attr('fill', colorNotSpecified);
 		              break;
 		            case present:
-		              activeColor = colorPresent;
+		              varTemp.attr('fill', colorPresent);
 		              break;
 		            case toBeConfirmed:
-		              activeColor = colorToBeConfirmed;
+		              varTemp.attr('fill', colorToBeConfirmed);
 		              break;
 		            case doubtful:
-		              activeColor = colorDoubtful;
+		              varTemp.attr('fill', colorDoubtful);
 		              break;
 		            case disappeared:
-		              activeColor = colorDisappeared;
+		              varTemp.attr('fill', colorDisappeared);
 		              break;
 		            case error:
-		              activeColor = colorError;
+		              varTemp.attr('fill', colorError);
 		              break;
 		            case errorToBeConfirmed:
-		              activeColor = colorErrorToBeConfirmed
+		              varTemp.attr('fill', colorErrorToBeConfirmed);
 		              break;
 		            case absent:
-		              activeColor = colorAbsent;
+		              varTemp.attr('fill', colorAbsent);
 		              break;
 		            case absentToBeConfirmed:
-		              activeColor = colorAbsentToBeConfirmed;
+		              varTemp.attr('fill', colorAbsentToBeConfirmed);
 		              break;
 		          }
 
