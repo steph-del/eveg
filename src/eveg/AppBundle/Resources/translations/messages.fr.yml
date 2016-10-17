@@ -321,6 +321,7 @@ eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.6: 'mor, hydro
 eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.7: 'ranker, tangel'
 eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.8: 'anmoor, gyttja'
 eveg.app.show_one.panels.ecological_valences.pjOrganicMaterialAvg.9: tourbe
+eveg.app.show_one.header.hocloco: 'hoc loco fait référence à baseveg'
 eveg.app.show_one.filters.title: 'Filtrer eVeg'
 eveg.app.show_one.filters.dep: 'Par département (France mértopolitaine)'
 eveg.app.show_one.filters.country: 'Par pays'

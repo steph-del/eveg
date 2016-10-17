@@ -3,12 +3,21 @@
 
 namespace eveg\AppBundle\Twig;
 
+use Symfony\Component\Translation\DataCollectorTranslator;
+
 class evegExtension extends \Twig_Extension
 {
+	private $translator;
+
+	public function __construct(DataCollectorTranslator $translator)
+	{
+		$this->translator = $translator;
+	}
 	public function getFunctions()
 	{
 		return array(
 			new \Twig_SimpleFunction('synonymType', array($this, 'synonymType')),
+			new \Twig_SimpleFunction('hocLoco', array($this, 'hocLoco')),
 		);
 	}
 
@@ -77,6 +86,20 @@ class evegExtension extends \Twig_Extension
 		$patternEnd = '</span>';
 
 		return($patternBegin . $allTypes . $patternMiddle . '(' .$string . ')' . $patternEnd);
+	}
+
+	public function hocLoco($string)
+	{
+		if(strpos($string, 'hoc loco') !== false) {
+			$message = $this->translator->trans('eveg.app.show_one.header.hocloco');
+			$patternBegin = '<span class="showTooltip" data-toggle="tooltip" data-placement="bottom" style="border-bottom: 1px dashed #000;" title="'.$message.'">';
+			$patternEnd = '</span>';
+
+			return ($patternBegin . $string . $patternEnd);
+
+		}
+
+		return $string;
 	}
 
 	public function getName()
