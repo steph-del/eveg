@@ -198,3 +198,9 @@ web/js/vendors_pdfExport_jquery-2.1.3.min_1.js
 web/js/vendors_pdfExport_jquery-ui.min_2.js
 
 web/css/pages.css
+
+web/css/pages_pages_1.css
+
+web/css/vendors_selectize.bootstrap3_4.css
+
+web/js/vendors_selectize.min_6.js
