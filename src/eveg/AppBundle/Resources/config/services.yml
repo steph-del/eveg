@@ -18,7 +18,7 @@ services:
 
     eveg.twig.eveg_extension:
         class:             eveg\AppBundle\Twig\evegExtension
-        arguments:         ['@translator']
+        arguments:         ['@translator.default']
         tags:
             - { name: twig.extension }
 

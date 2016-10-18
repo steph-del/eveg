@@ -3,13 +3,13 @@
 
 namespace eveg\AppBundle\Twig;
 
-use Symfony\Component\Translation\DataCollectorTranslator;
+use Symfony\Component\Translation\Translator;
 
 class evegExtension extends \Twig_Extension
 {
 	private $translator;
 
-	public function __construct(DataCollectorTranslator $translator)
+	public function __construct(Translator $translator)
 	{
 		$this->translator = $translator;
 	}
