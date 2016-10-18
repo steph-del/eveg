@@ -3,13 +3,9 @@
 		<div class="row">
 			<ul class="zero_padding">
 				<li class="li_list_style_none">
-					<div class="col-md-4">
-				    	{{ form_row(form.fileFile) }}
-				    </div>
-				</li>
-				<li class="li_list_style_none">
-					<div class="col-md-8">
+					<div class="col-md-12">
 						<ul class="zero_padding">
+							<li><div class="form-group">{{ form_row(form.fileLink) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.title) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.diagnosisOf) }}</div></li>
 							<li><div class="form-group">{{ form_row(form.visibility) }}</div></li>

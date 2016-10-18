@@ -22,6 +22,7 @@ class SyntaxonFile
     public function __construct()
     {
         $this->setHit(0);
+        $this->setLinked(false);
     }
 
     /**
@@ -136,6 +137,13 @@ class SyntaxonFile
      * @ORM\Column(name="license", type="string", length=255, nullable=true)
      */
     private $license;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="linked", type="boolean")
+     */
+    private $linked;
 
     /**
      * @var integer
@@ -307,6 +315,30 @@ class SyntaxonFile
     public function getFileFile()
     {
         return $this->fileFile;
+    }
+
+    /**
+     * Set linked
+     *
+     * @param boolean $linked
+     *
+     * @return SyntaxonFile
+     */
+    public function setLinked($linked)
+    {
+        $this->linked = $linked;
+
+        return $this;
+    }
+
+    /**
+     * Get linked
+     *
+     * @return boolean
+     */
+    public function getLinked()
+    {
+        return $this->linked;
     }
 
     /**

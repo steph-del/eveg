@@ -107,7 +107,9 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		$qb->select('COUNT(f)')
 		   ->where('f.visibility = :public')
+		   ->andWhere('f.linked = :false')
 		   ->setParameter('public', 'public')
+		   ->setParameter('false', false)
 		   ;
 
 		return $qb->getQuery()->getSingleScalarResult();
@@ -119,7 +121,9 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		$qb->select('COUNT(f)')
 		   ->where('f.type = :spreadsheet')
+		   ->andWhere('f.linked = :false')
 		   ->setParameter('spreadsheet', 'spreadsheet')
+		   ->setParameter('false', false)
 		   ;
 
 		return $qb->getQuery()->getSingleScalarResult();
@@ -131,7 +135,9 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 
 		$qb->select('COUNT(f)')
 		   ->where('f.type = :pdf')
+		   ->andWhere('f.linked = :false')
 		   ->setParameter('pdf', 'pdf')
+		   ->setParameter('false', false)
 		   ;
 
 		return $qb->getQuery()->getSingleScalarResult();
@@ -170,5 +176,20 @@ class SyntaxonFileRepository extends \Doctrine\ORM\EntityRepository
 		   ->setParameter('pdf', 'pdf');
 
 		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getPublicFiles()
+	{
+		$qb = $this->createQueryBuilder('f');
+
+		$qb->select('f')
+		   ->where('f.visibility = :public')
+		   ->andWhere('f.linked = :false')
+		   ->setParameter('public', 'public')
+		   ->setParameter('false', false)
+		   ->orderBy('f.fileName', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
 	}
 }

@@ -177,7 +177,8 @@ eveg.file.type.link: 'un lien'
 eveg.file.type.photo: 'une photo'
 eveg.file.is_diagnosis: 'Si votre document concerne une diagnose, merci de préciser la végétation associée'
 eveg.file.save: Enregistrer
-eveg.file.save_and_add_file: 'Enregistrer et ajouter une autre fichier'
+eveg.file.save_and_add_file: 'Enregistrer et ajouter un autre fichier'
+eveg.file.save_and_add_file_link: 'Enregistrer et lier un autre fichier'
 eveg.search.title: Rechercher
 eveg.search.placeholder: 'Rechercher une végétation'
 eveg.search.use_synonyms: 'Utiliser les synonymes'
@@ -348,6 +349,8 @@ eveg.app.show_one.files.add.title: 'Ajouter un fichier'
 eveg.app.show_one.files.add.placeholder: 'Soyez concis et explicite. Ex : "Br.-Bl. 1936 : diagnose"'
 eveg.app.show_one.files.add.another: 'Ajouter un autre fichier'
 eveg.app.show_one.files.add.link_instead: 'Je souhaite ajouter un lien plutôt qu''un fichier'
+eveg.app.show_one.files.add.linked_file: 'Je souhaite lier un fichier existant'
+eveg.app.show_one.files.add.linked.title: 'Lier un fichier existant'
 eveg.app.show_one.http_link.title: Liens
 eveg.app.show_one.http_link.add.title: 'Ajouter un lien'
 eveg.app.show_one.http_link.add.placeholder: 'http://www.tela-botanica.org'

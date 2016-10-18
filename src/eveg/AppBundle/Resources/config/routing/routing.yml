@@ -105,6 +105,12 @@ eveg_delete_file:
     requirements:
         idFile: \d+
 
+eveg_add_file_link:
+    locales: { fr: "/app/{id}/lier-un-fichier", en: "/en/app/{id}/link-a-file", de:"/de/app/{id}/link-datei", es:"/es/app/{id}/enlace-un-archivo", it:"/it/app/{id}/link-un-file" }
+    defaults: { _controller: evegAppBundle:SyntaxonFile:addFileLink }
+    requirements:
+        id: \d+
+
 eveg_add_http_link:
     locales: { fr: "/app/{id}/ajouter-un-lien", en: "/en/app/{id}/add-a-link", de:"/de/app/{id}/einen-link", es:"/es/app/{id}/anadir-un-enlace", it:"/it/app/{id}/aggiungere-un-link" }
     defaults: { _controller: evegAppBundle:SyntaxonHttpLink:addHttpLink }

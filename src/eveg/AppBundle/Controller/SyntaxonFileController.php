@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Form\Type\SyntaxonCoreFileType;
 use eveg\AppBundle\Entity\SyntaxonFile;
 use eveg\AppBundle\Form\Type\SyntaxonFileType;
+use eveg\AppBundle\Form\Type\SyntaxonCoreFileLinkType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -190,4 +191,95 @@ class SyntaxonFileController extends Controller
         return $this->redirect($referer);
 
 	}
+
+	/**
+	* @ParamConverter("syntaxon", class="evegAppBundle:syntaxonCore")
+	* 
+	*/
+	public function addFileLinkAction(SyntaxonCore $syntaxon, $id, Request $request)
+	{
+		$request = $this->getRequest();
+
+		// Get all files
+		$em = $this->getDoctrine()->getManager();
+		$filesRepo = $em->getRepository('evegAppBundle:SyntaxonFile');
+		$files = $filesRepo->findAll();
+
+		// Creates the form...
+    	$form = $this->createForm(new SyntaxonCoreFileLinkType());
+		
+		// ... and then hydrates it
+        $form->handleRequest($request);
+
+		// Get the file id to retrieve
+		$fileIdToRetrieve = (int)$request->request->get('syntaxonCoreFileLink')['syntaxonFiles'][0]['fileLink'];
+		$newTitle = (string)$request->request->get('syntaxonCoreFileLink')['syntaxonFiles'][0]['title'];
+		$newVisibility = (string)$request->request->get('syntaxonCoreFileLink')['syntaxonFiles'][0]['visibility'];
+		$newDiagnosisOf = $request->request->get('syntaxonCoreFileLink')['syntaxonFiles'][0]['diagnosisOf'];
+//dump($newDiagnosisOf);
+
+        // Job routine
+		if($form->isValid()) {
+
+			$data = $form->getData();
+
+			$files = $data->getSyntaxonFiles();
+			$nbFiles = count($files);
+
+			$currentUser = $this->getUser();
+
+			// get the file
+			$fileToLink = $filesRepo->findById($fileIdToRetrieve)[0];
+
+			// new file object
+			$file = new SyntaxonFile($fileToLink);
+			// link both files
+			//$file = $fileToLink;
+
+			$file->setLinked(true);
+			$file->setSyntaxonCore($syntaxon);
+			$file->setUser($currentUser);
+			$file->setTitle($newTitle);
+			$file->setType($fileToLink->getType());
+			$file->setFileName($fileToLink->getFileName());
+			$file->setOriginalName($fileToLink->getOriginalName());
+			$file->setVisibility($newVisibility);
+			$file->setDiagnosisOf($form->getData()->getSyntaxonFiles()[0]->getDiagnosisOf());
+			$file->setLicense($fileToLink->getLicense());
+			$file->setUploadedAt(new \DateTime('now'));
+			$file->setUpdatedAt(new \DateTime('now'));
+			$file->setOriginalSyntaxonName('(id:'.$syntaxon->getId().') '.$syntaxon->getSyntaxon());
+
+			$syntaxon->addSyntaxonFile($file);
+
+      		$em->persist($syntaxon);
+      		$em->flush();
+
+      		if ($nbFiles == 1) {
+      			$request->getSession()->getFlashBag()->add('success', 'Un nouveau fichier lié.');
+      		} elseif ($nbFiles > 1) {
+      			$request->getSession()->getFlashBag()->add('success', $nbFiles.' nouveaux fichiers liés.');
+      		} else {
+      			$request->getSession()->getFlashBag()->add('warning', 'Aucun nouveau fichier lié.');
+      		}
+
+      		// If SaveAndAdd
+      		if ($form->get('saveAndAdd')->isClicked()) {
+      			return $this->redirect($this->generateUrl('eveg_add_file_link', 
+        			array('id' => $id)
+        		));
+      		} else {
+      			return $this->redirect($this->generateUrl('eveg_show_one', 
+        			array('id' => $id)
+        		));
+      		}
+		}
+
+		return $this->render('evegAppBundle:Default:addFileLink.html.twig', array(
+			'syntaxon' => $syntaxon,
+			'files'    => $files,
+			'form'     => $form->createView()
+		));
+	}
+
 }

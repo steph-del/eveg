@@ -31,6 +31,12 @@ services:
         tags:
             - {name: form.type }
 
+    eveg_app.form.type.file_link:
+        class:              eveg\AppBundle\Form\Type\SyntaxonFileLinkType
+        arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis', '@syntaxon_file_repository','@request_stack']
+        tags:
+            - {name: form.type }
+
     eveg_app.form.type.addLink:
         class:              eveg\AppBundle\Form\Type\SyntaxonHttpLinkType
         arguments:          ['@security.authorization_checker', '@eveg_app.possible_diagnosis', '@request_stack']
@@ -90,6 +96,12 @@ services:
     eveg_app.possible_diagnosis:
         class:             eveg\AppBundle\Utils\Repository\possibleDiagnosis
         arguments:         ['@score_repository']
+
+    syntaxon_file_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory:           ['@doctrine.orm.default_entity_manager', 'getRepository']
+        arguments:
+            - eveg\AppBundle\Entity\SyntaxonFile
 
     evep_app.wanted:
         class:              eveg\AppBundle\Utils\Services\wantedForCompilation

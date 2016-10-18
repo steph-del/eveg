@@ -1,4 +1,4 @@
-{# src/eveg/AppBundle/Resources/views/Default/addFile.html.twig #}
+{# src/eveg/AppBundle/Resources/views/Default/addFileLink.html.twig #}
 
 {% extends "::layout.html.twig" %}
 
@@ -8,7 +8,7 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		{{ 'eveg.app.show_one.files.add.title'|trans }} | {{ syntaxon.syntaxonName }} | {{ parent() }}
+		{{ 'eveg.app.show_one.files.add.linked.title'|trans }} | {{ syntaxon.syntaxonName }} | {{ parent() }}
 	{% endif %}
 {% endblock %}
 
@@ -26,8 +26,6 @@
 			<div class="row">
 				{# Form #}
 				<div class="col-md-{{ wellFileSize }}">
-				<a href="{{ path('eveg_add_http_link', {'id': syntaxon.id}) }}"><button class="addLink btn btn-info">{{ 'eveg.app.show_one.files.add.link_instead'|trans }}</button></a>
-				<a href="{{ path('eveg_add_file_link', {'id': syntaxon.id}) }}"><button class="addLink btn btn-info">{{ 'eveg.app.show_one.files.add.linked_file'|trans }}</button></a>
 
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
@@ -41,10 +39,10 @@
 							{% endfor %}
 						{% endif %}
 					
-						<h3>{{ 'eveg.app.show_one.files.add.title'|trans }}</h3>
+						<h3>{{ 'eveg.app.show_one.files.add.linked.title'|trans }}</h3>
 							<ul class="syntaxonFiles" data-prototype="
 								{% filter escape %}
-									{{ include('evegAppBundle:Default/Fragments/FileForm:fileFormPrototype.html.twig', { 'form' : form.syntaxonFiles.vars.prototype}) }}
+									{{ include('evegAppBundle:Default/Fragments/FileLinkForm:fileLinkFormPrototype.html.twig', { 'form' : form.syntaxonFiles.vars.prototype}) }}
 								{% endfilter %}">
 
 							</ul>
@@ -74,7 +72,7 @@
 		// setup an "add a file" link
 		var $addFileLink = $('<a href="#" class="add_file_link">{{ "eveg.app.show_one.files.add.another"|trans }}</a>');
 		var $addFileLink =  $('<button type="submit" class="btn btn-success">{{ "eveg.app.show_one.files.add.another"|trans }}</button>');
-		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileForm:fileFormSubmit.html.twig", { "form" : form}) }}</ul>');//.append($addFileLink);
+		var $newLinkLi = $('<ul class="zero_padding flex"><li class="li_list_style_none"></li><li class="li_list_style_none"></li>{{ include("evegAppBundle:Default/Fragments/FileLinkForm:fileLinkFormSubmit.html.twig", { "form" : form}) }}</ul>');//.append($addFileLink);
 
 		jQuery(document).ready(function() {
 
