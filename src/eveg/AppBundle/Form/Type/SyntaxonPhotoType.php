@@ -15,14 +15,14 @@ class SyntaxonPhotoType extends AbstractType
 {
 
     private $securityContext;
-    private $session;
+    private $sessionStack;
     private $locale;
 
-    public function __construct($securityContext, $session)
+    public function __construct($securityContext, $sessionStack)
     {
         $this->securityContext = $securityContext;
-        $this->session = $session;
-        $this->locale = $session->getCurrentRequest()->get('_locale');
+        $this->sessionStack = $sessionStack;
+        $this->locale = $sessionStack->getCurrentRequest()->get('_locale');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
