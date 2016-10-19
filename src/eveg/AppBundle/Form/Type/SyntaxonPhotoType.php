@@ -22,7 +22,7 @@ class SyntaxonPhotoType extends AbstractType
     {
         $this->securityContext = $securityContext;
         $this->session = $session;
-        $this->locale = $session->get('_locale');
+        $this->locale = $session->getCurrentRequest()->get('_locale');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

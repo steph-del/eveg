@@ -101,7 +101,7 @@ class SyntaxonPhotoController extends Controller
 		$request = $this->getRequest();
 
 		// Creates the form...
-    	$form = $this->createForm(new SyntaxonPhotoType($this->get('security.authorization_checker')), $photo);
+    	$form = $this->createForm(new SyntaxonPhotoType($this->get('security.authorization_checker'), $this->get('request_stack')), $photo);
 
         // ... and then hydrates it
         $form->handleRequest($request);
