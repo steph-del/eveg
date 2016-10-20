@@ -103,7 +103,7 @@ eveg.homepage.presentation.title: Présentation
 eveg.homepage.presentation.1: 'eVeg est une interface de consultation des données de baseveg (programme CATMINAT, par Philippe Julve).'
 eveg.homepage.presentation.2: 'Il vous donne accès à une base de données concernant l''ensemble des végétations de France métropolitaine avec une extension à l''Europe (voire holartique et eurasiatique pour certaines unités), établie selon les principes de la phytosociologie synusiale intégrée.'
 eveg.homepage.presentation.3: 'Chaque végétation connue fait l''objet d''une fiche de description (écologie, chorologie, synonymie, cortège floristique, bibliographie) associée à des illustrations et des tableaux diagnostiques.'
-eveg.homepage.presentation.4: 'Organisation générale du projet :'
+eveg.homepage.presentation.4: 'Organisation générale du projet'
 eveg.homepage.participate.title: Participer
 eveg.homepage.participate.currently.title: 'Actuellement sur eVeg'
 eveg.homepage.participate.currently.nbCards: "fiches\ndescriptives\n"
