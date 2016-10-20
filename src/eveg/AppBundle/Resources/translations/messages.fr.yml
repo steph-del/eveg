@@ -27,6 +27,9 @@ eveg.dictionary.license: licence
 eveg.dictionary.link: lien
 eveg.dictionary.localisation: localisation
 eveg.dictionary.locality: localité
+eveg.dictionary.na: non renseigné
+eveg.dictionary.no_one_f: aucune
+eveg.dictionary.no_one_m: aucun
 eveg.dictionary.original_file: 'fichier d''origine'
 eveg.dictionary.participate: participez
 eveg.dictionary.photo: photo
@@ -41,6 +44,7 @@ eveg.dictionary.title: titre
 eveg.dictionary.town: commune
 eveg.dictionary.user: utilisateur
 eveg.dictionary.send: envoyer
+eveg.dictionary.show_all: afficher tout
 eveg.dictionary.validate: valider
 eveg.dictionary.version: version
 eveg.dictionary.versions: versions
@@ -208,6 +212,14 @@ eveg.legal_notice.law.title: 'Loi informatique et libertés'
 eveg.legal_notice.law.text: "En application de la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n° 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l'égard des traitements de données à caractère personnel, et notamment son article 24-II, vous disposez d'un droit de modification et de suppression des données qui vous concernent. Vous pouvez adresser votre demande :\n"
 eveg.legal_notice.law.mail: 'par courriel à : contact@e-veg.net'
 eveg.legal_notice.law.post: 'par courrier traditionnel à : XXX'
+eveg.app.show_one.panels.biblio.title: Bibliographie
+eveg.app.show_one.panels.species.title: Espèces caractéristiques
+eveg.app.show_one.panels.synonyms.title: Synonymes
+eveg.app.show_one.panels.synonyms.no_one: aucun synonyme trouvé
+eveg.app.show_one.panels.ecology.title: Caractéristiques écologiques
+eveg.app.show_one.panels.resources.title: Ressources
+eveg.app.show_one.panels.pictures.title: Illustrations
+eveg.app.show_one.panels.ecological_valences.title: Valences écologiques
 eveg.app.show_one.panels.ecological_valences.pjLightAvg.label: Lumière
 eveg.app.show_one.panels.ecological_valences.pjLightAvg.label_min: Lum.
 eveg.app.show_one.panels.ecological_valences.pjLightAvg.1: hypersciaphiles

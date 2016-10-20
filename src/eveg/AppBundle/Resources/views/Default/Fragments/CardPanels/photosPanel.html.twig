@@ -1,5 +1,5 @@
 <div class="panel panel-default" id="panel-photo">
-	<div class="panel-heading">Illustrations{% if syntaxon.syntaxonPhotos is empty %} : aucune{% endif %}</div>
+	<div class="panel-heading">{{ 'eveg.app.show_one.panels.pictures.title'|trans }}{% if syntaxon.syntaxonPhotos is empty %} : {{ 'eveg.dictionary.no_one_f'|trans|capitalize }}{% endif %}</div>
 	{% if syntaxon.syntaxonPhotos is not empty %}
 		<div class="panel-body">
 			{% set nbPhotos = syntaxon.syntaxonPhotos|length %}
@@ -12,7 +12,7 @@
 	{% if is_granted('ROLE_USER') %}
 		<div class="text-center">
 			<i class="fa fa-camera"></i>
-			<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">Ajouter une photo</a>
+			<a href="{{ path('eveg_add_photo', {'id': syntaxon.id}) }}">{{ 'eveg.participate.add_photo.title'|trans }}</a>
 		</div>
 	{% endif %}
 </div>

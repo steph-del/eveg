@@ -1,5 +1,5 @@
 <div class="panel panel-default" id="panel-resources">
-	<div class="panel-heading panelFilesHeader">Ressources{% if syntaxon.syntaxonFiles is empty and syntaxon.syntaxonHttpLinks is empty %} : aucune{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
+	<div class="panel-heading panelFilesHeader">{{ 'eveg.app.show_one.panels.resources.title'|trans }}{% if syntaxon.syntaxonFiles is empty and syntaxon.syntaxonHttpLinks is empty %} : {{ 'eveg.dictionary.no_one_f'|trans|capitalize }}{% endif %}<span class="filesShowAll li-restricted pull-right">Afficher tout</span></div>
 	{% if syntaxon.syntaxonFiles is not empty or syntaxon.syntaxonHttpLinks is not empty %}
 		<ul class="list-group">
 			{% for file in syntaxon.syntaxonFiles %}
@@ -15,7 +15,7 @@
 							{% if file.user.id == app.user.id %}
 								<div class="pull-right">
 									<i class="fa fa-pencil-square-o"></i>
-									<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+									<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 								</div>
 							{% endif %}
 						{% endif %}
@@ -32,7 +32,7 @@
 								<a href="{{ path('eveg_download_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ file.title }}</a>
 								<div class="pull-right">
 									<i class="fa fa-pencil-square-o"></i>
-									<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+									<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 								</div>
 							</li>
 						{% endif %}
@@ -51,7 +51,7 @@
 								{% if file.user.id == app.user.id %}
 									<div class="pull-right">
 										<i class="fa fa-pencil-square-o"></i>
-										<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">Modifier</a>
+										<a href="{{ path('eveg_edit_file', {'id': syntaxon.id, 'idFile': file.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 									</div>
 								{% endif %}
 							{% endif %}
@@ -68,7 +68,7 @@
 							{% if httpLink.user.id == app.user.id %}
 								<div class="pull-right">
 									<i class="fa fa-pencil-square-o"></i>
-									<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+									<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 								</div>
 							{% endif %}
 						{% endif %}
@@ -82,7 +82,7 @@
 								<a href="{{ path('eveg_get_http_link', { 'id': syntaxon.id, 'idHttpLink': httpLink.id }) }}" target="_blank">{{ httpLink.title }}</a>
 								<div class="pull-right">
 									<i class="fa fa-pencil-square-o"></i>
-									<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+									<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 								</div>
 							</li>
 						{% endif %}
@@ -97,7 +97,7 @@
 								{% if httpLink.user.id == app.user.id %}
 									<div class="pull-right">
 										<i class="fa fa-pencil-square-o"></i>
-										<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">Modifier</a>
+										<a href="{{ path('eveg_edit_http_link', {'id': syntaxon.id, 'idHttpLink': httpLink.id}) }}">{{ 'eveg.dictionary.edit'|trans|capitalize }}</a>
 									</div>
 								{% endif %}
 							{% endif %}
@@ -108,7 +108,7 @@
 			{% if is_granted('ROLE_USER') %}
 				<li class="list-group-item text-center">
 					<i class="fa fa-upload"></i>
-					<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+					<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">{{ 'eveg.participate.add_doc.title'|trans }}</a>
 				</li>
 			{% endif %}
 		</ul>
@@ -117,7 +117,7 @@
 			<ul class="list-group">
 				<li class="list-group-item text-center">
 					<i class="fa fa-upload"></i>
-					<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">Ajouter un document</a>
+					<a href="{{ path('eveg_add_file', {'id': syntaxon.id}) }}">{{ 'eveg.participate.add_doc.title'|trans }}</a>
 				</li>
 			</ul>
 		{% endif %}

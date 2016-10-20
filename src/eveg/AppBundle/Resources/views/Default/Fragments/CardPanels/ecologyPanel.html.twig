@@ -1,5 +1,5 @@
 <div class="panel panel-default ecology-panel" id="panel-ecology">
-	<div class="panel-heading panelEcologyHeader">Caractéristiques écologiques{% if syntaxon.ecology.isEmpty is defined and syntaxon.ecology is empty %} : non renseignées{% endif %}<span class="ecologyShowAll li-restricted pull-right">Afficher tout</span></div>
+	<div class="panel-heading panelEcologyHeader">{{ 'eveg.app.show_one.panels.ecology.title'|trans }}{% if syntaxon.ecology.isEmpty is defined and syntaxon.ecology is empty %} : {{ 'eveg.dictionary.na'|trans|capitalize }}{% endif %}<span class="ecologyShowAll li-restricted pull-right">{{ 'eveg.dictionary.show_all'|trans|capitalize }}</span></div>
 	{% if not syntaxon.ecology is empty %}
 		<ul class="list-group">
 			<li class="list-group-item ecologyBox">Chorologie mondiale : <span class="pull-right ecology-1">{{ syntaxon.ecology.worldRepartition }}</span></li>

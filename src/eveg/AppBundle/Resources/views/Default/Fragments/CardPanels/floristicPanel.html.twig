@@ -1,5 +1,5 @@
 <div class="panel panel-default" id="panel-floristic">
-	<div class="panel-heading panelSpeciesHeader">Cortège floristique{% if species is defined and species is empty %} : non renseigné{% endif %}<span class="speciesShowAll li-restricted pull-right">Afficher tout</span></div>
+	<div class="panel-heading panelSpeciesHeader">{{ 'eveg.app.show_one.panels.species.title'|trans }}{% if species is defined and species is empty %} : {{ 'eveg.dictionary.na'|trans|capitalize }}{% endif %}<span class="speciesShowAll li-restricted pull-right">{{ 'eveg.dictionary.show_all'|trans|capitalize }}</span></div>
 	{% if species is defined and species is not empty %}
 		<ul class="list-group">
 			{% for sp in species %}

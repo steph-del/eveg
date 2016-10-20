@@ -1,5 +1,5 @@
 <div class="panel panel-default" id="panel-synonyms">
-	<div class="panel-heading panelSynonymsHeader">Synonymes{% if synonyms is empty %} : aucun synonyme trouvé{% endif %}<span class="synonymsShowAll li-restricted pull-right">Afficher tout</span></div>
+	<div class="panel-heading panelSynonymsHeader">{{ 'eveg.app.show_one.panels.synonyms.title'|trans }}{% if synonyms is empty %} : {{ 'eveg.app.show_one.panels.synonyms.no_one'|trans }}{% endif %}<span class="synonymsShowAll li-restricted pull-right">{{ 'eveg.dictionary.show_all'|trans|capitalize }}</span></div>
 	<ul class="list-group">
 		{% for synonym in synonyms %}
 			<li class="list-group-item synonymBox">

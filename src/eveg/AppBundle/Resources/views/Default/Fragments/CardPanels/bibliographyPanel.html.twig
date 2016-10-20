@@ -1,5 +1,5 @@
 <div class="panel panel-default" id="panel-bibliography">
-	<div class="panel-heading panelBibliosHeader">Bibliographie<span class="bibliosShowAll li-restricted pull-right">Afficher tout</span></div>
+	<div class="panel-heading panelBibliosHeader">{{ 'eveg.app.show_one.panels.biblio.title'|trans }}<span class="bibliosShowAll li-restricted pull-right">{{ 'eveg.dictionary.show_all'|trans|capitalize }}</span></div>
 	{% if syntaxon.syntaxonBiblios is not empty %}
 		<ul class="list-group">
 			{% for bib in syntaxon.syntaxonBiblios %}
