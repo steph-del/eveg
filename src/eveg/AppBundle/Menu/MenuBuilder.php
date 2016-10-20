@@ -148,10 +148,10 @@ class MenuBuilder implements ContainerAwareInterface
                                                        'routeParameters' => array('lang' => 'fr'),
                                                        'label' => 'Français'))
                              ->setAttribute('flag', 'fr');
-            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+            /*$menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
                                                        'routeParameters' => array('lang' => 'it'),
                                                        'label' => 'Italiano'))
-                             ->setAttribute('flag', 'it');
+                             ->setAttribute('flag', 'it');*/
 
     	} elseif($locale == 'fr') {
     		$menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
@@ -166,10 +166,10 @@ class MenuBuilder implements ContainerAwareInterface
                                                        'routeParameters' => array('lang' => 'es'),
                                                        'label' => 'Español'))
                              ->setAttribute('flag', 'es');
-            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+            /*$menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
                                                        'routeParameters' => array('lang' => 'it'),
                                                        'label' => 'Italiano'))
-                             ->setAttribute('flag', 'it');
+                             ->setAttribute('flag', 'it');*/
 
     	} elseif($locale == 'de') {
             $menu['Language']->addchild('langEn', array('route' => 'eveg_language', 
@@ -184,10 +184,10 @@ class MenuBuilder implements ContainerAwareInterface
                                                        'routeParameters' => array('lang' => 'fr'),
                                                        'label' => 'Français'))
                              ->setAttribute('flag', 'fr');
-            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+            /*$menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
                                                        'routeParameters' => array('lang' => 'it'),
                                                        'label' => 'Italiano'))
-                             ->setAttribute('flag', 'it');
+                             ->setAttribute('flag', 'it');*/
 
         } elseif($locale == 'es') {
             $menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
@@ -202,10 +202,10 @@ class MenuBuilder implements ContainerAwareInterface
                                                        'routeParameters' => array('lang' => 'fr'),
                                                        'label' => 'Français'))
                              ->setAttribute('flag', 'fr');
-            $menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
+            /*$menu['Language']->addchild('langIt', array('route' => 'eveg_language', 
                                                        'routeParameters' => array('lang' => 'it'),
                                                        'label' => 'Italiano'))
-                             ->setAttribute('flag', 'it');
+                             ->setAttribute('flag', 'it');*/
 
         } elseif($locale == 'it') {
             $menu['Language']->addchild('langDe', array('route' => 'eveg_language', 
