@@ -1,6 +1,8 @@
 eveg.title: eVeg
 eveg.web_title: 'Végétations d''Europe | phytosociologie synusiale intégrée'
 eveg.slogan: "une base de données pour\nles végétations d'Europe..."
+eveg.tela.slogan: "Site développé dans le cadre du réseau"
+eveg.tela.slogan_min: "Dans le cadre du réseau"
 eveg.dictionary.a_file: 'un fichier'
 eveg.dictionary.a_link: 'un lien'
 eveg.dictionary.a_pdf_document: 'un document PDF'

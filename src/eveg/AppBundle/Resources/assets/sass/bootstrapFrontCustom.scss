@@ -1,5 +1,8 @@
 @import 'eveg-colors';
 
+$footerHeight: 44px;
+$footerHeightMobile: 34px;
+
 /*
  * Hacks
  *******/
@@ -18,7 +21,11 @@ html {
 
 body {
 	//min-height: 100%;
-  	margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+	body {
+		margin-bottom: $footerHeight;
+	}
 }
 /*
  * Navbar
@@ -506,9 +513,9 @@ body {
 	padding: 0;
 	padding-left: 15px;
 	padding-right: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	min-height: 40px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	min-height: $footerHeight;
 	margin-top: 15px;
 
 	background-color: rgba(231, 231, 231, 0.5);
@@ -517,7 +524,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	min-height: 30px;
+	min-height: $footerHeightMobile;
 }
 .container-footer-mobile {
 	display: block;
@@ -532,8 +539,10 @@ body {
 	display: inline;
 	text-align: right;
 }
-.footer-infos {
-	
+.footer-item-mobile {
+	&.top {
+		margin-bottom: 10px;
+	}
 }
 
 /*

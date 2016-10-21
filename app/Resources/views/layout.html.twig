@@ -155,7 +155,9 @@
 	{% block footer %}
 		<div class="container-fluid container-footer hidden-xs">
 			<div class="footer">
-				<div class="footer-item"></div>
+				<div class="footer-item">
+					<a class="no-style" href="http://www.tela-botanica.org">{{ 'eveg.tela.slogan'|trans }}<img src="{{ asset('img/logo_telabotanica_min.png') }}" height="40px" alt="Tela Botanica" /></a>
+				</div>
 				<div class="footer-item">
 					<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.versions'|trans|capitalize }}</a>
 					<span> | </span>
@@ -167,16 +169,20 @@
 		</div>
 
 		<div class="container-fluid container-footer-mobile hidden-sm hidden-md hidden-lg">
-			
-				<div class="row">
-					<div class="footer-item-mobile">
-						<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.versions'|trans|capitalize }}</a>
-					|
-						<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
-					|
-						<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
-					</div>
+			<div class="row">
+				<div class="footer-item-mobile top">
+					<a class="no-style" href="http://www.tela-botanica.org">{{ 'eveg.tela.slogan_min'|trans }} Tela Botanica</a>
 				</div>
+			</div>
+			<div class="row">
+				<div class="footer-item-mobile">
+					<a class="no-style" href="{{ path('eveg_app_version') }}">{{ 'eveg.dictionary.versions'|trans|capitalize }}</a>
+				|
+					<a class="no-style" href="{{ path('eveg_app_about') }}">{{ 'eveg.about.footer_title'|trans }}</a>
+				|
+					<a class="no-style" href="{{ path('eveg_legal_notice') }}">{{ 'eveg.legal_notice.title'|trans }}</a>
+				</div>
+			</div>
 		</div>
 	{% endblock %}
 
