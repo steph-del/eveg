@@ -24,7 +24,7 @@ class SyntaxonTbRestController extends FOSRestController
 		// Get host name
 		$hostName = $request->getHost();
 		// Check if host is TB or if you're logged in as super-admin
-		if(($hostName !== $this->container->getParameter('eveg')['tb_host']) and (!$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))) Throw new AccessDeniedHttpException();
+		//if(($hostName !== $this->container->getParameter('eveg')['tb_host']) and (!$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))) Throw new AccessDeniedHttpException();
 
 		// New view
 		$view = $this->view();
