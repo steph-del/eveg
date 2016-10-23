@@ -267,13 +267,24 @@ lexik_translation:
     grid_toggle_similar: false
     base_layout: "evegAppBundle:Translations:layout.html.twig"
 
-stfalcon_tinymce:
-    theme:
-        pages:
-            height: 400
-            plugins:
-                - "image hr anchor pagebreak table link fullpage fullscreen code"
-            toolbar1: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent hr | link unlink | image table | code"
-            table_default_attributes:
-                class: 'table-striped table-pages'
-
+# Ivory CKEditor Bundle
+ivory_ck_editor:
+    inline: false
+    #base_path: '/evegpages/ivoryckeditor/'
+    configs:
+        pages_bundle:
+            skin: "icy_orange,../evegpages/ivoryckeditor/skins/icy_orange/"
+            toolbar: [ ['Chart', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Link', 'Unlink','-','About'] [ 'Image', 'Table', 'SpecialChar' ] ["Source", "-", "Save"] ["Anchor"] ["Maximize"], "/", ['Styles', 'Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor'] ['Chart'] ]
+            #uiColor:                "#FFF"
+            #filebrowserUploadRoute: "my_route"
+            extraPlugins: 'chart' #["lineutils", "widget", "chart"]
+    plugins:
+        chart:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/chart/'
+            filename: 'plugin.js'
+        widget:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/widget/'
+            filename: 'plugin.js'
+        lineutils:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/lineutils/'
+            filename: 'plugin.js'

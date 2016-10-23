@@ -51,12 +51,12 @@
 
 	</form>
 
-	{{ tinymce_init({
+	{#{{ tinymce_init({
 		theme: {'simple':{'height': 500 }},
 		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
 		automatic_uploads: true,
 		images_upload_base_path: '/uploads/img/pages'
-	}) }}
+	}) }}#}
 {% endblock %}
 
 {% block javascripts %}

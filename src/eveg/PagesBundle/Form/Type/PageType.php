@@ -49,16 +49,18 @@ class PageType extends AbstractType
                 'class' => 'form-control'
             ),
         ));
-        $builder->add('contentFr', TextareaType::class, array(
+        $builder->add('contentFr', 'ckeditor', array(
+            'config_name' => 'pages_bundle',
             'attr' => array(
-                'class' => 'tinymce form-control',
+                'class' => 'form-control',
                 'data-theme' => 'pages'
             ),
             'label' => 'Contenu (fr)'
         ));
-        $builder->add('contentEn', TextareaType::class, array(
+        $builder->add('contentEn', 'ckeditor', array(
+            'config_name' => 'pages_bundle',
             'attr' => array(
-                'class' => 'tinymce form-control',
+                'class' => 'form-control',
                 'data-theme' => 'pages'
             ),
             'label' => 'Contenu (en)',

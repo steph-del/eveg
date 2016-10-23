@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3554cdb9a165e555fc6013926d310ed",
-    "content-hash": "1bb7a448b382f6a87190f24f1cc4262e",
+    "hash": "b454da295156477dcc0a5392a23926b9",
+    "content-hash": "ef844133ece6de88c5fdecb0e52d6e6b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1043,6 +1043,117 @@
                 "orm"
             ],
             "time": "2016-09-10 18:51:13"
+        },
+        {
+            "name": "egeloen/ckeditor-bundle",
+            "version": "4.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egeloen/IvoryCKEditorBundle.git",
+                "reference": "0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058",
+                "reference": "0c14a1d8ebfe397fe9c499f0aad6ba7b7d37e058",
+                "shasum": ""
+            },
+            "require": {
+                "egeloen/json-builder": "^1.0|^2.0",
+                "php": ">=5.3.3",
+                "symfony/dependency-injection": "^2.2|^3.0",
+                "symfony/form": "^2.2|^3.0",
+                "symfony/framework-bundle": "^2.2|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0",
+                "symfony/phpunit-bridge": "^2.7|^3.0",
+                "symfony/yaml": "^2.0.5|^3.0",
+                "twig/twig": "^1.12"
+            },
+            "suggest": {
+                "egeloen/form-extra-bundle": "Allows to load CKEditor asynchronously",
+                "twig/twig": "Allows to use Twig templates"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\CKEditorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                }
+            ],
+            "description": "Provides a CKEditor integration for your Symfony2 Project.",
+            "keywords": [
+                "CKEditor"
+            ],
+            "time": "2016-09-07 17:31:21"
+        },
+        {
+            "name": "egeloen/json-builder",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egeloen/ivory-json-builder.git",
+                "reference": "c6afb2c53ac1070144d5d3330d5f86567b132d23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egeloen/ivory-json-builder/zipball/c6afb2c53ac1070144d5d3330d5f86567b132d23",
+                "reference": "c6afb2c53ac1070144d5d3330d5f86567b132d23",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.3.0",
+                "symfony/property-access": "~2.2|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6",
+                "symfony/phpunit-bridge": "~2.7|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\JsonBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                }
+            ],
+            "description": "JSON builder with escaping control for PHP 5.3+",
+            "keywords": [
+                "Escape",
+                "builder",
+                "json"
+            ],
+            "time": "2015-12-06 13:20:24"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
