@@ -204,3 +204,7 @@ web/css/pages_pages_1.css
 web/css/vendors_selectize.bootstrap3_4.css
 
 web/js/vendors_selectize.min_6.js
+
+web/css/chart.css
+
+web/js/chart.js
