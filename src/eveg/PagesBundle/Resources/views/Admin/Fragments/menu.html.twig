@@ -17,3 +17,27 @@
 		<a class="no-style" href="{{ path('eveg_pages_admin_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une page</a>
 	</div>
 </div>
+<div class="thumbnail no-border">
+	<div class="list-title">
+		<a class="no-style" href="{{ path('eveg_pages_admin_index') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Toutes les Sections</a>
+	</div>
+	{% if sections is defined and sections is not empty %}
+		{% for section in sections %}
+			{% if not loop.last %}
+			<div class="list-item text-left">
+			{% else %}
+			<div class="list-item text-left last">
+			{% endif %}
+				<a class="no-style" href="{{ path('eveg_pages_sections_admin_edit', {'id': section.id}) }}">{{ section.menuTitleFr }}</a>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<div class="list-title">
+		<a class="no-style" href="{{ path('eveg_pages_sections_admin_add') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une section</a>
+	</div>
+</div>
+
+
+
+
+

@@ -53,6 +53,29 @@
 					<p>Aucune page à afficher</p>
 				{% endif %}
 
+				{% if sections is defined and sections is not empty %}
+					<ul class="list-group">
+						{% for section in sections %}
+							<li class="list-group-item">
+								[{{ section.listOrder }}] {{ section.titleFr }}
+								<span class="pull-right">
+									{% if section.active == true %}
+										publiée
+									{% else %}
+										non publiée
+									{% endif %}
+									|
+									<a class="delete-action text-danger" href="{{ path('eveg_pages_sections_admin_delete', {'id': section.id}) }}"><i class="fa fa-times" aria-hidden="true"></i>Supprimer</a>
+									|
+									<a class="no-style" href="{{ path('eveg_pages_sections_admin_edit', {'id': section.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</a>
+								</span>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p>Aucune section à afficher</p>
+				{% endif %}
+
 			{% endblock %}
 		</div>
 

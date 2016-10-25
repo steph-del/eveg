@@ -4,15 +4,14 @@ namespace eveg\PagesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use eveg\PagesBundle\Entity\Section as PageSection;
 
 /**
- * Page
+ * Section
  *
- * @ORM\Table(name="eveg_pages")
- * @ORM\Entity(repositoryClass="eveg\PagesBundle\Entity\PageRepository")
+ * @ORM\Table(name="eveg_pages_sections")
+ * @ORM\Entity(repositoryClass="eveg\PagesBundle\Entity\SectionRepository")
  */
-class Page
+class Section
 {
     /**
      * @var integer
@@ -41,21 +40,6 @@ class Page
     /**
      * @var string
      *
-     * @ORM\Column(name="titleEn", type="string", length=255, nullable=true)
-     */
-    private $titleEn;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Slug(fields={"titleEn"})
-     * @ORM\Column(name="titleSlugEn", type="string", length=255, nullable=true)
-     */
-    private $titleSlugEn;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="menuTitleFr", type="string", length=255)
      */
     private $menuTitleFr;
@@ -69,21 +53,6 @@ class Page
     private $menuTitleSlugFr;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="menuTitleEn", type="string", length=255, nullable=true)
-     */
-    private $menuTitleEn;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Slug(fields={"menuTitleEn"})
-     * @ORM\Column(name="menuTitleSlugEn", type="string", length=255, nullable=true)
-     */
-    private $menuTitleSlugEn;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="lastUpdate", type="datetime")
@@ -93,7 +62,7 @@ class Page
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="author", type="object")
+     * @ORM\Column(name="$author", type="object")
      */
     private $author;
 
@@ -112,26 +81,12 @@ class Page
     private $contentFr;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="contentEn", type="text", nullable=true)
-     */
-    private $contentEn;
-
-    /**
      * @var boolean
      *
-     * @ORM\Column(name="published", type="boolean", nullable=true)
+     * @ORM\Column(name="active", type="boolean")
      */
-    private $published;
+    private $active;
 
-    /**
-     * @var string
-     *
-     * @ORM\OneToOne(targetEntity="eveg\PagesBundle\Entity\Section")
-     * @ORM\JoinColumn(name="section_id", referencedColumnName="id", nullable=true)
-     */
-    private $section;
 
     /**
      * Get id
@@ -148,7 +103,7 @@ class Page
      *
      * @param string $titleFr
      *
-     * @return Page
+     * @return Section
      */
     public function setTitleFr($titleFr)
     {
@@ -172,7 +127,7 @@ class Page
      *
      * @param string $titleSlugFr
      *
-     * @return Page
+     * @return Section
      */
     public function setTitleSlugFr($titleSlugFr)
     {
@@ -192,59 +147,11 @@ class Page
     }
 
     /**
-     * Set titleEn
-     *
-     * @param string $titleEn
-     *
-     * @return Page
-     */
-    public function setTitleEn($titleEn)
-    {
-        $this->titleEn = $titleEn;
-
-        return $this;
-    }
-
-    /**
-     * Get titleEn
-     *
-     * @return string
-     */
-    public function getTitleEn()
-    {
-        return $this->titleEn;
-    }
-
-    /**
-     * Set titleSlugEn
-     *
-     * @param string $titleSlugEn
-     *
-     * @return Page
-     */
-    public function setTitleSlugEn($titleSlugEn)
-    {
-        $this->titleSlugEn = $titleSlugEn;
-
-        return $this;
-    }
-
-    /**
-     * Get titleSlugEn
-     *
-     * @return string
-     */
-    public function getTitleSlugEn()
-    {
-        return $this->titleSlugEn;
-    }
-
-    /**
      * Set menuTitleFr
      *
      * @param string $menuTitleFr
      *
-     * @return Page
+     * @return Section
      */
     public function setMenuTitleFr($menuTitleFr)
     {
@@ -268,7 +175,7 @@ class Page
      *
      * @param string $menuTitleSlugFr
      *
-     * @return Page
+     * @return Section
      */
     public function setMenuTitleSlugFr($menuTitleSlugFr)
     {
@@ -288,59 +195,11 @@ class Page
     }
 
     /**
-     * Set menuTitleEn
-     *
-     * @param string $menuTitleEn
-     *
-     * @return Page
-     */
-    public function setMenuTitleEn($menuTitleEn)
-    {
-        $this->menuTitleEn = $menuTitleEn;
-
-        return $this;
-    }
-
-    /**
-     * Get menuTitleEn
-     *
-     * @return string
-     */
-    public function getMenuTitleEn()
-    {
-        return $this->menuTitleEn;
-    }
-
-    /**
-     * Set menuTitleSlugEn
-     *
-     * @param string $menuTitleSlugEn
-     *
-     * @return Page
-     */
-    public function setMenuTitleSlugEn($menuTitleSlugEn)
-    {
-        $this->menuTitleSlugEn = $menuTitleSlugEn;
-
-        return $this;
-    }
-
-    /**
-     * Get menuTitleSlugEn
-     *
-     * @return string
-     */
-    public function getMenuTitleSlugEn()
-    {
-        return $this->menuTitleSlugEn;
-    }
-
-    /**
      * Set lastUpdate
      *
      * @param \DateTime $lastUpdate
      *
-     * @return Page
+     * @return Section
      */
     public function setLastUpdate($lastUpdate)
     {
@@ -360,27 +219,27 @@ class Page
     }
 
     /**
-     * Set author
+     * Set $author
      *
-     * @param \stdClass $author
+     * @param \stdClass $$author
      *
-     * @return Page
+     * @return Section
      */
     public function setAuthor($author)
     {
-        $this->author = $author;
+        $this->$author = $author;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Get $author
      *
      * @return \stdClass
      */
     public function getAuthor()
     {
-        return $this->author;
+        return $this->$author;
     }
 
     /**
@@ -388,7 +247,7 @@ class Page
      *
      * @param integer $listOrder
      *
-     * @return Page
+     * @return Section
      */
     public function setListOrder($listOrder)
     {
@@ -412,7 +271,7 @@ class Page
      *
      * @param string $contentFr
      *
-     * @return Page
+     * @return Section
      */
     public function setContentFr($contentFr)
     {
@@ -432,73 +291,27 @@ class Page
     }
 
     /**
-     * Set contentEn
+     * Set active
      *
-     * @param string $contentEn
+     * @param boolean $active
      *
-     * @return Page
+     * @return Section
      */
-    public function setContentEn($contentEn)
+    public function setActive($active)
     {
-        $this->contentEn = $contentEn;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get contentEn
-     *
-     * @return string
-     */
-    public function getContentEn()
-    {
-        return $this->contentEn;
-    }
-
-    /**
-     * Set published
-     *
-     * @param boolean $published
-     *
-     * @return Page
-     */
-    public function setPublished($published)
-    {
-        $this->published = $published;
-
-        return $this;
-    }
-
-    /**
-     * Get published
+     * Get active
      *
      * @return boolean
      */
-    public function getPublished()
+    public function getActive()
     {
-        return $this->published;
-    }
-
-    /**
-     * Set section
-     *
-     * @return Page
-     */
-    public function setSection(PageSection $section)
-    {
-        $this->section = $section;
-
-        return $this;
-    }
-
-    /**
-     * Get section
-     *
-     * @return PageSection
-     */
-    public function getSection()
-    {
-        return $this->section;
+        return $this->active;
     }
 }
 

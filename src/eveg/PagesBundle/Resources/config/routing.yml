@@ -1,3 +1,11 @@
 eveg_pages_go:
     path:     /{slug}
     defaults: { _controller: evegPagesBundle:Default:go }
+
+eveg_pages_section:
+    path: /sub/{sectionSlug}
+    defaults: { _controller: evegPagesBundle:Default:section }
+
+eveg_pages_section_go:
+    path: /sub/{sectionSlug}/{slug}
+    defaults: { _controller: evegPagesBundle:Default:sectionGo }

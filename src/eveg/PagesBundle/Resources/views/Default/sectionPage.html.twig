@@ -1,0 +1,42 @@
+{# src/eveg/PagesBundle/Resources/views/Admin/sectionPage.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ page.titleFr }} | {{ parent() }} {% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="cssrewrite,compass, ?yui_css" output="css/pages.css"
+		"@evegPagesBundle/Resources/public/css/pages.scss"
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+	{% stylesheets filter="?yui_css" output="css/chart.css"
+		"@evegPagesBundle/Resources/public/ivoryckeditor/plugins/chart/chart.css"
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+		<div class="jumbotron contact">
+			<h1><smaller>{{ page.section.titleFr }}</smaller>{{ page.titleFr }} </h1>
+		</div>
+	</div>
+	{{ page.contentFr|raw }}
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	{% javascripts filter="?yui_js" output="js/chart.js"
+		'@evegPagesBundle/Resources/public/ivoryckeditor/plugins/chart/widget2chart.js'
+		'@evegPagesBundle/Resources/public/ivoryckeditor/plugins/chart/lib/chart.min.js'
+		%}
+
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+{% endblock %}

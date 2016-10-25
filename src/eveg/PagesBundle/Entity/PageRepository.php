@@ -62,4 +62,19 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findBySection($section)
+	{
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p')
+		   ->where('p.section = :section')
+		   ->andWhere('p.published = :true')
+		   ->setParameter('section', $section)
+		   ->setParameter('true', true)
+		   ->orderBy('p.listOrder', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

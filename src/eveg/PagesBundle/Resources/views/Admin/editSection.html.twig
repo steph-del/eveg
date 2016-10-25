@@ -1,4 +1,4 @@
-{# src/eveg/PagesBundle/Resources/views/Admin/editPage.html.twig #}
+{# src/eveg/PagesBundle/Resources/views/Admin/editSection.html.twig #}
 
 {% extends "evegPagesBundle:Admin:index.html.twig" %}
 
@@ -7,28 +7,22 @@
 {% endblock %}
 
 {% block pageContent %}
-	<h2>Editer la page "{{ page.titleFr }}"{% if page.titleEn is defined and page.titleEn is not empty%} / "{{ page.titleEn }}"{% endif %}</h2>
+	<h2>Editer la section "{{ section.titleFr }}"</h2>
 
-	<form class="form-inline form-page" action="{{ path('eveg_pages_admin_edit', {'id': page.id}) }}" method="post">
+	<form class="form-inline form-page" action="{{ path('eveg_pages_sections_admin_edit', {'id': section.id}) }}" method="post">
 		<div class="form-group">
 			{{ form_label(form.titleFr)}}
 			{{ form_widget(form.titleFr)}}
-			{#{{ form_label(form.titleEn)}}
-			{{ form_widget(form.titleEn)}}#}
 		</div>
 
 		<div class="form-group">
 			{{ form_label(form.menuTitleFr)}}
 			{{ form_widget(form.menuTitleFr)}}
-			{#{{ form_label(form.menuTitleEn)}}
-			{{ form_widget(form.menuTitleEn)}}#}
 		</div>
 
 		<div class="form-group">
 			{{ form_label(form.listOrder)}}
 			{{ form_widget(form.listOrder)}}
-			{{ form_label(form.section)}}
-			{{ form_widget(form.section)}}
 		</div>
 
 		<hr />
@@ -37,24 +31,19 @@
 			{{ form_label(form.contentFr)}}
 			{{ form_widget(form.contentFr)}}
 		</div>
-		{#<br /><br />
-		<div class="">
-			{{ form_label(form.contentEn)}}
-			{{ form_widget(form.contentEn)}}
-		</div>#}
 
 		<hr />
 		<br />
 		<div class="form-group">
-			{{ form_label(form.published)}}
-			{{ form_widget(form.published)}}
+			{{ form_label(form.active)}}
+			{{ form_widget(form.active)}}
 		</div>
 		<br /><br />
 		<div class="text-center">
 			<div class="form-group">
 				{{ form_label(form.save)}}
 				{{ form_widget(form.save)}}
-				<a href="{{ path('eveg_pages_admin_preview_fr', {'id': page.id}) }}" target="_blank">
+				{#<a href="{{ path('eveg_pages_admin_preview_fr', {'id': page.id}) }}" target="_blank">
 					<div class="btn btn-default form-control">
 						Prévisualiser (fr)
 					</div>
@@ -63,11 +52,10 @@
 					<div class="btn btn-default form-control">
 						Prévisualiser (en)
 					</div>
-				</a>
+				</a>#}
 			</div>
 		</div>
 		
-
 		{{ form_rest(form) }}
 
 	</form>

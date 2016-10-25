@@ -17,6 +17,7 @@ class MenuBuilder implements ContainerAwareInterface
 
 	private $factory;
 	private $pagesRepo;
+    private $sectionsRepo;
 	private $requestStack;
 	private $securityAuthCheck;
 
@@ -25,10 +26,11 @@ class MenuBuilder implements ContainerAwareInterface
      *
      * Add any other dependency you need
      */
-    public function __construct(FactoryInterface $factory, $pagesRepo, RequestStack $requestStack, $securityAuthCheck)
+    public function __construct(FactoryInterface $factory, $pagesRepo, $sectionsRepo, RequestStack $requestStack, $securityAuthCheck)
     {
         $this->factory = $factory;
         $this->pagesRepo = $pagesRepo;
+        $this->sectionsRepo = $sectionsRepo;
         $this->requestStack = $requestStack;
         $this->securityAuthCheck = $securityAuthCheck;
     }
@@ -37,34 +39,41 @@ class MenuBuilder implements ContainerAwareInterface
     {
 
     	$publishedPages = $this->pagesRepo->findForMenu();
+        $publishedSections = $this->sectionsRepo->findForMenu();
     	$locale = $this->requestStack->getCurrentRequest()->getLocale();
 
-        if(!empty($publishedPages)) {
+        if(!empty($publishedPages) || !empty($publishedSections))
+        {
             $menu = $this->factory->createItem('root');
             $menu->setChildrenAttribute('class', 'nav navbar-nav');
-
             $menu->addChild('Pages', array('label' => 'Ressources'))
                  ->setAttribute('dropdown', true)
             ;
-
-            foreach ($publishedPages as $keyPage => $page) {
-            
-                if($locale == 'fr' || $locale == 'fr_fr') {
-                    $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
-                } else {
-                    if(!empty($page->getTitleEn())) {
-                        $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugEn()), 'label' => $page->getTitleEn()));
-                    } else {
-                        $menu['Pages']->addChild($keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $page->getTitleSlugFr()), 'label' => $page->getTitleFr()));
-                    }
-                }
-
-            }
-
-            return $menu;
         }
 
-        $menu = $this->factory->createItem('root');
+        if(!empty($publishedPages)) {
+            foreach ($publishedPages as $keyPage => $page) { 
+
+                $slug  = $page->getTitleSlugFr();
+                $label = $page->getMenuTitleFr();
+
+                if(empty($page->getSection())) {
+                    $menu['Pages']->addChild('page'.$keyPage, array('route' => 'eveg_pages_go', 'routeParameters' => array('slug' => $slug), 'label' => $label));
+                }
+            }
+        }
+
+        if(!empty($publishedSections)) {
+            foreach ($publishedSections as $keySection => $section) { 
+
+                $slug  = $section->getTitleSlugFr();
+                $label = $section->getMenuTitleFr();
+
+                $menu['Pages']->addChild('section'.$keySection, array('route' => 'eveg_pages_section', 'routeParameters' => array('sectionSlug' => $slug), 'label' => $label));
+            }
+
+        }
+
         return $menu;
     	
     }

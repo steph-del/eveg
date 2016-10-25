@@ -9,33 +9,41 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class DefaultController extends Controller
 {
 
-    public function goAction($slug, Request $request)
+    public function goAction($slug)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$locale = $request->getLocale();
 
     	$pageFr = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugFr($slug);
-    	$pageEn = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugEn($slug);
 
-    	if($locale == 'fr' || $locale == 'fr_FR') {
-    		$page = $pageFr;
-    	} else {
-    		if(!empty($pageEn->getTitleEn() and !empty($pageEn->getContentEn()))) {
-    			$page = $pageEn;
-    		} else {
-    			$page = $pageFr;
-    		}
-    	}
+		$page = $pageFr;
 
-    	if($page === $pageFr) {
-    		return $this->render('evegPagesBundle:Default:showPageFr.html.twig', array('page' => $page));
-    	} elseif($page === $pageEn) {
-    		return $this->render('evegPagesBundle:Default:showPageEn.html.twig', array('page' => $page));
-    	} else {
-    		Throw new NotFoundHttpException();
-    	}
+		return $this->render('evegPagesBundle:Default:showPageFr.html.twig', array('page' => $page));
+    }
 
-        
+    public function sectionAction($sectionSlug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $section = $em->getRepository('evegPagesBundle:Section')->findByTitleSlugFr($sectionSlug);
+        $sectionPages = $em->getRepository('evegPagesBundle:Page')->findBySection($section);
+
+        if(empty($section)) Throw new NotFoundHttpException();
+
+        return $this->render('evegPagesBundle:Default:section.html.twig', array(
+            'section' => $section,
+            'pages'   => $sectionPages
+        ));
+    }
+
+    public function sectionGoAction($sectionSlug, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $page = $em->getRepository('evegPagesBundle:Page')->findByTitleSlugFr($slug);
+
+        if(empty($page)) Throw new NotFoundHttpException();
+
+        return $this->render('evegPagesBundle:Default:sectionPage.html.twig', array(
+            'page'    => $page
+        ));
     }
 
     public function knpMenuAction(Request $request)

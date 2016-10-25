@@ -29,3 +29,19 @@ eveg_pages_admin_preview_en:
     defaults: { _controller: evegPagesBundle:Admin:previewPageEn }
     requirements:
         id: \d+
+
+eveg_pages_sections_admin_add:
+    path: /section/add
+    defaults: { _controller: evegPagesBundle:Admin:addSection }
+
+eveg_pages_sections_admin_edit:
+    path: /section/{id}/edit
+    defaults: { _controller: evegPagesBundle:Admin:editSection }
+    requirements:
+        id: \d+
+
+eveg_pages_sections_admin_delete:
+    path: /section/{id}/delete
+    defaults: { _controller: evegPagesBundle:Admin:deleteSection }
+    requirements:
+        id: \d+

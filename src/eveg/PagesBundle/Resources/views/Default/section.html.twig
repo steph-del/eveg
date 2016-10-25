@@ -1,0 +1,29 @@
+{# src/eveg/PagesBundle/Resources/views/Admin/section.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %} {{ section.titleFr }} | {{ parent() }} {% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter="cssrewrite,compass, ?yui_css" output="css/pages.css"
+		"@evegPagesBundle/Resources/public/css/pages.scss"
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+		<div class="jumbotron contact">
+			<h1>{{ section.titleFr }} </h1>
+		</div>
+	</div>
+	{{ section.contentFr|raw }}
+
+	{% if pages is defined and pages is not empty %}
+		{% for page in pages %}
+			<a href="{{ path('eveg_pages_section_go', {'sectionSlug': section.titleSlugFr, 'slug': page.titleSlugFr}) }}">{{ page.titleFr }}</a>
+		{% endfor %}
+	{% endif %}
+{% endblock %}

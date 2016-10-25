@@ -89,6 +89,10 @@
             {#<i class="{{ item.attribute('icon') }}"></i>#}
             <i class="fa fa-{{ item.attribute('iconAppend') }} animated flash" aria-hidden="true"></i>
         {% endif %}
+        {% if item.attribute('iconPullRight') is not empty  %}
+            {#<i class="{{ item.attribute('icon') }}"></i>#}
+            <i class="fa fa-{{ item.attribute('iconPullRight') }}" aria-hidden="true"></i>
+        {% endif %}
 	</a>
 {% endblock %}
  

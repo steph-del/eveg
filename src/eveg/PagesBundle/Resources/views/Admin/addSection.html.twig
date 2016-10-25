@@ -1,0 +1,50 @@
+{# src/eveg/PagesBundle/Resources/views/Admin/addSection.html.twig #}
+
+{% extends "evegPagesBundle:Admin:index.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block pageContent %}
+	<h2>Ajouter une section</h2>
+	<form class="form-inline form-page" action="{{ path('eveg_pages_sections_admin_add') }}" method="post">
+		<div class="form-group">
+			{{ form_label(form.titleFr)}}
+			{{ form_widget(form.titleFr)}}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.menuTitleFr)}}
+			{{ form_widget(form.menuTitleFr)}}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.listOrder)}}
+			{{ form_widget(form.listOrder)}}
+		</div>
+
+		<hr />
+
+		<div class="">
+			{{ form_label(form.contentFr)}}
+			{{ form_widget(form.contentFr)}}
+		</div>
+
+		<hr />
+		<br />
+		<div class="form-group">
+			{{ form_label(form.active)}}
+			{{ form_widget(form.active)}}
+		</div>
+
+		{{ form_rest(form) }}
+
+	</form>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	
+{% endblock %}
