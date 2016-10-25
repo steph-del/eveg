@@ -1,7 +1,11 @@
 <div class="row cardHeader viewHeader-{{ syntaxon.level }}">
 	<div class="cardHeaderTitle">
 		<h1>
-			{{ syntaxon.syntaxonName }} <span class="viewHeaderAuthor">{#{{ syntaxon.syntaxonAuthor }}#}{{ hocLoco(syntaxon.syntaxonAuthor)|raw }}</span>
+			{% if syntaxon.level == 'HAB' %}
+				{{ ('eveg.tree.'~syntaxon.syntaxonName)|trans }} <span class="viewHeaderAuthor">{{ hocLoco(syntaxon.syntaxonAuthor)|raw }}</span>
+			{% else %}
+				{{ syntaxon.syntaxonName }} <span class="viewHeaderAuthor">{{ hocLoco(syntaxon.syntaxonAuthor)|raw }}</span>
+			{% endif %}
 		</h1>
 		<h2>
 			{% if app.request.locale == 'fr' %}

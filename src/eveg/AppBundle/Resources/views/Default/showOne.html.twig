@@ -16,7 +16,11 @@
 
 {% block title %}
 	{% if syntaxon is defined %}
-		{{ syntaxon.syntaxonName }} | {{ parent() }}
+		{% if syntaxon.level == 'HAB' %}
+			{{ ('eveg.tree.'~syntaxon.syntaxonName)|trans }} | {{ parent() }}
+		{% else %}
+			{{ syntaxon.syntaxonName }} | {{ parent() }}
+		{% endif %}
 	{% endif %}
 {% endblock %}
 
