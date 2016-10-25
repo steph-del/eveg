@@ -42,9 +42,10 @@ class MenuBuilder implements ContainerAwareInterface
         $publishedSections = $this->sectionsRepo->findForMenu();
     	$locale = $this->requestStack->getCurrentRequest()->getLocale();
 
+        $menu = $this->factory->createItem('root');
+        
         if(!empty($publishedPages) || !empty($publishedSections))
         {
-            $menu = $this->factory->createItem('root');
             $menu->setChildrenAttribute('class', 'nav navbar-nav');
             $menu->addChild('Pages', array('label' => 'Ressources'))
                  ->setAttribute('dropdown', true)
