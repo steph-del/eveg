@@ -355,6 +355,7 @@ eveg.app.show_one.feedback.success: 'Votre message a bien été pris en compte e
 eveg.app.show_one.feedback.error: 'Nous ne parvenons pas à envoyer votre message, merci de nous contacter directement par mail (voir la page Contact).'
 eveg.app.show_one.feedback.user.thanks: 'Votre message a bien été envoyé. Nous vous remerçions pour votre participation et vous répondrons dès que nous aurons traité votre demande.'
 eveg.app.show_one.feedback.user.salutation: "Cordialement,\nl'équipe eVeg.\n"
+eveg.app.show_one.feedback.maps.warning: "Les cartes de répartition ne sont pas exhaustives, elles reflètent l’état actuel des connaissances de l’auteur."
 eveg.app.show_one.photos.title: Photos
 eveg.app.show_one.photos.add.title: 'Ajouter une photo'
 eveg.app.show_one.photos.add.another: 'Ajouter une autre photo'
