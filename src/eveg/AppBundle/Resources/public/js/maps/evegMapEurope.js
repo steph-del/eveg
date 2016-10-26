@@ -513,114 +513,116 @@ function createMapEurope(idElement, idLegendHover, idLegend, jsonData, scaleValu
               activeColor = colorAbsentToBeConfirmed;
               break;
           }
-            
-          switch(index) {
-            case 'macaronesia':
-              macaShape.attr('fill', activeColor);
-              macaShape.attr('stroke', activeColor);
-              break;
-            case 'portugal':
-              ptShape.attr('fill', activeColor);
-              break;
-            case 'espana':
-              esShape.attr('fill', activeColor);
-              break;
-            case 'iceland':
-              isShape.attr('fill', activeColor);
-              break;
-            case 'norway':
-              noShape.attr('fill', activeColor);
-              break;
-            case 'denmark':
-              dkShape.attr('fill', activeColor);
-              break;
-            case 'ireland':
-              ieShape.attr('fill', activeColor);
-              break;
-            case 'uk':
-              gbShape.attr('fill', activeColor);
-              break;
-            case 'netherlands':
-              nlShape.attr('fill', activeColor);
-              break;
-            case 'belgium':
-              beShape.attr('fill', activeColor);
-              break;
-            case 'luxembourg':
-              luShape.attr('fill', activeColor);
-              break;
-            case 'france':
-              frShape.attr('fill', activeColor);
-              break;
-            case 'germany':
-              deShape.attr('fill', activeColor);
-              break;
-            case 'poland':
-              plShape.attr('fill', activeColor);
-              break;
-            case 'czech_republic':
-              czShape.attr('fill', activeColor);
-              break;
-            case 'slovakia':
-              skShape.attr('fill', activeColor);
-              break;
-            case 'switzerland':
-              chShape.attr('fill', activeColor);
-              break;
-            case 'austria':
-              atShape.attr('fill', activeColor);
-              break;
-            case 'italy':
-              itShape.attr('fill', activeColor);
-              break;
-            case 'slovenia_croatia':
-              siShape.attr('fill', activeColor);
-              hrShape.attr('fill', activeColor);
-              break;
-            case 'bosnia_montenegro':
-              baShape.attr('fill', activeColor);
-              meShape.attr('fill', activeColor);
-              break;
-            case 'albania':
-              alShape.attr('fill', activeColor);
-              break;
-            case 'serbia_macedonia':
-              rsShape.attr('fill', activeColor);
-              mkShape.attr('fill', activeColor);
-              break;
-            case 'hungary':
-              huShape.attr('fill', activeColor);
-              break;
-            case 'romania_moldova':
-              roShape.attr('fill', activeColor);
-              mkShape.attr('fill', activeColor);
-              break;
-            case 'bulgaria':
-              bgShape.attr('fill', activeColor);
-              break;
-            case 'greece':
-              grShape.attr('fill', activeColor);
-              break;
-            case 'sweden':
-              seShape.attr('fill', activeColor);
-              break;
-            case 'finland':
-              fiShape.attr('fill', activeColor);
-              break;
-            case 'estonia_latvia_lithuania':
-              eeShape.attr('fill', activeColor);
-              lvShape.attr('fill', activeColor);
-              ltShape.attr('fill', activeColor);
-              break;
-            case 'belarus':
-              byShape.attr('fill', activeColor);
-              break;
-            case 'ukraine':
-              uaShape.attr('fill', activeColor);
-              break;
-            case 'russia':
-              ruShape.attr('fill', activeColor);
-              break;
+
+          if (value !== '') {            
+            switch(index) {
+              case 'macaronesia':
+                macaShape.attr('fill', activeColor);
+                macaShape.attr('stroke', activeColor);
+                break;
+              case 'portugal':
+                ptShape.attr('fill', activeColor);
+                break;
+              case 'espana':
+                esShape.attr('fill', activeColor);
+                break;
+              case 'iceland':
+                isShape.attr('fill', activeColor);
+                break;
+              case 'norway':
+                noShape.attr('fill', activeColor);
+                break;
+              case 'denmark':
+                dkShape.attr('fill', activeColor);
+                break;
+              case 'ireland':
+                ieShape.attr('fill', activeColor);
+                break;
+              case 'uk':
+                gbShape.attr('fill', activeColor);
+                break;
+              case 'netherlands':
+                nlShape.attr('fill', activeColor);
+                break;
+              case 'belgium':
+                beShape.attr('fill', activeColor);
+                break;
+              case 'luxembourg':
+                luShape.attr('fill', activeColor);
+                break;
+              case 'france':
+                frShape.attr('fill', activeColor);
+                break;
+              case 'germany':
+                deShape.attr('fill', activeColor);
+                break;
+              case 'poland':
+                plShape.attr('fill', activeColor);
+                break;
+              case 'czech_republic':
+                czShape.attr('fill', activeColor);
+                break;
+              case 'slovakia':
+                skShape.attr('fill', activeColor);
+                break;
+              case 'switzerland':
+                chShape.attr('fill', activeColor);
+                break;
+              case 'austria':
+                atShape.attr('fill', activeColor);
+                break;
+              case 'italy':
+                itShape.attr('fill', activeColor);
+                break;
+              case 'slovenia_croatia':
+                siShape.attr('fill', activeColor);
+                hrShape.attr('fill', activeColor);
+                break;
+              case 'bosnia_montenegro':
+                baShape.attr('fill', activeColor);
+                meShape.attr('fill', activeColor);
+                break;
+              case 'albania':
+                alShape.attr('fill', activeColor);
+                break;
+              case 'serbia_macedonia':
+                rsShape.attr('fill', activeColor);
+                mkShape.attr('fill', activeColor);
+                break;
+              case 'hungary':
+                huShape.attr('fill', activeColor);
+                break;
+              case 'romania_moldova':
+                roShape.attr('fill', activeColor);
+                mkShape.attr('fill', activeColor);
+                break;
+              case 'bulgaria':
+                bgShape.attr('fill', activeColor);
+                break;
+              case 'greece':
+                grShape.attr('fill', activeColor);
+                break;
+              case 'sweden':
+                seShape.attr('fill', activeColor);
+                break;
+              case 'finland':
+                fiShape.attr('fill', activeColor);
+                break;
+              case 'estonia_latvia_lithuania':
+                eeShape.attr('fill', activeColor);
+                lvShape.attr('fill', activeColor);
+                ltShape.attr('fill', activeColor);
+                break;
+              case 'belarus':
+                byShape.attr('fill', activeColor);
+                break;
+              case 'ukraine':
+                uaShape.attr('fill', activeColor);
+                break;
+              case 'russia':
+                ruShape.attr('fill', activeColor);
+                break;
+            }
           }
         });
 
