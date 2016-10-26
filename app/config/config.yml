@@ -274,10 +274,10 @@ ivory_ck_editor:
     configs:
         pages_bundle:
             skin: "icy_orange,../evegpages/ivoryckeditor/skins/icy_orange/"
-            toolbar: [ ['Chart', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Link', 'Unlink','-','About'] [ 'Image', 'Table', 'SpecialChar' ] ["Source", "-", "Save"] ["Anchor"] ["Maximize"], "/", ['Styles', 'Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor'] ['Chart'] ]
+            toolbar: [ ['Chart', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Link', 'Unlink','-','About'] [ 'Image', 'Table', 'SpecialChar' ] ["Source", "CreateDiv"] ["Anchor"] ["Maximize"], "/", ['Styles', 'Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor'] ['Chart'] ["Save"]]
             #uiColor:                "#FFF"
             #filebrowserUploadRoute: "my_route"
-            extraPlugins: 'chart' #["lineutils", "widget", "chart"]
+            extraPlugins: "chart,div" #["chart"] #["lineutils", "widget", "chart"]
     plugins:
         chart:
             path: '/bundles/evegpages/ivoryckeditor/plugins/chart/'
@@ -287,4 +287,13 @@ ivory_ck_editor:
             filename: 'plugin.js'
         lineutils:
             path: '/bundles/evegpages/ivoryckeditor/plugins/lineutils/'
+            filename: 'plugin.js'
+        div:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/div/'
+            filename: 'plugin.js'
+        dialog:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/dialog/'
+            filename: 'plugin.js'
+        dialogui:
+            path: '/bundles/evegpages/ivoryckeditor/plugins/dialogui/'
             filename: 'plugin.js'

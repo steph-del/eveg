@@ -86,6 +86,10 @@
 	{{ parent() }}
 
 	<script>
+		//CKEDITOR.config.removeFormatAttributes = "";
+		CKEDITOR.config.div_wrapTable = true;
+	</script>
+	<script>
 		$('a.delete-action').click(function(e) {
 			e.preventDefault();
 			if(window.confirm('Valider la suppression ?')) {
