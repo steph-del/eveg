@@ -36,12 +36,21 @@
 			font-weight: bold;
 			line-height: 35px;
 			border-bottom: 2px solid #E6E5E6;
+			background-color: #F3F3F3;
+			th {
+				border-right: 1px solid #E6E5E6
+			}
+			
 		}
 	}
 
 	tbody {
 		tr {
-
+			
+			td {
+				border-right: 1px solid #E6E5E6;
+				border-bottom: 1px solid #E6E5E6;
+			}
 		}
 	}
 }
