@@ -68,6 +68,14 @@ class Repartition
     private $biblio;
 
     /**
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="self_observation", type="boolean")
+     */
+    private $selfObservation;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="comment", type="text")
@@ -297,6 +305,30 @@ class Repartition
     public function getBiblio()
     {
         return $this->biblio;
+    }
+
+    /**
+     * Set selfObservation
+     *
+     * @param boolean $selfObs
+     *
+     * @return Repartition
+     */
+    public function setSelfObservation($selfObs)
+    {
+        $this->selfObservation = $selfObs;
+
+        return $this;
+    }
+
+    /**
+     * Get selfObservation
+     *
+     * @return boolean
+     */
+    public function getSelfObservation()
+    {
+        return $this->selfObservation;
     }
 
     /**
