@@ -40,7 +40,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ["evegAppBundle", "evegPagesBundle"]
+    bundles:        ["evegAppBundle", "evegPagesBundle", "evegUserRepartitionBundle"]
     #java: /usr/bin/java
     ruby: %ruby%
     filters:

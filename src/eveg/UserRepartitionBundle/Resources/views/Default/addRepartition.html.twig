@@ -1,0 +1,85 @@
+{# src/eveg/UserRepartitionBundle/Resources/views/Default/addRepartition.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	Chorologie de "{{ syntaxon.syntaxon }}" | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row whiteRow">
+		<div class="jumbotron">
+			<h1>Ajouter une donnée chorologique<br /><small>{{ syntaxon.syntaxonName }}</small></h1>
+		</div>
+	</div>
+
+	<div class="row">
+		{#{{ dump(syntaxon) 	}}#}
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-9">
+					A
+				</div>
+				<div class="col-md-3">
+					<!-- Fr departments repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapDepFrPanel.html.twig' with { 'showOptions': false } only %}
+					<!-- EU+ coutries repartition -->
+					{% include 'evegAppBundle:Default/Fragments/CardPanels:mapEuropePanel.html.twig' with { 'showOptions': false } only %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<!-- MAP SCRIPTS-->
+	<script>syntaxonId = {{ syntaxon.id }}</script>
+	{% javascripts filter="?yui_js" output ="js/maps.js"
+		'@evegAppBundle/Resources/public/js/maps/raphael-2.1.2.min.js'
+		'@evegAppBundle/Resources/public/js/maps/scale.raphael-0.8.js'
+		'@evegAppBundle/Resources/public/js/maps/canvg.min.js'
+		'@evegAppBundle/Resources/public/js/maps/canvas2image.js'
+		'@evegAppBundle/Resources/public/js/maps/cacheMap.js'
+		'@evegAppBundle/Resources/public/js/maps/evegMapDepFr.js'
+		'@evegAppBundle/Resources/public/js/maps/evegMapEurope.js'
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	<!-- DepFr map-->
+	<script>
+		var repDepFr = '{{ repDepFrJson | raw }}';
+		createMapDepFr(document.getElementById('mapDepFr'),
+			           document.getElementById('mapDepFrHoverLegend'),
+			           document.getElementById('mapDepFrLegend'),
+			           repDepFr,
+			           0.55);
+		$("#mapDepFrLegend").hide();
+		$("#mapDepFrToggleLegend").click(function(){
+			$("#mapDepFrLegend").toggle();
+		});
+	</script>
+	<!-- UE map -->
+	<script>
+		var repUE = '{{ repUeJson | raw }}';
+		createMapEurope(document.getElementById('mapEurope'),
+						document.getElementById('mapEuropeHoverLegend'),
+						document.getElementById('mapEuropeLegend'),
+						repUE,
+						0.55);
+		$("#mapEuropeLegend").hide();
+		$("#mapEuropeToggleLegend").click(function(){
+			$("#mapEuropeLegend").toggle();
+		});
+	</script>
+	
+{% endblock %}
