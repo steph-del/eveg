@@ -1,0 +1,3 @@
+eveg_user_repartition_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: evegUserRepartitionBundle:Default:index }
