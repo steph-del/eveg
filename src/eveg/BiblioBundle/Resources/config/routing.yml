@@ -1,0 +1,3 @@
+eveg_biblio_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: evegBiblioBundle:Default:index }

@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
             new eveg\PagesBundle\evegPagesBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new eveg\BiblioBundle\evegBiblioBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
