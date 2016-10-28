@@ -965,10 +965,10 @@ class ImportController extends Controller
 
 			// Truncate the table
 			$em = $this->getDoctrine()->getManager();
-			$connection = $em->getConnection();
-			$platform   = $connection->getDatabasePlatform();
-			$connection->executeUpdate($platform->getTruncateTableSQL('eveg_syntaxon_biblio', true /* whether to cascade */));
-			$em->clear();
+			//$connection = $em->getConnection();
+			//$platform   = $connection->getDatabasePlatform();
+			//$connection->executeUpdate($platform->getTruncateTableSQL('eveg_syntaxon_biblio', true /* whether to cascade */));
+			//$em->clear();
 
 			// Retrieves all syntaxonCore entities
 			$entities = $em->getRepository('evegAppBundle:SyntaxonCore')->findMultipleById($importKeys);
