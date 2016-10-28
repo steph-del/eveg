@@ -1,0 +1,6 @@
+#src/eveg/BiblioBundle/Resources/config/routing/routing_rest.yml
+
+rest_biblio_api:
+    type: rest
+    resource:    eveg\BiblioBundle\Controller\BaseBiblio\BaseBiblioRestController
+    name_prefix: api_

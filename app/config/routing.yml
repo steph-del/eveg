@@ -1,5 +1,5 @@
 eveg_biblio:
-    resource: "@evegBiblioBundle/Resources/config/routing.yml"
+    resource: "@evegBiblioBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 eveg_pages:
@@ -28,6 +28,11 @@ eveg_user:
 rest:
     type: rest
     resource: "@evegAppBundle/Resources/config/routing/routing_rest.yml"
+    prefix: /api
+
+rest_biblio:
+    type: rest
+    resource: "@evegBiblioBundle/Resources/config/routing/routing_rest.yml"
     prefix: /api
 
 # -------------
