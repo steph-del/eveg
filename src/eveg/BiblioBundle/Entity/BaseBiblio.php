@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * BaseBiblio
  * Contains all references from baseveg biblio and user's additions
  *
- * @ORM\Table()
+ * @ORM\Table(name="base_biblio")
  * @ORM\Entity(repositoryClass="eveg\BiblioBundle\Entity\BaseBiblioRepository")
  */
 class BaseBiblio
@@ -32,7 +32,8 @@ class BaseBiblio
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="updatedBy", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", inversedBy="BaseBiblio")
+     * @ORM\JoinColumn(name="user_id", nullable=true)
      */
     private $updatedBy;
 
