@@ -1,0 +1,3 @@
+eveg_biblio_import:
+    path:     /admin/biblio/bv-import
+    defaults: { _controller: evegBiblioBundle:BaseBiblio/BaseBiblioImport:import }

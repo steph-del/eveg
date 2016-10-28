@@ -1,3 +1,7 @@
+eveg_biblio:
+    resource: "@evegBiblioBundle/Resources/config/routing.yml"
+    prefix:   /
+
 eveg_pages:
     resource: "@evegPagesBundle/Resources/config/routing.yml"
     prefix:   /ressources

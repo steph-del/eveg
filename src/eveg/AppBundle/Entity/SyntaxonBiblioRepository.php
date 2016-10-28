@@ -10,4 +10,14 @@ namespace eveg\AppBundle\Entity;
  */
 class SyntaxonBiblioRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findDistinctReferences()
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b.reference')
+			->groupBy('b.reference')
+			->orderBy('b.reference', 'ASC');
+
+		return $qb->getQuery()->getResult();
+	}
 }

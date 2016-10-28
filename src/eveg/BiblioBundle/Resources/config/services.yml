@@ -1,0 +1,4 @@
+services:
+#    eveg_biblio.example:
+#        class: eveg\BiblioBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

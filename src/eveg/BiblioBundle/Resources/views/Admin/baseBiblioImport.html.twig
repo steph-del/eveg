@@ -1,0 +1,49 @@
+{# src/eveg/BiblioBundle/Resources/views/Admin/baseBiblioImport.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Biblio | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+
+		<div class="jumbotron admin">
+			<h1>Importer la biblio</h1>
+		</div>
+
+		<div class="col-md-12 text-center">
+			{% if counter is defined%}<b>{{ counter }} données importées</b>{% endif %}
+			<form action="{{ path('eveg_biblio_import') }}" method="post" {{ form_enctype(form) }}>
+			    {{ form_widget(form) }}
+			    <input type="submit" />
+			</form>
+		</div>
+
+		<div class="col-md-6">
+			{% if references is defined%}
+				{% for r in references %}
+					- {{ r.reference }}<br />
+				{% endfor %}
+			{% endif %}
+		</div>
+		<div class="col-md-6">
+			{% if bibReferences is defined %}
+				{% for r in bibReferences %}
+					- {{ r.reference }}<br />
+				{% endfor %}
+			{% endif %}
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+{% endblock %}
