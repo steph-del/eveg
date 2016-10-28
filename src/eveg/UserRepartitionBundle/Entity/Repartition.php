@@ -3,11 +3,14 @@
 namespace eveg\UserRepartitionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use eveg\UserBundle\Entity\User;
+use eveg\AppBundle\Entity\SyntaxonCore;
+use eveg\BiblioBundle\Entity\BaseBiblio;
 
 /**
  * Repartition
  *
- * @ORM\Table()
+ * @ORM\Table(name="eveg_user_repartition")
  * @ORM\Entity(repositoryClass="eveg\UserRepartitionBundle\Entity\RepartitionRepository")
  */
 class Repartition
@@ -22,11 +25,12 @@ class Repartition
     private $id;
 
     /**
-     * @var \stdClass
+     * @var \SyntaxonCore
      *
-     * @ORM\Column(name="syntaxon", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore", inversedBy="userRepartitions")
+     * @ORM\JoinColumn(name="syntaxonCore_id", referencedColumnName="id")
      */
-    private $syntaxon;
+    private $syntaxonCore;
 
     /**
      * @var string
@@ -57,9 +61,9 @@ class Repartition
     private $syntaxonBiblioAuthor;
 
     /**
-     * @var \stdClass
+     * @var \BaseBiblio
      *
-     * @ORM\Column(name="biblio", type="object")
+     * @ORM\OneToOne(targetEntity="eveg\BiblioBundle\Entity\BaseBiblio", cascade={"persist"})
      */
     private $biblio;
 
@@ -92,9 +96,9 @@ class Repartition
     private $value;
 
     /**
-     * @var \stdClass
+     * @var \User
      *
-     * @ORM\Column(name="submitedBy", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
      */
     private $submitedBy;
 
@@ -113,9 +117,9 @@ class Repartition
     private $validate;
 
     /**
-     * @var \stdClass
+     * @var \User
      *
-     * @ORM\Column(name="validator", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
      */
     private $validator;
 
@@ -127,9 +131,9 @@ class Repartition
     private $validedAt;
 
     /**
-     * @var \stdClass
+     * @var \User
      *
-     * @ORM\Column(name="updatedBy", type="object")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
      */
     private $updatedBy;
 
@@ -152,27 +156,27 @@ class Repartition
     }
 
     /**
-     * Set syntaxon
+     * Set syntaxonCore
      *
-     * @param \stdClass $syntaxon
+     * @param \SyntaxonCore $syntaxonCore
      *
      * @return Repartition
      */
-    public function setSyntaxon($syntaxon)
+    public function setSyntaxonCore(SyntaxonCore $syntaxonCore)
     {
-        $this->syntaxon = $syntaxon;
+        $this->syntaxonCore = $syntaxonCore;
 
         return $this;
     }
 
     /**
-     * Get syntaxon
+     * Get syntaxonCore
      *
-     * @return \stdClass
+     * @return \SyntaxonCore
      */
-    public function getSyntaxon()
+    public function getSyntaxonCore()
     {
-        return $this->syntaxon;
+        return $this->syntaxonCore;
     }
 
     /**
@@ -274,11 +278,11 @@ class Repartition
     /**
      * Set biblio
      *
-     * @param \stdClass $biblio
+     * @param \BaseBiblio $biblio
      *
      * @return Repartition
      */
-    public function setBiblio($biblio)
+    public function setBiblio(BaseBiblio $biblio)
     {
         $this->biblio = $biblio;
 
@@ -288,7 +292,7 @@ class Repartition
     /**
      * Get biblio
      *
-     * @return \stdClass
+     * @return \BaseBiblio
      */
     public function getBiblio()
     {
@@ -394,11 +398,11 @@ class Repartition
     /**
      * Set submitedBy
      *
-     * @param \stdClass $submitedBy
+     * @param \User $submitedBy
      *
      * @return Repartition
      */
-    public function setSubmitedBy($submitedBy)
+    public function setSubmitedBy(User $submitedBy)
     {
         $this->submitedBy = $submitedBy;
 
@@ -466,11 +470,11 @@ class Repartition
     /**
      * Set validator
      *
-     * @param \stdClass $validator
+     * @param \User $validator
      *
      * @return Repartition
      */
-    public function setValidator($validator)
+    public function setValidator(User $validator)
     {
         $this->validator = $validator;
 
@@ -514,11 +518,11 @@ class Repartition
     /**
      * Set updatedBy
      *
-     * @param \stdClass $updatedBy
+     * @param \User $updatedBy
      *
      * @return Repartition
      */
-    public function setUpdatedBy($updatedBy)
+    public function setUpdatedBy(User $updatedBy)
     {
         $this->updatedBy = $updatedBy;
 

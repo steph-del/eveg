@@ -256,6 +256,11 @@ class SyntaxonCore
     protected $syntaxonBiblios;
 
     /**
+     * @ORM\OneToMany(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition", mappedBy="syntaxonCore", cascade={"persist"})
+     */
+    protected $userRepartitions;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="hit", type="integer", nullable=true, options={"default" : 0})
