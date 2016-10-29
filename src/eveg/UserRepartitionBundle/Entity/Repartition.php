@@ -134,7 +134,7 @@ class Repartition
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="validedAt", type="datetime")
+     * @ORM\Column(name="validedAt", type="datetime", nullable=true)
      */
     private $validedAt;
 
@@ -148,7 +148,7 @@ class Repartition
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      */
     private $updatedAt;
 
