@@ -16,7 +16,7 @@
 
 	<div class="row whiteRow">
 		<div class="jumbotron">
-			<h1>Ajouter une donnée chorologique<br /><small>{{ syntaxon.syntaxonName }}</small></h1>
+			<h1>Ajouter une donnée chorologique (Fr)<br /><smaller>{{ syntaxon.syntaxon }}</smaller></h1>
 		</div>
 	</div>
 
@@ -25,7 +25,52 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-9">
-					A
+					{{ form_start(form) }}
+						{# Shape #}
+						<div class="well">
+							<ul>{{ form_row(form.shape) }}</ul>
+						</div>
+
+						{# Source #}
+						<div class="well">
+							<ul>
+								<li>{{ form_row(form.biblio) }}</li>
+								<li>{{ form_row(form.biblioToAdd) }}</li>
+								<li>{{ form_row(form.selfObservation) }}</li>
+							<ul>
+						</div>
+
+						{# Value #}
+						<div class="well">
+							<ul>
+								<li>{{ form_row(form.value) }}</li>
+							</ul>
+						</div>
+
+						{# Comment #}
+						<div class="well">
+							<ul>
+								<li>{{ form_row(form.comment) }}</li>
+							</ul>
+						</div>
+
+						{# Syntaxon #}
+						<div class="well">
+							<ul>
+								<li>{{ form_row(form.synonymType) }}</li>
+								<li>{{ form_row(form.syntaxonBiblioName) }}</li>
+								<li>{{ form_row(form.syntaxonBiblioAuthor) }}</li>
+							</ul>
+						</div>
+
+
+						{#{{ form_widget(form) }}#}
+						<div class="saveButtons">
+							{{ form_widget(form.save) }}
+							{{ form_widget(form.saveAndAdd) }}
+						</div>
+						{{ form_widget(form._token) }}
+					{{ form_end(form) }}
 				</div>
 				<div class="col-md-3">
 					<!-- Fr departments repartition -->
@@ -81,5 +126,17 @@
 			$("#mapEuropeLegend").toggle();
 		});
 	</script>
-	
+
+	<!-- selectize.js -->
+	<script>
+		$('select').selectize({
+			'creat': false,
+	    	'placeholder': ''
+	    });
+		$('select.biblio').selectize({
+			'creat': true,
+	    	'placeholder': ''
+	    });
+	</script>
+
 {% endblock %}
