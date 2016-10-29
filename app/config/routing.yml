@@ -1,5 +1,5 @@
 eveg_user_repartition:
-    resource: "@evegUserRepartitionBundle/Resources/config/routing.yml"
+    resource: "@evegUserRepartitionBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
 eveg_biblio:
