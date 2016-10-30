@@ -63,7 +63,7 @@ class Repartition
     /**
      * @var \BaseBiblio
      *
-     * @ORM\OneToOne(targetEntity="eveg\BiblioBundle\Entity\BaseBiblio", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="eveg\BiblioBundle\Entity\BaseBiblio", cascade={"persist"})
      */
     private $biblio;
 
