@@ -120,9 +120,16 @@ class Repartition
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validate", type="boolean")
+     * @ORM\Column(name="validated", type="boolean")
      */
-    private $validate;
+    private $validated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled;
 
     /**
      * @var \User
@@ -476,27 +483,27 @@ class Repartition
     }
 
     /**
-     * Set validate
+     * Set validated
      *
-     * @param boolean $validate
+     * @param boolean $validated
      *
      * @return Repartition
      */
-    public function setValidate($validate)
+    public function setValidated($validated)
     {
-        $this->validate = $validate;
+        $this->validated = $validated;
 
         return $this;
     }
 
     /**
-     * Get validate
+     * Get validated
      *
      * @return boolean
      */
-    public function getValidate()
+    public function getValidated()
     {
-        return $this->validate;
+        return $this->validated;
     }
 
     /**
@@ -594,5 +601,28 @@ class Repartition
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return Repartition
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+}

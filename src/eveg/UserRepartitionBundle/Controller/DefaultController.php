@@ -46,7 +46,8 @@ class DefaultController extends Controller
             $repartition->setMap('depFr');
             $repartition->setSubmitedBy($currentUser);
             $repartition->setSubmitedAt(new \DateTime('now'));
-            $repartition->setValidate(false);
+            $repartition->setValidated(false);
+            $repartition->setEnabled(true);
 
             // If a Biblio object is submited
             if(!empty($submitedBiblio)) {
