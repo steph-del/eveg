@@ -9,6 +9,7 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
+use eveg\UserRepartitionBundle\Entity\Repartition as UserRepartition;
 
 /**
  * SyntaxonCore
@@ -29,6 +30,7 @@ class SyntaxonCore
         $this->syntaxonFiles = new ArrayCollection();
         $this->syntaxonBiblios = new ArrayCollection();
         $this->syntaxonHttpLinks = new ArrayCollection();
+        $this->userRepartitions = new ArrayCollection();
     }
 
     public function __tostring()
@@ -258,7 +260,7 @@ class SyntaxonCore
     /**
      * @ORM\OneToMany(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition", mappedBy="syntaxonCore", cascade={"persist"})
      */
-    protected $userRepartitions;
+    private $userRepartitions;
 
     /**
      * @var integer
@@ -688,6 +690,25 @@ class SyntaxonCore
     public function removeSyntaxonBiblio(SyntaxonBiblio $syntaxonBiblio)
     {
         $this->syntaxonBiblios->removeElement($syntaxonBiblio);
+    }
+
+    /**
+    * Get userRepartitions
+    *
+    */
+    public function getUserRepartition()
+    {
+        return $this->userRepartitions;
+    }
+
+    public function addUserRepartition(UserRepartition $repartition)
+    {
+        $this->userRepartitions->add($repartition);
+    }
+
+    public function removeUserRepartition(UserRepartition $repartition)
+    {
+        $this->userRepartitions->removeElement($repartition);
     }
 
 
