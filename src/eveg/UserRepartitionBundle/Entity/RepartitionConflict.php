@@ -22,11 +22,18 @@ class RepartitionConflict
     private $id;
 
     /**
-     * @var \stdClass
+     * @var integer
      *
-     * @ORM\ManyToMany(targetEntity="eveg\AppBundle\Entity\SyntaxonCore")
+     * @ORM\Column(name="syntaxon_id_concerned", type="integer")
      */
-    private $syntaxonConcerned;
+    private $syntaxonIdConcerned;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="syntaxon_name_concerned", type="string", length=512)
+     */
+    private $syntaxonNameConcerned;
 
     /**
      * @var \DateTime
@@ -45,14 +52,14 @@ class RepartitionConflict
     /**
      * @var boolean
      *
-     * @ORM\Column(name="resolved", type="boolean")
+     * @ORM\Column(name="resolved", type="boolean", nullable=true)
      */
     private $resolved;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="resolvedAt", type="datetime")
+     * @ORM\Column(name="resolvedAt", type="datetime", nullable=true)
      */
     private $resolvedAt;
 
@@ -60,13 +67,14 @@ class RepartitionConflict
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $resolvedBy;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
 
@@ -93,30 +101,6 @@ class RepartitionConflict
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set syntaxonConcerned
-     *
-     * @param \stdClass $syntaxonConcerned
-     *
-     * @return RepartitionConflict
-     */
-    public function setSyntaxonConcerned($syntaxonConcerned)
-    {
-        $this->syntaxonConcerned = $syntaxonConcerned;
-
-        return $this;
-    }
-
-    /**
-     * Get syntaxonConcerned
-     *
-     * @return \stdClass
-     */
-    public function getSyntaxonConcerned()
-    {
-        return $this->syntaxonConcerned;
     }
 
     /**
@@ -310,5 +294,52 @@ class RepartitionConflict
     {
         return $this->item2;
     }
-}
 
+    /**
+     * Set syntaxonIdConcerned
+     *
+     * @param string $syntaxonIdConcerned
+     *
+     * @return RepartitionConflict
+     */
+    public function setSyntaxonIdConcerned($syntaxonIdConcerned)
+    {
+        $this->syntaxonIdConcerned = $syntaxonIdConcerned;
+
+        return $this;
+    }
+
+    /**
+     * Get syntaxonIdConcerned
+     *
+     * @return string
+     */
+    public function getSyntaxonIdConcerned()
+    {
+        return $this->syntaxonIdConcerned;
+    }
+
+    /**
+     * Set syntaxonNameConcerned
+     *
+     * @param string $syntaxonNameConcerned
+     *
+     * @return RepartitionConflict
+     */
+    public function setSyntaxonNameConcerned($syntaxonNameConcerned)
+    {
+        $this->syntaxonNameConcerned = $syntaxonNameConcerned;
+
+        return $this;
+    }
+
+    /**
+     * Get syntaxonNameConcerned
+     *
+     * @return string
+     */
+    public function getSyntaxonNameConcerned()
+    {
+        return $this->syntaxonNameConcerned;
+    }
+}
