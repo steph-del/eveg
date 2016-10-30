@@ -50,7 +50,7 @@ class mergeUserRepartitions
 		return $depFrShapes;
 	}
 
-	private function getDepFrShapesTable()
+	public function getDepFrShapesTable()
 	{
 		$depFrShapeChoices = array(
             "_01" => null,
