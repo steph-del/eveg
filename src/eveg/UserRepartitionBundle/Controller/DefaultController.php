@@ -68,6 +68,15 @@ class DefaultController extends Controller
             $em->persist($repartition);
             $em->flush();
 
+            // Check conflicts
+            $conflictsHelper = $this->get('user_repartition.conflicts');
+            if($conflictsHelper->checkBasevegRepartition($syntaxon, $repartition)) {
+                $request->getSession()->getFlashBag()->add('warning', 'Il y a un conflit chorologique avec baseveg.');
+            }
+            if($conflictsHelper->checkUsersRepartition($syntaxon, $repartition)) {
+                $request->getSession()->getFlashBag()->add('warning', 'Il y a un conflit chorologique avec une autre donnée.');
+            }
+
             // FlashBag message
             $request->getSession()->getFlashBag()->add('success', 'Une nouvelle données enregistrée.');
 
