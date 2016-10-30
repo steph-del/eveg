@@ -1,4 +1,14 @@
 services:
-#    eveg_user_repartition.example:
-#        class: eveg\UserRepartitionBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    user_repartition.merge:
+        class:             eveg\UserRepartitionBundle\Utils\mergeUserRepartitions
+        arguments:         ['@score_repository', '@user_repartition_repository']
+
+
+    ############
+    # Repository
+    ############
+    user_repartition_repository:
+        class:              Doctrine\ORM\EntityRepository
+        factory:           ['@doctrine.orm.default_entity_manager', 'getRepository']
+        arguments:
+            - eveg\UserRepartitionBundle\Entity\Repartition
