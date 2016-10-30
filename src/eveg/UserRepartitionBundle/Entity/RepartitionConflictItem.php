@@ -49,6 +49,13 @@ class RepartitionConflictItem
      */
     private $shape;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=2)
+     */
+    private $value;
+
 
     /**
      * Get id
@@ -155,5 +162,28 @@ class RepartitionConflictItem
     {
         return $this->shape;
     }
-}
 
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return RepartitionConflictItem
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+}
