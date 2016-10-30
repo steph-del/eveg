@@ -3,6 +3,9 @@ services:
         class:             eveg\UserRepartitionBundle\Utils\mergeUserRepartitions
         arguments:         ['@score_repository', '@user_repartition_repository']
 
+    user_repartition.conflicts:
+        class:             eveg\UserRepartitionBundle\Utils\conflictsHelpers
+        arguments:         ['@score_repository', '@user_repartition_repository', '@user_repartition.merge', '@doctrine.orm.default_entity_manager']
 
     ############
     # Repository
