@@ -106,7 +106,7 @@ class Repartition
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="eveg\UserBundle\Entity\User", cascade={"persist"})
      */
     private $submitedBy;
 
