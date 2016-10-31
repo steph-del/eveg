@@ -6,9 +6,6 @@ namespace eveg\UserRepartitionBundle\Utils;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\UserRepartitionBundle\Entity\Repartition;
 use eveg\UserRepartitionBundle\Entity\RepartitionConflict;
-use eveg\UserRepartitionBundle\Entity\RepartitionConflictItem;
-//use Doctrine\ORM\EntityManager;
-//use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  *	Utilities to resolve repartition conflicts
@@ -30,11 +27,11 @@ class conflictsHelpers
 	}
 
 	/**
-      * Check conflict beetween user data and baseveg data
-      *
+  * Check conflict beetween user data and baseveg data
+  *
 	* @var     \SyntaxonCore $syntaxon
-      * @var     \Repartition  $repartition 
-      * @return  null if no conflict, else open a new conflict
+  * @var     \Repartition  $repartition 
+  * @return  null if no conflict, else open a new conflict
 	*/
 	public function checkBasevegRepartition(SyntaxonCore $syntaxon, Repartition $repartition)
 	{
@@ -77,7 +74,7 @@ class conflictsHelpers
            $repMap   = $repartition->getMap();
            $repShape = $repartition->getShape();
            $repValue = $repartition->getValue();
-           $repartitions = $this->URepRepo->findEnabledRepartitionBySyntaxonCore($syntaxon);
+           $repartitions = $this->URepRepo->findEnabledRepartitionBySyntaxonCoreForDepFr($syntaxon, $repShape);
 
            if($repMap == 'depFr') {
                   foreach ($repartitions as $keyDbRep => $valueDbRep) {
@@ -110,25 +107,12 @@ class conflictsHelpers
             // We don't need to persist
             //    see openUsersConflict
 
-            $basevegItem->setBaseveg(true)
-                        ->setUser(null)
-                        ->setMap($repartition->getMap())
-                        ->setShape($repartition->getShape())
-                        ->setValue($bvValue);
-
-            $repartitionItem->setBaseveg(false)
-                            ->setUser($repartition->getSubmitedBy())
-                            ->setMap($repartition->getMap())
-                            ->setShape($repartition->getShape())
-                            ->setValue($repartition->getValue())
-                            ->setComment($repartition->getComment());
-
-            $conflict->setItem1($basevegItem)
-                     ->setItem2($repartitionItem)
-                     ->setSyntaxonConcerned($syntaxon)
+            $conflict->setSyntaxonConcerned($syntaxon)
                      ->setSyntaxonNameConcerned($syntaxon->getSyntaxon())
                      ->setOpenedAt(new \DateTime('now'))
-                     ->setOpenedBy($repartition->getSubmitedBy());
+                     ->setOpenedBy($repartition->getSubmitedBy())
+                     ->setBeetweenRepartition($repartition)
+                     ->setAndBaseveg(true);
 
             $this->em->persist($conflict);
             $this->em->flush();
@@ -146,34 +130,17 @@ class conflictsHelpers
       public function openUsersConflict(SyntaxonCore $syntaxon, Repartition $repartition, Repartition $repartitionDb)
       {
             $conflict         = new RepartitionConflict();
-            $repartitionItem = new RepartitionConflictItem();
-            $repartitionItemDb = new RepartitionConflictItem();
 
             // We don't need to persist $syntaxon, $repartition and $repartitionDb
             //    since Doctrine already know them
-            // Neither $repartiitonItem and $repartitionItemDb (cascaded)
             // Neither merging ($this->em->merge), see http://stackoverflow.com/questions/18215975/doctrine-a-new-entity-was-found-through-the-relationship#20517528
 
-            $repartitionItem->setBaseveg(false)
-                            ->setUser($repartition->getSubmitedBy())
-                            ->setMap($repartition->getMap())
-                            ->setShape($repartition->getShape())
-                            ->setValue($repartition->getValue())
-                            ->setComment($repartition->getComment());
-
-            $repartitionItemDb->setBaseveg(false)
-                              ->setUser($repartitionDb->getSubmitedBy())
-                              ->setMap($repartitionDb->getMap())
-                              ->setShape($repartitionDb->getShape())
-                              ->setValue($repartitionDb->getValue())
-                              ->setComment($repartitionDb->getComment());
-
-            $conflict->setItem1($repartitionItem)
-                     ->setItem2($repartitionItemDb)
-                     ->setSyntaxonConcerned($syntaxon)
+            $conflict->setSyntaxonConcerned($syntaxon)
                      ->setSyntaxonNameConcerned($syntaxon->getSyntaxon())
                      ->setOpenedAt(new \DateTime('now'))
-                     ->setOpenedBy($repartition->getSubmitedBy());
+                     ->setOpenedBy($repartition->getSubmitedBy())
+                     ->setBeetweenRepartition($repartition)
+                     ->setAndRepartition($repartitionDb);
 
             $this->em->persist($conflict);
             $this->em->flush();
@@ -189,7 +156,7 @@ class conflictsHelpers
        * @var string        $shapeAskedStr
        * @var \SyntaxonCore $syntaxon
        */
-      private function getSDepFrShape($shapeAskedStr, SyntaxonCore $syntaxon)
+      public function getSDepFrShape($shapeAskedStr, SyntaxonCore $syntaxon)
       {
             switch($shapeAskedStr) {
                   case '_01':

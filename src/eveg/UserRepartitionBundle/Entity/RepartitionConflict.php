@@ -79,18 +79,25 @@ class RepartitionConflict
     private $comment;
 
     /**
-     * @var \stdClass
+     * @var \Repartition
      *
-     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition")
      */
-    private $item1;
+    private $beetweenRepartition;
 
     /**
-     * @var \stdClass
+     * @var \Repartition
      *
-     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $item2;
+    private $andRepartition;
+
+    /** @var boolean
+     *
+     * @ORM\Column(name="conflict_with_baseveg", type="boolean", nullable=true, options={"default" : 0})
+     */
+    private $andBaseveg = false;
 
 
     /**
@@ -248,54 +255,6 @@ class RepartitionConflict
     }
 
     /**
-     * Set item1
-     *
-     * @param \stdClass $item1
-     *
-     * @return RepartitionConflict
-     */
-    public function setItem1($item1)
-    {
-        $this->item1 = $item1;
-
-        return $this;
-    }
-
-    /**
-     * Get item1
-     *
-     * @return \stdClass
-     */
-    public function getItem1()
-    {
-        return $this->item1;
-    }
-
-    /**
-     * Set item2
-     *
-     * @param \stdClass $item2
-     *
-     * @return RepartitionConflict
-     */
-    public function setItem2($item2)
-    {
-        $this->item2 = $item2;
-
-        return $this;
-    }
-
-    /**
-     * Get item2
-     *
-     * @return \stdClass
-     */
-    public function getItem2()
-    {
-        return $this->item2;
-    }
-
-    /**
      * Set syntaxonConcerned
      *
      * @param string $syntaxonConcerned
@@ -341,5 +300,77 @@ class RepartitionConflict
     public function getSyntaxonNameConcerned()
     {
         return $this->syntaxonNameConcerned;
+    }
+
+    /**
+     * Set andBaseveg
+     *
+     * @param boolean $andBaseveg
+     *
+     * @return RepartitionConflict
+     */
+    public function setAndBaseveg($andBaseveg)
+    {
+        $this->andBaseveg = $andBaseveg;
+
+        return $this;
+    }
+
+    /**
+     * Get andBaseveg
+     *
+     * @return boolean
+     */
+    public function getAndBaseveg()
+    {
+        return $this->andBaseveg;
+    }
+
+    /**
+     * Set beetweenRepartition
+     *
+     * @param \eveg\UserRepartitionBundle\Entity\Repartition $beetweenRepartition
+     *
+     * @return RepartitionConflict
+     */
+    public function setBeetweenRepartition(\eveg\UserRepartitionBundle\Entity\Repartition $beetweenRepartition = null)
+    {
+        $this->beetweenRepartition = $beetweenRepartition;
+
+        return $this;
+    }
+
+    /**
+     * Get beetweenRepartition
+     *
+     * @return \eveg\UserRepartitionBundle\Entity\Repartition
+     */
+    public function getBeetweenRepartition()
+    {
+        return $this->beetweenRepartition;
+    }
+
+    /**
+     * Set andRepartition
+     *
+     * @param \eveg\UserRepartitionBundle\Entity\Repartition $andRepartition
+     *
+     * @return RepartitionConflict
+     */
+    public function setAndRepartition(\eveg\UserRepartitionBundle\Entity\Repartition $andRepartition = null)
+    {
+        $this->andRepartition = $andRepartition;
+
+        return $this;
+    }
+
+    /**
+     * Get andRepartition
+     *
+     * @return \eveg\UserRepartitionBundle\Entity\Repartition
+     */
+    public function getAndRepartition()
+    {
+        return $this->andRepartition;
     }
 }
