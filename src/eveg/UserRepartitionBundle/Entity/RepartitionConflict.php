@@ -22,11 +22,11 @@ class RepartitionConflict
     private $id;
 
     /**
-     * @var integer
+     * @var \SyntaxonCore
      *
-     * @ORM\Column(name="syntaxon_id_concerned", type="integer")
+     * @ORM\ManyToOne(targetEntity="eveg\AppBundle\Entity\SyntaxonCore")
      */
-    private $syntaxonIdConcerned;
+    private $syntaxonConcerned;
 
     /**
      * @var string
@@ -52,9 +52,9 @@ class RepartitionConflict
     /**
      * @var boolean
      *
-     * @ORM\Column(name="resolved", type="boolean", nullable=true)
+     * @ORM\Column(name="resolved", type="boolean", nullable=true, options={"default" : 0})
      */
-    private $resolved;
+    private $resolved = false;
 
     /**
      * @var \DateTime
@@ -81,14 +81,14 @@ class RepartitionConflict
     /**
      * @var \stdClass
      *
-     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem")
+     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem", cascade={"persist", "remove"})
      */
     private $item1;
 
     /**
      * @var \stdClass
      *
-     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem")
+     * @ORM\OneToOne(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflictItem", cascade={"persist", "remove"})
      */
     private $item2;
 
@@ -296,27 +296,27 @@ class RepartitionConflict
     }
 
     /**
-     * Set syntaxonIdConcerned
+     * Set syntaxonConcerned
      *
-     * @param string $syntaxonIdConcerned
+     * @param string $syntaxonConcerned
      *
      * @return RepartitionConflict
      */
-    public function setSyntaxonIdConcerned($syntaxonIdConcerned)
+    public function setSyntaxonConcerned($syntaxonConcerned)
     {
-        $this->syntaxonIdConcerned = $syntaxonIdConcerned;
+        $this->syntaxonConcerned = $syntaxonConcerned;
 
         return $this;
     }
 
     /**
-     * Get syntaxonIdConcerned
+     * Get syntaxonConcerned
      *
-     * @return string
+     * @return \SyntaxonCore
      */
-    public function getSyntaxonIdConcerned()
+    public function getSyntaxonConcerned()
     {
-        return $this->syntaxonIdConcerned;
+        return $this->syntaxonConcerned;
     }
 
     /**
