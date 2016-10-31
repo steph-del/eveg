@@ -1,0 +1,69 @@
+{# src/eveg/UserRepartitionBundle/Resources/views/Admin/conflicts.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Conflits chorologiques | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+
+		<div class="jumbotron admin">
+			<h1>Conflits</h1>
+		</div>
+
+		<div class="col-md-12">
+			<div class="row">
+				{% for conflict in conflicts %}
+					<div class="col-md-6">
+						<div class="thumbnail thumb-orange">
+							<p>Ouvert par <b>{{ conflict.openedBy }}</b> le {{ conflict.openedAt|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm:ss') }}</b> pour <b>{{ conflict.syntaxonConcerned.syntaxon }}</b> <a href="{{ path('eveg_show_one', {id: conflict.syntaxonConcerned.id}) }}" target="_blank"><i class="fa fa-external-link-square" aria-hidden="true"></i></a></p>
+							<div class="row">
+								<div class="col-md-6">
+									<p class="_2em text-center">Entre</p>
+									<p><b>Obs. de : </b>{{ conflict.beetweenRepartition.submitedBy }}</p>
+									<p><b>Dept. : </b>{{ getRepFrFullNameFromShape(conflict.beetweenRepartition.shape) }}</p>
+									<p><b>Valeur :</b> {{ getRepartitionDescriptionFromValue(conflict.beetweenRepartition.value) }}</b></p>
+									<p><b>Commentaire : </b>{{ conflict.beetweenRepartition.comment }}</p>
+									{% if conflict.beetweenRepartition.biblio is defined and conflict.beetweenRepartition.biblio is not empty %}
+										<p><b>Source biblio : </b>{{ conflict.beetweenRepartition.biblio.reference }}</p>
+									{% elseif conflict.beetweenRepartition.selfObservation == true %}
+										<p><b>(Observation personnelle de l'auteur)</b>
+									{% else %}
+										??
+									{% endif %}
+								</div>
+								<div class="col-md-6">
+									<p class="_2em text-center">Et</p>
+									{% if conflict.andRepartition is not empty %}
+										<p><b>Obs. de : </b>{{ conflict.andRepartition.submitedBy }}</p>
+										<p><b>Dept. : </b>{{ getRepFrFullNameFromShape(conflict.andRepartition.shape) }}</p>
+										<p><b>Valeur :</b> {{ getRepartitionDescriptionFromValue(conflict.andRepartition.value) }}</b></p>
+										<p><b>Commentaire : </b>{{ conflict.andRepartition.comment }}</p>
+										{% if conflict.andRepartition.biblio is defined and conflict.andRepartition.biblio is not empty %}
+											<p><b>Source biblio : </b>{{ conflict.andRepartition.biblio.reference }}</p>
+										{% elseif conflict.andRepartition.selfObservation == true %}
+											<p><b>(Observation personnelle de l'auteur)</b>
+										{% else %}
+											??
+										{% endif %}
+									{% else %}
+										<p><b>baseveg</b></p>
+										<p><b>Dept. : </b>{{ getRepFrFullNameFromShape(conflict.beetweenRepartition.shape) }}</p>
+										<p><b>Valeur :</b> {{ getRepartitionDescriptionFromValue(depFrShapeValue(conflict.beetweenRepartition.shape, conflict.syntaxonConcerned)) }}</b></p>
+										
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

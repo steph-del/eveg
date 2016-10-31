@@ -2,6 +2,10 @@ eveg_user_repartition:
     resource: "@evegUserRepartitionBundle/Resources/config/routing/routing.yml"
     prefix:   /
 
+eveg_user_repartition_admin:
+    resource: "@evegUserRepartitionBundle/Resources/config/routing/routing_admin.yml"
+    prefix:   /admin/repartition
+
 eveg_biblio:
     resource: "@evegBiblioBundle/Resources/config/routing/routing.yml"
     prefix:   /
