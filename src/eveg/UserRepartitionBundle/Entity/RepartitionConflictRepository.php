@@ -10,4 +10,19 @@ namespace eveg\UserRepartitionBundle\Entity;
  */
 class RepartitionConflictRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findOpenedConflicts()
+	{
+		$qb = $this->createQueryBuilder('c');
+
+		$qb->select('c')
+		   ->where('c.resolved = :false')
+		   ->setParameter('false', false)
+		   ->leftJoin('c.beetweenRepartition', 'beetweenRepartition')
+		   ->leftJoin('c.andRepartition', 'andRepartition')
+		   ->addSelect('beetweenRepartition')
+		   ->addSelect('andRepartition')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }
