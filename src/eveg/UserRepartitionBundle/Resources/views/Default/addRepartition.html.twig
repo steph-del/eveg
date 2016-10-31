@@ -57,9 +57,9 @@
 						{# Syntaxon #}
 						<div class="well">
 							<ul>
-								<li>{{ form_row(form.synonymType) }}</li>
 								<li>{{ form_row(form.syntaxonBiblioName) }}</li>
 								<li>{{ form_row(form.syntaxonBiblioAuthor) }}</li>
+								<li>{{ form_row(form.synonymType) }}</li>
 							</ul>
 						</div>
 
@@ -103,6 +103,7 @@
 	<!-- DepFr map-->
 	<script>
 		var repDepFr = '{{ repDepFrJson | raw }}';
+		{#var repDepFrUsers = '{{ repDepFrUsersJson | raw }}';#}
 		createMapDepFr(document.getElementById('mapDepFr'),
 			           document.getElementById('mapDepFrHoverLegend'),
 			           document.getElementById('mapDepFrLegend'),
