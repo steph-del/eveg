@@ -29,4 +29,41 @@ class RepartitionRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	/**
+	* @var syntaxon \SyntaxonCore
+	*/
+	public function findEnabledRepartitionBySyntaxonCore(SyntaxonCore $syntaxon)
+	{
+		$qb = $this->createQueryBuilder('r');
+
+		$qb->select('r')
+		   ->where('r.syntaxonCore = :syntaxon')
+		   ->andWhere('r.enabled = :true')
+		   ->setParameter('syntaxon', $syntaxon)
+		   ->setParameter('true', true)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	/**
+	* @var syntaxon \SyntaxonCore
+	* @var string   $depFr
+	*/
+	public function findEnabledRepartitionBySyntaxonCoreForDepFr(SyntaxonCore $syntaxon, $depFr)
+	{
+		$qb = $this->createQueryBuilder('r');
+
+		$qb->select('r')
+		   ->where('r.syntaxonCore = :syntaxon')
+		   ->andWhere('r.enabled = :true')
+		   ->andWhere('r.shape = :depFr')
+		   ->setParameter('syntaxon', $syntaxon)
+		   ->setParameter('true', true)
+		   ->setParameter('depFr', $depFr)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }
