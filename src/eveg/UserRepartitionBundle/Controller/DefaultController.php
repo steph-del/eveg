@@ -24,7 +24,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 		// Creates the form...
-    	$form = $this->createForm(new RepartitionType());
+    	$form = $this->createForm(new RepartitionType($this->get('user_repartition.tables_helper')));
         // ... and then hydrates it
         $form->handleRequest($request);
 

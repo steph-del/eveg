@@ -7,6 +7,21 @@ services:
         class:             eveg\UserRepartitionBundle\Utils\conflictsHelpers
         arguments:         ['@score_repository', '@user_repartition_repository', '@user_repartition.merge', '@doctrine.orm.default_entity_manager']
 
+    user_repartition.tables_helper:
+        class:             eveg\UserRepartitionBundle\Utils\tablesHelpers
+
+    user_repartition.twig.extension:
+        class:             eveg\UserRepartitionBundle\Twig\userRepartitionExtension
+        arguments:         ['@user_repartition.conflicts', '@user_repartition.tables_helper']
+        tags:
+            - { name: twig.extension }
+
+    user_repartition.form.type.add_repartition:
+        class:              eveg\UserRepartitionBundle\Form\Type\RepartitionType
+        arguments:          ['@user_repartition.tables_helper']
+        tags:
+            - {name: form.type }
+
     ############
     # Repository
     ############
