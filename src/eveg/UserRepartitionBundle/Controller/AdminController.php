@@ -21,4 +21,19 @@ class AdminController extends Controller
     		'conflicts' => $conflicts,
     	));
     }
+
+    /**
+	* @Security("has_role('ROLE_SUPER_ADMIN')") 
+	*/
+    public function unresolvedRepartitionsAction()
+    {
+
+    	$em = $this->getDoctrine()->getManager();
+    	$repartitionRepo = $em->getRepository('evegUserRepartitionBundle:Repartition');
+    	$repartitions = $repartitionRepo->findUnresolvedRepartitions();
+
+    	return $this->render('evegUserRepartitionBundle:Admin:unresolvedRepartitions.html.twig', array(
+    		'repartitions' => $repartitions,
+    	));
+    }
 }

@@ -1,3 +1,7 @@
 eveg_user_repartition_admin_conflicts:
     path: /conflicts
     defaults: { _controller: evegUserRepartitionBundle:Admin:conflictsIndex }
+
+eveg_user_repartition_admin_unresolved:
+    path: /unresolved-repartitions
+    defaults: { _controller: evegUserRepartitionBundle:Admin:unresolvedRepartitions }

@@ -30,6 +30,20 @@ class RepartitionRepository extends \Doctrine\ORM\EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findUnresolvedRepartitions()
+	{
+		$qb = $this->createQueryBuilder('r');
+
+		$qb->select('r')
+		   ->where('r.validated = :false')
+		   ->leftJoin('r.conflicts', 'conflicts')
+		   ->addSelect('conflicts')
+		   ->setParameter('false', false)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
 	/**
 	* @var syntaxon \SyntaxonCore
 	*/

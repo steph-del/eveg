@@ -1,0 +1,79 @@
+{# src/eveg/UserRepartitionBundle/Resources/views/Admin/unresolved.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Données non validées | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+
+		<div class="jumbotron admin">
+			<h1>Données non validées</h1>
+		</div>
+
+		<div class="col-md-12">
+			<div class="row">
+				{% for repartition in repartitions %}
+					<div class="col-md-6">
+						<div class="thumbnail thumb-orange">
+							<p><b>Syntaxon :</b> {{ repartition.syntaxonCore.syntaxon }}</p>
+							<p><b>Par :</b> {{ repartition.submitedBy }}</p>
+							<p><b>Dep. :</b> {{ getRepFrFullNameFromShape(repartition.shape) }}</p>
+							<p><b>Valeur :</b> {{ getRepartitionDescriptionFromValue(repartition.value) }}</p>
+							<p><b>Source :</b>
+							{% if repartition.biblio is defined and repartition.biblio is not empty %}
+								{{ repartition.biblio.reference }}
+							{% elseif repartition.selfObservation is defined and repartition.selfObservation is not empty%}
+								Observation personnelle de l'auteur
+							{% else %}
+								??
+							{% endif %}</p>
+							<p><b>Commentaire :</b> {{ repartition.comment }}</p>
+							<p><b>Conflit(s) :</b> {{ repartition.conflicts|length }}</p>
+							<p><b>État : </b>
+							Activé 
+							{% if repartition.enabled == true %}
+								<i class="text-success fa fa-toggle-on" aria-hidden="true"></i>
+							{% else %}
+								<i class="text-danger fa fa-toggle-off" aria-hidden="true"></i>
+							{% endif %}
+							 | 
+							Validé
+							{% if repartition.validated == true %}
+								<i class="text-success fa fa-toggle-on" aria-hidden="true"></i>
+							{% else %}
+								<i class="text-danger fa fa-toggle-off" aria-hidden="true"></i>
+							{% endif %}</p>
+
+							{% set hasConflicts = false %}
+							{% set hasConflicts = (repartition.conflicts|length > 0) %}
+
+							<div class="text-center">
+								{% if repartition.enabled %}
+									<button type="button" class="btn btn-warning btn-sm">Désactiver</button>
+								{% else %}
+									<button type="button" class="btn btn-primary btn-sm">Activer</button>
+								{% endif %}
+
+								{% if hasConflicts == false %}
+									{% if repartition.validated %}
+										<button type="button" class="btn btn-warning btn-sm">Invalider</button>
+									{% else %}
+										<button type="button" class="btn btn-primary btn-sm" disabled="disabled">Valider</button>
+									{% endif %}
+								{% endif %}
+							</div>
+
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
