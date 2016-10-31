@@ -107,6 +107,9 @@ class conflictsHelpers
             $basevegItem     = new RepartitionConflictItem();
             $repartitionItem = new RepartitionConflictItem();
 
+            // We don't need to persist
+            //    see openUsersConflict
+
             $basevegItem->setBaseveg(true)
                         ->setUser(null)
                         ->setMap($repartition->getMap())
@@ -121,13 +124,11 @@ class conflictsHelpers
 
             $conflict->setItem1($basevegItem)
                      ->setItem2($repartitionItem)
-                     ->setSyntaxonIdConcerned($syntaxon->getId())
+                     ->setSyntaxonConcerned($syntaxon)
                      ->setSyntaxonNameConcerned($syntaxon->getSyntaxon())
                      ->setOpenedAt(new \DateTime('now'))
                      ->setOpenedBy($repartition->getSubmitedBy());
 
-            $this->em->persist($basevegItem);
-            $this->em->persist($repartitionItem);
             $this->em->persist($conflict);
             $this->em->flush();
             $this->em->clear();
@@ -139,13 +140,18 @@ class conflictsHelpers
        *
        * @var \SyntaxonCore $syntaxon
        * @var \Repartition  $repartition
-       * @var \Repartition  $repartitionDb
+       * @var \Repartition  $repartitionItemDb
        */
       public function openUsersConflict(SyntaxonCore $syntaxon, Repartition $repartition, Repartition $repartitionDb)
       {
             $conflict         = new RepartitionConflict();
             $repartitionItem = new RepartitionConflictItem();
             $repartitionItemDb = new RepartitionConflictItem();
+
+            // We don't need to persist $syntaxon, $repartition and $repartitionDb
+            //    since Doctrine already know them
+            // Neither $repartiitonItem and $repartitionItemDb (cascaded)
+            // Neither merging ($this->em->merge), see http://stackoverflow.com/questions/18215975/doctrine-a-new-entity-was-found-through-the-relationship#20517528
 
             $repartitionItem->setBaseveg(false)
                             ->setUser($repartition->getSubmitedBy())
@@ -161,13 +167,11 @@ class conflictsHelpers
 
             $conflict->setItem1($repartitionItem)
                      ->setItem2($repartitionItemDb)
-                     ->setSyntaxonIdConcerned($syntaxon->getId())
+                     ->setSyntaxonConcerned($syntaxon)
                      ->setSyntaxonNameConcerned($syntaxon->getSyntaxon())
                      ->setOpenedAt(new \DateTime('now'))
                      ->setOpenedBy($repartition->getSubmitedBy());
 
-            $this->em->persist($repartitionItem);
-            $this->em->persist($repartitionItemDb);
             $this->em->persist($conflict);
             $this->em->flush();
             $this->em->clear();
