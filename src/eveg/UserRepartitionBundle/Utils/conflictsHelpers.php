@@ -101,8 +101,6 @@ class conflictsHelpers
       public function openBvConflict(SyntaxonCore $syntaxon, $bvValue, Repartition $repartition)
       {
             $conflict        = new RepartitionConflict();
-            $basevegItem     = new RepartitionConflictItem();
-            $repartitionItem = new RepartitionConflictItem();
 
             // We don't need to persist
             //    see openUsersConflict
