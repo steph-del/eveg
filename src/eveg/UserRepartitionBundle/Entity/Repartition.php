@@ -159,6 +159,13 @@ class Repartition
      */
     private $updatedAt;
 
+    /**
+     * @var \RepartitionConflict
+     *
+     * @ORM\OneToMany(targetEntity="eveg\UserRepartitionBundle\Entity\RepartitionConflict", mappedBy="beetweenRepartition")
+     */
+    private $conflicts;
+
 
     /**
      * Get id
@@ -624,5 +631,46 @@ class Repartition
     public function getEnabled()
     {
         return $this->enabled;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->conflicts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add conflict
+     *
+     * @param \eveg\UserRepartitionBundle\Entity\RepartitionConflict $conflict
+     *
+     * @return Repartition
+     */
+    public function addConflict(\eveg\UserRepartitionBundle\Entity\RepartitionConflict $conflict)
+    {
+        $this->conflicts[] = $conflict;
+
+        return $this;
+    }
+
+    /**
+     * Remove conflict
+     *
+     * @param \eveg\UserRepartitionBundle\Entity\RepartitionConflict $conflict
+     */
+    public function removeConflict(\eveg\UserRepartitionBundle\Entity\RepartitionConflict $conflict)
+    {
+        $this->conflicts->removeElement($conflict);
+    }
+
+    /**
+     * Get conflicts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConflicts()
+    {
+        return $this->conflicts;
     }
 }

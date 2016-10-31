@@ -81,7 +81,7 @@ class RepartitionConflict
     /**
      * @var \Repartition
      *
-     * @ORM\ManyToOne(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition")
+     * @ORM\ManyToOne(targetEntity="eveg\UserRepartitionBundle\Entity\Repartition", inversedBy="conflicts")
      */
     private $beetweenRepartition;
 
