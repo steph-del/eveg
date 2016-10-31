@@ -77,7 +77,7 @@ class conflictsHelpers
            $repMap   = $repartition->getMap();
            $repShape = $repartition->getShape();
            $repValue = $repartition->getValue();
-           $repartitions = $this->URepRepo->findValidRepartitionBySyntaxonCore($syntaxon);
+           $repartitions = $this->URepRepo->findEnabledRepartitionBySyntaxonCore($syntaxon);
 
            if($repMap == 'depFr') {
                   foreach ($repartitions as $keyDbRep => $valueDbRep) {
@@ -131,7 +131,7 @@ class conflictsHelpers
 
             $this->em->persist($conflict);
             $this->em->flush();
-            $this->em->clear();
+            // don't clear em because it can be used again by openUsersConflict
 
       }
 
@@ -174,7 +174,7 @@ class conflictsHelpers
 
             $this->em->persist($conflict);
             $this->em->flush();
-            $this->em->clear();
+            // don't clear em because it can be used again by openBvConflict
 
       }
 
