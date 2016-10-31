@@ -56,6 +56,13 @@ class RepartitionConflictItem
      */
     private $value;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    private $comment;
+
 
     /**
      * Get id
@@ -185,5 +192,29 @@ class RepartitionConflictItem
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return RepartitionConflictItem
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }

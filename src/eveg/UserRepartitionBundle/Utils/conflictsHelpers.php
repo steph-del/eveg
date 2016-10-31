@@ -120,7 +120,8 @@ class conflictsHelpers
                             ->setUser($repartition->getSubmitedBy())
                             ->setMap($repartition->getMap())
                             ->setShape($repartition->getShape())
-                            ->setValue($repartition->getValue());
+                            ->setValue($repartition->getValue())
+                            ->setComment($repartition->getComment());
 
             $conflict->setItem1($basevegItem)
                      ->setItem2($repartitionItem)
@@ -157,13 +158,15 @@ class conflictsHelpers
                             ->setUser($repartition->getSubmitedBy())
                             ->setMap($repartition->getMap())
                             ->setShape($repartition->getShape())
-                            ->setValue($repartition->getValue());
+                            ->setValue($repartition->getValue())
+                            ->setComment($repartition->getComment());
 
             $repartitionItemDb->setBaseveg(false)
                               ->setUser($repartitionDb->getSubmitedBy())
                               ->setMap($repartitionDb->getMap())
                               ->setShape($repartitionDb->getShape())
-                              ->setValue($repartitionDb->getValue());
+                              ->setValue($repartitionDb->getValue())
+                              ->setComment($repartitionDb->getComment());
 
             $conflict->setItem1($repartitionItem)
                      ->setItem2($repartitionItemDb)
