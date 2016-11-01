@@ -97,11 +97,16 @@ class DefaultController extends Controller
 		$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
 		$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
 
+        // users depFr map
+        $merger = $this->get('user_repartition.merge');
+        $repDepFrUsersJson = $serializer->serialize($merger->mergeObsForSyntaxon($syntaxon), 'json');
+
         return $this->render('evegUserRepartitionBundle:Default:addRepartition.html.twig',
         	array('syntaxon'     => $syntaxon,
         		  'form'         =>$form->createView(),
         		  'repDepFrJson' => $repDepFrJson,
         		  'repUeJson'    => $repUeJson,
+                  'repDepFrUsersJson' => $repDepFrUsersJson,
         	));
     }
 }

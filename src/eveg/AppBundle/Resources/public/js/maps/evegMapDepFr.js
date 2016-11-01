@@ -1,4 +1,4 @@
-function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue){
+function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, jsonUsersData, scaleValue){
 	// Create mapDepFr
 		var mapDepFr = new Raphael(idElement, 280, 300);
 
@@ -130,6 +130,9 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 	// Bind data
 		// Variables
 			var repDepFr = $.parseJSON(jsonData);
+			var repDepFrUsers = $.parseJSON(jsonUsersData);
+console.log(repDepFrUsers);
+console.log($.isEmptyObject(repDepFrUsers));
 			// Presence
 	        var notSpecified        = '0';
 	        var present             = '1';
@@ -194,6 +197,45 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, scaleValue
 				dep_2b.attr = dep_2a.attr;
 			};
 		});
+
+		// Binding users data
+		if(!$.isEmptyObject(repDepFrUsers))
+		{
+			$.each(repDepFrUsers, function(index, value) {
+				if (index.match(/^_[0-9]{2}$/) != null) {
+					var varTemp = eval('dep'+index);
+					switch(value) {
+			            case notSpecified:
+			              varTemp.attr('fill', colorNotSpecified);
+			              break;
+			            case present:
+			              varTemp.attr('fill', colorPresent);
+			              break;
+			            case toBeConfirmed:
+			              varTemp.attr('fill', colorToBeConfirmed);
+			              break;
+			            case doubtful:
+			              varTemp.attr('fill', colorDoubtful);
+			              break;
+			            case disappeared:
+			              varTemp.attr('fill', colorDisappeared);
+			              break;
+			            case error:
+			              varTemp.attr('fill', colorError);
+			              break;
+			            case errorToBeConfirmed:
+			              varTemp.attr('fill', colorErrorToBeConfirmed);
+			              break;
+			            case absent:
+			              varTemp.attr('fill', colorAbsent);
+			              break;
+			            case absentToBeConfirmed:
+			              varTemp.attr('fill', colorAbsentToBeConfirmed);
+			              break;
+			        }
+				};
+			});
+		}
 
 	// mouseHover
 		// Variables
