@@ -2,6 +2,10 @@
 
 # application routes
 
+eveg_v1_redirection:
+    path: /index.php
+    defaults: { _controller:evegAppBundle:Default:v1Redirection }
+
 eveg_app:
     path: /
     defaults:

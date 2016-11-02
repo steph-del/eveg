@@ -12,6 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+
+	public function v1RedirectionAction(Request $request)
+	{
+		$catminatCode = $request->get('catminat');
+		$catminatCode = str_replace("'", "", $catminatCode);
+
+		$em = $this->getDoctrine()->getManager();
+		$repo = $em->getRepository('evegAppBundle:SyntaxonCore');
+
+		$syntaxon = $repo->findForV1Redirection($catminatCode);
+
+		if(!empty($syntaxon) && (count($syntaxon) == 1))
+		{
+			// Can redirect
+			return $this->redirectToRoute('eveg_show_one', array('id' => $syntaxon[0]->getId()), 301);
+		} else {
+			// Redirect to homepage
+			return $this->redirectToRoute('eveg_app_homepage', array(), 301);
+		}
+
+	}
+
 	public function indexAction()
 	{
 		$session = new Session();

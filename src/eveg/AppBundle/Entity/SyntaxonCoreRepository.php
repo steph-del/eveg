@@ -14,6 +14,19 @@ use Doctrine\ORM\QueryBuilder;
 class SyntaxonCoreRepository extends EntityRepository
 {
 
+	public function findForV1Redirection($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode = :code')
+			->andWhere('s.level NOT LIKE :syn')
+			->setParameter('code', $catminatCode)
+			->setParameter('syn', '%syn%');
+
+		return $qb->getQuery()->getResult();
+	}
+
 	// Returns the tree trunk (Ajax call from FancyTree)
 	public function getBaseTree($depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
