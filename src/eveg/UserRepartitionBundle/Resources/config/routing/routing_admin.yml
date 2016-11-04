@@ -13,3 +13,11 @@ eveg_repartition_validate_data:
 eveg_repartition_unvalidate_data:
     path: /{id}/unvalidate
     defaults: { _controller: evegUserRepartitionBundle:Admin:unvalidateRepartition }
+
+eveg_repartition_enable_data:
+    path: /{id}/enable
+    defaults: { _controller: evegUserRepartitionBundle:Admin:enableRepartition }
+
+eveg_repartition_disable_data:
+    path: /{id}/disable
+    defaults: { _controller: evegUserRepartitionBundle:Admin:disableRepartition }

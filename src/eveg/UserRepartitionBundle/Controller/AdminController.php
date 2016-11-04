@@ -90,4 +90,56 @@ class AdminController extends Controller
 
         return $this->redirect($this->generateUrl('eveg_user_repartition_admin_unresolved'));
     }
+
+    /**
+    * Enable a Repartition data
+    *
+    * @param \Repartition $repartition repartition object (auto converted by ParamConverter annotation)
+    * @param integer      $id          repartition id
+    * @param \Request     $request
+    *
+    * @ParamConverter("repartition_id", class="evegUserRepartitionBundle:Repartition")
+    * @Security("has_role('ROLE_SUPER_ADMIN')") 
+    */
+    public function enableRepartitionAction(Repartition $repartition, $id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        try {
+            $repartition->setEnabled(true);
+            $em->flush();
+            $em->clear();
+            $request->getSession()->getFlashBag()->add('success', 'La donnée #'.$repartition->getId().' a été activée.');
+        } catch(Exception $e) {
+            $request->getSession()->getFlashBag()->add('warning', 'Erreur lors de l\'activation de la donnée #'.$repartition->getId().'.');
+        }
+
+        return $this->redirect($this->generateUrl('eveg_user_repartition_admin_unresolved'));
+    }
+
+    /**
+    * Disable a Repartition data
+    *
+    * @param \Repartition $repartition repartition object (auto converted by ParamConverter annotation)
+    * @param integer      $id          repartition id
+    * @param \Request     $request
+    *
+    * @ParamConverter("repartition_id", class="evegUserRepartitionBundle:Repartition")
+    * @Security("has_role('ROLE_SUPER_ADMIN')") 
+    */
+    public function disableRepartitionAction(Repartition $repartition, $id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        try {
+            $repartition->setEnabled(false);
+            $em->flush();
+            $em->clear();
+            $request->getSession()->getFlashBag()->add('success', 'La donnée #'.$repartition->getId().' a été désactivée.');
+        } catch(Exception $e) {
+            $request->getSession()->getFlashBag()->add('warning', 'Erreur lors de la désactivation de la donnée #'.$repartition->getId().'.');
+        }
+
+        return $this->redirect($this->generateUrl('eveg_user_repartition_admin_unresolved'));
+    }
 }

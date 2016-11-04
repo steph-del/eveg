@@ -57,14 +57,20 @@
 
 							<div class="text-center">
 								{% if repartition.enabled %}
-									<button type="button" class="btn btn-warning btn-sm">Désactiver</button>
+									<a class="no-style" href="{{ path('eveg_repartition_disable_data', {'id': repartition.id}) }}">
+										<button type="button" class="btn btn-warning btn-sm">Désactiver</button>
+									</a>
 								{% else %}
-									<button type="button" class="btn btn-primary btn-sm">Activer</button>
+									<a class="no-style" href="{{ path('eveg_repartition_enable_data', {'id': repartition.id}) }}">
+										<button type="button" class="btn btn-primary btn-sm">Activer</button>
+									</a>
 								{% endif %}
 
 								{% if hasConflicts == false %}
 									{% if repartition.validated %}
-										<button type="button" class="btn btn-warning btn-sm">Invalider</button>
+										<a class="no-style" href="{{ path('eveg_repartition_unvalidate_data', {'id': repartition.id}) }}">
+											<button type="button" class="btn btn-warning btn-sm">Invalider</button>
+										</a>
 									{% else %}
 										<a class="no-style" href="{{ path('eveg_repartition_validate_data', {'id': repartition.id}) }}"> 
 											<button type="button" class="btn btn-primary btn-sm">Valider</button>
