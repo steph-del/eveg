@@ -5,3 +5,11 @@ eveg_user_repartition_admin_conflicts:
 eveg_user_repartition_admin_unresolved:
     path: /unresolved-repartitions
     defaults: { _controller: evegUserRepartitionBundle:Admin:unresolvedRepartitions }
+
+eveg_repartition_validate_data:
+    path: /{id}/validate
+    defaults: { _controller: evegUserRepartitionBundle:Admin:validateRepartition }
+
+eveg_repartition_unvalidate_data:
+    path: /{id}/unvalidate
+    defaults: { _controller: evegUserRepartitionBundle:Admin:unvalidateRepartition }

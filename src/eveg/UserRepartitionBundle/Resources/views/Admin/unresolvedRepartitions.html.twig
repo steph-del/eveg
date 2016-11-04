@@ -22,6 +22,7 @@
 				{% for repartition in repartitions %}
 					<div class="col-md-6">
 						<div class="thumbnail thumb-orange">
+							<p class="text-muted">#{{ repartition.id }}</p>
 							<p><b>Syntaxon :</b> {{ repartition.syntaxonCore.syntaxon }}</p>
 							<p><b>Par :</b> {{ repartition.submitedBy }}</p>
 							<p><b>Dep. :</b> {{ getRepFrFullNameFromShape(repartition.shape) }}</p>
@@ -65,7 +66,9 @@
 									{% if repartition.validated %}
 										<button type="button" class="btn btn-warning btn-sm">Invalider</button>
 									{% else %}
-										<button type="button" class="btn btn-primary btn-sm" disabled="disabled">Valider</button>
+										<a class="no-style" href="{{ path('eveg_repartition_validate_data', {'id': repartition.id}) }}"> 
+											<button type="button" class="btn btn-primary btn-sm">Valider</button>
+										</a>
 									{% endif %}
 								{% endif %}
 							</div>
