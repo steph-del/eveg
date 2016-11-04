@@ -194,7 +194,7 @@ class ImportController extends Controller
 						$countIsUpToDate++;
 
 						// Log : no difference for this entity, nothing to deal with doctrine
-						$logIsUpToDate .= "<table class='table element'>
+						/*$logIsUpToDate .= "<table class='table element'>
 											<tr class='header'>
 												<td class='title'>Syntaxon</td>
 												<td>
@@ -204,7 +204,7 @@ class ImportController extends Controller
 													</table>
 												</td>
 											</tr>
-										   </table>";
+										   </table>";*/
 
 						// Delete item from csv file and from entity manager
 						unset($import[$key]);
