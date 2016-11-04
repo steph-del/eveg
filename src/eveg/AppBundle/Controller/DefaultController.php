@@ -246,6 +246,10 @@ class DefaultController extends Controller
 			$repDepFrJson = $serializer->serialize($syntaxon->getRepartitionDepFr(), 'json');
 			$repUeJson = $serializer->serialize($syntaxon->getRepartitionEurope(), 'json');
 
+			// users depFr map
+        	$merger = $this->get('user_repartition.merge');
+        	$repDepFrUsersJson = $serializer->serialize($merger->mergeObsForSyntaxon($syntaxon), 'json');
+
 			// baseflor
 			$species = $this->getDoctrine()->getRepository('evegAppBundle:Baseflor')
         					->findByCatminatCode($syntaxon->getCatminatCode());
@@ -266,6 +270,7 @@ class DefaultController extends Controller
 			'synonyms' => $synonyms,
 			'allParents' => $allParents,
 			'repDepFrJson' => $repDepFrJson,
+			'repDepFrUsersJson' => $repDepFrUsersJson,
 			'repUeJson' => $repUeJson,
 			'species' => $species,
 			'ecologicalValuesAvg' => $ecologicalValuesAvg,

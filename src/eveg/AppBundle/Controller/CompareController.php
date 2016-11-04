@@ -159,8 +159,11 @@ class CompareController extends Controller
 
         	// repartition data
 			$serializer = $this->container->get('jms_serializer');
+			$merger = $this->get('user_repartition.merge');
 			$repDepFrJson1 = $serializer->serialize($syntaxon1->getRepartitionDepFr(), 'json');
 			$repDepFrJson2 = $serializer->serialize($syntaxon2->getRepartitionDepFr(), 'json');
+        	$repDepFrUsersJson1 = $serializer->serialize($merger->mergeObsForSyntaxon($syntaxon1), 'json');
+        	$repDepFrUsersJson2 = $serializer->serialize($merger->mergeObsForSyntaxon($syntaxon2), 'json');
 			$repUeJson1 = $serializer->serialize($syntaxon1->getRepartitionEurope(), 'json');
 			$repUeJson2 = $serializer->serialize($syntaxon2->getRepartitionEurope(), 'json');
 
@@ -177,6 +180,8 @@ class CompareController extends Controller
 				'ecologicalValuesAvg2' => $ecologicalValuesAvg2,
 				'repDepFrJson1'		   => $repDepFrJson1,
 				'repDepFrJson2'		   => $repDepFrJson2,
+				'repDepFrUsersJson1'   => $repDepFrUsersJson1,
+				'repDepFrUsersJson2'   => $repDepFrUsersJson2,
 				'repUeJson1'		   => $repUeJson1,
 				'repUeJson2'		   => $repUeJson2
 			));

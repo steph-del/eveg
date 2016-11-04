@@ -230,10 +230,12 @@
 	<!-- DepFr map-->
 	<script>
 		var repDepFr = '{{ repDepFrJson | raw }}';
+		var repDepFrUsersJson = '{{ repDepFrUsersJson|raw }}';
 		createMapDepFr(document.getElementById('mapDepFr'),
 			           document.getElementById('mapDepFrHoverLegend'),
 			           document.getElementById('mapDepFrLegend'),
 			           repDepFr,
+			           repDepFrUsersJson,
 			           0.55);
 		$("#mapDepFrLegend").hide();
 		$("#mapDepFrToggleLegend").click(function(){

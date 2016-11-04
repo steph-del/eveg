@@ -131,8 +131,7 @@ function createMapDepFr(idElement, idLegendHover, idLegend, jsonData, jsonUsersD
 		// Variables
 			var repDepFr = $.parseJSON(jsonData);
 			var repDepFrUsers = $.parseJSON(jsonUsersData);
-console.log(repDepFrUsers);
-console.log($.isEmptyObject(repDepFrUsers));
+
 			// Presence
 	        var notSpecified        = '0';
 	        var present             = '1';

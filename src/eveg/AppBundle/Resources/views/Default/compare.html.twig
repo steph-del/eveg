@@ -141,10 +141,12 @@
 
 	<script>
 		var repDepFr = '{{ repDepFrJson1 | raw }}';
+		var repDepFrUsersJson = '{{ repDepFrUsersJson1|raw }}';
 		createMapDepFr(document.getElementById('mapDepFr-1'),
 			           document.getElementById('mapDepFrHoverLegend-1'),
 			           document.getElementById('mapDepFrLegend-1'),
 			           repDepFr,
+			           repDepFrUsersJson,
 			           0.55);
 		$("#mapDepFrLegend-1").hide();
 		$("#mapDepFrToggleLegend-1").click(function(){
@@ -168,10 +170,12 @@
 	<!-- depFr map -->
 	<script>
 		var repDepFr = '{{ repDepFrJson2 | raw }}';
+		var repDepFrUsersJson = '{{ repDepFrUsersJson2|raw }}';
 		createMapDepFr(document.getElementById('mapDepFr-2'),
 			           document.getElementById('mapDepFrHoverLegend-2'),
 			           document.getElementById('mapDepFrLegend-2'),
 			           repDepFr,
+			           repDepFrUsersJson,
 			           0.55);
 		$("#mapDepFrLegend-2").hide();
 		$("#mapDepFrToggleLegend-2").click(function(){
