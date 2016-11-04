@@ -1,9 +1,19 @@
+# routes prefix: /admin/repartition
+
+eveg_user_repartition_list_enabled_and_active:
+    path: /list
+    defaults: { _controller: evegUserRepartitionBundle:Admin:ListEnabledAndActive }
+
+eveg_user_repartition_list_disabled_or_unactive:
+    path: /list/disabled-or-unactive
+    defaults: { _controller: evegUserRepartitionBundle:Admin:ListDisabledOrUnactive }
+
 eveg_user_repartition_admin_conflicts:
     path: /conflicts
     defaults: { _controller: evegUserRepartitionBundle:Admin:conflictsIndex }
 
 eveg_user_repartition_admin_unresolved:
-    path: /unresolved-repartitions
+    path: /unresolved
     defaults: { _controller: evegUserRepartitionBundle:Admin:unresolvedRepartitions }
 
 eveg_repartition_validate_data:

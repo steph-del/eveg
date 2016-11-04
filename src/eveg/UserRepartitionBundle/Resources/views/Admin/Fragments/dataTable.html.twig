@@ -1,0 +1,30 @@
+<p class="text-center">
+	<a class="no-style" href="{{ path('eveg_user_repartition_admin_unresolved') }}"><button type="button" class="btn btn-default">Validation</button></a>
+	<a class="no-style" href="{{ path('eveg_user_repartition_admin_conflicts') }}"><button type="button" class="btn btn-default">Résolution des conflits</button></a>
+</p>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<th>id</th>
+			<th>syntaxon</th>
+			<th>utilisateur</th>
+			<th>map</th>
+			<th>département</th>
+			<th>valeur</th>
+			<th>état</th>
+		</tr>
+		{% for repartition in repartitions%}
+			<tr>
+				<td>#{{ repartition.id }}</td>
+				<td>{{ repartition.syntaxonCore.syntaxon }}</td>
+				<td>{{ repartition.submitedBy.username}}</td>
+				<td>{{ repartition.map }}</td>
+				<td>{{ getRepFrFullNameFromShape(repartition.shape) }}</td>
+				<td>{{ getRepartitionDescriptionFromValue(repartition.value) }}</td>
+				<td>
+					{% include 'evegUserRepartitionBundle:Admin/Fragments:showEnabledAndActivatedIcons.html.twig' with { 'repartition': repartition } only %}
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>

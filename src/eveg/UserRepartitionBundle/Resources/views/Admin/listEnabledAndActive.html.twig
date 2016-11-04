@@ -1,0 +1,26 @@
+{# src/eveg/UserRepartitionBundle/Resources/views/Admin/listEnabledAndActive.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Données activées et validées | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="row whiteRow">
+
+		<div class="jumbotron admin">
+			<h1>Données activées et validées</h1>
+		</div>
+
+		<div class="col-md-12">
+
+				{% include 'evegUserRepartitionBundle:Admin/Fragments:dataTable.html.twig' with { 'repartitions': repartitions } only %}
+
+		</div>
+	</div>
+{% endblock %}

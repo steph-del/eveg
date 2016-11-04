@@ -80,4 +80,30 @@ class RepartitionRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findAllEnabledAndActive()
+	{
+		$qb = $this->createQueryBuilder('r');
+
+		$qb->select('r')
+		   ->where('r.enabled = :true')
+		   ->andWhere('r.validated = :true')
+		   ->setParameter('true', true)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findAllDisabledOrUnactive()
+	{
+		$qb = $this->createQueryBuilder('r');
+
+		$qb->select('r')
+		   ->where('r.enabled = :false')
+		   ->orWhere('r.validated = :false')
+		   ->setParameter('false', false)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }

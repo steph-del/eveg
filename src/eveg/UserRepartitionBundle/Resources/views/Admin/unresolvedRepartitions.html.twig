@@ -38,19 +38,7 @@
 							<p><b>Commentaire :</b> {{ repartition.comment }}</p>
 							<p><b>Conflit(s) :</b> {{ repartition.conflicts|length }}</p>
 							<p><b>État : </b>
-							Activé 
-							{% if repartition.enabled == true %}
-								<i class="text-success fa fa-toggle-on" aria-hidden="true"></i>
-							{% else %}
-								<i class="text-danger fa fa-toggle-off" aria-hidden="true"></i>
-							{% endif %}
-							 | 
-							Validé
-							{% if repartition.validated == true %}
-								<i class="text-success fa fa-toggle-on" aria-hidden="true"></i>
-							{% else %}
-								<i class="text-danger fa fa-toggle-off" aria-hidden="true"></i>
-							{% endif %}</p>
+							{% include 'evegUserRepartitionBundle:Admin/Fragments:showEnabledAndActivatedIcons.html.twig' with { 'repartition': repartition } only %}
 
 							{% set hasConflicts = false %}
 							{% set hasConflicts = (repartition.conflicts|length > 0) %}

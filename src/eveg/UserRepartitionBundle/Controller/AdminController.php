@@ -10,6 +10,38 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
+
+    /**
+    * List all enabled and activated repartitions data
+    *
+    * @Security("has_role('ROLE_SUPER_ADMIN')") 
+    */
+    public function listEnabledAndActiveAction()
+    {
+        $em           = $this->getDoctrine()->getManager();
+        $repartitions = $em->getRepository('evegUserRepartitionBundle:Repartition')->findAllEnabledAndActive();
+
+        return $this->render('evegUserRepartitionBundle:Admin:listEnabledAndActive.html.twig', array(
+            'repartitions' => $repartitions,
+        ));
+    }
+
+    /**
+    * List all disabled or unactivated repartitions data
+    *
+    * @Security("has_role('ROLE_SUPER_ADMIN')") 
+    */
+    public function listDisabledOrUnactiveAction()
+    {
+        $em           = $this->getDoctrine()->getManager();
+        $repartitions = $em->getRepository('evegUserRepartitionBundle:Repartition')->findAllDisabledOrUnactive();
+
+        return $this->render('evegUserRepartitionBundle:Admin:listDisabledOrUnactive.html.twig', array(
+            'repartitions' => $repartitions,
+        ));
+    }
+
+
 	/**
 	* @Security("has_role('ROLE_SUPER_ADMIN')") 
 	*/
