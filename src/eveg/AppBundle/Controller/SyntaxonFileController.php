@@ -50,7 +50,7 @@ class SyntaxonFileController extends Controller
 				$file->setSyntaxonCore($syntaxon);
 				$file->setUser($currentUser);
 				$file->setOriginalName($file->getFileFile()->getClientOriginalName());
-				switch ($file->getFileFile()->getClientOriginalExtension()) {
+				switch (strtolower($file->getFileFile()->getClientOriginalExtension())) {
 					case 'csv':
 					case 'ods':
 					case 'xls':
