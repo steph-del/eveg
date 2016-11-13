@@ -14,6 +14,17 @@ use Doctrine\ORM\QueryBuilder;
 class SyntaxonCoreRepository extends EntityRepository
 {
 
+	public function findAlgoliaTest()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.level = :ass')
+			->setMaxResults(10)
+			->setParameter('ass', 'ASS');
+
+		return $qb->getQuery()->getResult();
+	}
 	public function findForV1Redirection($catminatCode)
 	{
 		$qb = $this->createQueryBuilder('s');
