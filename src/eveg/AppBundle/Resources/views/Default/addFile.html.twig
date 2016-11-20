@@ -32,12 +32,12 @@
 					{{ form_start(form) }}
 						{% if not form.vars.valid %}
 							<br />
-							{% for s in form.syntaxonFiles %}
-								{% for error in s.fileFile.vars.errors %}
+							{% for e in form.vars.errors %}
+								{#{% for error in s.fileFile.vars.errors %}#}
 									<div class="alert alert-danger" role="alert">
-										{{ error.message }}
+										{{ e.message }}
 									</div>
-								{% endfor %}
+								{#{% endfor %}#}
 							{% endfor %}
 						{% endif %}
 					
