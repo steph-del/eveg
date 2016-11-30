@@ -110,7 +110,6 @@ class SyntaxonCore
      * @Expose
      * @Groups({"searchEngine", "baseTree", "nodeTree", "API"})
      * @SerializedName("level")
-     * @Algolia\Attribute
      */
     private $level;
 
@@ -123,7 +122,6 @@ class SyntaxonCore
      * @Expose
      * @Groups({"searchEngine", "API"})
      * @SerializedName("syntaxonName")
-     * @Algolia\Attribute
      */
     private $syntaxonName;
 
@@ -156,7 +154,6 @@ class SyntaxonCore
      * @Expose
      * @Groups({"searchEngine", "API"})
      * @SerializedName("syntaxonAuthor")
-     * @Algolia\Attribute
      */
     private $syntaxonAuthor;
 
@@ -269,11 +266,9 @@ class SyntaxonCore
      * @var integer
      *
      * @ORM\Column(name="hit", type="integer", nullable=true, options={"default" : 0})
+     * @Algolia\Attribute
      */
     protected $hit;
-
-
-    private $url;
 
     /**
      * @Algolia\Attribute
@@ -782,6 +777,20 @@ class SyntaxonCore
     public function setHit($hit)
     {
         $this->hit = $hit;
+    }
+
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isNotSynonym()
+    {
+        $level = $this->level;
+
+        if(strpos($level, 'syn') !== false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }
