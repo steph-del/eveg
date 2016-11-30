@@ -388,6 +388,7 @@ eveg.newsletter.last_up.date.month: 'le mois dernier'
 eveg.newsletter.last_up.hello: "Bonjour,\n\nDepuis %when%, %how-many% nouveaux fichiers ont été ajoutés sur eVeg :\n"
 eveg.newsletter.last_up.go: 'Accéder à la fiche'
 eveg.newsletter.last_up.bye: 'L''équipe eVeg.'
+eveg.newsletter.unsubscribe: "Pour ne plus reçevoir de messages de la part d'eVeg, rendez vous sur %link_start%votre compte utilisateur%link_end% et décochez l''option appropriée."
 eveg.tree.1: '01: Eaux marines'
 eveg.tree.2: '02: Littoral maritime'
 eveg.tree.3: '03: Végétations aquatiques dulçaquicoles'

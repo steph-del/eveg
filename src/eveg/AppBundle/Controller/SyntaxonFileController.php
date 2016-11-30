@@ -60,7 +60,10 @@ class SyntaxonFileController extends Controller
 					case 'pdf':
 						$file->setType('pdf');
 						break;
+					default:
+       					Throw new HttpException(500, 'Error while uploading file.');
 				}
+
 				$file->setUploadedAt(new \DateTime('now'));
 				$file->setOriginalSyntaxonName('(id:'.$syntaxon->getId().') '.$syntaxon->getSyntaxon());
 
