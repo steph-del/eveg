@@ -2,10 +2,6 @@
 
 # application routes
 
-algolia_test:
-    path: /algolia
-    defaults: { _controller:evegAppBundle:Default:testAlgolia }
-
 eveg_v1_redirection:
     path: /index.php
     defaults: { _controller:evegAppBundle:Default:v1Redirection }

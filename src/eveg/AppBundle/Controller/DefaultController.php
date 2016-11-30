@@ -13,28 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
-	public function testAlgoliaAction()
-	{
-		$em = $this->getDoctrine()->getManager();
-		$repo = $em->getRepository('evegAppBundle:SyntaxonCore');
-
-		//$algoliaManualIndexer = $this->get('algolia.indexer')->getManualIndexer($em);
-
-		$syntaxons = $repo->findAlgoliaTest();
-
-		$i = 0;
-
-		foreach ($syntaxons as $key => $syntaxon) {
-			if($i>10) break;
-			$i++;
-			$this->get('algolia.indexer')->getManualIndexer($em)->index($syntaxon);
-		}
-
-		return $this->render('evegAppBundle:Default:algoliaTest.html.twig', array(
-			'syntaxons' => $syntaxons
-		));
-	}
-
 	public function v1RedirectionAction(Request $request)
 	{
 		$catminatCode = $request->get('catminat');
