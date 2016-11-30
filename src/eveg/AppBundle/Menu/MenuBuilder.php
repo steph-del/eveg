@@ -263,6 +263,10 @@ class MenuBuilder implements ContainerAwareInterface
       $menu->addChild('Traductions', array('route' => 'lexik_translation_overview', 'label' => 'Traductions'))
            ->setAttribute('icon', 'fa fa-language');
     }
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('TbAlgolia', array('route' => 'eveg_admin_tb_algolia', 'label' => 'TB Algolia'))
+           ->setAttribute('icon', 'fa fa-search-plus');
+    }
 
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
       $menu->addChild('Import', array('label' => 'Import'))
