@@ -61,6 +61,10 @@ eveg_admin_infos:
     path: /infos
     defaults: { _controller: evegAppBundle:Admin:infos }
 
+eveg_admin_tb_algolia:
+    path: /tb-algolia
+    defaults: { _controller: evegAppBundle:Algolia:indexAdmin }
+
 #eveg_slug_regenerator:
 #    path: /regenerate-slugs
 #    defaults: { _controller: evegAppBundle:Admin:generateAllSlugs }
