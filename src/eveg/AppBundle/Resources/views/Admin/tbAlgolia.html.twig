@@ -8,6 +8,38 @@
 
 {% block stylesheets %}
 	{{ parent() }}
+	<style>
+	.algolia-autocomplete {
+	  width: 100%;
+	}
+	.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+	  width: 100%;
+	}
+	.algolia-autocomplete .aa-hint {
+	  color: #999;
+	}
+	.algolia-autocomplete .aa-dropdown-menu {
+	  width: 100%;
+	  background-color: #fff;
+	  border: 1px solid #999;
+	  border-top: none;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+	  cursor: pointer;
+	  padding: 10px 4px;
+	  border-bottom: 2px solid #F5F5F5;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+	  background-color: #B2D7FF;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+	  font-weight: bold;
+	  font-style: normal;
+	  background-color: rgba(255, 205, 26, 0.1);
+      border: 1px solid rgba(255, 205, 26, 0.3);
+      border-radius: 2px;
+	}
+	</style>
 {% endblock %}
 
 {% block body %}
@@ -17,7 +49,7 @@
 		</div>
 	</div>
 	<div class="row whiteRow">
-		<div class="col-md-4">
+		<div class="col-md-2">
 			<p class="text-center"><b>Champs indéxés pour l'entité SyntaxonCore</b></p>
 			{% if indexedFields is defined and indexedFields is not empty %}
 				<ul class="list-group">
@@ -27,7 +59,7 @@
 				</ul>
 			{% endif %}
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-3">
 			<p>Il y a actuellement <b>{{ nbSCoreNotSyn }}</b> syntaxons retenus (non synonymes).</p>
 			<p>Soit le nombre de syntaxons indéxés par Algolia.</p>
 			<p>Pour chaque syntaxon, {{ indexedFields|length }} champs sont indexés.</p>
@@ -52,5 +84,58 @@
 				test100 : indexer 100 données
 			</p>
 		</div>
+		<div class="col-md-7">
+			<h2>Recherche</h2>
+			<input class="form-control" type="text" id="search-input" />
+		</div>
 	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+
+	<script>
+	  var client = algoliasearch('1TS2JEH4GV', 'c3eaf880164e737c50a0f7db9b67e85a')
+	  var index = client.initIndex('SyntaxonCore_dev');
+	  $('#search-input').autocomplete({ hint: false },
+	  [
+	    {
+	      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+	      displayKey: '',			// displayed in search box while typing eg: syntaxon, commonName
+	      templates: {
+	        suggestion: function(suggestion) {
+	        	if(suggestion._highlightResult.commonName.value)
+	        	{
+	        		return '<span>'
+	          		  +suggestion._highlightResult.commonName.value
+	          		  +'</span><br />'
+	          		  +'<span><small>('
+	          		  + suggestion._highlightResult.syntaxon.value
+	          		  +')</small></span>'
+	          		;
+	        	} else {
+	        		return '<span>'
+	          		  + suggestion._highlightResult.syntaxon.value
+	          		  +'</span>'
+	          		;
+	        	}
+	          
+	        }
+	      }
+	    },
+	    /*{
+	      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+	      displayKey: '',			// displayed in search box while typing eg: syntaxon, commonName
+	      templates: {
+	        suggestion: function(suggestion) {
+	          return suggestion._highlightResult.commonName.value;
+	        }
+	      }
+	    }*/
+	  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+	    console.log(suggestion, dataset);
+	  });
+	</script>
 {% endblock %}
