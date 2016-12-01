@@ -40,15 +40,16 @@ class AlgoliaController extends Controller
 	    if($formReIndex->isValid()) {
 			// Command
 			$command = $formReIndex->getData()['command'];
+			$manualIndexer = $indexer->getManualIndexer($em);
 
 			if($command == 'test100') {
 				$syntaxons = $em->getRepository('evegAppBundle:SyntaxonCore')->findAlgoliaTest(100);
-				$manualIndexer = $indexer->getManualIndexer($em);
 				foreach ($syntaxons as $key => $syntaxon) {
 					$manualIndexer->index($syntaxon);
 				}
 			} elseif($command == 're-index') {
 				// Re-index whole collection
+				$manualIndexer->reIndex('evegAppBundle:SyntaxonCore');
 			} else {
 				// Unknow command
 			}
