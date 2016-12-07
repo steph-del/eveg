@@ -137,5 +137,9 @@
 	  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
 	    console.log(suggestion, dataset);
 	  });
+
+	  $('search-input').on('autocompleted', function() {
+	  	console.log('.');
+	  })
 	</script>
 {% endblock %}
