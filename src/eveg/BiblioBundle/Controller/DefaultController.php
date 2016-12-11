@@ -95,9 +95,17 @@ class DefaultController extends Controller
 
 			$request->getSession()->getFlashBag()->add('success', 'Un nouveau fichier enregistré.');
 
-			return $this->redirect($this->generateUrl('eveg_biblio_show_one', 
-    			array('id' => $biblio->getId())
-    		));
+			// If SaveAndAdd
+	  		if ($form->get('saveAndAdd')->isClicked()) {
+	  			return $this->redirect($this->generateUrl('eveg_biblio_add', 
+	    			array('id' => $biblio->getId())
+	    		));
+	  		} else {
+	  			return $this->redirect($this->generateUrl('eveg_biblio_show_one', 
+	    			array('id' => $biblio->getId())
+	    		));
+	  		}
+			
 		}
 
 		return $this->render('evegBiblioBundle:Default:addFile.html.twig', array(
