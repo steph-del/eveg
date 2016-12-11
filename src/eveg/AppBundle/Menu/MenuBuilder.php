@@ -30,6 +30,10 @@ class MenuBuilder implements ContainerAwareInterface
       $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
     }
 
+    if($securityContext->isGranted('ROLE_BIBLIO')) {
+        $menu->addchild('Biblio', array('route' => 'eveg_biblio_search', 'label' => 'Biblio'));
+    }
+
     $menu->addChild('Participate', array('route' => 'eveg_app_participate', 'label' => 'eveg.menu.participate'));
 
 		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
