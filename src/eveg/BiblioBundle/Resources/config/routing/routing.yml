@@ -1,3 +1,37 @@
+#######
+# Admin
+#######
 eveg_biblio_import:
     path:     /admin/biblio/bv-import
     defaults: { _controller: evegBiblioBundle:BaseBiblio/BaseBiblioImport:import }
+
+#######
+# Front
+#######
+eveg_biblio_search:
+    path:     /biblio
+    defaults: { _controller: evegBiblioBundle:Default:search }
+
+eveg_biblio_add:
+    path: /biblio/{id}/add
+    defaults: { _controller: evegBiblioBundle:Default:addFile }
+
+eveg_biblio_show_one:
+    path: /biblio/{id}/get
+    defaults: { _controller: evegBiblioBundle:Default:showOneReference }
+
+eveg_biblio_download:
+    path: /biblio/{id}/download
+    defaults: { _controller: evegBiblioBundle:Default:downloadFile }
+
+eveg_biblio_generate_link:
+    path: /biblio/generate-link/{id}
+    defaults: { _controller: evegBiblioBundle:Default:generateDwLink }
+
+eveg_biblio_download_with_key:
+    path: /biblio/key/{dwKey}
+    defaults: { _controller: evegBiblioBundle:Default:downloadFileWithKey }
+
+eveg_biblio_add_reference:
+    path: /biblio/add-reference
+    defaults: { _controller: evegBiblioBundle:Default:addReference }

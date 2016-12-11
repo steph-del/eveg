@@ -443,6 +443,13 @@ body {
  			border-bottom: none;
  		}
  	}
+
+ 	@media (min-width: 768px) {
+	 	&.thumb-biblio {
+	 		min-height: 300px;
+	 		max-height: 300px;
+	 	}
+	 }
  }
 
 

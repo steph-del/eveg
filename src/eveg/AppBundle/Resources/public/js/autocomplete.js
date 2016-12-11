@@ -16,6 +16,7 @@ function monkeyPatchAutocomplete() {
     	res[0] = res[0].charAt(0).toUpperCase() + res[0].substring(1);//.toLowerCase();
     	for(var i= 0; i < res.length; i++)
 		{
+
 			item.label = item.label.replace(/<span class='highlightSearch'>/g, "#");
 			item.label = item.label.replace(/<\/span>/g, "¬");
 
@@ -33,7 +34,7 @@ function monkeyPatchAutocomplete() {
 		    } else if(posStrUpper >= 0) {
 		    	var t = item.label.replace(re,"#" + res[i].charAt(0).toUpperCase() + res[i].substring(1) + "¬");
 		    }
-        	
+
         	t = t.replace(/#/g, "<span class='highlightSearch'>");
 			t = t.replace(/¬/g, "</span>");
 

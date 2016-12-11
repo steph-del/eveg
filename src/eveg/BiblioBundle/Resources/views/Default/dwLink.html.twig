@@ -1,0 +1,42 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	Lien de téléchargement | Biblio | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+				<p><b>Lien publique de téléchargement pour :</b></p>
+				<p>{{ file.baseBiblio.reference }}</p>
+		</div>
+	</div>
+
+	{# Page #}
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="thumbnail">
+				<p class="text-center" style="font-size: 1.5em;">
+					<i class="fa fa-download" aria-hidden="true"> Lien publique de téléchargment</i>
+					{%set link = absolute_url(path('eveg_biblio_download_with_key', {'dwKey': key})) %}
+					<a href="{{ link }}">{{ link }}</a>
+				</p>
+				<p class="text-center">Ce lien est accéssible à tout le monde.<br/>Il est valable 48 heures ({{ dwLink.availableUntil|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm') }}).</p>
+			</div>
+		</div>
+	</div> <!-- ./row -->
+
+{% endblock %}
