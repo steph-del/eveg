@@ -19,8 +19,8 @@ eveg.biblio.add_ref.description: Ajouter une référence bibliographique
 eveg.biblio.add_ref.helper.1: "Vérifiez que la référence n'éxiste pas déjà."
 eveg.biblio.add_ref.helper.2: "Si la référence existe mais est erronée, merci d'envoyer un mail à admin@e-veg.net plutôt que de créer une nouvelle référence."
 eveg.biblio.dw_link.title: Lien de téléchargement
-eveg.biblio.dw_link.description: "Lien publique de téléchargement pour :"
-eveg.biblio.dw_link.subtitle: " Lien publique de téléchargment"
+eveg.biblio.dw_link.description: "Lien public de téléchargement pour :"
+eveg.biblio.dw_link.subtitle: " Lien public de téléchargment"
 eveg.biblio.dw_link.helper.1: "Ce lien est accessible à tout le monde."
 eveg.biblio.dw_link.helper.2: "Il est valable 48 heures"
 eveg.biblio.show_one.file: Fichier
