@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	Ajouter une référence | Biblio | {{ parent() }}
+	{{ 'eveg.biblio.add_ref.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -20,7 +20,7 @@
 	{{ parent() }}
 	<div class="row whiteRow">
 		<div class="jumbotron biblio">
-			<p><b>Ajouter une référence bibliographique</b>
+			<p><b>{{ 'eveg.biblio.add_ref.description'|trans }}</b>
 		</div>
 	</div>
 
@@ -41,8 +41,8 @@
 
 				<ul style="margin: 0;padding: 0;">{{ form_row(form.reference) }}</ul>
 				<br />
-				<p><i>Vérifiez que la référence n'éxiste pas déjà.</i></p>
-				<p><i>Si la référence existe mais est erronée, merci d'envoyer un mail à admin@e-veg.net plutôt que de créer une nouvelle référence.</i></p>
+				<p><i>{{ 'eveg.biblio.add_ref.helper.1'|trans }}</i></p>
+				<p><i>{{ 'eveg.biblio.add_ref.helper.2'|trans }}</i></p>
 			</div>
 			<div class="row">
 				<div class="col-md-offset 4 col-md-4 col-md-offset-4">

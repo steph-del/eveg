@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	Ajouter un fichier | Biblio | {{ parent() }}
+	{{ 'eveg.biblio.add_file.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -20,7 +20,7 @@
 	{{ parent() }}
 	<div class="row whiteRow">
 		<div class="jumbotron biblio">
-			<p><b>Ajouter un fichier pour</b><br />
+			<p><b>{{ 'eveg.biblio.add_file.add_for'|trans }}</b><br />
 				{{ biblio.reference}} </p>
 		</div>
 	</div>
@@ -45,9 +45,10 @@
 				</div>
 				<div class="col-md-7">
 					<br />
-					<p><i>Taille maximale pour l'envoi d'un fichier : 200 Mo.</i></p>
-					<p><i>Favorisez l'envoi de fichier avec reconnaissance des caractères et optimisés.</i></p>
-					<p><i>Le traitement du fichier peut prendre plusieurs minutes après le chargement.</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.0'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.1'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.2'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.3'|trans }}</i></p>
 					<br />
 				</div>
 			</div>

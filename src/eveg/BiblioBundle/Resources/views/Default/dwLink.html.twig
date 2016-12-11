@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	Lien de téléchargement | Biblio | {{ parent() }}
+	{{ 'eveg.biblio.dw_link.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -20,8 +20,9 @@
 	{{ parent() }}
 	<div class="row whiteRow">
 		<div class="jumbotron biblio">
-				<p><b>Lien publique de téléchargement pour :</b></p>
-				<p>{{ file.baseBiblio.reference }}</p>
+				<p><b>{{ 'eveg.biblio.dw_link.description'|trans }}</b></p>
+				<p>{{ file.originalFileName }}<br />
+				   {{ file.baseBiblio.reference }}</p>
 		</div>
 	</div>
 
@@ -30,11 +31,11 @@
 		<div class="col-md-offset-2 col-md-8">
 			<div class="thumbnail">
 				<p class="text-center" style="font-size: 1.5em;">
-					<i class="fa fa-download" aria-hidden="true"> Lien publique de téléchargment</i>
+					<i class="fa fa-download" aria-hidden="true">{{ 'eveg.biblio.dw_link.subtitle'|trans }}</i>
 					{%set link = absolute_url(path('eveg_biblio_download_with_key', {'dwKey': key})) %}
 					<a href="{{ link }}">{{ link }}</a>
 				</p>
-				<p class="text-center">Ce lien est accéssible à tout le monde.<br/>Il est valable 48 heures ({{ dwLink.availableUntil|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm') }}).</p>
+				<p class="text-center">{{ 'eveg.biblio.dw_link.helper.1'|trans }}<br/>{{ 'eveg.biblio.dw_link.helper.2'|trans }} ({{ dwLink.availableUntil|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm') }}).</p>
 			</div>
 		</div>
 	</div> <!-- ./row -->

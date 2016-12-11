@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	Biblio | {{ parent() }}
+	{{ 'eveg.biblio.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -20,7 +20,7 @@
 	{{ parent() }}
 	<div class="row whiteRow">
 		<div class="jumbotron biblio">
-			<h1>Ressources bibliographiques<br /><smaller>{{ countFiles }} documents en ligne</small></h1>
+			<h1>{{ 'eveg.biblio.ressources_bib'|trans }}<br /><smaller>{{ countFiles }} {{ 'eveg.biblio.online_docs'|trans }}</small></h1>
 		</div>
 	</div>
 
@@ -37,7 +37,7 @@
 	<div class="row">
 		{% if lastFiles is defined and lastFiles is not empty %}
 			<div class="col-md-12">
-				<h2><small>Derniers ajouts</small></h2>
+				<h2><small>{{ 'eveg.biblio.last_add'|trans }}</small></h2>
 			</div>
 			<div class="">
 			{% for file in lastFiles%}
@@ -58,10 +58,10 @@
 									<p>{{ file.originalFileName }}</p>
 									<div class="text-center">
 										<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
-											<button type="button" class="btn btn-default btn-sm">Télécharger le fichier</button>
+											<button type="button" class="btn btn-default btn-sm">{{ 'eveg.biblio.dw_file'|trans }}</button>
 										</a>
 										<a class="no-style" href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
-											<button type="button" class="btn btn-default btn-sm">Obtenir un lien de téléchargement</button>
+											<button type="button" class="btn btn-default btn-sm">{{ 'eveg.biblio.get_link'|trans }}</button>
 										</a>
 									</div>
 								</div>

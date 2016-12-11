@@ -2,7 +2,7 @@
 	<div class="searchIcon"><i class="fa fa-spin fa-refresh" aria-hidden="true"></i></div>
 	<span class="badge-addon badge">X</span>
 	<div class="input-group">
-		<input type="text" class="form-control searchboxBiblio" name="term" id ="searchboxBiblio" placeholder="Rechercher une référence bibliographique" autofocus>
-		<span class="pull-right"><a href="{{ path('eveg_biblio_add_reference') }}">ajouter une référence</a></span>
+		<input type="text" class="form-control searchboxBiblio" name="term" id ="searchboxBiblio" placeholder="{{ 'eveg.biblio.search.placeholder'|trans }}" autofocus>
+		<span class="pull-right"><a href="{{ path('eveg_biblio_add_reference') }}">{{ 'eveg.biblio.search.add_reference'|trans }}</a></span>
 	</div>
 </div>

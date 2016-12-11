@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	{{ biblio.reference }} | Biblio | {{ parent() }}
+	{{ biblio.reference }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -34,23 +34,23 @@
 					</div>
 				</div>
 				<div class="col-md-9">
-					<p><b>Fichier :</b> {{ file.originalFileName }}</p>
-					<p><b>Poids : </b> {{ file.filesize|readable_filesize(0) }}</p>
-					<p><b>Nb. pages : </b> {{ file.nbPages }}</p>
-					<p><b>Posté par :</b> {{ file.updatedBy }} le {{ file.updatedAt|localizeddate('medium', 'medium', format='dd MMM yyyy') }} </p>
+					<p><b>{{ 'eveg.biblio.show_one.file'|trans }} :</b> {{ file.originalFileName }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.weight'|trans }} : </b> {{ file.filesize|readable_filesize(0) }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.nbpages'|trans }} : </b> {{ file.nbPages }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.by'|trans }} :</b> {{ file.updatedBy }} le {{ file.updatedAt|localizeddate('medium', 'medium', format='dd MMM yyyy') }} </p>
 					{% if file.comment is not empty%}
-						<p><b>Commentaire :</b> {{ file.comment }}</p>
+						<p><b>{{ 'eveg.biblio.show_one.comment'|trans }} :</b> {{ file.comment }}</p>
 					{% endif %}
 					<p><b>Diffusable :</b> {% if file.copyright %}Non{% else %}Oui{% endif %}</p>
 					
 					<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
-						<button type="button" class="btn btn-default">Télécharger le fichier</button>
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.dw_file'|trans }}</button>
 					</a>
 					<a class="no-style", href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
-						<button type="button" class="btn btn-default">Obtenir un lien de téléchargement</button>
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.get_link'|trans }}</button>
 					</a>
 					<a class="no-style", href="{{ path('eveg_biblio_add', {'id': file.baseBiblio.id}) }}">
-						<button type="button" class="btn btn-default">Ajouter un autre fichier</button>
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.add_file.another'|trans }}</button>
 					</a>
 				</div>
 			{% endfor %}
@@ -59,9 +59,9 @@
 				
 			</div>
 			<div class="col-md-9">
-				<h2><small>Aucun fichier pour le moment</small></h2>
+				<h2><small>{{ 'eveg.biblio.show_one.empty'|trans }}</small></h2>
 				<a class="no-style" href="{{ path('eveg_biblio_add', {'id': biblio.id }) }}">
-					<button type="button" class="btn btn-primary">Ajouter un fichier</button>
+					<button type="button" class="btn btn-primary">{{ 'eveg.biblio.add_file.title'|trans }}</button>
 				</a>
 			</div>
 		{% endif %}
