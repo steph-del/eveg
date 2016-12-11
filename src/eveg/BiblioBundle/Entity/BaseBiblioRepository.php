@@ -10,4 +10,27 @@ namespace eveg\BiblioBundle\Entity;
  */
 class BaseBiblioRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findByTerm($term)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b.id, b.reference AS label')
+		   ->where('b.reference LIKE :term')
+		   ->setParameter('term', $term);
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findWithFilesById($id)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b')
+		   ->where('b.id = :id')
+		   ->leftJoin('b.files', 'files')
+		   ->setParameter('id', $id)
+		   ->addSelect('files')
+		   ;
+		return $qb->getQuery()->getSingleResult();
+	}
 }
