@@ -156,7 +156,7 @@ class DefaultController extends Controller
     	$em->persist($dwLink);
   		$em->flush();
 
-  		return $this->render('evegBiblioBundle:Default:DwLink.html.twig', array(
+  		return $this->render('evegBiblioBundle:Default:dwLink.html.twig', array(
 			'file' => $file,
 			'dwLink' => $dwLink,
 			'key' => $dwLink->getDwKey(),
