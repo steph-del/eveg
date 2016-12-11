@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new eveg\PagesBundle\evegPagesBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new eveg\BiblioBundle\evegBiblioBundle(),
+            new SPE\FilesizeExtensionBundle\SPEFilesizeExtensionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
