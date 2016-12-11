@@ -28,30 +28,32 @@
 	<div class="row">
 		{% if biblio.files is defined and biblio.files is not empty %}
 			{% for file in biblio.files %}
-				<div class="col-md-3">
-					<div class="thumbnail">
-						<img src="../../../../web/uploads/biblio/thumbnails/{{ file.thumbnail }}" alt="">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="thumbnail">
+							<img src="{{ asset('uploads/biblio/thumbnails/') }}{{ file.thumbnail }}" alt="">
+						</div>
 					</div>
-				</div>
-				<div class="col-md-9">
-					<p><b>{{ 'eveg.biblio.show_one.file'|trans }} :</b> {{ file.originalFileName }}</p>
-					<p><b>{{ 'eveg.biblio.show_one.weight'|trans }} : </b> {{ file.filesize|readable_filesize(0) }}</p>
-					<p><b>{{ 'eveg.biblio.show_one.nbpages'|trans }} : </b> {{ file.nbPages }}</p>
-					<p><b>{{ 'eveg.biblio.show_one.by'|trans }} :</b> {{ file.updatedBy }} le {{ file.updatedAt|localizeddate('medium', 'medium', format='dd MMM yyyy') }} </p>
-					{% if file.comment is not empty%}
-						<p><b>{{ 'eveg.biblio.show_one.comment'|trans }} :</b> {{ file.comment }}</p>
-					{% endif %}
-					<p><b>Diffusable :</b> {% if file.copyright %}Non{% else %}Oui{% endif %}</p>
-					
-					<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
-						<button type="button" class="btn btn-default">{{ 'eveg.biblio.dw_file'|trans }}</button>
-					</a>
-					<a class="no-style", href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
-						<button type="button" class="btn btn-default">{{ 'eveg.biblio.get_link'|trans }}</button>
-					</a>
-					<a class="no-style", href="{{ path('eveg_biblio_add', {'id': file.baseBiblio.id}) }}">
-						<button type="button" class="btn btn-default">{{ 'eveg.biblio.add_file.another'|trans }}</button>
-					</a>
+					<div class="col-md-9">
+						<p><b>{{ 'eveg.biblio.show_one.file'|trans }} :</b> {{ file.originalFileName }}</p>
+						<p><b>{{ 'eveg.biblio.show_one.weight'|trans }} : </b> {{ file.filesize|readable_filesize(0) }}</p>
+						<p><b>{{ 'eveg.biblio.show_one.nbpages'|trans }} : </b> {{ file.nbPages }}</p>
+						<p><b>{{ 'eveg.biblio.show_one.by'|trans }} :</b> {{ file.updatedBy }} le {{ file.updatedAt|localizeddate('medium', 'medium', format='dd MMM yyyy') }} </p>
+						{% if file.comment is not empty%}
+							<p><b>{{ 'eveg.biblio.show_one.comment'|trans }} :</b> {{ file.comment }}</p>
+						{% endif %}
+						<p><b>Diffusable :</b> {% if file.copyright %}Non{% else %}Oui{% endif %}</p>
+						
+						<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
+							<button type="button" class="btn btn-default">{{ 'eveg.biblio.dw_file'|trans }}</button>
+						</a>
+						<a class="no-style", href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
+							<button type="button" class="btn btn-default">{{ 'eveg.biblio.get_link'|trans }}</button>
+						</a>
+						<a class="no-style", href="{{ path('eveg_biblio_add', {'id': file.baseBiblio.id}) }}">
+							<button type="button" class="btn btn-default">{{ 'eveg.biblio.add_file.another'|trans }}</button>
+						</a>
+					</div>
 				</div>
 			{% endfor %}
 		{% else %}

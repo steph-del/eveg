@@ -46,7 +46,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<a class="no-style" href="{{ path('eveg_biblio_show_one', {'id': file.baseBiblio.id}) }}">
-									<img class="img-responsive" src="../../web/uploads/biblio/thumbnails/{{ file.thumbnail }}" width="100%" alt="">
+									<img class="img-responsive" src="{{ asset('uploads/biblio/thumbnails/') }}{{ file.thumbnail }}" width="100%" alt="">
 								</a>
 							</div>
 							<div class="col-md-8">

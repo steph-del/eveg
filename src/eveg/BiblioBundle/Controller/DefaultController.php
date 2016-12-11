@@ -83,11 +83,12 @@ class DefaultController extends Controller
       		$em->persist($biblio);
 
 			// Thumbnail
-			$im = new Imagick('../web/uploads/biblio/'.$file->getFileName());
+			$webDir = $this->get('kernel')->getRootDir() . '/../web';
+			$im = new Imagick($webDir.'/uploads/biblio/'.$file->getFileName());
 			$im->setIteratorIndex(0);
 			$im->setCompression(Imagick::COMPRESSION_LZW);
 			$im->setCompressionQuality(90);
-			$im->writeImage('../web/uploads/biblio/thumbnails/'.$thumbId.'.jpeg');
+			$im->writeImage($webDir.'/uploads/biblio/thumbnails/'.$thumbId.'.jpeg');
 
 			$file->setNbPages($im->getNumberImages());
 
