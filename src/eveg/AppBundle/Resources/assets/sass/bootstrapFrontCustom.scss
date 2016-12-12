@@ -373,10 +373,12 @@ body {
  	}
  	.infosNbItemsParticipate {
  		display: flex;
+ 		flex-wrap: wrap;
  		margin-bottom: 15px;
  		.partiticpateItem {
  			text-align: center;
  			margin: auto;
+ 			margin-top: 10px;
  			.partiticpateItemNb {
  				font-size: 2.5em;
  				font-weight: bold;
