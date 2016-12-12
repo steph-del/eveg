@@ -115,6 +115,7 @@ eveg.homepage.participate.currently.title: 'Actuellement sur eVeg'
 eveg.homepage.participate.currently.nbCards: "fiches\ndescriptives\n"
 eveg.homepage.participate.currently.nbDocuments: "documents\nà télécharger\n"
 eveg.homepage.participate.currently.nbWaiting: "documents n'attendent\nque vous pour être compilés !"
+eveg.homepage.participate.currently.nbSyntaxon: "Répartition des syntaxons par niveau"
 eveg.homepage.participate.addDocuments: 'Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d''illustration et en soumettant des données chorologiques.'
 eveg.homepage.participate.how: 'En savoir plus'
 eveg.homepage.lastUploads.title: 'Derniers ajouts des contributeurs'
