@@ -748,4 +748,19 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getNbSyntaxonByLevel()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('DISTINCT s.level AS level, COUNT(s.level) AS c')
+		   ->where('s.level NOT LIKE :syn')
+		   ->andWhere('s.level != :empty')
+		   ->setParameter('syn', '%syn%')
+		   ->setParameter('empty', '')
+		   ->groupBy('s.level')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }
