@@ -52,8 +52,7 @@ class DefaultController extends Controller
 		$nbDocs = $nbEvegItems->getNbPublicDocuments();
 
 		$nbSyntaxonsByLevel = $nbEvegItems->getNbSyntaxonByLevel();
-dump($nbSyntaxonsByLevel);
-dump($serializer->serialize($nbSyntaxonsByLevel, 'json'));
+		
 		return $this->render('evegAppBundle:Default:homepage.html.twig', array(
 			'wanted' => $pdfsAlone,
 			'nbTotalWanted' => $nbPdfsAlone,
