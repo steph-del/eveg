@@ -299,6 +299,13 @@
 				});
 			</script>
 
+			{% javascripts filter="?yui_js" output ="js/filters.js"
+				'@evegAppBundle/Resources/public/js/repartitionFilters/depFr.js'		
+				'@evegAppBundle/Resources/public/js/repartitionFilters/europe.js'
+				%}
+				<script type="text/javascript" src="{{ asset_url }}"></script>
+			{% endjavascripts %}
+
 			<!-- SEARCHBOX FOCUS ON MODAL SHOWN -->
 			<script>
 				$('#modalSearch').on('shown.bs.modal', function () {
