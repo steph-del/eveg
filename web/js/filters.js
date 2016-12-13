@@ -1,0 +1,2 @@
+var depFrFilter;if(appSessionSF2DepFrFilter!=""){depFrFilter=jQuery.parseJSON(appSessionSF2DepFrFilter)}else{depFrFilter=null}for(cb in depFrFilter){$(".cbFrFilter[name="+cb+"]").prop("checked",true)};
+var ueFilter;if(appSessionSF2UeFilter!=""){ueFilter=jQuery.parseJSON(appSessionSF2UeFilter)}else{ueFilter=null}for(cb in ueFilter){$(".cbUeFilter[name="+cb+"]").prop("checked",true)};
