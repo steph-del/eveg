@@ -587,7 +587,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null)
+	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -629,7 +629,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10)
+	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
