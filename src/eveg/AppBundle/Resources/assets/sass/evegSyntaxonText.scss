@@ -86,7 +86,34 @@ $indent: 10px;
 	color: $color-ASS-text;
 }
 
+.BC-text {
+	color: $color-ASS-text;
+}
+
+.DC-text {
+	color: $color-ASS-text;
+}
+
+.RACE-text {
+	color: $color-ASS-text;
+}
+
 .ASS-indent {
+	padding-left: ($indent*6);
+	@include display-syntaxon-text();
+}
+
+.BC-indent {
+	padding-left: ($indent*6);
+	@include display-syntaxon-text();
+}
+
+.DC-indent {
+	padding-left: ($indent*6);
+	@include display-syntaxon-text();
+}
+
+.RACE-indent {
 	padding-left: ($indent*6);
 	@include display-syntaxon-text();
 }
