@@ -373,6 +373,9 @@ eveg.app.show_one.http_link.add.placeholder: 'http://www.tela-botanica.org'
 eveg.app.show_one.http_link.add.another: 'Ajouter un autre lien'
 eveg.app.show_one.hab.note: 'Les fiches Habitat n''ont pas de données écologiques associées'
 eveg.app.show_one.hab.class: 'Classes de cet habitat :'
+eveg.app.synsystem.title: Synsystème
+eveg.app.synsystem.helper.1: "Le synsystème est automatiquement généré en tenant compte des filtres de répartition."
+eveg.app.synsystem.button: Afficher le synsystème
 eveg.app.multiple_results.title: 'Plusieurs résultats'
 eveg.app.multiple_results.explain: 'Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.'
 eveg.app.multiple_results.your_search: 'Votre recherche'

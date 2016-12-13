@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-	Synsystem | {{ parent() }}
+	{{ 'eveg.app.synsystem.title'|trans }} | {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -15,16 +15,29 @@
 	{{ parent() }}
 
 	<div class="row">
+		<div class="jumbotron synsystem">
+			<h1>{{ 'eveg.app.synsystem.title'|trans }}</h1>
+		</div>
 		<div class="col-md-12">
+			<p>{{ 'eveg.app.synsystem.helper.1'|trans }}</p>
+			
 			{% if synsystem is defined %}
 				{% for s in synsystem %}
-					{%if s.level != 'ASS' or s.level != 'SUBASS' or s.level != 'GRPT'%}
+					{% if s.level == 'HAB' %}
+						<br />
+						<p class="{{ s.level }}-indent" style="display: block !important; margin-bottom: 0;">
+							<hr />
+							<h2><small>{{ s.commonName }}</small></h2>
+						</p>
+					{% elseif s.level != 'ASS' and s.level != 'SUBASS' and s.level != 'GRPT' and s.level != 'BC' and s.level != 'DC' and s.level != 'RACE' %}
 						<p class="{{ s.level }}-text {{ s.level }}-indent" style="display: block !important; margin-bottom: 0;">
 							{{ s.syntaxonName }} {{ s.syntaxonAuthor }}
+							{% if s.commonName is not empty %}<span class="small text-muted">({{ s.commonName }})</span>{% endif %}
 						</p>
 					{% else %}
 						<p class="{{ s.level }}-indent" style="display: block !important; margin-bottom: 0;">
 							{{ s.syntaxonName }} {{ s.syntaxonAuthor }}
+							{% if s.commonName is not empty %}<span class="small text-muted">({{ s.commonName }})</span>{% endif %}
 						</p>
 					{% endif %}
 				{% endfor %}
