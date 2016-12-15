@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new eveg\PagesBundle\evegPagesBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new eveg\BiblioBundle\evegBiblioBundle(),
+            new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new SPE\FilesizeExtensionBundle\SPEFilesizeExtensionBundle(),
         );
 

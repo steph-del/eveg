@@ -1,0 +1,145 @@
+{# src/eveg/AppBundle/Resources/views/Admin/tbAlgolia.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Algolia # Tela botanica | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+	.algolia-autocomplete {
+	  width: 100%;
+	}
+	.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+	  width: 100%;
+	}
+	.algolia-autocomplete .aa-hint {
+	  color: #999;
+	}
+	.algolia-autocomplete .aa-dropdown-menu {
+	  width: 100%;
+	  background-color: #fff;
+	  border: 1px solid #999;
+	  border-top: none;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+	  cursor: pointer;
+	  padding: 10px 4px;
+	  border-bottom: 2px solid #F5F5F5;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+	  background-color: #B2D7FF;
+	}
+	.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+	  font-weight: bold;
+	  font-style: normal;
+	  background-color: rgba(255, 205, 26, 0.1);
+      border: 1px solid rgba(255, 205, 26, 0.3);
+      border-radius: 2px;
+	}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="jumbotron admin">
+			<h1>Algolia # Tela botanica</h1>
+		</div>
+	</div>
+	<div class="row whiteRow">
+		<div class="col-md-2">
+			<p class="text-center"><b>Champs indéxés pour l'entité SyntaxonCore</b></p>
+			{% if indexedFields is defined and indexedFields is not empty %}
+				<ul class="list-group">
+					{% for key, value in indexedFields %}
+						<li class="list-group-item">{{ key }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<div class="col-md-3">
+			<p>Il y a actuellement <b>{{ nbSCoreNotSyn }}</b> syntaxons retenus (non synonymes).</p>
+			<p>Soit le nombre de syntaxons indéxés par Algolia.</p>
+			<p>Pour chaque syntaxon, {{ indexedFields|length }} champs sont indexés.</p>
+			{% set total = nbSCoreNotSyn * indexedFields|length %}
+			<p><b>{{ nbSCoreNotSyn }}</b> x <b>{{ indexedFields|length }}</b> = <b>{{ total }} données indexées.</b></p>
+			<br />
+			<hr />
+			<form name="formReIndex" method="post" class="form-inline text-center">
+				{% form_theme formReIndex 'bootstrap_3_layout.html.twig' %}
+				{{ form_start(formReIndex) }}
+					<div class="form-group">
+	    				{{ form_widget(formReIndex.command) }}
+	    			</div>
+	    			{{ form_widget(formReIndex.save) }}
+
+	    			{{ form_rest(formReIndex) }}
+	    		{{ form_end(formReIndex) }}
+			</form>
+			<hr />
+			<p class="pull-right text-muted">
+				re-index : ré-indexer toutes les données<br />
+				test100 : indexer 100 données
+			</p>
+		</div>
+		<div class="col-md-7">
+			<h2>Recherche</h2>
+			<input class="form-control" type="text" id="search-input" />
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+
+	<script>
+	  var client = algoliasearch('1TS2JEH4GV', 'c3eaf880164e737c50a0f7db9b67e85a')
+	  var index = client.initIndex('SyntaxonCore_dev');
+	  $('#search-input').autocomplete({ hint: false },
+	  [
+	    {
+	      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+	      displayKey: '',			// displayed in search box while typing eg: syntaxon, commonName
+	      templates: {
+	        suggestion: function(suggestion) {
+	        	if(suggestion._highlightResult.commonName.value)
+	        	{
+	        		return '<span>'
+	          		  +suggestion._highlightResult.commonName.value
+	          		  +'</span><br />'
+	          		  +'<span><small>('
+	          		  + suggestion._highlightResult.syntaxon.value
+	          		  +')</small></span>'
+	          		;
+	        	} else {
+	        		return '<span>'
+	          		  + suggestion._highlightResult.syntaxon.value
+	          		  +'</span>'
+	          		;
+	        	}
+	          
+	        }
+	      }
+	    },
+	    /*{
+	      source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+	      displayKey: '',			// displayed in search box while typing eg: syntaxon, commonName
+	      templates: {
+	        suggestion: function(suggestion) {
+	          return suggestion._highlightResult.commonName.value;
+	        }
+	      }
+	    }*/
+	  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+	    console.log(suggestion, dataset);
+	  });
+
+	  $('search-input').on('autocompleted', function() {
+	  	console.log('.');
+	  })
+	</script>
+{% endblock %}
