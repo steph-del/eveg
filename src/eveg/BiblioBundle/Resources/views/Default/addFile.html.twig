@@ -1,0 +1,73 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	{{ 'eveg.biblio.add_file.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+			<p><b>{{ 'eveg.biblio.add_file.add_for'|trans }}</b><br />
+				{{ biblio.reference}} </p>
+		</div>
+	</div>
+
+	{# Page #}
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			{{ form_start(form) }}
+
+			{% if not form.vars.valid %}
+				<br />
+				{% for e in form.vars.errors %}
+					<div class="alert alert-danger" role="alert">
+						{{ e.message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			<div class="row">
+				<div class="col-md-5">
+					<ul style="margin: 0;padding: 0;">{{ include('evegBiblioBundle:Default/Fragments/FileForm:biblioFileFormPrototype.html.twig', { 'form' : form.files.vars.prototype}) }}</ul>
+				</div>
+				<div class="col-md-7">
+					<br />
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.0'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.1'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.2'|trans }}</i></p>
+					<p><i>{{ 'eveg.biblio.add_file.form.helper.3'|trans }}</i></p>
+					<br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="saveButtons">
+						{{ form_widget(form.save) }}
+						{{ form_widget(form.saveAndAdd) }}
+					<div class="saveButtons">
+
+					{{ form_widget(form._token) }}
+					{{ form_end(form, {'render_rest': false}) }}
+				</div>
+			</div>
+		</div>
+	</div> <!-- ./row -->
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+{% endblock %}

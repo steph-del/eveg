@@ -3,6 +3,7 @@
 namespace eveg\BiblioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * BaseBiblio
@@ -13,6 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BaseBiblio
 {
+    public function __construct()
+    {
+        $this->files = new ArrayCollection();
+    }
+    
     /**
      * @var integer
      *
@@ -28,6 +34,7 @@ class BaseBiblio
      * @ORM\Column(name="reference", type="string", length=1024)
      */
     private $reference;
+    private $label;
 
     /**
      * @var \stdClass
@@ -44,6 +51,10 @@ class BaseBiblio
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="eveg\BiblioBundle\Entity\BiblioFile", mappedBy="baseBiblio", cascade={"persist"})
+     */
+    protected $files;
 
     /**
      * Get id
@@ -126,5 +137,23 @@ class BaseBiblio
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+    * Get files
+    *
+    */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    public function addFile(BiblioFile $file)
+    {
+        $this->files->add($file);
+    }
+
+    public function removeFile(BiblioFile $file)
+    {
+        $this->files->removeElement($file);
+    }
+}

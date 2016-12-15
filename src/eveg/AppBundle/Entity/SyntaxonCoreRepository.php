@@ -600,7 +600,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null)
+	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -642,7 +642,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10)
+	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -758,6 +758,21 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($limitItems != null) {
 			$qb->setMaxResults($limitItems);
 		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getNbSyntaxonByLevel()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('DISTINCT s.level AS level, COUNT(s.level) AS c')
+		   ->where('s.level NOT LIKE :syn')
+		   ->andWhere('s.level != :empty')
+		   ->setParameter('syn', '%syn%')
+		   ->setParameter('empty', '')
+		   ->groupBy('s.level')
+		;
 
 		return $qb->getQuery()->getResult();
 	}

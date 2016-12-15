@@ -1,0 +1,64 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	{{ 'eveg.biblio.add_ref.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+			<p><b>{{ 'eveg.biblio.add_ref.description'|trans }}</b>
+		</div>
+	</div>
+
+	{# Page #}
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="row">
+				{{ form_start(form) }}
+
+				{% if not form.vars.valid %}
+					<br />
+					{% for e in form.vars.errors %}
+						<div class="alert alert-danger" role="alert">
+							{{ e.message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				<ul style="margin: 0;padding: 0;">{{ form_row(form.reference) }}</ul>
+				<br />
+				<p><i>{{ 'eveg.biblio.add_ref.helper.1'|trans }}</i></p>
+				<p><i>{{ 'eveg.biblio.add_ref.helper.2'|trans }}</i></p>
+			</div>
+			<div class="row">
+				<div class="col-md-offset 4 col-md-4 col-md-offset-4">
+					<div class="saveButtons">
+						{{ form_widget(form.save) }}
+					<div class="saveButtons">
+
+					{{ form_widget(form._token) }}
+					{{ form_end(form, {'render_rest': false}) }}
+				</div>
+			</div>
+		</div>
+	</div> <!-- ./row -->
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+{% endblock %}

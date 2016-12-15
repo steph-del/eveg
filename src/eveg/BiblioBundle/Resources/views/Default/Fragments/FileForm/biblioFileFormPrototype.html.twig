@@ -1,0 +1,22 @@
+<div class="well wellFile">
+	<li class="li_list_style_none">
+		<div class="row">
+			<ul class="zero_padding">
+				<li class="li_list_style_none">
+			    	{{ form_row(form.file) }}
+				</li>
+				<br />
+				<li class="li_list_style_none">
+					{{ form_row(form.comment) }}
+				</li>
+				<br />
+				<li class="li_list_style_none">
+					<div class="checkbox">
+						<span>{{ form_widget(form.copyright) }}</span>
+						<span>{{ form_label(form.copyright) }}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</li>
+</div>

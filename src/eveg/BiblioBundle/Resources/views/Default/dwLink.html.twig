@@ -1,0 +1,43 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	{{ 'eveg.biblio.dw_link.title'|trans }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+				<p><b>{{ 'eveg.biblio.dw_link.description'|trans }}</b></p>
+				<p>{{ file.originalFileName }}<br />
+				   {{ file.baseBiblio.reference }}</p>
+		</div>
+	</div>
+
+	{# Page #}
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="thumbnail">
+				<p class="text-center" style="font-size: 1.5em;">
+					<i class="fa fa-download" aria-hidden="true">{{ 'eveg.biblio.dw_link.subtitle'|trans }}</i>
+					{%set link = absolute_url(path('eveg_biblio_download_with_key', {'dwKey': key})) %}
+					<a href="{{ link }}">{{ link }}</a>
+				</p>
+				<p class="text-center">{{ 'eveg.biblio.dw_link.helper.1'|trans }}<br/>{{ 'eveg.biblio.dw_link.helper.2'|trans }} ({{ dwLink.availableUntil|localizeddate('medium', 'medium', format='dd MMM yyyy à HH:mm') }}).</p>
+			</div>
+		</div>
+	</div> <!-- ./row -->
+
+{% endblock %}

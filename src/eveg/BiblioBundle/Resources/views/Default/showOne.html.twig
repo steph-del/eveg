@@ -1,0 +1,139 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	{{ biblio.reference }} | {{ 'eveg.biblio.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+				<p>{{ biblio.reference }}</p>
+		</div>
+	</div>
+
+	{# Page #}
+	{% if biblio.files is defined and biblio.files is not empty %}
+		{% for file in biblio.files %}
+			<div class="row">
+				<div class="col-md-3">
+					<div class="thumbnail">
+						<img src="{{ asset('uploads/biblio/thumbnails/') }}{{ file.thumbnail }}" alt="">
+					</div>
+				</div>
+				<div class="col-md-9">
+					<p><b>{{ 'eveg.biblio.show_one.file'|trans }} :</b> {{ file.originalFileName }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.weight'|trans }} : </b> {{ file.filesize|readable_filesize(0) }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.nbpages'|trans }} : </b> {{ file.nbPages }}</p>
+					<p><b>{{ 'eveg.biblio.show_one.by'|trans }} :</b> {{ file.updatedBy }} le {{ file.updatedAt|localizeddate('medium', 'medium', format='dd MMM yyyy') }} </p>
+					{% if file.comment is not empty%}
+						<p><b>{{ 'eveg.biblio.show_one.comment'|trans }} :</b> {{ file.comment }}</p>
+					{% endif %}
+					<p><b>Diffusable :</b> {% if file.copyright %}Non{% else %}Oui{% endif %}</p>
+					
+					<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.dw_file'|trans }}</button>
+					</a>
+					<a class="no-style", href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.get_link'|trans }}</button>
+					</a>
+					<a class="no-style", href="{{ path('eveg_biblio_add', {'id': file.baseBiblio.id}) }}">
+						<button type="button" class="btn btn-default">{{ 'eveg.biblio.add_file.another'|trans }}</button>
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	{% else %}
+		<div class="col-md-3">
+			
+		</div>
+		<div class="col-md-9">
+			<h2><small>{{ 'eveg.biblio.show_one.empty'|trans }}</small></h2>
+			<a class="no-style" href="{{ path('eveg_biblio_add', {'id': biblio.id }) }}">
+				<button type="button" class="btn btn-primary">{{ 'eveg.biblio.add_file.title'|trans }}</button>
+			</a>
+		</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+
+	{{ parent() }}
+
+	<!-- AUTOCOMPLETE -->
+	{% javascripts filter="?yui_js" output="js/autocomplete.js"
+		"@evegAppBundle/Resources/public/js/autocomplete.js"
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+		$('.searchIcon').hide();
+		$('.badge-addon').hide();
+		monkeyPatchAutocomplete();
+
+		$('.searchboxBiblio').autocomplete({
+			
+			source: function(request, response){
+				var url = Routing.generate('api_search_biblio_items', { 'term': request.term}, true);
+				$.ajax({url:url,success:function(responsedata){
+			        response(responsedata)
+			    }});
+			},
+			minLength: 3,
+			search: function(event, ui) {
+				$('.badge-addon').hide();
+				$('.searchIcon').show();
+			},
+			response: function(event, ui) {
+				$('.searchIcon').hide();
+				$('.badge-addon').text(ui.content.length);
+				$('.badge-addon').show();
+			},
+			focus: function(event, ui) {
+		        event.preventDefault();
+		    },
+		    change: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+		    close: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+			select : function(event, ui){
+				event.preventDefault();
+				window.location.href = Routing.generate('eveg_show_one_redirect', { id: ui.item.id }, true);
+				$('.badge-addon').hide();
+			}
+		});
+	</script>
+
+	<!-- FOCUS -->
+	<script>
+	$(document).ready(function(){
+	    $(".searchboxBiblio").focus();
+	});
+	</script>
+
+	<!-- search bar style -->
+	<script>
+		$('.searchboxBiblio').focus(function() {
+			$('#searchHelperIcon').css('border-color', '#66AFE9');
+		});
+		$('.searchboxBiblio').blur(function() {
+			$('#searchHelperIcon').css('border-color', '#CCC');
+		});
+	</script>
+
+{% endblock %}

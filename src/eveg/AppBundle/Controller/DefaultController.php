@@ -38,6 +38,7 @@ class DefaultController extends Controller
 	{
 		$session = new Session();
 		$session->set('idReferer', null);
+		$serializer = $this->container->get('jms_serializer');
 
 		$wanted = $this->get('evep_app.wanted');
 		$pdfsAlone = $wanted->getList($limit = 5);
@@ -50,12 +51,15 @@ class DefaultController extends Controller
 		$nbCards = $nbEvegItems->getNbCards();
 		$nbDocs = $nbEvegItems->getNbPublicDocuments();
 
+		$nbSyntaxonsByLevel = $nbEvegItems->getNbSyntaxonByLevel();
+		
 		return $this->render('evegAppBundle:Default:homepage.html.twig', array(
 			'wanted' => $pdfsAlone,
 			'nbTotalWanted' => $nbPdfsAlone,
 			'newDocuments' => $newDocuments,
 			'nbCards' => $nbCards,
-			'nbDocs' => $nbDocs
+			'nbDocs' => $nbDocs,
+			'syntaxonsByLevel' => $serializer->serialize($nbSyntaxonsByLevel, 'json')
 		));
 	}
 

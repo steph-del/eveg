@@ -115,6 +115,7 @@ eveg.homepage.participate.currently.title: 'Actuellement sur eVeg'
 eveg.homepage.participate.currently.nbCards: "fiches\ndescriptives\n"
 eveg.homepage.participate.currently.nbDocuments: "documents\nà télécharger\n"
 eveg.homepage.participate.currently.nbWaiting: "documents n'attendent\nque vous pour être compilés !"
+eveg.homepage.participate.currently.nbSyntaxon: "Répartition des syntaxons par niveau"
 eveg.homepage.participate.addDocuments: 'Vous pouvez participer au projet en ajoutant des diagnoses (tableaux ou documents PDF), des photos d''illustration et en soumettant des données chorologiques.'
 eveg.homepage.participate.how: 'En savoir plus'
 eveg.homepage.lastUploads.title: 'Derniers ajouts des contributeurs'
@@ -372,6 +373,9 @@ eveg.app.show_one.http_link.add.placeholder: 'http://www.tela-botanica.org'
 eveg.app.show_one.http_link.add.another: 'Ajouter un autre lien'
 eveg.app.show_one.hab.note: 'Les fiches Habitat n''ont pas de données écologiques associées'
 eveg.app.show_one.hab.class: 'Classes de cet habitat :'
+eveg.app.synsystem.title: Synsystème
+eveg.app.synsystem.helper.1: "Le synsystème est automatiquement généré en tenant compte des filtres de répartition."
+eveg.app.synsystem.button: Afficher le synsystème
 eveg.app.multiple_results.title: 'Plusieurs résultats'
 eveg.app.multiple_results.explain: 'Votre recherche concerne un synonyme complexe ou pro parte et plusieurs résultats (syntaxons retenus) ont été trouvés.'
 eveg.app.multiple_results.your_search: 'Votre recherche'

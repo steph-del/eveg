@@ -153,4 +153,13 @@ class nbEvegItems
 		return $this->sHttpLinkRepo->getSumDownloaded();
 	}
 
+	/**
+	 * Count the number of each Level item
+	 *
+	 */
+	public function getNbSyntaxonByLevel()
+	{
+		return $this->sCoreRepo->getNbSyntaxonByLevel();
+	}
+
 }

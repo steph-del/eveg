@@ -1,0 +1,31 @@
+eveg.biblio.title: Biblio
+eveg.biblio.menu: Biblio
+eveg.biblio.ressources_bib: Ressources bibliographiques
+eveg.biblio.online_docs: documents en ligne
+eveg.biblio.search.placeholder: Rechercher une référence bibliographique
+eveg.biblio.search.add_reference: ajouter une référence biblio
+eveg.biblio.last_add: Derniers ajouts
+eveg.biblio.dw_file: Télécharger le fichier
+eveg.biblio.get_link: Obtenir un lien de téléchargement
+eveg.biblio.add_file.title: Ajouter un fichier
+eveg.biblio.add_file.another: Ajouter un autre fichier
+eveg.biblio.add_file.add_for: Ajouter un fichier pour
+eveg.biblio.add_file.form.helper.0: "Merci de n'ajouter ici que des documents complets."
+eveg.biblio.add_file.form.helper.1: "Taille maximale pour l'envoi d'un fichier : 200 Mo."
+eveg.biblio.add_file.form.helper.2: "Favorisez l'envoi de fichier avec reconnaissance des caractères et optimisés."
+eveg.biblio.add_file.form.helper.3: "Le traitement du fichier peut prendre plusieurs minutes après le chargement."
+eveg.biblio.add_ref.title: Ajouter une référence
+eveg.biblio.add_ref.description: Ajouter une référence bibliographique
+eveg.biblio.add_ref.helper.1: "Vérifiez que la référence n'éxiste pas déjà."
+eveg.biblio.add_ref.helper.2: "Si la référence existe mais est erronée, merci d'envoyer un mail à admin@e-veg.net plutôt que de créer une nouvelle référence."
+eveg.biblio.dw_link.title: Lien de téléchargement
+eveg.biblio.dw_link.description: "Lien public de téléchargement pour :"
+eveg.biblio.dw_link.subtitle: " Lien public de téléchargment"
+eveg.biblio.dw_link.helper.1: "Ce lien est accessible à tout le monde."
+eveg.biblio.dw_link.helper.2: "Il est valable 48 heures"
+eveg.biblio.show_one.file: Fichier
+eveg.biblio.show_one.weight: Poids
+eveg.biblio.show_one.nbpages: Nb. pages
+eveg.biblio.show_one.by: Posté par
+eveg.biblio.show_one.comment: Commentaire
+eveg.biblio.show_one.empty: Aucun fichier pour le moment

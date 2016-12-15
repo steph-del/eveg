@@ -41,4 +41,63 @@ class BaseBiblioRestController extends FOSRestController
 		return $view;
 
 	}
+
+	/**
+	 * GET Route annotation.
+	 * @Get("/biblio/search/{term}")
+	 */
+	public function searchBiblioItemsAction(Request $request, $term)
+	{
+
+		// Get host name
+		//$hostName = $request->getHost();
+
+		// New view
+		$view = $this->view();
+		$view->setSerializationContext(SerializationContext::create());
+
+		// Grabbing SyntaxonCore repository
+		$em         = $this->getDoctrine()->getManager();
+		$biblioRepo = $em->getRepository('evegBiblioBundle:BaseBiblio');
+
+		// Format $term
+		$term = str_replace(' ', '%', $term);
+		$term = '%'.$term.'%';
+
+		// Find syntaxon
+		$references = $biblioRepo->findByTerm($term);
+
+
+		// Return
+		$view->setData($references);
+		return $view;
+
+	}
+
+	/**
+	 * GET Route annotation.
+	 * @Get("/biblio/get/{id}")
+	 */
+	public function getItemAction(Request $request, $id)
+	{
+
+		// Get host name
+		//$hostName = $request->getHost();
+
+		// New view
+		$view = $this->view();
+		$view->setSerializationContext(SerializationContext::create());
+
+		// Grabbing SyntaxonCore repository
+		$em         = $this->getDoctrine()->getManager();
+		$biblioRepo = $em->getRepository('evegBiblioBundle:BaseBiblio');
+
+		// Find syntaxon
+		$reference = $biblioRepo->find($id);
+
+		// Return
+		$view->setData($reference);
+		return $view;
+
+	}
 }
