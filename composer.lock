@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7873dd4a3e6803a811c3b98c8df62e80",
-    "content-hash": "d5ee078a18a3d05c69b43e83bbc1615e",
+    "hash": "e9ea6e5db6ee01e4984c7b5335325708",
+    "content-hash": "c72ae93056cd65edadb638fd333a0038",
     "packages": [
         {
             "name": "algolia/algolia-search-bundle",
@@ -1467,16 +1467,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.24",
+            "version": "v2.4.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef"
+                "reference": "9ac9111dfa7e4b89f8961f29bb64a385c31d5ed8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/a7f7243a19f79a99ac83a3570444d8795f665eef",
-                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/9ac9111dfa7e4b89f8961f29bb64a385c31d5ed8",
+                "reference": "9ac9111dfa7e4b89f8961f29bb64a385c31d5ed8",
                 "shasum": ""
             },
             "require": {
@@ -1542,7 +1542,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-10-11 18:03:37"
+            "time": "2016-12-14 20:12:38"
         },
         {
             "name": "imagine/imagine",
