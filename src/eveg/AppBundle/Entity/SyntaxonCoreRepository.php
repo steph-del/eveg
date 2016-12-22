@@ -742,6 +742,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		$qb->select('s')
 		   ->where('s.level NOT LIKE :syn')
 		   ->setParameter('syn', '%syn%')
+		   ->orderBy('s.catminatCode', 'ASC')
 		;
 
 		$exclusive = false;
