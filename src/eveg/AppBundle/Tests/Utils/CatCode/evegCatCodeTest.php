@@ -19,7 +19,7 @@ use eveg\AppBundle\Utils\CatCode\Exception\evegCatCodeException;
 	{
 		$this->catCodeRepo = $this->createMock('\eveg\AppBundle\Utils\CatCode\evegCatCodeRepo');
 	    $this->repFilters  = null;
-	    $this->catCode     = new evegCatCode($catCodeRepo, $repFilters);
+	    $this->catCode     = new evegCatCode($this->catCodeRepo, $this->repFilters);
 	}
 
     public function testCheckCodeReturnFalse()
