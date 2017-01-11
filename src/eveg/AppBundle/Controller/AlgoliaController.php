@@ -13,7 +13,7 @@ use eveg\AppBundle\Entity\SyntaxonCore;
 
 class AlgoliaController extends Controller
 {
-	/*
+	/**
  	 * @Security("has_role('ROLE_SUPER_ADMIN')")
  	 */
 	public function indexAdminAction(Request $request)
