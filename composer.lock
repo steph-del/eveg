@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e9ea6e5db6ee01e4984c7b5335325708",
-    "content-hash": "c72ae93056cd65edadb638fd333a0038",
+    "hash": "4504d187872579bc5289528166ee2eb7",
+    "content-hash": "00fd004a843d1ae542f4c5693c71fce5",
     "packages": [
         {
             "name": "algolia/algolia-search-bundle",
@@ -148,28 +148,32 @@
         },
         {
             "name": "besimple/i18n-routing-bundle",
-            "version": "v2.3.0",
-            "target-dir": "BeSimple/I18nRoutingBundle",
+            "version": "v2.4.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BeSimple/BeSimpleI18nRoutingBundle.git",
-                "reference": "36bc5704e462dc9680b13b83511eed128fb94a50"
+                "reference": "1b212198c3b6fa70f18c6cdcf034d75df2ec9a28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BeSimple/BeSimpleI18nRoutingBundle/zipball/36bc5704e462dc9680b13b83511eed128fb94a50",
-                "reference": "36bc5704e462dc9680b13b83511eed128fb94a50",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleI18nRoutingBundle/zipball/1b212198c3b6fa70f18c6cdcf034d75df2ec9a28",
+                "reference": "1b212198c3b6fa70f18c6cdcf034d75df2ec9a28",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.2"
+                "symfony/config": "~2.3 || ~3.0",
+                "symfony/routing": "~2.3 || ~3.0"
             },
             "require-dev": {
-                "doctrine/dbal": "~2.0"
+                "doctrine/dbal": "~2.2",
+                "phpunit/phpunit": "~4.7@stable",
+                "symfony/dependency-injection": "~2.3 || ~3.0",
+                "symfony/http-kernel": "~2.3 || ~3.0",
+                "symfony/translation": "~2.3 || ~3.0"
             },
             "suggest": {
-                "doctrine/dbal": "~2.0"
+                "doctrine/dbal": "~2.2"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -178,8 +182,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "BeSimple\\I18nRoutingBundle": ""
+                "psr-4": {
+                    "BeSimple\\I18nRoutingBundle\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -212,7 +216,7 @@
                 "internationalisation",
                 "routing"
             ],
-            "time": "2014-08-20 07:55:47"
+            "time": "2016-04-18 10:27:03"
         },
         {
             "name": "bmatzner/fontawesome-bundle",
@@ -5670,6 +5674,7 @@
     "stability-flags": {
         "friendsofsymfony/user-bundle": 15,
         "stof/doctrine-extensions-bundle": 20,
+        "besimple/i18n-routing-bundle": 10,
         "vich/uploader-bundle": 10
     },
     "prefer-stable": false,

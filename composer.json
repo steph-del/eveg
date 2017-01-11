@@ -27,7 +27,7 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "jms/serializer": "~1.0",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "besimple/i18n-routing-bundle": "2.3.*",
+        "besimple/i18n-routing-bundle": "v2.4.0-beta1",
         "vich/uploader-bundle": "1.0.*@beta",
         "sensio/generator-bundle": "^2.5",
         "liip/imagine-bundle": "^1.5",
