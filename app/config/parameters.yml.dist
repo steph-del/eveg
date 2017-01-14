@@ -22,3 +22,6 @@ parameters:
         feedback:
             mail_base_admin: "stephanedelplanque@yahoo.fr"
             mail_website_admin: "eveg.stephane.delplanque@gmail.com"
+        tb_host: www.tela-botanica.org
+    algolia.application_id: APPID
+    algolia.api_key: APIKEY
