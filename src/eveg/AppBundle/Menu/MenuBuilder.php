@@ -30,6 +30,10 @@ class MenuBuilder implements ContainerAwareInterface
       $menu->addChild('Activities', array('route' => 'eveg_app_activity', 'label' => 'eveg.menu.activity'));
     }
 
+    if($securityContext->isGranted('ROLE_BIBLIO')) {
+        $menu->addchild('Biblio', array('route' => 'eveg_biblio_search', 'label' => 'Biblio'));
+    }
+
     $menu->addChild('Participate', array('route' => 'eveg_app_participate', 'label' => 'eveg.menu.participate'));
 
 		$menu->addChild('Contact', array('route' => 'eveg_app_contact', 'label' => 'eveg.menu.contact'));
@@ -262,6 +266,10 @@ class MenuBuilder implements ContainerAwareInterface
     if($securityContext->isGranted(array('ROLE_TRANSLATOR'))) {
       $menu->addChild('Traductions', array('route' => 'lexik_translation_overview', 'label' => 'Traductions'))
            ->setAttribute('icon', 'fa fa-language');
+    }
+    if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {
+      $menu->addChild('TbAlgolia', array('route' => 'eveg_admin_tb_algolia', 'label' => 'TB Algolia'))
+           ->setAttribute('icon', 'fa fa-search-plus');
     }
 
     if($securityContext->isGranted(array('ROLE_SUPER_ADMIN'))) {

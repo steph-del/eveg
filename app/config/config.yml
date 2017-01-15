@@ -40,7 +40,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ["evegAppBundle", "evegPagesBundle", "evegUserRepartitionBundle"]
+    bundles:        ["evegAppBundle", "evegPagesBundle", "evegBiblioBundle", "evegUserRepartitionBundle"]
     #java: /usr/bin/java
     ruby: %ruby%
     filters:
@@ -159,6 +159,7 @@ fos_js_routing:
         - "^eveg_compare_*"
         - "^eveg_delete_*"
         - "^eveg_r"
+        - "eveg_biblio_show_one"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~
@@ -186,6 +187,14 @@ vich_uploader:
             upload_destination: %kernel.root_dir%/../web/uploads/files/syntaxons
             inject_on_load:     true
             delete_on_update:   true
+            delete_on_remove:   false
+            namer:              vich_uploader.namer_uniqid
+
+        biblio_file:
+            uri_prefix: /uploads/biblio
+            upload_destination: %kernel.root_dir%/../web/uploads/biblio
+            inject_on_load:     true
+            delete_on_update:   false
             delete_on_remove:   false
             namer:              vich_uploader.namer_uniqid
 

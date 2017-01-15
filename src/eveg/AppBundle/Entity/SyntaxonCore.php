@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use eveg\UserRepartitionBundle\Entity\Repartition as UserRepartition;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * SyntaxonCore
@@ -20,6 +21,7 @@ use eveg\UserRepartitionBundle\Entity\Repartition as UserRepartition;
  * @Gedmo\Loggable(logEntryClass="eveg\AppBundle\Entity\SyntaxonLog")
  *
  * @ExclusionPolicy("all")
+ * @Algolia\Index(autoIndex=false)
  */
 class SyntaxonCore
 {
@@ -66,6 +68,7 @@ class SyntaxonCore
      * @Expose
      * @Groups({"searchEngine", "API"})
      * @SerializedName("id")
+     * @Algolia\Attribute
      */
     private $id;
 
@@ -96,6 +99,7 @@ class SyntaxonCore
      * @Expose
      * @Groups({"baseTree", "nodeTree", "searchEngine", "API"})
      * @SerializedName("catminatCode")
+     * @Algolia\Attribute
      */
     private $catminatCode;
 
@@ -161,6 +165,7 @@ class SyntaxonCore
      * @Expose
      * @Groups({"searchEngine"})
      * @SerializedName("label")
+     * @Algolia\Attribute
      */
     private $syntaxon;
 
@@ -173,6 +178,7 @@ class SyntaxonCore
      * @Expose
      * @Groups({"API"})
      * @SerializedName("ecologicalDefinitionFr")
+     * @Algolia\Attribute
      */
     private $commonName;
 
@@ -194,6 +200,7 @@ class SyntaxonCore
      * @Expose
      * @Groups({"API"})
      * @SerializedName("ecologicalDefinitionEn")
+     * @Algolia\Attribute
      */
     private $commonNameEn;
 
@@ -266,8 +273,17 @@ class SyntaxonCore
      * @var integer
      *
      * @ORM\Column(name="hit", type="integer", nullable=true, options={"default" : 0})
+     * @Algolia\Attribute
      */
     protected $hit;
+
+    /**
+     * @Algolia\Attribute
+     */
+    public function getUrl()
+    {
+        return 'http://www.e-veg.net/app/'.$this->getId();
+    }
 
 
 // -------------------
@@ -787,6 +803,20 @@ class SyntaxonCore
     public function setHit($hit)
     {
         $this->hit = $hit;
+    }
+
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isNotSynonym()
+    {
+        $level = $this->level;
+
+        if(strpos($level, 'syn') !== false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

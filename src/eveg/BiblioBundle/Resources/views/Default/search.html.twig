@@ -1,0 +1,146 @@
+{# src/eveg/BiblioBundle/Resources/views/Default/search.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+
+{% block title %}
+	{{ 'eveg.biblio.title'|trans }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block meta%}
+	{#<meta name="description" content="{{ 'eveg.meta.biblio.search'|trans }}" />#}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+	<div class="row whiteRow">
+		<div class="jumbotron biblio">
+			<h1>{{ 'eveg.biblio.ressources_bib'|trans }}<br /><smaller>{{ countFiles }} {{ 'eveg.biblio.online_docs'|trans }}</small></h1>
+		</div>
+	</div>
+
+	{# Jumbotrom / Searchbox #}
+	<div class="row whiteRow text-center">
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
+			<div class="">
+				{% include('evegBiblioBundle:Default/Fragments:searchBarBiblio.html.twig') %}
+			</div>
+		</div>
+	</div>
+
+	{# Page #}
+	<div class="row">
+		{% if lastFiles is defined and lastFiles is not empty %}
+			<div class="col-md-12">
+				<h2><small>{{ 'eveg.biblio.last_add'|trans }}</small></h2>
+			</div>
+			<div class="">
+			{% for file in lastFiles%}
+				<div class="col-xs-12 col-sm-12 col-md-6">
+					<div class="thumbnail thumb-biblio">
+						<div class="row">
+							<div class="col-md-4">
+								<a class="no-style" href="{{ path('eveg_biblio_show_one', {'id': file.baseBiblio.id}) }}">
+									<img class="img-responsive" src="{{ asset('uploads/biblio/thumbnails/') }}{{ file.thumbnail }}" width="100%" alt="">
+								</a>
+							</div>
+							<div class="col-md-8">
+								<div class="caption">
+									<a class="no-style" href="{{ path('eveg_biblio_show_one', {'id': file.baseBiblio.id}) }}">
+										<p>{{ file.baseBiblio.reference }}</p>
+									</a>
+									<hr />
+									<p>{{ file.originalFileName }}</p>
+									<div class="text-center">
+										<a class="no-style", href="{{ path('eveg_biblio_download', {'id': file.id}) }}">
+											<button type="button" class="btn btn-default btn-sm">{{ 'eveg.biblio.dw_file'|trans }}</button>
+										</a>
+										<a class="no-style" href="{{ path('eveg_biblio_generate_link', {'id': file.id}) }}" target="_blank">
+											<button type="button" class="btn btn-default btn-sm">{{ 'eveg.biblio.get_link'|trans }}</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+	</div> <!-- ./row -->
+
+{% endblock %}
+
+{% block javascript %}
+
+	{{ parent() }}
+
+	<!-- AUTOCOMPLETE -->
+	{% javascripts filter="?yui_js" output="js/autocomplete.js"
+		"@evegAppBundle/Resources/public/js/autocomplete.js"
+		%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+		$('.searchIcon').hide();
+		$('.badge-addon').hide();
+		monkeyPatchAutocomplete();
+
+		$('.searchboxBiblio').autocomplete({
+			
+			source: function(request, response){
+				var url = Routing.generate('api_search_biblio_items', { 'term': request.term}, true);
+				$.ajax({url:url,success:function(responsedata){
+			        response(responsedata)
+			    }});
+			},
+			minLength: 3,
+			search: function(event, ui) {
+				$('.badge-addon').hide();
+				$('.searchIcon').show();
+			},
+			response: function(event, ui) {
+				$('.searchIcon').hide();
+				$('.badge-addon').text(ui.content.length);
+				$('.badge-addon').show();
+			},
+			focus: function(event, ui) {
+		        event.preventDefault();
+		    },
+		    change: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+		    close: function(event, ui) {
+		    	$('.badge-addon').hide();
+		    },
+			select : function(event, ui){
+				event.preventDefault();
+				window.location.href = Routing.generate('eveg_biblio_show_one', { id: ui.item.id }, true);
+				$('.badge-addon').hide();
+			}
+		});
+	</script>
+
+	<!-- FOCUS -->
+	<script>
+	$(document).ready(function(){
+	    $(".searchboxBiblio").focus();
+	});
+	</script>
+
+	<!-- search bar style -->
+	<script>
+		$('.searchboxBiblio').focus(function() {
+			$('#searchHelperIcon').css('border-color', '#66AFE9');
+		});
+		$('.searchboxBiblio').blur(function() {
+			$('#searchHelperIcon').css('border-color', '#CCC');
+		});
+	</script>
+
+{% endblock %}

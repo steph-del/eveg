@@ -12,7 +12,7 @@ use eveg\UserBundle\Form\Type\AdminProfileFormType;
 
 class AdminController extends Controller
 {
-	/*
+	/**
  	 * @Security("has_role('ROLE_ADMIN')")
  	 */
 	public function dashboardAction()

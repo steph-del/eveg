@@ -16,6 +16,10 @@ class SynsystemController extends Controller
 		$repFilters = $this->get('eveg_app.repFilters');
     	$depFrFilter = $repFilters->getDepFrFilterSession($json = false);
     	$ueFilter = $repFilters->getUeFilterSession($json = false);
+    	// repartitionDepFr to Json
+		$serializer = $this->container->get('jms_serializer');
+		$repDepFrJson = $serializer->serialize($depFrFilter, 'json');
+		$repUeJson = $serializer->serialize($ueFilter, 'json');
 
     	// SC repo
     	$scRepo = $em->getRepository('evegAppBundle:SyntaxonCore');
@@ -23,7 +27,9 @@ class SynsystemController extends Controller
     	$synsystem = $scRepo->getSynsystem($depFrFilter, $ueFilter);
 
     	return $this->render('evegAppBundle:Default:synsystem.html.twig', array(
-			'synsystem' => $synsystem
+			'synsystem' => $synsystem,
+			'repDepFrJson' => $repDepFrJson,
+			'repUeJson' => $repUeJson,
 		));
 
 	}

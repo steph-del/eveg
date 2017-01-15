@@ -50,7 +50,7 @@ class SyntaxonFileController extends Controller
 				$file->setSyntaxonCore($syntaxon);
 				$file->setUser($currentUser);
 				$file->setOriginalName($file->getFileFile()->getClientOriginalName());
-				switch ($file->getFileFile()->getClientOriginalExtension()) {
+				switch (strtolower($file->getFileFile()->getClientOriginalExtension())) {
 					case 'csv':
 					case 'ods':
 					case 'xls':
@@ -60,7 +60,10 @@ class SyntaxonFileController extends Controller
 					case 'pdf':
 						$file->setType('pdf');
 						break;
+					default:
+       					Throw new HttpException(500, 'Error while uploading file.');
 				}
+
 				$file->setUploadedAt(new \DateTime('now'));
 				$file->setOriginalSyntaxonName('(id:'.$syntaxon->getId().') '.$syntaxon->getSyntaxon());
 

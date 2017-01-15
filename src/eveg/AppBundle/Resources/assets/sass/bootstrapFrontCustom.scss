@@ -268,7 +268,10 @@ body {
  .jumbotron.contact {
  	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
  }
-
+ 
+ .jumbotron.synsystem {
+ 	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
+ }
  .jumbotron.admin {
  	background-image: url("/../eveg/web/img/patterns/gplaypattern.png");
  }
@@ -373,10 +376,12 @@ body {
  	}
  	.infosNbItemsParticipate {
  		display: flex;
+ 		flex-wrap: wrap;
  		margin-bottom: 15px;
  		.partiticpateItem {
  			text-align: center;
  			margin: auto;
+ 			margin-top: 10px;
  			.partiticpateItemNb {
  				font-size: 2.5em;
  				font-weight: bold;
@@ -443,6 +448,13 @@ body {
  			border-bottom: none;
  		}
  	}
+
+ 	@media (min-width: 768px) {
+	 	&.thumb-biblio {
+	 		min-height: 300px;
+	 		max-height: 300px;
+	 	}
+	 }
  }
 
 

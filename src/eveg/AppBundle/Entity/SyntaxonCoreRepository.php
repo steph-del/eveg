@@ -14,6 +14,32 @@ use Doctrine\ORM\QueryBuilder;
 class SyntaxonCoreRepository extends EntityRepository
 {
 
+	public function findAlgoliaTest($limit = 10)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.level NOT LIKE :syn')
+			->setMaxResults($limit)
+			->setParameter('syn', '%syn%')
+			;
+
+		return $qb->getQuery()->getResult();
+	}
+	
+	public function findForV1Redirection($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+			->where('s.catminatCode = :code')
+			->andWhere('s.level NOT LIKE :syn')
+			->setParameter('code', $catminatCode)
+			->setParameter('syn', '%syn%');
+
+		return $qb->getQuery()->getResult();
+	}
+
 	// Returns the tree trunk (Ajax call from FancyTree)
 	public function getBaseTree($depFrFilter = null, $ueFilter = null, $exclusive = false)
 	{
@@ -574,7 +600,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null)
+	public function findHabClassLevels($depFrFilter = null, $ueFilter = null, $limitItems = null, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -616,7 +642,7 @@ class SyntaxonCoreRepository extends EntityRepository
 	 * @param string $ueFilter
 	 * @param integer $limitItems
 	 */
-	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10)
+	public function getPopularSyntaxons($depFrFilter = null, $ueFilter = null, $limitItems = 10, $exclusive = false)
 	{
 		$qb = $this->createQueryBuilder('s');
 
@@ -716,6 +742,7 @@ class SyntaxonCoreRepository extends EntityRepository
 		$qb->select('s')
 		   ->where('s.level NOT LIKE :syn')
 		   ->setParameter('syn', '%syn%')
+		   ->orderBy('s.catminatCode', 'ASC')
 		;
 
 		$exclusive = false;
@@ -732,6 +759,21 @@ class SyntaxonCoreRepository extends EntityRepository
 		if($limitItems != null) {
 			$qb->setMaxResults($limitItems);
 		}
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getNbSyntaxonByLevel()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('DISTINCT s.level AS level, COUNT(s.level) AS c')
+		   ->where('s.level NOT LIKE :syn')
+		   ->andWhere('s.level != :empty')
+		   ->setParameter('syn', '%syn%')
+		   ->setParameter('empty', '')
+		   ->groupBy('s.level')
+		;
 
 		return $qb->getQuery()->getResult();
 	}

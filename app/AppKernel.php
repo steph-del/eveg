@@ -38,6 +38,8 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new eveg\BiblioBundle\evegBiblioBundle(),
             new eveg\UserRepartitionBundle\evegUserRepartitionBundle(),
+            new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
+            new SPE\FilesizeExtensionBundle\SPEFilesizeExtensionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

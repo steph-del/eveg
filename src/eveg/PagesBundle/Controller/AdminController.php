@@ -58,7 +58,7 @@ class AdminController extends Controller
         {
 
         	$data = $form->getData();
-dump($data);
+
         	$currentUser = $this->getUser();
 
         	$page = $data;

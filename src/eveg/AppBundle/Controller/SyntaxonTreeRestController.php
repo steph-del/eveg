@@ -101,7 +101,7 @@ class SyntaxonTreeRestController extends FOSRestController
         $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
         // 2nd step
-        if(empty($syntaxonTree) and ($syntaxon->getLevel() != 'SUBASS' or $syntaxon->getLevel() != 'ASS')){
+        if(empty($syntaxonTree) and ($syntaxon->getLevel() != 'SUBASS' and $syntaxon->getLevel() != 'ASS')){
             $nextLevel2 = $catCode->getNextLevel($nextLevel);
             $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
         }
@@ -120,6 +120,10 @@ class SyntaxonTreeRestController extends FOSRestController
         
         foreach ($syntaxonTree as $key => $syntaxon) {
 
+            unset($nextLevel);
+            unset($nextLevel2);
+            unset($nextLevel3);
+
             $catminatCode = $syntaxon->getCatminatCode();
             $level = $syntaxon->getLevel();
             if($level != 'SUBASS')                                            $nextLevel = $catCode->getNextLevel($level);
@@ -127,40 +131,42 @@ class SyntaxonTreeRestController extends FOSRestController
             if($level == 'ALL')                                               $nextLevel3 = $catCode->getNextLevel($nextLevel2);
 
 
-            $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
+            if(isset($nextLevel)) {
+              $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
-            // 1st step
-            if ($children == '[]' or $children == null) {
-              $syntaxon->setFolder(false);
-              $syntaxon->setLazy(false);
+              // 1st step
+              if ($children == '[]' or $children == null) {
+                $syntaxon->setFolder(false);
+                $syntaxon->setLazy(false);
 
-              // 2nd step
-              if(isset($nextLevel2)) {
-                $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
-                if($children2 == '[]' or $children2 == null) {
-                  $syntaxon->setFolder(false);
-                  $syntaxon->setLazy(false);
+                // 2nd step
+                if(isset($nextLevel2)) {
+                  $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
+                  if($children2 == '[]' or $children2 == null) {
+                    $syntaxon->setFolder(false);
+                    $syntaxon->setLazy(false);
 
-                  // 3rd step
-                  // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
-                  if(isset($nextLevel3)) {
-                    $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
-                    if($children3 == '[]' or $children3 == null) {
-                      $syntaxon->setFolder(false);
-                      $syntaxon->setLazy(false);
-                    } else {
-                      $syntaxon->setFolder(true);
-                      $syntaxon->setLazy(true);
+                    // 3rd step
+                    // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
+                    if(isset($nextLevel3)) {
+                      $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
+                      if($children3 == '[]' or $children3 == null) {
+                        $syntaxon->setFolder(false);
+                        $syntaxon->setLazy(false);
+                      } else {
+                        $syntaxon->setFolder(true);
+                        $syntaxon->setLazy(true);
+                      }
                     }
+                  } else {
+                    $syntaxon->setFolder(true);
+                    $syntaxon->setLazy(true);
                   }
-                } else {
-                  $syntaxon->setFolder(true);
-                  $syntaxon->setLazy(true);
                 }
+              } else {
+                $syntaxon->setFolder(true);
+                $syntaxon->setLazy(true);
               }
-            } else {
-              $syntaxon->setFolder(true);
-              $syntaxon->setLazy(true);
             }
         }
 

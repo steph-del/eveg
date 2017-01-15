@@ -126,7 +126,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$importFileName = $clientOriginaFilelNameWhitoutExtension.'_'.$day.'_'.$hour.'.'.$clientOriginalFileExtension;
-			$dir = __DIR__.'/../../../../web/uploads/import/core';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/core';
 			$file->move($dir, $importFileName);
 
 			// Variables
@@ -194,7 +195,7 @@ class ImportController extends Controller
 						$countIsUpToDate++;
 
 						// Log : no difference for this entity, nothing to deal with doctrine
-						$logIsUpToDate .= "<table class='table element'>
+						/*$logIsUpToDate .= "<table class='table element'>
 											<tr class='header'>
 												<td class='title'>Syntaxon</td>
 												<td>
@@ -204,7 +205,7 @@ class ImportController extends Controller
 													</table>
 												</td>
 											</tr>
-										   </table>";
+										   </table>";*/
 
 						// Delete item from csv file and from entity manager
 						unset($import[$key]);
@@ -484,7 +485,7 @@ class ImportController extends Controller
 			}
 	        
 	        // Save logs files
-			$path = __DIR__.'/../../../../web/uploads/import/logs/';
+			$path = $rootDir.'/../web/uploads/import/logs/';
 			
 			$countToUpdate > 0   ? $fileNameLogToUpdate   = 'bvCore_toUpdate_'.$day.'_'.$hour.'.html'    : $fileNameLogToUpdate   = null;
 			$countIsUpToDate > 0 ? $fileNameLogIsUpToDate = 'bvCore_isUpToDate_'.$day.'_'.$hour.'.html'  : $fileNameLogIsUpToDate = null;
@@ -623,7 +624,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$name = $file->getClientOriginalName();
-			$dir = __DIR__.'/../../../../web/uploads/import/repartition/depfr';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/repartition/depfr';
 			$file->move($dir, $name);
 
 			// Variables
@@ -819,7 +821,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$name = $file->getClientOriginalName();
-			$dir = __DIR__.'/../../../../web/uploads/import/repartition/europe';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/repartition/europe';
 			$file->move($dir, $name);
 
 			// Variables
@@ -954,7 +957,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$name = $file->getClientOriginalName();
-			$dir = __DIR__.'/../../../../web/uploads/import/biblio';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/biblio';
 			$file->move($dir, $name);
 
 			// Variables
@@ -1083,7 +1087,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$name = $file->getClientOriginalName();
-			$dir = __DIR__.'/../../../../web/uploads/import/ecology';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/ecology';
 			$file->move($dir, $name);
 
 			// Variables
@@ -1203,7 +1208,8 @@ class ImportController extends Controller
 
 			// Moves the uploaded file
 			$name = $file->getClientOriginalName();
-			$dir = __DIR__.'/../../../../web/uploads/import/biblio';
+			$rootDir = $this->get('kernel')->getRootDir();
+			$dir = $rootDir.'/../web/uploads/import/biblio';
 			$file->move($dir, $name);
 
 			// Variables

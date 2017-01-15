@@ -61,6 +61,11 @@
 				<div class="loadTreeIcon">
 					<i class="fa fa-circle-o-notch fa-spin"></i>
 				</div>
+				<div class="text-center">
+					<a class="no-style" href="{{ path('eveg_synsystem') }}">
+						<button class="btn btn-default">{{ 'eveg.app.synsystem.button'|trans }}</button>
+					</a>
+				</div>
 			</div>
 		</div>
 
@@ -89,7 +94,7 @@
 			{# Participate #}
 			<div class="row">
 				<div class="col-md-6 col-sm-12">
-					{% include 'evegAppBundle:Default/Fragments:participateThumbnail.html.twig' with { 'nbCards': nbCards, 'nbDocs': nbDocs, 'wanted': wanted, 'nbTotalWanted': nbTotalWanted } only %}
+					{% include 'evegAppBundle:Default/Fragments:participateThumbnail.html.twig' with { 'nbCards': nbCards, 'nbDocs': nbDocs, 'wanted': wanted, 'nbTotalWanted': nbTotalWanted, 'syntaxonsByLevel': syntaxonsByLevel } only %}
 				</div>
 				{#</div> <!-- ./row -->#}
 				{# Last uploads from contributors #}
@@ -282,6 +287,68 @@
 		$('.searchbox').blur(function() {
 			$('#searchHelperIcon').css('border-color', '#CCC');
 		});
+	</script>
+
+	{% javascripts filter="?yui_js" output="js/chart240.js"
+		'@evegAppBundle/Resources/public/js/Chart.min.js'
+		%}
+
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+	$nbSyntaxoinsItems = "{{ syntaxonsByLevel }}";
+	$nbSyntaxoinsItems = $nbSyntaxoinsItems.replace(/&quot;/g,'"');
+	$nbSyntaxoinsItemsObj = $.parseJSON($nbSyntaxoinsItems);
+	var $nbS = {};
+	for (var i = $nbSyntaxoinsItemsObj.length-1; i >= 0; i--) {
+		$nbS[$nbSyntaxoinsItemsObj[i]['level']] = parseInt($nbSyntaxoinsItemsObj[i]['c']);
+	};
+
+	var ctx = document.getElementById("syntaxonsNbChart");
+	var syntaxonsNbChart = new Chart(ctx, {
+	    type: 'doughnut',
+	    data: {
+	        labels: ["Classe", "Ordre", "Alliance", "Association"],
+	        datasets: [{
+	            label: '# of Votes',
+	            data: [$nbS.CLA + $nbS.SUBCLA,
+	            	   $nbS.ORD + $nbS.SUBORD,
+	             	   $nbS.ALL + $nbS.SUBALL,
+	             	   $nbS.ASS + $nbS.SUBASS],
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(75, 192, 192, 0.2)',
+	                'rgba(255, 206, 86, 0.2)',
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(75, 192, 192, 1)',
+	                'rgba(255, 206, 86, 1)',
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	responsive: true,
+	    	legend: {
+	    		display: true,
+	    		position: 'right'
+	    	},
+	        scales: {
+	            yAxes: [{
+	            	display: false,
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }],
+	            xAexs: [{
+	            	display: false
+	            }]
+	        }
+	    }
+	});
 	</script>
 
 	<!-- Feedbacks -->

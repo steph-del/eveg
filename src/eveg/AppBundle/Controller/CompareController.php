@@ -83,7 +83,7 @@ class CompareController extends Controller
 
 		$nbItems = count($compareArray);
 
-		if($nbItems > 0 and $nbItems <= 2) {
+		if($nbItems > 0 && $nbItems <= 2) {
 			unset($compareArray[$id]);
 
 			$session->set('eveg_compare', $compareArray);
