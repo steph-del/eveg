@@ -20,7 +20,7 @@ use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
  * @Gedmo\Loggable(logEntryClass="eveg\AppBundle\Entity\SyntaxonLog")
  *
  * @ExclusionPolicy("all")
- * @Algolia\Index(autoIndex=false)
+ * @Algolia\Index(autoIndex=false, perEnvironment=false, algoliaName="Vegetations")
  */
 class SyntaxonCore
 {
@@ -271,11 +271,89 @@ class SyntaxonCore
     protected $hit;
 
     /**
-     * @Algolia\Attribute
+     * @Algolia\Attribute(algoliaName="permalink")
      */
     public function getUrl()
     {
         return 'http://www.e-veg.net/app/'.$this->getId();
+    }
+
+    /**
+     * @Algolia\Attribute
+     * This code should not live there. It's a trick to provide the base habitat for any vegetation
+     * with low resources (not db call). Only used in TB algolia advanced search.
+     */
+    public function getHabitat()
+    {
+        $catminat = $this->getCatminatCode();
+        $habCode = substr($catminat, 0, 2);
+        switch($habCode) {
+            case('01'):
+                return 'Eaux marines';
+                break;
+            case('02'):
+                return 'Littoral maritime';
+                break;
+            case('03'):
+                return 'Végétations aquatiques dulçaquicoles';
+                break;
+            case('04'):
+                return 'Végétations basses amphibies';
+                break;
+            case('05'):
+                return 'Roselières, cariçaies, mégaphorbiaies';
+                break;
+            case('06'):
+                return 'Tourbières';
+                break;
+            case('07'):
+                return 'Parois, murs et aérophytes';
+                break;
+            case('08'):
+                return 'Dalles, sables et éboulis';
+                break;
+            case('09'):
+                return 'Pelouses, steppes et savanes';
+                break;
+            case('10'):
+                return 'Ourlets et sous-bois';
+                break;
+            case('11'):
+                return 'Pelouses arctico-alpines';
+                break;
+            case('12'):
+                return 'Prairies';
+                break;
+            case('13'):
+                return 'Cultures, friches et clairières forestières eutrophiles';
+                break;
+            case('14'):
+                return 'Landes, cistaies et garrigues';
+                break;
+            case('15'):
+                return 'Buissons et haies arbustives';
+                break;
+            case('16'):
+                return 'Arbres pionniers des zonobiomes tempérés';
+                break;
+            case('17'):
+                return 'Arbres climaciques du zonobiome tempéré froid';
+                break;
+            case('18'):
+                return 'Arbres climaciques du zonobiome tempéré modal';
+                break;
+            case('19'):
+                return 'Arbres climaciques des zonobiomes tempérés chauds';
+                break;
+            case('20'):
+                return 'Arbres climaciques des zonobiomes tropicaux';
+                break;
+            case('21'):
+                return 'Epiphytes de la canopée';
+                break;
+            default:
+                return '';
+        }
     }
 
 
