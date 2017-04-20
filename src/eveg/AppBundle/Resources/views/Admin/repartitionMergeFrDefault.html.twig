@@ -1,0 +1,98 @@
+{# app/Resources/views/Admin/importMergeFrDefault.html.twig #}
+
+{% extends "evegAppBundle:Admin:layout.html.twig" %}
+
+{% block title %} Fusionner les données chorologiques (dep. Fr) | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+	<div class="row">
+		<div class="jumbotron admin">
+			<h1>Fusionner les données chorologiques (dep Fr.)</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<form id="mergeDepFrForm">
+				<div class="form-group">
+					<label for="mergeInput1">Niveau (ASSGR / SUBALL / ALL / SUBORD / ORD / SUBCLA / CLA / HAB)</label>
+					<input type="text" class="form-control" id="mergeInput1" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="mergeInput2">Niveau inf (ASS /ASSGR / SUBALL / ALL / SUBORD / ORD / SUBCLA / CLA / HAB)</label>
+					<input type="text" class="form-control" id="mergeInput2" placeholder="">
+				</div>
+				<button id ="submitForm" type="submit" class="btn btn-default">Valider</button>
+			</form>
+			<hr />
+			<p><span id="counter">0</span><span id="counterPost"></span></p>
+			<div class="progress">
+				<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+					<span class="sr-only">60% Complete</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script>
+		$("#mergeDepFrForm").on('submit', function(e) {
+			e.preventDefault();
+			$('#counterPost').html('0');
+			$('#progressBar').width("0%");
+			var counter;
+			getItems();
+		});
+
+		function getItems() {
+			$.ajax({
+				url: Routing.generate('eveg_admin_repartition_merge_fr_getList', true),
+				data: {
+					'level': $('#mergeInput1').val()
+				},
+				error: function(){
+					console.log('erreur!');
+				},
+				success: function(response){
+					syntaxons = response;
+					counter = syntaxons.length;
+					$('#counterPost').html('/'+counter);
+					for (var i = counter - 1; i >= 0; i--) {
+						merge(syntaxons[i].s_catminatCode, $('#mergeInput2').val());
+					};
+				},
+				type: 'POST'
+			});
+		}
+
+		function merge(catminatCode, nextLevel) {
+			i=0;
+			$.ajax({
+				url: Routing.generate('eveg_admin_repartition_merge_fr_do', true),
+				data: {
+					'catminatCode': catminatCode,
+					'nextLevel':    nextLevel
+				},
+				error: function(){
+					console.log('erreur.');
+				},
+				success: function(m){
+					i++;
+					$('#counter').html(i);
+					pc=(i*100)/counter;
+					$('#progressBar').width(Math.round(pc)+"%");
+					console.log(m);
+				},
+				type: 'POST'
+			});
+		}
+		
+	</script>
+{% endblock %}
