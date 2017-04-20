@@ -285,6 +285,11 @@ class MenuBuilder implements ContainerAwareInterface
       $menu['Import']->addChild('Separator1')
                      ->setAttribute('role', 'separator')
                      ->setAttribute('class', 'divider');
+      $menu['Import']->addChild('FusionDepFr', array('route' => 'eveg_admin_repartition_merge_fr', 'label' => 'Fusio dep. fr.'));
+      $menu['Import']->addChild('FusionDepFrEu', array('route' => 'eveg_admin_repartition_merge_fr_eu', 'label' => 'Fusio dep. fr. vers Eu'));
+      $menu['Import']->addChild('Separator2')
+                     ->setAttribute('role', 'separator')
+                     ->setAttribute('class', 'divider');
       $menu['Import']->addChild('Logs', array('route' => 'eveg_admin_import_logs', 'label' => 'Logs'));
     }
  

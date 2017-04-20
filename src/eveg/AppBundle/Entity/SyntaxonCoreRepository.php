@@ -777,4 +777,86 @@ class SyntaxonCoreRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getDirectChildrenRepartitionDepFrByCatminatCode($catminatCode, $nextLevel)
+	{
+		//$qb = $this->createQueryBuilder('s');
+
+		$qb = $this->createQueryBuilder('s')
+			//->select('s.id, s.catminatCode, s.level, s.syntaxonName, s.syntaxonAuthor')
+			//->from('evegAppBundle:syntaxonCore', 's')
+			->where('s.catminatCode LIKE :catminatCode')
+			->andWhere('s.catminatCode != :catminatCodeSimple')
+			->andWHere('s.level = :nextLevel')
+			->leftJoin('s.repartitionDepFr', 'depFr')
+			->addSelect('depFr')
+			->setParameter('catminatCode', $catminatCode.'%')
+			->setParameter('catminatCodeSimple', $catminatCode)
+			->setParameter('nextLevel', $nextLevel)
+			->orderBy('s.catminatCode', 'ASC')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getSingleValidSyntaxonByCatminatCodeWithRepartitionDepFr($catminatCode)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.catminatCode = :catminatCode')
+		   ->setParameter('catminatCode', $catminatCode);
+		$qb->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->addSelect('depFr');
+		$qb->andWhere($qb->expr()->notLike('s.level', $qb->expr()->literal('syn%')));
+		$qb->orderBy('s.catminatCode', 'ASC');
+
+		return $qb->getQuery()->getSingleResult();
+	}
+
+	public function findSyntaxonByLevelForMerging($level)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.level = :level')
+   		   ->setParameter('level', $level)
+		;
+
+		//$this->ueFilter($qb, array('france' => 'france'), false);
+
+		return $qb->getQuery()->getScalarResult();
+	}
+
+	public function getSyntaxonsByCatminatCodeWithRepartitions()
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   //->where('s.catminatCode = :catminatCode')
+		   //->setParameter('catminatCode', $catminatCode)
+		;
+		$qb->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->addSelect('depFr');
+		$qb->leftJoin('s.repartitionEurope', 'eu')
+		   ->addSelect('eu');
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function getSyntaxonsByLevelWithRepartitions($level)
+	{
+		$qb = $this->createQueryBuilder('s');
+
+		$qb->select('s')
+		   ->where('s.level = :level')
+		   ->setParameter('level', $level)
+		;
+		$qb->leftJoin('s.repartitionDepFr', 'depFr')
+		   ->addSelect('depFr');
+		$qb->leftJoin('s.repartitionEurope', 'eu')
+		   ->addSelect('eu');
+
+		return $qb->getQuery()->getResult();
+	}
 }
