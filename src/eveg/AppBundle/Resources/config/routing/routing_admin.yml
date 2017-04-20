@@ -49,6 +49,26 @@ eveg_admin_import_logs:
     path: /import/logs
     defaults: { _controller: evegAppBundle:Import:logs }
 
+eveg_admin_repartition_merge_fr:
+    path: /repartition/merge-fr
+    defaults: { _controller: evegAppBundle:RepartitionFrMerge:default }
+
+eveg_admin_repartition_merge_fr_getList:
+    path: /repartition/merge-fr/get-list
+    defaults: { _controller: evegAppBundle:RepartitionFrMerge:findSyntaxonsByLevel }
+
+eveg_admin_repartition_merge_fr_do:
+    path: /repartition/merge-fr/do
+    defaults: { _controller: evegAppBundle:RepartitionFrMerge:mergeDepFr }
+
+eveg_admin_repartition_merge_fr_eu:
+    path: /repartition/merge-fr-eu
+    defaults: { _controller: evegAppBundle:RepartitionFrMergeEuMap:default }
+
+eveg_admin_repartition_merge_fr_eu_do:
+    path: /repartition/merge-fr-eu/do 
+    defaults: { _controller: evegAppBundle:RepartitionFrMergeEuMap:mergeDepFrEuMap }
+
 eveg_admin_versioning:
     path: /baseveg/versioning/list
     defaults: { _controller: evegAppBundle:Versioning:list }
