@@ -48,7 +48,8 @@ class SyntaxonCoreRepository extends EntityRepository
 		// specify the fields to fetch (unselected fields will have a null value)
 		$qb->select('s')
 			->where('s.level = :level')
-			->setParameter('level', 'HAB');
+			->setParameter('level', 'HAB')
+			->orderBy('s.catminatCode', 'ASC');
 
 		// Department filter
 		if($depFrFilter != null) {
