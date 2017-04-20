@@ -39,9 +39,9 @@ class wantedForCompilation
 
 			if($flag === false) {
 				// Only get ASS, SUBASS & GRPT levels (upper levels may not contain descriptions tables)
-				if($pdf->getSyntaxonCore()->getLevel() == 'ASS' or
-				   $pdf->getSyntaxonCore()->getLevel() == 'SUBASS' or
-				   $pdf->getSyntaxonCore()->getLevel() == 'GRPT') {
+				if(($pdf->getSyntaxonCore()->getLevel() == 'ASS') ||
+				   ($pdf->getSyntaxonCore()->getLevel() == 'SUBASS') ||
+				   ($pdf->getSyntaxonCore()->getLevel() == 'GRPT')) {
 					
 					array_push($pdfsAlone, $pdf);
 				}
@@ -74,9 +74,9 @@ class wantedForCompilation
 
 			if($flag === false) {
 				// Only get ASS, SUBASS & GRPT levels (upper levels may not contain descriptions tables)
-				if($pdf->getSyntaxonCore()->getLevel() == 'ASS' or
-				   $pdf->getSyntaxonCore()->getLevel() == 'SUBASS' or
-				   $pdf->getSyntaxonCore()->getLevel() == 'GRPT') {
+				if(($pdf->getSyntaxonCore()->getLevel() == 'ASS') ||
+				   ($pdf->getSyntaxonCore()->getLevel() == 'SUBASS') ||
+				   ($pdf->getSyntaxonCore()->getLevel() == 'GRPT')) {
 					
 					$counter++;
 				}

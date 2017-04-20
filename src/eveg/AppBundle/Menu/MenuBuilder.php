@@ -65,8 +65,8 @@ class MenuBuilder implements ContainerAwareInterface
       $depFrFilter = $session->get('depFrFilter');
       $filterFlag  = false;
 
-      if(($ueFilter != '[]') or ($depFrFilter != '[]')) {
-        if(($ueFilter != null) or ($depFrFilter != null)) {
+      if(($ueFilter != '[]') || ($depFrFilter != '[]')) {
+        if(($ueFilter != null) || ($depFrFilter != null)) {
           $filterFlag = true;
         }
       }

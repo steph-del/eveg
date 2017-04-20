@@ -150,7 +150,7 @@ class SyntaxonHttpLinkController extends Controller
 				Throw new HttpException(401, 'You are not allowed to access to this link.');
 			}
 		}
-		if($visibility == 'group' and (!$this->get('security.context')->isGranted('ROLE_CIRCLE'))) {
+		if(($visibility == 'group') && (!$this->get('security.context')->isGranted('ROLE_CIRCLE'))) {
 			Throw new HttpException(401, 'You are not allowed to access to this link.');
 		}
 		// Hit+1

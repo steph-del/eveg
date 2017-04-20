@@ -1111,7 +1111,7 @@ class ImportController extends Controller
 				}
 
 				$importKey = array_search($entity->getId(), $importKeys);
-				if($importKey and $importKey !== null) {
+				if($importKey && ($importKey !== null)) {
 					$newEcology
 						->setWorldRepartition($import[$importKey]['world_repartition'])
 						->setFranceRepartition($import[$importKey]['france_repartition'])
