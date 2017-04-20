@@ -3,7 +3,11 @@ eVeg - electronic vegetations - European vegetations database interface (integra
 **www.e-veg.net**
 **Stéphane Delplanque, 2013 ff.**
 
-**2.1.1** (master)
+**2.2.0** (master)
+ - add merging repartition data features
+
+**2.1.1**
+ - add merging repartition data features
  - catCode unit tests
  - site pages functionals tests
  - add Algolia mapping support
