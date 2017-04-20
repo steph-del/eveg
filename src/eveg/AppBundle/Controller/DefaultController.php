@@ -364,7 +364,7 @@ class DefaultController extends Controller
 		$session = new Session();
 		$r = $session->get('rainbow');
 
-		if(!$r or $r == 0 )
+		if((!$r) || ($r == 0))
 		{
 			$session->set('rainbow', 1);
 		} else {

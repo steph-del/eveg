@@ -171,7 +171,7 @@ class evegCatCode
 		$long = count($exploded);
 		
 		// if habitat
-		if($nbSlashes == 1 and $betweenSlashes == ''){
+		if(($nbSlashes == 1) && ($betweenSlashes == '')){
 			return 'HAB';
 		}
 		
@@ -356,7 +356,7 @@ class evegCatCode
 
 		switch($levelAsked){
 			case 'HAB':
-				if($catminatLevel == 'CLA' or 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'CLA' || 'SUBCLA' || 'ORD' || 'SUBORD' || 'ALL' || 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/';
 					return $output;
@@ -372,7 +372,7 @@ class evegCatCode
 			
 			case 'CLA':
 				
-				if($catminatLevel == 'SUBCLA' or 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBCLA' || 'ORD' || 'SUBORD' || 'ALL' || 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 2+$addA6);
 					return $output;
@@ -387,7 +387,7 @@ class evegCatCode
 			
 			case 'SUBCLA':
 
-				if($catminatLevel == 'ORD' or 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ORD' || 'SUBORD' || 'ALL' || 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 3+$addA6);
 					return $output;
@@ -402,7 +402,7 @@ class evegCatCode
 			
 			case 'ORD':
 
-				if($catminatLevel == 'SUBORD' or 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBORD' || 'ALL' || 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 5+$addA6);
 					return $output;
@@ -417,7 +417,7 @@ class evegCatCode
 			
 			case 'SUBORD':
 
-				if($catminatLevel == 'ALL' or 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ALL' || 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 7+$addA6);
 					return $output;
@@ -432,7 +432,7 @@ class evegCatCode
 			
 			case 'ALL':
 
-				if($catminatLevel == 'SUBALL' or 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'SUBALL' || 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 9+$addA6);
 					return $output;
@@ -447,7 +447,7 @@ class evegCatCode
 			
 			case 'SUBALL':
 
-				if($catminatLevel == 'ASSGR' or 'ASS' or 'SUBASS'){
+				if($catminatLevel == 'ASSGR' || 'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 11+$addA6);
 					return $output;
@@ -462,7 +462,7 @@ class evegCatCode
 
 			case 'ASSGR':
 
-				if($catminatLevel ==  'ASS' or 'SUBASS'){
+				if($catminatLevel ==  'ASS' || 'SUBASS'){
 					
 					$output = $habCode . '/' . substr($coreCode, 0, 13+$addA6);
 					return $output;

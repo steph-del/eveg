@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
-	/*
+	/**
  	 * @Security("has_role('ROLE_BIBLIO')")
  	 */
     public function searchAction()
@@ -216,7 +216,6 @@ class DefaultController extends Controller
 			$em          = $this->getDoctrine()->getManager();
 
 			$reference = $data;
-dump($reference);
 			$reference->setUpdatedAt(new \Datetime('now'));
 			$reference->setUpdatedBy($currentUser);
 

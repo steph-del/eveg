@@ -160,6 +160,7 @@ fos_js_routing:
         - "^eveg_delete_*"
         - "^eveg_r"
         - "eveg_biblio_show_one"
+        - "^eveg_admin_repartition_merge*"
 
 # BeSimpleI18nRoutingBundle
 be_simple_i18n_routing: ~

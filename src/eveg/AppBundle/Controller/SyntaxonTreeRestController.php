@@ -52,13 +52,13 @@ class SyntaxonTreeRestController extends FOSRestController
 
         $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
-        if ($children == '[]' or $children == null) {
+        if ( ($children == '[]') || ($children == null) ) {
             $syntaxon->setFolder(false);
             $syntaxon->setLazy(false);
         } else {
             // test filters
             $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
-            if($children != '[]' or $children != null) {
+            if( ($children != '[]') || ($children != null) ) {
                 $syntaxon->setFolder(true);
                 $syntaxon->setLazy(true);
             } else {
@@ -101,14 +101,14 @@ class SyntaxonTreeRestController extends FOSRestController
         $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
         // 2nd step
-        if(empty($syntaxonTree) and ($syntaxon->getLevel() != 'SUBASS' and $syntaxon->getLevel() != 'ASS')){
+        if( empty($syntaxonTree) && ( ($syntaxon->getLevel() != 'SUBASS') && ($syntaxon->getLevel() != 'ASS') ) ){
             $nextLevel2 = $catCode->getNextLevel($nextLevel);
             $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
         }
 
         // 3rd step
         // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
-        if(empty($syntaxonTree) and ($syntaxon->getLevel() == 'ALL')){
+        if( empty($syntaxonTree) && ($syntaxon->getLevel() == 'ALL') ){
           $nextLevel3 = $catCode->getNextLevel($nextLevel2);
           $syntaxonTree = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
         }
@@ -127,7 +127,7 @@ class SyntaxonTreeRestController extends FOSRestController
             $catminatCode = $syntaxon->getCatminatCode();
             $level = $syntaxon->getLevel();
             if($level != 'SUBASS')                                            $nextLevel = $catCode->getNextLevel($level);
-            if($level != 'SUBASS' and $level != 'ASS')                        $nextLevel2 = $catCode->getNextLevel($nextLevel);
+            if( ($level != 'SUBASS') && ($level != 'ASS') )                        $nextLevel2 = $catCode->getNextLevel($nextLevel);
             if($level == 'ALL')                                               $nextLevel3 = $catCode->getNextLevel($nextLevel2);
 
 
@@ -135,14 +135,14 @@ class SyntaxonTreeRestController extends FOSRestController
               $children = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel, $depFrFilter, $ueFilter);
 
               // 1st step
-              if ($children == '[]' or $children == null) {
+              if (($children == '[]') || ($children == null)) {
                 $syntaxon->setFolder(false);
                 $syntaxon->setLazy(false);
 
                 // 2nd step
                 if(isset($nextLevel2)) {
                   $children2 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel2, $depFrFilter, $ueFilter);
-                  if($children2 == '[]' or $children2 == null) {
+                  if(($children2 == '[]') || ($children2 == null)) {
                     $syntaxon->setFolder(false);
                     $syntaxon->setLazy(false);
 
@@ -150,7 +150,7 @@ class SyntaxonTreeRestController extends FOSRestController
                     // only available for ALL level (can jump 3 steps : ALL > SUBALL > ASSGR > ASS)
                     if(isset($nextLevel3)) {
                       $children3 = $scRepo->getDirectChildrenByCatminatCode($catminatCode, $nextLevel3, $depFrFilter, $ueFilter);
-                      if($children3 == '[]' or $children3 == null) {
+                      if(($children3 == '[]') || ($children3 == null)) {
                         $syntaxon->setFolder(false);
                         $syntaxon->setLazy(false);
                       } else {
