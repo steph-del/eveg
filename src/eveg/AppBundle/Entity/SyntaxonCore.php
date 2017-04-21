@@ -871,4 +871,18 @@ class SyntaxonCore
         }
     }
 
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isNotHabitat()
+    {
+        $level = $this->level;
+
+        if($level == 'HAB') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
