@@ -59,30 +59,42 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
+        default_connection: default
+        connections:
+            default:
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+            psi_db:
+                driver:   "%database_driver_psi_db%"
+                host:     "%database_host_psi_db%"
+                port:     "%database_port_psi_db%"
+                dbname:   "%database_name_psi_db%"
+                user:     "%database_user_psi_db%"
+                password: "%database_password_psi_db%"
+                charset:  UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
-        mappings:
-            gedmo_loggable:
-                type: annotation
-                prefix: Gedmo\Loggable\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-                alias: GedmoLoggable
-                is_bundle: false
+        #auto_mapping: false
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    evegAppBundle: ~
+                    evegBiblioBundle: ~
+                    evegPagesBundle: ~
+                    evegUserBundle: ~
+                    LexikTranslationBundle: ~
+                    #evegUserRepartitionBundle: 
+            psi_db:
+                connection: psi_db
+                mappings:
+                    evegPsiBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
