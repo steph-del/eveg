@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new SPE\FilesizeExtensionBundle\SPEFilesizeExtensionBundle(),
             new eveg\PsiBundle\evegPsiBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
