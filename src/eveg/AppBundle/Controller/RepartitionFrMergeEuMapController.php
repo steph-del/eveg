@@ -1,4 +1,4 @@
-<?
+<?php
 // src/eveg/AppBundle/Controller/RepartitionFrMergeEuMapController.php
 
 namespace eveg\AppBundle\Controller;
