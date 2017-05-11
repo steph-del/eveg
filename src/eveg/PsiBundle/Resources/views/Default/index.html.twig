@@ -1,1 +1,109 @@
-Hello {{ name }}!
+{# src/eveg/AppBundle/Resources/views/Default/homepage.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block body%}
+	{#{{dump(node)}}
+	{{dump(pattern)}}
+	{{dump(patternNode)}}
+	{{dump(pat)}}#}
+	<div class="row">
+		<div class="col-md-6">
+			<h2><small>Tableau</small></h2>
+		</div>
+		<div class="col-md-6">
+			<h2><small>Ajouter un relevé</small></h2>
+			<textarea id="data-input" type="textarea" rows="10" cols="60"></textarea>
+			<div id="data-result"></div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+
+	<script>
+		$(document).ready(function(){
+			var xhr;
+			$dataInput = $('#data-input');
+			$dataResult = $('#data-result');
+
+			function inputPattern(data) {
+				var pattern = '';
+				pattern += '<select class="form-control" id="dataTable" name="dataTable">';
+				for (var i = 0; i <= data.length - 1; i++) {
+					pattern += '<option value="" selected>'+data[i].scientificName+'</option>';
+					//console.log(data[i].scientificName);
+				};
+				pattern += '</select>';
+
+				return pattern;
+			}
+
+			$dataInput.bind('input propertychange', function() {
+				if(xhr && xhr.readyState != 4){						// Abort request : http://stackoverflow.com/questions/4551175/how-to-cancel-abort-jquery-ajax-request#4551178
+		            xhr.abort();
+		        }
+				xhr = $.ajax({
+					url: Routing.generate('api_post_data_table'),
+					data: {
+						'data': this.value
+					},
+					error: function(e) {
+						console.log(e);
+					},
+					success: function(results) {
+						var p = '';
+						for (var i = 0; i <= results.length - 1; i++) {
+							//console.log(inputPattern(results[i]));
+							p += inputPattern(results[i]);
+						};
+						$('#data-result').html(p);
+					},
+					type: 'POST'
+				})
+			})
+
+		})
+	</script>
+
+	<script>
+		/*
+		ajaxFormFeedback.on('submit', function(event) {
+			event.preventDefault();
+
+			feedbackSpinDivId.show();
+			feedbackSubmitDivId.prop('disabled', true);
+			feedbackSubmitTextDivId.html(feedbackSubmitWaitingText);
+
+			$.ajax({
+				url: Routing.generate('eveg_feedback', true),
+				data: {
+					'email':   		emailInputDivId.val(),
+					'about':   		aboutInputDivId.val(),
+					'syntaxonName': syntaxonInputDivId.val(),
+					'type':    		typeInputDivId.val(),
+					'message': 		messageInputDivId.val()
+				},
+				error: function(){
+					feedbackSpinDivId.hide();
+					feedbackSubmitDivId.prop('disabled', false);
+					feedbackSubmitTextDivId.html(feedbackSubmitText);
+					ajaFeddBackResponseDivId.html(ajaxErrorReturnDiv);
+				},
+				success: function(){
+					feedbackSpinDivId.hide();
+					feedbackSubmitDivId.prop('disabled', false);
+					feedbackSubmitTextDivId.html(feedbackSubmitText);
+
+					messageInputDivId.val('');
+					ajaFeddBackResponseDivId.html(ajaxSuccessReturnDiv);
+				},
+				type: 'POST'
+			});
+		});
+		*/
+	</script>
+
+{% endblock %}
