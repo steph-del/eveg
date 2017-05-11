@@ -1,4 +1,10 @@
 services:
-#    eveg_psi.example:
-#        class: eveg\PsiBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    #eveg_psi.repo.table_node:
+    #    class: Doctrine\ORM\EntityRepository
+    #    factory:           ['@doctrine.orm.psi_db', 'getRepository']
+    #    arguments:
+    #        - eveg\PsiBundle\Entity\TableNode
+
+    eveg_psi.table:
+        class: eveg\PsiBundle\Utils\Services\TableService
+        arguments: ["@doctrine.orm.psi_db_entity_manager"]
