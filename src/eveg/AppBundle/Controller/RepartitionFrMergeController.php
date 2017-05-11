@@ -1,4 +1,4 @@
-<?
+<?php
 // src/eveg/AppBundle/Controller/RepartitionFrMergeController.php
 
 namespace eveg\AppBundle\Controller;
