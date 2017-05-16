@@ -111,6 +111,8 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             loggable: true
+        psi_db:
+            tree: true
 
 #FOSUserBundle Configuration
 fos_user:

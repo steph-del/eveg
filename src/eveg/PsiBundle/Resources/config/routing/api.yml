@@ -1,0 +1,7 @@
+eveg_psi_api:
+    type:     rest
+    resource: "evegPsiBundle:PsiRest"
+
+#eveg_psi_api.node.id:
+#    path:     /node/{id}
+#    defaults: { _controller: evegPsiBundle:PsiRest:getNodeId }
