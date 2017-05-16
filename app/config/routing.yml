@@ -1,5 +1,5 @@
 eveg_psi:
-    resource: "@evegPsiBundle/Resources/config/routing.yml"
+    resource: "@evegPsiBundle/Resources/config/routing/app.yml"
     prefix:   /db/
 
 eveg_biblio:

@@ -12,6 +12,46 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+    	$em = $this->getDoctrine()->getManager('psi_db');
+
+    	$repo = $em->getRepository('evegPsiBundle:Node');
+    	$sp1 = $repo->findById(37);
+    	$sp2 = $repo->findById(38);
+    	$sp3 = $repo->findById(39);
+    	$synusie = new Node('synusie');
+    	$synusie->setRepository('PVF2');
+    	$em->persist($synusie);
+    	$sp1[0]->setParent($synusie);
+    	$sp2[0]->setParent($synusie);
+    	$sp3[0]->setParent($synusie);
+
+    	$em->flush();
+
+    	return $this->render('evegPsiBundle:Default:index.html.twig');
+
+
+
+
+
+    	/*$em = $this->getDoctrine()->getManager('psi_db');
+    	$microC = new Node('microcenosis');
+    	$microC->setRepository('PVF2');
+    	$em->persist($microC);
+
+    	$synusie = $em->getRepository('evegPsiBundle:Node')->findById(29);
+    	$synusie[0]->setParent($microC);
+
+    	$em->flush();
+
+    	return $this->render('evegPsiBundle:Default:index.html.twig');*/
+
+
+
+
+
+
+
+    	$em = $this->getDoctrine()->getManager('psi_db');
 
     	$sp1 = new Node('idiotaxon');
     	$sp1->setCoef('3');
@@ -29,16 +69,24 @@ class DefaultController extends Controller
     	$sp5->setCoef('+');
     	$sp5->setRepository('baseflor');
 
+    	$em->persist($sp1);
+    	$em->persist($sp2);
+    	$em->persist($sp3);
+
     	$synusie = new Node('synusy');
-    	$synusie->addChild($sp1);
+    	/*$synusie->addChild($sp1);
     	$synusie->addChild($sp2);
-    	$synusie->addChild($sp3);
+    	$synusie->addChild($sp3);*/
     	$synusie->setRepository('baseveg');
 
-    	$synusie2 = new Node('synusy');
+    	$sp1->setParent($synusie);
+    	$sp2->setParent($synusie);
+    	$sp3->setParent($synusie);
+
+    	/*$synusie2 = new Node('synusy');
     	$synusie2->addChild($sp2);
     	$synusie2->addChild($sp3);
-    	$synusie2->setRepository('baseveg');
+    	$synusie2->setRepository('baseveg');*/
 
     	$table = new Table();
     	$table->setName('Tableau de test');
@@ -51,7 +99,7 @@ class DefaultController extends Controller
     	$table->addNode($synusie);*/
 
     	$ts = $this->get('eveg_psi.table');
-    	$ts->addNodes($table, [$synusie, $synusie2], 1, 'groupSocio1');
+    	$ts->addNodes($table, [$synusie], 1, 'groupSocio1');
 
     	//$table->addNode($synusie);
 //dump($table);

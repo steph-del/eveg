@@ -1,0 +1,7 @@
+eveg_psi_homepage:
+    path:     /add
+    defaults: { _controller: evegPsiBundle:Default:index }
+
+eveg_psi_api:
+    resource: "@evegPsiBundle/Resources/config/routing/api.yml"
+    prefix:   /api/

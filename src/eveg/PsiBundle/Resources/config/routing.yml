@@ -1,3 +1,0 @@
-eveg_psi_homepage:
-    path:     /add
-    defaults: { _controller: evegPsiBundle:Default:index }
