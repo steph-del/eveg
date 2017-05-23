@@ -1,0 +1,3 @@
+eveg_api_bundle_baseflor:
+    type:     rest
+    resource: "evegApiBundle:BaseflorRest"

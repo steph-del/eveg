@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new SPE\FilesizeExtensionBundle\SPEFilesizeExtensionBundle(),
             new eveg\PsiBundle\evegPsiBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new eveg\ApiBundle\evegApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

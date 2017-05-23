@@ -90,6 +90,7 @@ doctrine:
                     evegPagesBundle: ~
                     evegUserBundle: ~
                     LexikTranslationBundle: ~
+                    evegApiBundle: ~
                     #evegUserRepartitionBundle: 
             psi_db:
                 connection: psi_db

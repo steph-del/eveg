@@ -1,0 +1,3 @@
+eveg_api_bundle:
+    resource: "@evegApiBundle/Resources/config/routing/api.yml"
+    prefix:   /api/

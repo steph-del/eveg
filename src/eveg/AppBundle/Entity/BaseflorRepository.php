@@ -45,4 +45,40 @@ class BaseflorRepository extends \Doctrine\ORM\EntityRepository
 			;
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findSpecie($term)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b')
+		   ->where('b.scientificName LIKE :term')
+		   ->setParameter('term', $term.'%')
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findByIdTaxin($id)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b')
+		   ->where('b.bdnffTaxinId = :id')
+		   ->setParameter('id', $id)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findByIdNomen($id)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$qb->select('b')
+		   ->where('b.bdnffNomenId = :id')
+		   ->setParameter('id', $id)
+		;
+
+		return $qb->getQuery()->getResult();
+	}
 }

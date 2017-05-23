@@ -1,3 +1,7 @@
+eveg_api:
+    resource: "@evegApiBundle/Resources/config/routing/app.yml"
+    prefix:   /
+
 eveg_psi:
     resource: "@evegPsiBundle/Resources/config/routing/app.yml"
     prefix:   /db/
