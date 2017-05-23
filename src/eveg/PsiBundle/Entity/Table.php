@@ -42,7 +42,8 @@ class Table
     private $author;
 
     /**
-    * @ORM\Column(name="nodes", type="object")
+    * @var \stdClass
+    *
     * @ORM\OneToMany(targetEntity="eveg\PsiBundle\Entity\TableNode", mappedBy="table", cascade={"persist"})
     */
     private $nodes;
