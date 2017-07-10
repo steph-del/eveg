@@ -63,6 +63,17 @@ class Node
 	private $id;
 
 	/**
+	 * frontId
+	 *
+	 * When we send a new node through the API, we don't even know its id because Doctrine generates it. This id is used in 
+	 * the front app to know wich node has to be updated after the db persistance.
+	 *
+	 * @var bigint
+	 * @ORM\Column(name="frontId", type="bigint", options={"unsigned"=true}, nullable=true)
+	 */
+	private $frontId;
+
+	/**
 	 * Level : node level
 	 *
      * @var string
@@ -186,6 +197,14 @@ class Node
 
 	public function getId() {
 		return $this->id;
+	}
+
+	public function setFrontId($frontId) {
+		$this->frontId = $frontId;
+	}
+
+	public function getFrontId() {
+		return $this->frontId;
 	}
 
 	public function setLevel($level) { $this->level = $level; }
