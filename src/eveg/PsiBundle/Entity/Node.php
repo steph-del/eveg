@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use eveg\PsiBundle\Entity\Validation;
 
 /**
  * Node object
@@ -38,6 +39,7 @@ class Node
 	{
 		$this->level 	= $level;
 		$this->children = new ArrayCollection();
+		$this->validation = new ArrayCollection();
 		$this->parents 	= new ArrayCollection();
 		$this->tables 	= new ArrayCollection();
 
@@ -147,6 +149,13 @@ class Node
      */
 	private $children;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="eveg\PsiBundle\Entity\Validation", mappedBy="node", cascade={"persist"})
+	 * 
+	 */
+	private $validations;
+
 	/*
 	 * @ORM\ManyToMany(targetEntity="Node", mappedBy="children")
 	 */
@@ -244,6 +253,26 @@ class Node
 	}
 
 	public function getChildren() { return $this->children; }
+
+	public function addValidation($validation)
+	{
+		if($validation instanceof Validation)
+		{
+			$validation->setNode($this);
+			$this->validations[] = $validation;
+		} else {
+			throw new Exception("Error Processing Request. $validation is not of type Validation (in Node.php)", 500);
+		}
+	}
+	public function removeValidation($validation)
+	{
+		if($validation instanceof Validation)
+		{
+			unset($this->validations[$validation]);
+		}
+	}
+	public function getValidations() { return $this->validations; }
+
 	public function setCoef($coef) { $this->coef = $coef; return $this->coef; }
 
 	public function getRepository() { return $this->repository; }

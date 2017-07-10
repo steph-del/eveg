@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
 use eveg\PsiBundle\Entity\Node;
+use eveg\PsiBundle\Entity\Validation;
 
 class PsiRestController extends FOSRestController
 {
@@ -90,14 +91,30 @@ class PsiRestController extends FOSRestController
 		// Iterate through nodes ; create children nodes and hydrate them
 		foreach ($data['nodes'] as $key => $node) {
 			${'node'.$key} = new Node('idiotaxon');
+			${'validation'.$key} = new Validation;
 			
 			$em->persist(${'node'.$key});
+			$em->persist(${'validation'.$key});
 			$rootNode->addChild(${'node'.$key});
 
 			${'node'.$key}->setFrontId($node['frontId']);
 			${'node'.$key}->setName($node['name']);
 			${'node'.$key}->setCoef($node['coef']);
 			${'node'.$key}->setRepository('baseflor');
+
+			${'validation'.$key}->setRepository('baseflor');
+			${'validation'.$key}->setRepositoryIdTaxo($node['repositoryIdTaxo']);
+			${'validation'.$key}->setRepositoryIdNomen($node['repositoryIdNomen']);
+			${'validation'.$key}->setInputName($node['inputName']);
+			${'validation'.$key}->setValidatedName($node['validatedName']);
+
+			${'node'.$key}->addValidation(${'validation'.$key});
+
+			//$view = $this->view();
+			//$view->setData(${'validation'.$key});
+
+			//return $view;
+
 		}
 
 		// Flush & clear the EM
