@@ -210,3 +210,5 @@ web/css/chart.css
 web/js/chart.js
 
 bash_profile
+
+src/eveg/PsiBundle/Controller/DefaultController.php
