@@ -35,7 +35,7 @@ class TableService
 	    	// TODO : vérifier les doublons de position. Si un doublon de position est détecté, il est placé à la fin du tableau.
 	    	$tableNode->setGroupSocio($groupSocio);
 	    	//$table->addNode($node);
-dump($tableNode);
+//dump($tableNode);
 		}
 
     	$this->em->flush();
