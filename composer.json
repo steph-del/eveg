@@ -36,7 +36,7 @@
         "lexik/maintenance-bundle": "2.1.*",
         "lexik/translation-bundle": "~3.1",
         "egeloen/ckeditor-bundle": "^4.0",
-        "algolia/algolia-search-bundle": "~1.0",
+        "algolia/algolia-search-bundle": "2.2.*",
         "spe/filesize-extension-bundle": "~1.0.0"
     },
     "require-dev": {

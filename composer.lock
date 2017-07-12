@@ -4,26 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "00fd004a843d1ae542f4c5693c71fce5",
+    "content-hash": "e672f8cff9a8fec43850744185785960",
     "packages": [
         {
             "name": "algolia/algolia-search-bundle",
-            "version": "1.0.13",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/AlgoliaSearchBundle.git",
-                "reference": "8a9e140fcffbf381e6a439859e34bd5126eeda88"
+                "reference": "c7aa15ec633b7033f0330409c3da6ec7fb8b9b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/AlgoliaSearchBundle/zipball/8a9e140fcffbf381e6a439859e34bd5126eeda88",
-                "reference": "8a9e140fcffbf381e6a439859e34bd5126eeda88",
+                "url": "https://api.github.com/repos/algolia/AlgoliaSearchBundle/zipball/c7aa15ec633b7033f0330409c3da6ec7fb8b9b4e",
+                "reference": "c7aa15ec633b7033f0330409c3da6ec7fb8b9b4e",
                 "shasum": ""
             },
             "require": {
                 "algolia/algoliasearch-client-php": "~1.6",
                 "doctrine/doctrine-bundle": "~1.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
+                "php": "^5.6 || ^7.0",
                 "symfony/finder": "~2.5|~3.0",
                 "symfony/framework-bundle": "~2.5|~3.0",
                 "symfony/property-access": "~2.5|~3.0"
@@ -52,7 +53,7 @@
                 }
             ],
             "description": "Seamless integration of Algolia Search into your Symfony project.",
-            "time": "2016-02-08T10:03:23+00:00"
+            "time": "2017-03-27T16:32:15+00:00"
         },
         {
             "name": "algolia/algoliasearch-client-php",
@@ -3340,12 +3341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stof/StofDoctrineExtensionsBundle.git",
-                "reference": "4e7499d25dc5d0862da09fa8e336164948a29a25"
+                "reference": "f9e3854f90eb35ed2c28f0fc8a4c1ed6627d0a80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/4e7499d25dc5d0862da09fa8e336164948a29a25",
-                "reference": "4e7499d25dc5d0862da09fa8e336164948a29a25",
+                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/f9e3854f90eb35ed2c28f0fc8a4c1ed6627d0a80",
+                "reference": "f9e3854f90eb35ed2c28f0fc8a4c1ed6627d0a80",
                 "shasum": ""
             },
             "require": {
@@ -3393,7 +3394,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2016-01-26 23:58:32"
+            "time": "2017-01-13 18:32:32"
         },
         {
             "name": "swiftmailer/swiftmailer",
