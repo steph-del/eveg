@@ -30,7 +30,7 @@ class PsiRestController extends FOSRestController
 		$em		  = $this->getDoctrine()->getManager('psi_db');
 		$nodeRepo = $em->getRepository('evegPsiBundle:Node');
 
-		$nodes    = $nodeRepo->findAll();
+		$nodes    = $nodeRepo->getAllNotIdiotaxons();
 
 		// Return
 		$view->setData($nodes);

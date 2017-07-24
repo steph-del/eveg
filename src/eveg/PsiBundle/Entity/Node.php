@@ -14,7 +14,7 @@ use eveg\PsiBundle\Entity\Validation;
  * @author Stéphane Delplanque <stephane@e-veg.net>
  *
  * @ORM\Table(name="psi_node")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="eveg\PsiBundle\Entity\NodeRepository")
  * @Gedmo\Tree(type="nested")
  */
 class Node
