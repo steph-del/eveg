@@ -129,6 +129,14 @@ class Node
 
 	private $date;
 
+	/**
+	 * Coef : ab/dom value
+	 * 
+     * @var string
+     * @ORM\Column(name="geoJson", type="json_array", nullable=true)
+     */
+	private $geoJson;
+
 	private $localization;
 		private $country;			// TODO : include inside localization
 		private $departement;		// TODO : include inside localization
@@ -285,5 +293,8 @@ class Node
 	public function getRoot() { return $this->root; }
 	public function setParent(Node $parent = null) { $this->parentTree = $parent; }
 	public function getParent() { return $this->parentTree;  }
+
+	public function getGeoJson() { return $this->geoJson; }
+	public function setGeoJson($geoJson) { $this->geoJson = $geoJson; }
 
 }

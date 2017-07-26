@@ -87,6 +87,7 @@ class PsiRestController extends FOSRestController
 		$rootNode->setRepository('baseveg');
 		$rootNode->setName('A synusy from my Angular app!');
 		$rootNode->setFrontId($data['frontId']);
+		$rootNode->setGeoJson($data['geoJson']);
 
 		// Iterate through nodes ; create children nodes and hydrate them
 		foreach ($data['nodes'] as $key => $node) {
@@ -101,6 +102,7 @@ class PsiRestController extends FOSRestController
 			${'node'.$key}->setName($node['name']);
 			${'node'.$key}->setCoef($node['coef']);
 			${'node'.$key}->setRepository('baseflor');
+			${'node'.$key}->setGeoJson($data['geoJson']);
 
 			${'validation'.$key}->setRepository('baseflor');
 			${'validation'.$key}->setRepositoryIdTaxo($node['repositoryIdTaxo']);
