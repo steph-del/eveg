@@ -3,6 +3,12 @@
 namespace eveg\PsiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\SerializedName;
+
+/*
+ * Why using SerializedName ?
+ * See https://stackoverflow.com/questions/22738466/symfony2-jmsserializerbundle-changes-the-attribute-name-from-classname-to-cl
+ */
 
 /**
  * Validation
@@ -40,6 +46,7 @@ class Validation
      * @var string
      *
      * @ORM\Column(name="repositoryIdTaxo", type="string", length=255)
+     * @SerializedName("repositoryIdTaxo")
      */
     private $repositoryIdTaxo;
 
@@ -47,6 +54,7 @@ class Validation
      * @var string
      *
      * @ORM\Column(name="repositoryIdNomen", type="string", length=255)
+     * @SerializedName("repositoryIdNomen")
      */
     private $repositoryIdNomen;
 
@@ -54,6 +62,7 @@ class Validation
      * @var string
      *
      * @ORM\Column(name="inputName", type="string", length=512)
+     * @SerializedName("inputName")
      */
     private $inputName;
 
@@ -61,6 +70,7 @@ class Validation
      * @var string
      *
      * @ORM\Column(name="validatedName", type="string", length=512)
+     * @SerializedName("validatedName")
      */
     private $validatedName;
 
@@ -68,6 +78,7 @@ class Validation
      * @var string
      *
      * @ORM\Column(name="validName", type="string", length=512, nullable=true)
+     * @SerializedName("validName")
      */
     private $validName;
 

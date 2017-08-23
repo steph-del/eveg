@@ -7,6 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use eveg\PsiBundle\Entity\Validation;
+use JMS\Serializer\Annotation\SerializedName;
+
+/*
+ * Why using SerializedName ?
+ * See https://stackoverflow.com/questions/22738466/symfony2-jmsserializerbundle-changes-the-attribute-name-from-classname-to-cl
+ */
 
 /**
  * Node object
@@ -72,6 +78,7 @@ class Node
 	 *
 	 * @var bigint
 	 * @ORM\Column(name="frontId", type="bigint", options={"unsigned"=true}, nullable=true)
+	 * @SerializedName("frontId")
 	 */
 	private $frontId;
 
@@ -88,6 +95,7 @@ class Node
 	 * Not persisted id Db
 	 *
 	 * @var array
+	 * @SerializedName("canContain")
 	 */
 	private $canContain;
 
@@ -104,6 +112,7 @@ class Node
 	 *
 	 * @var integer
 	 * @ORM\Column(name="repositoryIdNomen", type="integer", nullable=true)
+	 * @SerializedName("repositoryIdNomen")
 	 */
 	private $repositoryIdNomen;
 
@@ -134,6 +143,7 @@ class Node
 	 * 
      * @var string
      * @ORM\Column(name="geoJson", type="json_array", nullable=true)
+     * @SerializedName("geoJson")
      */
 	private $geoJson;
 
@@ -203,6 +213,7 @@ class Node
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Node", inversedBy="childrenTree", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id")
+     * @SerializedName("parentTree")
      */
     private $parentTree;
 
