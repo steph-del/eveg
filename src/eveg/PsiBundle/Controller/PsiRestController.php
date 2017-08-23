@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
 use eveg\PsiBundle\Entity\Node;
+use eveg\PsiBundle\Entity\Table;
 use eveg\PsiBundle\Entity\Validation;
 
 class PsiRestController extends FOSRestController
@@ -134,6 +135,23 @@ class PsiRestController extends FOSRestController
 		$view = $this->view();
 		$view->setData($rootNode);
 
+		return $view;
+	}
+
+	/**
+	 * GET Route annotation
+	 * Get new table
+	 * @Get("/tables/new")
+	 */
+	public function getNewTableAction()
+	{
+		// New view
+		$view = $this->view();
+
+		$newTable = new Table;
+
+		// Return
+		$view->setData($newTable);
 		return $view;
 	}
 }
