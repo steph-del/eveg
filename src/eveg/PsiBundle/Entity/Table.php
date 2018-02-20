@@ -4,18 +4,24 @@ namespace eveg\PsiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use eveg\PsiBundle\Entity\TableNode;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Table
  *
  * @ORM\Table(name="psi_table")
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Table
 {
     public function __construct()
     {
-        $this->nodes = new ArrayCollection();
+        $this->tNodes = new ArrayCollection();
     }
 
     /**
@@ -24,20 +30,26 @@ class Table
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     *
+     * @Expose
      */
     private $name;
 
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="author", type="object")
+     * @ORM\Column(name="author", type="object", nullable=true)
+     *
+     * @Expose
      */
     private $author;
 
@@ -45,8 +57,12 @@ class Table
     * @var \stdClass
     *
     * @ORM\OneToMany(targetEntity="eveg\PsiBundle\Entity\TableNode", mappedBy="table", cascade={"persist"})
+    *
+    * @Expose
+    * @Type("Array<eveg\PsiBundle\Entity\TableNode>")
+    * @SerializedName("tNodes")
     */
-    private $nodes;
+    private $tNodes;
 
 
     /**
@@ -107,28 +123,32 @@ class Table
         return $this->author;
     }
 
-    public function addNode($node)
+    /**
+     *
+     * @param TableNode $tNode
+     */
+    public function addTNode($tNode)
     {
-        $this->nodes[] = $node;
+        $this->tNodes[] = $tNode;
 
         //$node->addTable($this);
 
         return $this;
     }
 
-    public function removeNode($node)
+    public function removeTNode($tNode)
     {
-        $this->nodes->removeElement($node);
+        $this->tNodes->removeElement($tNode);
     }
 
     /**
-     * Get nodes
+     * Get tNodes
      *
      * @return array
      */
-    public function getNodes()
+    public function getTNodes()
     {
-        return $this->nodes;
+        return $this->tNodes;
     }
 }
 

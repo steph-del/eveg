@@ -3,12 +3,18 @@
 namespace eveg\PsiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * TableNode
  *
  * @ORM\Table(name="psi_table_nodes_relation")
  * @ORM\Entity
+ *
+ * @ExclusionPolicy("all")
  */
 class TableNode
 {
@@ -25,6 +31,8 @@ class TableNode
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
@@ -32,6 +40,8 @@ class TableNode
      * @var integer
      *
      * @ORM\Column(name="position", type="integer")
+     *
+     * @Expose
      */
     private $position;
 
@@ -39,18 +49,24 @@ class TableNode
      * @var string
      *
      * @ORM\Column(name="groupSocio", type="string", nullable=true)
+     *
+     * @Expose
+     * @SerializedName("groupSocio")
      */
     private $groupSocio;
 
-    /**
-    * @ORM\ManyToOne(targetEntity="eveg\PsiBundle\Entity\Table", inversedBy="nodes", cascade={"persist"})
+    /*
+    * @ORM\ManyToOne(targetEntity="eveg\PsiBundle\Entity\Table", inversedBy="tNodes", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
     */
-    private $table;
+    //private $table;
 
     /**
     * @ORM\ManyToOne(targetEntity="eveg\PsiBundle\Entity\Node", inversedBy="tables", cascade={"persist"})
     * @ORM\JoinColumn(nullable=false)
+    *
+    * @Expose
+    * @Type("Array<eveg\PsiBundle\Entity\Node>")
     */
     private $node;
 

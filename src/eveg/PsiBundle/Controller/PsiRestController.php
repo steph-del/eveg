@@ -5,6 +5,7 @@ namespace eveg\PsiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -12,6 +13,7 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
 use eveg\PsiBundle\Entity\Node;
 use eveg\PsiBundle\Entity\Table;
+use eveg\PsiBundle\Entity\TableNode;
 use eveg\PsiBundle\Entity\Validation;
 
 class PsiRestController extends FOSRestController
@@ -152,6 +154,39 @@ class PsiRestController extends FOSRestController
 
 		// Return
 		$view->setData($newTable);
+		return $view;
+	}
+
+	/**
+	 * PUT Route annotation.
+	 * @Put("/tables")
+	 */
+	public function putTableAction(Request $request)
+	{
+		$em		  = $this->getDoctrine()->getManager('psi_db');
+		$nodeRepo = $em->getRepository('evegPsiBundle:Table');
+//print_r($request->query->get('table'));
+		$serializer = $this->container->get('jms_serializer');
+		$dataJson = $request->query->get('table');
+		$data = json_decode($dataJson, true);
+//print_r($data);die;
+		$table = $serializer->deserialize($dataJson, 'eveg\PsiBundle\Entity\Table', 'json');
+print_r($table);die;
+		/*foreach ($data['tNodes'] as $key => $tNode) {
+			$tNodeJson = $serializer->serialize($tNode, 'json');
+			$tNodeData = $serializer->deserialize($tNodeJson, 'eveg\PsiBundle\Entity\TableNode', 'json');
+			$table->addTNode($tNodeData);
+		}*/
+//print_r($serializer->serialize($table, 'json'));die;
+		//if(!$table instanceof Table) throw new HttpException(400, "Requested data is not a Table type");
+		//$tNodes = $table->getTNodes();
+
+		//$em->persist($table);
+		//$em->flush();
+		//$em->clear();
+
+		$view = $this->view();
+		$view->setData($table);
 		return $view;
 	}
 }

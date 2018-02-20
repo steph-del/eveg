@@ -81,4 +81,16 @@ class BaseflorRepository extends \Doctrine\ORM\EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findByIdNomens($ids)
+	{
+		$qb = $this->createQueryBuilder('b');
+
+		$nomenIds = explode(",", $ids);
+
+		$qb->select('b');
+		$qb->where($qb->expr()->in('b.bdnffNomenId', $nomenIds));
+
+		return $qb->getQuery()->getResult();
+	}
 }

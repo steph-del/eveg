@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use eveg\PsiBundle\Entity\Validation;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 
 /*
@@ -22,6 +25,8 @@ use JMS\Serializer\Annotation\SerializedName;
  * @ORM\Table(name="psi_node")
  * @ORM\Entity(repositoryClass="eveg\PsiBundle\Entity\NodeRepository")
  * @Gedmo\Tree(type="nested")
+ *
+ * @ExclusionPolicy("all")
  */
 class Node
 {
@@ -67,6 +72,8 @@ class Node
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
 	private $id;
 
@@ -78,6 +85,8 @@ class Node
 	 *
 	 * @var bigint
 	 * @ORM\Column(name="frontId", type="bigint", options={"unsigned"=true}, nullable=true)
+	 *
+	 * @Expose
 	 * @SerializedName("frontId")
 	 */
 	private $frontId;
@@ -87,6 +96,8 @@ class Node
 	 *
      * @var string
      * @ORM\Column(name="level", type="string", length=128)
+     *
+     * @Expose
      */
 	private $level;
 
@@ -95,6 +106,8 @@ class Node
 	 * Not persisted id Db
 	 *
 	 * @var array
+	 *
+	 * @Expose
 	 * @SerializedName("canContain")
 	 */
 	private $canContain;
@@ -104,6 +117,8 @@ class Node
 	 *
 	 * @var string
 	 * @ORM\Column(name="repository", type="string", length=128)
+	 *
+	 * @Expose
 	 */
 	private $repository;
 
@@ -112,6 +127,8 @@ class Node
 	 *
 	 * @var integer
 	 * @ORM\Column(name="repositoryIdNomen", type="integer", nullable=true)
+	 *
+	 * @Expose
 	 * @SerializedName("repositoryIdNomen")
 	 */
 	private $repositoryIdNomen;
@@ -121,6 +138,8 @@ class Node
 	 * 
      * @var string
      * @ORM\Column(name="name", type="string", length=512, nullable=true)
+     *
+     * @Expose
      */
 	private $name;
 
@@ -129,6 +148,8 @@ class Node
 	 * 
      * @var string
      * @ORM\Column(name="coef", type="string", length=6, nullable=true)
+     *
+     * @Expose
      */
 	private $coef;
 
@@ -143,6 +164,8 @@ class Node
 	 * 
      * @var string
      * @ORM\Column(name="geoJson", type="json_array", nullable=true)
+     *
+     * @Expose
      * @SerializedName("geoJson")
      */
 	private $geoJson;
@@ -164,13 +187,18 @@ class Node
      *         joinColumns={@ORM\JoinColumn(name="node_id", referencedColumnName="id")},
      *         inverseJoinColumns={@ORM\JoinColumn(name="related_node_id", referencedColumnName="id")}
      * )
+     *
+     * @Expose
+     * @Type("Array<eveg\PsiBundle\Entity\Node>")
      */
 	private $children;
 
 	/**
 	 *
 	 * @ORM\OneToMany(targetEntity="eveg\PsiBundle\Entity\Validation", mappedBy="node", cascade={"persist"})
-	 * 
+	 *
+	 * @Expose
+	 * @Type("Arrayeveg\PsiBundle\Entity\Validation>")
 	 */
 	private $validations;
 

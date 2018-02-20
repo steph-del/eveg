@@ -95,4 +95,25 @@ class BaseflorRestController extends FOSRestController
 		return $view;
 	}
 
+	/**
+	 * GET Route annotation
+	 * Search a specie
+	 * @Get("/baseflor/species/nomens/{ids}")
+	 */
+	public function getSpeciesByIdNomensAction($ids)
+	{
+		// New view
+		$view = $this->view();
+
+		// Get baseflor repository
+		$bfRepo = $this->getDoctrine()->getManager()->getRepository('evegAppBundle:Baseflor');
+
+		// Search for term
+		$result = $bfRepo->findByIdNomens($ids);
+
+		// Return
+		$view->setData($result);
+		return $view;
+	}
+
 }
