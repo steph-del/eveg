@@ -22,6 +22,12 @@ services:
         tags:
             - {name: form.type }
 
+    user_repartition_biblio.form.type.add_repartition:
+        class:              eveg\UserRepartitionBundle\Form\Type\RepartitionBiblioType
+        arguments:          ['@user_repartition.tables_helper']
+        tags:
+            - {name: form.type }
+
     ############
     # Repository
     ############

@@ -1,3 +1,7 @@
 eveg_user_repartition_add:
     path:     /repartition/{id}/add
     defaults: { _controller: evegUserRepartitionBundle:Default:addRepartition }
+
+eveg_user_repartition_biblio_add:
+    path:     /repartition-biblio/add
+    defaults: { _controller: evegUserRepartitionBundle:Default:addRepartitionBiblio }

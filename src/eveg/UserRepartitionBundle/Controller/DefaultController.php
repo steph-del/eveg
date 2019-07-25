@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use eveg\AppBundle\Entity\SyntaxonCore;
 use eveg\UserRepartitionBundle\Form\Type\RepartitionType;
+use eveg\UserRepartitionBundle\Form\Type\RepartitionBiblioType;
 use eveg\BiblioBundle\Entity\BaseBiblio;
 
 class DefaultController extends Controller
@@ -108,5 +109,21 @@ class DefaultController extends Controller
         		  'repUeJson'    => $repUeJson,
                   'repDepFrUsersJson' => $repDepFrUsersJson,
         	));
+    }
+
+    /**
+	* @Security("has_role('ROLE_USER')") 
+	*/
+    public function addRepartitionBiblioAction()
+    {
+        // Get request and entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Create the form
+        $form = $this->createForm(new RepartitionBiblioType($this->get('user_repartition.tables_helper')));
+
+        return $this->render('evegUserRepartitionBundle:Default:addRepartitionBiblio.html.twig',
+            array('form' => $form->createView())
+        );
     }
 }

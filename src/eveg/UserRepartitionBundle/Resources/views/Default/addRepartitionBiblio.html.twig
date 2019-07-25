@@ -1,0 +1,47 @@
+{# src/eveg/UserRepartitionBundle/Resources/views/Default/addRepartitionBiblio.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	Ajout de données chorologiques depuis une source biblio. | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{{ parent() }}
+
+  <div class="row whiteRow">
+		<div class="jumbotron">
+			<h1>Ajouter des données chorologiques (Fr) depuis un document biblio.</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-9">
+					{{ form_start(form) }}
+
+          {# Source #}
+          <div class="well">
+            <ul>
+              <li>{{ form_row(form.biblio) }}</li>
+            <ul>
+          </div>
+
+          {{ form_widget(form._token) }}
+          {{ form_end(form, {'render_rest': false}) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+{% endblock %}
